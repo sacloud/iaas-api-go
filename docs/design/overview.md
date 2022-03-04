@@ -25,6 +25,11 @@
 
 ## 実装
 
+### libsacloudとiaas-api-goの並列開発
+
+当面はlibsacloudの修正を継続する。libsacloudに対して行われた修正は手作業でiaas-api-goに取り込む。  
+iaas-api-goへの移植は[libsacloud v2.32.2](https://github.com/sacloud/libsacloud/tree/v2.32.2)を元にする。  
+
 ### 方針
 
 `sacloud`パッケージについて、libsacloudのクライアント側での修正が容易に行える程度の改修をしつつ移植する。
