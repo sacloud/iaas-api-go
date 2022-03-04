@@ -20,12 +20,10 @@ jobs:
 
       - name: Setup tools
         run: | 
-          cd v2
           make tools
 
       - name: make lint
         run:  |
-          cd v2
           make lint
 
   test:
@@ -48,10 +46,8 @@ jobs:
 
       - name: Setup tools
         run: | 
-          cd v2
           make tools
 
       - name: make test
         run: |
-          cd v2
           make test

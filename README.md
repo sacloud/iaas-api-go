@@ -4,10 +4,21 @@ Go言語向けのさくらのクラウドIaaS APIライブラリ
 
 ## 概要
 
+iaas-api-goは[sacloud/libsacloud v2](https://github.com/sacloud/libsacloud)の後継プロジェクトで、さくらのクラウド APIのうちのIaaS部分を担当します。
+
 :baby_symbol: iaas-api-goは設計/開発中です。  
-[sacloud/libsacloud v2](https://github.com/sacloud/libsacloud)の後継プロジェクトで、さくらのクラウド APIのうちのIaaS部分を担当します。
+概要や設計、実装方針については[docs/overview.md](https://github.com/sacloud/iaas-api-go/blob/main/docs/design/overview.md)を参照してください。
 
 :warning:  v1.0に達するまでは互換性のない形で変更される可能性がありますのでご注意ください。
+
+### libsacloudとiaas-api-goのバージョン対応表
+
+| libsacloud | iaas-api-go | Note/Status                       |
+|------------|-------------|-----------------------------------|
+| v1         | -           | libsacloud v1系はiaas-api-goへの移植対象外 |
+| v2         | v1          | 開発中                               |
+| v3(未リリース)  | v2          | 未リリース/未着手                         |
+
 
 ### 関連プロジェクト
 
