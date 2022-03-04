@@ -11,6 +11,15 @@ iaas-api-goは[sacloud/libsacloud v2](https://github.com/sacloud/libsacloud)の�
 
 :warning:  v1.0に達するまでは互換性のない形で変更される可能性がありますのでご注意ください。
 
+### libsacloudとiaas-api-goのバージョン対応表
+
+| libsacloud | iaas-api-go | Note/Status                       |
+|------------|-------------|-----------------------------------|
+| v1         | -           | libsacloud v1系はiaas-api-goへの移植対象外 |
+| v2         | v1          | 開発中                               |
+| v3(未リリース)  | v2          | 未リリース/未着手                         |
+
+
 ### 関連プロジェクト
 
 - [sacloud/sacloud-go](https://github.com/sacloud/sacloud-go): sacloud/iaas-api-goを用いた高レベルAPIライブラリ
