@@ -25,7 +25,56 @@
 
 ## 実装
 
-TODO 切り出す範囲/修正する範囲を検討して記載
+### 方針
+
+`sacloud`パッケージについて、libsacloudのクライアント側での修正が容易に行える程度の改修をしつつ移植する。
+(容易 == 機械的に置き換えできる、という程度)
+
+### 移植対象/対応
+
+#### libsacloud
+
+```console
+- sacloud
+  - accessor
+  - fake
+  - naked
+  - ostype
+  - pointer => sacloud-goへ
+  - profile => sacloud-goへ
+  - search
+  - stub
+  - test
+  - testutil => 一部をsacloud-goへ
+  - trace
+  - types => 一部をsacloud直下に
+  - sacloud直下
+```
+
+- `pointer`や`profile`はsacloud-goで実装する  
+- testutilは整理してから切り出し/分割などの対応が必要  
+- typesは整理してからsacloud直下へ移動などの対応が必要  
+
+#### iaas-api-go
+
+従来はsacloudパッケージ配下だったものをiaas-api-goの配下にする。  
+パッケージ名は`iaas`とする。
+
+```console
+- accessor
+- fake
+- naked
+- ostype
+- search
+- stub
+- test
+- testutil => TODO 要検討
+- trace
+- types => TODO 要検討
+- sacloud直下
+```
+
+testutilとtypesについては該当部の実装時に検討することとしてTODOのままにしておく。
 
 ## 改訂履歴
 
