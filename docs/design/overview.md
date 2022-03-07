@@ -37,9 +37,18 @@ iaas-api-goへの移植は[libsacloud v2.32.2](https://github.com/sacloud/libsac
 
 ### 移植対象/対応
 
-#### libsacloud
+#### リポジトリ運用
+
+[libsacloud v2.32.2](https://github.com/sacloud/libsacloud/tree/v2.32.2)を基点にソースコード類をコピーして移行する。  
+libsacloudからのforkは行わず新たなリポジトリで開発していく。
+
+#### libsacloudのパッケージ構成/移行対象
 
 ```console
+- examples: otel利用例
+- helper: 高レベルAPI群、sacloud-goへ
+- internal: 独自DSL
+- pkg: libsacloudに依存しないユーティリティなど => 
 - sacloud
   - accessor
   - fake
@@ -56,26 +65,33 @@ iaas-api-goへの移植は[libsacloud v2.32.2](https://github.com/sacloud/libsac
   - sacloud直下
 ```
 
-- `pointer`や`profile`はsacloud-goで実装する  
+- `profile`はsacloud-goで実装する  
 - testutilは整理してから切り出し/分割などの対応が必要  
 - typesは整理してからsacloud直下へ移動などの対応が必要  
 
-#### iaas-api-go
+
+#### iaas-api-goのパッケージ構成
 
 従来はsacloudパッケージ配下だったものをiaas-api-goの配下にする。  
 パッケージ名は`iaas`とする。
 
 ```console
 - accessor
+- cleanup  => libsacloudのhelper/cleanupの移植
 - fake
+- internal => libsacloudの独自DSL実装など
 - naked
 - ostype
+- plans    => libsacloudのhelper/plansの移植
+- power    => libsacloudのhelper/powerの移植
+- query    => libsacloudのhelper/queryの移植
 - search
 - stub
 - test
 - testutil => TODO 要検討
 - trace
 - types => TODO 要検討
+- wait     => libsacloudのhelper/waitの移植
 - sacloud直下
 ```
 
@@ -84,3 +100,4 @@ testutilとtypesについては該当部の実装時に検討することとし�
 ## 改訂履歴
 
 - 2022/3/4: 初版作成
+- 2022/3/7: libsacloud/v2直下のパッケージについて追記
