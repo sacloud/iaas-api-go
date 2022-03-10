@@ -15,7 +15,6 @@
 package api
 
 import (
-	"net/http"
 	"strings"
 	"time"
 
@@ -23,9 +22,7 @@ import (
 	"github.com/sacloud/iaas-api-go/fake"
 	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/trace"
-	"github.com/sacloud/iaas-api-go/trace/otel"
 	"github.com/sacloud/sacloud-go/client"
-	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 func NewCaller() (iaas.APICaller, error) {
@@ -53,19 +50,6 @@ func newCaller(opts *CallerOptions) iaas.APICaller {
 	if opts.TraceAPI {
 		// note: exact once
 		trace.AddClientFactoryHooks()
-	}
-
-	if opts.OpenTelemetry {
-		otel.Initialize(opts.OpenTelemetryOptions...)
-		httpClient := http.DefaultClient
-		if opts.HttpClient != nil {
-			httpClient = opts.HttpClient
-		}
-		transport := httpClient.Transport
-		if transport == nil {
-			transport = http.DefaultTransport
-		}
-		httpClient.Transport = otelhttp.NewTransport(transport)
 	}
 
 	if opts.FakeMode {
