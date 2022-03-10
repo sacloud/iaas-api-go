@@ -59,8 +59,10 @@ github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUA
 github.com/rogpeppe/go-internal v1.8.0/go.mod h1:WmiCO8CzOY8rg0OYDC4/i/2WRWAB6poM+XZ2dLUbcbE=
 github.com/sacloud/go-http v0.0.4 h1:+vgx/uCctcGiHMe8jE+qirMKd3+d73MNZXK7nrUo0po=
 github.com/sacloud/go-http v0.0.4/go.mod h1:aYTXNuAnPmD6Ar3ktDaR1gPxJCPv2CqpppcYciy1hmo=
-github.com/sacloud/sacloud-go/pkg v0.0.0-20220307043102-fb073867386e h1:IfOJtJAkqr8RGMjn2W0StktH+/nBWfDjxLagqpbdlR8=
-github.com/sacloud/sacloud-go/pkg v0.0.0-20220307043102-fb073867386e/go.mod h1:/hcfG/jZlqNDRpnMDl9rm1aBLgNCeX1NF6FyaIwk9+k=
+github.com/sacloud/sacloud-go/client v0.0.0-20220310053611-9ca4a16844d2 h1:h4m0dtve1tIV39L6FEXUK0BbOyDNf8AAFr5Zx7DHbi0=
+github.com/sacloud/sacloud-go/client v0.0.0-20220310053611-9ca4a16844d2/go.mod h1:xzS1tyNhweIIQ+wyhBTlOSXBQfcuBFyV3Sskm3S2Ovw=
+github.com/sacloud/sacloud-go/pkg v0.0.0-20220310002004-ab494c9c1c6d h1:Rdj8QU3EZrmdUKJMvJ0U3kkgUZFLzZ5u1kMKdQnW7eY=
+github.com/sacloud/sacloud-go/pkg v0.0.0-20220310002004-ab494c9c1c6d/go.mod h1:/hcfG/jZlqNDRpnMDl9rm1aBLgNCeX1NF6FyaIwk9+k=
 github.com/stretchr/objx v0.1.0 h1:4G4v2dO3VZwixGIRoQ5Lfboy6nUhCyYzaqnIAPPhYs4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=

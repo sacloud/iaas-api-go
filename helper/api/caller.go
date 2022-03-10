@@ -19,98 +19,53 @@ import (
 	"strings"
 	"time"
 
-	sacloudhttp "github.com/sacloud/go-http"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/fake"
 	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/trace"
 	"github.com/sacloud/iaas-api-go/trace/otel"
+	"github.com/sacloud/sacloud-go/client"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
-// NewCaller 指定のオプションでiaas.APICallerを構築して返す
-func NewCaller(opts ...*CallerOptions) iaas.APICaller {
-	return newCaller(MergeOptions(opts...))
-}
-
-// NewCallerWithDefaults 指定のオプション+環境変数/プロファイルを用いてiaas.APICallerを構築して返す
-//
-// DefaultOption()で得られる*CallerOptionsにoptsをマージしてからNewCallerが呼ばれる
-func NewCallerWithDefaults(opts *CallerOptions) (iaas.APICaller, error) {
-	defaultOpts, err := DefaultOption()
+func NewCaller() (iaas.APICaller, error) {
+	clientOpts, err := client.DefaultOption()
 	if err != nil {
 		return nil, err
 	}
-	return NewCaller(defaultOpts, opts), nil
+	return NewCallerWithOptions(&CallerOptions{Options: clientOpts}), nil
+}
+
+// NewCallerWithOptions 指定のオプションでiaas.APICallerを構築して返す
+func NewCallerWithOptions(opts *CallerOptions) iaas.APICaller {
+	return newCaller(opts)
 }
 
 func newCaller(opts *CallerOptions) iaas.APICaller {
-	// build http client
-	httpClient := http.DefaultClient
-	if opts.HTTPClient != nil {
-		httpClient = opts.HTTPClient
-	}
-	if opts.HTTPRequestTimeout > 0 {
-		httpClient.Timeout = time.Duration(opts.HTTPRequestTimeout) * time.Second
-	}
-	if opts.HTTPRequestTimeout == 0 {
-		httpClient.Timeout = 300 * time.Second // デフォルト値
-	}
-	if opts.HTTPRequestRateLimit > 0 {
-		httpClient.Transport = &sacloudhttp.RateLimitRoundTripper{RateLimitPerSec: opts.HTTPRequestRateLimit}
-	}
-	if opts.HTTPRequestRateLimit == 0 {
-		httpClient.Transport = &sacloudhttp.RateLimitRoundTripper{RateLimitPerSec: 10} // デフォルト値
+	if opts.UserAgent == "" {
+		opts.UserAgent = iaas.DefaultUserAgent
 	}
 
-	retryMax := 0
-	if opts.RetryMax > 0 {
-		retryMax = opts.RetryMax
-	}
+	caller := iaas.NewClientWithOptions(opts.Options)
 
-	retryWaitMax := time.Duration(0)
-	if opts.RetryWaitMax > 0 {
-		retryWaitMax = time.Duration(opts.RetryWaitMax) * time.Second
-	}
-
-	retryWaitMin := time.Duration(0)
-	if opts.RetryWaitMin > 0 {
-		retryWaitMin = time.Duration(opts.RetryWaitMin) * time.Second
-	}
-
-	ua := iaas.DefaultUserAgent
-	if opts.UserAgent != "" {
-		ua = opts.UserAgent
-	}
-
-	caller := &iaas.Client{
-		AccessToken:       opts.AccessToken,
-		AccessTokenSecret: opts.AccessTokenSecret,
-		UserAgent:         ua,
-		AcceptLanguage:    opts.AcceptLanguage,
-		RetryMax:          retryMax,
-		RetryWaitMax:      retryWaitMax,
-		RetryWaitMin:      retryWaitMin,
-		HTTPClient:        httpClient,
-	}
 	iaas.DefaultStatePollingTimeout = 72 * time.Hour
 
 	if opts.TraceAPI {
 		// note: exact once
 		trace.AddClientFactoryHooks()
 	}
-	if opts.TraceHTTP {
-		caller.HTTPClient.Transport = &sacloudhttp.TracingRoundTripper{
-			Transport: caller.HTTPClient.Transport,
-		}
-	}
+
 	if opts.OpenTelemetry {
 		otel.Initialize(opts.OpenTelemetryOptions...)
-		transport := caller.HTTPClient.Transport
+		httpClient := http.DefaultClient
+		if opts.HttpClient != nil {
+			httpClient = opts.HttpClient
+		}
+		transport := httpClient.Transport
 		if transport == nil {
 			transport = http.DefaultTransport
 		}
-		caller.HTTPClient.Transport = otelhttp.NewTransport(transport)
+		httpClient.Transport = otelhttp.NewTransport(transport)
 	}
 
 	if opts.FakeMode {
@@ -127,12 +82,17 @@ func newCaller(opts *CallerOptions) iaas.APICaller {
 		iaas.APIDefaultZone = opts.DefaultZone
 	}
 
+	if len(opts.Zones) > 0 {
+		iaas.SakuraCloudZones = opts.Zones
+	}
+
 	if opts.APIRootURL != "" {
 		if strings.HasSuffix(opts.APIRootURL, "/") {
 			opts.APIRootURL = strings.TrimRight(opts.APIRootURL, "/")
 		}
 		iaas.SakuraCloudAPIRoot = opts.APIRootURL
 	}
+
 	return caller
 }
 

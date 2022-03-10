@@ -17,6 +17,7 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 	"path/filepath"
 
 	"github.com/sacloud/iaas-api-go"
@@ -63,10 +64,11 @@ func main() {
 }
 
 func collectArchives() interface{} {
-	caller, err := iaas.NewClientFromEnv()
-	if err != nil {
-		log.Fatal(err)
+	if os.Getenv("SAKURACLOUD_ACCESS_TOKEN") == "" ||
+		os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET") == "" {
+		log.Fatal("required: SAKURACLOUD_ACCESS_TOKEN and SAKURACLOUD_ACCESS_TOKEN_SECRET")
 	}
+	caller := iaas.NewClientFromEnv()
 	tmplParam := map[string][]*iaas.Archive{}
 	archiveOp := iaas.NewArchiveOp(caller)
 	ctx := context.Background()
@@ -118,10 +120,12 @@ var initArchives = map[string][]*iaas.Archive{
 `
 
 func collectCDROMs() interface{} {
-	caller, err := iaas.NewClientFromEnv()
-	if err != nil {
-		log.Fatal(err)
+	if os.Getenv("SAKURACLOUD_ACCESS_TOKEN") == "" ||
+		os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET") == "" {
+		log.Fatal("required: SAKURACLOUD_ACCESS_TOKEN and SAKURACLOUD_ACCESS_TOKEN_SECRET")
 	}
+	caller := iaas.NewClientFromEnv()
+
 	tmplParam := map[string][]*iaas.CDROM{}
 	cdromOp := iaas.NewCDROMOp(caller)
 	ctx := context.Background()

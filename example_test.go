@@ -118,10 +118,11 @@ func ExampleClient_Do_direct() {
 	// Note: 通常はiaas.xxxOpを通じて操作してください。
 
 	// クライアントの作成
-	client, err := iaas.NewClientFromEnv()
-	if err != nil {
-		log.Fatal(err)
+	if os.Getenv("SAKURACLOUD_ACCESS_TOKEN") == "" ||
+		os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET") == "" {
+		log.Fatal("required: SAKURACLOUD_ACCESS_TOKEN and SAKURACLOUD_ACCESS_TOKEN_SECRET")
 	}
+	client := iaas.NewClientFromEnv()
 
 	// ゾーン一覧を取得する例
 	url := "https://secure.sakura.ad.jp/cloud/zone/is1a/api/cloud/1.1/zone"
@@ -145,10 +146,11 @@ func ExampleClient_Do_withNaked() {
 	// Note: 通常はiaas.xxxOpを通じて操作してください。
 
 	// クライアントの作成
-	client, err := iaas.NewClientFromEnv()
-	if err != nil {
-		log.Fatal(err)
+	if os.Getenv("SAKURACLOUD_ACCESS_TOKEN") == "" ||
+		os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET") == "" {
+		log.Fatal("required: SAKURACLOUD_ACCESS_TOKEN and SAKURACLOUD_ACCESS_TOKEN_SECRET")
 	}
+	client := iaas.NewClientFromEnv()
 
 	// ゾーン一覧を取得する例
 	url := "https://secure.sakura.ad.jp/cloud/zone/is1a/api/cloud/1.1/zone"

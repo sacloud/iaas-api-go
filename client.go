@@ -21,12 +21,11 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"runtime"
-	"time"
 
 	sacloudhttp "github.com/sacloud/go-http"
 	"github.com/sacloud/iaas-api-go/types"
+	"github.com/sacloud/sacloud-go/client"
 )
 
 var (
@@ -48,6 +47,11 @@ var (
 		runtime.GOARCH,
 		sacloudhttp.DefaultUserAgent,
 	)
+
+	defaultCheckRetryStatusCodes = []int{
+		http.StatusServiceUnavailable,
+		http.StatusLocked,
+	}
 )
 
 const (
@@ -69,58 +73,61 @@ type APICaller interface {
 //
 // リトライ時にcontext.Canceled、またはcontext.DeadlineExceededの場合はリトライしない
 type Client struct {
-	// AccessToken アクセストークン
-	AccessToken string `validate:"required"`
-	// AccessTokenSecret アクセストークンシークレット
-	AccessTokenSecret string `validate:"required"`
-	// ユーザーエージェント
-	UserAgent string
-	// Accept-Language
-	AcceptLanguage string
-	// Gzip有効化
-	Gzip bool
-	// 423/503エラー時のリトライ回数
-	RetryMax int
-	// 423/503エラー時のリトライ待ち時間(最小)
-	RetryWaitMin time.Duration
-	// 423/503エラー時のリトライ待ち時間(最大)
-	RetryWaitMax time.Duration
-	// APIコール時に利用される*http.Client 未指定の場合http.DefaultClientが利用される
-	HTTPClient *http.Client
+	factory *client.Factory
 }
 
 // NewClient APIクライアント作成
 func NewClient(token, secret string) *Client {
-	c := &Client{
+	opts := &client.Options{
 		AccessToken:       token,
 		AccessTokenSecret: secret,
-		UserAgent:         DefaultUserAgent,
 	}
-	return c
+	return NewClientWithOptions(opts)
 }
 
 // NewClientFromEnv 環境変数からAPIキーを取得してAPIクライアントを作成する
-func NewClientFromEnv() (*Client, error) {
-	token := os.Getenv(APIAccessTokenEnvKey)
-	if token == "" {
-		return nil, fmt.Errorf("environment variable %q is required", APIAccessTokenEnvKey)
-	}
-	secret := os.Getenv(APIAccessSecretEnvKey)
-	if secret == "" {
-		return nil, fmt.Errorf("environment variable %q is required", APIAccessSecretEnvKey)
-	}
-	return NewClient(token, secret), nil
+func NewClientFromEnv() *Client {
+	return NewClientWithOptions(client.OptionsFromEnv())
 }
 
-func (c *Client) isOkStatus(code int) bool {
-	codes := map[int]bool{
-		http.StatusOK:        true,
-		http.StatusCreated:   true,
-		http.StatusAccepted:  true,
-		http.StatusNoContent: true,
+// NewClientWithOptions 指定のオプションでAPIクライアントを作成する
+func NewClientWithOptions(opts *client.Options) *Client {
+	if len(opts.CheckRetryStatusCodes) == 0 {
+		opts.CheckRetryStatusCodes = defaultCheckRetryStatusCodes
 	}
-	_, ok := codes[code]
-	return ok
+	factory := client.NewFactory(opts)
+	return &Client{factory: factory}
+}
+
+// Do APIコール実施
+func (c *Client) Do(ctx context.Context, method, uri string, body interface{}) ([]byte, error) {
+	req, err := c.newRequest(ctx, method, uri, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// API call
+	resp, err := c.factory.NewHttpRequestDoer().Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close() // nolint - ignore error
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	if !c.isOkStatus(resp.StatusCode) {
+		errResponse := &APIErrorResponse{}
+		err := json.Unmarshal(data, errResponse)
+		if err != nil {
+			return nil, fmt.Errorf("error in response: %s", string(data))
+		}
+		return nil, NewAPIError(req.Method, req.URL, resp.StatusCode, errResponse)
+	}
+
+	return data, nil
 }
 
 func (c *Client) newRequest(ctx context.Context, method, uri string, body interface{}) (*http.Request, error) {
@@ -142,49 +149,13 @@ func (c *Client) newRequest(ctx context.Context, method, uri string, body interf
 	return http.NewRequestWithContext(ctx, method, url, bodyReader)
 }
 
-func (c *Client) apiClient() *sacloudhttp.Client {
-	return &sacloudhttp.Client{
-		AccessToken:       c.AccessToken,
-		AccessTokenSecret: c.AccessTokenSecret,
-		UserAgent:         c.UserAgent,
-		AcceptLanguage:    c.AcceptLanguage,
-		Gzip:              c.Gzip,
-		CheckRetryFunc:    nil,
-		RetryMax:          c.RetryMax,
-		RetryWaitMin:      c.RetryWaitMin,
-		RetryWaitMax:      c.RetryWaitMax,
-		HTTPClient:        c.HTTPClient,
-		RequestCustomizer: nil,
+func (c *Client) isOkStatus(code int) bool {
+	codes := map[int]bool{
+		http.StatusOK:        true,
+		http.StatusCreated:   true,
+		http.StatusAccepted:  true,
+		http.StatusNoContent: true,
 	}
-}
-
-// Do APIコール実施
-func (c *Client) Do(ctx context.Context, method, uri string, body interface{}) ([]byte, error) {
-	req, err := c.newRequest(ctx, method, uri, body)
-	if err != nil {
-		return nil, err
-	}
-
-	// API call
-	resp, err := c.apiClient().Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close() // nolint - ignore error
-
-	data, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	if !c.isOkStatus(resp.StatusCode) {
-		errResponse := &APIErrorResponse{}
-		err := json.Unmarshal(data, errResponse)
-		if err != nil {
-			return nil, fmt.Errorf("error in response: %s", string(data))
-		}
-		return nil, NewAPIError(req.Method, req.URL, resp.StatusCode, errResponse)
-	}
-
-	return data, nil
+	_, ok := codes[code]
+	return ok
 }

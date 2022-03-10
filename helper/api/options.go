@@ -15,45 +15,28 @@
 package api
 
 import (
-	"net/http"
 	"os"
-	"strconv"
-	"strings"
 
-	sacloudhttp "github.com/sacloud/go-http"
 	"github.com/sacloud/iaas-api-go"
-	"github.com/sacloud/iaas-api-go/profile"
 	"github.com/sacloud/iaas-api-go/trace/otel"
+	"github.com/sacloud/sacloud-go/client"
+	"github.com/sacloud/sacloud-go/client/profile"
+	"github.com/sacloud/sacloud-go/pkg/envvar"
 )
 
 // CallerOptions iaas.APICallerを作成する際のオプション
 type CallerOptions struct {
-	AccessToken       string
-	AccessTokenSecret string
+	*client.Options
 
-	APIRootURL     string
-	DefaultZone    string
-	Zones          []string
-	AcceptLanguage string
-
-	HTTPClient *http.Client
-
-	HTTPRequestTimeout   int
-	HTTPRequestRateLimit int
-
-	RetryMax     int
-	RetryWaitMax int
-	RetryWaitMin int
-
-	UserAgent string
+	APIRootURL  string
+	DefaultZone string
+	Zones       []string
 
 	TraceAPI             bool
-	TraceHTTP            bool
 	OpenTelemetry        bool
 	OpenTelemetryOptions []otel.Option
-
-	FakeMode      bool
-	FakeStorePath string
+	FakeMode             bool
+	FakeStorePath        string
 }
 
 // DefaultOption 環境変数、プロファイルからCallerOptionsを組み立てて返す
@@ -71,35 +54,69 @@ func DefaultOption() (*CallerOptions, error) {
 // それも空の場合は通常のプロファイル処理(~/.usacloud/currentファイルから読み込み)される。
 // 同じ項目を複数箇所で指定していた場合、環境変数->プロファイルの順で上書きされたものが返される
 func DefaultOptionWithProfile(profileName string) (*CallerOptions, error) {
-	if profileName == "" {
-		profileName = stringFromEnvMulti([]string{"SAKURACLOUD_PROFILE", "USACLOUD_PROFILE"}, "")
+	options, err := client.DefaultOptionWithProfile(profileName)
+	if err != nil {
+		return nil, err
 	}
+
+	fromEnv := OptionsFromEnv()
+	fromEnv.Options = options
+
 	fromProfile, err := OptionsFromProfile(profileName)
 	if err != nil {
 		return nil, err
 	}
-	return MergeOptions(OptionsFromEnv(), fromProfile, defaultOption), nil
+	fromProfile.Options = options
+
+	defaults := &CallerOptions{
+		APIRootURL:  iaas.SakuraCloudAPIRoot,
+		DefaultZone: iaas.APIDefaultZone,
+		Zones:       iaas.SakuraCloudZones,
+	}
+
+	return MergeOptions(fromEnv, fromProfile, defaults), nil
 }
 
-var defaultOption = &CallerOptions{
-	APIRootURL:           iaas.SakuraCloudAPIRoot,
-	DefaultZone:          iaas.APIDefaultZone,
-	HTTPRequestTimeout:   300,
-	HTTPRequestRateLimit: 5,
-	RetryMax:             sacloudhttp.DefaultRetryMax,
-	RetryWaitMax:         int(sacloudhttp.DefaultRetryWaitMax.Seconds()),
-	RetryWaitMin:         int(sacloudhttp.DefaultRetryWaitMin.Seconds()),
+// OptionsFromEnv 環境変数からCallerOptionsを組み立てて返す
+func OptionsFromEnv() *CallerOptions {
+	return &CallerOptions{
+		Options:     client.OptionsFromEnv(),
+		APIRootURL:  envvar.StringFromEnv("SAKURACLOUD_API_ROOT_URL", ""),
+		DefaultZone: envvar.StringFromEnv("SAKURACLOUD_DEFAULT_ZONE", ""),
+		Zones:       envvar.StringSliceFromEnv("SAKURACLOUD_ZONES", []string{}),
+
+		TraceAPI: profile.EnableAPITrace(envvar.StringFromEnv("SAKURACLOUD_TRACE", "")),
+
+		FakeMode:      os.Getenv("SAKURACLOUD_FAKE_MODE") != "",
+		FakeStorePath: envvar.StringFromEnv("SAKURACLOUD_FAKE_STORE_PATH", ""),
+	}
+}
+
+// OptionsFromProfile 指定のプロファイルからCallerOptionsを組み立てて返す
+// プロファイル名に空文字が指定された場合はカレントプロファイルが利用される
+func OptionsFromProfile(profileName string) (*CallerOptions, error) {
+	options, err := client.OptionsFromProfile(profileName)
+	if err != nil {
+		return nil, err
+	}
+	config := options.ProfileConfigValue()
+	return &CallerOptions{
+		Options:       options,
+		APIRootURL:    config.APIRootURL,
+		DefaultZone:   config.DefaultZone,
+		Zones:         config.Zones,
+		TraceAPI:      config.EnableAPITrace(),
+		FakeMode:      config.FakeMode,
+		FakeStorePath: config.FakeStorePath,
+	}, nil
 }
 
 // MergeOptions 指定のCallerOptionsの非ゼロ値フィールドをoのコピーにマージして返す
 func MergeOptions(opts ...*CallerOptions) *CallerOptions {
 	merged := &CallerOptions{}
 	for _, opt := range opts {
-		if opt.AccessToken != "" {
-			merged.AccessToken = opt.AccessToken
-		}
-		if opt.AccessTokenSecret != "" {
-			merged.AccessTokenSecret = opt.AccessTokenSecret
+		if opt.Options != nil {
+			merged.Options = opt.Options
 		}
 		if opt.APIRootURL != "" {
 			merged.APIRootURL = opt.APIRootURL
@@ -110,37 +127,10 @@ func MergeOptions(opts ...*CallerOptions) *CallerOptions {
 		if len(opt.Zones) > 0 {
 			merged.Zones = opt.Zones
 		}
-		if opt.AcceptLanguage != "" {
-			merged.AcceptLanguage = opt.AcceptLanguage
-		}
-		if opt.HTTPClient != nil {
-			merged.HTTPClient = opt.HTTPClient
-		}
-		if opt.HTTPRequestTimeout > 0 {
-			merged.HTTPRequestTimeout = opt.HTTPRequestTimeout
-		}
-		if opt.HTTPRequestRateLimit > 0 {
-			merged.HTTPRequestRateLimit = opt.HTTPRequestRateLimit
-		}
-		if opt.RetryMax > 0 {
-			merged.RetryMax = opt.RetryMax
-		}
-		if opt.RetryWaitMax > 0 {
-			merged.RetryWaitMax = opt.RetryWaitMax
-		}
-		if opt.RetryWaitMin > 0 {
-			merged.RetryWaitMin = opt.RetryWaitMin
-		}
-		if opt.UserAgent != "" {
-			merged.UserAgent = opt.UserAgent
-		}
 
 		// Note: bool値は一度trueにしたらMergeでfalseになることがない
 		if opt.TraceAPI {
 			merged.TraceAPI = true
-		}
-		if opt.TraceHTTP {
-			merged.TraceHTTP = true
 		}
 		if opt.OpenTelemetry {
 			merged.OpenTelemetry = true
@@ -156,107 +146,4 @@ func MergeOptions(opts ...*CallerOptions) *CallerOptions {
 		}
 	}
 	return merged
-}
-
-// OptionsFromEnv 環境変数からCallerOptionsを組み立てて返す
-func OptionsFromEnv() *CallerOptions {
-	return &CallerOptions{
-		AccessToken:       stringFromEnv("SAKURACLOUD_ACCESS_TOKEN", ""),
-		AccessTokenSecret: stringFromEnv("SAKURACLOUD_ACCESS_TOKEN_SECRET", ""),
-
-		APIRootURL:     stringFromEnv("SAKURACLOUD_API_ROOT_URL", ""),
-		DefaultZone:    stringFromEnv("SAKURACLOUD_DEFAULT_ZONE", ""),
-		Zones:          stringSliceFromEnv("SAKURACLOUD_ZONES", []string{}),
-		AcceptLanguage: stringFromEnv("SAKURACLOUD_ACCEPT_LANGUAGE", ""),
-
-		HTTPRequestTimeout:   intFromEnv("SAKURACLOUD_API_REQUEST_TIMEOUT", 0),
-		HTTPRequestRateLimit: intFromEnv("SAKURACLOUD_API_REQUEST_RATE_LIMIT", 0),
-
-		RetryMax:     intFromEnv("SAKURACLOUD_RETRY_MAX", 0),
-		RetryWaitMax: intFromEnv("SAKURACLOUD_RETRY_WAIT_MAX", 0),
-		RetryWaitMin: intFromEnv("SAKURACLOUD_RETRY_WAIT_MIN", 0),
-
-		TraceAPI:  profile.EnableAPITrace(stringFromEnv("SAKURACLOUD_TRACE", "")),
-		TraceHTTP: profile.EnableHTTPTrace(stringFromEnv("SAKURACLOUD_TRACE", "")),
-
-		FakeMode:      os.Getenv("SAKURACLOUD_FAKE_MODE") != "",
-		FakeStorePath: stringFromEnv("SAKURACLOUD_FAKE_STORE_PATH", ""),
-	}
-}
-
-// OptionsFromProfile 指定のプロファイルからCallerOptionsを組み立てて返す
-// プロファイル名に空文字が指定された場合はカレントプロファイルが利用される
-func OptionsFromProfile(profileName string) (*CallerOptions, error) {
-	if profileName == "" {
-		current, err := profile.CurrentName()
-		if err != nil {
-			return nil, err
-		}
-		profileName = current
-	}
-
-	config := profile.ConfigValue{}
-	if err := profile.Load(profileName, &config); err != nil {
-		return nil, err
-	}
-
-	return &CallerOptions{
-		AccessToken:          config.AccessToken,
-		AccessTokenSecret:    config.AccessTokenSecret,
-		APIRootURL:           config.APIRootURL,
-		DefaultZone:          config.DefaultZone,
-		Zones:                config.Zones,
-		AcceptLanguage:       config.AcceptLanguage,
-		HTTPRequestTimeout:   config.HTTPRequestTimeout,
-		HTTPRequestRateLimit: config.HTTPRequestRateLimit,
-		RetryMax:             config.RetryMax,
-		RetryWaitMax:         config.RetryWaitMax,
-		RetryWaitMin:         config.RetryWaitMin,
-		TraceAPI:             config.EnableAPITrace(),
-		TraceHTTP:            config.EnableHTTPTrace(),
-		FakeMode:             config.FakeMode,
-		FakeStorePath:        config.FakeStorePath,
-	}, nil
-}
-
-func stringFromEnv(key, defaultValue string) string {
-	v := os.Getenv(key)
-	if v == "" {
-		return defaultValue
-	}
-	return v
-}
-
-func stringFromEnvMulti(keys []string, defaultValue string) string {
-	for _, key := range keys {
-		v := os.Getenv(key)
-		if v != "" {
-			return v
-		}
-	}
-	return defaultValue
-}
-
-func stringSliceFromEnv(key string, defaultValue []string) []string {
-	v := os.Getenv(key)
-	if v == "" {
-		return defaultValue
-	}
-	values := strings.Split(v, ",")
-	for i := range values {
-		values[i] = strings.Trim(values[i], " ")
-	}
-	return values
-}
-
-func intFromEnv(key string, defaultValue int) int {
-	v := os.Getenv(key)
-	if v == "" {
-		return defaultValue
-	}
-	i, err := strconv.ParseInt(v, 10, 64)
-	if err != nil {
-		return defaultValue
-	}
-	return int(i)
 }
