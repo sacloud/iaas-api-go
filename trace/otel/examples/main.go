@@ -24,8 +24,10 @@ import (
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/api"
 	"github.com/sacloud/iaas-api-go/ostype"
+	sacloudotel "github.com/sacloud/iaas-api-go/trace/otel"
 	"github.com/sacloud/iaas-api-go/types"
 	"github.com/sacloud/sacloud-go/client"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
@@ -86,13 +88,16 @@ func tracerProvider(url string) (*tracesdk.TracerProvider, error) {
 }
 
 func op(ctx context.Context) {
+	httpClient := &http.Client{}
+	sacloudotel.Initialize()
+	httpClient.Transport = otelhttp.NewTransport(http.DefaultTransport)
+
 	caller := api.NewCallerWithOptions(&api.CallerOptions{
 		Options: &client.Options{
 			AccessToken:       os.Getenv("SAKURACLOUD_ACCESS_TOKEN"),
 			AccessTokenSecret: os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET"),
-			HttpClient:        &http.Client{},
+			HttpClient:        httpClient,
 		},
-		OpenTelemetry: true, // enable tracing
 	})
 	archiveOp := iaas.NewArchiveOp(caller)
 

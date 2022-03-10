@@ -18,7 +18,6 @@ import (
 	"os"
 
 	"github.com/sacloud/iaas-api-go"
-	"github.com/sacloud/iaas-api-go/trace/otel"
 	"github.com/sacloud/sacloud-go/client"
 	"github.com/sacloud/sacloud-go/client/profile"
 	"github.com/sacloud/sacloud-go/pkg/envvar"
@@ -32,11 +31,9 @@ type CallerOptions struct {
 	DefaultZone string
 	Zones       []string
 
-	TraceAPI             bool
-	OpenTelemetry        bool
-	OpenTelemetryOptions []otel.Option
-	FakeMode             bool
-	FakeStorePath        string
+	TraceAPI      bool
+	FakeMode      bool
+	FakeStorePath string
 }
 
 // DefaultOption 環境変数、プロファイルからCallerOptionsを組み立てて返す
@@ -131,12 +128,6 @@ func MergeOptions(opts ...*CallerOptions) *CallerOptions {
 		// Note: bool値は一度trueにしたらMergeでfalseになることがない
 		if opt.TraceAPI {
 			merged.TraceAPI = true
-		}
-		if opt.OpenTelemetry {
-			merged.OpenTelemetry = true
-		}
-		if len(opt.OpenTelemetryOptions) > 0 {
-			merged.OpenTelemetryOptions = opt.OpenTelemetryOptions
 		}
 		if opt.FakeMode {
 			merged.FakeMode = true
