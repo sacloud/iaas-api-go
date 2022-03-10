@@ -21,6 +21,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sacloud/sacloud-go/client"
 	"github.com/stretchr/testify/require"
 )
 
@@ -54,7 +55,11 @@ func (s *dummyHandler) isRetried() bool {
 }
 
 func TestClient_Do_CheckRetryWithContext(t *testing.T) {
-	client := &Client{RetryMax: 1, RetryWaitMin: 10 * time.Millisecond, RetryWaitMax: 10 * time.Millisecond}
+	caller := NewClientWithOptions(&client.Options{
+		RetryMax:     1,
+		RetryWaitMin: 1,
+		RetryWaitMax: 1,
+	})
 
 	t.Run("context.Canceled", func(t *testing.T) {
 		h := &dummyHandler{
@@ -67,7 +72,7 @@ func TestClient_Do_CheckRetryWithContext(t *testing.T) {
 		// make ctx to Canceled
 		cancel()
 
-		client.Do(ctx, http.MethodGet, dummyServer.URL, nil) // nolint
+		caller.Do(ctx, http.MethodGet, dummyServer.URL, nil) // nolint
 		require.False(t, h.isRetried(), "don't retry when context was canceled")
 	})
 
@@ -83,7 +88,7 @@ func TestClient_Do_CheckRetryWithContext(t *testing.T) {
 		// make ctx to DeadlineExceeded
 		time.Sleep(time.Millisecond)
 
-		client.Do(ctx, http.MethodGet, dummyServer.URL, nil) // nolint
+		caller.Do(ctx, http.MethodGet, dummyServer.URL, nil) // nolint
 		require.False(t, h.isRetried(), "don't retry when context exceeded deadline")
 	})
 }
@@ -110,14 +115,18 @@ func TestClient_RetryByStatusCode(t *testing.T) {
 		{responseCode: http.StatusGatewayTimeout, shouldRetry: false},
 	}
 
-	client := &Client{RetryMax: 1, RetryWaitMin: 10 * time.Millisecond, RetryWaitMax: 10 * time.Millisecond}
+	caller := NewClientWithOptions(&client.Options{
+		RetryMax:     1,
+		RetryWaitMin: 1,
+		RetryWaitMax: 1,
+	})
 
 	for _, tt := range cases {
 		h := &dummyHandler{
 			responseCode: tt.responseCode,
 		}
 		dummyServer := httptest.NewServer(h)
-		client.Do(context.Background(), http.MethodGet, dummyServer.URL, nil) // nolint
+		caller.Do(context.Background(), http.MethodGet, dummyServer.URL, nil) // nolint
 		dummyServer.Close()
 
 		require.Equal(t, tt.shouldRetry, h.isRetried(),

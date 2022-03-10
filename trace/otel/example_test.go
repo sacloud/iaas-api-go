@@ -96,10 +96,10 @@ func op(ctx context.Context) {
 	// set factory func
 	traceotel.Initialize()
 
-	caller := &iaas.Client{
-		AccessToken:       os.Getenv("SAKURACLOUD_ACCESS_TOKEN"),
-		AccessTokenSecret: os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET"),
-	}
+	caller := iaas.NewClient(
+		os.Getenv("SAKURACLOUD_ACCESS_TOKEN"),
+		os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET"),
+	)
 	archiveOp := iaas.NewArchiveOp(caller)
 
 	// normal operation

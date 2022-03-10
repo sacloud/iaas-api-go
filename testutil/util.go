@@ -21,9 +21,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sacloud/iaas-api-go/helper/api"
-
 	"github.com/sacloud/iaas-api-go"
+	"github.com/sacloud/iaas-api-go/helper/api"
+	"github.com/sacloud/sacloud-go/client"
 )
 
 func init() {
@@ -87,15 +87,17 @@ func SingletonAPICaller() iaas.APICaller {
 
 		accessToken := os.Getenv("SAKURACLOUD_ACCESS_TOKEN")
 		accessTokenSecret := os.Getenv("SAKURACLOUD_ACCESS_TOKEN_SECRET")
-		apiCaller = api.NewCaller(&api.CallerOptions{
-			AccessToken:       accessToken,
-			AccessTokenSecret: accessTokenSecret,
-			UserAgent:         "test-" + iaas.DefaultUserAgent,
-			AcceptLanguage:    "en-US,en;q=0.9",
-			RetryMax:          20,
-			TraceAPI:          IsEnableTrace() || IsEnableAPITrace(),
-			TraceHTTP:         IsEnableTrace() || IsEnableHTTPTrace(),
-			FakeMode:          !IsAccTest(),
+		apiCaller = api.NewCallerWithOptions(&api.CallerOptions{
+			Options: &client.Options{
+				AccessToken:       accessToken,
+				AccessTokenSecret: accessTokenSecret,
+				UserAgent:         "test-" + iaas.DefaultUserAgent,
+				AcceptLanguage:    "en-US,en;q=0.9",
+				RetryMax:          20,
+				Trace:             IsEnableTrace() || IsEnableHTTPTrace(),
+			},
+			TraceAPI: IsEnableTrace() || IsEnableAPITrace(),
+			FakeMode: !IsAccTest(),
 		})
 	})
 	return apiCaller
