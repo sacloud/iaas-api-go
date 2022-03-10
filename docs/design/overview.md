@@ -15,7 +15,7 @@
 - libsacloudからのIaaS部分の切り出し
 - iaas-api-go v1としてリリース
 - libsacloudの`sacloud`パッケージ配下の整理
-  - typesやostypeといったパッケージ構成の再考/整理
+  - ~typesやostypeといったパッケージ構成の再考/整理~
    
 ### やらないこと
 
@@ -61,14 +61,13 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
   - test
   - testutil => 一部をsacloud-goへ
   - trace
-  - types => 一部をsacloud直下に
+  - types
   - sacloud直下
 ```
 
 - `profile`はsacloud-goで実装する  
 - testutilは整理してから切り出し/分割などの対応が必要  
-- typesは整理してからsacloud直下へ移動などの対応が必要  
-
+- ~typesは整理してからsacloud直下へ移動などの対応が必要~  
 
 #### iaas-api-goのパッケージ構成
 
@@ -90,14 +89,15 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
 - test
 - testutil => TODO 要検討
 - trace
-- types => TODO 要検討
+- types
 - wait     => libsacloudのhelper/waitの移植
 - sacloud直下
 ```
 
-testutilとtypesについては該当部の実装時に検討することとしてTODOのままにしておく。
+testutilについては該当部の実装時に検討することとしてTODOのままにしておく。
 
 ## 改訂履歴
 
 - 2022/3/4: 初版作成
 - 2022/3/7: libsacloud/v2直下のパッケージについて追記
+- 2022/3/10: typesの改修を当面延期
