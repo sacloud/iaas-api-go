@@ -21,12 +21,12 @@ import (
 	"os"
 	"time"
 
+	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/api"
 	"github.com/sacloud/iaas-api-go/ostype"
 	sacloudotel "github.com/sacloud/iaas-api-go/trace/otel"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/client"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"

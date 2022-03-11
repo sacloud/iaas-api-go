@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sacloud/sacloud-go/client"
+	client "github.com/sacloud/api-client-go"
 	"github.com/stretchr/testify/require"
 )
 

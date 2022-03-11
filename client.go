@@ -23,9 +23,9 @@ import (
 	"net/http"
 	"runtime"
 
+	client "github.com/sacloud/api-client-go"
 	sacloudhttp "github.com/sacloud/go-http"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/client"
 )
 
 var (

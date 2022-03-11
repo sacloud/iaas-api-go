@@ -21,9 +21,9 @@ import (
 	"sync"
 	"time"
 
+	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/api"
-	"github.com/sacloud/sacloud-go/client"
 )
 
 func init() {

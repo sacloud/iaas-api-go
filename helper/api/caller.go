@@ -18,11 +18,11 @@ import (
 	"strings"
 	"time"
 
+	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/fake"
 	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/trace"
-	"github.com/sacloud/sacloud-go/client"
 )
 
 func NewCaller() (iaas.APICaller, error) {
