@@ -5,8 +5,8 @@ go 1.17
 replace github.com/sacloud/iaas-api-go => ../../
 
 require (
+	github.com/sacloud/api-client-go v0.0.0-20220311054319-f37467272e84
 	github.com/sacloud/iaas-api-go v0.0.0-00010101000000-000000000000
-	github.com/sacloud/sacloud-go/client v0.0.0-20220310064529-bea9bfbec434
 	github.com/stretchr/testify v1.7.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.29.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.27.0

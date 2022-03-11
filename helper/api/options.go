@@ -17,9 +17,9 @@ package api
 import (
 	"os"
 
+	client "github.com/sacloud/api-client-go"
+	"github.com/sacloud/api-client-go/profile"
 	"github.com/sacloud/iaas-api-go"
-	"github.com/sacloud/sacloud-go/client"
-	"github.com/sacloud/sacloud-go/client/profile"
 	"github.com/sacloud/sacloud-go/pkg/envvar"
 )
 

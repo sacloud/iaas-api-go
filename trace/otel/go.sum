@@ -54,11 +54,10 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUAtL9R8=
 github.com/rogpeppe/go-internal v1.8.0/go.mod h1:WmiCO8CzOY8rg0OYDC4/i/2WRWAB6poM+XZ2dLUbcbE=
+github.com/sacloud/api-client-go v0.0.0-20220311054319-f37467272e84 h1:yhGNZLgxTDHdVZwzvEN25VlL9BxAcfzuy//vG+9rABk=
+github.com/sacloud/api-client-go v0.0.0-20220311054319-f37467272e84/go.mod h1:RvP4b31YdaVjXM/XQAvKAeTTs0vGdvfypvP/7ysWdAA=
 github.com/sacloud/go-http v0.0.4 h1:+vgx/uCctcGiHMe8jE+qirMKd3+d73MNZXK7nrUo0po=
 github.com/sacloud/go-http v0.0.4/go.mod h1:aYTXNuAnPmD6Ar3ktDaR1gPxJCPv2CqpppcYciy1hmo=
-github.com/sacloud/sacloud-go/client v0.0.0-20220310053611-9ca4a16844d2/go.mod h1:xzS1tyNhweIIQ+wyhBTlOSXBQfcuBFyV3Sskm3S2Ovw=
-github.com/sacloud/sacloud-go/client v0.0.0-20220310064529-bea9bfbec434 h1:zAIR3RZ/PwIeorpx6S3JtAVPmliXBk8RA5IsN90+qFQ=
-github.com/sacloud/sacloud-go/client v0.0.0-20220310064529-bea9bfbec434/go.mod h1:xzS1tyNhweIIQ+wyhBTlOSXBQfcuBFyV3Sskm3S2Ovw=
 github.com/sacloud/sacloud-go/pkg v0.0.0-20220310002004-ab494c9c1c6d h1:Rdj8QU3EZrmdUKJMvJ0U3kkgUZFLzZ5u1kMKdQnW7eY=
 github.com/sacloud/sacloud-go/pkg v0.0.0-20220310002004-ab494c9c1c6d/go.mod h1:/hcfG/jZlqNDRpnMDl9rm1aBLgNCeX1NF6FyaIwk9+k=
 github.com/stretchr/objx v0.1.0 h1:4G4v2dO3VZwixGIRoQ5Lfboy6nUhCyYzaqnIAPPhYs4=
