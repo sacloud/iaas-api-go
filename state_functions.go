@@ -14,10 +14,13 @@
 
 package iaas
 
-import "github.com/sacloud/iaas-api-go/types"
+import (
+	"github.com/sacloud/iaas-api-go/types"
+	"github.com/sacloud/sacloud-go/pkg/wait"
+)
 
 // WaiterForUp 起動完了まで待つためのStateWaiterを返す
-func WaiterForUp(readFunc StateReadFunc) StateWaiter {
+func WaiterForUp(readFunc wait.StateReadFunc) wait.StateWaiter {
 	return &StatePollingWaiter{
 		ReadFunc: readFunc,
 		TargetAvailability: []types.EAvailability{
@@ -44,7 +47,7 @@ func WaiterForUp(readFunc StateReadFunc) StateWaiter {
 // WaiterForApplianceUp 起動完了まで待つためのStateWaiterを返す
 //
 // アプライアンス向けに404発生時のリトライを設定可能
-func WaiterForApplianceUp(readFunc StateReadFunc, notFoundRetry int) StateWaiter {
+func WaiterForApplianceUp(readFunc wait.StateReadFunc, notFoundRetry int) wait.StateWaiter {
 	return &StatePollingWaiter{
 		ReadFunc: readFunc,
 		TargetAvailability: []types.EAvailability{
@@ -70,7 +73,7 @@ func WaiterForApplianceUp(readFunc StateReadFunc, notFoundRetry int) StateWaiter
 }
 
 // WaiterForDown シャットダウン完了まで待つためのStateWaiterを返す
-func WaiterForDown(readFunc StateReadFunc) StateWaiter {
+func WaiterForDown(readFunc wait.StateReadFunc) wait.StateWaiter {
 	return &StatePollingWaiter{
 		ReadFunc: readFunc,
 		TargetAvailability: []types.EAvailability{
@@ -91,7 +94,7 @@ func WaiterForDown(readFunc StateReadFunc) StateWaiter {
 }
 
 // WaiterForReady リソースの利用準備完了まで待つためのStateWaiterを返す
-func WaiterForReady(readFunc StateReadFunc) StateWaiter {
+func WaiterForReady(readFunc wait.StateReadFunc) wait.StateWaiter {
 	return &StatePollingWaiter{
 		ReadFunc: readFunc,
 		TargetAvailability: []types.EAvailability{

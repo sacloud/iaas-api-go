@@ -45,7 +45,7 @@ func newCaller(opts *CallerOptions) iaas.APICaller {
 
 	caller := iaas.NewClientWithOptions(opts.Options)
 
-	iaas.DefaultStatePollingTimeout = 72 * time.Hour
+	defaults.DefaultStatePollingTimeout = 72 * time.Hour
 
 	if opts.TraceAPI {
 		// note: exact once
@@ -84,12 +84,10 @@ func SetupFakeDefaults() {
 	defaultInterval := 10 * time.Millisecond
 
 	// update default polling intervals: libsacloud/sacloud
-	iaas.DefaultStatePollingInterval = defaultInterval
-	iaas.DefaultDBStatusPollingInterval = defaultInterval
+	defaults.DefaultStatePollingInterval = defaultInterval
+	defaults.DefaultDBStatusPollingInterval = defaultInterval
+
 	// update default polling intervals: libsacloud/helper/setup
-	defaults.DefaultDeleteWaitInterval = defaultInterval
-	defaults.DefaultProvisioningWaitInterval = defaultInterval
-	defaults.DefaultPollingInterval = defaultInterval
 	// update default polling intervals: libsacloud/helper/builder
 	defaults.DefaultNICUpdateWaitDuration = defaultInterval
 	// update default timeouts and span: libsacloud/helper/power

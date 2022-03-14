@@ -20,10 +20,11 @@ import (
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/types"
+	"github.com/sacloud/sacloud-go/pkg/wait"
 )
 
 // ByFunc デフォルトのパラメータでSimpleStateWaiterを作成して返す
-func ByFunc(readStateFunc ReadStateFunc) iaas.StateWaiter {
+func ByFunc(readStateFunc ReadStateFunc) wait.StateWaiter {
 	return &SimpleStateWaiter{ReadStateFunc: readStateFunc}
 }
 
@@ -44,7 +45,7 @@ type SimpleStateWaiter struct {
 	PollingInterval time.Duration
 }
 
-func (s *SimpleStateWaiter) waiter() iaas.StateWaiter {
+func (s *SimpleStateWaiter) waiter() wait.StateWaiter {
 	return &iaas.StatePollingWaiter{
 		ReadFunc: func() (interface{}, error) {
 			result, err := s.ReadStateFunc()
@@ -60,8 +61,8 @@ func (s *SimpleStateWaiter) waiter() iaas.StateWaiter {
 			types.Availabilities.Unknown,
 		},
 
-		PollingInterval: s.PollingInterval,
-		Timeout:         s.Timeout,
+		Interval: s.PollingInterval,
+		Timeout:  s.Timeout,
 	}
 }
 
@@ -70,19 +71,9 @@ func (s *SimpleStateWaiter) WaitForState(ctx context.Context) (interface{}, erro
 	return s.waiter().WaitForState(ctx)
 }
 
-// AsyncWaitForState iaas.StateWaiterの実装
-func (s *SimpleStateWaiter) AsyncWaitForState(ctx context.Context) (compCh <-chan interface{}, progressCh <-chan interface{}, errorCh <-chan error) {
-	return s.waiter().AsyncWaitForState(ctx)
-}
-
-// SetPollingTimeout iaas.StateWaiterの実装
-func (s *SimpleStateWaiter) SetPollingTimeout(d time.Duration) {
-	s.waiter().SetPollingTimeout(d)
-}
-
-// SetPollingInterval iaas.StateWaiterの実装
-func (s *SimpleStateWaiter) SetPollingInterval(d time.Duration) {
-	s.waiter().SetPollingInterval(d)
+// WaitForStateAsync iaas.StateWaiterの実装
+func (s *SimpleStateWaiter) WaitForStateAsync(ctx context.Context) (compCh <-chan interface{}, progressCh <-chan interface{}, errorCh <-chan error) {
+	return s.waiter().WaitForStateAsync(ctx)
 }
 
 type fakeState struct {
