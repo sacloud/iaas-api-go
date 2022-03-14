@@ -20,6 +20,7 @@ import (
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/testutil"
 	"github.com/sacloud/iaas-api-go/types"
+	sacloudtestutil "github.com/sacloud/sacloud-go/pkg/testutil"
 )
 
 func TestEnhancedDBOp_CRUD(t *testing.T) {
@@ -79,7 +80,7 @@ var (
 		Name:         testutil.ResourceName("enhanced-db"),
 		Description:  "desc",
 		Tags:         []string{"tag1", "tag2"},
-		DatabaseName: testutil.RandomName(10, testutil.CharSetAlpha),
+		DatabaseName: sacloudtestutil.RandomName(testutil.TestResourcePrefix, 10, sacloudtestutil.CharSetAlpha),
 	}
 	createEnhancedDBExpected = &iaas.EnhancedDB{
 		Name:           createEnhancedDBParam.Name,

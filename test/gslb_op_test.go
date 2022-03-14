@@ -89,7 +89,7 @@ var (
 		Tags:        []string{"tag1", "tag2"},
 		HealthCheck: &iaas.GSLBHealthCheck{
 			Protocol:     types.GSLBHealthCheckProtocols.HTTP,
-			HostHeader:   "uiaas.jp",
+			HostHeader:   "usacloud.jp",
 			Path:         "/index.html",
 			ResponseCode: types.StringNumber(200),
 		},
@@ -133,7 +133,7 @@ var (
 		Tags:        []string{"tag1-upd", "tag2-upd"},
 		HealthCheck: &iaas.GSLBHealthCheck{
 			Protocol:     types.GSLBHealthCheckProtocols.HTTPS,
-			HostHeader:   "upd.uiaas.jp",
+			HostHeader:   "upd.usacloud.jp",
 			Path:         "/index-upd.html",
 			ResponseCode: types.StringNumber(201),
 		},
@@ -169,7 +169,7 @@ var (
 	updateGSLBSettingsParam = &iaas.GSLBUpdateSettingsRequest{
 		HealthCheck: &iaas.GSLBHealthCheck{
 			Protocol:     types.GSLBHealthCheckProtocols.HTTP,
-			HostHeader:   "upd2.uiaas.jp",
+			HostHeader:   "upd2.usacloud.jp",
 			Path:         "/index-upd2.html",
 			ResponseCode: types.StringNumber(202),
 		},

@@ -20,6 +20,7 @@ import (
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/testutil"
 	"github.com/sacloud/iaas-api-go/types"
+	sacloudtestutil "github.com/sacloud/sacloud-go/pkg/testutil"
 )
 
 func TestContainerRegistryOp_CRUD(t *testing.T) {
@@ -126,9 +127,9 @@ var (
 		Name:           testutil.ResourceName("container-registry"),
 		Description:    "desc",
 		Tags:           []string{"tag1", "tag2"},
-		VirtualDomain:  "libsacloud-test.uiaas.jp",
+		VirtualDomain:  "libsacloud-test.usacloud.jp",
 		AccessLevel:    types.ContainerRegistryAccessLevels.ReadWrite,
-		SubDomainLabel: testutil.RandomName(60, testutil.CharSetAlpha),
+		SubDomainLabel: sacloudtestutil.RandomName(testutil.TestResourcePrefix, 45, sacloudtestutil.CharSetAlpha),
 	}
 	createContainerRegistryExpected = &iaas.ContainerRegistry{
 		Name:           createContainerRegistryParam.Name,
@@ -145,7 +146,7 @@ var (
 		Description:   "desc-upd",
 		Tags:          []string{"tag1-upd", "tag2-upd"},
 		IconID:        testIconID,
-		VirtualDomain: "libsacloud-test-upd.uiaas.jp",
+		VirtualDomain: "libsacloud-test-upd.usacloud.jp",
 		AccessLevel:   types.ContainerRegistryAccessLevels.ReadOnly,
 	}
 	updateContainerRegistryExpected = &iaas.ContainerRegistry{

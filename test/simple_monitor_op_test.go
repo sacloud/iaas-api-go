@@ -86,7 +86,7 @@ var (
 		"SettingsHash",
 	}
 	createSimpleMonitorParam = &iaas.SimpleMonitorCreateRequest{
-		Target:           testutil.ResourceName("simple-monitor.uiaas.jp"),
+		Target:           testutil.ResourceName("simple-monitor.usacloud.jp"),
 		Description:      "desc",
 		Tags:             []string{"tag1", "tag2"},
 		MaxCheckAttempts: 5,
@@ -100,7 +100,7 @@ var (
 			Status:            types.StringNumber(200),
 			SNI:               types.StringTrue,
 			VerifySNI:         types.StringTrue,
-			Host:              "libsacloud-test.uiaas.jp",
+			Host:              "libsacloud-test.usacloud.jp",
 			BasicAuthUsername: "username",
 			BasicAuthPassword: "password",
 			ContainsString:    "foobar",
@@ -143,7 +143,7 @@ var (
 			Status:            types.StringNumber(201),
 			SNI:               types.StringFalse,
 			VerifySNI:         types.StringFalse,
-			Host:              "libsacloud-test-upd.uiaas.jp",
+			Host:              "libsacloud-test-upd.usacloud.jp",
 			BasicAuthUsername: "username-upd",
 			BasicAuthPassword: "password-upd",
 			HTTP2:             true,
@@ -186,7 +186,7 @@ var (
 			Status:            types.StringNumber(202),
 			SNI:               types.StringFalse,
 			VerifySNI:         types.StringFalse,
-			Host:              "libsacloud-test.uiaas.jp",
+			Host:              "libsacloud-test.usacloud.jp",
 			BasicAuthUsername: "username-upd2",
 			BasicAuthPassword: "password-upd2",
 		},
@@ -220,7 +220,7 @@ var (
 	updateSimpleMonitorToMinParam = &iaas.SimpleMonitorUpdateRequest{
 		HealthCheck: &iaas.SimpleMonitorHealthCheck{
 			Protocol: types.SimpleMonitorProtocols.Ping,
-			Host:     "libsacloud-test-upd.uiaas.jp",
+			Host:     "libsacloud-test-upd.usacloud.jp",
 		},
 		NotifyEmailEnabled: types.StringTrue,
 		Enabled:            true,
@@ -332,7 +332,7 @@ func TestSimpleMonitorOp_StatusAndHealth(t *testing.T) {
 }
 
 var simpleMonitorStatusAndHealthTargetParam = &iaas.SimpleMonitorCreateRequest{
-	Target:    testutil.ResourceName("simple-monitor.uiaas.jp"),
+	Target:    testutil.ResourceName("simple-monitor.usacloud.jp"),
 	DelayLoop: 60,
 	Enabled:   true,
 	HealthCheck: &iaas.SimpleMonitorHealthCheck{

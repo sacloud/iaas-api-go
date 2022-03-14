@@ -168,13 +168,13 @@ func initProxyLBVariables() {
 		},
 		Rules: []*iaas.ProxyLBRule{
 			{
-				Host:        "www.uiaas.jp",
+				Host:        "www.usacloud.jp",
 				Path:        "/path1",
 				ServerGroup: "group1",
 				Action:      types.ProxyLBRuleActions.Forward,
 			},
 			{
-				Host:        "www.uiaas.jp",
+				Host:        "www.usacloud.jp",
 				Path:        "/path2",
 				ServerGroup: "group2",
 				Action:      types.ProxyLBRuleActions.Forward,
@@ -188,7 +188,7 @@ func initProxyLBVariables() {
 				Action:                       types.ProxyLBRuleActions.Forward,
 			},
 			{
-				Host:             "www.uiaas.jp",
+				Host:             "www.usacloud.jp",
 				Path:             "/fixed-response",
 				Action:           types.ProxyLBRuleActions.Fixed,
 				FixedStatusCode:  types.ProxyLBFixedStatusCodes.OK,
@@ -196,10 +196,10 @@ func initProxyLBVariables() {
 				FixedMessageBody: "foobar",
 			},
 			{
-				Host:               "www.uiaas.jp",
+				Host:               "www.usacloud.jp",
 				Path:               "/redirect",
 				Action:             types.ProxyLBRuleActions.Redirect,
-				RedirectLocation:   "https://redirect.uiaas.jp",
+				RedirectLocation:   "https://redirect.usacloud.jp",
 				RedirectStatusCode: types.ProxyLBRedirectStatusCodes.Found,
 			},
 		},
@@ -290,13 +290,13 @@ func initProxyLBVariables() {
 		},
 		Rules: []*iaas.ProxyLBRule{
 			{
-				Host:        "www-upd.uiaas.jp",
+				Host:        "www-upd.usacloud.jp",
 				Path:        "/path1-upd",
 				ServerGroup: "group1upd",
 				Action:      types.ProxyLBRuleActions.Forward,
 			},
 			{
-				Host:        "www-upd.uiaas.jp",
+				Host:        "www-upd.usacloud.jp",
 				Path:        "/path2-upd",
 				ServerGroup: "group2upd",
 				Action:      types.ProxyLBRuleActions.Forward,
@@ -310,7 +310,7 @@ func initProxyLBVariables() {
 				Action:                       types.ProxyLBRuleActions.Forward,
 			},
 			{
-				Host:             "www-upd.uiaas.jp",
+				Host:             "www-upd.usacloud.jp",
 				Path:             "/fixed-response-upd",
 				Action:           types.ProxyLBRuleActions.Fixed,
 				FixedStatusCode:  types.ProxyLBFixedStatusCodes.Forbidden,
@@ -318,10 +318,10 @@ func initProxyLBVariables() {
 				FixedMessageBody: "foobar-upd",
 			},
 			{
-				Host:               "www-upd.uiaas.jp",
+				Host:               "www-upd.usacloud.jp",
 				Path:               "/redirect-upd",
 				Action:             types.ProxyLBRuleActions.Redirect,
-				RedirectLocation:   "https://redirect.uiaas.jp/upd",
+				RedirectLocation:   "https://redirect.usacloud.jp/upd",
 				RedirectStatusCode: types.ProxyLBRedirectStatusCodes.MovedPermanently,
 			},
 		},
@@ -429,13 +429,13 @@ func initProxyLBVariables() {
 		},
 		Rules: []*iaas.ProxyLBRule{
 			{
-				Host:        "www-upd2.uiaas.jp",
+				Host:        "www-upd2.usacloud.jp",
 				Path:        "/path1-upd2",
 				ServerGroup: "group1upd2",
 				Action:      types.ProxyLBRuleActions.Forward,
 			},
 			{
-				Host:        "www-upd2.uiaas.jp",
+				Host:        "www-upd2.usacloud.jp",
 				Path:        "/path2-upd2",
 				ServerGroup: "group2upd2",
 				Action:      types.ProxyLBRuleActions.Forward,

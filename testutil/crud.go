@@ -121,7 +121,7 @@ type CRUDTestFunc struct {
 	// CheckFunc 任意のチェックを行うためのFunc、省略可能。
 	CheckFunc func(TestT, *CRUDTestContext, interface{}) error
 
-	// SkipExtractID Trueの場合Funcの戻り値からのID抽出(ioAddessor経由)を行わない
+	// SkipExtractID Trueの場合Funcの戻り値からのID抽出を行わない
 	SkipExtractID bool
 }
 
@@ -185,7 +185,7 @@ func RunCRUD(t TestT, testCase *CRUDTestCase) {
 			}
 		}
 		if err := recover(); err != nil {
-			t.Logf("Unexcepted error is occurred: %v, Trace: %s", err, string(debug.Stack()))
+			t.Logf("Unexpected error is occurred: %v, Trace: %s", err, string(debug.Stack()))
 		}
 	}()
 

@@ -16,29 +16,13 @@ package testutil
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 	"sync"
-	"time"
 
 	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/api"
-)
-
-func init() {
-	rand.Seed(time.Now().UTC().UnixNano())
-}
-
-const (
-	// CharSetAlphaNum アフファベット(小文字)+数値
-	CharSetAlphaNum = "abcdefghijklmnopqrstuvwxyz012346789"
-
-	// CharSetAlpha アフファベット(小文字)
-	CharSetAlpha = "abcdefghijklmnopqrstuvwxyz"
-
-	// CharSetNumber 数値
-	CharSetNumber = "012346789"
+	"github.com/sacloud/sacloud-go/pkg/testutil"
 )
 
 // TestResourcePrefix テスト時に作成するリソースの名称に付与するプレフィックス
@@ -53,21 +37,12 @@ func ResourceName(name string) string {
 
 // RandomPrefix テスト時に作成するリソースに付与するランダムなプレフィックスを生成する
 func RandomPrefix() string {
-	return fmt.Sprintf("%s%s-", TestResourcePrefix, RandomName(5, CharSetAlpha))
+	return testutil.RandomName(TestResourcePrefix, 5, testutil.CharSetAlpha) + "-"
 }
 
 // WithRandomPrefix ランダムなプレフィックスをつけて返す
 func WithRandomPrefix(name string) string {
 	return fmt.Sprintf("%s%s", RandomPrefix(), name)
-}
-
-// RandomName ランダムな文字列を生成して返す
-func RandomName(strlen int, charSet string) string {
-	result := make([]byte, strlen)
-	for i := 0; i < strlen; i++ {
-		result[i] = charSet[rand.Intn(len(charSet))]
-	}
-	return string(result)
 }
 
 var apiCaller iaas.APICaller
@@ -114,7 +89,7 @@ func TestZone() string {
 
 // IsAccTest TESTACC環境変数が指定されているか
 func IsAccTest() bool {
-	return os.Getenv("TESTACC") != ""
+	return testutil.IsAccTest()
 }
 
 // IsEnableTrace SAKURACLOUD_TRACE環境変数が指定されているか
