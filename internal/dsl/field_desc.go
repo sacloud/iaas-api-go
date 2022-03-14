@@ -93,14 +93,6 @@ func (f *FieldDesc) TagString() string {
 	return f.Tags.String()
 }
 
-// IsRequired 必須項目であるかを判定
-func (f *FieldDesc) IsRequired() bool {
-	if f.Tags == nil {
-		return false
-	}
-	return strings.Contains(f.Tags.Validate, "required")
-}
-
 // FieldTags フィールドに付与するタグ
 type FieldTags struct {
 	// JSON jsonタグ
@@ -111,14 +103,12 @@ type FieldTags struct {
 	Structs string
 	// MapConv mapconvタグ
 	MapConv string
-	// Validate validateタグ
-	Validate string
 	// Request requestタグ(service向けmapconvタグ)
 	Request string
 }
 
 func (f *FieldTags) Empty() bool {
-	return f.JSON == "" && f.YAML == "" && f.Structs == "" && f.MapConv == "" && f.Validate == "" && f.Request == ""
+	return f.JSON == "" && f.YAML == "" && f.Structs == "" && f.MapConv == "" && f.Request == ""
 }
 
 // String FieldTagsの文字列表現
@@ -139,22 +129,7 @@ func (f *FieldTags) String() string {
 	if f.Request != "" {
 		tags = append(tags, fmt.Sprintf(`request:"%s"`, f.Request))
 	}
-	if f.Validate != "" {
-		tags = append(tags, fmt.Sprintf(`validate:"%s"`, f.Validate))
-	}
 	return strings.Join(tags, " ")
-}
-
-func ValidateRequiredTag() *FieldTags {
-	return ValidateTag("required")
-}
-
-func ValidateTag(t string, args ...interface{}) *FieldTags {
-	tag := t
-	if len(args) > 0 {
-		tag = fmt.Sprintf(t, args...)
-	}
-	return &FieldTags{Validate: tag}
 }
 
 func RequestOmitEmptyTag() *FieldTags {
