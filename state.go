@@ -21,38 +21,10 @@ import (
 	"time"
 
 	"github.com/sacloud/iaas-api-go/accessor"
+	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/types"
+	"github.com/sacloud/sacloud-go/pkg/wait"
 )
-
-// StateWaiter リソースの状態が変わるまで待機する
-type StateWaiter interface {
-	// WaitForState リソースが指定の状態になるまで待つ
-	WaitForState(context.Context) (interface{}, error)
-	// AsyncWaitForState リソースが指定の状態になるまで待つ
-	AsyncWaitForState(context.Context) (compCh <-chan interface{}, progressCh <-chan interface{}, errorCh <-chan error)
-	// SetPollingTimeout ポーリングタイムアウトを指定
-	SetPollingTimeout(d time.Duration)
-	// SetPollingInterval ポーリングタイムアウトを指定
-	SetPollingInterval(d time.Duration)
-}
-
-var (
-	// DefaultStatePollingTimeout StatePollWaiterでのデフォルトタイムアウト
-	DefaultStatePollingTimeout = 20 * time.Minute
-	// DefaultStatePollingInterval StatePollWaiterでのデフォルトポーリング間隔
-	DefaultStatePollingInterval = 5 * time.Second
-
-	// DefaultDBStatusPollingInterval データベースアプライアンスのステータス取得ポーリング間隔
-	DefaultDBStatusPollingInterval = 30 * time.Second
-)
-
-// StateReadFunc StatePollWaiterにより利用される、対象リソースの状態を取得するためのfunc
-type StateReadFunc func() (state interface{}, err error)
-
-// StateCheckFunc StateReadFuncで得たリソースの情報を元に待ちを継続するか判定するためのfunc
-//
-// StatePollWaiterのフィールドとして設定する
-type StateCheckFunc func(target interface{}) (exit bool, err error)
 
 // UnexpectedAvailabilityError 予期しないAvailabilityとなった場合のerror
 type UnexpectedAvailabilityError struct {
@@ -76,19 +48,27 @@ func (e *UnexpectedInstanceStatusError) Error() string {
 	return fmt.Sprintf("resource returns unexpected instance status value: %s", e.Err.Error())
 }
 
+var _ wait.StateWaiter = (*StatePollingWaiter)(nil) // StatePollingWaiterでIaaS固有の事情を考慮したwait.StateWaiterを実装する
+
 // StatePollingWaiter ポーリングによりリソースの状態が変わるまで待機する
 type StatePollingWaiter struct {
+	// ReadFunc 対象リソースの状態を取得するためのfunc
+	ReadFunc wait.StateReadFunc
+
+	// StateCheckFunc ReadFuncで得たリソースの情報を元に待ちを継続するかの判定を行うためのfunc
+	StateCheckFunc wait.StateCheckFunc
+
+	// Timeout タイムアウト
+	Timeout time.Duration // タイムアウト
+
+	// Interval ポーリング間隔
+	Interval time.Duration
+
 	// NotFoundRetry Readで404が返ってきた場合のリトライ回数
 	//
 	// アプライアンスなどの一部のリソースでは作成~起動完了までの間に404を返すことがある。
 	// これに対応するためこのフィールドにて404発生の許容回数を指定可能にする。
 	NotFoundRetry int
-
-	// ReadFunc 対象リソースの状態を取得するためのfunc
-	//
-	// TargetAvailabilityを指定する場合はAvailabilityHolderを返す必要がある
-	// もしAvailabilityHolderを実装しておらず、かつStateCheckFuncも未指定だった場合はタイムアウトまで完了しないため注意
-	ReadFunc StateReadFunc
 
 	// TargetAvailability 対象リソースのAvailabilityがこの状態になった場合になるまで待つ
 	//
@@ -107,7 +87,7 @@ type StatePollingWaiter struct {
 	// TargetInstanceStatus 対象リソースのInstanceStatusがこの状態になった場合になるまで待つ
 	//
 	// この値を指定する場合、ReadFuncにてInstanceStatusHolderを返す必要がある。
-	// InstanceStatusがTargetInstanceStatusとPendinngInstanceStatusで指定されていない状態になった場合はUnexpectedInstanceStatusErrorを返す
+	// InstanceStatusがTargetInstanceStatusとPendingInstanceStatusで指定されていない状態になった場合はUnexpectedInstanceStatusErrorを返す
 	//
 	// TargetAvailabilityとTargetInstanceStateの両方が指定された場合は両方を満たすまで待つ
 	//
@@ -119,18 +99,62 @@ type StatePollingWaiter struct {
 	// 詳細はTargetInstanceStatusのコメントを参照
 	PendingInstanceStatus []types.EServerInstanceStatus
 
-	// StateCheckFunc ReadFuncで得たリソースの情報を元に待ちを継続するかの判定を行うためのfunc
-	//
-	// TargetAvailabilityとTargetInstanceStateとの併用は不可。併用した場合panicする
-	StateCheckFunc StateCheckFunc
-
-	// Timeout タイムアウト
-	Timeout time.Duration // タイムアウト
-	// PollingInterval ポーリング間隔
-	PollingInterval time.Duration
-
 	// RaiseErrorWithUnknownState State(AvailabilityとInstanceStatus)が予期しない値だった場合にエラーとするか
 	RaiseErrorWithUnknownState bool
+}
+
+// WaitForState リソースが指定の状態になるまで待つ
+func (w *StatePollingWaiter) WaitForState(ctx context.Context) (interface{}, error) {
+	c, p, e := w.WaitForStateAsync(ctx)
+	for {
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case lastState := <-c:
+			return lastState, nil
+		case <-p:
+			// noop
+		case err := <-e:
+			return nil, err
+		}
+	}
+}
+
+// WaitForStateAsync リソースが指定の状態になるまで待つ
+func (w *StatePollingWaiter) WaitForStateAsync(ctx context.Context) (<-chan interface{}, <-chan interface{}, <-chan error) {
+	w.validateFields()
+	if w.Timeout == time.Duration(0) {
+		w.Timeout = defaults.DefaultStatePollingTimeout
+	}
+	if w.Interval == time.Duration(0) {
+		w.Interval = defaults.DefaultStatePollingInterval
+	}
+
+	waiter := wait.PollingWaiter{
+		ReadFunc:       w.readFunc(),
+		StateCheckFunc: w.stateCheckFunc,
+		Timeout:        w.Timeout,
+		Interval:       w.Interval,
+	}
+
+	return waiter.WaitForStateAsync(ctx)
+}
+
+func (w *StatePollingWaiter) readFunc() func() (interface{}, error) {
+	notFoundCounter := w.NotFoundRetry
+	return func() (interface{}, error) {
+		read, err := w.ReadFunc()
+		if err != nil {
+			if IsNotFoundError(err) {
+				notFoundCounter--
+				if notFoundCounter >= 0 {
+					return nil, nil
+				}
+			}
+			return nil, err
+		}
+		return read, err
+	}
 }
 
 func (w *StatePollingWaiter) validateFields() {
@@ -147,108 +171,7 @@ func (w *StatePollingWaiter) validateFields() {
 	}
 }
 
-func (w *StatePollingWaiter) defaults() {
-	if w.Timeout == time.Duration(0) {
-		w.Timeout = DefaultStatePollingTimeout
-	}
-	if w.PollingInterval == time.Duration(0) {
-		w.PollingInterval = DefaultStatePollingInterval
-	}
-}
-
-// SetPollingTimeout ポーリングタイムアウトを指定
-func (w *StatePollingWaiter) SetPollingTimeout(timeout time.Duration) {
-	w.Timeout = timeout
-}
-
-// SetPollingInterval ポーリングタイムアウトを指定
-func (w *StatePollingWaiter) SetPollingInterval(d time.Duration) {
-	w.PollingInterval = d
-}
-
-// WaitForState リソースが指定の状態になるまで待つ
-func (w *StatePollingWaiter) WaitForState(ctx context.Context) (interface{}, error) {
-	c, p, e := w.AsyncWaitForState(ctx)
-	for {
-		select {
-		case <-ctx.Done():
-			return nil, ctx.Err()
-		case lastState := <-c:
-			return lastState, nil
-		case <-p:
-			// noop
-		case err := <-e:
-			return nil, err
-		}
-	}
-}
-
-// AsyncWaitForState リソースが指定の状態になるまで待つ
-func (w *StatePollingWaiter) AsyncWaitForState(ctx context.Context) (compCh <-chan interface{}, progressCh <-chan interface{}, errorCh <-chan error) {
-	w.validateFields()
-	w.defaults()
-
-	compChan := make(chan interface{})
-	progChan := make(chan interface{})
-	errChan := make(chan error)
-
-	ticker := time.NewTicker(w.PollingInterval)
-
-	go func() {
-		ctx, cancel := context.WithTimeout(ctx, w.Timeout)
-		defer cancel()
-
-		defer ticker.Stop()
-
-		defer close(compChan)
-		defer close(progChan)
-		defer close(errChan)
-
-		notFoundCounter := w.NotFoundRetry
-		for {
-			select {
-			case <-ctx.Done():
-				errChan <- ctx.Err()
-				return
-			case <-ticker.C:
-				state, err := w.ReadFunc()
-
-				if err != nil {
-					if IsNotFoundError(err) {
-						notFoundCounter--
-						if notFoundCounter >= 0 {
-							continue
-						}
-					}
-					errChan <- err
-					return
-				}
-
-				exit, err := w.handleState(state)
-				if exit {
-					compChan <- state
-					return
-				}
-
-				if err != nil {
-					errChan <- err
-					return
-				}
-
-				if state != nil {
-					progChan <- state
-				}
-			}
-		}
-	}()
-
-	compCh = compChan
-	progressCh = progChan
-	errorCh = errChan
-	return compCh, progressCh, errorCh
-}
-
-func (w *StatePollingWaiter) handleState(state interface{}) (bool, error) {
+func (w *StatePollingWaiter) stateCheckFunc(state interface{}) (bool, error) {
 	if w.StateCheckFunc != nil {
 		return w.StateCheckFunc(state)
 	}
@@ -317,8 +240,8 @@ func (w *StatePollingWaiter) handleInstanceState(state accessor.InstanceStatus) 
 	}
 }
 
-func (w *StatePollingWaiter) isInAvailability(v types.EAvailability, conds []types.EAvailability) bool {
-	for _, cond := range conds {
+func (w *StatePollingWaiter) isInAvailability(v types.EAvailability, conditions []types.EAvailability) bool {
+	for _, cond := range conditions {
 		if v == cond {
 			return true
 		}
@@ -326,8 +249,8 @@ func (w *StatePollingWaiter) isInAvailability(v types.EAvailability, conds []typ
 	return false
 }
 
-func (w *StatePollingWaiter) isInInstanceStatus(v types.EServerInstanceStatus, conds []types.EServerInstanceStatus) bool {
-	for _, cond := range conds {
+func (w *StatePollingWaiter) isInInstanceStatus(v types.EServerInstanceStatus, conditions []types.EServerInstanceStatus) bool {
+	for _, cond := range conditions {
 		if v == cond {
 			return true
 		}

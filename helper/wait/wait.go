@@ -18,6 +18,7 @@ import (
 	"context"
 
 	"github.com/sacloud/iaas-api-go"
+	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/types"
 )
 
@@ -55,9 +56,9 @@ func UntilDatabaseIsUp(ctx context.Context, client iaas.DatabaseAPI, zone string
 	waiter := iaas.WaiterForUp(func() (interface{}, error) {
 		return client.Status(ctx, zone, id)
 	})
-	waiter.SetPollingInterval(iaas.DefaultDBStatusPollingInterval) // HACK 現状は決め打ち、ユースケースが出たら修正する
-	_, err = waiter.WaitForState(ctx)
+	waiter.(*iaas.StatePollingWaiter).Interval = defaults.DefaultDBStatusPollingInterval // HACK 現状は決め打ち、ユースケースが出たら修正する
 
+	_, err = waiter.WaitForState(ctx)
 	return database, err
 }
 

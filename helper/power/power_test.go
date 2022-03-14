@@ -22,6 +22,7 @@ import (
 	"time"
 
 	"github.com/sacloud/iaas-api-go"
+	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/types"
 	"github.com/stretchr/testify/require"
 )
@@ -29,13 +30,13 @@ import (
 func TestPowerHandler(t *testing.T) {
 	t.Parallel()
 
-	defaultInterval := iaas.DefaultStatePollingInterval
+	defaultInterval := defaults.DefaultStatePollingInterval
 
-	iaas.DefaultStatePollingInterval = 10 * time.Millisecond
+	defaults.DefaultStatePollingInterval = 10 * time.Millisecond
 	BootRetrySpan = time.Millisecond
 	ShutdownRetrySpan = time.Millisecond
 	defer func() {
-		iaas.DefaultStatePollingInterval = defaultInterval
+		defaults.DefaultStatePollingInterval = defaultInterval
 		BootRetrySpan = 0
 		ShutdownRetrySpan = 0
 	}()

@@ -228,7 +228,7 @@ func boot(ctx context.Context, h handler) error {
 	inProcess := false
 
 	waiter := iaas.WaiterForUp(h.read)
-	compCh, progressCh, errCh := waiter.AsyncWaitForState(ctx)
+	compCh, progressCh, errCh := waiter.WaitForStateAsync(ctx)
 
 	var state interface{}
 
@@ -276,7 +276,7 @@ func shutdown(ctx context.Context, h handler, force bool) error {
 	inProcess := false
 
 	waiter := iaas.WaiterForDown(h.read)
-	compCh, progressCh, errCh := waiter.AsyncWaitForState(ctx)
+	compCh, progressCh, errCh := waiter.WaitForStateAsync(ctx)
 
 	var state interface{}
 

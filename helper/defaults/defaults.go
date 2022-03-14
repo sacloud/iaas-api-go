@@ -18,22 +18,10 @@ import "time"
 
 // for setup package
 var (
-	// DefaultMaxRetryCount デフォルトリトライ最大数
-	DefaultMaxRetryCount = 3
-	// DefaultProvisioningRetryCount リソースごとのプロビジョニングAPI呼び出しのリトライ最大数
-	DefaultProvisioningRetryCount = 10
-
-	// DefaultProvisioningWaitInterval リソースごとのプロビジョニングAPI呼び出しのリトライ間隔
-	DefaultProvisioningWaitInterval = 5 * time.Second
-
-	// DefaultDeleteRetryCount リソースごとの削除API呼び出しのリトライ最大数
-	DefaultDeleteRetryCount = 10
-
-	// DefaultDeleteWaitInterval リソースごとの削除API呼び出しのリトライ間隔
-	DefaultDeleteWaitInterval = 10 * time.Second
-
-	// DefaultPollingInterval ポーリング処理の間隔
-	DefaultPollingInterval = 5 * time.Second
+	// DefaultStatePollingTimeout StatePollWaiterでのデフォルトタイムアウト
+	DefaultStatePollingTimeout = 20 * time.Minute
+	// DefaultStatePollingInterval StatePollWaiterでのデフォルトポーリング間隔
+	DefaultStatePollingInterval = 5 * time.Second
 
 	// DefaultPowerHelperBootRetrySpan helper/powerでの起動リクエストリトライ間隔
 	DefaultPowerHelperBootRetrySpan = 20 * time.Second
@@ -49,4 +37,10 @@ var (
 var (
 	// DefaultNICUpdateWaitDuration NIC切断/削除後の待ち時間デフォルト値
 	DefaultNICUpdateWaitDuration = 5 * time.Second
+)
+
+// for cleanup package
+var (
+	// DefaultDBStatusPollingInterval データベースアプライアンスのステータス確認ポーリングの間隔
+	DefaultDBStatusPollingInterval = 30 * time.Second
 )

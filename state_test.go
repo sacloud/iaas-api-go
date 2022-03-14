@@ -46,9 +46,9 @@ func TestStatePollingWaiter_withStateCheckFunc(t *testing.T) {
 			ReadFunc: func() (interface{}, error) {
 				return &dummyState{}, nil
 			},
-			StateCheckFunc:  testStateCheckFunc,
-			Timeout:         5 * time.Millisecond,
-			PollingInterval: 1 * time.Millisecond,
+			StateCheckFunc: testStateCheckFunc,
+			Timeout:        5 * time.Millisecond,
+			Interval:       1 * time.Millisecond,
 		}
 		ctx := context.Background()
 		_, err := waiter.WaitForState(ctx)
@@ -61,9 +61,9 @@ func TestStatePollingWaiter_withStateCheckFunc(t *testing.T) {
 			ReadFunc: func() (interface{}, error) {
 				return &dummyState{}, nil
 			},
-			StateCheckFunc:  testStateCheckFunc,
-			Timeout:         100 * time.Millisecond,
-			PollingInterval: 1 * time.Millisecond,
+			StateCheckFunc: testStateCheckFunc,
+			Timeout:        100 * time.Millisecond,
+			Interval:       1 * time.Millisecond,
 		}
 		ctx, cancel := context.WithCancel(context.Background())
 		defer cancel()
@@ -90,9 +90,9 @@ func TestStatePollingWaiter_withStateCheckFunc(t *testing.T) {
 				}
 				return &dummyState{state: "done"}, nil
 			},
-			StateCheckFunc:  testStateCheckFunc,
-			Timeout:         100 * time.Millisecond,
-			PollingInterval: 1 * time.Millisecond,
+			StateCheckFunc: testStateCheckFunc,
+			Timeout:        100 * time.Millisecond,
+			Interval:       1 * time.Millisecond,
 		}
 		ctx := context.Background()
 		_, err := waiter.WaitForState(ctx)
@@ -113,9 +113,9 @@ func TestStatePollingWaiter_withStateCheckFunc(t *testing.T) {
 				}
 				return &dummyState{state: "done"}, nil
 			},
-			StateCheckFunc:  testStateCheckFunc,
-			Timeout:         100 * time.Millisecond,
-			PollingInterval: 1 * time.Millisecond,
+			StateCheckFunc: testStateCheckFunc,
+			Timeout:        100 * time.Millisecond,
+			Interval:       1 * time.Millisecond,
 		}
 		ctx := context.Background()
 		_, err := waiter.WaitForState(ctx)
@@ -130,9 +130,9 @@ func TestStatePollingWaiter_withStateCheckFunc(t *testing.T) {
 			ReadFunc: func() (interface{}, error) {
 				return &dummyState{}, errors.New("dummy")
 			},
-			StateCheckFunc:  testStateCheckFunc,
-			Timeout:         100 * time.Millisecond,
-			PollingInterval: 1 * time.Millisecond,
+			StateCheckFunc: testStateCheckFunc,
+			Timeout:        100 * time.Millisecond,
+			Interval:       1 * time.Millisecond,
 		}
 		ctx := context.Background()
 		_, err := waiter.WaitForState(ctx)
@@ -176,7 +176,7 @@ func TestStatePollingWaiter_withTargetStates(t *testing.T) {
 			},
 			TargetInstanceStatus: []types.EServerInstanceStatus{types.ServerInstanceStatuses.Up},
 			Timeout:              100 * time.Millisecond,
-			PollingInterval:      1 * time.Millisecond,
+			Interval:             1 * time.Millisecond,
 		}
 		ctx := context.Background()
 		_, err := waiter.WaitForState(ctx)
@@ -190,7 +190,7 @@ func TestStatePollingWaiter_withTargetStates(t *testing.T) {
 			},
 			TargetInstanceStatus:       []types.EServerInstanceStatus{types.ServerInstanceStatuses.Up},
 			Timeout:                    100 * time.Millisecond,
-			PollingInterval:            1 * time.Millisecond,
+			Interval:                   1 * time.Millisecond,
 			RaiseErrorWithUnknownState: true,
 		}
 		ctx := context.Background()
@@ -214,7 +214,7 @@ func TestStatePollingWaiter_withTargetStates(t *testing.T) {
 			},
 			TargetAvailability: []types.EAvailability{types.Availabilities.Available},
 			Timeout:            100 * time.Millisecond,
-			PollingInterval:    1 * time.Millisecond,
+			Interval:           1 * time.Millisecond,
 		}
 		ctx := context.Background()
 		_, err := waiter.WaitForState(ctx)
@@ -229,7 +229,7 @@ func TestStatePollingWaiter_withTargetStates(t *testing.T) {
 			},
 			TargetAvailability:         []types.EAvailability{types.Availabilities.Available},
 			Timeout:                    100 * time.Millisecond,
-			PollingInterval:            1 * time.Millisecond,
+			Interval:                   1 * time.Millisecond,
 			RaiseErrorWithUnknownState: true,
 		}
 		ctx := context.Background()
