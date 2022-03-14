@@ -78,7 +78,7 @@ var (
 		Country:          "JP",
 		Organization:     "usacloud",
 		OrganizationUnit: []string{"u1", "u2"},
-		CommonName:       "u2.u1.uiaas.jp",
+		CommonName:       "u2.u1.usacloud.jp",
 		NotAfter:         time.Now().Add(10 * 24 * time.Hour),
 	}
 	createCertificateAuthorityExpected = &iaas.CertificateAuthority{
