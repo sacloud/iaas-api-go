@@ -90,14 +90,11 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
 - search
 - stub
 - test
-- testutil => TODO 要検討
+- testutil
 - trace
 - types
-- wait     => libsacloudのhelper/waitの移植
 - sacloud直下
 ```
-
-testutilについては該当部の実装時に検討することとしてTODOのままにしておく。
 
 ## 改訂履歴
 
