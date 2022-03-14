@@ -46,7 +46,7 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
 
 ```console
 - examples: otel利用例
-- helper: 高レベルAPI群、sacloud-goへ
+- helper: 高レベルAPI群(一部をsacloud-goへ)
 - internal: 独自DSL
 - pkg: libsacloudに依存しないユーティリティなど => 
 - sacloud
@@ -76,14 +76,17 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
 
 ```console
 - accessor
-- cleanup  => libsacloudのhelper/cleanupの移植
+- defaults => libsacloudのhelper/defaultsの移植
 - fake
+- helper
+  - cleanup  
+  - plans    
+  - power    
+  - query    
+  - wait     
 - internal => libsacloudの独自DSL実装など
 - naked
 - ostype
-- plans    => libsacloudのhelper/plansの移植
-- power    => libsacloudのhelper/powerの移植
-- query    => libsacloudのhelper/queryの移植
 - search
 - stub
 - test
