@@ -20,8 +20,8 @@ import (
 
 	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/iaas-api-go"
+	"github.com/sacloud/iaas-api-go/defaults"
 	"github.com/sacloud/iaas-api-go/fake"
-	"github.com/sacloud/iaas-api-go/helper/defaults"
 	"github.com/sacloud/iaas-api-go/trace"
 )
 
