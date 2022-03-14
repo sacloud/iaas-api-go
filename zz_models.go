@@ -20,7 +20,6 @@ import (
 	"time"
 
 	"github.com/sacloud/iaas-api-go/accessor"
-	"github.com/sacloud/iaas-api-go/helper/validate"
 	"github.com/sacloud/iaas-api-go/search"
 	"github.com/sacloud/iaas-api-go/types"
 )
@@ -54,11 +53,6 @@ type Archive struct {
 	ModifiedAt                time.Time
 	OriginalArchiveID         types.ID           `mapconv:"OriginalArchive.ID,omitempty"`
 	SourceInfo                *SourceArchiveInfo `mapconv:",omitempty,recursive"`
-}
-
-// Validate validates by field tags
-func (o *Archive) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -410,11 +404,6 @@ type BundleInfo struct {
 	ServiceClass string `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *BundleInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *BundleInfo) setDefaults() interface{} {
 	return &struct {
@@ -488,11 +477,6 @@ type Storage struct {
 	Name       string
 	Class      string `json:",omitempty" mapconv:",omitempty"`
 	Generation int    `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *Storage) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -582,11 +566,6 @@ type SourceArchiveInfo struct {
 	ZoneName  string   `mapconv:"ArchiveUnderZone.Zone.Name"`
 }
 
-// Validate validates by field tags
-func (o *SourceArchiveInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SourceArchiveInfo) setDefaults() interface{} {
 	return &struct {
@@ -654,11 +633,6 @@ type FindCondition struct {
 	Filter  search.Filter   `json:",omitempty" mapconv:",omitempty"`
 	Include []string        `json:",omitempty" mapconv:",omitempty"`
 	Exclude []string        `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *FindCondition) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -757,11 +731,6 @@ type ArchiveCreateRequest struct {
 	Description     string
 	Tags            types.Tags
 	IconID          types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *ArchiveCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -875,11 +844,6 @@ type FTPServer struct {
 	Password  string
 }
 
-// Validate validates by field tags
-func (o *FTPServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *FTPServer) setDefaults() interface{} {
 	return &struct {
@@ -946,11 +910,6 @@ type ArchiveCreateBlankRequest struct {
 	Description string
 	Tags        types.Tags
 	IconID      types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *ArchiveCreateBlankRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -1062,11 +1021,6 @@ type ArchiveUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *ArchiveUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ArchiveUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -1151,11 +1105,6 @@ type OpenFTPRequest struct {
 	ChangePassword bool
 }
 
-// Validate validates by field tags
-func (o *OpenFTPRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *OpenFTPRequest) setDefaults() interface{} {
 	return &struct {
@@ -1182,11 +1131,6 @@ func (o *OpenFTPRequest) SetChangePassword(v bool) {
 // ArchiveShareInfo represents API parameter/response structure
 type ArchiveShareInfo struct {
 	SharedKey types.ArchiveShareKey
-}
-
-// Validate validates by field tags
-func (o *ArchiveShareInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -1219,11 +1163,6 @@ type ArchiveCreateRequestFromShared struct {
 	Tags            types.Tags
 	IconID          types.ID `mapconv:"Icon.ID"`
 	SourceSharedKey types.ArchiveShareKey
-}
-
-// Validate validates by field tags
-func (o *ArchiveCreateRequestFromShared) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -1324,11 +1263,6 @@ type ArchiveTransferRequest struct {
 	Description string
 	Tags        types.Tags
 	IconID      types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *ArchiveTransferRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -1446,11 +1380,6 @@ type AuthStatus struct {
 	ExternalPermission types.ExternalPermission
 	OperationPenalty   types.EOperationPenalty
 	Permission         types.EPermission
-}
-
-// Validate validates by field tags
-func (o *AuthStatus) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -1625,11 +1554,6 @@ type AutoBackup struct {
 	AccountID               types.ID                   `mapconv:"Status.AccountID"`
 	ZoneID                  types.ID                   `mapconv:"Status.ZoneID"`
 	ZoneName                string                     `mapconv:"Status.ZoneName"`
-}
-
-// Validate validates by field tags
-func (o *AutoBackup) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -1874,11 +1798,6 @@ type AutoBackupCreateRequest struct {
 	IconID                  types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *AutoBackupCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoBackupCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -2009,11 +1928,6 @@ type AutoBackupUpdateRequest struct {
 	SettingsHash            string                     `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *AutoBackupUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoBackupUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -2138,11 +2052,6 @@ type AutoBackupUpdateSettingsRequest struct {
 	SettingsHash            string                     `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *AutoBackupUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoBackupUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -2201,11 +2110,6 @@ type Bill struct {
 	Paid           bool
 	PayLimit       time.Time
 	PaymentClassID types.ID
-}
-
-// Validate validates by field tags
-func (o *Bill) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -2335,11 +2239,6 @@ type BillDetail struct {
 	ServiceUsagePath string
 	Zone             string
 	ContractEndAt    time.Time
-}
-
-// Validate validates by field tags
-func (o *BillDetail) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -2503,11 +2402,6 @@ type BillDetailCSV struct {
 	BodyRows    [][]string
 }
 
-// Validate validates by field tags
-func (o *BillDetailCSV) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *BillDetailCSV) setDefaults() interface{} {
 	return &struct {
@@ -2600,11 +2494,6 @@ type Bridge struct {
 	Region       *Region       `json:",omitempty"`
 	BridgeInfo   []*BridgeInfo `mapconv:"Info.[]Switches,recursive"`
 	SwitchInZone *BridgeSwitchInfo
-}
-
-// Validate validates by field tags
-func (o *Bridge) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -2730,11 +2619,6 @@ type Region struct {
 	NameServers []string `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *Region) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *Region) setDefaults() interface{} {
 	return &struct {
@@ -2820,11 +2704,6 @@ type BridgeInfo struct {
 	Name     string
 	ZoneID   types.ID `mapconv:"Zone.ID"`
 	ZoneName string   `mapconv:"Zone.Name"`
-}
-
-// Validate validates by field tags
-func (o *BridgeInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -2913,11 +2792,6 @@ type BridgeSwitchInfo struct {
 	Scope          types.EScope
 	ServerCount    int
 	ApplianceCount int
-}
-
-// Validate validates by field tags
-func (o *BridgeSwitchInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -3017,11 +2891,6 @@ type BridgeCreateRequest struct {
 	Description string
 }
 
-// Validate validates by field tags
-func (o *BridgeCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *BridgeCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -3061,11 +2930,6 @@ func (o *BridgeCreateRequest) SetDescription(v string) {
 type BridgeUpdateRequest struct {
 	Name        string
 	Description string
-}
-
-// Validate validates by field tags
-func (o *BridgeUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -3117,11 +2981,6 @@ type CDROM struct {
 	IconID       types.ID `mapconv:"Icon.ID"`
 	CreatedAt    time.Time
 	ModifiedAt   time.Time
-}
-
-// Validate validates by field tags
-func (o *CDROM) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -3338,11 +3197,6 @@ type CDROMCreateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *CDROMCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CDROMCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -3452,11 +3306,6 @@ type CDROMUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *CDROMUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CDROMUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -3552,11 +3401,6 @@ type CertificateAuthority struct {
 	CommonName       string    `mapconv:"Status.CommonName"`
 	NotAfter         time.Time `mapconv:"Status.NotAfter"`
 	Subject          string    `mapconv:"Status.Subject"`
-}
-
-// Validate validates by field tags
-func (o *CertificateAuthority) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -3791,11 +3635,6 @@ type CertificateAuthorityCreateRequest struct {
 	NotAfter         time.Time `mapconv:"Status.NotAfter"`
 }
 
-// Validate validates by field tags
-func (o *CertificateAuthorityCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CertificateAuthorityCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -3945,11 +3784,6 @@ type CertificateAuthorityUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *CertificateAuthorityUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CertificateAuthorityUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -4035,11 +3869,6 @@ type CertificateAuthorityDetail struct {
 	CertificateData *CertificateData `mapconv:",recursive"`
 }
 
-// Validate validates by field tags
-func (o *CertificateAuthorityDetail) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CertificateAuthorityDetail) setDefaults() interface{} {
 	return &struct {
@@ -4082,11 +3911,6 @@ type CertificateData struct {
 	SerialNumber   string
 	NotBefore      time.Time
 	NotAfter       time.Time
-}
-
-// Validate validates by field tags
-func (o *CertificateData) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -4165,11 +3989,6 @@ type CertificateAuthorityAddClientOrServerResult struct {
 	ID string
 }
 
-// Validate validates by field tags
-func (o *CertificateAuthorityAddClientOrServerResult) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CertificateAuthorityAddClientOrServerResult) setDefaults() interface{} {
 	return &struct {
@@ -4204,11 +4023,6 @@ type CertificateAuthorityAddClientParam struct {
 	EMail                     string
 	CertificateSigningRequest string
 	PublicKey                 string
-}
-
-// Validate validates by field tags
-func (o *CertificateAuthorityAddClientParam) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -4341,11 +4155,6 @@ type CertificateAuthorityClient struct {
 	CertificateData *CertificateData `mapconv:",recursive"`
 }
 
-// Validate validates by field tags
-func (o *CertificateAuthorityClient) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CertificateAuthorityClient) setDefaults() interface{} {
 	return &struct {
@@ -4451,11 +4260,6 @@ type CertificateAuthorityAddServerParam struct {
 	SANs                      []string
 	CertificateSigningRequest string
 	PublicKey                 string
-}
-
-// Validate validates by field tags
-func (o *CertificateAuthorityAddServerParam) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -4575,11 +4379,6 @@ type CertificateAuthorityServer struct {
 	CertificateData *CertificateData `mapconv:",recursive"`
 }
 
-// Validate validates by field tags
-func (o *CertificateAuthorityServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *CertificateAuthorityServer) setDefaults() interface{} {
 	return &struct {
@@ -4678,11 +4477,6 @@ type ContainerRegistry struct {
 	SettingsHash   string                              `json:",omitempty" mapconv:",omitempty"`
 	SubDomainLabel string                              `mapconv:"Status.RegistryName"`
 	FQDN           string                              `mapconv:"Status.FQDN"`
-}
-
-// Validate validates by field tags
-func (o *ContainerRegistry) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -4903,11 +4697,6 @@ type ContainerRegistryCreateRequest struct {
 	SubDomainLabel string                              `mapconv:"Status.RegistryName"`
 }
 
-// Validate validates by field tags
-func (o *ContainerRegistryCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ContainerRegistryCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -5036,11 +4825,6 @@ type ContainerRegistryUpdateRequest struct {
 	SettingsHash  string                              `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *ContainerRegistryUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ContainerRegistryUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -5163,11 +4947,6 @@ type ContainerRegistryUpdateSettingsRequest struct {
 	SettingsHash  string                              `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *ContainerRegistryUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ContainerRegistryUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -5220,11 +4999,6 @@ type ContainerRegistryUsers struct {
 	Users []*ContainerRegistryUser
 }
 
-// Validate validates by field tags
-func (o *ContainerRegistryUsers) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ContainerRegistryUsers) setDefaults() interface{} {
 	return &struct {
@@ -5252,11 +5026,6 @@ func (o *ContainerRegistryUsers) SetUsers(v []*ContainerRegistryUser) {
 type ContainerRegistryUser struct {
 	UserName   string
 	Permission types.EContainerRegistryPermission
-}
-
-// Validate validates by field tags
-func (o *ContainerRegistryUser) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -5299,11 +5068,6 @@ type ContainerRegistryUserCreateRequest struct {
 	UserName   string
 	Password   string
 	Permission types.EContainerRegistryPermission
-}
-
-// Validate validates by field tags
-func (o *ContainerRegistryUserCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -5359,11 +5123,6 @@ type ContainerRegistryUserUpdateRequest struct {
 	Permission types.EContainerRegistryPermission
 }
 
-// Validate validates by field tags
-func (o *ContainerRegistryUserUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ContainerRegistryUserUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -5408,11 +5167,6 @@ type Coupon struct {
 	Discount       int64
 	AppliedAt      time.Time
 	UntilAt        time.Time
-}
-
-// Validate validates by field tags
-func (o *Coupon) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -5557,11 +5311,6 @@ type Database struct {
 	IPAddresses             []string                    `mapconv:"Remark.[]Servers.IPAddress"`
 	ZoneID                  types.ID                    `mapconv:"Remark.Zone.ID"`
 	Interfaces              []*InterfaceView            `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
-}
-
-// Validate validates by field tags
-func (o *Database) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -5926,11 +5675,6 @@ type DatabaseSettingCommon struct {
 	ReplicaPassword string
 }
 
-// Validate validates by field tags
-func (o *DatabaseSettingCommon) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseSettingCommon) setDefaults() interface{} {
 	return &struct {
@@ -6033,11 +5777,6 @@ type DatabaseSettingBackup struct {
 	DayOfWeek []types.EBackupSpanWeekday
 }
 
-// Validate validates by field tags
-func (o *DatabaseSettingBackup) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseSettingBackup) setDefaults() interface{} {
 	return &struct {
@@ -6093,11 +5832,6 @@ type DatabaseReplicationSetting struct {
 	User        string
 	Password    string
 	ApplianceID types.ID `mapconv:"Appliance.ID"`
-}
-
-// Validate validates by field tags
-func (o *DatabaseReplicationSetting) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -6192,11 +5926,6 @@ type DatabaseRemarkDBConfCommon struct {
 	UserPassword     string
 }
 
-// Validate validates by field tags
-func (o *DatabaseRemarkDBConfCommon) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseRemarkDBConfCommon) setDefaults() interface{} {
 	return &struct {
@@ -6288,11 +6017,6 @@ type InterfaceView struct {
 	PacketFilterName                string             `mapconv:"PacketFilter.Name"`
 	PacketFilterRequiredHostVersion types.StringNumber `mapconv:"PacketFilter.RequiredHostVersionn"`
 	UpstreamType                    types.EUpstreamNetworkType
-}
-
-// Validate validates by field tags
-func (o *InterfaceView) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -6560,11 +6284,6 @@ type DatabaseCreateRequest struct {
 	IconID             types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *DatabaseCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -6778,11 +6497,6 @@ type DatabaseUpdateRequest struct {
 	SettingsHash       string                      `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DatabaseUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -6918,11 +6632,6 @@ type DatabaseUpdateSettingsRequest struct {
 	SettingsHash       string                      `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DatabaseUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -6987,11 +6696,6 @@ type ShutdownOption struct {
 	Force bool
 }
 
-// Validate validates by field tags
-func (o *ShutdownOption) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ShutdownOption) setDefaults() interface{} {
 	return &struct {
@@ -7018,11 +6722,6 @@ func (o *ShutdownOption) SetForce(v bool) {
 // CPUTimeActivity represents API parameter/response structure
 type CPUTimeActivity struct {
 	Values []*MonitorCPUTimeValue `mapconv:"[]CPU"`
-}
-
-// Validate validates by field tags
-func (o *CPUTimeActivity) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7052,11 +6751,6 @@ func (o *CPUTimeActivity) SetValues(v []*MonitorCPUTimeValue) {
 type MonitorCPUTimeValue struct {
 	Time    time.Time `mapconv:",omitempty"`
 	CPUTime float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorCPUTimeValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7098,11 +6792,6 @@ func (o *MonitorCPUTimeValue) SetCPUTime(v float64) {
 type MonitorCondition struct {
 	Start time.Time `json:",omitempty"`
 	End   time.Time `json:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorCondition) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7151,11 +6840,6 @@ type DiskActivity struct {
 	Values []*MonitorDiskValue `mapconv:"[]Disk"`
 }
 
-// Validate validates by field tags
-func (o *DiskActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskActivity) setDefaults() interface{} {
 	return &struct {
@@ -7184,11 +6868,6 @@ type MonitorDiskValue struct {
 	Time  time.Time `mapconv:",omitempty"`
 	Read  float64   `mapconv:",omitempty"`
 	Write float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorDiskValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7243,11 +6922,6 @@ type InterfaceActivity struct {
 	Values []*MonitorInterfaceValue `mapconv:"[]Interface"`
 }
 
-// Validate validates by field tags
-func (o *InterfaceActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InterfaceActivity) setDefaults() interface{} {
 	return &struct {
@@ -7276,11 +6950,6 @@ type MonitorInterfaceValue struct {
 	Time    time.Time `mapconv:",omitempty"`
 	Receive float64   `mapconv:",omitempty"`
 	Send    float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorInterfaceValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7335,11 +7004,6 @@ type DatabaseActivity struct {
 	Values []*MonitorDatabaseValue `mapconv:"[]Database"`
 }
 
-// Validate validates by field tags
-func (o *DatabaseActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseActivity) setDefaults() interface{} {
 	return &struct {
@@ -7374,11 +7038,6 @@ type MonitorDatabaseValue struct {
 	UsedDisk2Size     float64   `mapconv:",omitempty"`
 	BinlogUsedSizeKiB float64   `mapconv:",omitempty"`
 	DelayTimeSec      float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorDatabaseValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7511,11 +7170,6 @@ type DatabaseStatus struct {
 	Backups        []*DatabaseBackupHistory    `mapconv:"SettingsResponse.DBConf.Backup.[]History,recursive"`
 }
 
-// Validate validates by field tags
-func (o *DatabaseStatus) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseStatus) setDefaults() interface{} {
 	return &struct {
@@ -7620,11 +7274,6 @@ type DatabaseVersionInfo struct {
 	Expire       string
 }
 
-// Validate validates by field tags
-func (o *DatabaseVersionInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseVersionInfo) setDefaults() interface{} {
 	return &struct {
@@ -7703,11 +7352,6 @@ type DatabaseLog struct {
 	Size types.StringNumber
 }
 
-// Validate validates by field tags
-func (o *DatabaseLog) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseLog) setDefaults() interface{} {
 	return &struct {
@@ -7761,11 +7405,6 @@ type DatabaseBackupHistory struct {
 	Availability string
 	RecoveredAt  time.Time
 	Size         int64
-}
-
-// Validate validates by field tags
-func (o *DatabaseBackupHistory) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7833,11 +7472,6 @@ type DatabaseParameter struct {
 	MetaInfo []*DatabaseParameterMeta `mapconv:"Remark.[]Form,recursive"`
 }
 
-// Validate validates by field tags
-func (o *DatabaseParameter) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseParameter) setDefaults() interface{} {
 	return &struct {
@@ -7884,11 +7518,6 @@ type DatabaseParameterMeta struct {
 	Max     float64 `mapconv:"Options.Max"`
 	MaxLen  int     `mapconv:"Options.MaxLen"`
 	Reboot  string  `mapconv:"Options.Reboot"`
-}
-
-// Validate validates by field tags
-func (o *DatabaseParameterMeta) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -8037,11 +7666,6 @@ type Disk struct {
 	IconID                    types.ID            `mapconv:"Icon.ID"`
 	CreatedAt                 time.Time
 	ModifiedAt                time.Time
-}
-
-// Validate validates by field tags
-func (o *Disk) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -8416,11 +8040,6 @@ type JobStatus struct {
 	ConfigError *JobConfigError
 }
 
-// Validate validates by field tags
-func (o *JobStatus) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *JobStatus) setDefaults() interface{} {
 	return &struct {
@@ -8461,11 +8080,6 @@ type JobConfigError struct {
 	ErrorCode string
 	ErrorMsg  string
 	Status    string
-}
-
-// Validate validates by field tags
-func (o *JobConfigError) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -8527,11 +8141,6 @@ type DiskCreateRequest struct {
 	Description     string
 	Tags            types.Tags
 	IconID          types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *DiskCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -8710,11 +8319,6 @@ type DiskEditRequest struct {
 	UserSubnet          *DiskEditUserSubnet `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DiskEditRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskEditRequest) setDefaults() interface{} {
 	return &struct {
@@ -8864,11 +8468,6 @@ type DiskEditSSHKey struct {
 	PublicKey string   `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DiskEditSSHKey) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskEditSSHKey) setDefaults() interface{} {
 	return &struct {
@@ -8909,11 +8508,6 @@ type DiskEditNote struct {
 	ID        types.ID               `json:",omitempty" mapconv:",omitempty"`
 	APIKeyID  types.ID               `json:",omitempty" mapconv:"APIKey.ID,omitempty"`
 	Variables map[string]interface{} `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *DiskEditNote) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -8969,11 +8563,6 @@ type DiskEditUserSubnet struct {
 	NetworkMaskLen int    `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DiskEditUserSubnet) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskEditUserSubnet) setDefaults() interface{} {
 	return &struct {
@@ -9014,11 +8603,6 @@ type DiskResizePartitionRequest struct {
 	Background bool
 }
 
-// Validate validates by field tags
-func (o *DiskResizePartitionRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskResizePartitionRequest) setDefaults() interface{} {
 	return &struct {
@@ -9049,11 +8633,6 @@ type DiskUpdateRequest struct {
 	Tags        types.Tags
 	IconID      types.ID              `mapconv:"Icon.ID"`
 	Connection  types.EDiskConnection `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *DiskUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -9156,11 +8735,6 @@ type DiskPlan struct {
 	Size         []*DiskPlanSizeInfo `mapconv:"[]Size,recursive"`
 }
 
-// Validate validates by field tags
-func (o *DiskPlan) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskPlan) setDefaults() interface{} {
 	return &struct {
@@ -9260,11 +8834,6 @@ type DiskPlanSizeInfo struct {
 	SizeMB        int
 }
 
-// Validate validates by field tags
-func (o *DiskPlanSizeInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DiskPlanSizeInfo) setDefaults() interface{} {
 	return &struct {
@@ -9348,11 +8917,6 @@ type DNS struct {
 	SettingsHash   string     `json:",omitempty" mapconv:",omitempty"`
 	DNSZone        string     `mapconv:"Status.Zone"`
 	DNSNameServers []string   `mapconv:"Status.NS"`
-}
-
-// Validate validates by field tags
-func (o *DNS) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -9558,11 +9122,6 @@ type DNSRecord struct {
 	TTL   int
 }
 
-// Validate validates by field tags
-func (o *DNSRecord) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNSRecord) setDefaults() interface{} {
 	return &struct {
@@ -9629,11 +9188,6 @@ type DNSCreateRequest struct {
 	Description string
 	Tags        types.Tags
 	IconID      types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *DNSCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -9738,11 +9292,6 @@ type DNSUpdateRequest struct {
 	SettingsHash string     `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DNSUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNSUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -9840,11 +9389,6 @@ type DNSUpdateSettingsRequest struct {
 	SettingsHash string     `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *DNSUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNSUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -9897,11 +9441,6 @@ type EnhancedDB struct {
 	Region         string `mapconv:"Status.Region"`
 	HostName       string `mapconv:"Status.HostName"`
 	Port           int    `mapconv:"Status.Port"`
-}
-
-// Validate validates by field tags
-func (o *EnhancedDB) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -10144,11 +9683,6 @@ type EnhancedDBCreateRequest struct {
 	DatabaseName string   `mapconv:"Status.DatabaseName"`
 }
 
-// Validate validates by field tags
-func (o *EnhancedDBCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDBCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -10257,11 +9791,6 @@ type EnhancedDBUpdateRequest struct {
 	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *EnhancedDBUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDBUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -10360,11 +9889,6 @@ type EnhancedDBSetPasswordRequest struct {
 	Password string `mapconv:"EnhancedDB.Password"`
 }
 
-// Validate validates by field tags
-func (o *EnhancedDBSetPasswordRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDBSetPasswordRequest) setDefaults() interface{} {
 	return &struct {
@@ -10398,11 +9922,6 @@ type ESME struct {
 	IconID       types.ID `mapconv:"Icon.ID"`
 	CreatedAt    time.Time
 	ModifiedAt   time.Time
-}
-
-// Validate validates by field tags
-func (o *ESME) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -10560,11 +10079,6 @@ type ESMECreateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *ESMECreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ESMECreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -10654,11 +10168,6 @@ type ESMEUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *ESMEUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ESMEUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -10745,11 +10254,6 @@ type ESMESendMessageResult struct {
 	OTP       string
 }
 
-// Validate validates by field tags
-func (o *ESMESendMessageResult) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ESMESendMessageResult) setDefaults() interface{} {
 	return &struct {
@@ -10802,11 +10306,6 @@ type ESMESendMessageWithGeneratedOTPRequest struct {
 	Destination string
 	Sender      string
 	DomainName  string
-}
-
-// Validate validates by field tags
-func (o *ESMESendMessageWithGeneratedOTPRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -10864,11 +10363,6 @@ type ESMESendMessageWithInputtedOTPRequest struct {
 	Sender      string
 	DomainName  string
 	OTP         string
-}
-
-// Validate validates by field tags
-func (o *ESMESendMessageWithInputtedOTPRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -10941,11 +10435,6 @@ type ESMELogs struct {
 	SentAt      time.Time
 	DoneAt      time.Time
 	RetryCount  int
-}
-
-// Validate validates by field tags
-func (o *ESMELogs) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -11060,11 +10549,6 @@ type GSLB struct {
 	HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
 	SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
 	DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
-}
-
-// Validate validates by field tags
-func (o *GSLB) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -11310,11 +10794,6 @@ type GSLBHealthCheck struct {
 	Port         types.StringNumber `mapconv:"Port"`
 }
 
-// Validate validates by field tags
-func (o *GSLBHealthCheck) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *GSLBHealthCheck) setDefaults() interface{} {
 	return &struct {
@@ -11393,11 +10872,6 @@ type GSLBServer struct {
 	Weight    types.StringNumber
 }
 
-// Validate validates by field tags
-func (o *GSLBServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *GSLBServer) setDefaults() interface{} {
 	return &struct {
@@ -11456,11 +10930,6 @@ type GSLBCreateRequest struct {
 	Description        string
 	Tags               types.Tags
 	IconID             types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *GSLBCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -11619,11 +11088,6 @@ type GSLBUpdateRequest struct {
 	SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
 	DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
 	SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *GSLBUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -11790,11 +11254,6 @@ type GSLBUpdateSettingsRequest struct {
 	SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *GSLBUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *GSLBUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -11891,11 +11350,6 @@ type Icon struct {
 	URL          string
 	CreatedAt    time.Time
 	ModifiedAt   time.Time
-}
-
-// Validate validates by field tags
-func (o *Icon) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -12052,11 +11506,6 @@ type IconCreateRequest struct {
 	Image string
 }
 
-// Validate validates by field tags
-func (o *IconCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IconCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -12130,11 +11579,6 @@ type IconUpdateRequest struct {
 	Tags types.Tags
 }
 
-// Validate validates by field tags
-func (o *IconUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IconUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -12202,11 +11646,6 @@ type Interface struct {
 	PacketFilterID types.ID     `mapconv:"PacketFilter.ID,omitempty"`
 	ServerID       types.ID     `mapconv:"Server.ID,omitempty"`
 	CreatedAt      time.Time
-}
-
-// Validate validates by field tags
-func (o *Interface) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -12365,11 +11804,6 @@ type InterfaceCreateRequest struct {
 	ServerID types.ID `mapconv:"Server.ID,omitempty"`
 }
 
-// Validate validates by field tags
-func (o *InterfaceCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InterfaceCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -12396,11 +11830,6 @@ func (o *InterfaceCreateRequest) SetServerID(v types.ID) {
 // InterfaceUpdateRequest represents API parameter/response structure
 type InterfaceUpdateRequest struct {
 	UserIPAddress string
-}
-
-// Validate validates by field tags
-func (o *InterfaceUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -12437,11 +11866,6 @@ type Internet struct {
 	BandWidthMbps  int
 	NetworkMaskLen int
 	Switch         *SwitchInfo `mapconv:",recursive"`
-}
-
-// Validate validates by field tags
-func (o *Internet) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -12614,11 +12038,6 @@ type SwitchInfo struct {
 	IPv6Nets    []*IPv6NetInfo    `mapconv:"[]IPv6Nets,recursive,omitempty"`
 }
 
-// Validate validates by field tags
-func (o *SwitchInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SwitchInfo) setDefaults() interface{} {
 	return &struct {
@@ -12764,11 +12183,6 @@ type InternetSubnet struct {
 	NetworkMaskLen int
 }
 
-// Validate validates by field tags
-func (o *InternetSubnet) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InternetSubnet) setDefaults() interface{} {
 	return &struct {
@@ -12879,11 +12293,6 @@ type IPv6NetInfo struct {
 	IPv6PrefixLen int
 }
 
-// Validate validates by field tags
-func (o *IPv6NetInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IPv6NetInfo) setDefaults() interface{} {
 	return &struct {
@@ -12959,11 +12368,6 @@ type InternetCreateRequest struct {
 	IconID         types.ID `mapconv:"Icon.ID"`
 	NetworkMaskLen int
 	BandWidthMbps  int
-}
-
-// Validate validates by field tags
-func (o *InternetCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -13077,11 +12481,6 @@ type InternetUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *InternetUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InternetUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -13166,11 +12565,6 @@ type InternetUpdateBandWidthRequest struct {
 	BandWidthMbps int
 }
 
-// Validate validates by field tags
-func (o *InternetUpdateBandWidthRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InternetUpdateBandWidthRequest) setDefaults() interface{} {
 	return &struct {
@@ -13203,11 +12597,6 @@ type InternetSubnetOperationResult struct {
 	NetworkAddress string
 	NetworkMaskLen int
 	IPAddresses    []string `mapconv:"[]IPAddresses.IPAddress"`
-}
-
-// Validate validates by field tags
-func (o *InternetSubnetOperationResult) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -13331,11 +12720,6 @@ type InternetAddSubnetRequest struct {
 	NextHop        string
 }
 
-// Validate validates by field tags
-func (o *InternetAddSubnetRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InternetAddSubnetRequest) setDefaults() interface{} {
 	return &struct {
@@ -13376,11 +12760,6 @@ type InternetUpdateSubnetRequest struct {
 	NextHop string
 }
 
-// Validate validates by field tags
-func (o *InternetUpdateSubnetRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InternetUpdateSubnetRequest) setDefaults() interface{} {
 	return &struct {
@@ -13407,11 +12786,6 @@ func (o *InternetUpdateSubnetRequest) SetNextHop(v string) {
 // RouterActivity represents API parameter/response structure
 type RouterActivity struct {
 	Values []*MonitorRouterValue `mapconv:"[]Router"`
-}
-
-// Validate validates by field tags
-func (o *RouterActivity) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -13442,11 +12816,6 @@ type MonitorRouterValue struct {
 	Time time.Time `mapconv:",omitempty"`
 	In   float64   `mapconv:",omitempty"`
 	Out  float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorRouterValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -13502,11 +12871,6 @@ type InternetPlan struct {
 	Name          string
 	BandWidthMbps int
 	Availability  types.EAvailability
-}
-
-// Validate validates by field tags
-func (o *InternetPlan) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -13596,11 +12960,6 @@ type IPAddress struct {
 	SubnetID    types.ID `mapconv:"Subnet.ID,omitempty"`
 }
 
-// Validate validates by field tags
-func (o *IPAddress) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IPAddress) setDefaults() interface{} {
 	return &struct {
@@ -13672,11 +13031,6 @@ type IPv6Net struct {
 	NamedIPv6AddrCount int
 	CreatedAt          time.Time
 	SwitchID           types.ID `mapconv:"Switch.ID,omitempty"`
-}
-
-// Validate validates by field tags
-func (o *IPv6Net) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -13839,11 +13193,6 @@ type IPv6Addr struct {
 	InterfaceID types.ID `mapconv:"Interface.ID,omitempty"`
 }
 
-// Validate validates by field tags
-func (o *IPv6Addr) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IPv6Addr) setDefaults() interface{} {
 	return &struct {
@@ -13921,11 +13270,6 @@ type IPv6AddrCreateRequest struct {
 	HostName string
 }
 
-// Validate validates by field tags
-func (o *IPv6AddrCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IPv6AddrCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -13966,11 +13310,6 @@ type IPv6AddrUpdateRequest struct {
 	HostName string
 }
 
-// Validate validates by field tags
-func (o *IPv6AddrUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *IPv6AddrUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -14002,11 +13341,6 @@ type License struct {
 	LicenseInfoName string   `mapconv:"LicenseInfo.Name"`
 	CreatedAt       time.Time
 	ModifiedAt      time.Time
-}
-
-// Validate validates by field tags
-func (o *License) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -14118,11 +13452,6 @@ type LicenseCreateRequest struct {
 	LicenseInfoID types.ID `mapconv:"LicenseInfo.ID"`
 }
 
-// Validate validates by field tags
-func (o *LicenseCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LicenseCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -14163,11 +13492,6 @@ type LicenseUpdateRequest struct {
 	Name string
 }
 
-// Validate validates by field tags
-func (o *LicenseUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LicenseUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -14198,11 +13522,6 @@ type LicenseInfo struct {
 	CreatedAt  time.Time
 	ModifiedAt time.Time
 	TermsOfUse string
-}
-
-// Validate validates by field tags
-func (o *LicenseInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -14321,11 +13640,6 @@ type LoadBalancer struct {
 	VirtualIPAddresses      LoadBalancerVirtualIPAddresses `mapconv:"Settings.[]LoadBalancer,recursive"`
 	SettingsHash            string                         `json:",omitempty" mapconv:",omitempty"`
 	Interfaces              []*InterfaceView               `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
-}
-
-// Validate validates by field tags
-func (o *LoadBalancer) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -14665,11 +13979,6 @@ type LoadBalancerVirtualIPAddress struct {
 	Servers          LoadBalancerServers `mapconv:"[]Servers,recursive"`
 }
 
-// Validate validates by field tags
-func (o *LoadBalancerVirtualIPAddress) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LoadBalancerVirtualIPAddress) setDefaults() interface{} {
 	return &struct {
@@ -14764,11 +14073,6 @@ type LoadBalancerServer struct {
 	HealthCheck *LoadBalancerServerHealthCheck `mapconv:"HealthCheck,recursive"`
 }
 
-// Validate validates by field tags
-func (o *LoadBalancerServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LoadBalancerServer) setDefaults() interface{} {
 	return &struct {
@@ -14835,11 +14139,6 @@ type LoadBalancerServerHealthCheck struct {
 	ResponseCode   types.StringNumber `mapconv:"Status"`
 	Retry          types.StringNumber
 	ConnectTimeout types.StringNumber
-}
-
-// Validate validates by field tags
-func (o *LoadBalancerServerHealthCheck) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -14926,11 +14225,6 @@ type LoadBalancerCreateRequest struct {
 	Tags               types.Tags
 	IconID             types.ID                       `mapconv:"Icon.ID"`
 	VirtualIPAddresses LoadBalancerVirtualIPAddresses `mapconv:"Settings.[]LoadBalancer,recursive"`
-}
-
-// Validate validates by field tags
-func (o *LoadBalancerCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -15108,11 +14402,6 @@ type LoadBalancerUpdateRequest struct {
 	SettingsHash       string                         `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *LoadBalancerUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LoadBalancerUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -15222,11 +14511,6 @@ type LoadBalancerUpdateSettingsRequest struct {
 	SettingsHash       string                         `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *LoadBalancerUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LoadBalancerUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -15268,11 +14552,6 @@ type LoadBalancerStatus struct {
 	Port             types.StringNumber
 	CPS              types.StringNumber
 	Servers          []*LoadBalancerServerStatus `mapconv:",recursive"`
-}
-
-// Validate validates by field tags
-func (o *LoadBalancerStatus) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -15341,11 +14620,6 @@ type LoadBalancerServerStatus struct {
 	IPAddress  string
 	Port       types.StringNumber
 	CPS        types.StringNumber
-}
-
-// Validate validates by field tags
-func (o *LoadBalancerServerStatus) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -15435,11 +14709,6 @@ type LocalRouter struct {
 	StaticRoutes []*LocalRouterStaticRoute `mapconv:"Settings.LocalRouter.[]StaticRoutes,recursive"`
 	SettingsHash string                    `json:",omitempty" mapconv:",omitempty"`
 	SecretKeys   []string                  `mapconv:"Status.SecretKeys"`
-}
-
-// Validate validates by field tags
-func (o *LocalRouter) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -15668,11 +14937,6 @@ type LocalRouterSwitch struct {
 	ZoneID   string
 }
 
-// Validate validates by field tags
-func (o *LocalRouterSwitch) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LocalRouterSwitch) setDefaults() interface{} {
 	return &struct {
@@ -15726,11 +14990,6 @@ type LocalRouterInterface struct {
 	IPAddress        []string
 	NetworkMaskLen   int
 	VRID             int
-}
-
-// Validate validates by field tags
-func (o *LocalRouterInterface) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -15800,11 +15059,6 @@ type LocalRouterPeer struct {
 	Description string
 }
 
-// Validate validates by field tags
-func (o *LocalRouterPeer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LocalRouterPeer) setDefaults() interface{} {
 	return &struct {
@@ -15870,11 +15124,6 @@ type LocalRouterStaticRoute struct {
 	NextHop string
 }
 
-// Validate validates by field tags
-func (o *LocalRouterStaticRoute) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LocalRouterStaticRoute) setDefaults() interface{} {
 	return &struct {
@@ -15916,11 +15165,6 @@ type LocalRouterCreateRequest struct {
 	Description string
 	Tags        types.Tags
 	IconID      types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *LocalRouterCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -16015,11 +15259,6 @@ type LocalRouterUpdateRequest struct {
 	Description  string
 	Tags         types.Tags
 	IconID       types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *LocalRouterUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -16170,11 +15409,6 @@ type LocalRouterUpdateSettingsRequest struct {
 	SettingsHash string                    `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *LocalRouterUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LocalRouterUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -16251,11 +15485,6 @@ type LocalRouterHealth struct {
 	Peers []*LocalRouterHealthPeer `mapconv:"[]Peers,recursive"`
 }
 
-// Validate validates by field tags
-func (o *LocalRouterHealth) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LocalRouterHealth) setDefaults() interface{} {
 	return &struct {
@@ -16284,11 +15513,6 @@ type LocalRouterHealthPeer struct {
 	ID     types.ID
 	Status types.EServerInstanceStatus
 	Routes []string
-}
-
-// Validate validates by field tags
-func (o *LocalRouterHealthPeer) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -16343,11 +15567,6 @@ type LocalRouterActivity struct {
 	Values []*MonitorLocalRouterValue `mapconv:"[]LocalRouter"`
 }
 
-// Validate validates by field tags
-func (o *LocalRouterActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LocalRouterActivity) setDefaults() interface{} {
 	return &struct {
@@ -16376,11 +15595,6 @@ type MonitorLocalRouterValue struct {
 	Time               time.Time `mapconv:",omitempty"`
 	ReceiveBytesPerSec float64   `mapconv:",omitempty"`
 	SendBytesPerSec    float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorLocalRouterValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -16452,11 +15666,6 @@ type MobileGateway struct {
 	InternetConnectionEnabled       types.StringFlag                 `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 	InterDeviceCommunicationEnabled types.StringFlag                 `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 	SettingsHash                    string                           `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MobileGateway) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -16773,11 +15982,6 @@ type MobileGatewayInterface struct {
 	Index                           int `mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayInterface) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayInterface) setDefaults() interface{} {
 	return &struct {
@@ -17044,11 +16248,6 @@ type MobileGatewayInterfaceSetting struct {
 	Index          int
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayInterfaceSetting) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayInterfaceSetting) setDefaults() interface{} {
 	return &struct {
@@ -17102,11 +16301,6 @@ type MobileGatewayStaticRoute struct {
 	NextHop string
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayStaticRoute) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayStaticRoute) setDefaults() interface{} {
 	return &struct {
@@ -17151,11 +16345,6 @@ type MobileGatewayCreateRequest struct {
 	StaticRoutes                    []*MobileGatewayStaticRoute `json:",omitempty" mapconv:"Settings.MobileGateway.[]StaticRoutes,omitempty,recursive"`
 	InternetConnectionEnabled       types.StringFlag            `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 	InterDeviceCommunicationEnabled types.StringFlag            `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
-}
-
-// Validate validates by field tags
-func (o *MobileGatewayCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -17290,11 +16479,6 @@ type MobileGatewayUpdateRequest struct {
 	InternetConnectionEnabled       types.StringFlag                 `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 	InterDeviceCommunicationEnabled types.StringFlag                 `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 	SettingsHash                    string                           `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MobileGatewayUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -17445,11 +16629,6 @@ type MobileGatewayUpdateSettingsRequest struct {
 	SettingsHash                    string                           `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -17527,11 +16706,6 @@ type MobileGatewayDNSSetting struct {
 	DNS2 string
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayDNSSetting) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayDNSSetting) setDefaults() interface{} {
 	return &struct {
@@ -17572,11 +16746,6 @@ type MobileGatewaySIMRoute struct {
 	ResourceID string
 	Prefix     string
 	ICCID      string
-}
-
-// Validate validates by field tags
-func (o *MobileGatewaySIMRoute) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -17632,11 +16801,6 @@ type MobileGatewaySIMRouteParam struct {
 	Prefix     string
 }
 
-// Validate validates by field tags
-func (o *MobileGatewaySIMRouteParam) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewaySIMRouteParam) setDefaults() interface{} {
 	return &struct {
@@ -17689,11 +16853,6 @@ type MobileGatewaySIMInfo struct {
 	SIMGroupID                 string
 	TrafficBytesOfCurrentMonth *SIMTrafficBytes `mapconv:",recursive"`
 	ConnectedIMEI              string
-}
-
-// Validate validates by field tags
-func (o *MobileGatewaySIMInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -17893,11 +17052,6 @@ type SIMTrafficBytes struct {
 	DownlinkBytes int64
 }
 
-// Validate validates by field tags
-func (o *SIMTrafficBytes) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SIMTrafficBytes) setDefaults() interface{} {
 	return &struct {
@@ -17938,11 +17092,6 @@ type MobileGatewayAddSIMRequest struct {
 	SIMID string `json:"resource_id" mapconv:"ResourceID"`
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayAddSIMRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayAddSIMRequest) setDefaults() interface{} {
 	return &struct {
@@ -17973,11 +17122,6 @@ type MobileGatewaySIMLogs struct {
 	ResourceID    string
 	IMEI          string
 	IMSI          string
-}
-
-// Validate validates by field tags
-func (o *MobileGatewaySIMLogs) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -18059,11 +17203,6 @@ type MobileGatewayTrafficControl struct {
 	SlackNotifyEnabled     bool   `mapconv:"SlackConfig.Enabled"`
 	SlackNotifyWebhooksURL string `mapconv:"SlackConfig.IncomingWebhooksURL"`
 	AutoTrafficShaping     bool
-}
-
-// Validate validates by field tags
-func (o *MobileGatewayTrafficControl) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -18156,11 +17295,6 @@ type MobileGatewayTrafficStatus struct {
 	TrafficShaping bool
 }
 
-// Validate validates by field tags
-func (o *MobileGatewayTrafficStatus) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *MobileGatewayTrafficStatus) setDefaults() interface{} {
 	return &struct {
@@ -18231,11 +17365,6 @@ type NFS struct {
 	CreatedAt               time.Time
 	ModifiedAt              time.Time
 	SwitchName              string `mapconv:"Switch.Name"`
-}
-
-// Validate validates by field tags
-func (o *NFS) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -18554,11 +17683,6 @@ type NFSCreateRequest struct {
 	IconID         types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *NFSCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *NFSCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -18708,11 +17832,6 @@ type NFSUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *NFSUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *NFSUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -18797,11 +17916,6 @@ type FreeDiskSizeActivity struct {
 	Values []*MonitorFreeDiskSizeValue `mapconv:"[]FreeDiskSize"`
 }
 
-// Validate validates by field tags
-func (o *FreeDiskSizeActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *FreeDiskSizeActivity) setDefaults() interface{} {
 	return &struct {
@@ -18829,11 +17943,6 @@ func (o *FreeDiskSizeActivity) SetValues(v []*MonitorFreeDiskSizeValue) {
 type MonitorFreeDiskSizeValue struct {
 	Time         time.Time `mapconv:",omitempty"`
 	FreeDiskSize float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorFreeDiskSizeValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -18884,11 +17993,6 @@ type Note struct {
 	IconID       types.ID `mapconv:"Icon.ID"`
 	CreatedAt    time.Time
 	ModifiedAt   time.Time
-}
-
-// Validate validates by field tags
-func (o *Note) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -19083,11 +18187,6 @@ type NoteCreateRequest struct {
 	Content string
 }
 
-// Validate validates by field tags
-func (o *NoteCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *NoteCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -19186,11 +18285,6 @@ type NoteUpdateRequest struct {
 	IconID  types.ID `mapconv:"Icon.ID"`
 	Class   string
 	Content string
-}
-
-// Validate validates by field tags
-func (o *NoteUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -19293,11 +18387,6 @@ type PacketFilter struct {
 	Expression          []*PacketFilterExpression `mapconv:"[]Expression,recursive"`
 	ExpressionHash      string
 	CreatedAt           time.Time
-}
-
-// Validate validates by field tags
-func (o *PacketFilter) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -19425,11 +18514,6 @@ type PacketFilterExpression struct {
 	Description     string
 }
 
-// Validate validates by field tags
-func (o *PacketFilterExpression) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *PacketFilterExpression) setDefaults() interface{} {
 	return &struct {
@@ -19520,11 +18604,6 @@ type PacketFilterCreateRequest struct {
 	Expression  []*PacketFilterExpression `mapconv:"[]Expression,recursive"`
 }
 
-// Validate validates by field tags
-func (o *PacketFilterCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *PacketFilterCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -19577,11 +18656,6 @@ type PacketFilterUpdateRequest struct {
 	Name        string
 	Description string
 	Expression  []*PacketFilterExpression `mapconv:"[]Expression,recursive"`
-}
-
-// Validate validates by field tags
-func (o *PacketFilterUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -19647,11 +18721,6 @@ type PrivateHost struct {
 	AssignedCPU      int
 	AssignedMemoryMB int
 	HostName         string `mapconv:"Host.Name"`
-}
-
-// Validate validates by field tags
-func (o *PrivateHost) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -19902,11 +18971,6 @@ type PrivateHostCreateRequest struct {
 	PlanID      types.ID `mapconv:"Plan.ID,omitempty"`
 }
 
-// Validate validates by field tags
-func (o *PrivateHostCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *PrivateHostCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -20006,11 +19070,6 @@ type PrivateHostUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *PrivateHostUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *PrivateHostUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -20098,11 +19157,6 @@ type PrivateHostPlan struct {
 	CPU          int
 	MemoryMB     int
 	Availability types.EAvailability
-}
-
-// Validate validates by field tags
-func (o *PrivateHostPlan) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -20246,11 +19300,6 @@ type ProxyLB struct {
 	ProxyNetworks    []string              `mapconv:"Status.ProxyNetworks"`
 	FQDN             string                `mapconv:"Status.FQDN"`
 	VirtualIPAddress string                `mapconv:"Status.VirtualIPAddress"`
-}
-
-// Validate validates by field tags
-func (o *ProxyLB) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -20624,11 +19673,6 @@ type ProxyLBHealthCheck struct {
 	DelayLoop int
 }
 
-// Validate validates by field tags
-func (o *ProxyLBHealthCheck) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBHealthCheck) setDefaults() interface{} {
 	return &struct {
@@ -20694,11 +19738,6 @@ type ProxyLBSorryServer struct {
 	Port      int `mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *ProxyLBSorryServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBSorryServer) setDefaults() interface{} {
 	return &struct {
@@ -20742,11 +19781,6 @@ type ProxyLBBindPort struct {
 	SupportHTTP2      bool
 	AddResponseHeader []*ProxyLBResponseHeader `mapconv:"[]AddResponseHeader,recursive"`
 	SSLPolicy         string
-}
-
-// Validate validates by field tags
-func (o *ProxyLBBindPort) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -20838,11 +19872,6 @@ type ProxyLBResponseHeader struct {
 	Value  string
 }
 
-// Validate validates by field tags
-func (o *ProxyLBResponseHeader) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBResponseHeader) setDefaults() interface{} {
 	return &struct {
@@ -20884,11 +19913,6 @@ type ProxyLBServer struct {
 	Port        int
 	ServerGroup string
 	Enabled     bool
-}
-
-// Validate validates by field tags
-func (o *ProxyLBServer) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -20965,11 +19989,6 @@ type ProxyLBRule struct {
 	FixedStatusCode              types.EProxyLBFixedStatusCode    `json:",omitempty" mapconv:",omitempty"`
 	FixedContentType             types.EProxyLBFixedContentType   `json:",omitempty" mapconv:",omitempty"`
 	FixedMessageBody             string                           `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *ProxyLBRule) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -21146,11 +20165,6 @@ type ProxyLBACMESetting struct {
 	SubjectAltNames []string `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *ProxyLBACMESetting) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBACMESetting) setDefaults() interface{} {
 	return &struct {
@@ -21204,11 +20218,6 @@ type ProxyLBStickySession struct {
 	Enabled bool
 }
 
-// Validate validates by field tags
-func (o *ProxyLBStickySession) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBStickySession) setDefaults() interface{} {
 	return &struct {
@@ -21249,11 +20258,6 @@ type ProxyLBGzip struct {
 	Enabled bool
 }
 
-// Validate validates by field tags
-func (o *ProxyLBGzip) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBGzip) setDefaults() interface{} {
 	return &struct {
@@ -21280,11 +20284,6 @@ func (o *ProxyLBGzip) SetEnabled(v bool) {
 // ProxyLBProxyProtocol represents API parameter/response structure
 type ProxyLBProxyProtocol struct {
 	Enabled bool
-}
-
-// Validate validates by field tags
-func (o *ProxyLBProxyProtocol) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -21314,11 +20313,6 @@ func (o *ProxyLBProxyProtocol) SetEnabled(v bool) {
 type ProxyLBSyslog struct {
 	Server string
 	Port   int
-}
-
-// Validate validates by field tags
-func (o *ProxyLBSyslog) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -21362,11 +20356,6 @@ func (o *ProxyLBSyslog) SetPort(v int) {
 // ProxyLBTimeout represents API parameter/response structure
 type ProxyLBTimeout struct {
 	InactiveSec int
-}
-
-// Validate validates by field tags
-func (o *ProxyLBTimeout) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -21415,11 +20404,6 @@ type ProxyLBCreateRequest struct {
 	Description    string
 	Tags           types.Tags
 	IconID         types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *ProxyLBCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -21691,11 +20675,6 @@ type ProxyLBUpdateRequest struct {
 	IconID        types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *ProxyLBUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -21935,11 +20914,6 @@ type ProxyLBUpdateSettingsRequest struct {
 	SettingsHash  string                `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *ProxyLBUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -22100,11 +21074,6 @@ type ProxyLBChangePlanRequest struct {
 	ServiceClass string
 }
 
-// Validate validates by field tags
-func (o *ProxyLBChangePlanRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBChangePlanRequest) setDefaults() interface{} {
 	return &struct {
@@ -22132,11 +21101,6 @@ func (o *ProxyLBChangePlanRequest) SetServiceClass(v string) {
 type ProxyLBCertificates struct {
 	PrimaryCert     *ProxyLBPrimaryCert
 	AdditionalCerts []*ProxyLBAdditionalCert `mapconv:"[]AdditionalCerts, recursive"`
-}
-
-// Validate validates by field tags
-func (o *ProxyLBCertificates) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -22182,11 +21146,6 @@ type ProxyLBPrimaryCert struct {
 	CertificateEndDate      time.Time
 	CertificateCommonName   string
 	CertificateAltNames     string
-}
-
-// Validate validates by field tags
-func (o *ProxyLBPrimaryCert) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -22282,11 +21241,6 @@ type ProxyLBAdditionalCert struct {
 	CertificateAltNames     string
 }
 
-// Validate validates by field tags
-func (o *ProxyLBAdditionalCert) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBAdditionalCert) setDefaults() interface{} {
 	return &struct {
@@ -22376,11 +21330,6 @@ type ProxyLBSetCertificatesRequest struct {
 	AdditionalCerts []*ProxyLBAdditionalCert `mapconv:"[]AdditionalCerts, recursive"`
 }
 
-// Validate validates by field tags
-func (o *ProxyLBSetCertificatesRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBSetCertificatesRequest) setDefaults() interface{} {
 	return &struct {
@@ -22422,11 +21371,6 @@ type ProxyLBHealth struct {
 	CPS        float64
 	CurrentVIP string
 	Servers    []*LoadBalancerServerStatus `mapconv:"[]Servers,recursive"`
-}
-
-// Validate validates by field tags
-func (o *ProxyLBHealth) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -22493,11 +21437,6 @@ type ConnectionActivity struct {
 	Values []*MonitorConnectionValue `mapconv:"[]Connection"`
 }
 
-// Validate validates by field tags
-func (o *ConnectionActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ConnectionActivity) setDefaults() interface{} {
 	return &struct {
@@ -22526,11 +21465,6 @@ type MonitorConnectionValue struct {
 	Time              time.Time `mapconv:",omitempty"`
 	ActiveConnections float64   `mapconv:",omitempty"`
 	ConnectionsPerSec float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorConnectionValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -22613,11 +21547,6 @@ type Server struct {
 	IconID                  types.ID                    `mapconv:"Icon.ID"`
 	CreatedAt               time.Time
 	ModifiedAt              time.Time
-}
-
-// Validate validates by field tags
-func (o *Server) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -23065,11 +21994,6 @@ type ZoneInfo struct {
 	Region      *Region        `json:",omitempty" mapconv:",omitempty,recursive"`
 }
 
-// Validate validates by field tags
-func (o *ZoneInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ZoneInfo) setDefaults() interface{} {
 	return &struct {
@@ -23191,11 +22115,6 @@ type VNCProxy struct {
 	IPAddress string `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *VNCProxy) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VNCProxy) setDefaults() interface{} {
 	return &struct {
@@ -23235,11 +22154,6 @@ func (o *VNCProxy) SetIPAddress(v string) {
 type FTPServerInfo struct {
 	HostName  string
 	IPAddress string
-}
-
-// Validate validates by field tags
-func (o *FTPServerInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -23288,11 +22202,6 @@ type ServerConnectedDisk struct {
 	SizeMB          int
 	DiskPlanID      types.ID `mapconv:"Plan.ID"`
 	Storage         *Storage `json:",omitempty" mapconv:",omitempty,recursive"`
-}
-
-// Validate validates by field tags
-func (o *ServerConnectedDisk) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -23459,11 +22368,6 @@ type ServerCreateRequest struct {
 	IconID               types.ID `mapconv:"Icon.ID"`
 	WaitDiskMigration    bool     `json:",omitempty" mapconv:",omitempty"`
 	PrivateHostID        types.ID `mapconv:"PrivateHost.ID"`
-}
-
-// Validate validates by field tags
-func (o *ServerCreateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -23670,11 +22574,6 @@ type ConnectedSwitch struct {
 	Scope types.EScope
 }
 
-// Validate validates by field tags
-func (o *ConnectedSwitch) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ConnectedSwitch) setDefaults() interface{} {
 	return &struct {
@@ -23738,11 +22637,6 @@ type ServerUpdateRequest struct {
 	IconID          types.ID `mapconv:"Icon.ID"`
 	PrivateHostID   types.ID `mapconv:"PrivateHost.ID"`
 	InterfaceDriver types.EInterfaceDriver
-}
-
-// Validate validates by field tags
-func (o *ServerUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -23856,11 +22750,6 @@ type ServerDeleteWithDisksRequest struct {
 	IDs []types.ID `mapconv:"WithDisk"`
 }
 
-// Validate validates by field tags
-func (o *ServerDeleteWithDisksRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServerDeleteWithDisksRequest) setDefaults() interface{} {
 	return &struct {
@@ -23891,11 +22780,6 @@ type ServerChangePlanRequest struct {
 	GPU                  int
 	ServerPlanGeneration types.EPlanGeneration `json:"Generation,omitempty"`
 	ServerPlanCommitment types.ECommitment     `json:"Commitment,omitempty"`
-}
-
-// Validate validates by field tags
-func (o *ServerChangePlanRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -23987,11 +22871,6 @@ type InsertCDROMRequest struct {
 	ID types.ID
 }
 
-// Validate validates by field tags
-func (o *InsertCDROMRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *InsertCDROMRequest) setDefaults() interface{} {
 	return &struct {
@@ -24038,11 +22917,6 @@ func (o *InsertCDROMRequest) GetInt64ID() int64 {
 // EjectCDROMRequest represents API parameter/response structure
 type EjectCDROMRequest struct {
 	ID types.ID
-}
-
-// Validate validates by field tags
-func (o *EjectCDROMRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -24093,11 +22967,6 @@ type ServerBootVariables struct {
 	UserData string `json:",omitempty" mapconv:"CloudInit.UserData,omitempty"`
 }
 
-// Validate validates by field tags
-func (o *ServerBootVariables) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServerBootVariables) setDefaults() interface{} {
 	return &struct {
@@ -24125,11 +22994,6 @@ func (o *ServerBootVariables) SetUserData(v string) {
 type SendKeyRequest struct {
 	Key  string
 	Keys []string
-}
-
-// Validate validates by field tags
-func (o *SendKeyRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -24175,11 +23039,6 @@ type VNCProxyInfo struct {
 	Port         types.StringNumber
 	Password     string
 	VNCFile      string
-}
-
-// Validate validates by field tags
-func (o *VNCProxyInfo) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -24275,11 +23134,6 @@ type ServerPlan struct {
 	Commitment   types.ECommitment
 	Generation   types.EPlanGeneration
 	Availability types.EAvailability
-}
-
-// Validate validates by field tags
-func (o *ServerPlan) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -24429,11 +23283,6 @@ type ServiceClass struct {
 	Price            *Price `mapconv:",recursive"`
 }
 
-// Validate validates by field tags
-func (o *ServiceClass) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServiceClass) setDefaults() interface{} {
 	return &struct {
@@ -24551,11 +23400,6 @@ type Price struct {
 	SbTraffic     int
 	SimSheet      int
 	Zone          string
-}
-
-// Validate validates by field tags
-func (o *Price) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -24726,11 +23570,6 @@ type SIM struct {
 	IconID       types.ID `mapconv:"Icon.ID"`
 	CreatedAt    time.Time
 	ModifiedAt   time.Time
-}
-
-// Validate validates by field tags
-func (o *SIM) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -24935,11 +23774,6 @@ type SIMInfo struct {
 	ConnectedIMEI              string
 }
 
-// Validate validates by field tags
-func (o *SIMInfo) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SIMInfo) setDefaults() interface{} {
 	return &struct {
@@ -25141,11 +23975,6 @@ type SIMCreateRequest struct {
 	PassCode    string   `mapconv:"Remark.PassCode"`
 }
 
-// Validate validates by field tags
-func (o *SIMCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SIMCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -25259,11 +24088,6 @@ type SIMUpdateRequest struct {
 	IconID      types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *SIMUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SIMUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -25348,11 +24172,6 @@ type SIMAssignIPRequest struct {
 	IP string
 }
 
-// Validate validates by field tags
-func (o *SIMAssignIPRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SIMAssignIPRequest) setDefaults() interface{} {
 	return &struct {
@@ -25379,11 +24198,6 @@ func (o *SIMAssignIPRequest) SetIP(v string) {
 // SIMIMEILockRequest represents API parameter/response structure
 type SIMIMEILockRequest struct {
 	IMEI string
-}
-
-// Validate validates by field tags
-func (o *SIMIMEILockRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -25416,11 +24230,6 @@ type SIMLog struct {
 	ResourceID    string
 	IMEI          string
 	IMSI          string
-}
-
-// Validate validates by field tags
-func (o *SIMLog) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -25501,11 +24310,6 @@ type SIMNetworkOperatorConfig struct {
 	Name        string
 }
 
-// Validate validates by field tags
-func (o *SIMNetworkOperatorConfig) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SIMNetworkOperatorConfig) setDefaults() interface{} {
 	return &struct {
@@ -25558,11 +24362,6 @@ type LinkActivity struct {
 	Values []*MonitorLinkValue `mapconv:"[]Link"`
 }
 
-// Validate validates by field tags
-func (o *LinkActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *LinkActivity) setDefaults() interface{} {
 	return &struct {
@@ -25591,11 +24390,6 @@ type MonitorLinkValue struct {
 	Time        time.Time `mapconv:",omitempty"`
 	UplinkBPS   float64   `mapconv:",omitempty"`
 	DownlinkBPS float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorLinkValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -25669,11 +24463,6 @@ type SimpleMonitor struct {
 	NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 	Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
 	SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *SimpleMonitor) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -26025,11 +24814,6 @@ type SimpleMonitorHealthCheck struct {
 	VerifySNI         types.StringFlag
 }
 
-// Validate validates by field tags
-func (o *SimpleMonitorHealthCheck) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SimpleMonitorHealthCheck) setDefaults() interface{} {
 	return &struct {
@@ -26276,11 +25060,6 @@ type SimpleMonitorCreateRequest struct {
 	IconID             types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *SimpleMonitorCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SimpleMonitorCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -26525,11 +25304,6 @@ type SimpleMonitorUpdateRequest struct {
 	SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *SimpleMonitorUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SimpleMonitorUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -26769,11 +25543,6 @@ type SimpleMonitorUpdateSettingsRequest struct {
 	SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *SimpleMonitorUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SimpleMonitorUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -26946,11 +25715,6 @@ type ResponseTimeSecActivity struct {
 	Values []*MonitorResponseTimeSecValue `mapconv:"[]ResponseTimeSec"`
 }
 
-// Validate validates by field tags
-func (o *ResponseTimeSecActivity) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ResponseTimeSecActivity) setDefaults() interface{} {
 	return &struct {
@@ -26978,11 +25742,6 @@ func (o *ResponseTimeSecActivity) SetValues(v []*MonitorResponseTimeSecValue) {
 type MonitorResponseTimeSecValue struct {
 	Time            time.Time `mapconv:",omitempty"`
 	ResponseTimeSec float64   `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *MonitorResponseTimeSecValue) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -27026,11 +25785,6 @@ type SimpleMonitorHealthStatus struct {
 	LastHealthChangedAt time.Time
 	Health              types.ESimpleMonitorHealth
 	LatestLogs          []string
-}
-
-// Validate validates by field tags
-func (o *SimpleMonitorHealthStatus) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -27100,11 +25854,6 @@ type SSHKey struct {
 	CreatedAt   time.Time
 	PublicKey   string
 	Fingerprint string
-}
-
-// Validate validates by field tags
-func (o *SSHKey) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -27217,11 +25966,6 @@ type SSHKeyCreateRequest struct {
 	PublicKey   string
 }
 
-// Validate validates by field tags
-func (o *SSHKeyCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SSHKeyCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -27278,11 +26022,6 @@ type SSHKeyGenerated struct {
 	PublicKey   string
 	Fingerprint string
 	PrivateKey  string
-}
-
-// Validate validates by field tags
-func (o *SSHKeyGenerated) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -27407,11 +26146,6 @@ type SSHKeyGenerateRequest struct {
 	PassPhrase  string
 }
 
-// Validate validates by field tags
-func (o *SSHKeyGenerateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SSHKeyGenerateRequest) setDefaults() interface{} {
 	return &struct {
@@ -27467,11 +26201,6 @@ type SSHKeyUpdateRequest struct {
 	Description string
 }
 
-// Validate validates by field tags
-func (o *SSHKeyUpdateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SSHKeyUpdateRequest) setDefaults() interface{} {
 	return &struct {
@@ -27518,11 +26247,6 @@ type Subnet struct {
 	NetworkAddress string
 	NetworkMaskLen int
 	IPAddresses    []*SubnetIPAddress `mapconv:"[]IPAddresses,recursive"`
-}
-
-// Validate validates by field tags
-func (o *Subnet) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -27670,11 +26394,6 @@ type SubnetIPAddress struct {
 	IPAddress string
 }
 
-// Validate validates by field tags
-func (o *SubnetIPAddress) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SubnetIPAddress) setDefaults() interface{} {
 	return &struct {
@@ -27726,11 +26445,6 @@ type Switch struct {
 	Subnets            []*SwitchSubnet `json:",omitempty" mapconv:"[]Subnets,omitempty,recursive"`
 	BridgeID           types.ID        `mapconv:"Bridge.ID,omitempty"`
 	HybridConnectionID types.ID        `mapconv:"HybridConnection.ID,omitempty"`
-}
-
-// Validate validates by field tags
-func (o *Switch) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -27965,11 +26679,6 @@ type SwitchSubnet struct {
 	AssignedIPAddressMin string `mapconv:"IPAddresses.Min"`
 }
 
-// Validate validates by field tags
-func (o *SwitchSubnet) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SwitchSubnet) setDefaults() interface{} {
 	return &struct {
@@ -28124,11 +26833,6 @@ type SwitchCreateRequest struct {
 	IconID         types.ID `mapconv:"Icon.ID"`
 }
 
-// Validate validates by field tags
-func (o *SwitchCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *SwitchCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -28240,11 +26944,6 @@ type SwitchUpdateRequest struct {
 	Description    string
 	Tags           types.Tags
 	IconID         types.ID `mapconv:"Icon.ID"`
-}
-
-// Validate validates by field tags
-func (o *SwitchUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -28370,11 +27069,6 @@ type VPCRouter struct {
 	InstanceStatusChangedAt time.Time                   `mapconv:"Instance.StatusChangedAt"`
 	Interfaces              []*VPCRouterInterface       `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
 	ZoneID                  types.ID                    `mapconv:"Remark.Zone.ID"`
-}
-
-// Validate validates by field tags
-func (o *VPCRouter) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -28670,11 +27364,6 @@ type VPCRouterSetting struct {
 	SyslogHost                string                         `mapconv:"Router.SyslogHost"`
 }
 
-// Validate validates by field tags
-func (o *VPCRouterSetting) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterSetting) setDefaults() interface{} {
 	return &struct {
@@ -28923,11 +27612,6 @@ type VPCRouterInterfaceSetting struct {
 	Index            int
 }
 
-// Validate validates by field tags
-func (o *VPCRouterInterfaceSetting) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterInterfaceSetting) setDefaults() interface{} {
 	return &struct {
@@ -29006,11 +27690,6 @@ type VPCRouterStaticNAT struct {
 	Description    string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterStaticNAT) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterStaticNAT) setDefaults() interface{} {
 	return &struct {
@@ -29065,11 +27744,6 @@ type VPCRouterPortForwarding struct {
 	PrivateAddress string `mapconv:"PrivateAddress"`
 	PrivatePort    types.StringNumber
 	Description    string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterPortForwarding) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29150,11 +27824,6 @@ type VPCRouterFirewall struct {
 	Index   int
 }
 
-// Validate validates by field tags
-func (o *VPCRouterFirewall) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterFirewall) setDefaults() interface{} {
 	return &struct {
@@ -29212,11 +27881,6 @@ type VPCRouterFirewallRule struct {
 	Action             types.Action
 	Logging            types.StringFlag
 	Description        string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterFirewallRule) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29334,11 +27998,6 @@ type VPCRouterDHCPServer struct {
 	DNSServers []string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterDHCPServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterDHCPServer) setDefaults() interface{} {
 	return &struct {
@@ -29404,11 +28063,6 @@ type VPCRouterDHCPStaticMapping struct {
 	IPAddress  string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterDHCPStaticMapping) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterDHCPStaticMapping) setDefaults() interface{} {
 	return &struct {
@@ -29448,11 +28102,6 @@ func (o *VPCRouterDHCPStaticMapping) SetIPAddress(v string) {
 type VPCRouterDNSForwarding struct {
 	Interface  string
 	DNSServers []string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterDNSForwarding) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29496,11 +28145,6 @@ type VPCRouterPPTPServer struct {
 	RangeStop  string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterPPTPServer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterPPTPServer) setDefaults() interface{} {
 	return &struct {
@@ -29541,11 +28185,6 @@ type VPCRouterL2TPIPsecServer struct {
 	RangeStart      string
 	RangeStop       string
 	PreSharedSecret string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterL2TPIPsecServer) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29601,11 +28240,6 @@ type VPCRouterWireGuard struct {
 	Peers     []*VPCRouterWireGuardPeer `mapconv:"[]Peers,omitempty,recursive"`
 }
 
-// Validate validates by field tags
-func (o *VPCRouterWireGuard) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterWireGuard) setDefaults() interface{} {
 	return &struct {
@@ -29646,11 +28280,6 @@ type VPCRouterWireGuardPeer struct {
 	Name      string
 	IPAddress string
 	PublicKey string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterWireGuardPeer) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29706,11 +28335,6 @@ type VPCRouterRemoteAccessUser struct {
 	Password string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterRemoteAccessUser) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterRemoteAccessUser) setDefaults() interface{} {
 	return &struct {
@@ -29753,11 +28377,6 @@ type VPCRouterSiteToSiteIPsecVPN struct {
 	RemoteID        string
 	Routes          []string
 	LocalPrefix     []string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterSiteToSiteIPsecVPN) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29837,11 +28456,6 @@ type VPCRouterStaticRoute struct {
 	NextHop string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterStaticRoute) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterStaticRoute) setDefaults() interface{} {
 	return &struct {
@@ -29898,11 +28512,6 @@ type VPCRouterInterface struct {
 	PacketFilterRequiredHostVersion types.StringNumber `mapconv:"PacketFilter.RequiredHostVersionn"`
 	UpstreamType                    types.EUpstreamNetworkType
 	Index                           int `mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *VPCRouterInterface) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -30177,11 +28786,6 @@ type VPCRouterCreateRequest struct {
 	Settings    *VPCRouterSetting         `mapconv:",omitempty,recursive"`
 }
 
-// Validate validates by field tags
-func (o *VPCRouterCreateRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterCreateRequest) setDefaults() interface{} {
 	return &struct {
@@ -30332,11 +28936,6 @@ type ApplianceConnectedSwitch struct {
 	Scope types.EScope
 }
 
-// Validate validates by field tags
-func (o *ApplianceConnectedSwitch) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *ApplianceConnectedSwitch) setDefaults() interface{} {
 	return &struct {
@@ -30400,11 +28999,6 @@ type VPCRouterUpdateRequest struct {
 	IconID       types.ID          `mapconv:"Icon.ID"`
 	Settings     *VPCRouterSetting `mapconv:",omitempty,recursive"`
 	SettingsHash string            `json:",omitempty" mapconv:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *VPCRouterUpdateRequest) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -30516,11 +29110,6 @@ type VPCRouterUpdateSettingsRequest struct {
 	SettingsHash string            `json:",omitempty" mapconv:",omitempty"`
 }
 
-// Validate validates by field tags
-func (o *VPCRouterUpdateSettingsRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
@@ -30569,11 +29158,6 @@ type VPCRouterStatus struct {
 	PPTPServerSessions      []*VPCRouterPPTPServerSession      `mapconv:"[]PPTPServerSessions,recursive"`
 	SiteToSiteIPsecVPNPeers []*VPCRouterSiteToSiteIPsecVPNPeer `mapconv:"[]SiteToSiteIPsecVPNPeers,recursive"`
 	SessionAnalysis         *VPCRouterSessionAnalysis
-}
-
-// Validate validates by field tags
-func (o *VPCRouterStatus) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -30724,11 +29308,6 @@ type WireGuardStatus struct {
 	PublicKey string
 }
 
-// Validate validates by field tags
-func (o *WireGuardStatus) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *WireGuardStatus) setDefaults() interface{} {
 	return &struct {
@@ -30756,11 +29335,6 @@ func (o *WireGuardStatus) SetPublicKey(v string) {
 type VPCRouterDHCPServerLease struct {
 	IPAddress  string
 	MACAddress string
-}
-
-// Validate validates by field tags
-func (o *VPCRouterDHCPServerLease) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -30803,11 +29377,6 @@ type VPCRouterL2TPIPsecServerSession struct {
 	User      string
 	IPAddress string
 	TimeSec   int
-}
-
-// Validate validates by field tags
-func (o *VPCRouterL2TPIPsecServerSession) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -30864,11 +29433,6 @@ type VPCRouterPPTPServerSession struct {
 	TimeSec   int
 }
 
-// Validate validates by field tags
-func (o *VPCRouterPPTPServerSession) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterPPTPServerSession) setDefaults() interface{} {
 	return &struct {
@@ -30922,11 +29486,6 @@ type VPCRouterSiteToSiteIPsecVPNPeer struct {
 	Peer   string
 }
 
-// Validate validates by field tags
-func (o *VPCRouterSiteToSiteIPsecVPNPeer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterSiteToSiteIPsecVPNPeer) setDefaults() interface{} {
 	return &struct {
@@ -30968,11 +29527,6 @@ type VPCRouterSessionAnalysis struct {
 	DestinationAddress   []*VPCRouterStatisticsValue
 	DestinationPort      []*VPCRouterStatisticsValue
 	SourceAddress        []*VPCRouterStatisticsValue
-}
-
-// Validate validates by field tags
-func (o *VPCRouterSessionAnalysis) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -31040,11 +29594,6 @@ type VPCRouterStatisticsValue struct {
 	Count int
 }
 
-// Validate validates by field tags
-func (o *VPCRouterStatisticsValue) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterStatisticsValue) setDefaults() interface{} {
 	return &struct {
@@ -31097,11 +29646,6 @@ type WebAccel struct {
 	CertValidNotBefore int64
 	CertValidNotAfter  int64
 	CreatedAt          time.Time
-}
-
-// Validate validates by field tags
-func (o *WebAccel) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -31321,11 +29865,6 @@ type WebAccelCerts struct {
 	Old     []*WebAccelOldCerts
 }
 
-// Validate validates by field tags
-func (o *WebAccelCerts) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *WebAccelCerts) setDefaults() interface{} {
 	return &struct {
@@ -31376,11 +29915,6 @@ type WebAccelCurrentCert struct {
 	Subject           *WebAccelCertSubject `mapconv:",recursive"`
 	DNSNames          []string
 	SHA256Fingerprint string
-}
-
-// Validate validates by field tags
-func (o *WebAccelCurrentCert) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -31578,11 +30112,6 @@ type WebAccelCertIssuer struct {
 	CommonName         string
 }
 
-// Validate validates by field tags
-func (o *WebAccelCertIssuer) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *WebAccelCertIssuer) setDefaults() interface{} {
 	return &struct {
@@ -31653,11 +30182,6 @@ type WebAccelCertSubject struct {
 	PostalCode         string
 	SerialNumber       string
 	CommonName         string
-}
-
-// Validate validates by field tags
-func (o *WebAccelCertSubject) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -31794,11 +30318,6 @@ type WebAccelOldCerts struct {
 	Subject           *WebAccelCertSubject `mapconv:",recursive"`
 	DNSNames          []string
 	SHA256Fingerprint string
-}
-
-// Validate validates by field tags
-func (o *WebAccelOldCerts) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -31994,11 +30513,6 @@ type WebAccelCertRequest struct {
 	Key              string
 }
 
-// Validate validates by field tags
-func (o *WebAccelCertRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *WebAccelCertRequest) setDefaults() interface{} {
 	return &struct {
@@ -32039,11 +30553,6 @@ type WebAccelDeleteAllCacheRequest struct {
 	Domain string
 }
 
-// Validate validates by field tags
-func (o *WebAccelDeleteAllCacheRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *WebAccelDeleteAllCacheRequest) setDefaults() interface{} {
 	return &struct {
@@ -32072,11 +30581,6 @@ type WebAccelDeleteCacheResult struct {
 	URL    string
 	Status int
 	Result string
-}
-
-// Validate validates by field tags
-func (o *WebAccelDeleteCacheResult) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -32131,11 +30635,6 @@ type WebAccelDeleteCacheRequest struct {
 	URL []string
 }
 
-// Validate validates by field tags
-func (o *WebAccelDeleteCacheRequest) Validate() error {
-	return validate.Struct(o)
-}
-
 // setDefaults implements iaas.argumentDefaulter
 func (o *WebAccelDeleteCacheRequest) setDefaults() interface{} {
 	return &struct {
@@ -32169,11 +30668,6 @@ type Zone struct {
 	VNCProxy     *VNCProxy      `json:",omitempty"`
 	FTPServer    *FTPServerInfo `json:",omitempty"`
 	Region       *Region        `json:",omitempty"`
-}
-
-// Validate validates by field tags
-func (o *Zone) Validate() error {
-	return validate.Struct(o)
 }
 
 // setDefaults implements iaas.argumentDefaulter
