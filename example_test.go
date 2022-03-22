@@ -26,7 +26,7 @@ import (
 	"github.com/sacloud/iaas-api-go/helper/power"
 	"github.com/sacloud/iaas-api-go/naked"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/size"
+	"github.com/sacloud/packages-go/size"
 )
 
 func Example_basic() {

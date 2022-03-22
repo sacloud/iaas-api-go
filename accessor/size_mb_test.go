@@ -17,7 +17,7 @@ package accessor
 import (
 	"testing"
 
-	"github.com/sacloud/sacloud-go/pkg/size"
+	"github.com/sacloud/packages-go/size"
 	"github.com/stretchr/testify/require"
 )
 

@@ -22,7 +22,7 @@ import (
 	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/api"
-	"github.com/sacloud/sacloud-go/pkg/testutil"
+	"github.com/sacloud/packages-go/testutil"
 )
 
 // TestResourcePrefix テスト時に作成するリソースの名称に付与するプレフィックス

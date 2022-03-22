@@ -22,7 +22,7 @@ import (
 
 	"github.com/fatih/structs"
 	"github.com/mitchellh/mapstructure"
-	"github.com/sacloud/sacloud-go/pkg/objutil"
+	"github.com/sacloud/packages-go/objutil"
 )
 
 // DefaultMapConvTag デフォルトのmapconvタグ名
