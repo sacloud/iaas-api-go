@@ -23,7 +23,7 @@ import (
 	"github.com/sacloud/iaas-api-go/helper/plans"
 	"github.com/sacloud/iaas-api-go/testutil"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/size"
+	"github.com/sacloud/packages-go/size"
 	"github.com/stretchr/testify/require"
 )
 

@@ -21,7 +21,7 @@ import (
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/cidr"
+	"github.com/sacloud/packages-go/cidr"
 )
 
 const (

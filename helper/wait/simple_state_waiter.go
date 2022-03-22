@@ -20,7 +20,7 @@ import (
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/wait"
+	"github.com/sacloud/packages-go/wait"
 )
 
 // ByFunc デフォルトのパラメータでSimpleStateWaiterを作成して返す

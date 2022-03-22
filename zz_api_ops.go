@@ -20,7 +20,7 @@ import (
 	"context"
 
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/mutexkv"
+	"github.com/sacloud/packages-go/mutexkv"
 )
 
 var apiLocker = mutexkv.NewMutexKV()

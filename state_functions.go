@@ -16,7 +16,7 @@ package iaas
 
 import (
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/wait"
+	"github.com/sacloud/packages-go/wait"
 )
 
 // WaiterForUp 起動完了まで待つためのStateWaiterを返す

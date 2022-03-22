@@ -20,7 +20,7 @@ import (
 	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/api-client-go/profile"
 	"github.com/sacloud/iaas-api-go"
-	"github.com/sacloud/sacloud-go/pkg/envvar"
+	"github.com/sacloud/packages-go/envvar"
 )
 
 // CallerOptions iaas.APICallerを作成する際のオプション

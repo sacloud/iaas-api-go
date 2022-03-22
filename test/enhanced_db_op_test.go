@@ -20,7 +20,7 @@ import (
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/testutil"
 	"github.com/sacloud/iaas-api-go/types"
-	sacloudtestutil "github.com/sacloud/sacloud-go/pkg/testutil"
+	sacloudtestutil "github.com/sacloud/packages-go/testutil"
 )
 
 func TestEnhancedDBOp_CRUD(t *testing.T) {

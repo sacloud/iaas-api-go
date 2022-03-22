@@ -21,7 +21,7 @@ import (
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/search"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/sacloud-go/pkg/size"
+	"github.com/sacloud/packages-go/size"
 )
 
 // FindServerPlanRequest サーバプラン検索パラメータ
