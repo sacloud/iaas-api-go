@@ -23,7 +23,6 @@ import (
 	"time"
 
 	"github.com/sacloud/iaas-api-go/types"
-
 	"github.com/stretchr/testify/require"
 )
 
