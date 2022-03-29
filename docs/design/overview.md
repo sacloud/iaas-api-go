@@ -1,12 +1,12 @@
 # sacloud/iaas-api-go
 
 - URL: https://github.com/sacloud/iaas-api-go/pull/2
-- Parent: https://github.com/sacloud/sacloud-go/pull/1
+- Parent: https://github.com/sacloud/iaas-service-go/pull/1
 - Author: @yamamoto-febc
 
 ## 概要
 
-[sacloud-goの基本方針](https://github.com/sacloud/sacloud-go/pull/1)に従い、sacloud/libsacloud v2からIaaS部分を切り出す。
+[iaas-service-goの基本方針](https://github.com/sacloud/iaas-service-go/pull/1)に従い、sacloud/libsacloud v2からIaaS部分を切り出す。
 
 ## やること/やらないこと
 
@@ -20,8 +20,8 @@
 ### やらないこと
 
 - libsacloud v2の独自DSLを含むlibsacloudの実装の改善
-  おおまか的にはlibsacloud v2をそのまま移植する。ただし、前述の`sacloud`パッケージ配下の整理などのリファクタレベルの修正は行う。
-  従来[libsacloud v3として検討されてきた内容](https://github.com/sacloud/libsacloud/issues/791)はsacloud-goやiaas-api-go v2で実現する。
+  基本的にlibsacloud v2をそのまま移植する。ただし、前述の`sacloud`パッケージ配下の整理などのリファクタレベルの修正は行う。
+  従来[libsacloud v3として検討されてきた内容](https://github.com/sacloud/libsacloud/issues/791)はiaas-service-goやiaas-api-go v2で実現する。
 
 ## 実装
 
@@ -46,26 +46,26 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
 
 ```console
 - examples: otel利用例
-- helper: 高レベルAPI群(一部をsacloud-goへ)
+- helper: 高レベルAPI群(一部をiaas-service-goへ)
 - internal: 独自DSL
-- pkg: libsacloudに依存しないユーティリティなど => 
+- pkg: libsacloudに依存しないユーティリティなど => packages-goへ
 - sacloud
   - accessor
   - fake
   - naked
   - ostype
-  - pointer => sacloud-goへ
-  - profile => sacloud-goへ
+  - pointer => packages-goへ
+  - profile => api-client-goへ
   - search
   - stub
   - test
-  - testutil => 一部をsacloud-goへ
+  - testutil => 一部をpackages-goへ
   - trace
   - types
   - sacloud直下
 ```
 
-- `profile`はsacloud-goで実装する  
+- `profile`はapi-client-goで実装する  
 - testutilは整理してから切り出し/分割などの対応が必要  
 - ~typesは整理してからsacloud直下へ移動などの対応が必要~  
 
@@ -101,3 +101,4 @@ libsacloudからのforkは行わず新たなリポジトリで開発していく
 - 2022/3/4: 初版作成
 - 2022/3/7: libsacloud/v2直下のパッケージについて追記
 - 2022/3/10: typesの改修を当面延期
+- 2022/3/29: sacloud-goの分割/リネームを反映

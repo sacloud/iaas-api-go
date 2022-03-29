@@ -1,15 +1,16 @@
 # iaas-api-go
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/sacloud/iaas-api-go.svg)](https://pkg.go.dev/github.com/sacloud/iaas-api-go)
+[![Tests](https://github.com/sacloud/iaas-api-go/workflows/Tests/badge.svg)](https://github.com/sacloud/iaas-api-go/actions/workflows/tests.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/sacloud/iaas-api-go)](https://goreportcard.com/report/github.com/sacloud/iaas-api-go)
+
 Go言語向けのさくらのクラウドIaaS APIライブラリ
 
 ## 概要
 
 iaas-api-goは[sacloud/libsacloud v2](https://github.com/sacloud/libsacloud)の後継プロジェクトで、さくらのクラウド APIのうちのIaaS部分を担当します。
 
-:baby_symbol: iaas-api-goは設計/開発中です。  
-概要や設計、実装方針については[docs/overview.md](https://github.com/sacloud/iaas-api-go/blob/main/docs/design/overview.md)を参照してください。
-
-:warning:  v1.0に達するまでは互換性のない形で変更される可能性がありますのでご注意ください。
+概要/設計/実装方針: [docs/overview.md](https://github.com/sacloud/iaas-api-go/blob/main/docs/design/overview.md)
 
 ### libsacloudとiaas-api-goのバージョン対応表
 
@@ -22,7 +23,9 @@ iaas-api-goは[sacloud/libsacloud v2](https://github.com/sacloud/libsacloud)の�
 
 ### 関連プロジェクト
 
-- [sacloud/sacloud-go](https://github.com/sacloud/sacloud-go): sacloud/iaas-api-goを用いた高レベルAPIライブラリ
+- [sacloud/iaas-service-go](https://github.com/sacloud/iaas-service-go): sacloud/iaas-api-goを用いた高レベルAPIライブラリ
+- [sacloud/api-client-go](https://github.com/sacloud/api-client-go): sacloudプロダクト向けHTTP/APIクライアントライブラリ(環境変数やプロファイルの処理など)
+- [sacloud/packages-go](https://github.com/sacloud/packages-go): sacloudプロダクト向けの汎用パッケージ群
 
 ## License
 
