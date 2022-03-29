@@ -17,13 +17,12 @@ package define
 import (
 	"net/http"
 
-	"github.com/sacloud/iaas-api-go/types"
-
 	"github.com/sacloud/iaas-api-go/internal/define/names"
 	"github.com/sacloud/iaas-api-go/internal/define/ops"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
 	"github.com/sacloud/iaas-api-go/internal/dsl/meta"
 	"github.com/sacloud/iaas-api-go/naked"
+	"github.com/sacloud/iaas-api-go/types"
 )
 
 const (

@@ -113,7 +113,12 @@ func MergeOptions(opts ...*CallerOptions) *CallerOptions {
 	merged := &CallerOptions{}
 	for _, opt := range opts {
 		if opt.Options != nil {
-			merged.Options = opt.Options
+			var opts []*client.Options
+			if merged.Options != nil {
+				opts = append(opts, merged.Options)
+			}
+			opts = append(opts, opt.Options)
+			merged.Options = client.MergeOptions(opts...)
 		}
 		if opt.APIRootURL != "" {
 			merged.APIRootURL = opt.APIRootURL

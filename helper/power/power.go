@@ -22,10 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sacloud/iaas-api-go/defaults"
-
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/accessor"
+	"github.com/sacloud/iaas-api-go/defaults"
 	"github.com/sacloud/iaas-api-go/types"
 )
 
