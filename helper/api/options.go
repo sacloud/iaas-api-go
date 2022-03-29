@@ -15,12 +15,22 @@
 package api
 
 import (
+	"fmt"
 	"os"
+	"runtime"
 
 	client "github.com/sacloud/api-client-go"
 	"github.com/sacloud/api-client-go/profile"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/packages-go/envvar"
+)
+
+var UserAgent = fmt.Sprintf(
+	"sacloud/iaas-api-go/v%s (%s/%s; +https://github.com/sacloud/iaas-api-go) %s",
+	iaas.Version,
+	runtime.GOOS,
+	runtime.GOARCH,
+	client.DefaultUserAgent,
 )
 
 // CallerOptions iaas.APICallerを作成する際のオプション
@@ -69,6 +79,9 @@ func DefaultOptionWithProfile(profileName string) (*CallerOptions, error) {
 		APIRootURL:  iaas.SakuraCloudAPIRoot,
 		DefaultZone: iaas.APIDefaultZone,
 		Zones:       iaas.SakuraCloudZones,
+		Options: &client.Options{
+			UserAgent: UserAgent,
+		},
 	}
 
 	return MergeOptions(fromEnv, fromProfile, defaults), nil
