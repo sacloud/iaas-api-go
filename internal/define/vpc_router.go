@@ -109,6 +109,28 @@ var vpcRouterAPI = &dsl.Resource{
 				},
 			},
 		},
+
+		// Logs
+		{
+			ResourceName: vpcRouterAPIName,
+			Name:         "Logs",
+			Arguments: dsl.Arguments{
+				dsl.ArgumentID,
+			},
+			PathFormat: dsl.IDAndSuffixPathFormat("download/log/VPNLogs"),
+			Method:     http.MethodGet,
+			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: meta.Static(naked.VPCRouterLog{}),
+				Name: vpcRouterAPIName,
+			}),
+			Results: dsl.Results{
+				{
+					SourceField: vpcRouterAPIName,
+					DestField:   vpcRouterLogView.Name,
+					Model:       vpcRouterLogView,
+				},
+			},
+		},
 	},
 }
 
@@ -236,6 +258,13 @@ var (
 			},
 			// settings hash
 			fields.SettingsHash(),
+		},
+	}
+	vpcRouterLogView = &dsl.Model{
+		Name:      "VPCRouterLog",
+		NakedType: meta.Static(naked.VPCRouterLog{}),
+		Fields: []*dsl.FieldDesc{
+			fields.Def("Log", meta.TypeString),
 		},
 	}
 

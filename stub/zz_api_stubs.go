@@ -5404,6 +5404,12 @@ type VPCRouterStatusStubResult struct {
 	Err             error
 }
 
+// VPCRouterLogsStubResult is expected values of the Logs operation
+type VPCRouterLogsStubResult struct {
+	VPCRouterLog *iaas.VPCRouterLog
+	Err          error
+}
+
 // VPCRouterStub is for trace VPCRouterOp operations
 type VPCRouterStub struct {
 	FindStubResult                 *VPCRouterFindStubResult
@@ -5421,6 +5427,7 @@ type VPCRouterStub struct {
 	MonitorCPUStubResult           *VPCRouterMonitorCPUStubResult
 	MonitorInterfaceStubResult     *VPCRouterMonitorInterfaceStubResult
 	StatusStubResult               *VPCRouterStatusStubResult
+	LogsStubResult                 *VPCRouterLogsStubResult
 }
 
 // NewVPCRouterStub creates new VPCRouterStub instance
@@ -5546,6 +5553,14 @@ func (s *VPCRouterStub) Status(ctx context.Context, zone string, id types.ID) (*
 		log.Fatal("VPCRouterStub.StatusStubResult is not set")
 	}
 	return s.StatusStubResult.VPCRouterStatus, s.StatusStubResult.Err
+}
+
+// Logs is API call with trace log
+func (s *VPCRouterStub) Logs(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouterLog, error) {
+	if s.LogsStubResult == nil {
+		log.Fatal("VPCRouterStub.LogsStubResult is not set")
+	}
+	return s.LogsStubResult.VPCRouterLog, s.LogsStubResult.Err
 }
 
 /*************************************************

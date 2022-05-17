@@ -370,3 +370,8 @@ func (o *VPCRouterOp) MonitorCPU(ctx context.Context, zone string, id types.ID, 
 
 	return res, nil
 }
+
+// Logs is fake implementation
+func (o *VPCRouterOp) Logs(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouterLog, error) {
+	return &iaas.VPCRouterLog{Log: "fake"}, nil
+}

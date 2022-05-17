@@ -7833,6 +7833,19 @@ func (o *VPCRouterOp) transformStatusResults(data []byte) (*vPCRouterStatusResul
 	return results, nil
 }
 
+func (o *VPCRouterOp) transformLogsResults(data []byte) (*vPCRouterLogsResult, error) {
+	nakedResponse := &vPCRouterLogsResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &vPCRouterLogsResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
 func (o *WebAccelOp) transformListResults(data []byte) (*WebAccelListResult, error) {
 	nakedResponse := &webAccelListResponseEnvelope{}
 	if err := json.Unmarshal(data, nakedResponse); err != nil {

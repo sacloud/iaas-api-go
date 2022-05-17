@@ -11804,6 +11804,39 @@ func (t *VPCRouterTracer) Status(ctx context.Context, zone string, id types.ID) 
 	return resultVPCRouterStatus, err
 }
 
+// Logs is API call with trace log
+func (t *VPCRouterTracer) Logs(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouterLog, error) {
+	log.Println("[TRACE] VPCRouterAPI.Logs start")
+	targetArguments := struct {
+		Argzone string
+		Argid   types.ID `json:"id"`
+	}{
+		Argzone: zone,
+		Argid:   id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] VPCRouterAPI.Logs end")
+	}()
+
+	resultVPCRouterLog, err := t.Internal.Logs(ctx, zone, id)
+	targetResults := struct {
+		VPCRouterLog *iaas.VPCRouterLog
+		Error        error
+	}{
+		VPCRouterLog: resultVPCRouterLog,
+		Error:        err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultVPCRouterLog, err
+}
+
 /*************************************************
 * WebAccelTracer
 *************************************************/

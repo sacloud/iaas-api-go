@@ -335,3 +335,22 @@ func (s *archiveShareResponseEnvelope) UnmarshalJSON(data []byte) error {
 	*s = archiveShareResponseEnvelope(tmp)
 	return nil
 }
+
+// UnmarshalJSON APIからの戻り値でレスポンスボディ直下にデータを持つことへの対応
+func (a *vPCRouterLogsResponseEnvelope) UnmarshalJSON(data []byte) error {
+	type alias vPCRouterLogsResponseEnvelope
+
+	var tmp alias
+	if err := json.Unmarshal(data, &tmp); err != nil {
+		return err
+	}
+
+	var nakedLogs naked.VPCRouterLog
+	if err := json.Unmarshal(data, &nakedLogs); err != nil {
+		return err
+	}
+	tmp.VPCRouter = &nakedLogs
+
+	*a = vPCRouterLogsResponseEnvelope(tmp)
+	return nil
+}
