@@ -709,6 +709,7 @@ type VPCRouterAPI interface {
 	MonitorCPU(ctx context.Context, zone string, id types.ID, condition *MonitorCondition) (*CPUTimeActivity, error)
 	MonitorInterface(ctx context.Context, zone string, id types.ID, index int, condition *MonitorCondition) (*InterfaceActivity, error)
 	Status(ctx context.Context, zone string, id types.ID) (*VPCRouterStatus, error)
+	Logs(ctx context.Context, zone string, id types.ID) (*VPCRouterLog, error)
 }
 
 /*************************************************

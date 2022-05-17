@@ -557,6 +557,10 @@ type VPCRouterStatus struct {
 	} `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 }
 
+type VPCRouterLog struct {
+	Log string
+}
+
 // VPCRouterStatisticsValue VPCルータのセッション統計情報
 type VPCRouterStatisticsValue struct {
 	Name  string `json:"name,omitempty" yaml:"name,omitempty" structs:",omitempty"`

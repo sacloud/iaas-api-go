@@ -29626,6 +29626,34 @@ func (o *VPCRouterStatisticsValue) SetCount(v int) {
 }
 
 /*************************************************
+* VPCRouterLog
+*************************************************/
+
+// VPCRouterLog represents API parameter/response structure
+type VPCRouterLog struct {
+	Log string
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterLog) setDefaults() interface{} {
+	return &struct {
+		Log string
+	}{
+		Log: o.GetLog(),
+	}
+}
+
+// GetLog returns value of Log
+func (o *VPCRouterLog) GetLog() string {
+	return o.Log
+}
+
+// SetLog sets value to Log
+func (o *VPCRouterLog) SetLog(v string) {
+	o.Log = v
+}
+
+/*************************************************
 * WebAccel
 *************************************************/
 

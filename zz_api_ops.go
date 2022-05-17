@@ -12848,6 +12848,38 @@ func (o *VPCRouterOp) Status(ctx context.Context, zone string, id types.ID) (*VP
 	return results.VPCRouterStatus, nil
 }
 
+// Logs is API call
+func (o *VPCRouterOp) Logs(ctx context.Context, zone string, id types.ID) (*VPCRouterLog, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       zone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/download/log/VPNLogs", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	data, err := o.Client.Do(ctx, "GET", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformLogsResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.VPCRouterLog, nil
+}
+
 /*************************************************
 * WebAccelOp
 *************************************************/
