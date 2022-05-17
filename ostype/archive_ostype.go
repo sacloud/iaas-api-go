@@ -59,53 +59,6 @@ const (
 
 	// Kusanagi OS種別:Kusanagi(CentOS)
 	Kusanagi
-
-	// Windows2016 OS種別:Windows Server 2016 Datacenter Edition
-	Windows2016
-	// Windows2016RDS OS種別:Windows Server 2016 RDS
-	Windows2016RDS
-	// Windows2016RDSOffice OS種別:Windows Server 2016 RDS(Office)
-	Windows2016RDSOffice
-	// Windows2016SQLServerWeb OS種別:Windows Server 2016 SQLServer(Web)
-	Windows2016SQLServerWeb
-	// Windows2016SQLServerStandard OS種別:Windows Server 2016 SQLServer 2016(Standard)
-	Windows2016SQLServerStandard
-	// Windows2016SQLServer2017Standard OS種別:Windows Server 2016 SQLServer 2017(Standard)
-	Windows2016SQLServer2017Standard
-	// Windows2016SQLServer2017Enterprise OS種別:Windows Server 2016 SQLServer 2017(Enterprise)
-	Windows2016SQLServer2017Enterprise
-	// Windows2016SQLServerStandardAll OS種別:Windows Server 2016 SQLServer(Standard) + RDS + Office
-	Windows2016SQLServerStandardAll
-	// Windows2016SQLServer2017StandardAll OS種別:Windows Server 2016 SQLServer 2017(Standard) + RDS + Office
-	Windows2016SQLServer2017StandardAll
-
-	// Windows2019 OS種別:Windows Server 2019 Datacenter Edition
-	Windows2019
-	// Windows2019RDS OS種別:Windows Server 2019 RDS
-	Windows2019RDS
-
-	// Windows2019RDSOffice2019 OS種別:Windows Server 2019 RDS + Office 2019
-	Windows2019RDSOffice2019
-
-	// Windows2019SQLServer2017Web OS種別:Windows Server 2019 + SQLServer 2017(Web)
-	Windows2019SQLServer2017Web
-	// Windows2019SQLServer2019Web OS種別:Windows Server 2019 + SQLServer 2019(Web)
-	Windows2019SQLServer2019Web
-
-	// Windows2019SQLServer2017Standard OS種別:Windows Server 2019 + SQLServer 2017(Standard)
-	Windows2019SQLServer2017Standard
-	// Windows2019SQLServer2019Standard OS種別:Windows Server 2019 + SQLServer 2019(Standard)
-	Windows2019SQLServer2019Standard
-
-	// Windows2019SQLServer2017Enterprise OS種別:Windows Server 2019 + SQLServer 2017(Enterprise)
-	Windows2019SQLServer2017Enterprise
-	// Windows2019SQLServer2019Enterprise OS種別:Windows Server 2019 + SQLServer 2019(Enterprise)
-	Windows2019SQLServer2019Enterprise
-
-	// Windows2019SQLServer2017StandardAll OS種別:Windows Server 2019 + SQLServer 2017(Standard) + RDS + Office
-	Windows2019SQLServer2017StandardAll
-	// Windows2019SQLServer2019StandardAll OS種別:Windows Server 2019 + SQLServer 2019(Standard) + RDS + Office
-	Windows2019SQLServer2019StandardAll
 )
 
 // ArchiveOSTypes アーカイブ種別のリスト
@@ -125,26 +78,6 @@ var ArchiveOSTypes = []ArchiveOSType{
 	RancherOS,
 	K3OS,
 	Kusanagi,
-	Windows2016,
-	Windows2016RDS,
-	Windows2016RDSOffice,
-	Windows2016SQLServerWeb,
-	Windows2016SQLServerStandard,
-	Windows2016SQLServer2017Standard,
-	Windows2016SQLServer2017Enterprise,
-	Windows2016SQLServerStandardAll,
-	Windows2016SQLServer2017StandardAll,
-	Windows2019,
-	Windows2019RDS,
-	Windows2019RDSOffice2019,
-	Windows2019SQLServer2017Web,
-	Windows2019SQLServer2019Web,
-	Windows2019SQLServer2017Standard,
-	Windows2019SQLServer2019Standard,
-	Windows2019SQLServer2017Enterprise,
-	Windows2019SQLServer2019Enterprise,
-	Windows2019SQLServer2017StandardAll,
-	Windows2019SQLServer2019StandardAll,
 }
 
 // OSTypeShortNames OSTypeとして利用できる文字列のリスト
@@ -154,32 +87,6 @@ var OSTypeShortNames = []string{
 	"ubuntu", "ubuntu2004", "ubuntu1804",
 	"debian", "debian10", "debian11",
 	"rancheros", "k3os", "kusanagi",
-	"windows2016", "windows2016-rds", "windows2016-rds-office",
-	"windows2016-sql-web", "windows2016-sql-standard", "windows2016-sql-standard-all",
-	"windows2016-sql2017-standard", "windows2016-sql2017-enterprise", "windows2016-sql2017-standard-all",
-	"windows2019", "windows2019-rds", "windows2019-rds-office2019",
-	"windows2019-sql2017-web", "windows2019-sql2019-web",
-	"windows2019-sql2017-standard", "windows2019-sql2019-standard",
-	"windows2019-sql2017-enterprise", "windows2019-sql2019-enterprise",
-	"windows2019-sql2017-standard-all", "windows2019-sql2019-standard-all",
-}
-
-// IsWindows Windowsか
-func (o ArchiveOSType) IsWindows() bool {
-	switch o {
-	case Windows2016, Windows2016RDS, Windows2016RDSOffice,
-		Windows2016SQLServerWeb, Windows2016SQLServerStandard, Windows2016SQLServerStandardAll,
-		Windows2016SQLServer2017Standard, Windows2016SQLServer2017Enterprise, Windows2016SQLServer2017StandardAll,
-		Windows2019, Windows2019RDS,
-		Windows2019RDSOffice2019,
-		Windows2019SQLServer2017Web, Windows2019SQLServer2019Web,
-		Windows2019SQLServer2017Standard, Windows2019SQLServer2019Standard,
-		Windows2019SQLServer2017Enterprise, Windows2019SQLServer2019Enterprise,
-		Windows2019SQLServer2017StandardAll, Windows2019SQLServer2019StandardAll:
-		return true
-	default:
-		return false
-	}
 }
 
 // IsSupportDiskEdit ディスクの修正機能をフルサポートしているか(Windowsは一部サポートのためfalseを返す)
@@ -229,46 +136,6 @@ func StrToOSType(osType string) ArchiveOSType {
 		return K3OS
 	case "kusanagi":
 		return Kusanagi
-	case "windows2016":
-		return Windows2016
-	case "windows2016-rds":
-		return Windows2016RDS
-	case "windows2016-rds-office":
-		return Windows2016RDSOffice
-	case "windows2016-sql-web":
-		return Windows2016SQLServerWeb
-	case "windows2016-sql-standard":
-		return Windows2016SQLServerStandard
-	case "windows2016-sql2017-standard":
-		return Windows2016SQLServer2017Standard
-	case "windows2016-sql2017-enterprise":
-		return Windows2016SQLServer2017Enterprise
-	case "windows2016-sql-standard-all":
-		return Windows2016SQLServerStandardAll
-	case "windows2016-sql2017-standard-all":
-		return Windows2016SQLServer2017StandardAll
-	case "windows2019":
-		return Windows2019
-	case "windows2019-rds":
-		return Windows2019RDS
-	case "windows2019-rds-office2019":
-		return Windows2019RDSOffice2019
-	case "windows2019-sql2017-web":
-		return Windows2019SQLServer2017Web
-	case "windows2019-sql2019-web":
-		return Windows2019SQLServer2019Web
-	case "windows2019-sql2017-standard":
-		return Windows2019SQLServer2017Standard
-	case "windows2019-sql2019-standard":
-		return Windows2019SQLServer2019Standard
-	case "windows2019-sql2017-enterprise":
-		return Windows2019SQLServer2017Enterprise
-	case "windows2019-sql2019-enterprise":
-		return Windows2019SQLServer2019Enterprise
-	case "windows2019-sql2017-standard-all":
-		return Windows2019SQLServer2017StandardAll
-	case "windows2019-sql2019-standard-all":
-		return Windows2019SQLServer2019StandardAll
 	default:
 		return Custom
 	}
