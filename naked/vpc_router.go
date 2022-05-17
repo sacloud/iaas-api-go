@@ -471,6 +471,8 @@ func (f *VPCRouterRemoteAccessUsers) MarshalJSON() ([]byte, error) {
 // VPCRouterSiteToSiteIPsecVPN サイト間VPN
 type VPCRouterSiteToSiteIPsecVPN struct {
 	Config  []*VPCRouterSiteToSiteIPsecVPNConfig `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	IKE     *VPCRouterSiteToSiteIPsecVPNIKE      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	ESP     *VPCRouterSiteToSiteIPsecVPNESP      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	Enabled types.StringFlag                     `yaml:"enabled"`
 }
 
@@ -485,6 +487,23 @@ func (f *VPCRouterSiteToSiteIPsecVPN) MarshalJSON() ([]byte, error) {
 	type alias VPCRouterSiteToSiteIPsecVPN
 	a := alias(*f)
 	return json.Marshal(&a)
+}
+
+// VPCRouterSiteToSiteIPsecVPNIKE サイト間VPNのIKE設定値
+type VPCRouterSiteToSiteIPsecVPNIKE struct {
+	Lifetime int // ISAKMP SAの寿命
+	DPD      VPCRouterSiteToSiteIPsecVPNIKEDPD
+}
+
+// VPCRouterSiteToSiteIPsecVPNIKEDPD サイト間VPNのIKE設定値 - DPD
+type VPCRouterSiteToSiteIPsecVPNIKEDPD struct {
+	Interval int // IKEキープアライブ(DPD) インターバル
+	Timeout  int // IKEキープアライブ(DPD) タイムアウト
+}
+
+// VPCRouterSiteToSiteIPsecVPNESP サイト間VPNのESP設定値
+type VPCRouterSiteToSiteIPsecVPNESP struct {
+	Lifetime int // IPsec SAの寿命
 }
 
 // VPCRouterSiteToSiteIPsecVPNConfig サイト間VPN
