@@ -1254,34 +1254,6 @@ func putVPCRouter(zone string, value *iaas.VPCRouter) {
 	ds().Put(ResourceVPCRouter, zone, 0, value)
 }
 
-func getWebAccel(zone string) []*iaas.WebAccel {
-	values := ds().List(ResourceWebAccel, zone)
-	var ret []*iaas.WebAccel
-	for _, v := range values {
-		if v, ok := v.(*iaas.WebAccel); ok {
-			ret = append(ret, v)
-		}
-	}
-	return ret
-}
-
-func getWebAccelByID(zone string, id types.ID) *iaas.WebAccel {
-	v := ds().Get(ResourceWebAccel, zone, id)
-	if v, ok := v.(*iaas.WebAccel); ok {
-		return v
-	}
-	return nil
-}
-
-func putWebAccel(zone string, value *iaas.WebAccel) {
-	var v interface{} = value
-	if id, ok := v.(accessor.ID); ok {
-		ds().Put(ResourceWebAccel, zone, id.GetID(), value)
-		return
-	}
-	ds().Put(ResourceWebAccel, zone, 0, value)
-}
-
 func getZone(zone string) []*iaas.Zone {
 	values := ds().List(ResourceZone, zone)
 	var ret []*iaas.Zone
