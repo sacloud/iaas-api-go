@@ -200,10 +200,6 @@ func TestResourceOps(t *testing.T) {
 		t.Fatalf("%s is not iaas.VPCRouter", op)
 	}
 
-	if op, ok := NewWebAccelOp().(iaas.WebAccelAPI); !ok {
-		t.Fatalf("%s is not iaas.WebAccel", op)
-	}
-
 	if op, ok := NewZoneOp().(iaas.ZoneAPI); !ok {
 		t.Fatalf("%s is not iaas.Zone", op)
 	}

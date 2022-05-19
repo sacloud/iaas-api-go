@@ -297,7 +297,6 @@ var jsonResourceTypeMap = map[string]func() interface{}{
 	ResourceSSHKey:            func() interface{} { return &iaas.SSHKey{} },
 	ResourceSwitch:            func() interface{} { return &iaas.Switch{} },
 	ResourceVPCRouter:         func() interface{} { return &iaas.VPCRouter{} },
-	ResourceWebAccel:          func() interface{} { return &iaas.WebAccel{} },
 	ResourceZone:              func() interface{} { return &iaas.Zone{} },
 
 	valuePoolResourceKey:         func() interface{} { return &valuePool{} },

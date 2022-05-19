@@ -164,9 +164,6 @@ func switchFactoryFuncToFake() {
 	iaas.SetClientFactoryFunc(ResourceVPCRouter, func(caller iaas.APICaller) interface{} {
 		return NewVPCRouterOp()
 	})
-	iaas.SetClientFactoryFunc(ResourceWebAccel, func(caller iaas.APICaller) interface{} {
-		return NewWebAccelOp()
-	})
 	iaas.SetClientFactoryFunc(ResourceZone, func(caller iaas.APICaller) interface{} {
 		return NewZoneOp()
 	})
@@ -873,22 +870,6 @@ type VPCRouterOp struct {
 func NewVPCRouterOp() iaas.VPCRouterAPI {
 	return &VPCRouterOp{
 		key: ResourceVPCRouter,
-	}
-}
-
-/*************************************************
-* WebAccelOp
-*************************************************/
-
-// WebAccelOp is fake implementation of WebAccelAPI interface
-type WebAccelOp struct {
-	key string
-}
-
-// NewWebAccelOp creates new WebAccelOp instance
-func NewWebAccelOp() iaas.WebAccelAPI {
-	return &WebAccelOp{
-		key: ResourceWebAccel,
 	}
 }
 

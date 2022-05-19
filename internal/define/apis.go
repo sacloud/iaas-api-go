@@ -77,6 +77,5 @@ func init() {
 	APIs.Define(subnetAPI)               // サブネット
 	APIs.Define(switchAPI)               // スイッチ
 	APIs.Define(vpcRouterAPI)            // VPCルータ
-	APIs.Define(webaccelAPI)             // ウェブアクセラレータ
 	APIs.Define(zoneAPI)                 // ゾーン
 }

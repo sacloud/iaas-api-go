@@ -55,6 +55,5 @@ var (
 	_ FindResultsValuer = (*SubnetFindResult)(nil)
 	_ FindResultsValuer = (*SwitchFindResult)(nil)
 	_ FindResultsValuer = (*VPCRouterFindResult)(nil)
-	_ FindResultsValuer = (*WebAccelListResult)(nil)
 	_ FindResultsValuer = (*ZoneFindResult)(nil)
 )
