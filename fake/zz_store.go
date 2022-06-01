@@ -106,6 +106,34 @@ func putAutoBackup(zone string, value *iaas.AutoBackup) {
 	ds().Put(ResourceAutoBackup, zone, 0, value)
 }
 
+func getAutoScale(zone string) []*iaas.AutoScale {
+	values := ds().List(ResourceAutoScale, zone)
+	var ret []*iaas.AutoScale
+	for _, v := range values {
+		if v, ok := v.(*iaas.AutoScale); ok {
+			ret = append(ret, v)
+		}
+	}
+	return ret
+}
+
+func getAutoScaleByID(zone string, id types.ID) *iaas.AutoScale {
+	v := ds().Get(ResourceAutoScale, zone, id)
+	if v, ok := v.(*iaas.AutoScale); ok {
+		return v
+	}
+	return nil
+}
+
+func putAutoScale(zone string, value *iaas.AutoScale) {
+	var v interface{} = value
+	if id, ok := v.(accessor.ID); ok {
+		ds().Put(ResourceAutoScale, zone, id.GetID(), value)
+		return
+	}
+	ds().Put(ResourceAutoScale, zone, 0, value)
+}
+
 func getBill(zone string) []*iaas.Bill {
 	values := ds().List(ResourceBill, zone)
 	var ret []*iaas.Bill

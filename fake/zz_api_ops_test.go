@@ -36,6 +36,10 @@ func TestResourceOps(t *testing.T) {
 		t.Fatalf("%s is not iaas.AutoBackup", op)
 	}
 
+	if op, ok := NewAutoScaleOp().(iaas.AutoScaleAPI); !ok {
+		t.Fatalf("%s is not iaas.AutoScale", op)
+	}
+
 	if op, ok := NewBillOp().(iaas.BillAPI); !ok {
 		t.Fatalf("%s is not iaas.Bill", op)
 	}

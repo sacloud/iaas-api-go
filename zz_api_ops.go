@@ -51,6 +51,14 @@ func init() {
 		}
 	})
 
+	SetClientFactoryFunc("AutoScale", func(caller APICaller) interface{} {
+		return &AutoScaleOp{
+			Client:     caller,
+			PathSuffix: "api/cloud/1.1",
+			PathName:   "commonserviceitem",
+		}
+	})
+
 	SetClientFactoryFunc("Bill", func(caller APICaller) interface{} {
 		return &BillOp{
 			Client:     caller,
@@ -1077,6 +1085,268 @@ func (o *AutoBackupOp) Delete(ctx context.Context, zone string, id types.ID) err
 	// build results
 
 	return nil
+}
+
+/*************************************************
+* AutoScaleOp
+*************************************************/
+
+// AutoScaleOp implements AutoScaleAPI interface
+type AutoScaleOp struct {
+	// Client APICaller
+	Client APICaller
+	// PathSuffix is used when building URL
+	PathSuffix string
+	// PathName is used when building URL
+	PathName string
+}
+
+// NewAutoScaleOp creates new AutoScaleOp instance
+func NewAutoScaleOp(caller APICaller) AutoScaleAPI {
+	return GetClientFactoryFunc("AutoScale")(caller).(AutoScaleAPI)
+}
+
+// Find is API call
+func (o *AutoScaleOp) Find(ctx context.Context, conditions *FindCondition) (*AutoScaleFindResult, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"conditions": conditions,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformFindArgs(conditions)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "GET", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformFindResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results, err
+}
+
+// Create is API call
+func (o *AutoScaleOp) Create(ctx context.Context, param *AutoScaleCreateRequest) (*AutoScale, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"param":      param,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformCreateArgs(param)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformCreateResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.AutoScale, nil
+}
+
+// Read is API call
+func (o *AutoScaleOp) Read(ctx context.Context, id types.ID) (*AutoScale, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	data, err := o.Client.Do(ctx, "GET", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformReadResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.AutoScale, nil
+}
+
+// Update is API call
+func (o *AutoScaleOp) Update(ctx context.Context, id types.ID, param *AutoScaleUpdateRequest) (*AutoScale, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+		"param":      param,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformUpdateArgs(id, param)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "PUT", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformUpdateResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.AutoScale, nil
+}
+
+// UpdateSettings is API call
+func (o *AutoScaleOp) UpdateSettings(ctx context.Context, id types.ID, param *AutoScaleUpdateSettingsRequest) (*AutoScale, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+		"param":      param,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformUpdateSettingsArgs(id, param)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "PUT", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformUpdateSettingsResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.AutoScale, nil
+}
+
+// Delete is API call
+func (o *AutoScaleOp) Delete(ctx context.Context, id types.ID) error {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}", pathBuildParameter)
+	if err != nil {
+		return err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	_, err = o.Client.Do(ctx, "DELETE", url, body)
+	if err != nil {
+		return err
+	}
+
+	// build results
+
+	return nil
+}
+
+// Status is API call
+func (o *AutoScaleOp) Status(ctx context.Context, id types.ID) (*AutoScaleStatus, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/autoscale/status", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	data, err := o.Client.Do(ctx, "GET", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformStatusResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.AutoScaleStatus, nil
 }
 
 /*************************************************

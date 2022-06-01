@@ -542,6 +542,186 @@ func (o *AutoBackupOp) transformUpdateSettingsResults(data []byte) (*autoBackupU
 	return results, nil
 }
 
+func (o *AutoScaleOp) transformFindArgs(conditions *FindCondition) (*autoScaleFindRequestEnvelope, error) {
+	if conditions == nil {
+		conditions = &FindCondition{}
+	}
+	var arg0 interface{} = conditions
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{} `mapconv:",squash"`
+	}{
+		Arg0: arg0,
+	}
+
+	v := &autoScaleFindRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *AutoScaleOp) transformFindResults(data []byte) (*AutoScaleFindResult, error) {
+	nakedResponse := &autoScaleFindResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &AutoScaleFindResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *AutoScaleOp) transformCreateArgs(param *AutoScaleCreateRequest) (*autoScaleCreateRequestEnvelope, error) {
+	if param == nil {
+		param = &AutoScaleCreateRequest{}
+	}
+	var arg0 interface{} = param
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{} `mapconv:"CommonServiceItem,recursive"`
+	}{
+		Arg0: arg0,
+	}
+
+	v := &autoScaleCreateRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *AutoScaleOp) transformCreateResults(data []byte) (*autoScaleCreateResult, error) {
+	nakedResponse := &autoScaleCreateResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &autoScaleCreateResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *AutoScaleOp) transformReadResults(data []byte) (*autoScaleReadResult, error) {
+	nakedResponse := &autoScaleReadResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &autoScaleReadResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *AutoScaleOp) transformUpdateArgs(id types.ID, param *AutoScaleUpdateRequest) (*autoScaleUpdateRequestEnvelope, error) {
+	if id == types.ID(int64(0)) {
+		id = types.ID(int64(0))
+	}
+	var arg0 interface{} = id
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	if param == nil {
+		param = &AutoScaleUpdateRequest{}
+	}
+	var arg1 interface{} = param
+	if v, ok := arg1.(argumentDefaulter); ok {
+		arg1 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{}
+		Arg1 interface{} `mapconv:"CommonServiceItem,recursive"`
+	}{
+		Arg0: arg0,
+		Arg1: arg1,
+	}
+
+	v := &autoScaleUpdateRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *AutoScaleOp) transformUpdateResults(data []byte) (*autoScaleUpdateResult, error) {
+	nakedResponse := &autoScaleUpdateResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &autoScaleUpdateResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *AutoScaleOp) transformUpdateSettingsArgs(id types.ID, param *AutoScaleUpdateSettingsRequest) (*autoScaleUpdateSettingsRequestEnvelope, error) {
+	if id == types.ID(int64(0)) {
+		id = types.ID(int64(0))
+	}
+	var arg0 interface{} = id
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	if param == nil {
+		param = &AutoScaleUpdateSettingsRequest{}
+	}
+	var arg1 interface{} = param
+	if v, ok := arg1.(argumentDefaulter); ok {
+		arg1 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{}
+		Arg1 interface{} `mapconv:"CommonServiceItem,recursive"`
+	}{
+		Arg0: arg0,
+		Arg1: arg1,
+	}
+
+	v := &autoScaleUpdateSettingsRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *AutoScaleOp) transformUpdateSettingsResults(data []byte) (*autoScaleUpdateSettingsResult, error) {
+	nakedResponse := &autoScaleUpdateSettingsResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &autoScaleUpdateSettingsResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *AutoScaleOp) transformStatusResults(data []byte) (*autoScaleStatusResult, error) {
+	nakedResponse := &autoScaleStatusResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &autoScaleStatusResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
 func (o *BillOp) transformByContractResults(data []byte) (*BillByContractResult, error) {
 	nakedResponse := &billByContractResponseEnvelope{}
 	if err := json.Unmarshal(data, nakedResponse); err != nil {

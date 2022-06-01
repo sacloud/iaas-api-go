@@ -217,6 +217,80 @@ type autoBackupUpdateSettingsResponseEnvelope struct {
 	CommonServiceItem *naked.AutoBackup `json:",omitempty"`
 }
 
+// autoScaleFindRequestEnvelope is envelop of API request
+type autoScaleFindRequestEnvelope struct {
+	Count   int             `mapconv:",omitempty"`
+	From    int             `mapconv:",omitempty"`
+	Sort    search.SortKeys `json:",omitempty" mapconv:",omitempty"`
+	Filter  search.Filter   `json:",omitempty" mapconv:",omitempty"`
+	Include []string        `json:",omitempty" mapconv:",omitempty"`
+	Exclude []string        `json:",omitempty" mapconv:",omitempty"`
+}
+
+// autoScaleFindResponseEnvelope is envelop of API response
+type autoScaleFindResponseEnvelope struct {
+	Total int `json:",omitempty"` // トータル件数
+	From  int `json:",omitempty"` // ページング開始ページ
+	Count int `json:",omitempty"` // 件数
+
+	CommonServiceItems []*naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleCreateRequestEnvelope is envelop of API request
+type autoScaleCreateRequestEnvelope struct {
+	CommonServiceItem *naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleCreateResponseEnvelope is envelop of API response
+type autoScaleCreateResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleReadResponseEnvelope is envelop of API response
+type autoScaleReadResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleUpdateRequestEnvelope is envelop of API request
+type autoScaleUpdateRequestEnvelope struct {
+	CommonServiceItem *naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleUpdateResponseEnvelope is envelop of API response
+type autoScaleUpdateResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleUpdateSettingsRequestEnvelope is envelop of API request
+type autoScaleUpdateSettingsRequestEnvelope struct {
+	CommonServiceItem *naked.AutoScaleSettingsUpdate `json:",omitempty"`
+}
+
+// autoScaleUpdateSettingsResponseEnvelope is envelop of API response
+type autoScaleUpdateSettingsResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.AutoScale `json:",omitempty"`
+}
+
+// autoScaleStatusResponseEnvelope is envelop of API response
+type autoScaleStatusResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	AutoScale *naked.AutoScaleRunningStatus `json:",omitempty"`
+}
+
 // billByContractResponseEnvelope is envelop of API response
 type billByContractResponseEnvelope struct {
 	Total int `json:",omitempty"` // トータル件数

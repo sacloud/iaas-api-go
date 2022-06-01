@@ -156,6 +156,16 @@ func (s autoBackupFindRequestEnvelope) MarshalJSON() ([]byte, error) {
 	return json.Marshal(tmp)
 }
 
+func (s autoScaleFindRequestEnvelope) MarshalJSON() ([]byte, error) {
+	type alias autoScaleFindRequestEnvelope
+	tmp := alias(s)
+	if tmp.Filter == nil {
+		tmp.Filter = search.Filter{}
+	}
+	tmp.Filter[search.Key("Provider.Class")] = "autoscale"
+	return json.Marshal(tmp)
+}
+
 func (s certificateAuthorityFindRequestEnvelope) MarshalJSON() ([]byte, error) {
 	type alias certificateAuthorityFindRequestEnvelope
 	tmp := alias(s)

@@ -38,6 +38,9 @@ func addClientFactoryHooks(cnf *config) {
 	iaas.AddClientFacotyHookFunc("AutoBackup", func(in interface{}) interface{} {
 		return newAutoBackupTracer(in.(iaas.AutoBackupAPI), cnf)
 	})
+	iaas.AddClientFacotyHookFunc("AutoScale", func(in interface{}) interface{} {
+		return newAutoScaleTracer(in.(iaas.AutoScaleAPI), cnf)
+	})
 	iaas.AddClientFacotyHookFunc("Bill", func(in interface{}) interface{} {
 		return newBillTracer(in.(iaas.BillAPI), cnf)
 	})
@@ -689,6 +692,200 @@ func (t *AutoBackupTracer) Delete(ctx context.Context, zone string, id types.ID)
 
 	}
 	return err
+}
+
+/*************************************************
+* AutoScaleTracer
+*************************************************/
+
+// AutoScaleTracer is for trace AutoScaleOp operations
+type AutoScaleTracer struct {
+	Internal iaas.AutoScaleAPI
+	config   *config
+}
+
+// NewAutoScaleTracer creates new AutoScaleTracer instance
+func newAutoScaleTracer(in iaas.AutoScaleAPI, cnf *config) iaas.AutoScaleAPI {
+	return &AutoScaleTracer{
+		Internal: in,
+		config:   cnf,
+	}
+}
+
+// Find is API call with trace log
+func (t *AutoScaleTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.AutoScaleFindResult, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Find", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	result, err := t.Internal.Find(ctx, conditions)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.result", forceString(result)))
+
+	}
+	return result, err
+}
+
+// Create is API call with trace log
+func (t *AutoScaleTracer) Create(ctx context.Context, param *iaas.AutoScaleCreateRequest) (*iaas.AutoScale, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Create", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultAutoScale, err := t.Internal.Create(ctx, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultAutoScale", forceString(resultAutoScale)))
+
+	}
+	return resultAutoScale, err
+}
+
+// Read is API call with trace log
+func (t *AutoScaleTracer) Read(ctx context.Context, id types.ID) (*iaas.AutoScale, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Read", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultAutoScale, err := t.Internal.Read(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultAutoScale", forceString(resultAutoScale)))
+
+	}
+	return resultAutoScale, err
+}
+
+// Update is API call with trace log
+func (t *AutoScaleTracer) Update(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateRequest) (*iaas.AutoScale, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("libiaas.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Update", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultAutoScale, err := t.Internal.Update(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultAutoScale", forceString(resultAutoScale)))
+
+	}
+	return resultAutoScale, err
+}
+
+// UpdateSettings is API call with trace log
+func (t *AutoScaleTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateSettingsRequest) (*iaas.AutoScale, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("libiaas.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.UpdateSettings", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultAutoScale, err := t.Internal.UpdateSettings(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultAutoScale", forceString(resultAutoScale)))
+
+	}
+	return resultAutoScale, err
+}
+
+// Delete is API call with trace log
+func (t *AutoScaleTracer) Delete(ctx context.Context, id types.ID) error {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Delete", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	err := t.Internal.Delete(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+
+	}
+	return err
+}
+
+// Status is API call with trace log
+func (t *AutoScaleTracer) Status(ctx context.Context, id types.ID) (*iaas.AutoScaleStatus, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Status", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultAutoScaleStatus, err := t.Internal.Status(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultAutoScaleStatus", forceString(resultAutoScaleStatus)))
+
+	}
+	return resultAutoScaleStatus, err
 }
 
 /*************************************************
