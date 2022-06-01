@@ -2098,6 +2098,724 @@ func (o *AutoBackupUpdateSettingsRequest) SetSettingsHash(v string) {
 }
 
 /*************************************************
+* AutoScale
+*************************************************/
+
+// AutoScale represents API parameter/response structure
+type AutoScale struct {
+	ID           types.ID
+	Name         string
+	Description  string
+	Tags         types.Tags
+	Availability types.EAvailability
+	IconID       types.ID `mapconv:"Icon.ID"`
+	CreatedAt    time.Time
+	ModifiedAt   time.Time
+	Zones        []string `mapconv:"Settings.Zones"`
+	Config       string   `mapconv:"Settings.Config"`
+	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScale) setDefaults() interface{} {
+	return &struct {
+		ID           types.ID
+		Name         string
+		Description  string
+		Tags         types.Tags
+		Availability types.EAvailability
+		IconID       types.ID `mapconv:"Icon.ID"`
+		CreatedAt    time.Time
+		ModifiedAt   time.Time
+		Zones        []string `mapconv:"Settings.Zones"`
+		Config       string   `mapconv:"Settings.Config"`
+		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+		APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+	}{
+		ID:           o.GetID(),
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		Availability: o.GetAvailability(),
+		IconID:       o.GetIconID(),
+		CreatedAt:    o.GetCreatedAt(),
+		ModifiedAt:   o.GetModifiedAt(),
+		Zones:        o.GetZones(),
+		Config:       o.GetConfig(),
+		ServerPrefix: o.GetServerPrefix(),
+		Up:           o.GetUp(),
+		Down:         o.GetDown(),
+		SettingsHash: o.GetSettingsHash(),
+		APIKeyID:     o.GetAPIKeyID(),
+	}
+}
+
+// GetID returns value of ID
+func (o *AutoScale) GetID() types.ID {
+	return o.ID
+}
+
+// SetID sets value to ID
+func (o *AutoScale) SetID(v types.ID) {
+	o.ID = v
+}
+
+// SetStringID .
+func (o *AutoScale) SetStringID(id string) {
+	accessor.SetStringID(o, id)
+}
+
+// GetStringID .
+func (o *AutoScale) GetStringID() string {
+	return accessor.GetStringID(o)
+}
+
+// SetInt64ID .
+func (o *AutoScale) SetInt64ID(id int64) {
+	accessor.SetInt64ID(o, id)
+}
+
+// GetInt64ID .
+func (o *AutoScale) GetInt64ID() int64 {
+	return accessor.GetInt64ID(o)
+}
+
+// GetName returns value of Name
+func (o *AutoScale) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *AutoScale) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *AutoScale) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *AutoScale) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *AutoScale) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *AutoScale) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *AutoScale) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *AutoScale) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *AutoScale) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *AutoScale) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetAvailability returns value of Availability
+func (o *AutoScale) GetAvailability() types.EAvailability {
+	return o.Availability
+}
+
+// SetAvailability sets value to Availability
+func (o *AutoScale) SetAvailability(v types.EAvailability) {
+	o.Availability = v
+}
+
+// GetIconID returns value of IconID
+func (o *AutoScale) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *AutoScale) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetCreatedAt returns value of CreatedAt
+func (o *AutoScale) GetCreatedAt() time.Time {
+	return o.CreatedAt
+}
+
+// SetCreatedAt sets value to CreatedAt
+func (o *AutoScale) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetModifiedAt returns value of ModifiedAt
+func (o *AutoScale) GetModifiedAt() time.Time {
+	return o.ModifiedAt
+}
+
+// SetModifiedAt sets value to ModifiedAt
+func (o *AutoScale) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = v
+}
+
+// GetZones returns value of Zones
+func (o *AutoScale) GetZones() []string {
+	return o.Zones
+}
+
+// SetZones sets value to Zones
+func (o *AutoScale) SetZones(v []string) {
+	o.Zones = v
+}
+
+// GetConfig returns value of Config
+func (o *AutoScale) GetConfig() string {
+	return o.Config
+}
+
+// SetConfig sets value to Config
+func (o *AutoScale) SetConfig(v string) {
+	o.Config = v
+}
+
+// GetServerPrefix returns value of ServerPrefix
+func (o *AutoScale) GetServerPrefix() string {
+	return o.ServerPrefix
+}
+
+// SetServerPrefix sets value to ServerPrefix
+func (o *AutoScale) SetServerPrefix(v string) {
+	o.ServerPrefix = v
+}
+
+// GetUp returns value of Up
+func (o *AutoScale) GetUp() int {
+	return o.Up
+}
+
+// SetUp sets value to Up
+func (o *AutoScale) SetUp(v int) {
+	o.Up = v
+}
+
+// GetDown returns value of Down
+func (o *AutoScale) GetDown() int {
+	return o.Down
+}
+
+// SetDown sets value to Down
+func (o *AutoScale) SetDown(v int) {
+	o.Down = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *AutoScale) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *AutoScale) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+// GetAPIKeyID returns value of APIKeyID
+func (o *AutoScale) GetAPIKeyID() string {
+	return o.APIKeyID
+}
+
+// SetAPIKeyID sets value to APIKeyID
+func (o *AutoScale) SetAPIKeyID(v string) {
+	o.APIKeyID = v
+}
+
+/*************************************************
+* AutoScaleCreateRequest
+*************************************************/
+
+// AutoScaleCreateRequest represents API parameter/response structure
+type AutoScaleCreateRequest struct {
+	Name         string
+	Description  string
+	Tags         types.Tags
+	IconID       types.ID `mapconv:"Icon.ID"`
+	Zones        []string `mapconv:"Settings.Zones"`
+	Config       string   `mapconv:"Settings.Config"`
+	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+	APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleCreateRequest) setDefaults() interface{} {
+	return &struct {
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID `mapconv:"Icon.ID"`
+		Zones        []string `mapconv:"Settings.Zones"`
+		Config       string   `mapconv:"Settings.Config"`
+		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+		APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+		Class        string   `mapconv:"Provider.Class"`
+		ServiceClass string
+	}{
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		Zones:        o.GetZones(),
+		Config:       o.GetConfig(),
+		ServerPrefix: o.GetServerPrefix(),
+		Up:           o.GetUp(),
+		Down:         o.GetDown(),
+		APIKeyID:     o.GetAPIKeyID(),
+		Class:        "autoscale",
+		ServiceClass: "cloud/autoscale/1",
+	}
+}
+
+// GetName returns value of Name
+func (o *AutoScaleCreateRequest) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *AutoScaleCreateRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *AutoScaleCreateRequest) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *AutoScaleCreateRequest) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *AutoScaleCreateRequest) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *AutoScaleCreateRequest) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *AutoScaleCreateRequest) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *AutoScaleCreateRequest) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *AutoScaleCreateRequest) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *AutoScaleCreateRequest) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetIconID returns value of IconID
+func (o *AutoScaleCreateRequest) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *AutoScaleCreateRequest) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetZones returns value of Zones
+func (o *AutoScaleCreateRequest) GetZones() []string {
+	return o.Zones
+}
+
+// SetZones sets value to Zones
+func (o *AutoScaleCreateRequest) SetZones(v []string) {
+	o.Zones = v
+}
+
+// GetConfig returns value of Config
+func (o *AutoScaleCreateRequest) GetConfig() string {
+	return o.Config
+}
+
+// SetConfig sets value to Config
+func (o *AutoScaleCreateRequest) SetConfig(v string) {
+	o.Config = v
+}
+
+// GetServerPrefix returns value of ServerPrefix
+func (o *AutoScaleCreateRequest) GetServerPrefix() string {
+	return o.ServerPrefix
+}
+
+// SetServerPrefix sets value to ServerPrefix
+func (o *AutoScaleCreateRequest) SetServerPrefix(v string) {
+	o.ServerPrefix = v
+}
+
+// GetUp returns value of Up
+func (o *AutoScaleCreateRequest) GetUp() int {
+	return o.Up
+}
+
+// SetUp sets value to Up
+func (o *AutoScaleCreateRequest) SetUp(v int) {
+	o.Up = v
+}
+
+// GetDown returns value of Down
+func (o *AutoScaleCreateRequest) GetDown() int {
+	return o.Down
+}
+
+// SetDown sets value to Down
+func (o *AutoScaleCreateRequest) SetDown(v int) {
+	o.Down = v
+}
+
+// GetAPIKeyID returns value of APIKeyID
+func (o *AutoScaleCreateRequest) GetAPIKeyID() string {
+	return o.APIKeyID
+}
+
+// SetAPIKeyID sets value to APIKeyID
+func (o *AutoScaleCreateRequest) SetAPIKeyID(v string) {
+	o.APIKeyID = v
+}
+
+/*************************************************
+* AutoScaleUpdateRequest
+*************************************************/
+
+// AutoScaleUpdateRequest represents API parameter/response structure
+type AutoScaleUpdateRequest struct {
+	Name         string
+	Description  string
+	Tags         types.Tags
+	IconID       types.ID `mapconv:"Icon.ID"`
+	Zones        []string `mapconv:"Settings.Zones"`
+	Config       string   `mapconv:"Settings.Config"`
+	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
+	return &struct {
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID `mapconv:"Icon.ID"`
+		Zones        []string `mapconv:"Settings.Zones"`
+		Config       string   `mapconv:"Settings.Config"`
+		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	}{
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		Zones:        o.GetZones(),
+		Config:       o.GetConfig(),
+		ServerPrefix: o.GetServerPrefix(),
+		Up:           o.GetUp(),
+		Down:         o.GetDown(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetName returns value of Name
+func (o *AutoScaleUpdateRequest) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *AutoScaleUpdateRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *AutoScaleUpdateRequest) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *AutoScaleUpdateRequest) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *AutoScaleUpdateRequest) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *AutoScaleUpdateRequest) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *AutoScaleUpdateRequest) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *AutoScaleUpdateRequest) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *AutoScaleUpdateRequest) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *AutoScaleUpdateRequest) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetIconID returns value of IconID
+func (o *AutoScaleUpdateRequest) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *AutoScaleUpdateRequest) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetZones returns value of Zones
+func (o *AutoScaleUpdateRequest) GetZones() []string {
+	return o.Zones
+}
+
+// SetZones sets value to Zones
+func (o *AutoScaleUpdateRequest) SetZones(v []string) {
+	o.Zones = v
+}
+
+// GetConfig returns value of Config
+func (o *AutoScaleUpdateRequest) GetConfig() string {
+	return o.Config
+}
+
+// SetConfig sets value to Config
+func (o *AutoScaleUpdateRequest) SetConfig(v string) {
+	o.Config = v
+}
+
+// GetServerPrefix returns value of ServerPrefix
+func (o *AutoScaleUpdateRequest) GetServerPrefix() string {
+	return o.ServerPrefix
+}
+
+// SetServerPrefix sets value to ServerPrefix
+func (o *AutoScaleUpdateRequest) SetServerPrefix(v string) {
+	o.ServerPrefix = v
+}
+
+// GetUp returns value of Up
+func (o *AutoScaleUpdateRequest) GetUp() int {
+	return o.Up
+}
+
+// SetUp sets value to Up
+func (o *AutoScaleUpdateRequest) SetUp(v int) {
+	o.Up = v
+}
+
+// GetDown returns value of Down
+func (o *AutoScaleUpdateRequest) GetDown() int {
+	return o.Down
+}
+
+// SetDown sets value to Down
+func (o *AutoScaleUpdateRequest) SetDown(v int) {
+	o.Down = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *AutoScaleUpdateRequest) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *AutoScaleUpdateRequest) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* AutoScaleUpdateSettingsRequest
+*************************************************/
+
+// AutoScaleUpdateSettingsRequest represents API parameter/response structure
+type AutoScaleUpdateSettingsRequest struct {
+	Zones        []string `mapconv:"Settings.Zones"`
+	Config       string   `mapconv:"Settings.Config"`
+	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
+	return &struct {
+		Zones        []string `mapconv:"Settings.Zones"`
+		Config       string   `mapconv:"Settings.Config"`
+		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
+		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
+		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	}{
+		Zones:        o.GetZones(),
+		Config:       o.GetConfig(),
+		ServerPrefix: o.GetServerPrefix(),
+		Up:           o.GetUp(),
+		Down:         o.GetDown(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetZones returns value of Zones
+func (o *AutoScaleUpdateSettingsRequest) GetZones() []string {
+	return o.Zones
+}
+
+// SetZones sets value to Zones
+func (o *AutoScaleUpdateSettingsRequest) SetZones(v []string) {
+	o.Zones = v
+}
+
+// GetConfig returns value of Config
+func (o *AutoScaleUpdateSettingsRequest) GetConfig() string {
+	return o.Config
+}
+
+// SetConfig sets value to Config
+func (o *AutoScaleUpdateSettingsRequest) SetConfig(v string) {
+	o.Config = v
+}
+
+// GetServerPrefix returns value of ServerPrefix
+func (o *AutoScaleUpdateSettingsRequest) GetServerPrefix() string {
+	return o.ServerPrefix
+}
+
+// SetServerPrefix sets value to ServerPrefix
+func (o *AutoScaleUpdateSettingsRequest) SetServerPrefix(v string) {
+	o.ServerPrefix = v
+}
+
+// GetUp returns value of Up
+func (o *AutoScaleUpdateSettingsRequest) GetUp() int {
+	return o.Up
+}
+
+// SetUp sets value to Up
+func (o *AutoScaleUpdateSettingsRequest) SetUp(v int) {
+	o.Up = v
+}
+
+// GetDown returns value of Down
+func (o *AutoScaleUpdateSettingsRequest) GetDown() int {
+	return o.Down
+}
+
+// SetDown sets value to Down
+func (o *AutoScaleUpdateSettingsRequest) SetDown(v int) {
+	o.Down = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *AutoScaleUpdateSettingsRequest) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *AutoScaleUpdateSettingsRequest) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* AutoScaleStatus
+*************************************************/
+
+// AutoScaleStatus represents API parameter/response structure
+type AutoScaleStatus struct {
+	LatestLogs    []string
+	ResourcesText string
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleStatus) setDefaults() interface{} {
+	return &struct {
+		LatestLogs    []string
+		ResourcesText string
+	}{
+		LatestLogs:    o.GetLatestLogs(),
+		ResourcesText: o.GetResourcesText(),
+	}
+}
+
+// GetLatestLogs returns value of LatestLogs
+func (o *AutoScaleStatus) GetLatestLogs() []string {
+	return o.LatestLogs
+}
+
+// SetLatestLogs sets value to LatestLogs
+func (o *AutoScaleStatus) SetLatestLogs(v []string) {
+	o.LatestLogs = v
+}
+
+// GetResourcesText returns value of ResourcesText
+func (o *AutoScaleStatus) GetResourcesText() string {
+	return o.ResourcesText
+}
+
+// SetResourcesText sets value to ResourcesText
+func (o *AutoScaleStatus) SetResourcesText(v string) {
+	o.ResourcesText = v
+}
+
+/*************************************************
 * Bill
 *************************************************/
 

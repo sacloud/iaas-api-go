@@ -65,6 +65,21 @@ type AutoBackupAPI interface {
 }
 
 /*************************************************
+* AutoScaleAPI
+*************************************************/
+
+// AutoScaleAPI is interface for operate AutoScale resource
+type AutoScaleAPI interface {
+	Find(ctx context.Context, conditions *FindCondition) (*AutoScaleFindResult, error)
+	Create(ctx context.Context, param *AutoScaleCreateRequest) (*AutoScale, error)
+	Read(ctx context.Context, id types.ID) (*AutoScale, error)
+	Update(ctx context.Context, id types.ID, param *AutoScaleUpdateRequest) (*AutoScale, error)
+	UpdateSettings(ctx context.Context, id types.ID, param *AutoScaleUpdateSettingsRequest) (*AutoScale, error)
+	Delete(ctx context.Context, id types.ID) error
+	Status(ctx context.Context, id types.ID) (*AutoScaleStatus, error)
+}
+
+/*************************************************
 * BillAPI
 *************************************************/
 

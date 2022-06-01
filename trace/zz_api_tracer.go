@@ -45,6 +45,9 @@ func addClientFactoryHooks() {
 	iaas.AddClientFacotyHookFunc("AutoBackup", func(in interface{}) interface{} {
 		return NewAutoBackupTracer(in.(iaas.AutoBackupAPI))
 	})
+	iaas.AddClientFacotyHookFunc("AutoScale", func(in interface{}) interface{} {
+		return NewAutoScaleTracer(in.(iaas.AutoScaleAPI))
+	})
 	iaas.AddClientFacotyHookFunc("Bill", func(in interface{}) interface{} {
 		return NewBillTracer(in.(iaas.BillAPI))
 	})
@@ -820,6 +823,241 @@ func (t *AutoBackupTracer) Delete(ctx context.Context, zone string, id types.ID)
 	}
 
 	return err
+}
+
+/*************************************************
+* AutoScaleTracer
+*************************************************/
+
+// AutoScaleTracer is for trace AutoScaleOp operations
+type AutoScaleTracer struct {
+	Internal iaas.AutoScaleAPI
+}
+
+// NewAutoScaleTracer creates new AutoScaleTracer instance
+func NewAutoScaleTracer(in iaas.AutoScaleAPI) iaas.AutoScaleAPI {
+	return &AutoScaleTracer{
+		Internal: in,
+	}
+}
+
+// Find is API call with trace log
+func (t *AutoScaleTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.AutoScaleFindResult, error) {
+	log.Println("[TRACE] AutoScaleAPI.Find start")
+	targetArguments := struct {
+		Argconditions *iaas.FindCondition `json:"conditions"`
+	}{
+		Argconditions: conditions,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.Find end")
+	}()
+
+	result, err := t.Internal.Find(ctx, conditions)
+	targetResults := struct {
+		Result *iaas.AutoScaleFindResult
+		Error  error
+	}{
+		Result: result,
+		Error:  err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return result, err
+}
+
+// Create is API call with trace log
+func (t *AutoScaleTracer) Create(ctx context.Context, param *iaas.AutoScaleCreateRequest) (*iaas.AutoScale, error) {
+	log.Println("[TRACE] AutoScaleAPI.Create start")
+	targetArguments := struct {
+		Argparam *iaas.AutoScaleCreateRequest `json:"param"`
+	}{
+		Argparam: param,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.Create end")
+	}()
+
+	resultAutoScale, err := t.Internal.Create(ctx, param)
+	targetResults := struct {
+		AutoScale *iaas.AutoScale
+		Error     error
+	}{
+		AutoScale: resultAutoScale,
+		Error:     err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultAutoScale, err
+}
+
+// Read is API call with trace log
+func (t *AutoScaleTracer) Read(ctx context.Context, id types.ID) (*iaas.AutoScale, error) {
+	log.Println("[TRACE] AutoScaleAPI.Read start")
+	targetArguments := struct {
+		Argid types.ID `json:"id"`
+	}{
+		Argid: id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.Read end")
+	}()
+
+	resultAutoScale, err := t.Internal.Read(ctx, id)
+	targetResults := struct {
+		AutoScale *iaas.AutoScale
+		Error     error
+	}{
+		AutoScale: resultAutoScale,
+		Error:     err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultAutoScale, err
+}
+
+// Update is API call with trace log
+func (t *AutoScaleTracer) Update(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateRequest) (*iaas.AutoScale, error) {
+	log.Println("[TRACE] AutoScaleAPI.Update start")
+	targetArguments := struct {
+		Argid    types.ID                     `json:"id"`
+		Argparam *iaas.AutoScaleUpdateRequest `json:"param"`
+	}{
+		Argid:    id,
+		Argparam: param,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.Update end")
+	}()
+
+	resultAutoScale, err := t.Internal.Update(ctx, id, param)
+	targetResults := struct {
+		AutoScale *iaas.AutoScale
+		Error     error
+	}{
+		AutoScale: resultAutoScale,
+		Error:     err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultAutoScale, err
+}
+
+// UpdateSettings is API call with trace log
+func (t *AutoScaleTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateSettingsRequest) (*iaas.AutoScale, error) {
+	log.Println("[TRACE] AutoScaleAPI.UpdateSettings start")
+	targetArguments := struct {
+		Argid    types.ID                             `json:"id"`
+		Argparam *iaas.AutoScaleUpdateSettingsRequest `json:"param"`
+	}{
+		Argid:    id,
+		Argparam: param,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.UpdateSettings end")
+	}()
+
+	resultAutoScale, err := t.Internal.UpdateSettings(ctx, id, param)
+	targetResults := struct {
+		AutoScale *iaas.AutoScale
+		Error     error
+	}{
+		AutoScale: resultAutoScale,
+		Error:     err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultAutoScale, err
+}
+
+// Delete is API call with trace log
+func (t *AutoScaleTracer) Delete(ctx context.Context, id types.ID) error {
+	log.Println("[TRACE] AutoScaleAPI.Delete start")
+	targetArguments := struct {
+		Argid types.ID `json:"id"`
+	}{
+		Argid: id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.Delete end")
+	}()
+
+	err := t.Internal.Delete(ctx, id)
+	targetResults := struct {
+		Error error
+	}{
+		Error: err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return err
+}
+
+// Status is API call with trace log
+func (t *AutoScaleTracer) Status(ctx context.Context, id types.ID) (*iaas.AutoScaleStatus, error) {
+	log.Println("[TRACE] AutoScaleAPI.Status start")
+	targetArguments := struct {
+		Argid types.ID `json:"id"`
+	}{
+		Argid: id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.Status end")
+	}()
+
+	resultAutoScaleStatus, err := t.Internal.Status(ctx, id)
+	targetResults := struct {
+		AutoScaleStatus *iaas.AutoScaleStatus
+		Error           error
+	}{
+		AutoScaleStatus: resultAutoScaleStatus,
+		Error:           err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultAutoScaleStatus, err
 }
 
 /*************************************************

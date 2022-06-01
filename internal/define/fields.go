@@ -2826,3 +2826,63 @@ func (f *fieldsDef) MonitorLocalRouterSendBytesPerSec() *dsl.FieldDesc {
 		},
 	}
 }
+
+func (f *fieldsDef) AutoScaleAPIKeyID() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "APIKeyID",
+		Type: meta.TypeString,
+		Tags: &dsl.FieldTags{
+			MapConv: "Status.APIKey.ID",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleZones() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Zones",
+		Type: meta.TypeStringSlice,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.Zones",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleConfig() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Config",
+		Type: meta.TypeString,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.Config",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleServerPrefix() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "ServerPrefix",
+		Type: meta.TypeString,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.CPUThresholdScaling.ServerPrefix",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleCPUThresholdUp() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Up",
+		Type: meta.TypeInt,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.CPUThresholdScaling.Up",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleCPUThresholdDown() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Down",
+		Type: meta.TypeInt,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.CPUThresholdScaling.Down",
+		},
+	}
+}

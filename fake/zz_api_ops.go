@@ -41,6 +41,9 @@ func switchFactoryFuncToFake() {
 	iaas.SetClientFactoryFunc(ResourceAutoBackup, func(caller iaas.APICaller) interface{} {
 		return NewAutoBackupOp()
 	})
+	iaas.SetClientFactoryFunc(ResourceAutoScale, func(caller iaas.APICaller) interface{} {
+		return NewAutoScaleOp()
+	})
 	iaas.SetClientFactoryFunc(ResourceBill, func(caller iaas.APICaller) interface{} {
 		return NewBillOp()
 	})
@@ -214,6 +217,22 @@ type AutoBackupOp struct {
 func NewAutoBackupOp() iaas.AutoBackupAPI {
 	return &AutoBackupOp{
 		key: ResourceAutoBackup,
+	}
+}
+
+/*************************************************
+* AutoScaleOp
+*************************************************/
+
+// AutoScaleOp is fake implementation of AutoScaleAPI interface
+type AutoScaleOp struct {
+	key string
+}
+
+// NewAutoScaleOp creates new AutoScaleOp instance
+func NewAutoScaleOp() iaas.AutoScaleAPI {
+	return &AutoScaleOp{
+		key: ResourceAutoScale,
 	}
 }
 

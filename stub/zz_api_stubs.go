@@ -332,6 +332,123 @@ func (s *AutoBackupStub) Delete(ctx context.Context, zone string, id types.ID) e
 }
 
 /*************************************************
+* AutoScaleStub
+*************************************************/
+
+// AutoScaleFindStubResult is expected values of the Find operation
+type AutoScaleFindStubResult struct {
+	Values *iaas.AutoScaleFindResult
+	Err    error
+}
+
+// AutoScaleCreateStubResult is expected values of the Create operation
+type AutoScaleCreateStubResult struct {
+	AutoScale *iaas.AutoScale
+	Err       error
+}
+
+// AutoScaleReadStubResult is expected values of the Read operation
+type AutoScaleReadStubResult struct {
+	AutoScale *iaas.AutoScale
+	Err       error
+}
+
+// AutoScaleUpdateStubResult is expected values of the Update operation
+type AutoScaleUpdateStubResult struct {
+	AutoScale *iaas.AutoScale
+	Err       error
+}
+
+// AutoScaleUpdateSettingsStubResult is expected values of the UpdateSettings operation
+type AutoScaleUpdateSettingsStubResult struct {
+	AutoScale *iaas.AutoScale
+	Err       error
+}
+
+// AutoScaleDeleteStubResult is expected values of the Delete operation
+type AutoScaleDeleteStubResult struct {
+	Err error
+}
+
+// AutoScaleStatusStubResult is expected values of the Status operation
+type AutoScaleStatusStubResult struct {
+	AutoScaleStatus *iaas.AutoScaleStatus
+	Err             error
+}
+
+// AutoScaleStub is for trace AutoScaleOp operations
+type AutoScaleStub struct {
+	FindStubResult           *AutoScaleFindStubResult
+	CreateStubResult         *AutoScaleCreateStubResult
+	ReadStubResult           *AutoScaleReadStubResult
+	UpdateStubResult         *AutoScaleUpdateStubResult
+	UpdateSettingsStubResult *AutoScaleUpdateSettingsStubResult
+	DeleteStubResult         *AutoScaleDeleteStubResult
+	StatusStubResult         *AutoScaleStatusStubResult
+}
+
+// NewAutoScaleStub creates new AutoScaleStub instance
+func NewAutoScaleStub(caller iaas.APICaller) iaas.AutoScaleAPI {
+	return &AutoScaleStub{}
+}
+
+// Find is API call with trace log
+func (s *AutoScaleStub) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.AutoScaleFindResult, error) {
+	if s.FindStubResult == nil {
+		log.Fatal("AutoScaleStub.FindStubResult is not set")
+	}
+	return s.FindStubResult.Values, s.FindStubResult.Err
+}
+
+// Create is API call with trace log
+func (s *AutoScaleStub) Create(ctx context.Context, param *iaas.AutoScaleCreateRequest) (*iaas.AutoScale, error) {
+	if s.CreateStubResult == nil {
+		log.Fatal("AutoScaleStub.CreateStubResult is not set")
+	}
+	return s.CreateStubResult.AutoScale, s.CreateStubResult.Err
+}
+
+// Read is API call with trace log
+func (s *AutoScaleStub) Read(ctx context.Context, id types.ID) (*iaas.AutoScale, error) {
+	if s.ReadStubResult == nil {
+		log.Fatal("AutoScaleStub.ReadStubResult is not set")
+	}
+	return s.ReadStubResult.AutoScale, s.ReadStubResult.Err
+}
+
+// Update is API call with trace log
+func (s *AutoScaleStub) Update(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateRequest) (*iaas.AutoScale, error) {
+	if s.UpdateStubResult == nil {
+		log.Fatal("AutoScaleStub.UpdateStubResult is not set")
+	}
+	return s.UpdateStubResult.AutoScale, s.UpdateStubResult.Err
+}
+
+// UpdateSettings is API call with trace log
+func (s *AutoScaleStub) UpdateSettings(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateSettingsRequest) (*iaas.AutoScale, error) {
+	if s.UpdateSettingsStubResult == nil {
+		log.Fatal("AutoScaleStub.UpdateSettingsStubResult is not set")
+	}
+	return s.UpdateSettingsStubResult.AutoScale, s.UpdateSettingsStubResult.Err
+}
+
+// Delete is API call with trace log
+func (s *AutoScaleStub) Delete(ctx context.Context, id types.ID) error {
+	if s.DeleteStubResult == nil {
+		log.Fatal("AutoScaleStub.DeleteStubResult is not set")
+	}
+	return s.DeleteStubResult.Err
+}
+
+// Status is API call with trace log
+func (s *AutoScaleStub) Status(ctx context.Context, id types.ID) (*iaas.AutoScaleStatus, error) {
+	if s.StatusStubResult == nil {
+		log.Fatal("AutoScaleStub.StatusStubResult is not set")
+	}
+	return s.StatusStubResult.AutoScaleStatus, s.StatusStubResult.Err
+}
+
+/*************************************************
 * BillStub
 *************************************************/
 

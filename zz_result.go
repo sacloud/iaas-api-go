@@ -144,6 +144,59 @@ type autoBackupUpdateSettingsResult struct {
 	AutoBackup *AutoBackup `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
 }
 
+// AutoScaleFindResult represents the Result of API
+type AutoScaleFindResult struct {
+	Total int `json:",omitempty"` // Total count of target resources
+	From  int `json:",omitempty"` // Current page number
+	Count int `json:",omitempty"` // Count of current page
+
+	AutoScale []*AutoScale `json:",omitempty" mapconv:"[]CommonServiceItems,omitempty,recursive"`
+}
+
+// Values returns find results
+func (r *AutoScaleFindResult) Values() []interface{} {
+	var results []interface{}
+	for _, v := range r.AutoScale {
+		results = append(results, v)
+	}
+	return results
+}
+
+// autoScaleCreateResult represents the Result of API
+type autoScaleCreateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	AutoScale *AutoScale `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// autoScaleReadResult represents the Result of API
+type autoScaleReadResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	AutoScale *AutoScale `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// autoScaleUpdateResult represents the Result of API
+type autoScaleUpdateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	AutoScale *AutoScale `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// autoScaleUpdateSettingsResult represents the Result of API
+type autoScaleUpdateSettingsResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	AutoScale *AutoScale `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// autoScaleStatusResult represents the Result of API
+type autoScaleStatusResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	AutoScaleStatus *AutoScaleStatus `json:",omitempty" mapconv:"AutoScale,omitempty,recursive"`
+}
+
 // BillByContractResult represents the Result of API
 type BillByContractResult struct {
 	Total int `json:",omitempty"` // Total count of target resources
