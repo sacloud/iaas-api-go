@@ -85,7 +85,7 @@ var (
 		"ModifiedAt",
 	}
 	createAutoScaleParam = &iaas.AutoScaleCreateRequest{
-		Name:        testutil.ResourceName("container-registry"),
+		Name:        testutil.ResourceName("auto-scale"),
 		Description: "desc",
 		Tags:        []string{"tag1", "tag2"},
 
@@ -110,7 +110,7 @@ var (
 		APIKeyID:     os.Getenv("SAKURACLOUD_API_KEY_ID"),
 	}
 	updateAutoScaleParam = &iaas.AutoScaleUpdateRequest{
-		Name:        testutil.ResourceName("container-registry-upd"),
+		Name:        testutil.ResourceName("auto-scale-upd"),
 		Description: "desc-upd",
 		Tags:        []string{"tag1-upd", "tag2-upd"},
 		IconID:      testIconID,
