@@ -97,9 +97,7 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
-			fields.AutoScaleServerPrefix(),
-			fields.AutoScaleCPUThresholdUp(),
-			fields.AutoScaleCPUThresholdDown(),
+			fields.AutoScaleCPUThreshold(),
 			fields.SettingsHash(),
 
 			// status
@@ -135,9 +133,7 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
-			fields.AutoScaleServerPrefix(),
-			fields.AutoScaleCPUThresholdUp(),
-			fields.AutoScaleCPUThresholdDown(),
+			fields.AutoScaleCPUThreshold(),
 			// status
 			fields.AutoScaleAPIKeyID(),
 		},
@@ -156,9 +152,7 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
-			fields.AutoScaleServerPrefix(),
-			fields.AutoScaleCPUThresholdUp(),
-			fields.AutoScaleCPUThresholdDown(),
+			fields.AutoScaleCPUThreshold(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -171,9 +165,7 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
-			fields.AutoScaleServerPrefix(),
-			fields.AutoScaleCPUThresholdUp(),
-			fields.AutoScaleCPUThresholdDown(),
+			fields.AutoScaleCPUThreshold(),
 			// settings hash
 			fields.SettingsHash(),
 		},
