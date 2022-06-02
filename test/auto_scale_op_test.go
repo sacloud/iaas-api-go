@@ -89,12 +89,14 @@ var (
 		Description: "desc",
 		Tags:        []string{"tag1", "tag2"},
 
-		Config:       fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
-		Zones:        []string{testutil.TestZone()},
-		ServerPrefix: autoScaleTestServerName,
-		Up:           80,
-		Down:         50,
-		APIKeyID:     os.Getenv("SAKURACLOUD_API_KEY_ID"),
+		Config: fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
+		Zones:  []string{testutil.TestZone()},
+		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
+			ServerPrefix: autoScaleTestServerName,
+			Up:           80,
+			Down:         50,
+		},
+		APIKeyID: os.Getenv("SAKURACLOUD_API_KEY_ID"),
 	}
 	createAutoScaleExpected = &iaas.AutoScale{
 		Name:         createAutoScaleParam.Name,
@@ -102,12 +104,14 @@ var (
 		Tags:         createAutoScaleParam.Tags,
 		Availability: types.Availabilities.Available,
 
-		Config:       fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
-		Zones:        []string{testutil.TestZone()},
-		ServerPrefix: autoScaleTestServerName,
-		Up:           80,
-		Down:         50,
-		APIKeyID:     os.Getenv("SAKURACLOUD_API_KEY_ID"),
+		Config: fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
+		Zones:  []string{testutil.TestZone()},
+		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
+			ServerPrefix: autoScaleTestServerName,
+			Up:           80,
+			Down:         50,
+		},
+		APIKeyID: os.Getenv("SAKURACLOUD_API_KEY_ID"),
 	}
 	updateAutoScaleParam = &iaas.AutoScaleUpdateRequest{
 		Name:        testutil.ResourceName("auto-scale-upd"),
@@ -115,11 +119,13 @@ var (
 		Tags:        []string{"tag1-upd", "tag2-upd"},
 		IconID:      testIconID,
 
-		Config:       fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
-		Zones:        []string{testutil.TestZone()},
-		ServerPrefix: autoScaleTestServerName,
-		Up:           81,
-		Down:         51,
+		Config: fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
+		Zones:  []string{testutil.TestZone()},
+		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
+			ServerPrefix: autoScaleTestServerName,
+			Up:           81,
+			Down:         51,
+		},
 	}
 	updateAutoScaleExpected = &iaas.AutoScale{
 		Name:         updateAutoScaleParam.Name,
@@ -128,12 +134,14 @@ var (
 		Availability: types.Availabilities.Available,
 		IconID:       testIconID,
 
-		Config:       fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
-		Zones:        []string{testutil.TestZone()},
-		ServerPrefix: autoScaleTestServerName,
-		Up:           81,
-		Down:         51,
-		APIKeyID:     os.Getenv("SAKURACLOUD_API_KEY_ID"),
+		Config: fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
+		Zones:  []string{testutil.TestZone()},
+		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
+			ServerPrefix: autoScaleTestServerName,
+			Up:           81,
+			Down:         51,
+		},
+		APIKeyID: os.Getenv("SAKURACLOUD_API_KEY_ID"),
 	}
 )
 

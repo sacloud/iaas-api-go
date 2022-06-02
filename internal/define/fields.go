@@ -2857,32 +2857,20 @@ func (f *fieldsDef) AutoScaleConfig() *dsl.FieldDesc {
 	}
 }
 
-func (f *fieldsDef) AutoScaleServerPrefix() *dsl.FieldDesc {
+func (f *fieldsDef) AutoScaleCPUThreshold() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPrefix",
-		Type: meta.TypeString,
-		Tags: &dsl.FieldTags{
-			MapConv: "Settings.CPUThresholdScaling.ServerPrefix",
+		Name: "CPUThresholdScaling",
+		Type: &dsl.Model{
+			Name:      "AutoScaleCPUThresholdScaling",
+			NakedType: meta.Static(naked.DatabaseSettingReplication{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("ServerPrefix", meta.TypeString),
+				fields.Def("Up", meta.TypeInt),
+				fields.Def("Down", meta.TypeInt),
+			},
 		},
-	}
-}
-
-func (f *fieldsDef) AutoScaleCPUThresholdUp() *dsl.FieldDesc {
-	return &dsl.FieldDesc{
-		Name: "Up",
-		Type: meta.TypeInt,
 		Tags: &dsl.FieldTags{
-			MapConv: "Settings.CPUThresholdScaling.Up",
-		},
-	}
-}
-
-func (f *fieldsDef) AutoScaleCPUThresholdDown() *dsl.FieldDesc {
-	return &dsl.FieldDesc{
-		Name: "Down",
-		Type: meta.TypeInt,
-		Tags: &dsl.FieldTags{
-			MapConv: "Settings.CPUThresholdScaling.Down",
+			MapConv: "Settings.CPUThresholdScaling,recursive",
 		},
 	}
 }

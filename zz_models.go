@@ -2103,57 +2103,51 @@ func (o *AutoBackupUpdateSettingsRequest) SetSettingsHash(v string) {
 
 // AutoScale represents API parameter/response structure
 type AutoScale struct {
-	ID           types.ID
-	Name         string
-	Description  string
-	Tags         types.Tags
-	Availability types.EAvailability
-	IconID       types.ID `mapconv:"Icon.ID"`
-	CreatedAt    time.Time
-	ModifiedAt   time.Time
-	Zones        []string `mapconv:"Settings.Zones"`
-	Config       string   `mapconv:"Settings.Config"`
-	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
-	APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+	ID                  types.ID
+	Name                string
+	Description         string
+	Tags                types.Tags
+	Availability        types.EAvailability
+	IconID              types.ID `mapconv:"Icon.ID"`
+	CreatedAt           time.Time
+	ModifiedAt          time.Time
+	Zones               []string                      `mapconv:"Settings.Zones"`
+	Config              string                        `mapconv:"Settings.Config"`
+	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
+	APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScale) setDefaults() interface{} {
 	return &struct {
-		ID           types.ID
-		Name         string
-		Description  string
-		Tags         types.Tags
-		Availability types.EAvailability
-		IconID       types.ID `mapconv:"Icon.ID"`
-		CreatedAt    time.Time
-		ModifiedAt   time.Time
-		Zones        []string `mapconv:"Settings.Zones"`
-		Config       string   `mapconv:"Settings.Config"`
-		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
-		APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+		ID                  types.ID
+		Name                string
+		Description         string
+		Tags                types.Tags
+		Availability        types.EAvailability
+		IconID              types.ID `mapconv:"Icon.ID"`
+		CreatedAt           time.Time
+		ModifiedAt          time.Time
+		Zones               []string                      `mapconv:"Settings.Zones"`
+		Config              string                        `mapconv:"Settings.Config"`
+		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
+		APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
 	}{
-		ID:           o.GetID(),
-		Name:         o.GetName(),
-		Description:  o.GetDescription(),
-		Tags:         o.GetTags(),
-		Availability: o.GetAvailability(),
-		IconID:       o.GetIconID(),
-		CreatedAt:    o.GetCreatedAt(),
-		ModifiedAt:   o.GetModifiedAt(),
-		Zones:        o.GetZones(),
-		Config:       o.GetConfig(),
-		ServerPrefix: o.GetServerPrefix(),
-		Up:           o.GetUp(),
-		Down:         o.GetDown(),
-		SettingsHash: o.GetSettingsHash(),
-		APIKeyID:     o.GetAPIKeyID(),
+		ID:                  o.GetID(),
+		Name:                o.GetName(),
+		Description:         o.GetDescription(),
+		Tags:                o.GetTags(),
+		Availability:        o.GetAvailability(),
+		IconID:              o.GetIconID(),
+		CreatedAt:           o.GetCreatedAt(),
+		ModifiedAt:          o.GetModifiedAt(),
+		Zones:               o.GetZones(),
+		Config:              o.GetConfig(),
+		CPUThresholdScaling: o.GetCPUThresholdScaling(),
+		SettingsHash:        o.GetSettingsHash(),
+		APIKeyID:            o.GetAPIKeyID(),
 	}
 }
 
@@ -2297,34 +2291,14 @@ func (o *AutoScale) SetConfig(v string) {
 	o.Config = v
 }
 
-// GetServerPrefix returns value of ServerPrefix
-func (o *AutoScale) GetServerPrefix() string {
-	return o.ServerPrefix
+// GetCPUThresholdScaling returns value of CPUThresholdScaling
+func (o *AutoScale) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
+	return o.CPUThresholdScaling
 }
 
-// SetServerPrefix sets value to ServerPrefix
-func (o *AutoScale) SetServerPrefix(v string) {
-	o.ServerPrefix = v
-}
-
-// GetUp returns value of Up
-func (o *AutoScale) GetUp() int {
-	return o.Up
-}
-
-// SetUp sets value to Up
-func (o *AutoScale) SetUp(v int) {
-	o.Up = v
-}
-
-// GetDown returns value of Down
-func (o *AutoScale) GetDown() int {
-	return o.Down
-}
-
-// SetDown sets value to Down
-func (o *AutoScale) SetDown(v int) {
-	o.Down = v
+// SetCPUThresholdScaling sets value to CPUThresholdScaling
+func (o *AutoScale) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
+	o.CPUThresholdScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -2348,51 +2322,99 @@ func (o *AutoScale) SetAPIKeyID(v string) {
 }
 
 /*************************************************
+* AutoScaleCPUThresholdScaling
+*************************************************/
+
+// AutoScaleCPUThresholdScaling represents API parameter/response structure
+type AutoScaleCPUThresholdScaling struct {
+	ServerPrefix string
+	Up           int
+	Down         int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleCPUThresholdScaling) setDefaults() interface{} {
+	return &struct {
+		ServerPrefix string
+		Up           int
+		Down         int
+	}{
+		ServerPrefix: o.GetServerPrefix(),
+		Up:           o.GetUp(),
+		Down:         o.GetDown(),
+	}
+}
+
+// GetServerPrefix returns value of ServerPrefix
+func (o *AutoScaleCPUThresholdScaling) GetServerPrefix() string {
+	return o.ServerPrefix
+}
+
+// SetServerPrefix sets value to ServerPrefix
+func (o *AutoScaleCPUThresholdScaling) SetServerPrefix(v string) {
+	o.ServerPrefix = v
+}
+
+// GetUp returns value of Up
+func (o *AutoScaleCPUThresholdScaling) GetUp() int {
+	return o.Up
+}
+
+// SetUp sets value to Up
+func (o *AutoScaleCPUThresholdScaling) SetUp(v int) {
+	o.Up = v
+}
+
+// GetDown returns value of Down
+func (o *AutoScaleCPUThresholdScaling) GetDown() int {
+	return o.Down
+}
+
+// SetDown sets value to Down
+func (o *AutoScaleCPUThresholdScaling) SetDown(v int) {
+	o.Down = v
+}
+
+/*************************************************
 * AutoScaleCreateRequest
 *************************************************/
 
 // AutoScaleCreateRequest represents API parameter/response structure
 type AutoScaleCreateRequest struct {
-	Name         string
-	Description  string
-	Tags         types.Tags
-	IconID       types.ID `mapconv:"Icon.ID"`
-	Zones        []string `mapconv:"Settings.Zones"`
-	Config       string   `mapconv:"Settings.Config"`
-	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-	APIKeyID     string   `mapconv:"Status.APIKey.ID"`
+	Name                string
+	Description         string
+	Tags                types.Tags
+	IconID              types.ID                      `mapconv:"Icon.ID"`
+	Zones               []string                      `mapconv:"Settings.Zones"`
+	Config              string                        `mapconv:"Settings.Config"`
+	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 	return &struct {
-		Name         string
-		Description  string
-		Tags         types.Tags
-		IconID       types.ID `mapconv:"Icon.ID"`
-		Zones        []string `mapconv:"Settings.Zones"`
-		Config       string   `mapconv:"Settings.Config"`
-		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-		APIKeyID     string   `mapconv:"Status.APIKey.ID"`
-		Class        string   `mapconv:"Provider.Class"`
-		ServiceClass string
+		Name                string
+		Description         string
+		Tags                types.Tags
+		IconID              types.ID                      `mapconv:"Icon.ID"`
+		Zones               []string                      `mapconv:"Settings.Zones"`
+		Config              string                        `mapconv:"Settings.Config"`
+		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
+		Class               string                        `mapconv:"Provider.Class"`
+		ServiceClass        string
 	}{
-		Name:         o.GetName(),
-		Description:  o.GetDescription(),
-		Tags:         o.GetTags(),
-		IconID:       o.GetIconID(),
-		Zones:        o.GetZones(),
-		Config:       o.GetConfig(),
-		ServerPrefix: o.GetServerPrefix(),
-		Up:           o.GetUp(),
-		Down:         o.GetDown(),
-		APIKeyID:     o.GetAPIKeyID(),
-		Class:        "autoscale",
-		ServiceClass: "cloud/autoscale/1",
+		Name:                o.GetName(),
+		Description:         o.GetDescription(),
+		Tags:                o.GetTags(),
+		IconID:              o.GetIconID(),
+		Zones:               o.GetZones(),
+		Config:              o.GetConfig(),
+		CPUThresholdScaling: o.GetCPUThresholdScaling(),
+		APIKeyID:            o.GetAPIKeyID(),
+		Class:               "autoscale",
+		ServiceClass:        "cloud/autoscale/1",
 	}
 }
 
@@ -2476,34 +2498,14 @@ func (o *AutoScaleCreateRequest) SetConfig(v string) {
 	o.Config = v
 }
 
-// GetServerPrefix returns value of ServerPrefix
-func (o *AutoScaleCreateRequest) GetServerPrefix() string {
-	return o.ServerPrefix
+// GetCPUThresholdScaling returns value of CPUThresholdScaling
+func (o *AutoScaleCreateRequest) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
+	return o.CPUThresholdScaling
 }
 
-// SetServerPrefix sets value to ServerPrefix
-func (o *AutoScaleCreateRequest) SetServerPrefix(v string) {
-	o.ServerPrefix = v
-}
-
-// GetUp returns value of Up
-func (o *AutoScaleCreateRequest) GetUp() int {
-	return o.Up
-}
-
-// SetUp sets value to Up
-func (o *AutoScaleCreateRequest) SetUp(v int) {
-	o.Up = v
-}
-
-// GetDown returns value of Down
-func (o *AutoScaleCreateRequest) GetDown() int {
-	return o.Down
-}
-
-// SetDown sets value to Down
-func (o *AutoScaleCreateRequest) SetDown(v int) {
-	o.Down = v
+// SetCPUThresholdScaling sets value to CPUThresholdScaling
+func (o *AutoScaleCreateRequest) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
+	o.CPUThresholdScaling = v
 }
 
 // GetAPIKeyID returns value of APIKeyID
@@ -2522,42 +2524,36 @@ func (o *AutoScaleCreateRequest) SetAPIKeyID(v string) {
 
 // AutoScaleUpdateRequest represents API parameter/response structure
 type AutoScaleUpdateRequest struct {
-	Name         string
-	Description  string
-	Tags         types.Tags
-	IconID       types.ID `mapconv:"Icon.ID"`
-	Zones        []string `mapconv:"Settings.Zones"`
-	Config       string   `mapconv:"Settings.Config"`
-	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	Name                string
+	Description         string
+	Tags                types.Tags
+	IconID              types.ID                      `mapconv:"Icon.ID"`
+	Zones               []string                      `mapconv:"Settings.Zones"`
+	Config              string                        `mapconv:"Settings.Config"`
+	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 	return &struct {
-		Name         string
-		Description  string
-		Tags         types.Tags
-		IconID       types.ID `mapconv:"Icon.ID"`
-		Zones        []string `mapconv:"Settings.Zones"`
-		Config       string   `mapconv:"Settings.Config"`
-		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+		Name                string
+		Description         string
+		Tags                types.Tags
+		IconID              types.ID                      `mapconv:"Icon.ID"`
+		Zones               []string                      `mapconv:"Settings.Zones"`
+		Config              string                        `mapconv:"Settings.Config"`
+		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Name:         o.GetName(),
-		Description:  o.GetDescription(),
-		Tags:         o.GetTags(),
-		IconID:       o.GetIconID(),
-		Zones:        o.GetZones(),
-		Config:       o.GetConfig(),
-		ServerPrefix: o.GetServerPrefix(),
-		Up:           o.GetUp(),
-		Down:         o.GetDown(),
-		SettingsHash: o.GetSettingsHash(),
+		Name:                o.GetName(),
+		Description:         o.GetDescription(),
+		Tags:                o.GetTags(),
+		IconID:              o.GetIconID(),
+		Zones:               o.GetZones(),
+		Config:              o.GetConfig(),
+		CPUThresholdScaling: o.GetCPUThresholdScaling(),
+		SettingsHash:        o.GetSettingsHash(),
 	}
 }
 
@@ -2641,34 +2637,14 @@ func (o *AutoScaleUpdateRequest) SetConfig(v string) {
 	o.Config = v
 }
 
-// GetServerPrefix returns value of ServerPrefix
-func (o *AutoScaleUpdateRequest) GetServerPrefix() string {
-	return o.ServerPrefix
+// GetCPUThresholdScaling returns value of CPUThresholdScaling
+func (o *AutoScaleUpdateRequest) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
+	return o.CPUThresholdScaling
 }
 
-// SetServerPrefix sets value to ServerPrefix
-func (o *AutoScaleUpdateRequest) SetServerPrefix(v string) {
-	o.ServerPrefix = v
-}
-
-// GetUp returns value of Up
-func (o *AutoScaleUpdateRequest) GetUp() int {
-	return o.Up
-}
-
-// SetUp sets value to Up
-func (o *AutoScaleUpdateRequest) SetUp(v int) {
-	o.Up = v
-}
-
-// GetDown returns value of Down
-func (o *AutoScaleUpdateRequest) GetDown() int {
-	return o.Down
-}
-
-// SetDown sets value to Down
-func (o *AutoScaleUpdateRequest) SetDown(v int) {
-	o.Down = v
+// SetCPUThresholdScaling sets value to CPUThresholdScaling
+func (o *AutoScaleUpdateRequest) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
+	o.CPUThresholdScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -2687,30 +2663,24 @@ func (o *AutoScaleUpdateRequest) SetSettingsHash(v string) {
 
 // AutoScaleUpdateSettingsRequest represents API parameter/response structure
 type AutoScaleUpdateSettingsRequest struct {
-	Zones        []string `mapconv:"Settings.Zones"`
-	Config       string   `mapconv:"Settings.Config"`
-	ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-	Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-	Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	Zones               []string                      `mapconv:"Settings.Zones"`
+	Config              string                        `mapconv:"Settings.Config"`
+	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		Zones        []string `mapconv:"Settings.Zones"`
-		Config       string   `mapconv:"Settings.Config"`
-		ServerPrefix string   `mapconv:"Settings.CPUThresholdScaling.ServerPrefix"`
-		Up           int      `mapconv:"Settings.CPUThresholdScaling.Up"`
-		Down         int      `mapconv:"Settings.CPUThresholdScaling.Down"`
-		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+		Zones               []string                      `mapconv:"Settings.Zones"`
+		Config              string                        `mapconv:"Settings.Config"`
+		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Zones:        o.GetZones(),
-		Config:       o.GetConfig(),
-		ServerPrefix: o.GetServerPrefix(),
-		Up:           o.GetUp(),
-		Down:         o.GetDown(),
-		SettingsHash: o.GetSettingsHash(),
+		Zones:               o.GetZones(),
+		Config:              o.GetConfig(),
+		CPUThresholdScaling: o.GetCPUThresholdScaling(),
+		SettingsHash:        o.GetSettingsHash(),
 	}
 }
 
@@ -2734,34 +2704,14 @@ func (o *AutoScaleUpdateSettingsRequest) SetConfig(v string) {
 	o.Config = v
 }
 
-// GetServerPrefix returns value of ServerPrefix
-func (o *AutoScaleUpdateSettingsRequest) GetServerPrefix() string {
-	return o.ServerPrefix
+// GetCPUThresholdScaling returns value of CPUThresholdScaling
+func (o *AutoScaleUpdateSettingsRequest) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
+	return o.CPUThresholdScaling
 }
 
-// SetServerPrefix sets value to ServerPrefix
-func (o *AutoScaleUpdateSettingsRequest) SetServerPrefix(v string) {
-	o.ServerPrefix = v
-}
-
-// GetUp returns value of Up
-func (o *AutoScaleUpdateSettingsRequest) GetUp() int {
-	return o.Up
-}
-
-// SetUp sets value to Up
-func (o *AutoScaleUpdateSettingsRequest) SetUp(v int) {
-	o.Up = v
-}
-
-// GetDown returns value of Down
-func (o *AutoScaleUpdateSettingsRequest) GetDown() int {
-	return o.Down
-}
-
-// SetDown sets value to Down
-func (o *AutoScaleUpdateSettingsRequest) SetDown(v int) {
-	o.Down = v
+// SetCPUThresholdScaling sets value to CPUThresholdScaling
+func (o *AutoScaleUpdateSettingsRequest) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
+	o.CPUThresholdScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash
