@@ -92,7 +92,7 @@ func (d DatabaseSettingSourceNetworks) MarshalJSON() ([]byte, error) {
 	type alias DatabaseSettingSourceNetworks
 	dest := alias(d)
 
-	if dest == nil || len(dest) == 0 {
+	if len(dest) == 0 {
 		dest = append(dest, "0.0.0.0/0")
 	}
 
