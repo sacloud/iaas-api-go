@@ -36,7 +36,7 @@ func NewDNSRecord(t types.EDNSRecordType, name, rdata string, ttl int) *DNSRecor
 		types.DNSRecordTypes.ALIAS,
 		types.DNSRecordTypes.PTR:
 		if rdata != "" && !strings.HasSuffix(rdata, ".") {
-			rdata = rdata + "."
+			rdata += "."
 		}
 	}
 
@@ -65,7 +65,7 @@ func (r *MXRecord) Type() types.EDNSRecordType {
 func (r *MXRecord) ToRecord() *DNSRecord {
 	rdata := r.RData
 	if rdata != "" && !strings.HasSuffix(rdata, ".") {
-		rdata = rdata + "."
+		rdata += "."
 	}
 	return &DNSRecord{
 		Name:  r.Name,

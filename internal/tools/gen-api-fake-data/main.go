@@ -59,7 +59,7 @@ func main() {
 			Template:   generator.template,
 			Parameter:  param,
 		})
-		log.Printf("generated: %s\n", filepath.Join(generator.destination))
+		log.Printf("generated: %s\n", filepath.Join(tools.ProjectRootPath(), generator.destination))
 	}
 }
 

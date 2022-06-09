@@ -34,7 +34,7 @@ func init() {
 }
 
 func random(max int) int {
-	return rand.Intn(max)
+	return rand.Intn(max) // nolint:gosec
 }
 
 func newErrorNotFound(resourceKey string, id interface{}) error {

@@ -20,7 +20,7 @@ import "github.com/sacloud/packages-go/size"
  MigratedMB - MigratedGB
 ************************************************/
 
-//MigratedMB is accessor interface of MigratedMB field
+// MigratedMB is accessor interface of MigratedMB field
 type MigratedMB interface {
 	GetMigratedMB() int
 	SetMigratedMB(size int)

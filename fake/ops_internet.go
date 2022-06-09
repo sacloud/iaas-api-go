@@ -276,7 +276,7 @@ func (o *InternetOp) UpdateSubnet(ctx context.Context, zone string, id types.ID,
 	max := net.ParseIP(maxAddr).To4()[3]
 
 	var i byte
-	for (min + i) <= max { //境界含む
+	for (min + i) <= max { // 境界含む
 		ip := net.IPv4(baseIP[0], baseIP[1], baseIP[2], baseIP[3]+i)
 		addresses = append(addresses, ip.String())
 		i++

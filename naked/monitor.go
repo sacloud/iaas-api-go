@@ -156,7 +156,7 @@ type MonitorCPUTimeValues []*MonitorCPUTimeValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorCPUTimeValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -190,7 +190,7 @@ type MonitorDiskValues []*MonitorDiskValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorDiskValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -224,7 +224,7 @@ type MonitorInterfaceValues []*MonitorInterfaceValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorInterfaceValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -258,7 +258,7 @@ type MonitorRouterValues []*MonitorRouterValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorRouterValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -298,7 +298,7 @@ type MonitorDatabaseValues []*MonitorDatabaseValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorDatabaseValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -331,7 +331,7 @@ type MonitorFreeDiskSizeValues []*MonitorFreeDiskSizeValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorFreeDiskSizeValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -364,7 +364,7 @@ type MonitorResponseTimeSecValues []*MonitorResponseTimeSecValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorResponseTimeSecValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -398,7 +398,7 @@ type MonitorLinkValues []*MonitorLinkValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorLinkValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -432,7 +432,7 @@ type MonitorConnectionValues []*MonitorConnectionValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorConnectionValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -466,7 +466,7 @@ type MonitorLocalRouterValues []*MonitorLocalRouterValue
 
 // UnmarshalJSON アクティビティモニタ向けUnmarshalJSON実装
 func (m *MonitorLocalRouterValues) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}
@@ -513,7 +513,7 @@ type rawMonitorValue struct {
 
 // UnmarshalJSON JSONアンマーシャル(配列、オブジェクトが混在するためここで対応)
 func (m *rawMonitorValue) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `[]` {
 		return nil
 	}

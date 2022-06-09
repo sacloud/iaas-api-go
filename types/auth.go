@@ -93,7 +93,7 @@ func (p *ExternalPermission) PermittedEventLog() bool {
 }
 
 // TODO オブジェクトストレージの権限の参照方法が不明
-//func (p *ExternalPermission) PermittedObjectStorage() bool {
+// func (p *ExternalPermission) PermittedObjectStorage() bool {
 //	return strings.Contains(string(*p), "vps")
 //}
 

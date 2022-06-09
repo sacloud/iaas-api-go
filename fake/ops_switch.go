@@ -107,11 +107,11 @@ func (o *SwitchOp) ConnectToBridge(ctx context.Context, zone string, id types.ID
 	copySameNameField(value, switchInZone)
 	bridge.SwitchInZone = switchInZone
 
-	//bridge.BridgeInfo = append(bridge.BridgeInfo, &iaas.BridgeInfo{
+	// bridge.BridgeInfo = append(bridge.BridgeInfo, &iaas.BridgeInfo{
 	//	ID:     value.ID,
 	//	Name:   value.Name,
 	//	ZoneID: zoneIDs[zone],
-	//})
+	// })
 
 	putBridge(zone, bridge)
 	putSwitch(zone, value)
@@ -135,17 +135,17 @@ func (o *SwitchOp) DisconnectFromBridge(ctx context.Context, zone string, id typ
 		return fmt.Errorf("DisconnectFromBridge is failed: %s", err)
 	}
 
-	//var bridgeInfo []*iaas.BridgeInfo
-	//for _, i := range bridge.BridgeInfo {
+	// var bridgeInfo []*iaas.BridgeInfo
+	// for _, i := range bridge.BridgeInfo {
 	//	if i.ID != value.ID {
 	//		bridgeInfo = append(bridgeInfo, i)
 	//	}
-	//}
+	// }
 
 	value.BridgeID = types.ID(0)
 	bridge.SwitchInZone = nil
 	// fakeドライバーではBridgeInfoに非対応
-	//bridge.BridgeInfo = bridgeInfo
+	// bridge.BridgeInfo = bridgeInfo
 
 	putBridge(zone, bridge)
 	putSwitch(zone, value)

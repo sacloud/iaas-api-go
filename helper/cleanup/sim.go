@@ -40,7 +40,7 @@ func DeleteSIM(ctx context.Context, client iaas.SIMAPI, id types.ID) error {
 // DeleteSIMWithReferencedCheck 他リソースからの参照を確認した上でリソースの削除を行う
 func DeleteSIMWithReferencedCheck(ctx context.Context, caller iaas.APICaller, zones []string, id types.ID, option query.CheckReferencedOption) error {
 	if err := query.WaitWhileSIMIsReferenced(ctx, caller, zones, id, option); err != nil {
-		return fmt.Errorf("SIM[%s] is still being used by other resources: %s", id, err)
+		return fmt.Errorf("sim[%s] is still being used by other resources: %s", id, err)
 	}
 	return DeleteSIM(ctx, iaas.NewSIMOp(caller), id)
 }

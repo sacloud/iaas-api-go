@@ -686,8 +686,8 @@ func TestProxyLBOpLetsEncryptAndHealth(t *testing.T) {
 	if !strings.HasSuffix(altName, zoneName) {
 		t.Fatal("$SAKURACLOUD_PROXYLB_ALT_NAME does not have suffix $SAKURACLOUD_PROXYLB_ZONE_NAME")
 	}
-	recordName1 := strings.Replace(commonName, "."+zoneName, "", -1)
-	recordName2 := strings.Replace(altName, "."+zoneName, "", -1)
+	recordName1 := strings.ReplaceAll(commonName, "."+zoneName, "")
+	recordName2 := strings.ReplaceAll(altName, "."+zoneName, "")
 
 	ctx := context.Background()
 	proxyLBOp := iaas.NewProxyLBOp(singletonAPICaller())
@@ -698,7 +698,7 @@ func TestProxyLBOpLetsEncryptAndHealth(t *testing.T) {
 		return
 	}
 	defer func() {
-		proxyLBOp.Delete(ctx, proxyLB.ID) // nolint - ignore error
+		proxyLBOp.Delete(ctx, proxyLB.ID) // nolint:errcheck
 	}()
 
 	// read DNS
@@ -735,7 +735,7 @@ func TestProxyLBOpLetsEncryptAndHealth(t *testing.T) {
 				records = append(records, dns.Records[i])
 			}
 		}
-		dnsOp.Update(ctx, dns.ID, &iaas.DNSUpdateRequest{Records: records}) // nolint - ignore error
+		dnsOp.Update(ctx, dns.ID, &iaas.DNSUpdateRequest{Records: records}) // nolint:errcheck
 	}()
 
 	time.Sleep(time.Minute)

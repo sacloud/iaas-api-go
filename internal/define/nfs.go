@@ -86,7 +86,7 @@ var (
 			fields.AppliancePlanID(),
 			// switch
 			fields.ApplianceSwitchID(),
-			//fields.Switch(),
+			// fields.Switch(),
 			// remark
 			fields.RemarkDefaultRoute(),
 			fields.RemarkNetworkMaskLen(),

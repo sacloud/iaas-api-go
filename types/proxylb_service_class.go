@@ -39,11 +39,11 @@ func ProxyLBServiceClass(plan EProxyLBPlan, region EProxyLBRegion) string {
 // ProxyLBPlanFromServiceClass サービスクラスからプランを算出
 func ProxyLBPlanFromServiceClass(serviceClass string) EProxyLBPlan {
 	strPlan := serviceClass
-	strPlan = strings.Replace(strPlan, `"`, "", -1)
-	strPlan = strings.Replace(strPlan, proxyLBServiceClassPrefix, "", -1)
-	strPlan = strings.Replace(strPlan, proxyLBServiceClassAnycastPrefix, "", -1)
-	strPlan = strings.Replace(strPlan, proxyLBServiceClassPrefixEscaped, "", -1)
-	strPlan = strings.Replace(strPlan, proxyLBServiceClassAnycastPrefixEscaped, "", -1)
+	strPlan = strings.ReplaceAll(strPlan, `"`, "")
+	strPlan = strings.ReplaceAll(strPlan, proxyLBServiceClassPrefix, "")
+	strPlan = strings.ReplaceAll(strPlan, proxyLBServiceClassAnycastPrefix, "")
+	strPlan = strings.ReplaceAll(strPlan, proxyLBServiceClassPrefixEscaped, "")
+	strPlan = strings.ReplaceAll(strPlan, proxyLBServiceClassAnycastPrefixEscaped, "")
 
 	plan, err := strconv.Atoi(strPlan)
 	if err != nil {

@@ -19,7 +19,7 @@ import "encoding/json"
 // APIResult APIからの戻り値"Success"の別表現
 //
 // Successにはbool以外にも"Accepted"などの文字列が返ることがある(例:アプライアンス)
-// このためAPIResultでUnmarhslJSONを実装してラップする
+// このためAPIResultでUnmarshalJSONを実装してラップする
 type APIResult int
 
 const (
@@ -46,11 +46,9 @@ func (r *APIResult) UnmarshalJSON(data []byte) error {
 			return err
 		}
 
-		switch s {
-		case "Accepted":
+		if s == "Accepted" {
 			*r = ResultAccepted
 		}
-
 		return nil
 	}
 

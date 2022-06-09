@@ -56,7 +56,7 @@ func main() {
 			PreventOverwriting: true,
 		})
 		if wrote {
-			log.Printf("generated: %s\n", filepath.Join(dest))
+			log.Printf("generated: %s\n", filepath.Join(tools.ProjectRootPath(), dest))
 		}
 	}
 
