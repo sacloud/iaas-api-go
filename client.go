@@ -39,7 +39,7 @@ var (
 var (
 	// APIDefaultZone デフォルトゾーン、グローバルリソースなどで利用される
 	APIDefaultZone = "is1a"
-	//DefaultUserAgent デフォルトのユーザーエージェント
+	// DefaultUserAgent デフォルトのユーザーエージェント
 	DefaultUserAgent = fmt.Sprintf(
 		"sacloud/iaas-api-go/v%s (%s/%s; +https://github.com/sacloud/iaas-api-go) %s",
 		Version,
@@ -56,9 +56,9 @@ var (
 
 const (
 	// APIAccessTokenEnvKey APIアクセストークンの環境変数名
-	APIAccessTokenEnvKey = "SAKURACLOUD_ACCESS_TOKEN"
+	APIAccessTokenEnvKey = "SAKURACLOUD_ACCESS_TOKEN" // nolint:gosec
 	// APIAccessSecretEnvKey APIアクセスシークレットの環境変数名
-	APIAccessSecretEnvKey = "SAKURACLOUD_ACCESS_TOKEN_SECRET"
+	APIAccessSecretEnvKey = "SAKURACLOUD_ACCESS_TOKEN_SECRET" // nolint:gosec
 )
 
 // APICaller API呼び出し時に利用するトランスポートのインターフェース iaas.Clientなどで実装される
@@ -111,7 +111,7 @@ func (c *Client) Do(ctx context.Context, method, uri string, body interface{}) (
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close() // nolint - ignore error
+	defer resp.Body.Close()
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {

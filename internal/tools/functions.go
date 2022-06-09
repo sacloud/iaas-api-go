@@ -55,7 +55,7 @@ func WriteFileWithTemplate(config *TemplateConfig) bool {
 	}
 
 	// write to file
-	if err := os.WriteFile(config.OutputPath, Sformat(buf.Bytes()), 0644); err != nil {
+	if err := os.WriteFile(config.OutputPath, Sformat(buf.Bytes()), 0644); err != nil { // nolint:gosec
 		log.Fatalf("writing output: %s", err)
 	}
 	return true

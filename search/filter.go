@@ -78,7 +78,7 @@ func convertToValidFilterCondition(v interface{}) (string, error) {
 }
 
 func escapeFilterString(s string) string {
-	//HACK さくらのクラウド側でqueryStringでの+エスケープに対応していないため、
+	// HACK さくらのクラウド側でqueryStringでの+エスケープに対応していないため、
 	// %20にエスケープされるurl.Pathを利用する。
 	// http://qiita.com/shibukawa/items/c0730092371c0e243f62
 	//

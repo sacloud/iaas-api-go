@@ -97,7 +97,7 @@ func (o *BillOp) Read(ctx context.Context, id types.ID) (*iaas.BillReadResult, e
 }
 
 // Details is fake implementation
-func (o *BillOp) Details(ctx context.Context, MemberCode string, id types.ID) (*iaas.BillDetailsResult, error) {
+func (o *BillOp) Details(ctx context.Context, memberCode string, id types.ID) (*iaas.BillDetailsResult, error) {
 	rawResults := ds().Get(o.key+"Details", iaas.APIDefaultZone, id)
 	if rawResults == nil {
 		return nil, newErrorNotFound(o.key+"Details", id)
@@ -120,7 +120,7 @@ func (o *BillOp) Details(ctx context.Context, MemberCode string, id types.ID) (*
 }
 
 // DetailsCSV is fake implementation
-func (o *BillOp) DetailsCSV(ctx context.Context, MemberCode string, id types.ID) (*iaas.BillDetailCSV, error) {
+func (o *BillOp) DetailsCSV(ctx context.Context, memberCode string, id types.ID) (*iaas.BillDetailCSV, error) {
 	rawResults := ds().Get(o.key+"Details", iaas.APIDefaultZone, id)
 	if rawResults == nil {
 		return nil, newErrorNotFound(o.key+"Details", id)

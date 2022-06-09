@@ -30,7 +30,7 @@ type PacketFilter struct {
 	Expression          PacketFilterExpressions `yaml:"expression"`
 	ExpressionHash      string                  `json:",omitempty" yaml:"expression_hash,omitempty" structs:",omitempty"`
 	CreatedAt           time.Time               `json:",omitempty" yaml:"created_at,omitempty" structs:",omitempty"`
-	//Notice              interface{}               `json:"Notice"`
+	// Notice              interface{}               `json:"Notice"`
 }
 
 // PacketFilterExpressions パケットフィルターのルール

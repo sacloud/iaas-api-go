@@ -57,7 +57,7 @@ func (f *StringFlag) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON 文字列に対応するためのUnmarshalJSON実装
 func (f *StringFlag) UnmarshalJSON(b []byte) error {
-	s := strings.Replace(strings.ToLower(string(b)), `"`, ``, -1)
+	s := strings.ReplaceAll(strings.ToLower(string(b)), `"`, ``)
 	res := false
 	for _, strTrue := range trueStrings {
 		if s == strTrue {

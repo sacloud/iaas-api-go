@@ -161,7 +161,7 @@ func Static(v interface{}) *StaticType {
 		// noop
 	case reflect.Ptr:
 		// TODO どう実装する？
-		//return Static(reflect.ValueOf(v).Elem().Interface())
+		// return Static(reflect.ValueOf(v).Elem().Interface())
 	default:
 		log.Panicf("unsupported Kind: %s", t.Kind())
 		return nil
@@ -175,7 +175,7 @@ func Static(v interface{}) *StaticType {
 }
 
 //
-//func ToPtr(t Type) *StaticType {
+// func ToPtr(t Type) *StaticType {
 //	st, ok := t.(*StaticType)
 //	if !ok {
 //		log.Fatal("unsupported Type", t)

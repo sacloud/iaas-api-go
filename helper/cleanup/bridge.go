@@ -26,7 +26,7 @@ import (
 // DeleteBridge 他リソースからの参照を確認した上でリソースの削除を行う
 func DeleteBridge(ctx context.Context, caller iaas.APICaller, zone string, zones []string, id types.ID, option query.CheckReferencedOption) error {
 	if err := query.WaitWhileBridgeIsReferenced(ctx, caller, zones, id, option); err != nil {
-		return fmt.Errorf("Bridge[%s] is still being used by other resources: %s", id, err)
+		return fmt.Errorf("bridge[%s] is still being used by other resources: %s", id, err)
 	}
 	return iaas.NewBridgeOp(caller).Delete(ctx, zone, id)
 }

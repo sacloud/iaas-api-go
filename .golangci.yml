@@ -9,19 +9,46 @@ linters:
   disable-all: true
   enable:
     - deadcode
+    - depguard
     - errcheck
+    - exportloopref
+    - gocritic
     - gofmt
     - goimports
+    - goprintffuncname
+    - gosec
     - gosimple
     - govet
     - ineffassign
-    - nakedret
     - misspell
+    - nakedret
+    - nolintlint
     - revive
+    - stylecheck
     - typecheck
-    - unused
     - unconvert
+    - unused
     - varcheck
-    - vet
-    - vetshadow
     - whitespace
+
+  # don't enable:
+  #  - asciicheck
+  #  - dogsled
+  #  - dupl
+  #  - funlen
+  #  - gochecknoinits
+  #  - gochecknoglobals
+  #  - gocognit
+  #  - goconst
+  #  - gocyclo
+  #  - gomnd
+  #  - godot
+  #  - godox
+  #  - goerr113
+  #  - lll
+  #  - prealloc
+  #  - staticcheck
+  #  - structcheck
+  #  - testpackage
+  #  - unparam
+  #  - wsl

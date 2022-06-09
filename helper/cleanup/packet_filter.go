@@ -26,7 +26,7 @@ import (
 // DeletePacketFilter 他のリソースから参照されていないかを確認した上で削除する
 func DeletePacketFilter(ctx context.Context, caller iaas.APICaller, zone string, id types.ID, option query.CheckReferencedOption) error {
 	if err := query.WaitWhilePacketFilterIsReferenced(ctx, caller, zone, id, option); err != nil {
-		return fmt.Errorf("PacketFilter[%s] is still being used by other resources: %s", id, err)
+		return fmt.Errorf("packet-filter[%s] is still being used by other resources: %s", id, err)
 	}
 	return iaas.NewPacketFilterOp(caller).Delete(ctx, zone, id)
 }

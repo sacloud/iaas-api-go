@@ -38,7 +38,7 @@ func TestInterface_Operations(t *testing.T) {
 				MemoryMB: 1 * size.GiB,
 				//ConnectedSwitches: []*ConnectedSwitch{
 				//	{Scope: types.Scopes.Shared},
-				//},
+				// },
 				ServerPlanCommitment: types.Commitments.Standard,
 				Name:                 testutil.ResourceName("server-with-interface"),
 			})

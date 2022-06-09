@@ -91,7 +91,7 @@ var (
 			fields.InstanceStatus(),
 			fields.InstanceStatusChangedAt(),
 			// interfaces
-			//fields.Interfaces(),
+			// fields.Interfaces(),
 			// plan
 			fields.AppliancePlanID(),
 			// switch

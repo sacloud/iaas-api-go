@@ -26,7 +26,7 @@ import (
 // DeleteCDROM 他のリソースから参照されていないかを確認した上で削除する
 func DeleteCDROM(ctx context.Context, caller iaas.APICaller, zone string, id types.ID, option query.CheckReferencedOption) error {
 	if err := query.WaitWhileCDROMIsReferenced(ctx, caller, zone, id, option); err != nil {
-		return fmt.Errorf("CD-ROM[%s] is still being used by other resources: %s", id, err)
+		return fmt.Errorf("cd-rom[%s] is still being used by other resources: %s", id, err)
 	}
 	return iaas.NewCDROMOp(caller).Delete(ctx, zone, id)
 }

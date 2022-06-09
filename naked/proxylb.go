@@ -281,7 +281,7 @@ func (s ProxyLBCertificates) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON UnmarshalJSON(AdditionalCertsが空の場合に空文字を返す問題への対応)
 func (p *ProxyLBAdditionalCerts) UnmarshalJSON(data []byte) error {
-	targetData := strings.Replace(strings.Replace(string(data), " ", "", -1), "\n", "", -1)
+	targetData := strings.ReplaceAll(strings.ReplaceAll(string(data), " ", ""), "\n", "")
 	if targetData == `` {
 		return nil
 	}

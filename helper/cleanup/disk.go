@@ -26,7 +26,7 @@ import (
 // DeleteDisk 他のリソースから参照されていないかを確認した上で削除する
 func DeleteDisk(ctx context.Context, caller iaas.APICaller, zone string, id types.ID, option query.CheckReferencedOption) error {
 	if err := query.WaitWhileDiskIsReferenced(ctx, caller, zone, id, option); err != nil {
-		return fmt.Errorf("Disk[%s] is still being used by other resources: %s", id, err)
+		return fmt.Errorf("disk[%s] is still being used by other resources: %s", id, err)
 	}
 	return iaas.NewDiskOp(caller).Delete(ctx, zone, id)
 }

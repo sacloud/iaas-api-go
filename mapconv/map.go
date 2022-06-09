@@ -35,7 +35,7 @@ func (m *Map) Set(key string, value interface{}) {
 	for i, k := range keys {
 		last := i == len(keys)-1
 		isSlice := strings.HasPrefix(k, "[]")
-		k = strings.Replace(k, "[]", "", -1)
+		k = strings.ReplaceAll(k, "[]", "")
 
 		var v interface{}
 		if last {
@@ -97,7 +97,7 @@ func (m *Map) Get(key string) (interface{}, error) {
 	targetMap := *m
 	for i, k := range keys {
 		last := i == len(keys)-1
-		k = strings.Replace(k, "[]", "", -1)
+		k = strings.ReplaceAll(k, "[]", "")
 
 		value := targetMap[k]
 		if value == nil || reflect.ValueOf(value).IsZero() {

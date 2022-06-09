@@ -130,19 +130,19 @@ func (o *CertificateAuthorityOp) ListServers(ctx context.Context, id types.ID) (
 	return nil, fmt.Errorf("not supported")
 }
 
-func (o *CertificateAuthorityOp) ReadServer(ctx context.Context, id types.ID, ServerID string) (*iaas.CertificateAuthorityServer, error) {
+func (o *CertificateAuthorityOp) ReadServer(ctx context.Context, id types.ID, serverID string) (*iaas.CertificateAuthorityServer, error) {
 	return nil, fmt.Errorf("not supported")
 }
 
-func (o *CertificateAuthorityOp) HoldServer(ctx context.Context, id types.ID, ServerID string) error {
+func (o *CertificateAuthorityOp) HoldServer(ctx context.Context, id types.ID, serverID string) error {
 	return fmt.Errorf("not supported")
 }
 
-func (o *CertificateAuthorityOp) ResumeServer(ctx context.Context, id types.ID, ServerID string) error {
+func (o *CertificateAuthorityOp) ResumeServer(ctx context.Context, id types.ID, serverID string) error {
 	return fmt.Errorf("not supported")
 }
 
-func (o *CertificateAuthorityOp) RevokeServer(ctx context.Context, id types.ID, ServerID string) error {
+func (o *CertificateAuthorityOp) RevokeServer(ctx context.Context, id types.ID, serverID string) error {
 	return fmt.Errorf("not supported")
 }
 
