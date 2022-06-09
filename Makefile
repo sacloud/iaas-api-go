@@ -19,7 +19,7 @@ tools:
 	go install github.com/sacloud/addlicense@latest
 	go install github.com/client9/misspell/cmd/misspell@latest
 	go install github.com/google/go-licenses@v1.0.0
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.44.2/install.sh | sh -s -- -b $$(go env GOPATH)/bin v1.44.2
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.46.2/install.sh | sh -s -- -b $$(go env GOPATH)/bin v1.46.2
 
 .PHONY: clean
 clean:
