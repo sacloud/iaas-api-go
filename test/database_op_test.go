@@ -15,7 +15,10 @@
 package test
 
 import (
+	"context"
 	"testing"
+
+	"github.com/sacloud/iaas-api-go/helper/query"
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/power"
@@ -376,4 +379,63 @@ func testDatabaseUpdateToMin(ctx *testutil.CRUDTestContext, caller iaas.APICalle
 func testDatabaseDelete(ctx *testutil.CRUDTestContext, caller iaas.APICaller) error {
 	client := iaas.NewDatabaseOp(caller)
 	return client.Delete(ctx, testZone, ctx.ID)
+}
+
+// TestCreateProxyDatabase 冗長化オプションが有効なデータベースアプライアンスの作成テスト
+func TestCreateProxyDatabase(t *testing.T) {
+	if !testutil.IsAccTest() {
+		t.Skip()
+	}
+
+	ctx := context.Background()
+	caller := testutil.SingletonAPICaller()
+	name := testutil.ResourceName("proxy-database")
+
+	sw, err := iaas.NewSwitchOp(caller).Create(ctx, testutil.TestZone(), &iaas.SwitchCreateRequest{
+		Name: name,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	planID, _, err := query.GetProxyDatabasePlan(ctx, iaas.NewNoteOp(caller), 4, 4, 90)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	dbOp := iaas.NewDatabaseOp(caller)
+	db, err := dbOp.Create(ctx, testutil.TestZone(), &iaas.DatabaseCreateRequest{
+		PlanID:   planID,
+		SwitchID: sw.ID,
+		IPAddresses: []string{
+			"192.168.22.111",
+			"192.168.22.112",
+		},
+		NetworkMaskLen: 24,
+		DefaultRoute:   "192.168.22.1",
+		Conf: &iaas.DatabaseRemarkDBConfCommon{
+			DatabaseName: types.RDBMSTypesPostgreSQL.String(),
+			// DatabaseVersion: "10.5", // debug
+			DefaultUser:  "sacloud",
+			UserPassword: "TestUserPassword01",
+		},
+		CommonSetting: &iaas.DatabaseSettingCommon{
+			DefaultUser:  "sacloud",
+			UserPassword: testutil.WithRandomPrefix("password"),
+		},
+		InterfaceSettings: []*iaas.DatabaseSettingsInterface{
+			{
+				VirtualIPAddress: "192.168.22.11",
+				Index:            1,
+			},
+		},
+		Name: name,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := wait.UntilDatabaseIsUp(ctx, dbOp, testutil.TestZone(), db.ID); err != nil {
+		t.Fatal(err)
+	}
 }

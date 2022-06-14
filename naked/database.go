@@ -62,6 +62,7 @@ type DatabaseSetting struct {
 	Common      *DatabaseSettingCommon      `json:",omitempty" yaml:"common,omitempty" structs:",omitempty"`
 	Backup      *DatabaseSettingBackup      `json:",omitempty" yaml:"backup,omitempty" structs:",omitempty"`
 	Replication *DatabaseSettingReplication `json:",omitempty" yaml:"replication,omitempty" structs:",omitempty"`
+	Interfaces  DatabaseSettingInterfaces   `json:",omitempty" yaml:"common,omitempty" structs:",omitempty"`
 }
 
 // DatabaseSettingCommon データベース設定 汎用項目設定
@@ -121,6 +122,7 @@ type DatabaseSettingBackup struct {
 	Rotate    int                        `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
 	Time      string                     `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
 	DayOfWeek []types.EBackupSpanWeekday `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
+	Connect   string                     // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
 }
 
 // UnmarshalJSON 配列/オブジェクトが混在することへの対応
@@ -148,6 +150,70 @@ type DatabaseSettingReplication struct {
 	Port      int    `json:",omitempty" yaml:"port,omitempty" structs:",omitempty"`
 	User      string `json:",omitempty" yaml:"user,omitempty" structs:",omitempty"`
 	Password  string `json:",omitempty" yaml:"password,omitempty" structs:",omitempty"`
+}
+
+type DatabaseSettingInterfaces []*DatabaseSettingInterface
+
+type DatabaseSettingInterface struct {
+	VirtualIPAddress string `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	// Index 仮想フィールド、VPCルータなどでInterfaces(実体は[]*Interface)を扱う場合にUnmarshalJSONの中で設定される
+	//
+	// Findした際のAPIからの応答にも同名のフィールドが含まれるが無関係。
+	Index int `json:"-"`
+}
+
+// UnmarshalJSON 配列中にnullが返ってくる(VPCルータなど)への対応
+func (i *DatabaseSettingInterfaces) UnmarshalJSON(b []byte) error {
+	type alias DatabaseSettingInterfaces
+	var a alias
+	if err := json.Unmarshal(b, &a); err != nil {
+		return err
+	}
+
+	var dest []*DatabaseSettingInterface
+	for i, v := range a {
+		if v != nil {
+			if v.Index == 0 {
+				v.Index = i
+			}
+			dest = append(dest, v)
+		}
+	}
+
+	*i = DatabaseSettingInterfaces(dest)
+	return nil
+}
+
+// MarshalJSON 配列中にnullが入る場合(VPCルータなど)への対応
+func (i *DatabaseSettingInterfaces) MarshalJSON() ([]byte, error) {
+	max := 0
+	for _, iface := range *i {
+		if max < iface.Index {
+			max = iface.Index
+		}
+	}
+
+	var dest = make([]*DatabaseSettingInterface, max+1)
+	for _, iface := range *i {
+		dest[iface.Index] = iface
+	}
+
+	return json.Marshal(dest)
+}
+
+// MarshalJSON JSON
+func (i *DatabaseSettingInterface) MarshalJSON() ([]byte, error) {
+	type alias struct {
+		IPAddress        []string `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+		VirtualIPAddress string   `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+		IPAliases        []string `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+		NetworkMaskLen   int      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	}
+
+	tmp := alias{
+		VirtualIPAddress: i.VirtualIPAddress,
+	}
+	return json.Marshal(tmp)
 }
 
 // DatabaseStatusResponse Status APIの戻り値
@@ -197,7 +263,7 @@ type DatabaseLog struct {
 	Size types.StringNumber `json:"size,omitempty" yaml:"size,omitempty" structs:",omitempty"`
 }
 
-// IsSystemdLog systemcltのログか判定
+// IsSystemdLog systemctlのログか判定
 func (l *DatabaseLog) IsSystemdLog() bool {
 	return l.Name == "systemctl"
 }

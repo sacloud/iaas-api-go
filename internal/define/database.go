@@ -158,6 +158,7 @@ var (
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
+			fields.DatabaseSettingsInterfaces(),
 			fields.SettingsHash(),
 
 			// instance
@@ -202,6 +203,7 @@ var (
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
+			fields.DatabaseSettingsInterfaces(),
 
 			fields.Name(),
 			fields.Description(),
@@ -224,6 +226,7 @@ var (
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
+			fields.DatabaseSettingsInterfaces(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -237,6 +240,7 @@ var (
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
+			fields.DatabaseSettingsInterfaces(),
 			// settings hash
 			fields.SettingsHash(),
 		},

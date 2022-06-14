@@ -2364,6 +2364,7 @@ func (f *fieldsDef) DatabaseSettingsBackup() *dsl.FieldDesc {
 				fields.Def("Rotate", meta.TypeInt),
 				fields.Def("Time", meta.TypeString),
 				fields.Def("DayOfWeek", meta.Static([]types.EBackupSpanWeekday{})),
+				fields.Def("Connect", meta.TypeString),
 			},
 		},
 		Tags: &dsl.FieldTags{
@@ -2396,6 +2397,30 @@ func (f *fieldsDef) DatabaseSettingsReplication() *dsl.FieldDesc {
 		},
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.DBConf.Replication,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) DatabaseSettingsInterfaces() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "InterfaceSettings",
+		Type: &dsl.Model{
+			Name:      "DatabaseSettingsInterface",
+			NakedType: meta.Static(naked.DatabaseSettingInterface{}),
+			IsArray:   true,
+			Fields: []*dsl.FieldDesc{
+				{
+					Name: "VirtualIPAddress",
+					Type: meta.TypeString,
+				},
+				{
+					Name: "Index",
+					Type: meta.TypeInt,
+				},
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.DBConf.[]Interfaces,omitempty,recursive",
 		},
 	}
 }

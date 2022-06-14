@@ -26,6 +26,35 @@ import (
 	"github.com/sacloud/iaas-api-go/types"
 )
 
+// NFSPlanInfo NFSプランIDに対応するプラン情報
+type NFSPlanInfo struct {
+	NFSPlanID  types.ID
+	Size       types.ENFSSize
+	DiskPlanID types.ID
+}
+
+// GetNFSPlanInfo NFSプランIDから対応するプラン情報を取得
+func GetNFSPlanInfo(ctx context.Context, finder NoteFinder, nfsPlanID types.ID) (*NFSPlanInfo, error) {
+	plans, err := findNFSPlans(ctx, finder)
+	if err != nil {
+		return nil, err
+	}
+	info := plans.findByPlanID(nfsPlanID)
+	if info == nil {
+		return nil, fmt.Errorf("nfs plan [id:%d] not found", nfsPlanID)
+	}
+	return info, nil
+}
+
+// FindNFSPlanID ディスクプランとサイズからNFSのプランIDを取得
+func FindNFSPlanID(ctx context.Context, finder NoteFinder, diskPlanID types.ID, size types.ENFSSize) (types.ID, error) {
+	plans, err := findNFSPlans(ctx, finder)
+	if err != nil {
+		return types.ID(0), err
+	}
+	return plans.findPlanID(diskPlanID, size), nil
+}
+
 type nfsPlansEnvelope struct {
 	Plans *nfsPlans `json:"plans"`
 }
@@ -83,15 +112,6 @@ type nfsPlanValue struct {
 	PlanID       types.ID            `json:"planId"`
 }
 
-// FindNFSPlanID ディスクプランとサイズからNFSのプランIDを取得
-func FindNFSPlanID(ctx context.Context, finder NoteFinder, diskPlanID types.ID, size types.ENFSSize) (types.ID, error) {
-	plans, err := findNFSPlans(ctx, finder)
-	if err != nil {
-		return types.ID(0), err
-	}
-	return plans.findPlanID(diskPlanID, size), nil
-}
-
 func findNFSPlans(ctx context.Context, finder NoteFinder) (*nfsPlans, error) {
 	// find note
 	searched, err := finder.Find(ctx, &iaas.FindCondition{
@@ -114,24 +134,4 @@ func findNFSPlans(ctx context.Context, finder NoteFinder) (*nfsPlans, error) {
 		return nil, err
 	}
 	return pe.Plans, nil
-}
-
-// NFSPlanInfo NFSプランIDに対応するプラン情報
-type NFSPlanInfo struct {
-	NFSPlanID  types.ID
-	Size       types.ENFSSize
-	DiskPlanID types.ID
-}
-
-// GetNFSPlanInfo NFSプランIDから対応するプラン情報を取得
-func GetNFSPlanInfo(ctx context.Context, finder NoteFinder, nfsPlanID types.ID) (*NFSPlanInfo, error) {
-	plans, err := findNFSPlans(ctx, finder)
-	if err != nil {
-		return nil, err
-	}
-	info := plans.findByPlanID(nfsPlanID)
-	if info == nil {
-		return nil, fmt.Errorf("nfs plan [id:%d] not found", nfsPlanID)
-	}
-	return info, nil
 }
