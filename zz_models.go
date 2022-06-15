@@ -5963,22 +5963,23 @@ type Database struct {
 	IconID                  types.ID `mapconv:"Icon.ID"`
 	CreatedAt               time.Time
 	ModifiedAt              time.Time
-	CommonSetting           *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-	BackupSetting           *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-	ReplicationSetting      *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
-	SettingsHash            string                      `json:",omitempty" mapconv:",omitempty"`
-	InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
-	InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
-	InstanceStatus          types.EServerInstanceStatus `mapconv:"Instance.Status"`
-	InstanceStatusChangedAt time.Time                   `mapconv:"Instance.StatusChangedAt"`
-	PlanID                  types.ID                    `mapconv:"Remark.Plan.ID/Plan.ID"`
-	SwitchID                types.ID                    `mapconv:"Remark.Switch.ID"`
-	Conf                    *DatabaseRemarkDBConfCommon `mapconv:"Remark.DBConf.Common,recursive"`
-	DefaultRoute            string                      `mapconv:"Remark.Network.DefaultRoute"`
-	NetworkMaskLen          int                         `mapconv:"Remark.Network.NetworkMaskLen"`
-	IPAddresses             []string                    `mapconv:"Remark.[]Servers.IPAddress"`
-	ZoneID                  types.ID                    `mapconv:"Remark.Zone.ID"`
-	Interfaces              []*InterfaceView            `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
+	CommonSetting           *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+	BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+	InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	SettingsHash            string                       `json:",omitempty" mapconv:",omitempty"`
+	InstanceHostName        string                       `mapconv:"Instance.Host.Name"`
+	InstanceHostInfoURL     string                       `mapconv:"Instance.Host.InfoURL"`
+	InstanceStatus          types.EServerInstanceStatus  `mapconv:"Instance.Status"`
+	InstanceStatusChangedAt time.Time                    `mapconv:"Instance.StatusChangedAt"`
+	PlanID                  types.ID                     `mapconv:"Remark.Plan.ID/Plan.ID"`
+	SwitchID                types.ID                     `mapconv:"Remark.Switch.ID"`
+	Conf                    *DatabaseRemarkDBConfCommon  `mapconv:"Remark.DBConf.Common,recursive"`
+	DefaultRoute            string                       `mapconv:"Remark.Network.DefaultRoute"`
+	NetworkMaskLen          int                          `mapconv:"Remark.Network.NetworkMaskLen"`
+	IPAddresses             []string                     `mapconv:"Remark.[]Servers.IPAddress"`
+	ZoneID                  types.ID                     `mapconv:"Remark.Zone.ID"`
+	Interfaces              []*InterfaceView             `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -5993,22 +5994,23 @@ func (o *Database) setDefaults() interface{} {
 		IconID                  types.ID `mapconv:"Icon.ID"`
 		CreatedAt               time.Time
 		ModifiedAt              time.Time
-		CommonSetting           *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-		BackupSetting           *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-		ReplicationSetting      *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
-		SettingsHash            string                      `json:",omitempty" mapconv:",omitempty"`
-		InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
-		InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
-		InstanceStatus          types.EServerInstanceStatus `mapconv:"Instance.Status"`
-		InstanceStatusChangedAt time.Time                   `mapconv:"Instance.StatusChangedAt"`
-		PlanID                  types.ID                    `mapconv:"Remark.Plan.ID/Plan.ID"`
-		SwitchID                types.ID                    `mapconv:"Remark.Switch.ID"`
-		Conf                    *DatabaseRemarkDBConfCommon `mapconv:"Remark.DBConf.Common,recursive"`
-		DefaultRoute            string                      `mapconv:"Remark.Network.DefaultRoute"`
-		NetworkMaskLen          int                         `mapconv:"Remark.Network.NetworkMaskLen"`
-		IPAddresses             []string                    `mapconv:"Remark.[]Servers.IPAddress"`
-		ZoneID                  types.ID                    `mapconv:"Remark.Zone.ID"`
-		Interfaces              []*InterfaceView            `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
+		CommonSetting           *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+		BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+		InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		SettingsHash            string                       `json:",omitempty" mapconv:",omitempty"`
+		InstanceHostName        string                       `mapconv:"Instance.Host.Name"`
+		InstanceHostInfoURL     string                       `mapconv:"Instance.Host.InfoURL"`
+		InstanceStatus          types.EServerInstanceStatus  `mapconv:"Instance.Status"`
+		InstanceStatusChangedAt time.Time                    `mapconv:"Instance.StatusChangedAt"`
+		PlanID                  types.ID                     `mapconv:"Remark.Plan.ID/Plan.ID"`
+		SwitchID                types.ID                     `mapconv:"Remark.Switch.ID"`
+		Conf                    *DatabaseRemarkDBConfCommon  `mapconv:"Remark.DBConf.Common,recursive"`
+		DefaultRoute            string                       `mapconv:"Remark.Network.DefaultRoute"`
+		NetworkMaskLen          int                          `mapconv:"Remark.Network.NetworkMaskLen"`
+		IPAddresses             []string                     `mapconv:"Remark.[]Servers.IPAddress"`
+		ZoneID                  types.ID                     `mapconv:"Remark.Zone.ID"`
+		Interfaces              []*InterfaceView             `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
 	}{
 		ID:                      o.GetID(),
 		Class:                   o.GetClass(),
@@ -6022,6 +6024,7 @@ func (o *Database) setDefaults() interface{} {
 		CommonSetting:           o.GetCommonSetting(),
 		BackupSetting:           o.GetBackupSetting(),
 		ReplicationSetting:      o.GetReplicationSetting(),
+		InterfaceSettings:       o.GetInterfaceSettings(),
 		SettingsHash:            o.GetSettingsHash(),
 		InstanceHostName:        o.GetInstanceHostName(),
 		InstanceHostInfoURL:     o.GetInstanceHostInfoURL(),
@@ -6196,6 +6199,16 @@ func (o *Database) GetReplicationSetting() *DatabaseReplicationSetting {
 // SetReplicationSetting sets value to ReplicationSetting
 func (o *Database) SetReplicationSetting(v *DatabaseReplicationSetting) {
 	o.ReplicationSetting = v
+}
+
+// GetInterfaceSettings returns value of InterfaceSettings
+func (o *Database) GetInterfaceSettings() []*DatabaseSettingsInterface {
+	return o.InterfaceSettings
+}
+
+// SetInterfaceSettings sets value to InterfaceSettings
+func (o *Database) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
+	o.InterfaceSettings = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -6443,6 +6456,7 @@ type DatabaseSettingBackup struct {
 	Rotate    int
 	Time      string
 	DayOfWeek []types.EBackupSpanWeekday
+	Connect   string
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -6451,10 +6465,12 @@ func (o *DatabaseSettingBackup) setDefaults() interface{} {
 		Rotate    int
 		Time      string
 		DayOfWeek []types.EBackupSpanWeekday
+		Connect   string
 	}{
 		Rotate:    o.GetRotate(),
 		Time:      o.GetTime(),
 		DayOfWeek: o.GetDayOfWeek(),
+		Connect:   o.GetConnect(),
 	}
 }
 
@@ -6486,6 +6502,16 @@ func (o *DatabaseSettingBackup) GetDayOfWeek() []types.EBackupSpanWeekday {
 // SetDayOfWeek sets value to DayOfWeek
 func (o *DatabaseSettingBackup) SetDayOfWeek(v []types.EBackupSpanWeekday) {
 	o.DayOfWeek = v
+}
+
+// GetConnect returns value of Connect
+func (o *DatabaseSettingBackup) GetConnect() string {
+	return o.Connect
+}
+
+// SetConnect sets value to Connect
+func (o *DatabaseSettingBackup) SetConnect(v string) {
+	o.Connect = v
 }
 
 /*************************************************
@@ -6579,6 +6605,47 @@ func (o *DatabaseReplicationSetting) GetApplianceID() types.ID {
 // SetApplianceID sets value to ApplianceID
 func (o *DatabaseReplicationSetting) SetApplianceID(v types.ID) {
 	o.ApplianceID = v
+}
+
+/*************************************************
+* DatabaseSettingsInterface
+*************************************************/
+
+// DatabaseSettingsInterface represents API parameter/response structure
+type DatabaseSettingsInterface struct {
+	VirtualIPAddress string
+	Index            int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseSettingsInterface) setDefaults() interface{} {
+	return &struct {
+		VirtualIPAddress string
+		Index            int
+	}{
+		VirtualIPAddress: o.GetVirtualIPAddress(),
+		Index:            o.GetIndex(),
+	}
+}
+
+// GetVirtualIPAddress returns value of VirtualIPAddress
+func (o *DatabaseSettingsInterface) GetVirtualIPAddress() string {
+	return o.VirtualIPAddress
+}
+
+// SetVirtualIPAddress sets value to VirtualIPAddress
+func (o *DatabaseSettingsInterface) SetVirtualIPAddress(v string) {
+	o.VirtualIPAddress = v
+}
+
+// GetIndex returns value of Index
+func (o *DatabaseSettingsInterface) GetIndex() int {
+	return o.Index
+}
+
+// SetIndex sets value to Index
+func (o *DatabaseSettingsInterface) SetIndex(v int) {
+	o.Index = v
 }
 
 /*************************************************
@@ -6936,16 +7003,17 @@ func (o *InterfaceView) SetUpstreamType(v types.EUpstreamNetworkType) {
 
 // DatabaseCreateRequest represents API parameter/response structure
 type DatabaseCreateRequest struct {
-	PlanID             types.ID                    `mapconv:"Remark.Plan.ID/Plan.ID"`
-	SwitchID           types.ID                    `mapconv:"Remark.Switch.ID"`
-	IPAddresses        []string                    `mapconv:"Remark.[]Servers.IPAddress"`
-	NetworkMaskLen     int                         `mapconv:"Remark.Network.NetworkMaskLen"`
-	DefaultRoute       string                      `mapconv:"Remark.Network.DefaultRoute"`
-	Conf               *DatabaseRemarkDBConfCommon `mapconv:"Remark.DBConf.Common,recursive"`
-	SourceID           types.ID                    `mapconv:"Remark.SourceAppliance.ID"`
-	CommonSetting      *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-	BackupSetting      *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-	ReplicationSetting *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
+	PlanID             types.ID                     `mapconv:"Remark.Plan.ID/Plan.ID"`
+	SwitchID           types.ID                     `mapconv:"Remark.Switch.ID"`
+	IPAddresses        []string                     `mapconv:"Remark.[]Servers.IPAddress"`
+	NetworkMaskLen     int                          `mapconv:"Remark.Network.NetworkMaskLen"`
+	DefaultRoute       string                       `mapconv:"Remark.Network.DefaultRoute"`
+	Conf               *DatabaseRemarkDBConfCommon  `mapconv:"Remark.DBConf.Common,recursive"`
+	SourceID           types.ID                     `mapconv:"Remark.SourceAppliance.ID"`
+	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 	Name               string
 	Description        string
 	Tags               types.Tags
@@ -6955,16 +7023,17 @@ type DatabaseCreateRequest struct {
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseCreateRequest) setDefaults() interface{} {
 	return &struct {
-		PlanID             types.ID                    `mapconv:"Remark.Plan.ID/Plan.ID"`
-		SwitchID           types.ID                    `mapconv:"Remark.Switch.ID"`
-		IPAddresses        []string                    `mapconv:"Remark.[]Servers.IPAddress"`
-		NetworkMaskLen     int                         `mapconv:"Remark.Network.NetworkMaskLen"`
-		DefaultRoute       string                      `mapconv:"Remark.Network.DefaultRoute"`
-		Conf               *DatabaseRemarkDBConfCommon `mapconv:"Remark.DBConf.Common,recursive"`
-		SourceID           types.ID                    `mapconv:"Remark.SourceAppliance.ID"`
-		CommonSetting      *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-		BackupSetting      *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-		ReplicationSetting *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
+		PlanID             types.ID                     `mapconv:"Remark.Plan.ID/Plan.ID"`
+		SwitchID           types.ID                     `mapconv:"Remark.Switch.ID"`
+		IPAddresses        []string                     `mapconv:"Remark.[]Servers.IPAddress"`
+		NetworkMaskLen     int                          `mapconv:"Remark.Network.NetworkMaskLen"`
+		DefaultRoute       string                       `mapconv:"Remark.Network.DefaultRoute"`
+		Conf               *DatabaseRemarkDBConfCommon  `mapconv:"Remark.DBConf.Common,recursive"`
+		SourceID           types.ID                     `mapconv:"Remark.SourceAppliance.ID"`
+		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 		Name               string
 		Description        string
 		Tags               types.Tags
@@ -6981,6 +7050,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
+		InterfaceSettings:  o.GetInterfaceSettings(),
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
 		Tags:               o.GetTags(),
@@ -7089,6 +7159,16 @@ func (o *DatabaseCreateRequest) SetReplicationSetting(v *DatabaseReplicationSett
 	o.ReplicationSetting = v
 }
 
+// GetInterfaceSettings returns value of InterfaceSettings
+func (o *DatabaseCreateRequest) GetInterfaceSettings() []*DatabaseSettingsInterface {
+	return o.InterfaceSettings
+}
+
+// SetInterfaceSettings sets value to InterfaceSettings
+func (o *DatabaseCreateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
+	o.InterfaceSettings = v
+}
+
 // GetName returns value of Name
 func (o *DatabaseCreateRequest) GetName() string {
 	return o.Name
@@ -7158,11 +7238,12 @@ type DatabaseUpdateRequest struct {
 	Name               string
 	Description        string
 	Tags               types.Tags
-	IconID             types.ID                    `mapconv:"Icon.ID"`
-	CommonSetting      *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-	BackupSetting      *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-	ReplicationSetting *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
-	SettingsHash       string                      `json:",omitempty" mapconv:",omitempty"`
+	IconID             types.ID                     `mapconv:"Icon.ID"`
+	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -7171,11 +7252,12 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		Name               string
 		Description        string
 		Tags               types.Tags
-		IconID             types.ID                    `mapconv:"Icon.ID"`
-		CommonSetting      *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-		BackupSetting      *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-		ReplicationSetting *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
-		SettingsHash       string                      `json:",omitempty" mapconv:",omitempty"`
+		IconID             types.ID                     `mapconv:"Icon.ID"`
+		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
@@ -7184,6 +7266,7 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
+		InterfaceSettings:  o.GetInterfaceSettings(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -7278,6 +7361,16 @@ func (o *DatabaseUpdateRequest) SetReplicationSetting(v *DatabaseReplicationSett
 	o.ReplicationSetting = v
 }
 
+// GetInterfaceSettings returns value of InterfaceSettings
+func (o *DatabaseUpdateRequest) GetInterfaceSettings() []*DatabaseSettingsInterface {
+	return o.InterfaceSettings
+}
+
+// SetInterfaceSettings sets value to InterfaceSettings
+func (o *DatabaseUpdateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
+	o.InterfaceSettings = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *DatabaseUpdateRequest) GetSettingsHash() string {
 	return o.SettingsHash
@@ -7294,23 +7387,26 @@ func (o *DatabaseUpdateRequest) SetSettingsHash(v string) {
 
 // DatabaseUpdateSettingsRequest represents API parameter/response structure
 type DatabaseUpdateSettingsRequest struct {
-	CommonSetting      *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-	BackupSetting      *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-	ReplicationSetting *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
-	SettingsHash       string                      `json:",omitempty" mapconv:",omitempty"`
+	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *DatabaseUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		CommonSetting      *DatabaseSettingCommon      `mapconv:"Settings.DBConf.Common,recursive"`
-		BackupSetting      *DatabaseSettingBackup      `mapconv:"Settings.DBConf.Backup,recursive"`
-		ReplicationSetting *DatabaseReplicationSetting `mapconv:"Settings.DBConf.Replication,recursive"`
-		SettingsHash       string                      `json:",omitempty" mapconv:",omitempty"`
+		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
+		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
+		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
+		InterfaceSettings:  o.GetInterfaceSettings(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -7343,6 +7439,16 @@ func (o *DatabaseUpdateSettingsRequest) GetReplicationSetting() *DatabaseReplica
 // SetReplicationSetting sets value to ReplicationSetting
 func (o *DatabaseUpdateSettingsRequest) SetReplicationSetting(v *DatabaseReplicationSetting) {
 	o.ReplicationSetting = v
+}
+
+// GetInterfaceSettings returns value of InterfaceSettings
+func (o *DatabaseUpdateSettingsRequest) GetInterfaceSettings() []*DatabaseSettingsInterface {
+	return o.InterfaceSettings
+}
+
+// SetInterfaceSettings sets value to InterfaceSettings
+func (o *DatabaseUpdateSettingsRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
+	o.InterfaceSettings = v
 }
 
 // GetSettingsHash returns value of SettingsHash

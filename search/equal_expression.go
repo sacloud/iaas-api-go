@@ -58,7 +58,7 @@ func AndEqual(conditions ...string) *EqualExpression {
 	}
 }
 
-// OrEqual 完全一致(Partial Match)かつOR条件を示すEqualFilterを作成
+// OrEqual 完全一致(Exact Match)かつOR条件を示すEqualFilterを作成
 func OrEqual(conditions ...interface{}) *EqualExpression {
 	return &EqualExpression{
 		Op:         OpOr,

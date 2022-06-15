@@ -172,6 +172,87 @@ func initNotes(s Store, p *valuePool) {
 	}
 }`,
 		},
+		{
+			ID:    2,
+			Name:  "sys-database",
+			Class: "json",
+			Scope: "shared",
+			Content: `
+{
+  "Products": [],
+  "Backup": {
+    "LockLimit": 8,
+    "RotateLimit": 8
+  },
+  "AppliancePlans": [
+    {
+      "Class": "database",
+      "Model": "Proxy",
+      "CPU": 4,
+      "MemoryMB": 4096,
+      "DiskSizes": [
+        {
+          "SizeMB": 102400,
+          "DisplaySize": 90,
+          "PlanID": 50721,
+          "ServiceClass": "cloud/appliance/database/4core4gb-100gb-proxy"
+        },
+        {
+          "SizeMB": 256000,
+          "DisplaySize": 240,
+          "PlanID": 50722,
+          "ServiceClass": "cloud/appliance/database/4core4gb-250gb-proxy"
+        },
+        {
+          "SizeMB": 512000,
+          "DisplaySize": 500,
+          "PlanID": 50723,
+          "ServiceClass": "cloud/appliance/database/4core4gb-500gb-proxy"
+        },
+        {
+          "SizeMB": 1048576,
+          "DisplaySize": 1000,
+          "PlanID": 50724,
+          "ServiceClass": "cloud/appliance/database/4core4gb-1tb-proxy"
+        }
+      ]
+    },
+    {
+      "Class": "database",
+      "Model": "Proxy",
+      "CPU": 4,
+      "MemoryMB": 8192,
+      "DiskSizes": [
+        {
+          "SizeMB": 102400,
+          "DisplaySize": 90,
+          "PlanID": 50725,
+          "ServiceClass": "cloud/appliance/database/4core8gb-100gb-proxy"
+        },
+        {
+          "SizeMB": 256000,
+          "DisplaySize": 240,
+          "PlanID": 50726,
+          "ServiceClass": "cloud/appliance/database/4core8gb-250gb-proxy"
+        },
+        {
+          "SizeMB": 512000,
+          "DisplaySize": 500,
+          "PlanID": 50727,
+          "ServiceClass": "cloud/appliance/database/4core8gb-500gb-proxy"
+        },
+        {
+          "SizeMB": 1048576,
+          "DisplaySize": 1000,
+          "PlanID": 50728,
+          "ServiceClass": "cloud/appliance/database/4core8gb-1tb-proxy"
+        }
+      ]
+    }
+  ]
+}
+`,
+		},
 	}
 	for _, note := range notes {
 		s.Put(ResourceNote, iaas.APIDefaultZone, note.ID, note)
