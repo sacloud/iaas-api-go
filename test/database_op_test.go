@@ -27,6 +27,10 @@ import (
 )
 
 func TestDatabaseOpCRUD(t *testing.T) {
+	// Note: バージョン省略後のサーバサイドでの算出処理をfakeが実装していないためAccTestだけとする
+	if !testutil.IsAccTest() {
+		t.Skip()
+	}
 	testutil.RunCRUD(t, &testutil.CRUDTestCase{
 		Parallel: true,
 
@@ -171,11 +175,9 @@ var (
 		Tags:           []string{"tag1", "tag2"},
 
 		Conf: &iaas.DatabaseRemarkDBConfCommon{
-			DatabaseName:     types.RDBMSVersions[types.RDBMSTypesMariaDB].Name,
-			DatabaseVersion:  types.RDBMSVersions[types.RDBMSTypesMariaDB].Version,
-			DatabaseRevision: "10.4.12",
-			DefaultUser:      "exa.mple",
-			UserPassword:     "LibsacloudExamplePassword01",
+			DatabaseName: types.RDBMSTypesMariaDB.String(),
+			DefaultUser:  "exa.mple",
+			UserPassword: "LibsacloudExamplePassword01",
 		},
 		CommonSetting: &iaas.DatabaseSettingCommon{
 			ServicePort:     5432,
@@ -189,14 +191,20 @@ var (
 		},
 	}
 	createDatabaseExpected = &iaas.Database{
-		Name:               createDatabaseParam.Name,
-		Description:        createDatabaseParam.Description,
-		Availability:       types.Availabilities.Available,
-		PlanID:             createDatabaseParam.PlanID,
-		DefaultRoute:       createDatabaseParam.DefaultRoute,
-		NetworkMaskLen:     createDatabaseParam.NetworkMaskLen,
-		IPAddresses:        createDatabaseParam.IPAddresses,
-		Conf:               createDatabaseParam.Conf,
+		Name:           createDatabaseParam.Name,
+		Description:    createDatabaseParam.Description,
+		Availability:   types.Availabilities.Available,
+		PlanID:         createDatabaseParam.PlanID,
+		DefaultRoute:   createDatabaseParam.DefaultRoute,
+		NetworkMaskLen: createDatabaseParam.NetworkMaskLen,
+		IPAddresses:    createDatabaseParam.IPAddresses,
+		Conf: &iaas.DatabaseRemarkDBConfCommon{
+			DatabaseName:     types.RDBMSTypesMariaDB.String(),
+			DatabaseVersion:  "10.4",
+			DatabaseRevision: "10.4.12",
+			DefaultUser:      "exa.mple",
+			UserPassword:     "LibsacloudExamplePassword01",
+		},
 		CommonSetting:      createDatabaseParam.CommonSetting,
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
 	}
@@ -219,7 +227,7 @@ var (
 		DefaultRoute:   createDatabaseParam.DefaultRoute,
 		NetworkMaskLen: createDatabaseParam.NetworkMaskLen,
 		IPAddresses:    createDatabaseParam.IPAddresses,
-		Conf:           createDatabaseParam.Conf,
+		Conf:           createDatabaseExpected.Conf,
 		CommonSetting: &iaas.DatabaseSettingCommon{
 			ServicePort:     54322,
 			DefaultUser:     "exa.mple.upd",
@@ -253,7 +261,7 @@ var (
 		DefaultRoute:   createDatabaseParam.DefaultRoute,
 		NetworkMaskLen: createDatabaseParam.NetworkMaskLen,
 		IPAddresses:    createDatabaseParam.IPAddresses,
-		Conf:           createDatabaseParam.Conf,
+		Conf:           createDatabaseExpected.Conf,
 		CommonSetting: &iaas.DatabaseSettingCommon{
 			ServicePort:     5432,
 			DefaultUser:     "exa.mple",
@@ -297,7 +305,7 @@ var (
 		DefaultRoute:   createDatabaseParam.DefaultRoute,
 		NetworkMaskLen: createDatabaseParam.NetworkMaskLen,
 		IPAddresses:    createDatabaseParam.IPAddresses,
-		Conf:           createDatabaseParam.Conf,
+		Conf:           createDatabaseExpected.Conf,
 		CommonSetting: &iaas.DatabaseSettingCommon{
 			ServicePort:     54321,
 			DefaultUser:     "exa.mple",
@@ -330,7 +338,7 @@ var (
 		DefaultRoute:   createDatabaseParam.DefaultRoute,
 		NetworkMaskLen: createDatabaseParam.NetworkMaskLen,
 		IPAddresses:    createDatabaseParam.IPAddresses,
-		Conf:           createDatabaseParam.Conf,
+		Conf:           createDatabaseExpected.Conf,
 		CommonSetting: &iaas.DatabaseSettingCommon{
 			DefaultUser:     "exa.mple",
 			UserPassword:    "LibsacloudExamplePassword04",
@@ -414,7 +422,6 @@ func TestCreateProxyDatabase(t *testing.T) {
 		DefaultRoute:   "192.168.22.1",
 		Conf: &iaas.DatabaseRemarkDBConfCommon{
 			DatabaseName: types.RDBMSTypesPostgreSQL.String(),
-			// DatabaseVersion: "10.5", // debug
 			DefaultUser:  "sacloud",
 			UserPassword: "TestUserPassword01",
 		},
