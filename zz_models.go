@@ -29159,21 +29159,27 @@ func (o *VPCRouterRemoteAccessUser) SetPassword(v string) {
 
 // VPCRouterSiteToSiteIPsecVPN represents API parameter/response structure
 type VPCRouterSiteToSiteIPsecVPN struct {
-	Config []*VPCRouterSiteToSiteIPsecVPNConfig `mapconv:"[]Config,omitempty,recursive"`
-	IKE    *VPCRouterSiteToSiteIPsecVPNIKE      `mapconv:",omitempty,recursive"`
-	ESP    *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
+	Config         []*VPCRouterSiteToSiteIPsecVPNConfig `mapconv:"[]Config,omitempty,recursive"`
+	IKE            *VPCRouterSiteToSiteIPsecVPNIKE      `mapconv:",omitempty,recursive"`
+	ESP            *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
+	EncryptionAlgo string
+	HashAlgo       string
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *VPCRouterSiteToSiteIPsecVPN) setDefaults() interface{} {
 	return &struct {
-		Config []*VPCRouterSiteToSiteIPsecVPNConfig `mapconv:"[]Config,omitempty,recursive"`
-		IKE    *VPCRouterSiteToSiteIPsecVPNIKE      `mapconv:",omitempty,recursive"`
-		ESP    *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
+		Config         []*VPCRouterSiteToSiteIPsecVPNConfig `mapconv:"[]Config,omitempty,recursive"`
+		IKE            *VPCRouterSiteToSiteIPsecVPNIKE      `mapconv:",omitempty,recursive"`
+		ESP            *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
+		EncryptionAlgo string
+		HashAlgo       string
 	}{
-		Config: o.GetConfig(),
-		IKE:    o.GetIKE(),
-		ESP:    o.GetESP(),
+		Config:         o.GetConfig(),
+		IKE:            o.GetIKE(),
+		ESP:            o.GetESP(),
+		EncryptionAlgo: o.GetEncryptionAlgo(),
+		HashAlgo:       o.GetHashAlgo(),
 	}
 }
 
@@ -29205,6 +29211,26 @@ func (o *VPCRouterSiteToSiteIPsecVPN) GetESP() *VPCRouterSiteToSiteIPsecVPNESP {
 // SetESP sets value to ESP
 func (o *VPCRouterSiteToSiteIPsecVPN) SetESP(v *VPCRouterSiteToSiteIPsecVPNESP) {
 	o.ESP = v
+}
+
+// GetEncryptionAlgo returns value of EncryptionAlgo
+func (o *VPCRouterSiteToSiteIPsecVPN) GetEncryptionAlgo() string {
+	return o.EncryptionAlgo
+}
+
+// SetEncryptionAlgo sets value to EncryptionAlgo
+func (o *VPCRouterSiteToSiteIPsecVPN) SetEncryptionAlgo(v string) {
+	o.EncryptionAlgo = v
+}
+
+// GetHashAlgo returns value of HashAlgo
+func (o *VPCRouterSiteToSiteIPsecVPN) GetHashAlgo() string {
+	return o.HashAlgo
+}
+
+// SetHashAlgo sets value to HashAlgo
+func (o *VPCRouterSiteToSiteIPsecVPN) SetHashAlgo(v string) {
+	o.HashAlgo = v
 }
 
 /*************************************************
