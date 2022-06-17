@@ -907,7 +907,7 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 				Name: "SiteToSiteIPsecVPN",
 				Type: m.vpcRouterSiteToSiteIPsecVPN(),
 				Tags: &dsl.FieldTags{
-					MapConv: "Router.SiteToSiteIPsecVPN.[]Config,omitempty,recursive",
+					MapConv: "Router.SiteToSiteIPsecVPN,omitempty,recursive",
 				},
 			},
 			{
@@ -1251,6 +1251,36 @@ func (m *modelsDef) vpcRouterRemoteAccessUser() *dsl.Model {
 func (m *modelsDef) vpcRouterSiteToSiteIPsecVPN() *dsl.Model {
 	return &dsl.Model{
 		Name:      "VPCRouterSiteToSiteIPsecVPN",
+		NakedType: meta.Static(naked.VPCRouterSiteToSiteIPsecVPN{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "Config",
+				Type: m.vpcRouterSiteToSiteIPsecVPNConfig(),
+				Tags: &dsl.FieldTags{
+					MapConv: "[]Config,omitempty,recursive",
+				},
+			},
+			{
+				Name: "IKE",
+				Type: m.vpcRouterSiteToSiteIPsecVPNIKE(),
+				Tags: &dsl.FieldTags{
+					MapConv: ",omitempty,recursive",
+				},
+			},
+			{
+				Name: "ESP",
+				Type: m.vpcRouterSiteToSiteIPsecVPNESP(),
+				Tags: &dsl.FieldTags{
+					MapConv: ",omitempty,recursive",
+				},
+			},
+		},
+	}
+}
+
+func (m *modelsDef) vpcRouterSiteToSiteIPsecVPNConfig() *dsl.Model {
+	return &dsl.Model{
+		Name:      "VPCRouterSiteToSiteIPsecVPNConfig",
 		NakedType: meta.Static(naked.VPCRouterSiteToSiteIPsecVPNConfig{}),
 		IsArray:   true,
 		Fields: []*dsl.FieldDesc{
@@ -1273,6 +1303,56 @@ func (m *modelsDef) vpcRouterSiteToSiteIPsecVPN() *dsl.Model {
 			{
 				Name: "LocalPrefix",
 				Type: meta.TypeStringSlice,
+			},
+		},
+	}
+}
+
+func (m *modelsDef) vpcRouterSiteToSiteIPsecVPNIKE() *dsl.Model {
+	return &dsl.Model{
+		Name:      "VPCRouterSiteToSiteIPsecVPNIKE",
+		NakedType: meta.Static(naked.VPCRouterSiteToSiteIPsecVPNIKE{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "Lifetime",
+				Type: meta.TypeInt,
+			},
+			{
+				Name: "DPD",
+				Type: m.vpcRouterSiteToSiteIPsecVPNIKEDPD(),
+				Tags: &dsl.FieldTags{
+					MapConv: ",omitempty,recursive",
+				},
+			},
+		},
+	}
+}
+
+func (m *modelsDef) vpcRouterSiteToSiteIPsecVPNIKEDPD() *dsl.Model {
+	return &dsl.Model{
+		Name:      "VPCRouterSiteToSiteIPsecVPNIKEDPD",
+		NakedType: meta.Static(naked.VPCRouterSiteToSiteIPsecVPNIKEDPD{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "Interval",
+				Type: meta.TypeInt,
+			},
+			{
+				Name: "Timeout",
+				Type: meta.TypeInt,
+			},
+		},
+	}
+}
+
+func (m *modelsDef) vpcRouterSiteToSiteIPsecVPNESP() *dsl.Model {
+	return &dsl.Model{
+		Name:      "VPCRouterSiteToSiteIPsecVPNESP",
+		NakedType: meta.Static(naked.VPCRouterSiteToSiteIPsecVPNESP{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "Lifetime",
+				Type: meta.TypeInt,
 			},
 		},
 	}

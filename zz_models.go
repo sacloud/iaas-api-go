@@ -28133,7 +28133,7 @@ type VPCRouterSetting struct {
 	WireGuard                 *VPCRouterWireGuard            `mapconv:"Router.WireGuard.Config,omitempty,recursive"`
 	WireGuardEnabled          types.StringFlag               `mapconv:"Router.WireGuard.Enabled,omitempty"`
 	RemoteAccessUsers         []*VPCRouterRemoteAccessUser   `mapconv:"Router.RemoteAccessUsers.[]Config,omitempty,recursive"`
-	SiteToSiteIPsecVPN        []*VPCRouterSiteToSiteIPsecVPN `mapconv:"Router.SiteToSiteIPsecVPN.[]Config,omitempty,recursive"`
+	SiteToSiteIPsecVPN        *VPCRouterSiteToSiteIPsecVPN   `mapconv:"Router.SiteToSiteIPsecVPN,omitempty,recursive"`
 	StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
 	SyslogHost                string                         `mapconv:"Router.SyslogHost"`
 	ScheduledMaintenance      *VPCRouterScheduledMaintenance `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
@@ -28158,7 +28158,7 @@ func (o *VPCRouterSetting) setDefaults() interface{} {
 		WireGuard                 *VPCRouterWireGuard            `mapconv:"Router.WireGuard.Config,omitempty,recursive"`
 		WireGuardEnabled          types.StringFlag               `mapconv:"Router.WireGuard.Enabled,omitempty"`
 		RemoteAccessUsers         []*VPCRouterRemoteAccessUser   `mapconv:"Router.RemoteAccessUsers.[]Config,omitempty,recursive"`
-		SiteToSiteIPsecVPN        []*VPCRouterSiteToSiteIPsecVPN `mapconv:"Router.SiteToSiteIPsecVPN.[]Config,omitempty,recursive"`
+		SiteToSiteIPsecVPN        *VPCRouterSiteToSiteIPsecVPN   `mapconv:"Router.SiteToSiteIPsecVPN,omitempty,recursive"`
 		StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
 		SyslogHost                string                         `mapconv:"Router.SyslogHost"`
 		ScheduledMaintenance      *VPCRouterScheduledMaintenance `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
@@ -28347,12 +28347,12 @@ func (o *VPCRouterSetting) SetRemoteAccessUsers(v []*VPCRouterRemoteAccessUser) 
 }
 
 // GetSiteToSiteIPsecVPN returns value of SiteToSiteIPsecVPN
-func (o *VPCRouterSetting) GetSiteToSiteIPsecVPN() []*VPCRouterSiteToSiteIPsecVPN {
+func (o *VPCRouterSetting) GetSiteToSiteIPsecVPN() *VPCRouterSiteToSiteIPsecVPN {
 	return o.SiteToSiteIPsecVPN
 }
 
 // SetSiteToSiteIPsecVPN sets value to SiteToSiteIPsecVPN
-func (o *VPCRouterSetting) SetSiteToSiteIPsecVPN(v []*VPCRouterSiteToSiteIPsecVPN) {
+func (o *VPCRouterSetting) SetSiteToSiteIPsecVPN(v *VPCRouterSiteToSiteIPsecVPN) {
 	o.SiteToSiteIPsecVPN = v
 }
 
@@ -29159,6 +29159,60 @@ func (o *VPCRouterRemoteAccessUser) SetPassword(v string) {
 
 // VPCRouterSiteToSiteIPsecVPN represents API parameter/response structure
 type VPCRouterSiteToSiteIPsecVPN struct {
+	Config []*VPCRouterSiteToSiteIPsecVPNConfig `mapconv:"[]Config,omitempty,recursive"`
+	IKE    *VPCRouterSiteToSiteIPsecVPNIKE      `mapconv:",omitempty,recursive"`
+	ESP    *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterSiteToSiteIPsecVPN) setDefaults() interface{} {
+	return &struct {
+		Config []*VPCRouterSiteToSiteIPsecVPNConfig `mapconv:"[]Config,omitempty,recursive"`
+		IKE    *VPCRouterSiteToSiteIPsecVPNIKE      `mapconv:",omitempty,recursive"`
+		ESP    *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
+	}{
+		Config: o.GetConfig(),
+		IKE:    o.GetIKE(),
+		ESP:    o.GetESP(),
+	}
+}
+
+// GetConfig returns value of Config
+func (o *VPCRouterSiteToSiteIPsecVPN) GetConfig() []*VPCRouterSiteToSiteIPsecVPNConfig {
+	return o.Config
+}
+
+// SetConfig sets value to Config
+func (o *VPCRouterSiteToSiteIPsecVPN) SetConfig(v []*VPCRouterSiteToSiteIPsecVPNConfig) {
+	o.Config = v
+}
+
+// GetIKE returns value of IKE
+func (o *VPCRouterSiteToSiteIPsecVPN) GetIKE() *VPCRouterSiteToSiteIPsecVPNIKE {
+	return o.IKE
+}
+
+// SetIKE sets value to IKE
+func (o *VPCRouterSiteToSiteIPsecVPN) SetIKE(v *VPCRouterSiteToSiteIPsecVPNIKE) {
+	o.IKE = v
+}
+
+// GetESP returns value of ESP
+func (o *VPCRouterSiteToSiteIPsecVPN) GetESP() *VPCRouterSiteToSiteIPsecVPNESP {
+	return o.ESP
+}
+
+// SetESP sets value to ESP
+func (o *VPCRouterSiteToSiteIPsecVPN) SetESP(v *VPCRouterSiteToSiteIPsecVPNESP) {
+	o.ESP = v
+}
+
+/*************************************************
+* VPCRouterSiteToSiteIPsecVPNConfig
+*************************************************/
+
+// VPCRouterSiteToSiteIPsecVPNConfig represents API parameter/response structure
+type VPCRouterSiteToSiteIPsecVPNConfig struct {
 	Peer            string
 	PreSharedSecret string
 	RemoteID        string
@@ -29167,7 +29221,7 @@ type VPCRouterSiteToSiteIPsecVPN struct {
 }
 
 // setDefaults implements iaas.argumentDefaulter
-func (o *VPCRouterSiteToSiteIPsecVPN) setDefaults() interface{} {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) setDefaults() interface{} {
 	return &struct {
 		Peer            string
 		PreSharedSecret string
@@ -29184,53 +29238,163 @@ func (o *VPCRouterSiteToSiteIPsecVPN) setDefaults() interface{} {
 }
 
 // GetPeer returns value of Peer
-func (o *VPCRouterSiteToSiteIPsecVPN) GetPeer() string {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) GetPeer() string {
 	return o.Peer
 }
 
 // SetPeer sets value to Peer
-func (o *VPCRouterSiteToSiteIPsecVPN) SetPeer(v string) {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) SetPeer(v string) {
 	o.Peer = v
 }
 
 // GetPreSharedSecret returns value of PreSharedSecret
-func (o *VPCRouterSiteToSiteIPsecVPN) GetPreSharedSecret() string {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) GetPreSharedSecret() string {
 	return o.PreSharedSecret
 }
 
 // SetPreSharedSecret sets value to PreSharedSecret
-func (o *VPCRouterSiteToSiteIPsecVPN) SetPreSharedSecret(v string) {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) SetPreSharedSecret(v string) {
 	o.PreSharedSecret = v
 }
 
 // GetRemoteID returns value of RemoteID
-func (o *VPCRouterSiteToSiteIPsecVPN) GetRemoteID() string {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) GetRemoteID() string {
 	return o.RemoteID
 }
 
 // SetRemoteID sets value to RemoteID
-func (o *VPCRouterSiteToSiteIPsecVPN) SetRemoteID(v string) {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) SetRemoteID(v string) {
 	o.RemoteID = v
 }
 
 // GetRoutes returns value of Routes
-func (o *VPCRouterSiteToSiteIPsecVPN) GetRoutes() []string {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) GetRoutes() []string {
 	return o.Routes
 }
 
 // SetRoutes sets value to Routes
-func (o *VPCRouterSiteToSiteIPsecVPN) SetRoutes(v []string) {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) SetRoutes(v []string) {
 	o.Routes = v
 }
 
 // GetLocalPrefix returns value of LocalPrefix
-func (o *VPCRouterSiteToSiteIPsecVPN) GetLocalPrefix() []string {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) GetLocalPrefix() []string {
 	return o.LocalPrefix
 }
 
 // SetLocalPrefix sets value to LocalPrefix
-func (o *VPCRouterSiteToSiteIPsecVPN) SetLocalPrefix(v []string) {
+func (o *VPCRouterSiteToSiteIPsecVPNConfig) SetLocalPrefix(v []string) {
 	o.LocalPrefix = v
+}
+
+/*************************************************
+* VPCRouterSiteToSiteIPsecVPNIKE
+*************************************************/
+
+// VPCRouterSiteToSiteIPsecVPNIKE represents API parameter/response structure
+type VPCRouterSiteToSiteIPsecVPNIKE struct {
+	Lifetime int
+	DPD      *VPCRouterSiteToSiteIPsecVPNIKEDPD `mapconv:",omitempty,recursive"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterSiteToSiteIPsecVPNIKE) setDefaults() interface{} {
+	return &struct {
+		Lifetime int
+		DPD      *VPCRouterSiteToSiteIPsecVPNIKEDPD `mapconv:",omitempty,recursive"`
+	}{
+		Lifetime: o.GetLifetime(),
+		DPD:      o.GetDPD(),
+	}
+}
+
+// GetLifetime returns value of Lifetime
+func (o *VPCRouterSiteToSiteIPsecVPNIKE) GetLifetime() int {
+	return o.Lifetime
+}
+
+// SetLifetime sets value to Lifetime
+func (o *VPCRouterSiteToSiteIPsecVPNIKE) SetLifetime(v int) {
+	o.Lifetime = v
+}
+
+// GetDPD returns value of DPD
+func (o *VPCRouterSiteToSiteIPsecVPNIKE) GetDPD() *VPCRouterSiteToSiteIPsecVPNIKEDPD {
+	return o.DPD
+}
+
+// SetDPD sets value to DPD
+func (o *VPCRouterSiteToSiteIPsecVPNIKE) SetDPD(v *VPCRouterSiteToSiteIPsecVPNIKEDPD) {
+	o.DPD = v
+}
+
+/*************************************************
+* VPCRouterSiteToSiteIPsecVPNIKEDPD
+*************************************************/
+
+// VPCRouterSiteToSiteIPsecVPNIKEDPD represents API parameter/response structure
+type VPCRouterSiteToSiteIPsecVPNIKEDPD struct {
+	Interval int
+	Timeout  int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterSiteToSiteIPsecVPNIKEDPD) setDefaults() interface{} {
+	return &struct {
+		Interval int
+		Timeout  int
+	}{
+		Interval: o.GetInterval(),
+		Timeout:  o.GetTimeout(),
+	}
+}
+
+// GetInterval returns value of Interval
+func (o *VPCRouterSiteToSiteIPsecVPNIKEDPD) GetInterval() int {
+	return o.Interval
+}
+
+// SetInterval sets value to Interval
+func (o *VPCRouterSiteToSiteIPsecVPNIKEDPD) SetInterval(v int) {
+	o.Interval = v
+}
+
+// GetTimeout returns value of Timeout
+func (o *VPCRouterSiteToSiteIPsecVPNIKEDPD) GetTimeout() int {
+	return o.Timeout
+}
+
+// SetTimeout sets value to Timeout
+func (o *VPCRouterSiteToSiteIPsecVPNIKEDPD) SetTimeout(v int) {
+	o.Timeout = v
+}
+
+/*************************************************
+* VPCRouterSiteToSiteIPsecVPNESP
+*************************************************/
+
+// VPCRouterSiteToSiteIPsecVPNESP represents API parameter/response structure
+type VPCRouterSiteToSiteIPsecVPNESP struct {
+	Lifetime int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterSiteToSiteIPsecVPNESP) setDefaults() interface{} {
+	return &struct {
+		Lifetime int
+	}{
+		Lifetime: o.GetLifetime(),
+	}
+}
+
+// GetLifetime returns value of Lifetime
+func (o *VPCRouterSiteToSiteIPsecVPNESP) GetLifetime() int {
+	return o.Lifetime
+}
+
+// SetLifetime sets value to Lifetime
+func (o *VPCRouterSiteToSiteIPsecVPNESP) SetLifetime(v int) {
+	o.Lifetime = v
 }
 
 /*************************************************

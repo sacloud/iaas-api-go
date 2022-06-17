@@ -361,13 +361,25 @@ func TestVPCRouterOp_WithRouterCRUD(t *testing.T) {
 								Password: "password1",
 							},
 						},
-						SiteToSiteIPsecVPN: []*iaas.VPCRouterSiteToSiteIPsecVPN{
-							{
-								Peer:            "1.2.3.4",
-								PreSharedSecret: "presharedsecret",
-								RemoteID:        "1.2.3.4",
-								Routes:          []string{"10.0.0.0/24"},
-								LocalPrefix:     []string{"192.168.2.0/24"},
+						SiteToSiteIPsecVPN: &iaas.VPCRouterSiteToSiteIPsecVPN{
+							Config: []*iaas.VPCRouterSiteToSiteIPsecVPNConfig{
+								{
+									Peer:            "1.2.3.4",
+									PreSharedSecret: "presharedsecret",
+									RemoteID:        "1.2.3.4",
+									Routes:          []string{"10.0.0.0/24"},
+									LocalPrefix:     []string{"192.168.2.0/24"},
+								},
+							},
+							IKE: &iaas.VPCRouterSiteToSiteIPsecVPNIKE{
+								Lifetime: 28801,
+								DPD: &iaas.VPCRouterSiteToSiteIPsecVPNIKEDPD{
+									Interval: 16,
+									Timeout:  31,
+								},
+							},
+							ESP: &iaas.VPCRouterSiteToSiteIPsecVPNESP{
+								Lifetime: 1801,
 							},
 						},
 						StaticRoute: []*iaas.VPCRouterStaticRoute{
