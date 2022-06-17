@@ -101,6 +101,10 @@ var (
 					},
 				},
 			},
+			ScheduledMaintenance: &iaas.VPCRouterScheduledMaintenance{
+				DayOfWeek: 1,
+				Hour:      2,
+			},
 		},
 	}
 	createVPCRouterExpected = &iaas.VPCRouter{
@@ -371,6 +375,10 @@ func TestVPCRouterOp_WithRouterCRUD(t *testing.T) {
 								Prefix:  "172.16.0.0/16",
 								NextHop: "192.168.2.11",
 							},
+						},
+						ScheduledMaintenance: &iaas.VPCRouterScheduledMaintenance{
+							DayOfWeek: 1,
+							Hour:      2,
 						},
 					}
 

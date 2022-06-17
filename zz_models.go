@@ -28136,6 +28136,7 @@ type VPCRouterSetting struct {
 	SiteToSiteIPsecVPN        []*VPCRouterSiteToSiteIPsecVPN `mapconv:"Router.SiteToSiteIPsecVPN.[]Config,omitempty,recursive"`
 	StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
 	SyslogHost                string                         `mapconv:"Router.SyslogHost"`
+	ScheduledMaintenance      *VPCRouterScheduledMaintenance `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -28160,6 +28161,7 @@ func (o *VPCRouterSetting) setDefaults() interface{} {
 		SiteToSiteIPsecVPN        []*VPCRouterSiteToSiteIPsecVPN `mapconv:"Router.SiteToSiteIPsecVPN.[]Config,omitempty,recursive"`
 		StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
 		SyslogHost                string                         `mapconv:"Router.SyslogHost"`
+		ScheduledMaintenance      *VPCRouterScheduledMaintenance `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
 	}{
 		VRID:                      o.GetVRID(),
 		InternetConnectionEnabled: o.GetInternetConnectionEnabled(),
@@ -28180,6 +28182,7 @@ func (o *VPCRouterSetting) setDefaults() interface{} {
 		SiteToSiteIPsecVPN:        o.GetSiteToSiteIPsecVPN(),
 		StaticRoute:               o.GetStaticRoute(),
 		SyslogHost:                o.GetSyslogHost(),
+		ScheduledMaintenance:      o.GetScheduledMaintenance(),
 	}
 }
 
@@ -28371,6 +28374,16 @@ func (o *VPCRouterSetting) GetSyslogHost() string {
 // SetSyslogHost sets value to SyslogHost
 func (o *VPCRouterSetting) SetSyslogHost(v string) {
 	o.SyslogHost = v
+}
+
+// GetScheduledMaintenance returns value of ScheduledMaintenance
+func (o *VPCRouterSetting) GetScheduledMaintenance() *VPCRouterScheduledMaintenance {
+	return o.ScheduledMaintenance
+}
+
+// SetScheduledMaintenance sets value to ScheduledMaintenance
+func (o *VPCRouterSetting) SetScheduledMaintenance(v *VPCRouterScheduledMaintenance) {
+	o.ScheduledMaintenance = v
 }
 
 /*************************************************
@@ -29259,6 +29272,47 @@ func (o *VPCRouterStaticRoute) GetNextHop() string {
 // SetNextHop sets value to NextHop
 func (o *VPCRouterStaticRoute) SetNextHop(v string) {
 	o.NextHop = v
+}
+
+/*************************************************
+* VPCRouterScheduledMaintenance
+*************************************************/
+
+// VPCRouterScheduledMaintenance represents API parameter/response structure
+type VPCRouterScheduledMaintenance struct {
+	DayOfWeek int
+	Hour      int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterScheduledMaintenance) setDefaults() interface{} {
+	return &struct {
+		DayOfWeek int
+		Hour      int
+	}{
+		DayOfWeek: o.GetDayOfWeek(),
+		Hour:      o.GetHour(),
+	}
+}
+
+// GetDayOfWeek returns value of DayOfWeek
+func (o *VPCRouterScheduledMaintenance) GetDayOfWeek() int {
+	return o.DayOfWeek
+}
+
+// SetDayOfWeek sets value to DayOfWeek
+func (o *VPCRouterScheduledMaintenance) SetDayOfWeek(v int) {
+	o.DayOfWeek = v
+}
+
+// GetHour returns value of Hour
+func (o *VPCRouterScheduledMaintenance) GetHour() int {
+	return o.Hour
+}
+
+// SetHour sets value to Hour
+func (o *VPCRouterScheduledMaintenance) SetHour(v int) {
+	o.Hour = v
 }
 
 /*************************************************
