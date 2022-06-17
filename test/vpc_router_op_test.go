@@ -381,6 +381,8 @@ func TestVPCRouterOp_WithRouterCRUD(t *testing.T) {
 							ESP: &iaas.VPCRouterSiteToSiteIPsecVPNESP{
 								Lifetime: 1801,
 							},
+							EncryptionAlgo: types.VPCRouterSiteToSiteVPNEncryptionAlgoAES256,
+							HashAlgo:       types.VPCRouterSiteToSiteVPNHashAlgoSHA256,
 						},
 						StaticRoute: []*iaas.VPCRouterStaticRoute{
 							{

@@ -471,10 +471,12 @@ func (f *VPCRouterRemoteAccessUsers) MarshalJSON() ([]byte, error) {
 
 // VPCRouterSiteToSiteIPsecVPN サイト間VPN
 type VPCRouterSiteToSiteIPsecVPN struct {
-	Config  []*VPCRouterSiteToSiteIPsecVPNConfig `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	IKE     *VPCRouterSiteToSiteIPsecVPNIKE      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	ESP     *VPCRouterSiteToSiteIPsecVPNESP      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	Enabled types.StringFlag                     `yaml:"enabled"`
+	Config         []*VPCRouterSiteToSiteIPsecVPNConfig `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	IKE            *VPCRouterSiteToSiteIPsecVPNIKE      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	ESP            *VPCRouterSiteToSiteIPsecVPNESP      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	EncryptionAlgo string                               `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // aes128 or aes256
+	HashAlgo       string                               `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // sha1 or sha256
+	Enabled        types.StringFlag                     `yaml:"enabled"`
 }
 
 // MarshalJSON Configが一つ以上ある場合にEnabledをtrueに設定する

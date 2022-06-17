@@ -1274,6 +1274,14 @@ func (m *modelsDef) vpcRouterSiteToSiteIPsecVPN() *dsl.Model {
 					MapConv: ",omitempty,recursive",
 				},
 			},
+			{
+				Name: "EncryptionAlgo",
+				Type: meta.TypeString,
+			},
+			{
+				Name: "HashAlgo",
+				Type: meta.TypeString,
+			},
 		},
 	}
 }
