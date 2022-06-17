@@ -924,6 +924,13 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 					MapConv: "Router.SyslogHost",
 				},
 			},
+			{
+				Name: "ScheduledMaintenance",
+				Type: m.vpcRouterScheduledMaintenance(),
+				Tags: &dsl.FieldTags{
+					MapConv: "Router.ScheduledMaintenance,omitempty,recursive",
+				},
+			},
 		},
 	}
 }
@@ -1284,6 +1291,23 @@ func (m *modelsDef) vpcRouterStaticRoute() *dsl.Model {
 			{
 				Name: "NextHop",
 				Type: meta.TypeString,
+			},
+		},
+	}
+}
+
+func (m *modelsDef) vpcRouterScheduledMaintenance() *dsl.Model {
+	return &dsl.Model{
+		Name:      "VPCRouterScheduledMaintenance",
+		NakedType: meta.Static(naked.VPCRouterScheduledMaintenance{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "DayOfWeek",
+				Type: meta.TypeInt,
+			},
+			{
+				Name: "Hour",
+				Type: meta.TypeInt,
 			},
 		},
 	}

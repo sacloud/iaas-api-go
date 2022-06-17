@@ -54,22 +54,23 @@ type VPCRouterSettings struct {
 
 // VPCRouterSetting VPCルータ 設定
 type VPCRouterSetting struct {
-	InternetConnection *VPCRouterInternetConnection `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	Interfaces         VPCRouterInterfaces          `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	VRID               int                          `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	StaticNAT          *VPCRouterStaticNAT          `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	PortForwarding     *VPCRouterPortForwarding     `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	Firewall           *VPCRouterFirewall           `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	DHCPServer         *VPCRouterDHCPServer         `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	DHCPStaticMapping  *VPCRouterDHCPStaticMappings `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	DNSForwarding      *VPCRouterDNSForwarding      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	PPTPServer         *VPCRouterPPTPServer         `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	L2TPIPsecServer    *VPCRouterL2TPIPsecServer    `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	WireGuard          *VPCRouterWireGuard          `json:"WireGuardServer,omitempty" yaml:",omitempty" structs:",omitempty"`
-	RemoteAccessUsers  *VPCRouterRemoteAccessUsers  `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	SiteToSiteIPsecVPN *VPCRouterSiteToSiteIPsecVPN `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	StaticRoutes       *VPCRouterStaticRoutes       `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	SyslogHost         string                       `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	InternetConnection   *VPCRouterInternetConnection   `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	Interfaces           VPCRouterInterfaces            `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	VRID                 int                            `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	StaticNAT            *VPCRouterStaticNAT            `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	PortForwarding       *VPCRouterPortForwarding       `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	Firewall             *VPCRouterFirewall             `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	DHCPServer           *VPCRouterDHCPServer           `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	DHCPStaticMapping    *VPCRouterDHCPStaticMappings   `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	DNSForwarding        *VPCRouterDNSForwarding        `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	PPTPServer           *VPCRouterPPTPServer           `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	L2TPIPsecServer      *VPCRouterL2TPIPsecServer      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	WireGuard            *VPCRouterWireGuard            `json:"WireGuardServer,omitempty" yaml:",omitempty" structs:",omitempty"`
+	RemoteAccessUsers    *VPCRouterRemoteAccessUsers    `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	SiteToSiteIPsecVPN   *VPCRouterSiteToSiteIPsecVPN   `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	StaticRoutes         *VPCRouterStaticRoutes         `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	SyslogHost           string                         `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	ScheduledMaintenance *VPCRouterScheduledMaintenance `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 }
 
 // VPCRouterInternetConnection インターフェース
@@ -519,6 +520,12 @@ func (f *VPCRouterStaticRoutes) MarshalJSON() ([]byte, error) {
 type VPCRouterStaticRouteConfig struct {
 	Prefix  string `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	NextHop string `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+}
+
+// VPCRouterScheduledMaintenance
+type VPCRouterScheduledMaintenance struct {
+	DayOfWeek int // 0が日曜日
+	Hour      int // 0-23時
 }
 
 // VPCRouterStatus ステータス
