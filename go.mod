@@ -8,7 +8,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/huandu/xstrings v1.2.0
 	github.com/mitchellh/go-homedir v1.1.0
-	github.com/mitchellh/mapstructure v1.4.3
+	github.com/mitchellh/mapstructure v1.5.0
 	github.com/sacloud/api-client-go v0.2.0
 	github.com/sacloud/go-http v0.1.1
 	github.com/sacloud/packages-go v0.0.3
