@@ -53,6 +53,7 @@ func toLower(name string) string {
 
 var normalizationWords = map[string]string{
 	"Ip":    "IP",
+	"i_pv":  "ipv",
 	"i_pv_": "ipv",
 	"i-pv-": "ipv",
 	"Cpu":   "CPU",
