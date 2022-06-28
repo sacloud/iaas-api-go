@@ -18,10 +18,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/sacloud/iaas-api-go/helper/query"
-
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/helper/power"
+	"github.com/sacloud/iaas-api-go/helper/query"
 	"github.com/sacloud/iaas-api-go/helper/wait"
 	"github.com/sacloud/iaas-api-go/testutil"
 	"github.com/sacloud/iaas-api-go/types"
