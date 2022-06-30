@@ -12,7 +12,7 @@ require (
 	github.com/sacloud/api-client-go v0.2.0
 	github.com/sacloud/go-http v0.1.1
 	github.com/sacloud/packages-go v0.0.3
-	github.com/stretchr/testify v1.7.5
+	github.com/stretchr/testify v1.8.0
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292
 )
 
