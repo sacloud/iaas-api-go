@@ -146,7 +146,7 @@ FILTER_APPLY_LOOP:
 							}
 						case "Scope":
 							if v, ok := target.(accessor.Scope); ok {
-								value = v.GetScope()
+								value = v.GetScope().String()
 							}
 						case "Class":
 							if v, ok := target.(accessor.Class); ok {
