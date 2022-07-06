@@ -21,6 +21,7 @@ import (
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/ostype"
+	"github.com/sacloud/iaas-api-go/search"
 	"github.com/sacloud/iaas-api-go/testutil"
 	"github.com/stretchr/testify/require"
 )
@@ -105,4 +106,11 @@ func TestAccFindArchiveByOSType(t *testing.T) {
 			t.Logf("zone: %s ostype[%s] => {ID: %d, Name: %s}", zone, os, archive.ID, archive.Name)
 		}
 	}
+}
+
+func Test_filterByOSType(t *testing.T) {
+	filter, err := filterByOSType(ostype.CentOS)
+	require.NoError(t, err)
+	_, hasScopeCond := filter[search.Key("Scope")]
+	require.True(t, hasScopeCond)
 }
