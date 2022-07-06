@@ -17,56 +17,73 @@ package ostype
 import (
 	"github.com/sacloud/iaas-api-go/search"
 	"github.com/sacloud/iaas-api-go/search/keys"
+	"github.com/sacloud/iaas-api-go/types"
 )
 
 // ArchiveCriteria OSTypeごとのアーカイブ検索条件
 var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 	CentOS: {
-		search.Key(keys.Tags): search.TagsAndEqual("distro-centos"),
+		search.Key(keys.Tags):  search.TagsAndEqual("distro-centos"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	CentOS8Stream: {
-		search.Key(keys.Tags): search.TagsAndEqual("distro-ver-8-stream", "distro-centos"),
+		search.Key(keys.Tags):  search.TagsAndEqual("distro-ver-8-stream", "distro-centos"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	CentOS7: {
-		search.Key(keys.Tags): search.TagsAndEqual("centos-7-latest"),
+		search.Key(keys.Tags):  search.TagsAndEqual("centos-7-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	AlmaLinux: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-alma"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-alma"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	RockyLinux: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-rocky"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-rocky"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	MiracleLinux: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-miracle"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-miracle"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Ubuntu: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-ubuntu"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-ubuntu"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Ubuntu2204: {
-		search.Key(keys.Tags): search.TagsAndEqual("ubuntu-22.04-latest"),
+		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-22.04-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Ubuntu2004: {
-		search.Key(keys.Tags): search.TagsAndEqual("ubuntu-20.04-latest"),
+		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-20.04-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Ubuntu1804: {
-		search.Key(keys.Tags): search.TagsAndEqual("ubuntu-18.04-latest"),
+		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-18.04-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Debian: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-debian"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-debian"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Debian10: {
-		search.Key(keys.Tags): search.TagsAndEqual("debian-10-latest"),
+		search.Key(keys.Tags):  search.TagsAndEqual("debian-10-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Debian11: {
-		search.Key(keys.Tags): search.TagsAndEqual("debian-11-latest"),
+		search.Key(keys.Tags):  search.TagsAndEqual("debian-11-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	RancherOS: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-rancheros"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-rancheros"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	K3OS: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "distro-k3os"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-k3os"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Kusanagi: {
-		search.Key(keys.Tags): search.TagsAndEqual("current-stable", "pkg-kusanagi"),
+		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "pkg-kusanagi"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 }

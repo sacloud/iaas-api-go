@@ -20,15 +20,13 @@ import (
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/ostype"
-	"github.com/sacloud/iaas-api-go/search"
-	"github.com/sacloud/iaas-api-go/types"
 )
 
 // FindArchiveByOSType OS種別ごとの最新安定板のアーカイブを取得
 func FindArchiveByOSType(ctx context.Context, api ArchiveFinder, zone string, os ostype.ArchiveOSType) (*iaas.Archive, error) {
-	filter, err := filterByOSType(os)
-	if err != nil {
-		return nil, err
+	filter, ok := ostype.ArchiveCriteria[os]
+	if !ok {
+		return nil, fmt.Errorf("unsupported ostype.ArchiveOSType: %v", os)
 	}
 
 	searched, err := api.Find(ctx, zone, &iaas.FindCondition{Filter: filter})
@@ -39,13 +37,4 @@ func FindArchiveByOSType(ctx context.Context, api ArchiveFinder, zone string, os
 		return nil, fmt.Errorf("archive not found with ostype.ArchiveOSType: %v", os)
 	}
 	return searched.Archives[0], nil
-}
-
-func filterByOSType(os ostype.ArchiveOSType) (search.Filter, error) {
-	filter, ok := ostype.ArchiveCriteria[os]
-	if !ok {
-		return nil, fmt.Errorf("unsupported ostype.ArchiveOSType: %v", os)
-	}
-	filter[search.Key("Scope")] = search.ExactMatch(types.Scopes.Shared.String())
-	return filter, nil
 }
