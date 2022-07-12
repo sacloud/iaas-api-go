@@ -171,11 +171,9 @@ var (
 		Tags:           []string{"tag1", "tag2"},
 
 		Conf: &iaas.DatabaseRemarkDBConfCommon{
-			DatabaseName:     types.RDBMSVersions[types.RDBMSTypesMariaDB].Name,
-			DatabaseVersion:  types.RDBMSVersions[types.RDBMSTypesMariaDB].Version,
-			DatabaseRevision: "10.4.12",
-			DefaultUser:      "exa.mple",
-			UserPassword:     "LibsacloudExamplePassword01",
+			DatabaseName: types.RDBMSTypesMariaDB.String(),
+			DefaultUser:  "exa.mple",
+			UserPassword: "LibsacloudExamplePassword01",
 		},
 		CommonSetting: &iaas.DatabaseSettingCommon{
 			ServicePort:     5432,
@@ -414,7 +412,6 @@ func TestCreateProxyDatabase(t *testing.T) {
 		DefaultRoute:   "192.168.22.1",
 		Conf: &iaas.DatabaseRemarkDBConfCommon{
 			DatabaseName: types.RDBMSTypesPostgreSQL.String(),
-			// DatabaseVersion: "10.5", // debug
 			DefaultUser:  "sacloud",
 			UserPassword: "TestUserPassword01",
 		},

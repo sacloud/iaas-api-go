@@ -31,27 +31,6 @@ const (
 	RDBMSTypesPostgreSQL = RDBMSType("postgres")
 )
 
-// RDBMSVersion RDBMSごとの名称やリビジョンなどのバージョン指定時のパラメータ情報
-type RDBMSVersion struct {
-	Name     string
-	Version  string
-	Revision string
-}
-
-// RDBMSVersions RDBMSごとの名称やリビジョンなどのバージョン指定時のパラメータ情報
-var RDBMSVersions = map[RDBMSType]*RDBMSVersion{
-	RDBMSTypesMariaDB: {
-		Name:     "MariaDB",
-		Version:  "10.4",
-		Revision: "",
-	},
-	RDBMSTypesPostgreSQL: {
-		Name:     "postgres",
-		Version:  "13",
-		Revision: "",
-	},
-}
-
 // RDBMSTypeStrings 有効なRDBMS種別を示す文字列
 var RDBMSTypeStrings = []string{
 	strings.ToLower(RDBMSTypesMariaDB.String()),
