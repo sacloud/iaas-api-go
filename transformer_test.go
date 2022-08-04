@@ -388,6 +388,9 @@ func TestVPCRouterOp_transformCreateArgs(t *testing.T) {
 					},
 					Settings: &naked.VPCRouterSettings{
 						Router: &naked.VPCRouterSetting{
+							InternetConnection: &naked.VPCRouterInternetConnection{},
+							PPTPServer:         &naked.VPCRouterPPTPServer{},
+							L2TPIPsecServer:    &naked.VPCRouterL2TPIPsecServer{},
 							WireGuard: &naked.VPCRouterWireGuard{
 								Config: &naked.VPCRouterWireGuardConfig{
 									IPAddress: "192.168.1.1",

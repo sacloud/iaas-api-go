@@ -89,23 +89,7 @@ var (
 		Name:        testutil.ResourceName("vpc-router"),
 		Description: "desc",
 		Tags:        []string{"tag1", "tag2"},
-		Settings: &iaas.VPCRouterSetting{
-			InternetConnectionEnabled: true,
-			Firewall: []*iaas.VPCRouterFirewall{
-				{
-					Receive: []*iaas.VPCRouterFirewallRule{
-						{
-							Protocol: types.Protocols.IP,
-							Action:   types.Actions.Deny,
-						},
-					},
-				},
-			},
-			ScheduledMaintenance: &iaas.VPCRouterScheduledMaintenance{
-				DayOfWeek: 1,
-				Hour:      2,
-			},
-		},
+		Settings:    &iaas.VPCRouterSetting{},
 	}
 	createVPCRouterExpected = &iaas.VPCRouter{
 		Class:          "vpcrouter",

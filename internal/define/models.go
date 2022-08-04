@@ -802,7 +802,7 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 				Name: "InternetConnectionEnabled",
 				Type: meta.TypeStringFlag,
 				Tags: &dsl.FieldTags{
-					MapConv: "Router.InternetConnection.Enabled,omitempty",
+					MapConv: "Router.InternetConnection.Enabled",
 				},
 			},
 			{
@@ -865,7 +865,7 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 				Name: "PPTPServerEnabled",
 				Type: meta.TypeStringFlag,
 				Tags: &dsl.FieldTags{
-					MapConv: "Router.PPTPServer.Enabled,omitempty",
+					MapConv: "Router.PPTPServer.Enabled",
 				},
 			},
 			{
@@ -879,7 +879,7 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 				Name: "L2TPIPsecServerEnabled",
 				Type: meta.TypeStringFlag,
 				Tags: &dsl.FieldTags{
-					MapConv: "Router.L2TPIPsecServer.Enabled,omitempty",
+					MapConv: "Router.L2TPIPsecServer.Enabled",
 				},
 			},
 			{
@@ -893,7 +893,7 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 				Name: "WireGuardEnabled",
 				Type: meta.TypeStringFlag,
 				Tags: &dsl.FieldTags{
-					MapConv: "Router.WireGuard.Enabled,omitempty",
+					MapConv: "Router.WireGuard.Enabled",
 				},
 			},
 			{
