@@ -74,7 +74,7 @@ func TestServerOp_CRUD(t *testing.T) {
 					// find cdrom
 					searched, err := cdOp.Find(ctx, testZone, &iaas.FindCondition{
 						Filter: search.Filter{
-							search.Key(keys.Scope): types.Scopes.Shared,
+							search.Key(keys.Scope): types.Scopes.Shared.String(),
 						},
 						Count: 1,
 					})

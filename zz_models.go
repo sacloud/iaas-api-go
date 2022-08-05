@@ -28118,7 +28118,7 @@ func (o *VPCRouter) SetZoneID(v types.ID) {
 // VPCRouterSetting represents API parameter/response structure
 type VPCRouterSetting struct {
 	VRID                      int                            `json:",omitempty" mapconv:"Router.VRID"`
-	InternetConnectionEnabled types.StringFlag               `mapconv:"Router.InternetConnection.Enabled,omitempty"`
+	InternetConnectionEnabled types.StringFlag               `mapconv:"Router.InternetConnection.Enabled"`
 	Interfaces                []*VPCRouterInterfaceSetting   `mapconv:"Router.[]Interfaces,omitempty,recursive"`
 	StaticNAT                 []*VPCRouterStaticNAT          `mapconv:"Router.StaticNAT.[]Config,omitempty,recursive"`
 	PortForwarding            []*VPCRouterPortForwarding     `mapconv:"Router.PortForwarding.[]Config,omitempty,recursive"`
@@ -28127,11 +28127,11 @@ type VPCRouterSetting struct {
 	DHCPStaticMapping         []*VPCRouterDHCPStaticMapping  `mapconv:"Router.DHCPStaticMapping.[]Config,omitempty,recursive"`
 	DNSForwarding             *VPCRouterDNSForwarding        `mapconv:"Router.DNSForwarding,omitempty,recursive"`
 	PPTPServer                *VPCRouterPPTPServer           `mapconv:"Router.PPTPServer.Config,omitempty,recursive"`
-	PPTPServerEnabled         types.StringFlag               `mapconv:"Router.PPTPServer.Enabled,omitempty"`
+	PPTPServerEnabled         types.StringFlag               `mapconv:"Router.PPTPServer.Enabled"`
 	L2TPIPsecServer           *VPCRouterL2TPIPsecServer      `mapconv:"Router.L2TPIPsecServer.Config,omitempty,recursive"`
-	L2TPIPsecServerEnabled    types.StringFlag               `mapconv:"Router.L2TPIPsecServer.Enabled,omitempty"`
+	L2TPIPsecServerEnabled    types.StringFlag               `mapconv:"Router.L2TPIPsecServer.Enabled"`
 	WireGuard                 *VPCRouterWireGuard            `mapconv:"Router.WireGuard.Config,omitempty,recursive"`
-	WireGuardEnabled          types.StringFlag               `mapconv:"Router.WireGuard.Enabled,omitempty"`
+	WireGuardEnabled          types.StringFlag               `mapconv:"Router.WireGuard.Enabled"`
 	RemoteAccessUsers         []*VPCRouterRemoteAccessUser   `mapconv:"Router.RemoteAccessUsers.[]Config,omitempty,recursive"`
 	SiteToSiteIPsecVPN        *VPCRouterSiteToSiteIPsecVPN   `mapconv:"Router.SiteToSiteIPsecVPN,omitempty,recursive"`
 	StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
@@ -28143,7 +28143,7 @@ type VPCRouterSetting struct {
 func (o *VPCRouterSetting) setDefaults() interface{} {
 	return &struct {
 		VRID                      int                            `json:",omitempty" mapconv:"Router.VRID"`
-		InternetConnectionEnabled types.StringFlag               `mapconv:"Router.InternetConnection.Enabled,omitempty"`
+		InternetConnectionEnabled types.StringFlag               `mapconv:"Router.InternetConnection.Enabled"`
 		Interfaces                []*VPCRouterInterfaceSetting   `mapconv:"Router.[]Interfaces,omitempty,recursive"`
 		StaticNAT                 []*VPCRouterStaticNAT          `mapconv:"Router.StaticNAT.[]Config,omitempty,recursive"`
 		PortForwarding            []*VPCRouterPortForwarding     `mapconv:"Router.PortForwarding.[]Config,omitempty,recursive"`
@@ -28152,11 +28152,11 @@ func (o *VPCRouterSetting) setDefaults() interface{} {
 		DHCPStaticMapping         []*VPCRouterDHCPStaticMapping  `mapconv:"Router.DHCPStaticMapping.[]Config,omitempty,recursive"`
 		DNSForwarding             *VPCRouterDNSForwarding        `mapconv:"Router.DNSForwarding,omitempty,recursive"`
 		PPTPServer                *VPCRouterPPTPServer           `mapconv:"Router.PPTPServer.Config,omitempty,recursive"`
-		PPTPServerEnabled         types.StringFlag               `mapconv:"Router.PPTPServer.Enabled,omitempty"`
+		PPTPServerEnabled         types.StringFlag               `mapconv:"Router.PPTPServer.Enabled"`
 		L2TPIPsecServer           *VPCRouterL2TPIPsecServer      `mapconv:"Router.L2TPIPsecServer.Config,omitempty,recursive"`
-		L2TPIPsecServerEnabled    types.StringFlag               `mapconv:"Router.L2TPIPsecServer.Enabled,omitempty"`
+		L2TPIPsecServerEnabled    types.StringFlag               `mapconv:"Router.L2TPIPsecServer.Enabled"`
 		WireGuard                 *VPCRouterWireGuard            `mapconv:"Router.WireGuard.Config,omitempty,recursive"`
-		WireGuardEnabled          types.StringFlag               `mapconv:"Router.WireGuard.Enabled,omitempty"`
+		WireGuardEnabled          types.StringFlag               `mapconv:"Router.WireGuard.Enabled"`
 		RemoteAccessUsers         []*VPCRouterRemoteAccessUser   `mapconv:"Router.RemoteAccessUsers.[]Config,omitempty,recursive"`
 		SiteToSiteIPsecVPN        *VPCRouterSiteToSiteIPsecVPN   `mapconv:"Router.SiteToSiteIPsecVPN,omitempty,recursive"`
 		StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
