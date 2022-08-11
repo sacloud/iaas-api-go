@@ -41,8 +41,8 @@ github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUA
 github.com/rogpeppe/go-internal v1.8.0/go.mod h1:WmiCO8CzOY8rg0OYDC4/i/2WRWAB6poM+XZ2dLUbcbE=
 github.com/sacloud/api-client-go v0.2.0 h1:mRApZCTSvWoJq1CVPiPud67BotjwUX0z0Y+ife3o/W8=
 github.com/sacloud/api-client-go v0.2.0/go.mod h1:N/TaASjFqlvOEHCu0p2QBlmve0+4vASuQTinm8tsPVk=
-github.com/sacloud/go-http v0.1.1 h1:yAQnZ/F2lCWuVxjkWAeU0M+kCNgBDu7Y8wrIKn97axs=
-github.com/sacloud/go-http v0.1.1/go.mod h1:7HxUqATJaTUHYuqv93bhbTDCgqzxtxa9Zm/VvVtBUeU=
+github.com/sacloud/go-http v0.1.2 h1:a84HkeDHxDD1vIA6HiOT72a3fwwJueZBwuGP6zVtEJU=
+github.com/sacloud/go-http v0.1.2/go.mod h1:gvWaT8LFBFnSBFVrznOQXC62uad46bHZQM8w+xoH3eE=
 github.com/sacloud/packages-go v0.0.4 h1:WrmHr7ERmZNes9ZTgRCFBpakZEBeUixWcDvk9J02gK4=
 github.com/sacloud/packages-go v0.0.4/go.mod h1:XWMBSNHT9YKY3lCh6yJsx1o1RRQQGpuhNqJA6bSHdD4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
