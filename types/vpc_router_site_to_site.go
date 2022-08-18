@@ -16,7 +16,18 @@ package types
 
 const (
 	VPCRouterSiteToSiteVPNEncryptionAlgoAES128 = "aes128"
-	VPCRouterSiteToSiteVPNEncryptionAlgoAES256 = "aes128"
+	VPCRouterSiteToSiteVPNEncryptionAlgoAES256 = "aes256"
 	VPCRouterSiteToSiteVPNHashAlgoSHA1         = "sha1"
 	VPCRouterSiteToSiteVPNHashAlgoSHA256       = "sha256"
+)
+
+var (
+	VPCRouterSiteToSiteVPNEncryptionAlgos = []string{
+		VPCRouterSiteToSiteVPNEncryptionAlgoAES128,
+		VPCRouterSiteToSiteVPNEncryptionAlgoAES256,
+	}
+	VPCRouterSiteToSiteVPNHashAlgos = []string{
+		VPCRouterSiteToSiteVPNHashAlgoSHA1,
+		VPCRouterSiteToSiteVPNHashAlgoSHA256,
+	}
 )
