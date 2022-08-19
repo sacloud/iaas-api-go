@@ -38,7 +38,7 @@ var DaysOfTheWeek = struct {
 	Saturday:  EDayOfTheWeek("sat"),
 }
 
-func WeekdayFromString(s string) EDayOfTheWeek {
+func DayOfTheWeekFromString(s string) EDayOfTheWeek {
 	switch s {
 	case "sun":
 		return DaysOfTheWeek.Sunday
@@ -58,7 +58,7 @@ func WeekdayFromString(s string) EDayOfTheWeek {
 	return DaysOfTheWeek.Monday // デフォルト
 }
 
-func WeekdayFromInt(i int) EDayOfTheWeek {
+func DayOfTheWeekFromInt(i int) EDayOfTheWeek {
 	switch i {
 	case 0:
 		return DaysOfTheWeek.Sunday
