@@ -93,7 +93,7 @@ var (
 	// TypeBackupSpanType 自動バックアップの取得間隔種別
 	TypeBackupSpanType = Static(types.EBackupSpanType(""))
 	// TypeBackupSpanWeekdays 自動バックアップの取得曜日
-	TypeBackupSpanWeekdays = Static([]types.EBackupSpanWeekday{})
+	TypeBackupSpanWeekdays = Static([]types.EDayOfTheWeek{})
 
 	// TypeDNSRecordType DNSレコード種別
 	TypeDNSRecordType = Static(types.EDNSRecordType(""))

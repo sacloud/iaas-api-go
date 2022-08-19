@@ -947,10 +947,10 @@ func (f *fieldsDef) GSLBSorryServer() *dsl.FieldDesc {
 
 func (f *fieldsDef) AutoBackupBackupSpanWeekDays() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "BackupSpanWeekdays",
+		Name: "DaysOfTheWeek",
 		Type: meta.TypeBackupSpanWeekdays,
 		Tags: &dsl.FieldTags{
-			MapConv: "Settings.Autobackup.BackupSpanWeekdays",
+			MapConv: "Settings.Autobackup.DaysOfTheWeek",
 		},
 	}
 }
@@ -2363,7 +2363,7 @@ func (f *fieldsDef) DatabaseSettingsBackup() *dsl.FieldDesc {
 			Fields: []*dsl.FieldDesc{
 				fields.Def("Rotate", meta.TypeInt),
 				fields.Def("Time", meta.TypeString),
-				fields.Def("DayOfWeek", meta.Static([]types.EBackupSpanWeekday{})),
+				fields.Def("DayOfWeek", meta.Static([]types.EDayOfTheWeek{})),
 				fields.Def("Connect", meta.TypeString),
 			},
 		},

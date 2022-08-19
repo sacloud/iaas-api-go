@@ -128,9 +128,9 @@ var (
 		Name:        testutil.ResourceName("auto-backup"),
 		Description: "desc",
 		Tags:        []string{"tag1", "tag2"},
-		BackupSpanWeekdays: []types.EBackupSpanWeekday{
-			types.BackupSpanWeekdays.Monday,
-			types.BackupSpanWeekdays.Tuesday,
+		BackupSpanWeekdays: []types.EDayOfTheWeek{
+			types.DaysOfTheWeek.Monday,
+			types.DaysOfTheWeek.Tuesday,
 		},
 		MaximumNumberOfArchives: 2,
 	}
@@ -146,11 +146,11 @@ var (
 		Name:        testutil.ResourceName("auto-backup-upd"),
 		Description: "desc-upd",
 		Tags:        []string{"tag1-upd", "tag2-upd"},
-		BackupSpanWeekdays: []types.EBackupSpanWeekday{
-			types.BackupSpanWeekdays.Monday,
-			types.BackupSpanWeekdays.Tuesday,
-			types.BackupSpanWeekdays.Wednesday,
-			types.BackupSpanWeekdays.Thursday,
+		BackupSpanWeekdays: []types.EDayOfTheWeek{
+			types.DaysOfTheWeek.Monday,
+			types.DaysOfTheWeek.Tuesday,
+			types.DaysOfTheWeek.Wednesday,
+			types.DaysOfTheWeek.Thursday,
 		},
 		MaximumNumberOfArchives: 3,
 		IconID:                  testIconID,
@@ -166,10 +166,10 @@ var (
 	}
 
 	updateAutoBackupSettingsParam = &iaas.AutoBackupUpdateSettingsRequest{
-		BackupSpanWeekdays: []types.EBackupSpanWeekday{
-			types.BackupSpanWeekdays.Monday,
-			types.BackupSpanWeekdays.Tuesday,
-			types.BackupSpanWeekdays.Wednesday,
+		BackupSpanWeekdays: []types.EDayOfTheWeek{
+			types.DaysOfTheWeek.Monday,
+			types.DaysOfTheWeek.Tuesday,
+			types.DaysOfTheWeek.Wednesday,
 		},
 		MaximumNumberOfArchives: 4,
 	}
@@ -185,8 +185,8 @@ var (
 
 	updateAutoBackupToMinParam = &iaas.AutoBackupUpdateRequest{
 		Name: testutil.ResourceName("auto-backup-to-min"),
-		BackupSpanWeekdays: []types.EBackupSpanWeekday{
-			types.BackupSpanWeekdays.Sunday,
+		BackupSpanWeekdays: []types.EDayOfTheWeek{
+			types.DaysOfTheWeek.Sunday,
 		},
 		MaximumNumberOfArchives: 1,
 	}
