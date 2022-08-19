@@ -270,9 +270,9 @@ var (
 		BackupSetting: &iaas.DatabaseSettingBackup{
 			Rotate: 3,
 			Time:   "00:00",
-			DayOfWeek: []types.EBackupSpanWeekday{
-				types.BackupSpanWeekdays.Sunday,
-				types.BackupSpanWeekdays.Monday,
+			DayOfWeek: []types.EDayOfTheWeek{
+				types.DaysOfTheWeek.Sunday,
+				types.DaysOfTheWeek.Monday,
 			},
 		},
 		CommonSetting: &iaas.DatabaseSettingCommon{

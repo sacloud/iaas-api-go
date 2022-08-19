@@ -119,10 +119,10 @@ func (d *DatabaseSettingSourceNetworks) UnmarshalJSON(b []byte) error {
 
 // DatabaseSettingBackup データベース設定 バックアップ設定
 type DatabaseSettingBackup struct {
-	Rotate    int                        `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
-	Time      string                     `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
-	DayOfWeek []types.EBackupSpanWeekday `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
-	Connect   string                     // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
+	Rotate    int                   `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
+	Time      string                `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
+	DayOfWeek []types.EDayOfTheWeek `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
+	Connect   string                // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
 }
 
 // UnmarshalJSON 配列/オブジェクトが混在することへの対応

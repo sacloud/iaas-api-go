@@ -50,9 +50,9 @@ type AutoBackupSettings struct {
 
 // AutoBackupSetting 自動バックアップ設定
 type AutoBackupSetting struct {
-	BackupSpanType          types.EBackupSpanType      `json:",omitempty" yaml:"backup_span_type,omitempty" structs:",omitempty"`
-	BackupSpanWeekdays      []types.EBackupSpanWeekday `json:",omitempty" yaml:"backup_span_weekdays,omitempty" structs:",omitempty"`
-	MaximumNumberOfArchives int                        `json:",omitempty" yaml:"maximum_number_of_archives,omitempty" structs:",omitempty"`
+	BackupSpanType          types.EBackupSpanType `json:",omitempty" yaml:"backup_span_type,omitempty" structs:",omitempty"`
+	BackupSpanWeekdays      []types.EDayOfTheWeek `json:",omitempty" yaml:"backup_span_weekdays,omitempty" structs:",omitempty"`
+	MaximumNumberOfArchives int                   `json:",omitempty" yaml:"maximum_number_of_archives,omitempty" structs:",omitempty"`
 }
 
 // AutoBackupStatus 自動バックアップステータス
