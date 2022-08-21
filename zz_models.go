@@ -1547,7 +1547,7 @@ type AutoBackup struct {
 	IconID                  types.ID `mapconv:"Icon.ID"`
 	CreatedAt               time.Time
 	ModifiedAt              time.Time
-	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 	MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 	SettingsHash            string                `json:",omitempty" mapconv:",omitempty"`
 	DiskID                  types.ID              `mapconv:"Status.DiskID"`
@@ -1567,7 +1567,7 @@ func (o *AutoBackup) setDefaults() interface{} {
 		IconID                  types.ID `mapconv:"Icon.ID"`
 		CreatedAt               time.Time
 		ModifiedAt              time.Time
-		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 		MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 		SettingsHash            string                `json:",omitempty" mapconv:",omitempty"`
 		DiskID                  types.ID              `mapconv:"Status.DiskID"`
@@ -1790,7 +1790,7 @@ func (o *AutoBackup) SetZoneName(v string) {
 // AutoBackupCreateRequest represents API parameter/response structure
 type AutoBackupCreateRequest struct {
 	DiskID                  types.ID              `mapconv:"Status.DiskID"`
-	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 	MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 	Name                    string
 	Description             string
@@ -1802,7 +1802,7 @@ type AutoBackupCreateRequest struct {
 func (o *AutoBackupCreateRequest) setDefaults() interface{} {
 	return &struct {
 		DiskID                  types.ID              `mapconv:"Status.DiskID"`
-		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 		MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 		Name                    string
 		Description             string
@@ -1923,7 +1923,7 @@ type AutoBackupUpdateRequest struct {
 	Description             string
 	Tags                    types.Tags
 	IconID                  types.ID              `mapconv:"Icon.ID"`
-	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 	MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 	SettingsHash            string                `json:",omitempty" mapconv:",omitempty"`
 }
@@ -1935,7 +1935,7 @@ func (o *AutoBackupUpdateRequest) setDefaults() interface{} {
 		Description             string
 		Tags                    types.Tags
 		IconID                  types.ID              `mapconv:"Icon.ID"`
-		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 		MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 		SettingsHash            string                `json:",omitempty" mapconv:",omitempty"`
 		BackupSpanType          types.EBackupSpanType `mapconv:"Settings.Autobackup.BackupSpanType"`
@@ -2047,7 +2047,7 @@ func (o *AutoBackupUpdateRequest) SetSettingsHash(v string) {
 
 // AutoBackupUpdateSettingsRequest represents API parameter/response structure
 type AutoBackupUpdateSettingsRequest struct {
-	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+	BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 	MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 	SettingsHash            string                `json:",omitempty" mapconv:",omitempty"`
 }
@@ -2055,7 +2055,7 @@ type AutoBackupUpdateSettingsRequest struct {
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoBackupUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.DaysOfTheWeek"`
+		BackupSpanWeekdays      []types.EDayOfTheWeek `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
 		MaximumNumberOfArchives int                   `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
 		SettingsHash            string                `json:",omitempty" mapconv:",omitempty"`
 		BackupSpanType          types.EBackupSpanType `mapconv:"Settings.Autobackup.BackupSpanType"`
