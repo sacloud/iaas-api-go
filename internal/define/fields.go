@@ -945,12 +945,12 @@ func (f *fieldsDef) GSLBSorryServer() *dsl.FieldDesc {
 	}
 }
 
-func (f *fieldsDef) AutoBackupBackupSpanWeekDays() *dsl.FieldDesc {
+func (f *fieldsDef) AutoBackupBackupSpanWeekdays() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "DaysOfTheWeek",
+		Name: "BackupSpanWeekdays",
 		Type: meta.TypeBackupSpanWeekdays,
 		Tags: &dsl.FieldTags{
-			MapConv: "Settings.Autobackup.DaysOfTheWeek",
+			MapConv: "Settings.Autobackup.BackupSpanWeekdays",
 		},
 	}
 }

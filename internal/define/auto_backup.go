@@ -70,7 +70,7 @@ var (
 			fields.ModifiedAt(),
 
 			// settings
-			fields.AutoBackupBackupSpanWeekDays(),
+			fields.AutoBackupBackupSpanWeekdays(),
 			fields.AutoBackupMaximumNumberOfArchives(),
 			fields.SettingsHash(),
 
@@ -109,7 +109,7 @@ var (
 			fields.AutoBackupDiskID(),
 
 			// backup setting
-			fields.AutoBackupBackupSpanWeekDays(),
+			fields.AutoBackupBackupSpanWeekdays(),
 			fields.AutoBackupMaximumNumberOfArchives(),
 
 			// common fields
@@ -141,7 +141,7 @@ var (
 			fields.IconID(),
 
 			// backup setting
-			fields.AutoBackupBackupSpanWeekDays(),
+			fields.AutoBackupBackupSpanWeekdays(),
 			fields.AutoBackupMaximumNumberOfArchives(),
 			// settings hash
 			fields.SettingsHash(),
@@ -163,7 +163,7 @@ var (
 		},
 		Fields: []*dsl.FieldDesc{
 			// backup setting
-			fields.AutoBackupBackupSpanWeekDays(),
+			fields.AutoBackupBackupSpanWeekdays(),
 			fields.AutoBackupMaximumNumberOfArchives(),
 			// settings hash
 			fields.SettingsHash(),
