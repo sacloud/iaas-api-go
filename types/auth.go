@@ -92,10 +92,10 @@ func (p *ExternalPermission) PermittedEventLog() bool {
 	return strings.Contains(string(*p), "eventlog")
 }
 
-// TODO オブジェクトストレージの権限の参照方法が不明
-// func (p *ExternalPermission) PermittedObjectStorage() bool {
-//	return strings.Contains(string(*p), "vps")
-//}
+// PermittedObjectStorage オブジェクトストレージの権限を持つか
+func (p *ExternalPermission) PermittedObjectStorage() bool {
+	return strings.Contains(string(*p), "dstorage")
+}
 
 // PermittedBill 請求閲覧権限を持つか
 func (p *ExternalPermission) PermittedBill() bool {
@@ -105,4 +105,9 @@ func (p *ExternalPermission) PermittedBill() bool {
 // PermittedWebAccel ウェブアクセラレータの権限を持つか
 func (p *ExternalPermission) PermittedWebAccel() bool {
 	return strings.Contains(string(*p), "cdn")
+}
+
+// PermittedPHY PHYの権限を持つか
+func (p *ExternalPermission) PermittedPHY() bool {
+	return strings.Contains(string(*p), "dedicatedphy")
 }
