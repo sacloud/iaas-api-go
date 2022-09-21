@@ -26,8 +26,6 @@ const (
 
 	// CentOS OS種別:CentOS
 	CentOS
-	// CentOS8Stream OS種別:CentOS8Stream
-	CentOS8Stream
 	// CentOS7 OS種別:CentOS7
 	CentOS7
 
@@ -54,11 +52,6 @@ const (
 	// Debian11 OS種別:Debian11
 	Debian11
 
-	// RancherOS OS種別:RancherOS
-	RancherOS
-	// K3OS OS種別: k3OS
-	K3OS
-
 	// Kusanagi OS種別:Kusanagi(CentOS)
 	Kusanagi
 )
@@ -66,7 +59,6 @@ const (
 // ArchiveOSTypes アーカイブ種別のリスト
 var ArchiveOSTypes = []ArchiveOSType{
 	CentOS,
-	CentOS8Stream,
 	CentOS7,
 	AlmaLinux,
 	RockyLinux,
@@ -78,28 +70,26 @@ var ArchiveOSTypes = []ArchiveOSType{
 	Debian,
 	Debian10,
 	Debian11,
-	RancherOS,
-	K3OS,
 	Kusanagi,
 }
 
 // OSTypeShortNames OSTypeとして利用できる文字列のリスト
 var OSTypeShortNames = []string{
-	"centos", "centos8stream", "centos7",
+	"centos", "centos7",
 	"almalinux", "rockylinux", "miracle", "miraclelinux",
 	"ubuntu", "ubuntu2204", "ubuntu2004", "ubuntu1804",
 	"debian", "debian10", "debian11",
-	"rancheros", "k3os", "kusanagi",
+	"kusanagi",
 }
 
 // IsSupportDiskEdit ディスクの修正機能をフルサポートしているか(Windowsは一部サポートのためfalseを返す)
 func (o ArchiveOSType) IsSupportDiskEdit() bool {
 	switch o {
-	case CentOS, CentOS8Stream, CentOS7,
+	case CentOS, CentOS7,
 		AlmaLinux, RockyLinux, MiracleLinux,
 		Ubuntu, Ubuntu2204, Ubuntu2004, Ubuntu1804,
 		Debian, Debian10, Debian11,
-		RancherOS, K3OS, Kusanagi:
+		Kusanagi:
 		return true
 	default:
 		return false
@@ -111,8 +101,6 @@ func StrToOSType(osType string) ArchiveOSType {
 	switch osType {
 	case "centos":
 		return CentOS
-	case "centos8stream":
-		return CentOS8Stream
 	case "centos7":
 		return CentOS7
 	case "almalinux":
@@ -135,10 +123,6 @@ func StrToOSType(osType string) ArchiveOSType {
 		return Debian10
 	case "debian11":
 		return Debian11
-	case "rancheros":
-		return RancherOS
-	case "k3os":
-		return K3OS
 	case "kusanagi":
 		return Kusanagi
 	default:

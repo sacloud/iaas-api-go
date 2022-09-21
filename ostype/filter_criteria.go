@@ -26,10 +26,6 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 		search.Key(keys.Tags):  search.TagsAndEqual("distro-centos"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
-	CentOS8Stream: {
-		search.Key(keys.Tags):  search.TagsAndEqual("distro-ver-8-stream", "distro-centos"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
 	CentOS7: {
 		search.Key(keys.Tags):  search.TagsAndEqual("centos-7-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
@@ -72,14 +68,6 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 	},
 	Debian11: {
 		search.Key(keys.Tags):  search.TagsAndEqual("debian-11-latest"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
-	RancherOS: {
-		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-rancheros"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
-	K3OS: {
-		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-k3os"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Kusanagi: {
