@@ -31,10 +31,22 @@ const (
 
 	// AlmaLinux OS種別: Alma Linux
 	AlmaLinux
+	// AlmaLinux9 OS種別: Alma Linux9
+	AlmaLinux9
+	// AlmaLinux8 OS種別: Alma Linux8
+	AlmaLinux8
+
 	// RockyLinux OS種別: Rocky Linux
 	RockyLinux
+	// RockyLinux9 OS種別: Rocky Linux9
+	RockyLinux9
+	// RockyLinux8 OS種別: Rocky Linux8
+	RockyLinux8
+
 	// MiracleLinux OS種別: MIRACLE LINUX
 	MiracleLinux
+	// MiracleLinux8 OS種別: MIRACLE LINUX8
+	MiracleLinux8
 
 	// Ubuntu OS種別:Ubuntu
 	Ubuntu
@@ -61,8 +73,13 @@ var ArchiveOSTypes = []ArchiveOSType{
 	CentOS,
 	CentOS7,
 	AlmaLinux,
+	AlmaLinux9,
+	AlmaLinux8,
 	RockyLinux,
+	RockyLinux9,
+	RockyLinux8,
 	MiracleLinux,
+	MiracleLinux8,
 	Ubuntu,
 	Ubuntu2204,
 	Ubuntu2004,
@@ -76,7 +93,9 @@ var ArchiveOSTypes = []ArchiveOSType{
 // OSTypeShortNames OSTypeとして利用できる文字列のリスト
 var OSTypeShortNames = []string{
 	"centos", "centos7",
-	"almalinux", "rockylinux", "miracle", "miraclelinux",
+	"almalinux", "almalinux9", "almalinux8",
+	"rockylinux", "rockylinux9", "rockylinux8",
+	"miracle", "miraclelinux", "miracle8", "miraclelinux8",
 	"ubuntu", "ubuntu2204", "ubuntu2004", "ubuntu1804",
 	"debian", "debian10", "debian11",
 	"kusanagi",
@@ -86,7 +105,9 @@ var OSTypeShortNames = []string{
 func (o ArchiveOSType) IsSupportDiskEdit() bool {
 	switch o {
 	case CentOS, CentOS7,
-		AlmaLinux, RockyLinux, MiracleLinux,
+		AlmaLinux, AlmaLinux9, AlmaLinux8,
+		RockyLinux, RockyLinux9, RockyLinux8,
+		MiracleLinux, MiracleLinux8,
 		Ubuntu, Ubuntu2204, Ubuntu2004, Ubuntu1804,
 		Debian, Debian10, Debian11,
 		Kusanagi:
@@ -105,10 +126,20 @@ func StrToOSType(osType string) ArchiveOSType {
 		return CentOS7
 	case "almalinux":
 		return AlmaLinux
+	case "almalinux9":
+		return AlmaLinux9
+	case "almalinux8":
+		return AlmaLinux8
 	case "rockylinux":
 		return RockyLinux
+	case "rockylinux9":
+		return RockyLinux9
+	case "rockylinux8":
+		return RockyLinux8
 	case "miracle", "miraclelinux":
 		return MiracleLinux
+	case "miracle8", "miraclelinux8":
+		return MiracleLinux8
 	case "ubuntu":
 		return Ubuntu
 	case "ubuntu2204":

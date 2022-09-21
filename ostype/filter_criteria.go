@@ -34,12 +34,32 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-alma"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
+	AlmaLinux9: {
+		search.Key(keys.Tags):  search.TagsAndEqual("alma-9-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
+	AlmaLinux8: {
+		search.Key(keys.Tags):  search.TagsAndEqual("alma-8-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
 	RockyLinux: {
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-rocky"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
+	RockyLinux9: {
+		search.Key(keys.Tags):  search.TagsAndEqual("rocky-9-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
+	RockyLinux8: {
+		search.Key(keys.Tags):  search.TagsAndEqual("rocky-8-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
 	MiracleLinux: {
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-miracle"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
+	MiracleLinux8: {
+		search.Key(keys.Tags):  search.TagsAndEqual("miracle-8-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Ubuntu: {
