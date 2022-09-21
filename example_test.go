@@ -74,7 +74,7 @@ func Example_serverCRUD() {
 		MemoryMB:             1 * size.GiB,
 		ServerPlanCommitment: types.Commitments.Standard,
 		ServerPlanGeneration: types.PlanGenerations.Default,
-		ConnectedSwitches:    []*iaas.ConnectedSwitch{{Scope: "shared"}},
+		ConnectedSwitches:    []*iaas.ConnectedSwitch{{Scope: types.Scopes.Shared}},
 		InterfaceDriver:      types.InterfaceDrivers.VirtIO,
 		Name:                 "libsacloud-example",
 		Description:          "description",
