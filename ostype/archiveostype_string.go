@@ -24,26 +24,28 @@ func _() {
 	var x [1]struct{}
 	_ = x[Custom-0]
 	_ = x[CentOS-1]
-	_ = x[CentOS8Stream-2]
-	_ = x[CentOS7-3]
-	_ = x[AlmaLinux-4]
-	_ = x[RockyLinux-5]
-	_ = x[MiracleLinux-6]
-	_ = x[Ubuntu-7]
-	_ = x[Ubuntu2204-8]
-	_ = x[Ubuntu2004-9]
-	_ = x[Ubuntu1804-10]
-	_ = x[Debian-11]
-	_ = x[Debian10-12]
-	_ = x[Debian11-13]
-	_ = x[RancherOS-14]
-	_ = x[K3OS-15]
-	_ = x[Kusanagi-16]
+	_ = x[CentOS7-2]
+	_ = x[AlmaLinux-3]
+	_ = x[AlmaLinux9-4]
+	_ = x[AlmaLinux8-5]
+	_ = x[RockyLinux-6]
+	_ = x[RockyLinux9-7]
+	_ = x[RockyLinux8-8]
+	_ = x[MiracleLinux-9]
+	_ = x[MiracleLinux8-10]
+	_ = x[Ubuntu-11]
+	_ = x[Ubuntu2204-12]
+	_ = x[Ubuntu2004-13]
+	_ = x[Ubuntu1804-14]
+	_ = x[Debian-15]
+	_ = x[Debian10-16]
+	_ = x[Debian11-17]
+	_ = x[Kusanagi-18]
 }
 
-const _ArchiveOSType_name = "CustomCentOSCentOS8StreamCentOS7AlmaLinuxRockyLinuxMiracleLinuxUbuntuUbuntu2204Ubuntu2004Ubuntu1804DebianDebian10Debian11RancherOSK3OSKusanagi"
+const _ArchiveOSType_name = "CustomCentOSCentOS7AlmaLinuxAlmaLinux9AlmaLinux8RockyLinuxRockyLinux9RockyLinux8MiracleLinuxMiracleLinux8UbuntuUbuntu2204Ubuntu2004Ubuntu1804DebianDebian10Debian11Kusanagi"
 
-var _ArchiveOSType_index = [...]uint8{0, 6, 12, 25, 32, 41, 51, 63, 69, 79, 89, 99, 105, 113, 121, 130, 134, 142}
+var _ArchiveOSType_index = [...]uint8{0, 6, 12, 19, 28, 38, 48, 58, 69, 80, 92, 105, 111, 121, 131, 141, 147, 155, 163, 171}
 
 func (i ArchiveOSType) String() string {
 	if i < 0 || i >= ArchiveOSType(len(_ArchiveOSType_index)-1) {

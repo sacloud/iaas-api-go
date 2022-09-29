@@ -22,5 +22,5 @@ import (
 
 func TestArchiveOSTypeDefinitions(t *testing.T) {
 	// OSTypeShortNamesへの追加忘れを防ぐ
-	require.Equal(t, len(OSTypeShortNames), len(ArchiveOSTypes)+1) // miracleのエイリアス分で+1
+	require.Equal(t, len(OSTypeShortNames), len(ArchiveOSTypes)+2) // miracleとmiracle8のエイリアス分で+2
 }

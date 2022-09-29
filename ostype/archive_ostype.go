@@ -26,17 +26,27 @@ const (
 
 	// CentOS OS種別:CentOS
 	CentOS
-	// CentOS8Stream OS種別:CentOS8Stream
-	CentOS8Stream
 	// CentOS7 OS種別:CentOS7
 	CentOS7
 
 	// AlmaLinux OS種別: Alma Linux
 	AlmaLinux
+	// AlmaLinux9 OS種別: Alma Linux9
+	AlmaLinux9
+	// AlmaLinux8 OS種別: Alma Linux8
+	AlmaLinux8
+
 	// RockyLinux OS種別: Rocky Linux
 	RockyLinux
+	// RockyLinux9 OS種別: Rocky Linux9
+	RockyLinux9
+	// RockyLinux8 OS種別: Rocky Linux8
+	RockyLinux8
+
 	// MiracleLinux OS種別: MIRACLE LINUX
 	MiracleLinux
+	// MiracleLinux8 OS種別: MIRACLE LINUX8
+	MiracleLinux8
 
 	// Ubuntu OS種別:Ubuntu
 	Ubuntu
@@ -54,11 +64,6 @@ const (
 	// Debian11 OS種別:Debian11
 	Debian11
 
-	// RancherOS OS種別:RancherOS
-	RancherOS
-	// K3OS OS種別: k3OS
-	K3OS
-
 	// Kusanagi OS種別:Kusanagi(CentOS)
 	Kusanagi
 )
@@ -66,11 +71,15 @@ const (
 // ArchiveOSTypes アーカイブ種別のリスト
 var ArchiveOSTypes = []ArchiveOSType{
 	CentOS,
-	CentOS8Stream,
 	CentOS7,
 	AlmaLinux,
+	AlmaLinux9,
+	AlmaLinux8,
 	RockyLinux,
+	RockyLinux9,
+	RockyLinux8,
 	MiracleLinux,
+	MiracleLinux8,
 	Ubuntu,
 	Ubuntu2204,
 	Ubuntu2004,
@@ -78,28 +87,30 @@ var ArchiveOSTypes = []ArchiveOSType{
 	Debian,
 	Debian10,
 	Debian11,
-	RancherOS,
-	K3OS,
 	Kusanagi,
 }
 
 // OSTypeShortNames OSTypeとして利用できる文字列のリスト
 var OSTypeShortNames = []string{
-	"centos", "centos8stream", "centos7",
-	"almalinux", "rockylinux", "miracle", "miraclelinux",
+	"centos", "centos7",
+	"almalinux", "almalinux9", "almalinux8",
+	"rockylinux", "rockylinux9", "rockylinux8",
+	"miracle", "miraclelinux", "miracle8", "miraclelinux8",
 	"ubuntu", "ubuntu2204", "ubuntu2004", "ubuntu1804",
 	"debian", "debian10", "debian11",
-	"rancheros", "k3os", "kusanagi",
+	"kusanagi",
 }
 
 // IsSupportDiskEdit ディスクの修正機能をフルサポートしているか(Windowsは一部サポートのためfalseを返す)
 func (o ArchiveOSType) IsSupportDiskEdit() bool {
 	switch o {
-	case CentOS, CentOS8Stream, CentOS7,
-		AlmaLinux, RockyLinux, MiracleLinux,
+	case CentOS, CentOS7,
+		AlmaLinux, AlmaLinux9, AlmaLinux8,
+		RockyLinux, RockyLinux9, RockyLinux8,
+		MiracleLinux, MiracleLinux8,
 		Ubuntu, Ubuntu2204, Ubuntu2004, Ubuntu1804,
 		Debian, Debian10, Debian11,
-		RancherOS, K3OS, Kusanagi:
+		Kusanagi:
 		return true
 	default:
 		return false
@@ -111,16 +122,24 @@ func StrToOSType(osType string) ArchiveOSType {
 	switch osType {
 	case "centos":
 		return CentOS
-	case "centos8stream":
-		return CentOS8Stream
 	case "centos7":
 		return CentOS7
 	case "almalinux":
 		return AlmaLinux
+	case "almalinux9":
+		return AlmaLinux9
+	case "almalinux8":
+		return AlmaLinux8
 	case "rockylinux":
 		return RockyLinux
+	case "rockylinux9":
+		return RockyLinux9
+	case "rockylinux8":
+		return RockyLinux8
 	case "miracle", "miraclelinux":
 		return MiracleLinux
+	case "miracle8", "miraclelinux8":
+		return MiracleLinux8
 	case "ubuntu":
 		return Ubuntu
 	case "ubuntu2204":
@@ -135,10 +154,6 @@ func StrToOSType(osType string) ArchiveOSType {
 		return Debian10
 	case "debian11":
 		return Debian11
-	case "rancheros":
-		return RancherOS
-	case "k3os":
-		return K3OS
 	case "kusanagi":
 		return Kusanagi
 	default:
