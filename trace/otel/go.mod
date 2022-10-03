@@ -1,6 +1,6 @@
 module github.com/sacloud/iaas-api-go/trace/otel
 
-go 1.18
+go 1.19
 
 replace github.com/sacloud/iaas-api-go => ../../
 

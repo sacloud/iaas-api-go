@@ -13,6 +13,7 @@
 // limitations under the License.
 
 // Package define .
+//
 //go:generate go run ../tools/gen-api-models/
 //go:generate go run ../tools/gen-api-result/
 //go:generate go run ../tools/gen-api-interfaces/
