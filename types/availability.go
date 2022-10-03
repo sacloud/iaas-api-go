@@ -39,7 +39,7 @@ var Availabilities = struct {
 	Uploading:    EAvailability("uploading"),
 	Failed:       EAvailability("failed"),
 	Migrating:    EAvailability("migrating"),
-	Transferring: EAvailability("transfering"), // nolint // 綴りが違うがさくらのクラウド側に合わせる(transferring)
+	Transferring: EAvailability("transfering"), //nolint // 綴りが違うがさくらのクラウド側に合わせる(transferring)
 	Discontinued: EAvailability("discontinued"),
 }
 

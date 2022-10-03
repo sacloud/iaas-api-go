@@ -72,7 +72,7 @@ func TestClient_Do_CheckRetryWithContext(t *testing.T) {
 		// make ctx to Canceled
 		cancel()
 
-		caller.Do(ctx, http.MethodGet, dummyServer.URL, nil) // nolint
+		caller.Do(ctx, http.MethodGet, dummyServer.URL, nil) //nolint
 		require.False(t, h.isRetried(), "don't retry when context was canceled")
 	})
 
@@ -88,7 +88,7 @@ func TestClient_Do_CheckRetryWithContext(t *testing.T) {
 		// make ctx to DeadlineExceeded
 		time.Sleep(time.Millisecond)
 
-		caller.Do(ctx, http.MethodGet, dummyServer.URL, nil) // nolint
+		caller.Do(ctx, http.MethodGet, dummyServer.URL, nil) //nolint
 		require.False(t, h.isRetried(), "don't retry when context exceeded deadline")
 	})
 }
@@ -126,7 +126,7 @@ func TestClient_RetryByStatusCode(t *testing.T) {
 			responseCode: tt.responseCode,
 		}
 		dummyServer := httptest.NewServer(h)
-		caller.Do(context.Background(), http.MethodGet, dummyServer.URL, nil) // nolint
+		caller.Do(context.Background(), http.MethodGet, dummyServer.URL, nil) //nolint
 		dummyServer.Close()
 
 		require.Equal(t, tt.shouldRetry, h.isRetried(),

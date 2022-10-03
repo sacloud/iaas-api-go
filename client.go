@@ -56,9 +56,9 @@ var (
 
 const (
 	// APIAccessTokenEnvKey APIアクセストークンの環境変数名
-	APIAccessTokenEnvKey = "SAKURACLOUD_ACCESS_TOKEN" // nolint:gosec
+	APIAccessTokenEnvKey = "SAKURACLOUD_ACCESS_TOKEN" //nolint:gosec
 	// APIAccessSecretEnvKey APIアクセスシークレットの環境変数名
-	APIAccessSecretEnvKey = "SAKURACLOUD_ACCESS_TOKEN_SECRET" // nolint:gosec
+	APIAccessSecretEnvKey = "SAKURACLOUD_ACCESS_TOKEN_SECRET" //nolint:gosec
 )
 
 // APICaller API呼び出し時に利用するトランスポートのインターフェース iaas.Clientなどで実装される
