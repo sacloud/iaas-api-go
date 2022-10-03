@@ -425,13 +425,13 @@ func TestLocalRouter_peering(t *testing.T) {
 				lrOp := iaas.NewLocalRouterOp(caller)
 				ids := []types.ID{peerLocalRouter1.ID, peerLocalRouter2.ID}
 				for _, id := range ids {
-					lrOp.Delete(ctx, id) // nolint
+					lrOp.Delete(ctx, id) //nolint
 				}
 
 				swOp := iaas.NewSwitchOp(caller)
 				ids = []types.ID{sw1ID, sw2ID}
 				for _, id := range ids {
-					swOp.Delete(ctx, testZone, id) // nolint
+					swOp.Delete(ctx, testZone, id) //nolint
 				}
 				return nil
 			},

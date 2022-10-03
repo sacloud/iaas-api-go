@@ -213,7 +213,7 @@ func (s *JSONFileStore) Put(resourceKey, zone string, id types.ID, value interfa
 	values[id.String()] = value
 	s.cache[s.key(resourceKey, zone)] = values
 
-	s.store() // nolint
+	s.store() //nolint
 }
 
 // Get .
@@ -250,7 +250,7 @@ func (s *JSONFileStore) Delete(resourceKey, zone string, id types.ID) {
 	if values != nil {
 		delete(values, id.String())
 	}
-	s.store() // nolint
+	s.store() //nolint
 }
 
 var jsonResourceTypeMap = map[string]func() interface{}{
