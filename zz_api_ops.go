@@ -1349,6 +1349,64 @@ func (o *AutoScaleOp) Status(ctx context.Context, id types.ID) (*AutoScaleStatus
 	return results.AutoScaleStatus, nil
 }
 
+// ScaleUp is API call
+func (o *AutoScaleOp) ScaleUp(ctx context.Context, id types.ID) error {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/autoscale/up", pathBuildParameter)
+	if err != nil {
+		return err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	_, err = o.Client.Do(ctx, "PUT", url, body)
+	if err != nil {
+		return err
+	}
+
+	// build results
+
+	return nil
+}
+
+// ScaleDown is API call
+func (o *AutoScaleOp) ScaleDown(ctx context.Context, id types.ID) error {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/autoscale/down", pathBuildParameter)
+	if err != nil {
+		return err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	_, err = o.Client.Do(ctx, "PUT", url, body)
+	if err != nil {
+		return err
+	}
+
+	// build results
+
+	return nil
+}
+
 /*************************************************
 * BillOp
 *************************************************/

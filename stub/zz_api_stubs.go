@@ -376,6 +376,16 @@ type AutoScaleStatusStubResult struct {
 	Err             error
 }
 
+// AutoScaleScaleUpStubResult is expected values of the ScaleUp operation
+type AutoScaleScaleUpStubResult struct {
+	Err error
+}
+
+// AutoScaleScaleDownStubResult is expected values of the ScaleDown operation
+type AutoScaleScaleDownStubResult struct {
+	Err error
+}
+
 // AutoScaleStub is for trace AutoScaleOp operations
 type AutoScaleStub struct {
 	FindStubResult           *AutoScaleFindStubResult
@@ -385,6 +395,8 @@ type AutoScaleStub struct {
 	UpdateSettingsStubResult *AutoScaleUpdateSettingsStubResult
 	DeleteStubResult         *AutoScaleDeleteStubResult
 	StatusStubResult         *AutoScaleStatusStubResult
+	ScaleUpStubResult        *AutoScaleScaleUpStubResult
+	ScaleDownStubResult      *AutoScaleScaleDownStubResult
 }
 
 // NewAutoScaleStub creates new AutoScaleStub instance
@@ -446,6 +458,22 @@ func (s *AutoScaleStub) Status(ctx context.Context, id types.ID) (*iaas.AutoScal
 		log.Fatal("AutoScaleStub.StatusStubResult is not set")
 	}
 	return s.StatusStubResult.AutoScaleStatus, s.StatusStubResult.Err
+}
+
+// ScaleUp is API call with trace log
+func (s *AutoScaleStub) ScaleUp(ctx context.Context, id types.ID) error {
+	if s.ScaleUpStubResult == nil {
+		log.Fatal("AutoScaleStub.ScaleUpStubResult is not set")
+	}
+	return s.ScaleUpStubResult.Err
+}
+
+// ScaleDown is API call with trace log
+func (s *AutoScaleStub) ScaleDown(ctx context.Context, id types.ID) error {
+	if s.ScaleDownStubResult == nil {
+		log.Fatal("AutoScaleStub.ScaleDownStubResult is not set")
+	}
+	return s.ScaleDownStubResult.Err
 }
 
 /*************************************************

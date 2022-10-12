@@ -74,6 +74,27 @@ var autoScaleAPI = &dsl.Resource{
 				},
 			},
 		},
+
+		// scale up
+		{
+			ResourceName: autoScaleAPIName,
+			Name:         "ScaleUp",
+			Method:       http.MethodPut,
+			PathFormat:   dsl.DefaultPathFormatWithID + "/autoscale/up",
+			Arguments: dsl.Arguments{
+				dsl.ArgumentID,
+			},
+		},
+		// scale down
+		{
+			ResourceName: autoScaleAPIName,
+			Name:         "ScaleDown",
+			Method:       http.MethodPut,
+			PathFormat:   dsl.DefaultPathFormatWithID + "/autoscale/down",
+			Arguments: dsl.Arguments{
+				dsl.ArgumentID,
+			},
+		},
 	},
 }
 

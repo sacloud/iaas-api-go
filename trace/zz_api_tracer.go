@@ -1060,6 +1060,64 @@ func (t *AutoScaleTracer) Status(ctx context.Context, id types.ID) (*iaas.AutoSc
 	return resultAutoScaleStatus, err
 }
 
+// ScaleUp is API call with trace log
+func (t *AutoScaleTracer) ScaleUp(ctx context.Context, id types.ID) error {
+	log.Println("[TRACE] AutoScaleAPI.ScaleUp start")
+	targetArguments := struct {
+		Argid types.ID `json:"id"`
+	}{
+		Argid: id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.ScaleUp end")
+	}()
+
+	err := t.Internal.ScaleUp(ctx, id)
+	targetResults := struct {
+		Error error
+	}{
+		Error: err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return err
+}
+
+// ScaleDown is API call with trace log
+func (t *AutoScaleTracer) ScaleDown(ctx context.Context, id types.ID) error {
+	log.Println("[TRACE] AutoScaleAPI.ScaleDown start")
+	targetArguments := struct {
+		Argid types.ID `json:"id"`
+	}{
+		Argid: id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] AutoScaleAPI.ScaleDown end")
+	}()
+
+	err := t.Internal.ScaleDown(ctx, id)
+	targetResults := struct {
+		Error error
+	}{
+		Error: err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return err
+}
+
 /*************************************************
 * BillTracer
 *************************************************/
