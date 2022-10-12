@@ -77,6 +77,8 @@ type AutoScaleAPI interface {
 	UpdateSettings(ctx context.Context, id types.ID, param *AutoScaleUpdateSettingsRequest) (*AutoScale, error)
 	Delete(ctx context.Context, id types.ID) error
 	Status(ctx context.Context, id types.ID) (*AutoScaleStatus, error)
+	ScaleUp(ctx context.Context, id types.ID) error
+	ScaleDown(ctx context.Context, id types.ID) error
 }
 
 /*************************************************

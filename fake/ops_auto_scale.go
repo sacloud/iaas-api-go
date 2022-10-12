@@ -110,3 +110,11 @@ func (o *AutoScaleOp) Status(ctx context.Context, id types.ID) (*iaas.AutoScaleS
 		ResourcesText: "...",
 	}, nil
 }
+
+func (o *AutoScaleOp) ScaleUp(ctx context.Context, id types.ID) error {
+	return nil
+}
+
+func (o *AutoScaleOp) ScaleDown(ctx context.Context, id types.ID) error {
+	return nil
+}
