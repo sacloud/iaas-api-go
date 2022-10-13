@@ -84,7 +84,7 @@ func DefaultOptionWithProfile(profileName string) (*CallerOptions, error) {
 		},
 	}
 
-	return MergeOptions(fromEnv, fromProfile, defaults), nil
+	return MergeOptions(defaults, fromEnv, fromProfile), nil
 }
 
 // OptionsFromEnv 環境変数からCallerOptionsを組み立てて返す
