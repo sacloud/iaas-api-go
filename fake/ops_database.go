@@ -47,6 +47,14 @@ func (o *DatabaseOp) Create(ctx context.Context, zone string, param *iaas.Databa
 
 	result.Class = "database"
 	result.Availability = types.Availabilities.Available
+	if result.Conf != nil {
+		if result.Conf.DatabaseVersion == "" {
+			result.Conf.DatabaseVersion = "1"
+		}
+		if result.Conf.DatabaseRevision == "" {
+			result.Conf.DatabaseRevision = "1"
+		}
+	}
 
 	putDatabase(zone, result)
 
