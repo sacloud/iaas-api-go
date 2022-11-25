@@ -249,11 +249,11 @@ type DatabaseStatusPostgreSQL struct {
 
 // DatabaseStatusVersion データベース設定バージョン情報
 type DatabaseStatusVersion struct {
-	LastModified string `json:"lastmodified,omitempty" yaml:"last_modified,omitempty" structs:",omitempty"`
-	CommitHash   string `json:"commithash,omitempty" yaml:"commit_hash,omitempty" structs:",omitempty"`
-	Status       string `json:"status,omitempty" yaml:"status,omitempty" structs:",omitempty"`
-	Tag          string `json:"tag,omitempty" yaml:"tag,omitempty" structs:",omitempty"`
-	Expire       string `json:"expire,omitempty" yaml:"expire,omitempty" structs:",omitempty"`
+	LastModified string      `json:"lastmodified,omitempty" yaml:"last_modified,omitempty" structs:",omitempty"`
+	CommitHash   string      `json:"commithash,omitempty" yaml:"commit_hash,omitempty" structs:",omitempty"`
+	Status       string      `json:"status,omitempty" yaml:"status,omitempty" structs:",omitempty"`
+	Tag          interface{} `json:"tag,omitempty" yaml:"tag,omitempty" structs:",omitempty"` // Note: `1.1`や`"1.1"`などと表記揺れがあるためここではinterface{}で受け取る
+	Expire       string      `json:"expire,omitempty" yaml:"expire,omitempty" structs:",omitempty"`
 }
 
 // DatabaseLog データベースログ
