@@ -62,6 +62,10 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 		search.Key(keys.Tags):  search.TagsAndEqual("miracle-8-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
+	MiracleLinux9: {
+		search.Key(keys.Tags):  search.TagsAndEqual("miracle-9-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
 	Ubuntu: {
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-ubuntu"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
