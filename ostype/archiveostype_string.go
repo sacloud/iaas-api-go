@@ -33,19 +33,20 @@ func _() {
 	_ = x[RockyLinux8-8]
 	_ = x[MiracleLinux-9]
 	_ = x[MiracleLinux8-10]
-	_ = x[Ubuntu-11]
-	_ = x[Ubuntu2204-12]
-	_ = x[Ubuntu2004-13]
-	_ = x[Ubuntu1804-14]
-	_ = x[Debian-15]
-	_ = x[Debian10-16]
-	_ = x[Debian11-17]
-	_ = x[Kusanagi-18]
+	_ = x[MiracleLinux9-11]
+	_ = x[Ubuntu-12]
+	_ = x[Ubuntu2204-13]
+	_ = x[Ubuntu2004-14]
+	_ = x[Ubuntu1804-15]
+	_ = x[Debian-16]
+	_ = x[Debian10-17]
+	_ = x[Debian11-18]
+	_ = x[Kusanagi-19]
 }
 
-const _ArchiveOSType_name = "CustomCentOSCentOS7AlmaLinuxAlmaLinux9AlmaLinux8RockyLinuxRockyLinux9RockyLinux8MiracleLinuxMiracleLinux8UbuntuUbuntu2204Ubuntu2004Ubuntu1804DebianDebian10Debian11Kusanagi"
+const _ArchiveOSType_name = "CustomCentOSCentOS7AlmaLinuxAlmaLinux9AlmaLinux8RockyLinuxRockyLinux9RockyLinux8MiracleLinuxMiracleLinux8MiracleLinux9UbuntuUbuntu2204Ubuntu2004Ubuntu1804DebianDebian10Debian11Kusanagi"
 
-var _ArchiveOSType_index = [...]uint8{0, 6, 12, 19, 28, 38, 48, 58, 69, 80, 92, 105, 111, 121, 131, 141, 147, 155, 163, 171}
+var _ArchiveOSType_index = [...]uint8{0, 6, 12, 19, 28, 38, 48, 58, 69, 80, 92, 105, 118, 124, 134, 144, 154, 160, 168, 176, 184}
 
 func (i ArchiveOSType) String() string {
 	if i < 0 || i >= ArchiveOSType(len(_ArchiveOSType_index)-1) {
