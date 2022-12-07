@@ -45,15 +45,23 @@ type AutoScaleSettingsUpdate struct {
 
 // AutoScaleSettings セッティング
 type AutoScaleSettings struct {
-	CPUThresholdScaling *AutoScaleCPUThresholdScaling `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
-	Zones               []string                      `json:"SakuraCloudZones"`
-	Config              string                        `json:",omitempty" yaml:",omitempty"`
+	TriggerType            string
+	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	RouterThresholdScaling *AutoScaleRouterThresholdScaling `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	Zones                  []string                         `json:"SakuraCloudZones"`
+	Config                 string                           `json:",omitempty" yaml:",omitempty"`
 }
 
 type AutoScaleCPUThresholdScaling struct {
 	ServerPrefix string `json:",omitempty" yaml:",omitempty"`
 	Up           int    `json:",omitempty" yaml:",omitempty"`
 	Down         int    `json:",omitempty" yaml:",omitempty"`
+}
+
+type AutoScaleRouterThresholdScaling struct {
+	RouterPrefix string `json:",omitempty" yaml:",omitempty"`
+	Direction    string `json:",omitempty" yaml:",omitempty"`
+	Mbps         int    `json:",omitempty" yaml:",omitempty"`
 }
 
 // AutoScaleStatus ステータス

@@ -118,7 +118,9 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
+			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
+			fields.AutoScaleRouterThreshold(),
 			fields.SettingsHash(),
 
 			// status
@@ -154,7 +156,10 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
+			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
+			fields.AutoScaleRouterThreshold(),
+
 			// status
 			fields.AutoScaleAPIKeyID(),
 		},
@@ -173,7 +178,9 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
+			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
+			fields.AutoScaleRouterThreshold(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -186,7 +193,9 @@ var (
 			// settings
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
+			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
+			fields.AutoScaleRouterThreshold(),
 			// settings hash
 			fields.SettingsHash(),
 		},
