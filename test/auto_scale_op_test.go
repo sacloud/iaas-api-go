@@ -89,8 +89,9 @@ var (
 		Description: "desc",
 		Tags:        []string{"tag1", "tag2"},
 
-		Config: fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
-		Zones:  []string{testutil.TestZone()},
+		Config:      fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
+		Zones:       []string{testutil.TestZone()},
+		TriggerType: "cpu",
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           80,
@@ -104,8 +105,9 @@ var (
 		Tags:         createAutoScaleParam.Tags,
 		Availability: types.Availabilities.Available,
 
-		Config: fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
-		Zones:  []string{testutil.TestZone()},
+		TriggerType: "cpu",
+		Config:      fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
+		Zones:       []string{testutil.TestZone()},
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           80,
@@ -119,8 +121,9 @@ var (
 		Tags:        []string{"tag1-upd", "tag2-upd"},
 		IconID:      testIconID,
 
-		Config: fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
-		Zones:  []string{testutil.TestZone()},
+		Config:      fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
+		Zones:       []string{testutil.TestZone()},
+		TriggerType: "cpu",
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           81,
@@ -134,8 +137,9 @@ var (
 		Availability: types.Availabilities.Available,
 		IconID:       testIconID,
 
-		Config: fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
-		Zones:  []string{testutil.TestZone()},
+		Config:      fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
+		Zones:       []string{testutil.TestZone()},
+		TriggerType: "cpu",
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           81,

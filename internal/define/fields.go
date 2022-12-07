@@ -2882,12 +2882,22 @@ func (f *fieldsDef) AutoScaleConfig() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) AutoScaleTriggerType() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "TriggerType",
+		Type: meta.TypeString,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.TriggerType",
+		},
+	}
+}
+
 func (f *fieldsDef) AutoScaleCPUThreshold() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "CPUThresholdScaling",
 		Type: &dsl.Model{
 			Name:      "AutoScaleCPUThresholdScaling",
-			NakedType: meta.Static(naked.DatabaseSettingReplication{}),
+			NakedType: meta.Static(naked.AutoScaleCPUThresholdScaling{}),
 			Fields: []*dsl.FieldDesc{
 				fields.Def("ServerPrefix", meta.TypeString),
 				fields.Def("Up", meta.TypeInt),
@@ -2896,6 +2906,24 @@ func (f *fieldsDef) AutoScaleCPUThreshold() *dsl.FieldDesc {
 		},
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.CPUThresholdScaling,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleRouterThreshold() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "RouterThresholdScaling",
+		Type: &dsl.Model{
+			Name:      "AutoScaleRouterThresholdScaling",
+			NakedType: meta.Static(naked.AutoScaleRouterThresholdScaling{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("RouterPrefix", meta.TypeString),
+				fields.Def("Direction", meta.TypeString),
+				fields.Def("Mbps", meta.TypeInt),
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.RouterThresholdScaling,recursive",
 		},
 	}
 }

@@ -2103,51 +2103,57 @@ func (o *AutoBackupUpdateSettingsRequest) SetSettingsHash(v string) {
 
 // AutoScale represents API parameter/response structure
 type AutoScale struct {
-	ID                  types.ID
-	Name                string
-	Description         string
-	Tags                types.Tags
-	Availability        types.EAvailability
-	IconID              types.ID `mapconv:"Icon.ID"`
-	CreatedAt           time.Time
-	ModifiedAt          time.Time
-	Zones               []string                      `mapconv:"Settings.Zones"`
-	Config              string                        `mapconv:"Settings.Config"`
-	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-	SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
-	APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
+	ID                     types.ID
+	Name                   string
+	Description            string
+	Tags                   types.Tags
+	Availability           types.EAvailability
+	IconID                 types.ID `mapconv:"Icon.ID"`
+	CreatedAt              time.Time
+	ModifiedAt             time.Time
+	Zones                  []string                         `mapconv:"Settings.Zones"`
+	Config                 string                           `mapconv:"Settings.Config"`
+	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
+	APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScale) setDefaults() interface{} {
 	return &struct {
-		ID                  types.ID
-		Name                string
-		Description         string
-		Tags                types.Tags
-		Availability        types.EAvailability
-		IconID              types.ID `mapconv:"Icon.ID"`
-		CreatedAt           time.Time
-		ModifiedAt          time.Time
-		Zones               []string                      `mapconv:"Settings.Zones"`
-		Config              string                        `mapconv:"Settings.Config"`
-		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-		SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
-		APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
+		ID                     types.ID
+		Name                   string
+		Description            string
+		Tags                   types.Tags
+		Availability           types.EAvailability
+		IconID                 types.ID `mapconv:"Icon.ID"`
+		CreatedAt              time.Time
+		ModifiedAt             time.Time
+		Zones                  []string                         `mapconv:"Settings.Zones"`
+		Config                 string                           `mapconv:"Settings.Config"`
+		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
+		APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 	}{
-		ID:                  o.GetID(),
-		Name:                o.GetName(),
-		Description:         o.GetDescription(),
-		Tags:                o.GetTags(),
-		Availability:        o.GetAvailability(),
-		IconID:              o.GetIconID(),
-		CreatedAt:           o.GetCreatedAt(),
-		ModifiedAt:          o.GetModifiedAt(),
-		Zones:               o.GetZones(),
-		Config:              o.GetConfig(),
-		CPUThresholdScaling: o.GetCPUThresholdScaling(),
-		SettingsHash:        o.GetSettingsHash(),
-		APIKeyID:            o.GetAPIKeyID(),
+		ID:                     o.GetID(),
+		Name:                   o.GetName(),
+		Description:            o.GetDescription(),
+		Tags:                   o.GetTags(),
+		Availability:           o.GetAvailability(),
+		IconID:                 o.GetIconID(),
+		CreatedAt:              o.GetCreatedAt(),
+		ModifiedAt:             o.GetModifiedAt(),
+		Zones:                  o.GetZones(),
+		Config:                 o.GetConfig(),
+		TriggerType:            o.GetTriggerType(),
+		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
+		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		SettingsHash:           o.GetSettingsHash(),
+		APIKeyID:               o.GetAPIKeyID(),
 	}
 }
 
@@ -2291,6 +2297,16 @@ func (o *AutoScale) SetConfig(v string) {
 	o.Config = v
 }
 
+// GetTriggerType returns value of TriggerType
+func (o *AutoScale) GetTriggerType() string {
+	return o.TriggerType
+}
+
+// SetTriggerType sets value to TriggerType
+func (o *AutoScale) SetTriggerType(v string) {
+	o.TriggerType = v
+}
+
 // GetCPUThresholdScaling returns value of CPUThresholdScaling
 func (o *AutoScale) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
 	return o.CPUThresholdScaling
@@ -2299,6 +2315,16 @@ func (o *AutoScale) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
 // SetCPUThresholdScaling sets value to CPUThresholdScaling
 func (o *AutoScale) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
 	o.CPUThresholdScaling = v
+}
+
+// GetRouterThresholdScaling returns value of RouterThresholdScaling
+func (o *AutoScale) GetRouterThresholdScaling() *AutoScaleRouterThresholdScaling {
+	return o.RouterThresholdScaling
+}
+
+// SetRouterThresholdScaling sets value to RouterThresholdScaling
+func (o *AutoScale) SetRouterThresholdScaling(v *AutoScaleRouterThresholdScaling) {
+	o.RouterThresholdScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -2376,45 +2402,105 @@ func (o *AutoScaleCPUThresholdScaling) SetDown(v int) {
 }
 
 /*************************************************
+* AutoScaleRouterThresholdScaling
+*************************************************/
+
+// AutoScaleRouterThresholdScaling represents API parameter/response structure
+type AutoScaleRouterThresholdScaling struct {
+	RouterPrefix string
+	Direction    string
+	Mbps         int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleRouterThresholdScaling) setDefaults() interface{} {
+	return &struct {
+		RouterPrefix string
+		Direction    string
+		Mbps         int
+	}{
+		RouterPrefix: o.GetRouterPrefix(),
+		Direction:    o.GetDirection(),
+		Mbps:         o.GetMbps(),
+	}
+}
+
+// GetRouterPrefix returns value of RouterPrefix
+func (o *AutoScaleRouterThresholdScaling) GetRouterPrefix() string {
+	return o.RouterPrefix
+}
+
+// SetRouterPrefix sets value to RouterPrefix
+func (o *AutoScaleRouterThresholdScaling) SetRouterPrefix(v string) {
+	o.RouterPrefix = v
+}
+
+// GetDirection returns value of Direction
+func (o *AutoScaleRouterThresholdScaling) GetDirection() string {
+	return o.Direction
+}
+
+// SetDirection sets value to Direction
+func (o *AutoScaleRouterThresholdScaling) SetDirection(v string) {
+	o.Direction = v
+}
+
+// GetMbps returns value of Mbps
+func (o *AutoScaleRouterThresholdScaling) GetMbps() int {
+	return o.Mbps
+}
+
+// SetMbps sets value to Mbps
+func (o *AutoScaleRouterThresholdScaling) SetMbps(v int) {
+	o.Mbps = v
+}
+
+/*************************************************
 * AutoScaleCreateRequest
 *************************************************/
 
 // AutoScaleCreateRequest represents API parameter/response structure
 type AutoScaleCreateRequest struct {
-	Name                string
-	Description         string
-	Tags                types.Tags
-	IconID              types.ID                      `mapconv:"Icon.ID"`
-	Zones               []string                      `mapconv:"Settings.Zones"`
-	Config              string                        `mapconv:"Settings.Config"`
-	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-	APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
+	Name                   string
+	Description            string
+	Tags                   types.Tags
+	IconID                 types.ID                         `mapconv:"Icon.ID"`
+	Zones                  []string                         `mapconv:"Settings.Zones"`
+	Config                 string                           `mapconv:"Settings.Config"`
+	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 	return &struct {
-		Name                string
-		Description         string
-		Tags                types.Tags
-		IconID              types.ID                      `mapconv:"Icon.ID"`
-		Zones               []string                      `mapconv:"Settings.Zones"`
-		Config              string                        `mapconv:"Settings.Config"`
-		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-		APIKeyID            string                        `mapconv:"Status.APIKey.ID"`
-		Class               string                        `mapconv:"Provider.Class"`
-		ServiceClass        string
+		Name                   string
+		Description            string
+		Tags                   types.Tags
+		IconID                 types.ID                         `mapconv:"Icon.ID"`
+		Zones                  []string                         `mapconv:"Settings.Zones"`
+		Config                 string                           `mapconv:"Settings.Config"`
+		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
+		Class                  string                           `mapconv:"Provider.Class"`
+		ServiceClass           string
 	}{
-		Name:                o.GetName(),
-		Description:         o.GetDescription(),
-		Tags:                o.GetTags(),
-		IconID:              o.GetIconID(),
-		Zones:               o.GetZones(),
-		Config:              o.GetConfig(),
-		CPUThresholdScaling: o.GetCPUThresholdScaling(),
-		APIKeyID:            o.GetAPIKeyID(),
-		Class:               "autoscale",
-		ServiceClass:        "cloud/autoscale/1",
+		Name:                   o.GetName(),
+		Description:            o.GetDescription(),
+		Tags:                   o.GetTags(),
+		IconID:                 o.GetIconID(),
+		Zones:                  o.GetZones(),
+		Config:                 o.GetConfig(),
+		TriggerType:            o.GetTriggerType(),
+		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
+		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		APIKeyID:               o.GetAPIKeyID(),
+		Class:                  "autoscale",
+		ServiceClass:           "cloud/autoscale/1",
 	}
 }
 
@@ -2498,6 +2584,16 @@ func (o *AutoScaleCreateRequest) SetConfig(v string) {
 	o.Config = v
 }
 
+// GetTriggerType returns value of TriggerType
+func (o *AutoScaleCreateRequest) GetTriggerType() string {
+	return o.TriggerType
+}
+
+// SetTriggerType sets value to TriggerType
+func (o *AutoScaleCreateRequest) SetTriggerType(v string) {
+	o.TriggerType = v
+}
+
 // GetCPUThresholdScaling returns value of CPUThresholdScaling
 func (o *AutoScaleCreateRequest) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
 	return o.CPUThresholdScaling
@@ -2506,6 +2602,16 @@ func (o *AutoScaleCreateRequest) GetCPUThresholdScaling() *AutoScaleCPUThreshold
 // SetCPUThresholdScaling sets value to CPUThresholdScaling
 func (o *AutoScaleCreateRequest) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
 	o.CPUThresholdScaling = v
+}
+
+// GetRouterThresholdScaling returns value of RouterThresholdScaling
+func (o *AutoScaleCreateRequest) GetRouterThresholdScaling() *AutoScaleRouterThresholdScaling {
+	return o.RouterThresholdScaling
+}
+
+// SetRouterThresholdScaling sets value to RouterThresholdScaling
+func (o *AutoScaleCreateRequest) SetRouterThresholdScaling(v *AutoScaleRouterThresholdScaling) {
+	o.RouterThresholdScaling = v
 }
 
 // GetAPIKeyID returns value of APIKeyID
@@ -2524,36 +2630,42 @@ func (o *AutoScaleCreateRequest) SetAPIKeyID(v string) {
 
 // AutoScaleUpdateRequest represents API parameter/response structure
 type AutoScaleUpdateRequest struct {
-	Name                string
-	Description         string
-	Tags                types.Tags
-	IconID              types.ID                      `mapconv:"Icon.ID"`
-	Zones               []string                      `mapconv:"Settings.Zones"`
-	Config              string                        `mapconv:"Settings.Config"`
-	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-	SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
+	Name                   string
+	Description            string
+	Tags                   types.Tags
+	IconID                 types.ID                         `mapconv:"Icon.ID"`
+	Zones                  []string                         `mapconv:"Settings.Zones"`
+	Config                 string                           `mapconv:"Settings.Config"`
+	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 	return &struct {
-		Name                string
-		Description         string
-		Tags                types.Tags
-		IconID              types.ID                      `mapconv:"Icon.ID"`
-		Zones               []string                      `mapconv:"Settings.Zones"`
-		Config              string                        `mapconv:"Settings.Config"`
-		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-		SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
+		Name                   string
+		Description            string
+		Tags                   types.Tags
+		IconID                 types.ID                         `mapconv:"Icon.ID"`
+		Zones                  []string                         `mapconv:"Settings.Zones"`
+		Config                 string                           `mapconv:"Settings.Config"`
+		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Name:                o.GetName(),
-		Description:         o.GetDescription(),
-		Tags:                o.GetTags(),
-		IconID:              o.GetIconID(),
-		Zones:               o.GetZones(),
-		Config:              o.GetConfig(),
-		CPUThresholdScaling: o.GetCPUThresholdScaling(),
-		SettingsHash:        o.GetSettingsHash(),
+		Name:                   o.GetName(),
+		Description:            o.GetDescription(),
+		Tags:                   o.GetTags(),
+		IconID:                 o.GetIconID(),
+		Zones:                  o.GetZones(),
+		Config:                 o.GetConfig(),
+		TriggerType:            o.GetTriggerType(),
+		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
+		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		SettingsHash:           o.GetSettingsHash(),
 	}
 }
 
@@ -2637,6 +2749,16 @@ func (o *AutoScaleUpdateRequest) SetConfig(v string) {
 	o.Config = v
 }
 
+// GetTriggerType returns value of TriggerType
+func (o *AutoScaleUpdateRequest) GetTriggerType() string {
+	return o.TriggerType
+}
+
+// SetTriggerType sets value to TriggerType
+func (o *AutoScaleUpdateRequest) SetTriggerType(v string) {
+	o.TriggerType = v
+}
+
 // GetCPUThresholdScaling returns value of CPUThresholdScaling
 func (o *AutoScaleUpdateRequest) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
 	return o.CPUThresholdScaling
@@ -2645,6 +2767,16 @@ func (o *AutoScaleUpdateRequest) GetCPUThresholdScaling() *AutoScaleCPUThreshold
 // SetCPUThresholdScaling sets value to CPUThresholdScaling
 func (o *AutoScaleUpdateRequest) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
 	o.CPUThresholdScaling = v
+}
+
+// GetRouterThresholdScaling returns value of RouterThresholdScaling
+func (o *AutoScaleUpdateRequest) GetRouterThresholdScaling() *AutoScaleRouterThresholdScaling {
+	return o.RouterThresholdScaling
+}
+
+// SetRouterThresholdScaling sets value to RouterThresholdScaling
+func (o *AutoScaleUpdateRequest) SetRouterThresholdScaling(v *AutoScaleRouterThresholdScaling) {
+	o.RouterThresholdScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -2663,24 +2795,30 @@ func (o *AutoScaleUpdateRequest) SetSettingsHash(v string) {
 
 // AutoScaleUpdateSettingsRequest represents API parameter/response structure
 type AutoScaleUpdateSettingsRequest struct {
-	Zones               []string                      `mapconv:"Settings.Zones"`
-	Config              string                        `mapconv:"Settings.Config"`
-	CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-	SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
+	Zones                  []string                         `mapconv:"Settings.Zones"`
+	Config                 string                           `mapconv:"Settings.Config"`
+	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		Zones               []string                      `mapconv:"Settings.Zones"`
-		Config              string                        `mapconv:"Settings.Config"`
-		CPUThresholdScaling *AutoScaleCPUThresholdScaling `mapconv:"Settings.CPUThresholdScaling,recursive"`
-		SettingsHash        string                        `json:",omitempty" mapconv:",omitempty"`
+		Zones                  []string                         `mapconv:"Settings.Zones"`
+		Config                 string                           `mapconv:"Settings.Config"`
+		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
+		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Zones:               o.GetZones(),
-		Config:              o.GetConfig(),
-		CPUThresholdScaling: o.GetCPUThresholdScaling(),
-		SettingsHash:        o.GetSettingsHash(),
+		Zones:                  o.GetZones(),
+		Config:                 o.GetConfig(),
+		TriggerType:            o.GetTriggerType(),
+		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
+		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		SettingsHash:           o.GetSettingsHash(),
 	}
 }
 
@@ -2704,6 +2842,16 @@ func (o *AutoScaleUpdateSettingsRequest) SetConfig(v string) {
 	o.Config = v
 }
 
+// GetTriggerType returns value of TriggerType
+func (o *AutoScaleUpdateSettingsRequest) GetTriggerType() string {
+	return o.TriggerType
+}
+
+// SetTriggerType sets value to TriggerType
+func (o *AutoScaleUpdateSettingsRequest) SetTriggerType(v string) {
+	o.TriggerType = v
+}
+
 // GetCPUThresholdScaling returns value of CPUThresholdScaling
 func (o *AutoScaleUpdateSettingsRequest) GetCPUThresholdScaling() *AutoScaleCPUThresholdScaling {
 	return o.CPUThresholdScaling
@@ -2712,6 +2860,16 @@ func (o *AutoScaleUpdateSettingsRequest) GetCPUThresholdScaling() *AutoScaleCPUT
 // SetCPUThresholdScaling sets value to CPUThresholdScaling
 func (o *AutoScaleUpdateSettingsRequest) SetCPUThresholdScaling(v *AutoScaleCPUThresholdScaling) {
 	o.CPUThresholdScaling = v
+}
+
+// GetRouterThresholdScaling returns value of RouterThresholdScaling
+func (o *AutoScaleUpdateSettingsRequest) GetRouterThresholdScaling() *AutoScaleRouterThresholdScaling {
+	return o.RouterThresholdScaling
+}
+
+// SetRouterThresholdScaling sets value to RouterThresholdScaling
+func (o *AutoScaleUpdateSettingsRequest) SetRouterThresholdScaling(v *AutoScaleRouterThresholdScaling) {
+	o.RouterThresholdScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash
