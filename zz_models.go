@@ -29322,6 +29322,7 @@ type VPCRouterSiteToSiteIPsecVPN struct {
 	ESP            *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
 	EncryptionAlgo string
 	HashAlgo       string
+	DHGroup        string
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -29332,12 +29333,14 @@ func (o *VPCRouterSiteToSiteIPsecVPN) setDefaults() interface{} {
 		ESP            *VPCRouterSiteToSiteIPsecVPNESP      `mapconv:",omitempty,recursive"`
 		EncryptionAlgo string
 		HashAlgo       string
+		DHGroup        string
 	}{
 		Config:         o.GetConfig(),
 		IKE:            o.GetIKE(),
 		ESP:            o.GetESP(),
 		EncryptionAlgo: o.GetEncryptionAlgo(),
 		HashAlgo:       o.GetHashAlgo(),
+		DHGroup:        o.GetDHGroup(),
 	}
 }
 
@@ -29389,6 +29392,16 @@ func (o *VPCRouterSiteToSiteIPsecVPN) GetHashAlgo() string {
 // SetHashAlgo sets value to HashAlgo
 func (o *VPCRouterSiteToSiteIPsecVPN) SetHashAlgo(v string) {
 	o.HashAlgo = v
+}
+
+// GetDHGroup returns value of DHGroup
+func (o *VPCRouterSiteToSiteIPsecVPN) GetDHGroup() string {
+	return o.DHGroup
+}
+
+// SetDHGroup sets value to DHGroup
+func (o *VPCRouterSiteToSiteIPsecVPN) SetDHGroup(v string) {
+	o.DHGroup = v
 }
 
 /*************************************************

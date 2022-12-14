@@ -1282,6 +1282,10 @@ func (m *modelsDef) vpcRouterSiteToSiteIPsecVPN() *dsl.Model {
 				Name: "HashAlgo",
 				Type: meta.TypeString,
 			},
+			{
+				Name: "DHGroup",
+				Type: meta.TypeString,
+			},
 		},
 	}
 }
