@@ -476,6 +476,7 @@ type VPCRouterSiteToSiteIPsecVPN struct {
 	ESP            *VPCRouterSiteToSiteIPsecVPNESP      `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	EncryptionAlgo string                               `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // aes128 or aes256
 	HashAlgo       string                               `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // sha1 or sha256
+	DHGroup        string                               `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // modp1024 or modp2048 or modp3072 or modp4096
 	Enabled        types.StringFlag                     `yaml:"enabled"`
 }
 

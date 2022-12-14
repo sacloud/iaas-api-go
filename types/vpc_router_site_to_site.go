@@ -17,8 +17,18 @@ package types
 const (
 	VPCRouterSiteToSiteVPNEncryptionAlgoAES128 = "aes128"
 	VPCRouterSiteToSiteVPNEncryptionAlgoAES256 = "aes256"
-	VPCRouterSiteToSiteVPNHashAlgoSHA1         = "sha1"
-	VPCRouterSiteToSiteVPNHashAlgoSHA256       = "sha256"
+)
+
+const (
+	VPCRouterSiteToSiteVPNHashAlgoSHA1   = "sha1"
+	VPCRouterSiteToSiteVPNHashAlgoSHA256 = "sha256"
+)
+
+const (
+	VPCRouterSiteToSiteVPNDHGroupModp1024 = "modp1024"
+	VPCRouterSiteToSiteVPNDHGroupModp2048 = "modp2048"
+	VPCRouterSiteToSiteVPNDHGroupModp3072 = "modp3072"
+	VPCRouterSiteToSiteVPNDHGroupModp4096 = "modp4096"
 )
 
 var (
@@ -29,5 +39,11 @@ var (
 	VPCRouterSiteToSiteVPNHashAlgos = []string{
 		VPCRouterSiteToSiteVPNHashAlgoSHA1,
 		VPCRouterSiteToSiteVPNHashAlgoSHA256,
+	}
+	VPCRouterSiteToSiteVPNDHGroups = []string{
+		VPCRouterSiteToSiteVPNDHGroupModp1024,
+		VPCRouterSiteToSiteVPNDHGroupModp2048,
+		VPCRouterSiteToSiteVPNDHGroupModp3072,
+		VPCRouterSiteToSiteVPNDHGroupModp4096,
 	}
 )
