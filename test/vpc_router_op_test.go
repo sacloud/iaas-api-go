@@ -367,7 +367,7 @@ func TestVPCRouterOp_WithRouterCRUD(t *testing.T) {
 							},
 							EncryptionAlgo: types.VPCRouterSiteToSiteVPNEncryptionAlgoAES256,
 							HashAlgo:       types.VPCRouterSiteToSiteVPNHashAlgoSHA256,
-							DHGroup:       types.VPCRouterSiteToSiteVPNDHGroupModp2048,
+							DHGroup:        types.VPCRouterSiteToSiteVPNDHGroupModp2048,
 						},
 						StaticRoute: []*iaas.VPCRouterStaticRoute{
 							{
