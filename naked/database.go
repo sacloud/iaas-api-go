@@ -163,6 +163,10 @@ type DatabaseSettingInterface struct {
 }
 
 // UnmarshalJSON 配列中にnullが返ってくる(VPCルータなど)への対応
+//
+// Note: この実装は要素として`[]`が来た場合にゼロ値として返している。
+//
+//	クライアント側では必要に応じてnil判定ではなくゼロ値である事の判定を行う。
 func (i *DatabaseSettingInterfaces) UnmarshalJSON(b []byte) error {
 	type alias DatabaseSettingInterfaces
 	var a alias
@@ -214,6 +218,20 @@ func (i *DatabaseSettingInterface) MarshalJSON() ([]byte, error) {
 		VirtualIPAddress: i.VirtualIPAddress,
 	}
 	return json.Marshal(tmp)
+}
+
+func (i *DatabaseSettingInterface) UnmarshalJSON(b []byte) error {
+	if string(b) == "[]" {
+		return nil
+	}
+	type alias DatabaseSettingInterface
+
+	var a alias
+	if err := json.Unmarshal(b, &a); err != nil {
+		return err
+	}
+	*i = DatabaseSettingInterface(a)
+	return nil
 }
 
 // DatabaseStatusResponse Status APIの戻り値
