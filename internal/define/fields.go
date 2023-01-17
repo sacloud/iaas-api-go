@@ -1523,6 +1523,10 @@ func (f *fieldsDef) ProxyLBRules() *dsl.FieldDesc {
 					Type: meta.TypeString,
 				},
 				{
+					Name: "SourceIPs",
+					Type: meta.TypeString,
+				},
+				{
 					Name: "RequestHeaderName",
 					Type: meta.TypeString,
 				},
