@@ -163,6 +163,8 @@ type ProxyLBRule struct {
 	Host string `json:",omitempty" yaml:"host,omitempty" structs:",omitempty"` // ホストヘッダのパターン(ワイルドカードとして?と*が利用可能)
 	Path string `json:",omitempty" yaml:"path,omitempty" structs:",omitempty"` // パス
 
+	SourceIPs string `json:",omitempty" yaml:"source_ips,omitempty" structs:",omitempty"`
+
 	RequestHeaderName            string `json:",omitempty" yaml:"request_header_name,omitempty" structs:",omitempty"`
 	RequestHeaderValue           string `json:",omitempty" yaml:"request_header_value,omitempty" structs:",omitempty"`
 	RequestHeaderValueIgnoreCase bool   `yaml:"request_header_value_ignore_case"`

@@ -20910,6 +20910,7 @@ func (o *ProxyLBServer) SetEnabled(v bool) {
 type ProxyLBRule struct {
 	Host                         string
 	Path                         string
+	SourceIPs                    string
 	RequestHeaderName            string
 	RequestHeaderValue           string
 	RequestHeaderValueIgnoreCase bool
@@ -20928,6 +20929,7 @@ func (o *ProxyLBRule) setDefaults() interface{} {
 	return &struct {
 		Host                         string
 		Path                         string
+		SourceIPs                    string
 		RequestHeaderName            string
 		RequestHeaderValue           string
 		RequestHeaderValueIgnoreCase bool
@@ -20942,6 +20944,7 @@ func (o *ProxyLBRule) setDefaults() interface{} {
 	}{
 		Host:                         o.GetHost(),
 		Path:                         o.GetPath(),
+		SourceIPs:                    o.GetSourceIPs(),
 		RequestHeaderName:            o.GetRequestHeaderName(),
 		RequestHeaderValue:           o.GetRequestHeaderValue(),
 		RequestHeaderValueIgnoreCase: o.GetRequestHeaderValueIgnoreCase(),
@@ -20974,6 +20977,16 @@ func (o *ProxyLBRule) GetPath() string {
 // SetPath sets value to Path
 func (o *ProxyLBRule) SetPath(v string) {
 	o.Path = v
+}
+
+// GetSourceIPs returns value of SourceIPs
+func (o *ProxyLBRule) GetSourceIPs() string {
+	return o.SourceIPs
+}
+
+// SetSourceIPs sets value to SourceIPs
+func (o *ProxyLBRule) SetSourceIPs(v string) {
+	o.SourceIPs = v
 }
 
 // GetRequestHeaderName returns value of RequestHeaderName
