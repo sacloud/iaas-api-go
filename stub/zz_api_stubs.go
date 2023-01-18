@@ -5555,6 +5555,12 @@ type VPCRouterLogsStubResult struct {
 	Err          error
 }
 
+// VPCRouterPingStubResult is expected values of the Ping operation
+type VPCRouterPingStubResult struct {
+	VPCRouterPingResults *iaas.VPCRouterPingResults
+	Err                  error
+}
+
 // VPCRouterStub is for trace VPCRouterOp operations
 type VPCRouterStub struct {
 	FindStubResult                 *VPCRouterFindStubResult
@@ -5573,6 +5579,7 @@ type VPCRouterStub struct {
 	MonitorInterfaceStubResult     *VPCRouterMonitorInterfaceStubResult
 	StatusStubResult               *VPCRouterStatusStubResult
 	LogsStubResult                 *VPCRouterLogsStubResult
+	PingStubResult                 *VPCRouterPingStubResult
 }
 
 // NewVPCRouterStub creates new VPCRouterStub instance
@@ -5706,6 +5713,14 @@ func (s *VPCRouterStub) Logs(ctx context.Context, zone string, id types.ID) (*ia
 		log.Fatal("VPCRouterStub.LogsStubResult is not set")
 	}
 	return s.LogsStubResult.VPCRouterLog, s.LogsStubResult.Err
+}
+
+// Ping is API call with trace log
+func (s *VPCRouterStub) Ping(ctx context.Context, zone string, id types.ID, destination string) (*iaas.VPCRouterPingResults, error) {
+	if s.PingStubResult == nil {
+		log.Fatal("VPCRouterStub.PingStubResult is not set")
+	}
+	return s.PingStubResult.VPCRouterPingResults, s.PingStubResult.Err
 }
 
 /*************************************************

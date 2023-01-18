@@ -8026,6 +8026,19 @@ func (o *VPCRouterOp) transformLogsResults(data []byte) (*vPCRouterLogsResult, e
 	return results, nil
 }
 
+func (o *VPCRouterOp) transformPingResults(data []byte) (*vPCRouterPingResult, error) {
+	nakedResponse := &vPCRouterPingResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &vPCRouterPingResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
 func (o *ZoneOp) transformFindArgs(conditions *FindCondition) (*zoneFindRequestEnvelope, error) {
 	if conditions == nil {
 		conditions = &FindCondition{}

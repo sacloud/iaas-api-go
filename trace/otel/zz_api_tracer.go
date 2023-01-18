@@ -9892,6 +9892,33 @@ func (t *VPCRouterTracer) Logs(ctx context.Context, zone string, id types.ID) (*
 	return resultVPCRouterLog, err
 }
 
+// Ping is API call with trace log
+func (t *VPCRouterTracer) Ping(ctx context.Context, zone string, id types.ID, destination string) (*iaas.VPCRouterPingResults, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.zone", zone),
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("libiaas.api.arguments.destination", forceString(destination)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Ping", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultVPCRouterPingResults, err := t.Internal.Ping(ctx, zone, id, destination)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultVPCRouterPingResults", forceString(resultVPCRouterPingResults)))
+
+	}
+	return resultVPCRouterPingResults, err
+}
+
 /*************************************************
 * ZoneTracer
 *************************************************/

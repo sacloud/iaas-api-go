@@ -131,6 +131,32 @@ var vpcRouterAPI = &dsl.Resource{
 				},
 			},
 		},
+
+		// Ping
+		{
+			ResourceName: vpcRouterAPIName,
+			Name:         "Ping",
+			Arguments: dsl.Arguments{
+				dsl.ArgumentID,
+				&dsl.Argument{
+					Name: "destination",
+					Type: meta.TypeString,
+				},
+			},
+			PathFormat: dsl.IDAndSuffixPathFormat("vpcrouter/ping/{{.destination}}"),
+			Method:     http.MethodPost,
+			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: meta.Static(naked.VPCRouterPingResult{}),
+				Name: vpcRouterAPIName,
+			}),
+			Results: dsl.Results{
+				{
+					SourceField: vpcRouterAPIName,
+					DestField:   vpcRouterPingResults.Name,
+					Model:       vpcRouterPingResults,
+				},
+			},
+		},
 	},
 }
 
@@ -265,6 +291,14 @@ var (
 		NakedType: meta.Static(naked.VPCRouterLog{}),
 		Fields: []*dsl.FieldDesc{
 			fields.Def("Log", meta.TypeString),
+		},
+	}
+
+	vpcRouterPingResults = &dsl.Model{
+		Name:      "VPCRouterPingResults",
+		NakedType: meta.Static(naked.VPCRouterPingResult{}),
+		Fields: []*dsl.FieldDesc{
+			fields.Def("Result", meta.TypeStringSlice),
 		},
 	}
 

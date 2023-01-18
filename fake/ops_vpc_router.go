@@ -375,3 +375,7 @@ func (o *VPCRouterOp) MonitorCPU(ctx context.Context, zone string, id types.ID, 
 func (o *VPCRouterOp) Logs(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouterLog, error) {
 	return &iaas.VPCRouterLog{Log: "fake"}, nil
 }
+
+func (o *VPCRouterOp) Ping(ctx context.Context, zone string, id types.ID, destination string) (*iaas.VPCRouterPingResults, error) {
+	return &iaas.VPCRouterPingResults{Result: []string{"fake"}}, nil
+}

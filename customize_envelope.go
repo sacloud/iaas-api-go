@@ -364,3 +364,22 @@ func (a *vPCRouterLogsResponseEnvelope) UnmarshalJSON(data []byte) error {
 	*a = vPCRouterLogsResponseEnvelope(tmp)
 	return nil
 }
+
+// UnmarshalJSON APIからの戻り値でレスポンスボディ直下にデータを持つことへの対応
+func (a *vPCRouterPingResponseEnvelope) UnmarshalJSON(data []byte) error {
+	type alias vPCRouterPingResponseEnvelope
+
+	var tmp alias
+	if err := json.Unmarshal(data, &tmp); err != nil {
+		return err
+	}
+
+	var nakedResult naked.VPCRouterPingResult
+	if err := json.Unmarshal(data, &nakedResult); err != nil {
+		return err
+	}
+	tmp.VPCRouter = &nakedResult
+
+	*a = vPCRouterPingResponseEnvelope(tmp)
+	return nil
+}

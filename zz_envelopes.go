@@ -3156,6 +3156,14 @@ type vPCRouterLogsResponseEnvelope struct {
 	VPCRouter *naked.VPCRouterLog `json:",omitempty"`
 }
 
+// vPCRouterPingResponseEnvelope is envelop of API response
+type vPCRouterPingResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	VPCRouter *naked.VPCRouterPingResult `json:",omitempty"`
+}
+
 // zoneFindRequestEnvelope is envelop of API request
 type zoneFindRequestEnvelope struct {
 	Count   int             `mapconv:",omitempty"`

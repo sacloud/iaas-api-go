@@ -170,7 +170,7 @@ func initProxyLBVariables() {
 			{
 				Host:        "www.usacloud.jp",
 				Path:        "/path1",
-				SourceIPs: "192.168.0.1,192.168.1.0/24",
+				SourceIPs:   "192.168.0.1,192.168.1.0/24",
 				ServerGroup: "group1",
 				Action:      types.ProxyLBRuleActions.Forward,
 			},
