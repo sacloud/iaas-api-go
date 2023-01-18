@@ -12130,6 +12130,41 @@ func (t *VPCRouterTracer) Logs(ctx context.Context, zone string, id types.ID) (*
 	return resultVPCRouterLog, err
 }
 
+// Ping is API call with trace log
+func (t *VPCRouterTracer) Ping(ctx context.Context, zone string, id types.ID, destination string) (*iaas.VPCRouterPingResults, error) {
+	log.Println("[TRACE] VPCRouterAPI.Ping start")
+	targetArguments := struct {
+		Argzone        string
+		Argid          types.ID `json:"id"`
+		Argdestination string   `json:"destination"`
+	}{
+		Argzone:        zone,
+		Argid:          id,
+		Argdestination: destination,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] VPCRouterAPI.Ping end")
+	}()
+
+	resultVPCRouterPingResults, err := t.Internal.Ping(ctx, zone, id, destination)
+	targetResults := struct {
+		VPCRouterPingResults *iaas.VPCRouterPingResults
+		Error                error
+	}{
+		VPCRouterPingResults: resultVPCRouterPingResults,
+		Error:                err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultVPCRouterPingResults, err
+}
+
 /*************************************************
 * ZoneTracer
 *************************************************/

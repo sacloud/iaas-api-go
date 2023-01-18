@@ -30856,6 +30856,34 @@ func (o *VPCRouterLog) SetLog(v string) {
 }
 
 /*************************************************
+* VPCRouterPingResults
+*************************************************/
+
+// VPCRouterPingResults represents API parameter/response structure
+type VPCRouterPingResults struct {
+	Result []string
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *VPCRouterPingResults) setDefaults() interface{} {
+	return &struct {
+		Result []string
+	}{
+		Result: o.GetResult(),
+	}
+}
+
+// GetResult returns value of Result
+func (o *VPCRouterPingResults) GetResult() []string {
+	return o.Result
+}
+
+// SetResult sets value to Result
+func (o *VPCRouterPingResults) SetResult(v []string) {
+	o.Result = v
+}
+
+/*************************************************
 * Zone
 *************************************************/
 

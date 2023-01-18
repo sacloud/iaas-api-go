@@ -590,6 +590,10 @@ type VPCRouterLog struct {
 	Log string
 }
 
+type VPCRouterPingResult struct {
+	Result []string
+}
+
 // VPCRouterStatisticsValue VPCルータのセッション統計情報
 type VPCRouterStatisticsValue struct {
 	Name  string `json:"name,omitempty" yaml:"name,omitempty" structs:",omitempty"`

@@ -727,6 +727,7 @@ type VPCRouterAPI interface {
 	MonitorInterface(ctx context.Context, zone string, id types.ID, index int, condition *MonitorCondition) (*InterfaceActivity, error)
 	Status(ctx context.Context, zone string, id types.ID) (*VPCRouterStatus, error)
 	Logs(ctx context.Context, zone string, id types.ID) (*VPCRouterLog, error)
+	Ping(ctx context.Context, zone string, id types.ID, destination string) (*VPCRouterPingResults, error)
 }
 
 /*************************************************

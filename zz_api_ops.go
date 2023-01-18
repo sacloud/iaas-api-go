@@ -13200,6 +13200,39 @@ func (o *VPCRouterOp) Logs(ctx context.Context, zone string, id types.ID) (*VPCR
 	return results.VPCRouterLog, nil
 }
 
+// Ping is API call
+func (o *VPCRouterOp) Ping(ctx context.Context, zone string, id types.ID, destination string) (*VPCRouterPingResults, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":     SakuraCloudAPIRoot,
+		"pathSuffix":  o.PathSuffix,
+		"pathName":    o.PathName,
+		"zone":        zone,
+		"id":          id,
+		"destination": destination,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/vpcrouter/ping/{{.destination}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	data, err := o.Client.Do(ctx, "POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformPingResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.VPCRouterPingResults, nil
+}
+
 /*************************************************
 * ZoneOp
 *************************************************/

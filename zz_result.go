@@ -2285,6 +2285,13 @@ type vPCRouterLogsResult struct {
 	VPCRouterLog *VPCRouterLog `json:",omitempty" mapconv:"VPCRouter,omitempty,recursive"`
 }
 
+// vPCRouterPingResult represents the Result of API
+type vPCRouterPingResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	VPCRouterPingResults *VPCRouterPingResults `json:",omitempty" mapconv:"VPCRouter,omitempty,recursive"`
+}
+
 // ZoneFindResult represents the Result of API
 type ZoneFindResult struct {
 	Total int `json:",omitempty"` // Total count of target resources
