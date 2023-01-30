@@ -38,8 +38,8 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUAtL9R8=
 github.com/rogpeppe/go-internal v1.8.0/go.mod h1:WmiCO8CzOY8rg0OYDC4/i/2WRWAB6poM+XZ2dLUbcbE=
-github.com/sacloud/api-client-go v0.2.5 h1:RzB9M0zgFkgqO5G0uNf3xfOch4SQ2MqOaZXuiJbVndk=
-github.com/sacloud/api-client-go v0.2.5/go.mod h1:qPQ3uh9HWsRu/KzLAtr9ow9RNOAtgSy8cYAPXsDre+s=
+github.com/sacloud/api-client-go v0.2.6 h1:/S3j/EhoYGUUdBsy40lxvaq1eLFLSL3wNDNnHfQYmyk=
+github.com/sacloud/api-client-go v0.2.6/go.mod h1:qPQ3uh9HWsRu/KzLAtr9ow9RNOAtgSy8cYAPXsDre+s=
 github.com/sacloud/go-http v0.1.4 h1:Fdt2NsiwzHh+fDqJe2HTGqV6tWdSS4M2bSwevGccMp8=
 github.com/sacloud/go-http v0.1.4/go.mod h1:0pw+tgXhTdwq/hPVizyaTgpN1G/WUZHTWRdbMuU+o/Q=
 github.com/sacloud/packages-go v0.0.7 h1:Py6nksUuyoRBaHtPfpA9sTIxSKnQfce/xm7XkiCLZmQ=
