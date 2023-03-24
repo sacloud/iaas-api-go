@@ -122,6 +122,7 @@ var (
 			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
 			fields.AutoScaleRouterThreshold(),
+			fields.AutoScaleScheduleScaling(),
 			fields.SettingsHash(),
 
 			// status
@@ -161,6 +162,7 @@ var (
 			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
 			fields.AutoScaleRouterThreshold(),
+			fields.AutoScaleScheduleScaling(),
 
 			// status
 			fields.AutoScaleAPIKeyID(),
@@ -184,6 +186,7 @@ var (
 			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
 			fields.AutoScaleRouterThreshold(),
+			fields.AutoScaleScheduleScaling(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -200,6 +203,7 @@ var (
 			fields.AutoScaleTriggerType(),
 			fields.AutoScaleCPUThreshold(),
 			fields.AutoScaleRouterThreshold(),
+			fields.AutoScaleScheduleScaling(),
 			// settings hash
 			fields.SettingsHash(),
 		},

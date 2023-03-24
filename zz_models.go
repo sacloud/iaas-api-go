@@ -2117,6 +2117,7 @@ type AutoScale struct {
 	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 	APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 }
@@ -2138,6 +2139,7 @@ func (o *AutoScale) setDefaults() interface{} {
 		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 		APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 	}{
@@ -2155,6 +2157,7 @@ func (o *AutoScale) setDefaults() interface{} {
 		TriggerType:            o.GetTriggerType(),
 		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
 		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		ScheduleScaling:        o.GetScheduleScaling(),
 		SettingsHash:           o.GetSettingsHash(),
 		APIKeyID:               o.GetAPIKeyID(),
 	}
@@ -2340,6 +2343,16 @@ func (o *AutoScale) SetRouterThresholdScaling(v *AutoScaleRouterThresholdScaling
 	o.RouterThresholdScaling = v
 }
 
+// GetScheduleScaling returns value of ScheduleScaling
+func (o *AutoScale) GetScheduleScaling() []*AutoScaleScheduleScaling {
+	return o.ScheduleScaling
+}
+
+// SetScheduleScaling sets value to ScheduleScaling
+func (o *AutoScale) SetScheduleScaling(v []*AutoScaleScheduleScaling) {
+	o.ScheduleScaling = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *AutoScale) GetSettingsHash() string {
 	return o.SettingsHash
@@ -2469,6 +2482,73 @@ func (o *AutoScaleRouterThresholdScaling) SetMbps(v int) {
 }
 
 /*************************************************
+* AutoScaleScheduleScaling
+*************************************************/
+
+// AutoScaleScheduleScaling represents API parameter/response structure
+type AutoScaleScheduleScaling struct {
+	Action    types.EAutoScaleAction
+	Hour      int
+	Minute    int
+	DayOfWeek []types.EDayOfTheWeek
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *AutoScaleScheduleScaling) setDefaults() interface{} {
+	return &struct {
+		Action    types.EAutoScaleAction
+		Hour      int
+		Minute    int
+		DayOfWeek []types.EDayOfTheWeek
+	}{
+		Action:    o.GetAction(),
+		Hour:      o.GetHour(),
+		Minute:    o.GetMinute(),
+		DayOfWeek: o.GetDayOfWeek(),
+	}
+}
+
+// GetAction returns value of Action
+func (o *AutoScaleScheduleScaling) GetAction() types.EAutoScaleAction {
+	return o.Action
+}
+
+// SetAction sets value to Action
+func (o *AutoScaleScheduleScaling) SetAction(v types.EAutoScaleAction) {
+	o.Action = v
+}
+
+// GetHour returns value of Hour
+func (o *AutoScaleScheduleScaling) GetHour() int {
+	return o.Hour
+}
+
+// SetHour sets value to Hour
+func (o *AutoScaleScheduleScaling) SetHour(v int) {
+	o.Hour = v
+}
+
+// GetMinute returns value of Minute
+func (o *AutoScaleScheduleScaling) GetMinute() int {
+	return o.Minute
+}
+
+// SetMinute sets value to Minute
+func (o *AutoScaleScheduleScaling) SetMinute(v int) {
+	o.Minute = v
+}
+
+// GetDayOfWeek returns value of DayOfWeek
+func (o *AutoScaleScheduleScaling) GetDayOfWeek() []types.EDayOfTheWeek {
+	return o.DayOfWeek
+}
+
+// SetDayOfWeek sets value to DayOfWeek
+func (o *AutoScaleScheduleScaling) SetDayOfWeek(v []types.EDayOfTheWeek) {
+	o.DayOfWeek = v
+}
+
+/*************************************************
 * AutoScaleCreateRequest
 *************************************************/
 
@@ -2484,6 +2564,7 @@ type AutoScaleCreateRequest struct {
 	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 	APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 }
 
@@ -2500,6 +2581,7 @@ func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 		APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
 		Class                  string                           `mapconv:"Provider.Class"`
 		ServiceClass           string
@@ -2514,6 +2596,7 @@ func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 		TriggerType:            o.GetTriggerType(),
 		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
 		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		ScheduleScaling:        o.GetScheduleScaling(),
 		APIKeyID:               o.GetAPIKeyID(),
 		Class:                  "autoscale",
 		ServiceClass:           "cloud/autoscale/1",
@@ -2640,6 +2723,16 @@ func (o *AutoScaleCreateRequest) SetRouterThresholdScaling(v *AutoScaleRouterThr
 	o.RouterThresholdScaling = v
 }
 
+// GetScheduleScaling returns value of ScheduleScaling
+func (o *AutoScaleCreateRequest) GetScheduleScaling() []*AutoScaleScheduleScaling {
+	return o.ScheduleScaling
+}
+
+// SetScheduleScaling sets value to ScheduleScaling
+func (o *AutoScaleCreateRequest) SetScheduleScaling(v []*AutoScaleScheduleScaling) {
+	o.ScheduleScaling = v
+}
+
 // GetAPIKeyID returns value of APIKeyID
 func (o *AutoScaleCreateRequest) GetAPIKeyID() string {
 	return o.APIKeyID
@@ -2666,6 +2759,7 @@ type AutoScaleUpdateRequest struct {
 	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -2682,6 +2776,7 @@ func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Name:                   o.GetName(),
@@ -2694,6 +2789,7 @@ func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 		TriggerType:            o.GetTriggerType(),
 		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
 		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		ScheduleScaling:        o.GetScheduleScaling(),
 		SettingsHash:           o.GetSettingsHash(),
 	}
 }
@@ -2818,6 +2914,16 @@ func (o *AutoScaleUpdateRequest) SetRouterThresholdScaling(v *AutoScaleRouterThr
 	o.RouterThresholdScaling = v
 }
 
+// GetScheduleScaling returns value of ScheduleScaling
+func (o *AutoScaleUpdateRequest) GetScheduleScaling() []*AutoScaleScheduleScaling {
+	return o.ScheduleScaling
+}
+
+// SetScheduleScaling sets value to ScheduleScaling
+func (o *AutoScaleUpdateRequest) SetScheduleScaling(v []*AutoScaleScheduleScaling) {
+	o.ScheduleScaling = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *AutoScaleUpdateRequest) GetSettingsHash() string {
 	return o.SettingsHash
@@ -2840,6 +2946,7 @@ type AutoScaleUpdateSettingsRequest struct {
 	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+	ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -2852,6 +2959,7 @@ func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
+		ScheduleScaling        []*AutoScaleScheduleScaling      `mapconv:"Settings.ScheduleScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Disabled:               o.GetDisabled(),
@@ -2860,6 +2968,7 @@ func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 		TriggerType:            o.GetTriggerType(),
 		CPUThresholdScaling:    o.GetCPUThresholdScaling(),
 		RouterThresholdScaling: o.GetRouterThresholdScaling(),
+		ScheduleScaling:        o.GetScheduleScaling(),
 		SettingsHash:           o.GetSettingsHash(),
 	}
 }
@@ -2922,6 +3031,16 @@ func (o *AutoScaleUpdateSettingsRequest) GetRouterThresholdScaling() *AutoScaleR
 // SetRouterThresholdScaling sets value to RouterThresholdScaling
 func (o *AutoScaleUpdateSettingsRequest) SetRouterThresholdScaling(v *AutoScaleRouterThresholdScaling) {
 	o.RouterThresholdScaling = v
+}
+
+// GetScheduleScaling returns value of ScheduleScaling
+func (o *AutoScaleUpdateSettingsRequest) GetScheduleScaling() []*AutoScaleScheduleScaling {
+	return o.ScheduleScaling
+}
+
+// SetScheduleScaling sets value to ScheduleScaling
+func (o *AutoScaleUpdateSettingsRequest) SetScheduleScaling(v []*AutoScaleScheduleScaling) {
+	o.ScheduleScaling = v
 }
 
 // GetSettingsHash returns value of SettingsHash

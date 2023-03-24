@@ -69,6 +69,13 @@ func TestAutoScaleOp_CRUD(t *testing.T) {
 					IgnoreFields: ignoreAutoScaleFields,
 				}),
 			},
+			{
+				Func: testAutoScaleUpdateTriggerType,
+				CheckFunc: testutil.AssertEqualWithExpected(&testutil.CRUDTestExpect{
+					ExpectValue:  updateAutoScaleTriggerTypeExpected,
+					IgnoreFields: ignoreAutoScaleFields,
+				}),
+			},
 		},
 		Delete: &testutil.CRUDTestDeleteFunc{
 			Func: testAutoScaleDelete,
@@ -83,6 +90,7 @@ var (
 		"SettingsHash",
 		"CreatedAt",
 		"ModifiedAt",
+		"ScheduleScaling",
 	}
 	createAutoScaleParam = &iaas.AutoScaleCreateRequest{
 		Name:        testutil.ResourceName("auto-scale"),
@@ -151,6 +159,58 @@ var (
 		},
 		APIKeyID: os.Getenv("SAKURACLOUD_API_KEY_ID"),
 	}
+	updateAutoScaleTriggerTypeParam = &iaas.AutoScaleUpdateRequest{
+		Name:        testutil.ResourceName("auto-scale-upd"),
+		Description: "desc-upd",
+		Tags:        []string{"tag1-upd", "tag2-upd"},
+		IconID:      testIconID,
+
+		Config:      fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
+		Zones:       []string{testutil.TestZone()},
+		TriggerType: types.AutoScaleTriggerTypes.Schedule,
+		Disabled:    false,
+		ScheduleScaling: []*iaas.AutoScaleScheduleScaling{
+			{
+				Action:    types.AutoScaleActions.Up,
+				Hour:      10,
+				Minute:    15,
+				DayOfWeek: []types.EDayOfTheWeek{types.DaysOfTheWeek.Monday},
+			},
+			{
+				Action:    types.AutoScaleActions.Down,
+				Hour:      18,
+				Minute:    15,
+				DayOfWeek: []types.EDayOfTheWeek{types.DaysOfTheWeek.Monday},
+			},
+		},
+	}
+	updateAutoScaleTriggerTypeExpected = &iaas.AutoScale{
+		Name:         updateAutoScaleParam.Name,
+		Description:  updateAutoScaleParam.Description,
+		Tags:         updateAutoScaleParam.Tags,
+		Availability: types.Availabilities.Available,
+		IconID:       testIconID,
+
+		Config:      fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
+		Zones:       []string{testutil.TestZone()},
+		TriggerType: types.AutoScaleTriggerTypes.Schedule,
+		Disabled:    false,
+		ScheduleScaling: []*iaas.AutoScaleScheduleScaling{
+			{
+				Action:    types.AutoScaleActions.Up,
+				Hour:      10,
+				Minute:    15,
+				DayOfWeek: []types.EDayOfTheWeek{types.DaysOfTheWeek.Monday},
+			},
+			{
+				Action:    types.AutoScaleActions.Down,
+				Hour:      18,
+				Minute:    15,
+				DayOfWeek: []types.EDayOfTheWeek{types.DaysOfTheWeek.Monday},
+			},
+		},
+		APIKeyID: os.Getenv("SAKURACLOUD_API_KEY_ID"),
+	}
 )
 
 func testAutoScaleCreate(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
@@ -166,6 +226,11 @@ func testAutoScaleRead(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (in
 func testAutoScaleUpdate(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
 	client := iaas.NewAutoScaleOp(caller)
 	return client.Update(ctx, ctx.ID, updateAutoScaleParam)
+}
+
+func testAutoScaleUpdateTriggerType(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
+	client := iaas.NewAutoScaleOp(caller)
+	return client.Update(ctx, ctx.ID, updateAutoScaleTriggerTypeParam)
 }
 
 func testAutoScaleDelete(ctx *testutil.CRUDTestContext, caller iaas.APICaller) error {
