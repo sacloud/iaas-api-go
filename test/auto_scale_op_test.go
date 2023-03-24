@@ -92,6 +92,7 @@ var (
 		Config:      fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
 		Zones:       []string{testutil.TestZone()},
 		TriggerType: "cpu",
+		Disabled:    true,
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           80,
@@ -106,6 +107,7 @@ var (
 		Availability: types.Availabilities.Available,
 
 		TriggerType: "cpu",
+		Disabled:    true,
 		Config:      fmt.Sprintf(autoScaleConfigTemplate, autoScaleTestServerName, testutil.TestZone()),
 		Zones:       []string{testutil.TestZone()},
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
@@ -124,6 +126,7 @@ var (
 		Config:      fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
 		Zones:       []string{testutil.TestZone()},
 		TriggerType: "cpu",
+		Disabled:    false,
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           81,
@@ -140,6 +143,7 @@ var (
 		Config:      fmt.Sprintf(autoScaleConfigTemplateUpd, autoScaleTestServerName, testutil.TestZone()),
 		Zones:       []string{testutil.TestZone()},
 		TriggerType: "cpu",
+		Disabled:    false,
 		CPUThresholdScaling: &iaas.AutoScaleCPUThresholdScaling{
 			ServerPrefix: autoScaleTestServerName,
 			Up:           81,

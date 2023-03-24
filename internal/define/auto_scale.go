@@ -116,6 +116,7 @@ var (
 			fields.ModifiedAt(),
 
 			// settings
+			fields.AutoScaleDisabled(),
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
 			fields.AutoScaleTriggerType(),
@@ -154,6 +155,7 @@ var (
 			fields.IconID(),
 
 			// settings
+			fields.AutoScaleDisabled(),
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
 			fields.AutoScaleTriggerType(),
@@ -176,6 +178,7 @@ var (
 			fields.IconID(),
 
 			// settings
+			fields.AutoScaleDisabled(),
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
 			fields.AutoScaleTriggerType(),
@@ -191,6 +194,7 @@ var (
 		NakedType: autoScaleNakedType,
 		Fields: []*dsl.FieldDesc{
 			// settings
+			fields.AutoScaleDisabled(),
 			fields.AutoScaleZones(),
 			fields.AutoScaleConfig(),
 			fields.AutoScaleTriggerType(),

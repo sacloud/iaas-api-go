@@ -2904,6 +2904,15 @@ func (f *fieldsDef) AutoScaleConfig() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) AutoScaleDisabled() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Disabled",
+		Type: meta.TypeFlag,
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.Disabled",
+		},
+	}
+}
 func (f *fieldsDef) AutoScaleTriggerType() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "TriggerType",
