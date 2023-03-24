@@ -2916,7 +2916,7 @@ func (f *fieldsDef) AutoScaleDisabled() *dsl.FieldDesc {
 func (f *fieldsDef) AutoScaleTriggerType() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "TriggerType",
-		Type: meta.TypeString,
+		Type: meta.Static(types.EAutoScaleTriggerType("")),
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.TriggerType",
 		},
@@ -2955,6 +2955,26 @@ func (f *fieldsDef) AutoScaleRouterThreshold() *dsl.FieldDesc {
 		},
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.RouterThresholdScaling,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) AutoScaleScheduleScaling() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "ScheduleScaling",
+		Type: &dsl.Model{
+			Name:      "AutoScaleScheduleScaling",
+			IsArray:   true,
+			NakedType: meta.Static(naked.AutoScaleScheduleScaling{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("Action", meta.Static(types.EAutoScaleAction(""))),
+				fields.Def("Hour", meta.TypeInt),
+				fields.Def("Minute", meta.TypeInt),
+				fields.Def("DayOfWeek", meta.Static([]types.EDayOfTheWeek{})),
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.ScheduleScaling,recursive",
 		},
 	}
 }
