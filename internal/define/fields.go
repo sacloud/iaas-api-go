@@ -1676,6 +1676,24 @@ func (f *fieldsDef) ProxyLBGzip() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) ProxyLBBackendHttpKeepAlive() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "BackendHttpKeepAlive",
+		Type: &dsl.Model{
+			Name: "ProxyLBBackendHttpKeepAlive",
+			Fields: []*dsl.FieldDesc{
+				{
+					Name: "Mode",
+					Type: meta.Static(types.EProxyLBBackendHttpKeepAlive("")),
+				},
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.ProxyLB.BackendHttpKeepAlive,recursive",
+		},
+	}
+}
+
 func (f *fieldsDef) ProxyLBProxyProtocol() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "ProxyProtocol",

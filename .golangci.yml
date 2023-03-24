@@ -22,8 +22,6 @@ linters:
     - misspell
     - nakedret
     - nolintlint
-    - revive
-    - stylecheck
     - typecheck
     - unconvert
     - unused
@@ -45,8 +43,10 @@ linters:
   #  - goerr113
   #  - lll
   #  - prealloc
+  #  - revive
   #  - staticcheck
   #  - structcheck
+  #  - stylecheck
   #  - testpackage
   #  - unparam
   #  - wsl

@@ -20206,90 +20206,93 @@ func (o *PrivateHostPlan) SetAvailability(v types.EAvailability) {
 
 // ProxyLB represents API parameter/response structure
 type ProxyLB struct {
-	ID               types.ID
-	Name             string
-	Description      string
-	Tags             types.Tags
-	Availability     types.EAvailability
-	IconID           types.ID `mapconv:"Icon.ID"`
-	CreatedAt        time.Time
-	ModifiedAt       time.Time
-	Plan             types.EProxyLBPlan
-	HealthCheck      *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-	SorryServer      *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-	BindPorts        []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-	Servers          []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-	Rules            []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-	LetsEncrypt      *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-	StickySession    *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-	Gzip             *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-	ProxyProtocol    *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-	Syslog           *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-	Timeout          *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-	SettingsHash     string                `json:",omitempty" mapconv:",omitempty"`
-	UseVIPFailover   bool                  `mapconv:"Status.UseVIPFailover"`
-	Region           types.EProxyLBRegion  `mapconv:"Status.Region"`
-	ProxyNetworks    []string              `mapconv:"Status.ProxyNetworks"`
-	FQDN             string                `mapconv:"Status.FQDN"`
-	VirtualIPAddress string                `mapconv:"Status.VirtualIPAddress"`
+	ID                   types.ID
+	Name                 string
+	Description          string
+	Tags                 types.Tags
+	Availability         types.EAvailability
+	IconID               types.ID `mapconv:"Icon.ID"`
+	CreatedAt            time.Time
+	ModifiedAt           time.Time
+	Plan                 types.EProxyLBPlan
+	HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+	SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+	BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+	Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+	Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+	LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+	StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+	SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
+	UseVIPFailover       bool                         `mapconv:"Status.UseVIPFailover"`
+	Region               types.EProxyLBRegion         `mapconv:"Status.Region"`
+	ProxyNetworks        []string                     `mapconv:"Status.ProxyNetworks"`
+	FQDN                 string                       `mapconv:"Status.FQDN"`
+	VirtualIPAddress     string                       `mapconv:"Status.VirtualIPAddress"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLB) setDefaults() interface{} {
 	return &struct {
-		ID               types.ID
-		Name             string
-		Description      string
-		Tags             types.Tags
-		Availability     types.EAvailability
-		IconID           types.ID `mapconv:"Icon.ID"`
-		CreatedAt        time.Time
-		ModifiedAt       time.Time
-		Plan             types.EProxyLBPlan
-		HealthCheck      *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-		SorryServer      *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-		BindPorts        []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-		Servers          []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-		Rules            []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-		LetsEncrypt      *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-		StickySession    *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-		Gzip             *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-		ProxyProtocol    *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-		Syslog           *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-		Timeout          *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-		SettingsHash     string                `json:",omitempty" mapconv:",omitempty"`
-		UseVIPFailover   bool                  `mapconv:"Status.UseVIPFailover"`
-		Region           types.EProxyLBRegion  `mapconv:"Status.Region"`
-		ProxyNetworks    []string              `mapconv:"Status.ProxyNetworks"`
-		FQDN             string                `mapconv:"Status.FQDN"`
-		VirtualIPAddress string                `mapconv:"Status.VirtualIPAddress"`
+		ID                   types.ID
+		Name                 string
+		Description          string
+		Tags                 types.Tags
+		Availability         types.EAvailability
+		IconID               types.ID `mapconv:"Icon.ID"`
+		CreatedAt            time.Time
+		ModifiedAt           time.Time
+		Plan                 types.EProxyLBPlan
+		HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+		SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+		BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+		Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+		Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+		LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+		StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+		SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
+		UseVIPFailover       bool                         `mapconv:"Status.UseVIPFailover"`
+		Region               types.EProxyLBRegion         `mapconv:"Status.Region"`
+		ProxyNetworks        []string                     `mapconv:"Status.ProxyNetworks"`
+		FQDN                 string                       `mapconv:"Status.FQDN"`
+		VirtualIPAddress     string                       `mapconv:"Status.VirtualIPAddress"`
 	}{
-		ID:               o.GetID(),
-		Name:             o.GetName(),
-		Description:      o.GetDescription(),
-		Tags:             o.GetTags(),
-		Availability:     o.GetAvailability(),
-		IconID:           o.GetIconID(),
-		CreatedAt:        o.GetCreatedAt(),
-		ModifiedAt:       o.GetModifiedAt(),
-		Plan:             o.GetPlan(),
-		HealthCheck:      o.GetHealthCheck(),
-		SorryServer:      o.GetSorryServer(),
-		BindPorts:        o.GetBindPorts(),
-		Servers:          o.GetServers(),
-		Rules:            o.GetRules(),
-		LetsEncrypt:      o.GetLetsEncrypt(),
-		StickySession:    o.GetStickySession(),
-		Gzip:             o.GetGzip(),
-		ProxyProtocol:    o.GetProxyProtocol(),
-		Syslog:           o.GetSyslog(),
-		Timeout:          o.GetTimeout(),
-		SettingsHash:     o.GetSettingsHash(),
-		UseVIPFailover:   o.GetUseVIPFailover(),
-		Region:           o.GetRegion(),
-		ProxyNetworks:    o.GetProxyNetworks(),
-		FQDN:             o.GetFQDN(),
-		VirtualIPAddress: o.GetVirtualIPAddress(),
+		ID:                   o.GetID(),
+		Name:                 o.GetName(),
+		Description:          o.GetDescription(),
+		Tags:                 o.GetTags(),
+		Availability:         o.GetAvailability(),
+		IconID:               o.GetIconID(),
+		CreatedAt:            o.GetCreatedAt(),
+		ModifiedAt:           o.GetModifiedAt(),
+		Plan:                 o.GetPlan(),
+		HealthCheck:          o.GetHealthCheck(),
+		SorryServer:          o.GetSorryServer(),
+		BindPorts:            o.GetBindPorts(),
+		Servers:              o.GetServers(),
+		Rules:                o.GetRules(),
+		LetsEncrypt:          o.GetLetsEncrypt(),
+		StickySession:        o.GetStickySession(),
+		Gzip:                 o.GetGzip(),
+		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		ProxyProtocol:        o.GetProxyProtocol(),
+		Syslog:               o.GetSyslog(),
+		Timeout:              o.GetTimeout(),
+		SettingsHash:         o.GetSettingsHash(),
+		UseVIPFailover:       o.GetUseVIPFailover(),
+		Region:               o.GetRegion(),
+		ProxyNetworks:        o.GetProxyNetworks(),
+		FQDN:                 o.GetFQDN(),
+		VirtualIPAddress:     o.GetVirtualIPAddress(),
 	}
 }
 
@@ -20501,6 +20504,16 @@ func (o *ProxyLB) GetGzip() *ProxyLBGzip {
 // SetGzip sets value to Gzip
 func (o *ProxyLB) SetGzip(v *ProxyLBGzip) {
 	o.Gzip = v
+}
+
+// GetBackendHttpKeepAlive returns value of BackendHttpKeepAlive
+func (o *ProxyLB) GetBackendHttpKeepAlive() *ProxyLBBackendHttpKeepAlive {
+	return o.BackendHttpKeepAlive
+}
+
+// SetBackendHttpKeepAlive sets value to BackendHttpKeepAlive
+func (o *ProxyLB) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeepAlive) {
+	o.BackendHttpKeepAlive = v
 }
 
 // GetProxyProtocol returns value of ProxyProtocol
@@ -21223,6 +21236,34 @@ func (o *ProxyLBGzip) SetEnabled(v bool) {
 }
 
 /*************************************************
+* ProxyLBBackendHttpKeepAlive
+*************************************************/
+
+// ProxyLBBackendHttpKeepAlive represents API parameter/response structure
+type ProxyLBBackendHttpKeepAlive struct {
+	Mode types.EProxyLBBackendHttpKeepAlive
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *ProxyLBBackendHttpKeepAlive) setDefaults() interface{} {
+	return &struct {
+		Mode types.EProxyLBBackendHttpKeepAlive
+	}{
+		Mode: o.GetMode(),
+	}
+}
+
+// GetMode returns value of Mode
+func (o *ProxyLBBackendHttpKeepAlive) GetMode() types.EProxyLBBackendHttpKeepAlive {
+	return o.Mode
+}
+
+// SetMode sets value to Mode
+func (o *ProxyLBBackendHttpKeepAlive) SetMode(v types.EProxyLBBackendHttpKeepAlive) {
+	o.Mode = v
+}
+
+/*************************************************
 * ProxyLBProxyProtocol
 *************************************************/
 
@@ -21331,68 +21372,71 @@ func (o *ProxyLBTimeout) SetInactiveSec(v int) {
 
 // ProxyLBCreateRequest represents API parameter/response structure
 type ProxyLBCreateRequest struct {
-	Plan           types.EProxyLBPlan
-	HealthCheck    *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-	SorryServer    *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-	BindPorts      []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-	Servers        []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-	Rules          []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-	LetsEncrypt    *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-	StickySession  *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-	Timeout        *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-	Gzip           *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-	ProxyProtocol  *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-	Syslog         *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-	UseVIPFailover bool                  `mapconv:"Status.UseVIPFailover"`
-	Region         types.EProxyLBRegion  `mapconv:"Status.Region"`
-	Name           string
-	Description    string
-	Tags           types.Tags
-	IconID         types.ID `mapconv:"Icon.ID"`
+	Plan                 types.EProxyLBPlan
+	HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+	SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+	BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+	Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+	Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+	LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+	StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+	UseVIPFailover       bool                         `mapconv:"Status.UseVIPFailover"`
+	Region               types.EProxyLBRegion         `mapconv:"Status.Region"`
+	Name                 string
+	Description          string
+	Tags                 types.Tags
+	IconID               types.ID `mapconv:"Icon.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBCreateRequest) setDefaults() interface{} {
 	return &struct {
-		Plan           types.EProxyLBPlan
-		HealthCheck    *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-		SorryServer    *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-		BindPorts      []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-		Servers        []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-		Rules          []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-		LetsEncrypt    *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-		StickySession  *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-		Timeout        *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-		Gzip           *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-		ProxyProtocol  *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-		Syslog         *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-		UseVIPFailover bool                  `mapconv:"Status.UseVIPFailover"`
-		Region         types.EProxyLBRegion  `mapconv:"Status.Region"`
-		Name           string
-		Description    string
-		Tags           types.Tags
-		IconID         types.ID `mapconv:"Icon.ID"`
-		Class          string   `mapconv:"Provider.Class"`
+		Plan                 types.EProxyLBPlan
+		HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+		SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+		BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+		Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+		Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+		LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+		StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+		UseVIPFailover       bool                         `mapconv:"Status.UseVIPFailover"`
+		Region               types.EProxyLBRegion         `mapconv:"Status.Region"`
+		Name                 string
+		Description          string
+		Tags                 types.Tags
+		IconID               types.ID `mapconv:"Icon.ID"`
+		Class                string   `mapconv:"Provider.Class"`
 	}{
-		Plan:           o.GetPlan(),
-		HealthCheck:    o.GetHealthCheck(),
-		SorryServer:    o.GetSorryServer(),
-		BindPorts:      o.GetBindPorts(),
-		Servers:        o.GetServers(),
-		Rules:          o.GetRules(),
-		LetsEncrypt:    o.GetLetsEncrypt(),
-		StickySession:  o.GetStickySession(),
-		Timeout:        o.GetTimeout(),
-		Gzip:           o.GetGzip(),
-		ProxyProtocol:  o.GetProxyProtocol(),
-		Syslog:         o.GetSyslog(),
-		UseVIPFailover: o.GetUseVIPFailover(),
-		Region:         o.GetRegion(),
-		Name:           o.GetName(),
-		Description:    o.GetDescription(),
-		Tags:           o.GetTags(),
-		IconID:         o.GetIconID(),
-		Class:          "proxylb",
+		Plan:                 o.GetPlan(),
+		HealthCheck:          o.GetHealthCheck(),
+		SorryServer:          o.GetSorryServer(),
+		BindPorts:            o.GetBindPorts(),
+		Servers:              o.GetServers(),
+		Rules:                o.GetRules(),
+		LetsEncrypt:          o.GetLetsEncrypt(),
+		StickySession:        o.GetStickySession(),
+		Timeout:              o.GetTimeout(),
+		Gzip:                 o.GetGzip(),
+		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		ProxyProtocol:        o.GetProxyProtocol(),
+		Syslog:               o.GetSyslog(),
+		UseVIPFailover:       o.GetUseVIPFailover(),
+		Region:               o.GetRegion(),
+		Name:                 o.GetName(),
+		Description:          o.GetDescription(),
+		Tags:                 o.GetTags(),
+		IconID:               o.GetIconID(),
+		Class:                "proxylb",
 	}
 }
 
@@ -21494,6 +21538,16 @@ func (o *ProxyLBCreateRequest) GetGzip() *ProxyLBGzip {
 // SetGzip sets value to Gzip
 func (o *ProxyLBCreateRequest) SetGzip(v *ProxyLBGzip) {
 	o.Gzip = v
+}
+
+// GetBackendHttpKeepAlive returns value of BackendHttpKeepAlive
+func (o *ProxyLBCreateRequest) GetBackendHttpKeepAlive() *ProxyLBBackendHttpKeepAlive {
+	return o.BackendHttpKeepAlive
+}
+
+// SetBackendHttpKeepAlive sets value to BackendHttpKeepAlive
+func (o *ProxyLBCreateRequest) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeepAlive) {
+	o.BackendHttpKeepAlive = v
 }
 
 // GetProxyProtocol returns value of ProxyProtocol
@@ -21602,60 +21656,63 @@ func (o *ProxyLBCreateRequest) SetIconID(v types.ID) {
 
 // ProxyLBUpdateRequest represents API parameter/response structure
 type ProxyLBUpdateRequest struct {
-	HealthCheck   *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-	SorryServer   *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-	BindPorts     []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-	Servers       []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-	Rules         []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-	LetsEncrypt   *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-	StickySession *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-	Timeout       *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-	Gzip          *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-	ProxyProtocol *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-	Syslog        *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-	SettingsHash  string                `json:",omitempty" mapconv:",omitempty"`
-	Name          string
-	Description   string
-	Tags          types.Tags
-	IconID        types.ID `mapconv:"Icon.ID"`
+	HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+	SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+	BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+	Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+	Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+	LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+	StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+	SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
+	Name                 string
+	Description          string
+	Tags                 types.Tags
+	IconID               types.ID `mapconv:"Icon.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBUpdateRequest) setDefaults() interface{} {
 	return &struct {
-		HealthCheck   *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-		SorryServer   *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-		BindPorts     []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-		Servers       []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-		Rules         []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-		LetsEncrypt   *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-		StickySession *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-		Timeout       *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-		Gzip          *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-		ProxyProtocol *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-		Syslog        *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-		SettingsHash  string                `json:",omitempty" mapconv:",omitempty"`
-		Name          string
-		Description   string
-		Tags          types.Tags
-		IconID        types.ID `mapconv:"Icon.ID"`
+		HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+		SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+		BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+		Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+		Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+		LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+		StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+		SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
+		Name                 string
+		Description          string
+		Tags                 types.Tags
+		IconID               types.ID `mapconv:"Icon.ID"`
 	}{
-		HealthCheck:   o.GetHealthCheck(),
-		SorryServer:   o.GetSorryServer(),
-		BindPorts:     o.GetBindPorts(),
-		Servers:       o.GetServers(),
-		Rules:         o.GetRules(),
-		LetsEncrypt:   o.GetLetsEncrypt(),
-		StickySession: o.GetStickySession(),
-		Timeout:       o.GetTimeout(),
-		Gzip:          o.GetGzip(),
-		ProxyProtocol: o.GetProxyProtocol(),
-		Syslog:        o.GetSyslog(),
-		SettingsHash:  o.GetSettingsHash(),
-		Name:          o.GetName(),
-		Description:   o.GetDescription(),
-		Tags:          o.GetTags(),
-		IconID:        o.GetIconID(),
+		HealthCheck:          o.GetHealthCheck(),
+		SorryServer:          o.GetSorryServer(),
+		BindPorts:            o.GetBindPorts(),
+		Servers:              o.GetServers(),
+		Rules:                o.GetRules(),
+		LetsEncrypt:          o.GetLetsEncrypt(),
+		StickySession:        o.GetStickySession(),
+		Timeout:              o.GetTimeout(),
+		Gzip:                 o.GetGzip(),
+		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		ProxyProtocol:        o.GetProxyProtocol(),
+		Syslog:               o.GetSyslog(),
+		SettingsHash:         o.GetSettingsHash(),
+		Name:                 o.GetName(),
+		Description:          o.GetDescription(),
+		Tags:                 o.GetTags(),
+		IconID:               o.GetIconID(),
 	}
 }
 
@@ -21747,6 +21804,16 @@ func (o *ProxyLBUpdateRequest) GetGzip() *ProxyLBGzip {
 // SetGzip sets value to Gzip
 func (o *ProxyLBUpdateRequest) SetGzip(v *ProxyLBGzip) {
 	o.Gzip = v
+}
+
+// GetBackendHttpKeepAlive returns value of BackendHttpKeepAlive
+func (o *ProxyLBUpdateRequest) GetBackendHttpKeepAlive() *ProxyLBBackendHttpKeepAlive {
+	return o.BackendHttpKeepAlive
+}
+
+// SetBackendHttpKeepAlive sets value to BackendHttpKeepAlive
+func (o *ProxyLBUpdateRequest) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeepAlive) {
+	o.BackendHttpKeepAlive = v
 }
 
 // GetProxyProtocol returns value of ProxyProtocol
@@ -21845,48 +21912,51 @@ func (o *ProxyLBUpdateRequest) SetIconID(v types.ID) {
 
 // ProxyLBUpdateSettingsRequest represents API parameter/response structure
 type ProxyLBUpdateSettingsRequest struct {
-	HealthCheck   *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-	SorryServer   *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-	BindPorts     []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-	Servers       []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-	Rules         []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-	LetsEncrypt   *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-	StickySession *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-	Timeout       *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-	Gzip          *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-	ProxyProtocol *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-	Syslog        *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-	SettingsHash  string                `json:",omitempty" mapconv:",omitempty"`
+	HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+	SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+	BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+	Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+	Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+	LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+	StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+	SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ProxyLBUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		HealthCheck   *ProxyLBHealthCheck   `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-		SorryServer   *ProxyLBSorryServer   `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-		BindPorts     []*ProxyLBBindPort    `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-		Servers       []*ProxyLBServer      `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-		Rules         []*ProxyLBRule        `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-		LetsEncrypt   *ProxyLBACMESetting   `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-		StickySession *ProxyLBStickySession `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-		Timeout       *ProxyLBTimeout       `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-		Gzip          *ProxyLBGzip          `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-		ProxyProtocol *ProxyLBProxyProtocol `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-		Syslog        *ProxyLBSyslog        `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-		SettingsHash  string                `json:",omitempty" mapconv:",omitempty"`
+		HealthCheck          *ProxyLBHealthCheck          `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
+		SorryServer          *ProxyLBSorryServer          `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
+		BindPorts            []*ProxyLBBindPort           `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
+		Servers              []*ProxyLBServer             `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
+		Rules                []*ProxyLBRule               `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
+		LetsEncrypt          *ProxyLBACMESetting          `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
+		StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
+		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
+		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
+		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
+		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
+		SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
-		HealthCheck:   o.GetHealthCheck(),
-		SorryServer:   o.GetSorryServer(),
-		BindPorts:     o.GetBindPorts(),
-		Servers:       o.GetServers(),
-		Rules:         o.GetRules(),
-		LetsEncrypt:   o.GetLetsEncrypt(),
-		StickySession: o.GetStickySession(),
-		Timeout:       o.GetTimeout(),
-		Gzip:          o.GetGzip(),
-		ProxyProtocol: o.GetProxyProtocol(),
-		Syslog:        o.GetSyslog(),
-		SettingsHash:  o.GetSettingsHash(),
+		HealthCheck:          o.GetHealthCheck(),
+		SorryServer:          o.GetSorryServer(),
+		BindPorts:            o.GetBindPorts(),
+		Servers:              o.GetServers(),
+		Rules:                o.GetRules(),
+		LetsEncrypt:          o.GetLetsEncrypt(),
+		StickySession:        o.GetStickySession(),
+		Timeout:              o.GetTimeout(),
+		Gzip:                 o.GetGzip(),
+		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		ProxyProtocol:        o.GetProxyProtocol(),
+		Syslog:               o.GetSyslog(),
+		SettingsHash:         o.GetSettingsHash(),
 	}
 }
 
@@ -21978,6 +22048,16 @@ func (o *ProxyLBUpdateSettingsRequest) GetGzip() *ProxyLBGzip {
 // SetGzip sets value to Gzip
 func (o *ProxyLBUpdateSettingsRequest) SetGzip(v *ProxyLBGzip) {
 	o.Gzip = v
+}
+
+// GetBackendHttpKeepAlive returns value of BackendHttpKeepAlive
+func (o *ProxyLBUpdateSettingsRequest) GetBackendHttpKeepAlive() *ProxyLBBackendHttpKeepAlive {
+	return o.BackendHttpKeepAlive
+}
+
+// SetBackendHttpKeepAlive sets value to BackendHttpKeepAlive
+func (o *ProxyLBUpdateSettingsRequest) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeepAlive) {
+	o.BackendHttpKeepAlive = v
 }
 
 // GetProxyProtocol returns value of ProxyProtocol

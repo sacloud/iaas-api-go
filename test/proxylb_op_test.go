@@ -214,6 +214,9 @@ func initProxyLBVariables() {
 		Gzip: &iaas.ProxyLBGzip{
 			Enabled: true,
 		},
+		BackendHttpKeepAlive: &iaas.ProxyLBBackendHttpKeepAlive{
+			Mode: types.ProxyLBBackendHttpKeepAlive.Aggressive,
+		},
 		ProxyProtocol: &iaas.ProxyLBProxyProtocol{
 			Enabled: true,
 		},
@@ -233,20 +236,21 @@ func initProxyLBVariables() {
 		Tags:         createProxyLBParam.Tags,
 		Availability: types.Availabilities.Available,
 
-		Plan:           createProxyLBParam.Plan,
-		HealthCheck:    createProxyLBParam.HealthCheck,
-		SorryServer:    createProxyLBParam.SorryServer,
-		BindPorts:      createProxyLBParam.BindPorts,
-		Servers:        createProxyLBParam.Servers,
-		Rules:          createProxyLBParam.Rules,
-		LetsEncrypt:    createProxyLBParam.LetsEncrypt,
-		StickySession:  createProxyLBParam.StickySession,
-		Gzip:           createProxyLBParam.Gzip,
-		ProxyProtocol:  createProxyLBParam.ProxyProtocol,
-		Syslog:         createProxyLBParam.Syslog,
-		Timeout:        createProxyLBParam.Timeout,
-		UseVIPFailover: createProxyLBParam.UseVIPFailover,
-		Region:         createProxyLBParam.Region,
+		Plan:                 createProxyLBParam.Plan,
+		HealthCheck:          createProxyLBParam.HealthCheck,
+		SorryServer:          createProxyLBParam.SorryServer,
+		BindPorts:            createProxyLBParam.BindPorts,
+		Servers:              createProxyLBParam.Servers,
+		Rules:                createProxyLBParam.Rules,
+		LetsEncrypt:          createProxyLBParam.LetsEncrypt,
+		StickySession:        createProxyLBParam.StickySession,
+		Gzip:                 createProxyLBParam.Gzip,
+		BackendHttpKeepAlive: createProxyLBParam.BackendHttpKeepAlive,
+		ProxyProtocol:        createProxyLBParam.ProxyProtocol,
+		Syslog:               createProxyLBParam.Syslog,
+		Timeout:              createProxyLBParam.Timeout,
+		UseVIPFailover:       createProxyLBParam.UseVIPFailover,
+		Region:               createProxyLBParam.Region,
 	}
 	updateProxyLBParam = &iaas.ProxyLBUpdateRequest{
 		Name:        testutil.ResourceName("proxylb-upd"),
@@ -336,6 +340,9 @@ func initProxyLBVariables() {
 		Gzip: &iaas.ProxyLBGzip{
 			Enabled: false,
 		},
+		BackendHttpKeepAlive: &iaas.ProxyLBBackendHttpKeepAlive{
+			Mode: types.ProxyLBBackendHttpKeepAlive.Safe,
+		},
 		ProxyProtocol: &iaas.ProxyLBProxyProtocol{
 			Enabled: false,
 		},
@@ -364,11 +371,12 @@ func initProxyLBVariables() {
 		Timeout: &iaas.ProxyLBTimeout{
 			InactiveSec: 10,
 		},
-		Gzip:           updateProxyLBParam.Gzip,
-		ProxyProtocol:  updateProxyLBParam.ProxyProtocol,
-		Syslog:         updateProxyLBParam.Syslog,
-		UseVIPFailover: createProxyLBParam.UseVIPFailover,
-		Region:         createProxyLBParam.Region,
+		Gzip:                 updateProxyLBParam.Gzip,
+		BackendHttpKeepAlive: updateProxyLBParam.BackendHttpKeepAlive,
+		ProxyProtocol:        updateProxyLBParam.ProxyProtocol,
+		Syslog:               updateProxyLBParam.Syslog,
+		UseVIPFailover:       createProxyLBParam.UseVIPFailover,
+		Region:               createProxyLBParam.Region,
 	}
 	updateProxyLBPlanExpected = &iaas.ProxyLB{
 		Name:          updateProxyLBParam.Name,
@@ -387,11 +395,12 @@ func initProxyLBVariables() {
 		Timeout: &iaas.ProxyLBTimeout{
 			InactiveSec: 10,
 		},
-		Gzip:           updateProxyLBParam.Gzip,
-		ProxyProtocol:  updateProxyLBParam.ProxyProtocol,
-		Syslog:         updateProxyLBParam.Syslog,
-		UseVIPFailover: createProxyLBParam.UseVIPFailover,
-		Region:         createProxyLBParam.Region,
+		Gzip:                 updateProxyLBParam.Gzip,
+		BackendHttpKeepAlive: updateProxyLBParam.BackendHttpKeepAlive,
+		ProxyProtocol:        updateProxyLBParam.ProxyProtocol,
+		Syslog:               updateProxyLBParam.Syslog,
+		UseVIPFailover:       createProxyLBParam.UseVIPFailover,
+		Region:               createProxyLBParam.Region,
 	}
 	updateProxyLBSettingsParam = &iaas.ProxyLBUpdateSettingsRequest{
 		HealthCheck: &iaas.ProxyLBHealthCheck{
@@ -456,6 +465,9 @@ func initProxyLBVariables() {
 		Gzip: &iaas.ProxyLBGzip{
 			Enabled: false,
 		},
+		BackendHttpKeepAlive: &iaas.ProxyLBBackendHttpKeepAlive{
+			Mode: types.ProxyLBBackendHttpKeepAlive.Safe,
+		},
 		ProxyProtocol: &iaas.ProxyLBProxyProtocol{
 			Enabled: false,
 		},
@@ -481,11 +493,12 @@ func initProxyLBVariables() {
 		Timeout: &iaas.ProxyLBTimeout{
 			InactiveSec: 10,
 		},
-		Gzip:           updateProxyLBSettingsParam.Gzip,
-		ProxyProtocol:  updateProxyLBSettingsParam.ProxyProtocol,
-		Syslog:         updateProxyLBSettingsParam.Syslog,
-		UseVIPFailover: createProxyLBParam.UseVIPFailover,
-		Region:         createProxyLBParam.Region,
+		Gzip:                 updateProxyLBSettingsParam.Gzip,
+		BackendHttpKeepAlive: updateProxyLBSettingsParam.BackendHttpKeepAlive,
+		ProxyProtocol:        updateProxyLBSettingsParam.ProxyProtocol,
+		Syslog:               updateProxyLBSettingsParam.Syslog,
+		UseVIPFailover:       createProxyLBParam.UseVIPFailover,
+		Region:               createProxyLBParam.Region,
 	}
 
 	updateProxyLBToMinParam = &iaas.ProxyLBUpdateRequest{
@@ -505,6 +518,9 @@ func initProxyLBVariables() {
 		},
 		Gzip: &iaas.ProxyLBGzip{
 			Enabled: false,
+		},
+		BackendHttpKeepAlive: &iaas.ProxyLBBackendHttpKeepAlive{
+			Mode: types.ProxyLBBackendHttpKeepAlive.Safe,
 		},
 		ProxyProtocol: &iaas.ProxyLBProxyProtocol{
 			Enabled: false,
@@ -532,14 +548,15 @@ func initProxyLBVariables() {
 		Timeout: &iaas.ProxyLBTimeout{
 			InactiveSec: 10,
 		},
-		BindPorts:      updateProxyLBToMinParam.BindPorts,
-		Rules:          updateProxyLBToMinParam.Rules,
-		Servers:        updateProxyLBToMinParam.Servers,
-		Gzip:           updateProxyLBToMinParam.Gzip,
-		ProxyProtocol:  updateProxyLBToMinParam.ProxyProtocol,
-		Syslog:         updateProxyLBToMinParam.Syslog,
-		UseVIPFailover: createProxyLBParam.UseVIPFailover,
-		Region:         createProxyLBParam.Region,
+		BindPorts:            updateProxyLBToMinParam.BindPorts,
+		Rules:                updateProxyLBToMinParam.Rules,
+		Servers:              updateProxyLBToMinParam.Servers,
+		Gzip:                 updateProxyLBToMinParam.Gzip,
+		BackendHttpKeepAlive: updateProxyLBToMinParam.BackendHttpKeepAlive,
+		ProxyProtocol:        updateProxyLBToMinParam.ProxyProtocol,
+		Syslog:               updateProxyLBToMinParam.Syslog,
+		UseVIPFailover:       createProxyLBParam.UseVIPFailover,
+		Region:               createProxyLBParam.Region,
 	}
 
 	createProxyLBForACMEParam = &iaas.ProxyLBCreateRequest{
