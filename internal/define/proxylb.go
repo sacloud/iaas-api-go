@@ -184,6 +184,7 @@ var (
 			fields.ProxyLBLetsEncrypt(),
 			fields.ProxyLBStickySession(),
 			fields.ProxyLBGzip(),
+			fields.ProxyLBBackendHttpKeepAlive(),
 			fields.ProxyLBProxyProtocol(),
 			fields.ProxyLBSyslog(),
 			fields.ProxyLBTimeout(),
@@ -225,6 +226,7 @@ var (
 			fields.ProxyLBStickySession(),
 			fields.ProxyLBTimeout(),
 			fields.ProxyLBGzip(),
+			fields.ProxyLBBackendHttpKeepAlive(),
 			fields.ProxyLBProxyProtocol(),
 			fields.ProxyLBSyslog(),
 			// status
@@ -254,6 +256,7 @@ var (
 			fields.ProxyLBStickySession(),
 			fields.ProxyLBTimeout(),
 			fields.ProxyLBGzip(),
+			fields.ProxyLBBackendHttpKeepAlive(),
 			fields.ProxyLBProxyProtocol(),
 			fields.ProxyLBSyslog(),
 			// settings hash
@@ -281,6 +284,7 @@ var (
 			fields.ProxyLBStickySession(),
 			fields.ProxyLBTimeout(),
 			fields.ProxyLBGzip(),
+			fields.ProxyLBBackendHttpKeepAlive(),
 			fields.ProxyLBProxyProtocol(),
 			fields.ProxyLBSyslog(),
 			// settings hash
