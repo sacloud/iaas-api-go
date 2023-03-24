@@ -2114,7 +2114,7 @@ type AutoScale struct {
 	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
-	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
@@ -2135,7 +2135,7 @@ func (o *AutoScale) setDefaults() interface{} {
 		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
-		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
@@ -2311,12 +2311,12 @@ func (o *AutoScale) SetConfig(v string) {
 }
 
 // GetTriggerType returns value of TriggerType
-func (o *AutoScale) GetTriggerType() string {
+func (o *AutoScale) GetTriggerType() types.EAutoScaleTriggerType {
 	return o.TriggerType
 }
 
 // SetTriggerType sets value to TriggerType
-func (o *AutoScale) SetTriggerType(v string) {
+func (o *AutoScale) SetTriggerType(v types.EAutoScaleTriggerType) {
 	o.TriggerType = v
 }
 
@@ -2481,7 +2481,7 @@ type AutoScaleCreateRequest struct {
 	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
-	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 	APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
@@ -2497,7 +2497,7 @@ func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
-		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 		APIKeyID               string                           `mapconv:"Status.APIKey.ID"`
@@ -2611,12 +2611,12 @@ func (o *AutoScaleCreateRequest) SetConfig(v string) {
 }
 
 // GetTriggerType returns value of TriggerType
-func (o *AutoScaleCreateRequest) GetTriggerType() string {
+func (o *AutoScaleCreateRequest) GetTriggerType() types.EAutoScaleTriggerType {
 	return o.TriggerType
 }
 
 // SetTriggerType sets value to TriggerType
-func (o *AutoScaleCreateRequest) SetTriggerType(v string) {
+func (o *AutoScaleCreateRequest) SetTriggerType(v types.EAutoScaleTriggerType) {
 	o.TriggerType = v
 }
 
@@ -2663,7 +2663,7 @@ type AutoScaleUpdateRequest struct {
 	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
-	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
@@ -2679,7 +2679,7 @@ func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
-		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
@@ -2789,12 +2789,12 @@ func (o *AutoScaleUpdateRequest) SetConfig(v string) {
 }
 
 // GetTriggerType returns value of TriggerType
-func (o *AutoScaleUpdateRequest) GetTriggerType() string {
+func (o *AutoScaleUpdateRequest) GetTriggerType() types.EAutoScaleTriggerType {
 	return o.TriggerType
 }
 
 // SetTriggerType sets value to TriggerType
-func (o *AutoScaleUpdateRequest) SetTriggerType(v string) {
+func (o *AutoScaleUpdateRequest) SetTriggerType(v types.EAutoScaleTriggerType) {
 	o.TriggerType = v
 }
 
@@ -2837,7 +2837,7 @@ type AutoScaleUpdateSettingsRequest struct {
 	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
-	TriggerType            string                           `mapconv:"Settings.TriggerType"`
+	TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 	SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
@@ -2849,7 +2849,7 @@ func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
-		TriggerType            string                           `mapconv:"Settings.TriggerType"`
+		TriggerType            types.EAutoScaleTriggerType      `mapconv:"Settings.TriggerType"`
 		CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `mapconv:"Settings.CPUThresholdScaling,recursive"`
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
@@ -2895,12 +2895,12 @@ func (o *AutoScaleUpdateSettingsRequest) SetConfig(v string) {
 }
 
 // GetTriggerType returns value of TriggerType
-func (o *AutoScaleUpdateSettingsRequest) GetTriggerType() string {
+func (o *AutoScaleUpdateSettingsRequest) GetTriggerType() types.EAutoScaleTriggerType {
 	return o.TriggerType
 }
 
 // SetTriggerType sets value to TriggerType
-func (o *AutoScaleUpdateSettingsRequest) SetTriggerType(v string) {
+func (o *AutoScaleUpdateSettingsRequest) SetTriggerType(v types.EAutoScaleTriggerType) {
 	o.TriggerType = v
 }
 

@@ -2916,7 +2916,7 @@ func (f *fieldsDef) AutoScaleDisabled() *dsl.FieldDesc {
 func (f *fieldsDef) AutoScaleTriggerType() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "TriggerType",
-		Type: meta.TypeString,
+		Type: meta.Static(types.EAutoScaleTriggerType("")),
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.TriggerType",
 		},

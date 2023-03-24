@@ -45,7 +45,7 @@ type AutoScaleSettingsUpdate struct {
 
 // AutoScaleSettings セッティング
 type AutoScaleSettings struct {
-	TriggerType            string
+	TriggerType            types.EAutoScaleTriggerType
 	CPUThresholdScaling    *AutoScaleCPUThresholdScaling    `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	Zones                  []string                         `json:"SakuraCloudZones"`
