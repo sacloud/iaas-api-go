@@ -50,6 +50,7 @@ type AutoScaleSettings struct {
 	RouterThresholdScaling *AutoScaleRouterThresholdScaling `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	Zones                  []string                         `json:"SakuraCloudZones"`
 	Config                 string                           `json:",omitempty" yaml:",omitempty"`
+	Disabled               bool
 }
 
 type AutoScaleCPUThresholdScaling struct {

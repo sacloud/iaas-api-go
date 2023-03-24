@@ -2111,6 +2111,7 @@ type AutoScale struct {
 	IconID                 types.ID `mapconv:"Icon.ID"`
 	CreatedAt              time.Time
 	ModifiedAt             time.Time
+	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
 	TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2131,6 +2132,7 @@ func (o *AutoScale) setDefaults() interface{} {
 		IconID                 types.ID `mapconv:"Icon.ID"`
 		CreatedAt              time.Time
 		ModifiedAt             time.Time
+		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
 		TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2147,6 +2149,7 @@ func (o *AutoScale) setDefaults() interface{} {
 		IconID:                 o.GetIconID(),
 		CreatedAt:              o.GetCreatedAt(),
 		ModifiedAt:             o.GetModifiedAt(),
+		Disabled:               o.GetDisabled(),
 		Zones:                  o.GetZones(),
 		Config:                 o.GetConfig(),
 		TriggerType:            o.GetTriggerType(),
@@ -2275,6 +2278,16 @@ func (o *AutoScale) GetModifiedAt() time.Time {
 // SetModifiedAt sets value to ModifiedAt
 func (o *AutoScale) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *AutoScale) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *AutoScale) SetDisabled(v bool) {
+	o.Disabled = v
 }
 
 // GetZones returns value of Zones
@@ -2465,6 +2478,7 @@ type AutoScaleCreateRequest struct {
 	Description            string
 	Tags                   types.Tags
 	IconID                 types.ID                         `mapconv:"Icon.ID"`
+	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
 	TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2480,6 +2494,7 @@ func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 		Description            string
 		Tags                   types.Tags
 		IconID                 types.ID                         `mapconv:"Icon.ID"`
+		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
 		TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2493,6 +2508,7 @@ func (o *AutoScaleCreateRequest) setDefaults() interface{} {
 		Description:            o.GetDescription(),
 		Tags:                   o.GetTags(),
 		IconID:                 o.GetIconID(),
+		Disabled:               o.GetDisabled(),
 		Zones:                  o.GetZones(),
 		Config:                 o.GetConfig(),
 		TriggerType:            o.GetTriggerType(),
@@ -2562,6 +2578,16 @@ func (o *AutoScaleCreateRequest) GetIconID() types.ID {
 // SetIconID sets value to IconID
 func (o *AutoScaleCreateRequest) SetIconID(v types.ID) {
 	o.IconID = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *AutoScaleCreateRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *AutoScaleCreateRequest) SetDisabled(v bool) {
+	o.Disabled = v
 }
 
 // GetZones returns value of Zones
@@ -2634,6 +2660,7 @@ type AutoScaleUpdateRequest struct {
 	Description            string
 	Tags                   types.Tags
 	IconID                 types.ID                         `mapconv:"Icon.ID"`
+	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
 	TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2649,6 +2676,7 @@ func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 		Description            string
 		Tags                   types.Tags
 		IconID                 types.ID                         `mapconv:"Icon.ID"`
+		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
 		TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2660,6 +2688,7 @@ func (o *AutoScaleUpdateRequest) setDefaults() interface{} {
 		Description:            o.GetDescription(),
 		Tags:                   o.GetTags(),
 		IconID:                 o.GetIconID(),
+		Disabled:               o.GetDisabled(),
 		Zones:                  o.GetZones(),
 		Config:                 o.GetConfig(),
 		TriggerType:            o.GetTriggerType(),
@@ -2729,6 +2758,16 @@ func (o *AutoScaleUpdateRequest) SetIconID(v types.ID) {
 	o.IconID = v
 }
 
+// GetDisabled returns value of Disabled
+func (o *AutoScaleUpdateRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *AutoScaleUpdateRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
 // GetZones returns value of Zones
 func (o *AutoScaleUpdateRequest) GetZones() []string {
 	return o.Zones
@@ -2795,6 +2834,7 @@ func (o *AutoScaleUpdateRequest) SetSettingsHash(v string) {
 
 // AutoScaleUpdateSettingsRequest represents API parameter/response structure
 type AutoScaleUpdateSettingsRequest struct {
+	Disabled               bool                             `mapconv:"Settings.Disabled"`
 	Zones                  []string                         `mapconv:"Settings.Zones"`
 	Config                 string                           `mapconv:"Settings.Config"`
 	TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2806,6 +2846,7 @@ type AutoScaleUpdateSettingsRequest struct {
 // setDefaults implements iaas.argumentDefaulter
 func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
+		Disabled               bool                             `mapconv:"Settings.Disabled"`
 		Zones                  []string                         `mapconv:"Settings.Zones"`
 		Config                 string                           `mapconv:"Settings.Config"`
 		TriggerType            string                           `mapconv:"Settings.TriggerType"`
@@ -2813,6 +2854,7 @@ func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 		RouterThresholdScaling *AutoScaleRouterThresholdScaling `mapconv:"Settings.RouterThresholdScaling,recursive"`
 		SettingsHash           string                           `json:",omitempty" mapconv:",omitempty"`
 	}{
+		Disabled:               o.GetDisabled(),
 		Zones:                  o.GetZones(),
 		Config:                 o.GetConfig(),
 		TriggerType:            o.GetTriggerType(),
@@ -2820,6 +2862,16 @@ func (o *AutoScaleUpdateSettingsRequest) setDefaults() interface{} {
 		RouterThresholdScaling: o.GetRouterThresholdScaling(),
 		SettingsHash:           o.GetSettingsHash(),
 	}
+}
+
+// GetDisabled returns value of Disabled
+func (o *AutoScaleUpdateSettingsRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *AutoScaleUpdateSettingsRequest) SetDisabled(v bool) {
+	o.Disabled = v
 }
 
 // GetZones returns value of Zones
