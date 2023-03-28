@@ -85,18 +85,18 @@ type ProxyLBSettings struct {
 
 // ProxyLBSetting エンハンスドロードバランサ設定
 type ProxyLBSetting struct {
-	HealthCheck          ProxyLBHealthCheck          `yaml:"health_check"`                                                  // ヘルスチェック
-	SorryServer          ProxyLBSorryServer          `yaml:"sorry_server"`                                                  // ソーリーサーバー
-	BindPorts            []*ProxyLBBindPorts         `yaml:"bind_ports"`                                                    // プロキシ方式(プロトコル&ポート)
-	Servers              []ProxyLBServer             `yaml:"servers"`                                                       // サーバー
-	Rules                []ProxyLBRule               `yaml:"rules"`                                                         // 振り分けルール
-	LetsEncrypt          *ProxyLBACMESetting         `json:",omitempty" yaml:"lets_encrypt,omitempty" structs:",omitempty"` // Let's encryptでの証明書取得設定
-	StickySession        ProxyLBStickySession        `yaml:"sticky_session"`                                                // StickySession
-	Timeout              ProxyLBTimeout              `json:",omitempty" yaml:"timeout,omitempty" structs:",omitempty"`      // タイムアウト
-	Gzip                 ProxyLBGzip                 `yaml:"gzip"`                                                          // Gzip
-	BackendHttpKeepAlive ProxyLBBackendHTTPKeepAlive `yaml:"backend_http_keey_alive"`                                       // 実サーバとのHTTP持続接続
-	ProxyProtocol        ProxyLBProxyProtocol        `yaml:"proxy_protocol"`
-	Syslog               ProxyLBSyslog               `yaml:"syslog"`
+	HealthCheck          ProxyLBHealthCheck           `yaml:"health_check"`                                                              // ヘルスチェック
+	SorryServer          ProxyLBSorryServer           `yaml:"sorry_server"`                                                              // ソーリーサーバー
+	BindPorts            []*ProxyLBBindPorts          `yaml:"bind_ports"`                                                                // プロキシ方式(プロトコル&ポート)
+	Servers              []ProxyLBServer              `yaml:"servers"`                                                                   // サーバー
+	Rules                []ProxyLBRule                `yaml:"rules"`                                                                     // 振り分けルール
+	LetsEncrypt          *ProxyLBACMESetting          `json:",omitempty" yaml:"lets_encrypt,omitempty" structs:",omitempty"`             // Let's encryptでの証明書取得設定
+	StickySession        ProxyLBStickySession         `yaml:"sticky_session"`                                                            // StickySession
+	Timeout              ProxyLBTimeout               `json:",omitempty" yaml:"timeout,omitempty" structs:",omitempty"`                  // タイムアウト
+	Gzip                 ProxyLBGzip                  `yaml:"gzip"`                                                                      // Gzip
+	BackendHttpKeepAlive *ProxyLBBackendHTTPKeepAlive `json:",omitempty" yaml:",backend_http_keey_alive,omitempty" structs:",omitempty"` // 実サーバとのHTTP持続接続
+	ProxyProtocol        ProxyLBProxyProtocol         `yaml:"proxy_protocol"`
+	Syslog               ProxyLBSyslog                `yaml:"syslog"`
 }
 
 // MarshalJSON nullの場合に空配列を出力するための実装

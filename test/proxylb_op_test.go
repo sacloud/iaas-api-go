@@ -465,9 +465,6 @@ func initProxyLBVariables() {
 		Gzip: &iaas.ProxyLBGzip{
 			Enabled: false,
 		},
-		BackendHttpKeepAlive: &iaas.ProxyLBBackendHttpKeepAlive{
-			Mode: types.ProxyLBBackendHttpKeepAlive.Safe,
-		},
 		ProxyProtocol: &iaas.ProxyLBProxyProtocol{
 			Enabled: false,
 		},
