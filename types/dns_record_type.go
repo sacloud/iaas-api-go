@@ -37,6 +37,10 @@ var DNSRecordTypes = struct {
 	SRV EDNSRecordType
 	// CAA CAAレコード
 	CAA EDNSRecordType
+	// HTTPS HTTPSレコード
+	HTTPS EDNSRecordType
+	// SVCB SVCBレコード
+	SVCB EDNSRecordType
 	// PTR PTRレコード
 	PTR EDNSRecordType
 }{
@@ -49,6 +53,8 @@ var DNSRecordTypes = struct {
 	TXT:   EDNSRecordType("TXT"),
 	SRV:   EDNSRecordType("SRV"),
 	CAA:   EDNSRecordType("CAA"),
+	HTTPS: EDNSRecordType("HTTPS"),
+	SVCB:  EDNSRecordType("SVCB"),
 	PTR:   EDNSRecordType("PTR"),
 }
 
@@ -68,5 +74,7 @@ var DNSRecordTypeStrings = []string{
 	DNSRecordTypes.TXT.String(),
 	DNSRecordTypes.SRV.String(),
 	DNSRecordTypes.CAA.String(),
+	DNSRecordTypes.HTTPS.String(),
+	DNSRecordTypes.SVCB.String(),
 	DNSRecordTypes.PTR.String(),
 }
