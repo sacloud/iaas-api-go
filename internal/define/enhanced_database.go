@@ -130,7 +130,7 @@ var (
 				Name: "MaxConnections",
 				Type: meta.TypeInt,
 				Tags: &dsl.FieldTags{
-					MapConv: "Settings.EnhancedDB.MaxConnections",
+					MapConv: "Config.MaxConnections",
 				},
 				Value: `50`,
 			},
@@ -155,7 +155,7 @@ var (
 				Name: "MaxConnections",
 				Type: meta.TypeInt,
 				Tags: &dsl.FieldTags{
-					MapConv: "Settings.EnhancedDB.MaxConnections",
+					MapConv: "Config.MaxConnections",
 				},
 				Value: `50`,
 			},

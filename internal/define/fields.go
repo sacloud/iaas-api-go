@@ -1880,7 +1880,7 @@ func (f *fieldsDef) EnhancedDBMaxConnections() *dsl.FieldDesc {
 		Name: "MaxConnections",
 		Type: meta.TypeInt,
 		Tags: &dsl.FieldTags{
-			MapConv: "Settings.EnhancedDB.MaxConnections",
+			MapConv: "Config.MaxConnections",
 		},
 	}
 }
