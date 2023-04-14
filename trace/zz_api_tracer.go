@@ -4241,6 +4241,37 @@ func (t *EnhancedDBTracer) SetPassword(ctx context.Context, id types.ID, param *
 	return err
 }
 
+// GetConfig is API call with trace log
+func (t *EnhancedDBTracer) GetConfig(ctx context.Context, id types.ID) (*iaas.EnhancedDBConfig, error) {
+	log.Println("[TRACE] EnhancedDBAPI.GetConfig start")
+	targetArguments := struct {
+		Argid types.ID `json:"id"`
+	}{
+		Argid: id,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] EnhancedDBAPI.GetConfig end")
+	}()
+
+	resultEnhancedDBConfig, err := t.Internal.GetConfig(ctx, id)
+	targetResults := struct {
+		EnhancedDBConfig *iaas.EnhancedDBConfig
+		Error            error
+	}{
+		EnhancedDBConfig: resultEnhancedDBConfig,
+		Error:            err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultEnhancedDBConfig, err
+}
+
 /*************************************************
 * ESMETracer
 *************************************************/

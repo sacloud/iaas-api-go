@@ -65,6 +65,29 @@ var enhancedDatabaseAPI = &dsl.Resource{
 				dsl.MappableArgument("param", enhancedDatabaseSetPasswordParam, "CommonServiceItem"),
 			},
 		},
+
+		// Get Config
+		{
+			ResourceName: enhancedDatabaseAPIName,
+			Name:         "GetConfig",
+			PathFormat:   dsl.IDAndSuffixPathFormat("enhanceddb/config"),
+			Method:       http.MethodGet,
+			Arguments: dsl.Arguments{
+				dsl.ArgumentID,
+			},
+			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: meta.Static(naked.EnhancedDBConfig{}),
+				Name: "EnhancedDB",
+			}),
+			Results: dsl.Results{
+				{
+					SourceField: "EnhancedDB",
+					DestField:   enhancedDatabaseConfig.Name,
+					IsPlural:    false,
+					Model:       enhancedDatabaseConfig,
+				},
+			},
+		},
 	},
 }
 
@@ -87,7 +110,6 @@ var (
 
 			// settings
 			fields.SettingsHash(),
-			fields.EnhancedDBMaxConnections(),
 
 			// status
 			fields.EnhancedDBDatabaseName(),
@@ -150,16 +172,6 @@ var (
 	enhancedDatabaseUpdateParam = &dsl.Model{
 		Name:      names.UpdateParameterName(enhancedDatabaseAPIName),
 		NakedType: enhancedDatabaseNakedType,
-		ConstFields: []*dsl.ConstFieldDesc{
-			{
-				Name: "MaxConnections",
-				Type: meta.TypeInt,
-				Tags: &dsl.FieldTags{
-					MapConv: "Config.MaxConnections",
-				},
-				Value: `50`,
-			},
-		},
 		Fields: []*dsl.FieldDesc{
 			// common fields
 			fields.Name(),
@@ -182,6 +194,17 @@ var (
 				Tags: &dsl.FieldTags{
 					MapConv: "EnhancedDB.Password",
 				},
+			},
+		},
+	}
+
+	enhancedDatabaseConfig = &dsl.Model{
+		Name:      enhancedDatabaseAPIName + "Config",
+		NakedType: meta.Static(naked.EnhancedDBConfig{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "MaxConnections",
+				Type: meta.TypeInt,
 			},
 		},
 	}

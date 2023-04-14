@@ -1095,6 +1095,14 @@ type enhancedDBSetPasswordRequestEnvelope struct {
 	CommonServiceItem *naked.EnhancedDBPasswordSettings `json:",omitempty"`
 }
 
+// enhancedDBGetConfigResponseEnvelope is envelop of API response
+type enhancedDBGetConfigResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	EnhancedDB *naked.EnhancedDBConfig `json:",omitempty"`
+}
+
 // eSMEFindRequestEnvelope is envelop of API request
 type eSMEFindRequestEnvelope struct {
 	Count   int             `mapconv:",omitempty"`

@@ -48,7 +48,6 @@ func (o *EnhancedDBOp) Create(ctx context.Context, param *iaas.EnhancedDBCreateR
 	result.Region = "is1"
 	result.Port = 3306
 	result.HostName = result.DatabaseName + ".tidb-is1.db.sakurausercontent.com"
-	result.MaxConnections = 50
 	result.Availability = types.Availabilities.Available
 
 	putEnhancedDB(iaas.APIDefaultZone, result)
@@ -73,7 +72,6 @@ func (o *EnhancedDBOp) Update(ctx context.Context, id types.ID, param *iaas.Enha
 		return nil, err
 	}
 	copySameNameField(param, value)
-	value.MaxConnections = 50
 	fill(value, fillModifiedAt)
 
 	putEnhancedDB(iaas.APIDefaultZone, value)
@@ -95,4 +93,13 @@ func (o *EnhancedDBOp) Delete(ctx context.Context, id types.ID) error {
 func (o *EnhancedDBOp) SetPassword(ctx context.Context, id types.ID, param *iaas.EnhancedDBSetPasswordRequest) error {
 	_, err := o.Read(ctx, id)
 	return err
+}
+
+func (o *EnhancedDBOp) GetConfig(ctx context.Context, id types.ID) (*iaas.EnhancedDBConfig, error) {
+	_, err := o.Read(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &iaas.EnhancedDBConfig{MaxConnections: 50}, nil
 }

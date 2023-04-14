@@ -4732,6 +4732,38 @@ func (o *EnhancedDBOp) SetPassword(ctx context.Context, id types.ID, param *Enha
 	return nil
 }
 
+// GetConfig is API call
+func (o *EnhancedDBOp) GetConfig(ctx context.Context, id types.ID) (*EnhancedDBConfig, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/enhanceddb/config", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+
+	// do request
+	data, err := o.Client.Do(ctx, "GET", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformGetConfigResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.EnhancedDBConfig, nil
+}
+
 /*************************************************
 * ESMEOp
 *************************************************/

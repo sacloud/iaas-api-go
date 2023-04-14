@@ -819,6 +819,13 @@ type enhancedDBUpdateResult struct {
 	EnhancedDB *EnhancedDB `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
 }
 
+// enhancedDBGetConfigResult represents the Result of API
+type enhancedDBGetConfigResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	EnhancedDBConfig *EnhancedDBConfig `json:",omitempty" mapconv:"EnhancedDB,omitempty,recursive"`
+}
+
 // ESMEFindResult represents the Result of API
 type ESMEFindResult struct {
 	Total int `json:",omitempty"` // Total count of target resources

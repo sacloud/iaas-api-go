@@ -2761,6 +2761,19 @@ func (o *EnhancedDBOp) transformSetPasswordArgs(id types.ID, param *EnhancedDBSe
 	return v, nil
 }
 
+func (o *EnhancedDBOp) transformGetConfigResults(data []byte) (*enhancedDBGetConfigResult, error) {
+	nakedResponse := &enhancedDBGetConfigResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &enhancedDBGetConfigResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
 func (o *ESMEOp) transformFindArgs(conditions *FindCondition) (*eSMEFindRequestEnvelope, error) {
 	if conditions == nil {
 		conditions = &FindCondition{}
