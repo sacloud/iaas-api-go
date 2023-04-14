@@ -80,7 +80,7 @@ var (
 		Name:         testutil.ResourceName("enhanced-db"),
 		Description:  "desc",
 		Tags:         []string{"tag1", "tag2"},
-		DatabaseName: sacloudtestutil.RandomName(testutil.TestResourcePrefix, 10, sacloudtestutil.CharSetAlpha),
+		DatabaseName: sacloudtestutil.RandomName("", 32, sacloudtestutil.CharSetAlphaNum),
 	}
 	createEnhancedDBExpected = &iaas.EnhancedDB{
 		Name:           createEnhancedDBParam.Name,
