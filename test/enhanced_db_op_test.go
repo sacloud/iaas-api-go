@@ -15,6 +15,7 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/sacloud/iaas-api-go"
@@ -54,6 +55,20 @@ func TestEnhancedDBOp_CRUD(t *testing.T) {
 			{
 				Func: func(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
 					edbOp := iaas.NewEnhancedDBOp(caller)
+					config, err := edbOp.GetConfig(ctx, ctx.ID)
+					if err != nil {
+						return nil, err
+					}
+					if config.MaxConnections != 50 {
+						return nil, fmt.Errorf("got unexpected value: MaxConnections: expect: %d actual: %d", 50, config.MaxConnections)
+					}
+					return nil, nil
+				},
+				SkipExtractID: true,
+			},
+			{
+				Func: func(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
+					edbOp := iaas.NewEnhancedDBOp(caller)
 					return nil, edbOp.SetPassword(ctx, ctx.ID, &iaas.EnhancedDBSetPasswordRequest{
 						Password: "password",
 					})
@@ -80,19 +95,18 @@ var (
 		Name:         testutil.ResourceName("enhanced-db"),
 		Description:  "desc",
 		Tags:         []string{"tag1", "tag2"},
-		DatabaseName: sacloudtestutil.RandomName(testutil.TestResourcePrefix, 10, sacloudtestutil.CharSetAlpha),
+		DatabaseName: sacloudtestutil.RandomName("", 32, sacloudtestutil.CharSetAlpha),
 	}
 	createEnhancedDBExpected = &iaas.EnhancedDB{
-		Name:           createEnhancedDBParam.Name,
-		Description:    createEnhancedDBParam.Description,
-		Tags:           createEnhancedDBParam.Tags,
-		Availability:   types.Availabilities.Available,
-		DatabaseName:   createEnhancedDBParam.DatabaseName,
-		DatabaseType:   "tidb",
-		Region:         "is1",
-		HostName:       createEnhancedDBParam.DatabaseName + ".tidb-is1.db.sakurausercontent.com",
-		Port:           3306,
-		MaxConnections: 50,
+		Name:         createEnhancedDBParam.Name,
+		Description:  createEnhancedDBParam.Description,
+		Tags:         createEnhancedDBParam.Tags,
+		Availability: types.Availabilities.Available,
+		DatabaseName: createEnhancedDBParam.DatabaseName,
+		DatabaseType: "tidb",
+		Region:       "is1",
+		HostName:     createEnhancedDBParam.DatabaseName + ".tidb-is1.db.sakurausercontent.com",
+		Port:         3306,
 	}
 	updateEnhancedDBParam = &iaas.EnhancedDBUpdateRequest{
 		Name:        testutil.ResourceName("enhanced-db-upd"),
@@ -101,17 +115,16 @@ var (
 		IconID:      testIconID,
 	}
 	updateEnhancedDBExpected = &iaas.EnhancedDB{
-		Name:           updateEnhancedDBParam.Name,
-		Description:    updateEnhancedDBParam.Description,
-		Tags:           updateEnhancedDBParam.Tags,
-		Availability:   types.Availabilities.Available,
-		IconID:         testIconID,
-		DatabaseName:   createEnhancedDBParam.DatabaseName,
-		DatabaseType:   "tidb",
-		Region:         "is1",
-		HostName:       createEnhancedDBParam.DatabaseName + ".tidb-is1.db.sakurausercontent.com",
-		Port:           3306,
-		MaxConnections: 50,
+		Name:         updateEnhancedDBParam.Name,
+		Description:  updateEnhancedDBParam.Description,
+		Tags:         updateEnhancedDBParam.Tags,
+		Availability: types.Availabilities.Available,
+		IconID:       testIconID,
+		DatabaseName: createEnhancedDBParam.DatabaseName,
+		DatabaseType: "tidb",
+		Region:       "is1",
+		HostName:     createEnhancedDBParam.DatabaseName + ".tidb-is1.db.sakurausercontent.com",
+		Port:         3306,
 	}
 )
 

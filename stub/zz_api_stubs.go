@@ -1893,6 +1893,12 @@ type EnhancedDBSetPasswordStubResult struct {
 	Err error
 }
 
+// EnhancedDBGetConfigStubResult is expected values of the GetConfig operation
+type EnhancedDBGetConfigStubResult struct {
+	EnhancedDBConfig *iaas.EnhancedDBConfig
+	Err              error
+}
+
 // EnhancedDBStub is for trace EnhancedDBOp operations
 type EnhancedDBStub struct {
 	FindStubResult        *EnhancedDBFindStubResult
@@ -1901,6 +1907,7 @@ type EnhancedDBStub struct {
 	UpdateStubResult      *EnhancedDBUpdateStubResult
 	DeleteStubResult      *EnhancedDBDeleteStubResult
 	SetPasswordStubResult *EnhancedDBSetPasswordStubResult
+	GetConfigStubResult   *EnhancedDBGetConfigStubResult
 }
 
 // NewEnhancedDBStub creates new EnhancedDBStub instance
@@ -1954,6 +1961,14 @@ func (s *EnhancedDBStub) SetPassword(ctx context.Context, id types.ID, param *ia
 		log.Fatal("EnhancedDBStub.SetPasswordStubResult is not set")
 	}
 	return s.SetPasswordStubResult.Err
+}
+
+// GetConfig is API call with trace log
+func (s *EnhancedDBStub) GetConfig(ctx context.Context, id types.ID) (*iaas.EnhancedDBConfig, error) {
+	if s.GetConfigStubResult == nil {
+		log.Fatal("EnhancedDBStub.GetConfigStubResult is not set")
+	}
+	return s.GetConfigStubResult.EnhancedDBConfig, s.GetConfigStubResult.Err
 }
 
 /*************************************************

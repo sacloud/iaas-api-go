@@ -10529,57 +10529,54 @@ func (o *DNSUpdateSettingsRequest) SetSettingsHash(v string) {
 
 // EnhancedDB represents API parameter/response structure
 type EnhancedDB struct {
-	ID             types.ID
-	Name           string
-	Description    string
-	Tags           types.Tags
-	Availability   types.EAvailability
-	IconID         types.ID `mapconv:"Icon.ID"`
-	CreatedAt      time.Time
-	ModifiedAt     time.Time
-	SettingsHash   string `json:",omitempty" mapconv:",omitempty"`
-	MaxConnections int    `mapconv:"Config.MaxConnections"`
-	DatabaseName   string `mapconv:"Status.DatabaseName"`
-	DatabaseType   string `mapconv:"Status.DatabaseType"`
-	Region         string `mapconv:"Status.Region"`
-	HostName       string `mapconv:"Status.HostName"`
-	Port           int    `mapconv:"Status.Port"`
+	ID           types.ID
+	Name         string
+	Description  string
+	Tags         types.Tags
+	Availability types.EAvailability
+	IconID       types.ID `mapconv:"Icon.ID"`
+	CreatedAt    time.Time
+	ModifiedAt   time.Time
+	SettingsHash string `json:",omitempty" mapconv:",omitempty"`
+	DatabaseName string `mapconv:"Status.DatabaseName"`
+	DatabaseType string `mapconv:"Status.DatabaseType"`
+	Region       string `mapconv:"Status.Region"`
+	HostName     string `mapconv:"Status.HostName"`
+	Port         int    `mapconv:"Status.Port"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDB) setDefaults() interface{} {
 	return &struct {
-		ID             types.ID
-		Name           string
-		Description    string
-		Tags           types.Tags
-		Availability   types.EAvailability
-		IconID         types.ID `mapconv:"Icon.ID"`
-		CreatedAt      time.Time
-		ModifiedAt     time.Time
-		SettingsHash   string `json:",omitempty" mapconv:",omitempty"`
-		MaxConnections int    `mapconv:"Config.MaxConnections"`
-		DatabaseName   string `mapconv:"Status.DatabaseName"`
-		DatabaseType   string `mapconv:"Status.DatabaseType"`
-		Region         string `mapconv:"Status.Region"`
-		HostName       string `mapconv:"Status.HostName"`
-		Port           int    `mapconv:"Status.Port"`
+		ID           types.ID
+		Name         string
+		Description  string
+		Tags         types.Tags
+		Availability types.EAvailability
+		IconID       types.ID `mapconv:"Icon.ID"`
+		CreatedAt    time.Time
+		ModifiedAt   time.Time
+		SettingsHash string `json:",omitempty" mapconv:",omitempty"`
+		DatabaseName string `mapconv:"Status.DatabaseName"`
+		DatabaseType string `mapconv:"Status.DatabaseType"`
+		Region       string `mapconv:"Status.Region"`
+		HostName     string `mapconv:"Status.HostName"`
+		Port         int    `mapconv:"Status.Port"`
 	}{
-		ID:             o.GetID(),
-		Name:           o.GetName(),
-		Description:    o.GetDescription(),
-		Tags:           o.GetTags(),
-		Availability:   o.GetAvailability(),
-		IconID:         o.GetIconID(),
-		CreatedAt:      o.GetCreatedAt(),
-		ModifiedAt:     o.GetModifiedAt(),
-		SettingsHash:   o.GetSettingsHash(),
-		MaxConnections: o.GetMaxConnections(),
-		DatabaseName:   o.GetDatabaseName(),
-		DatabaseType:   o.GetDatabaseType(),
-		Region:         o.GetRegion(),
-		HostName:       o.GetHostName(),
-		Port:           o.GetPort(),
+		ID:           o.GetID(),
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		Availability: o.GetAvailability(),
+		IconID:       o.GetIconID(),
+		CreatedAt:    o.GetCreatedAt(),
+		ModifiedAt:   o.GetModifiedAt(),
+		SettingsHash: o.GetSettingsHash(),
+		DatabaseName: o.GetDatabaseName(),
+		DatabaseType: o.GetDatabaseType(),
+		Region:       o.GetRegion(),
+		HostName:     o.GetHostName(),
+		Port:         o.GetPort(),
 	}
 }
 
@@ -10711,16 +10708,6 @@ func (o *EnhancedDB) GetSettingsHash() string {
 // SetSettingsHash sets value to SettingsHash
 func (o *EnhancedDB) SetSettingsHash(v string) {
 	o.SettingsHash = v
-}
-
-// GetMaxConnections returns value of MaxConnections
-func (o *EnhancedDB) GetMaxConnections() int {
-	return o.MaxConnections
-}
-
-// SetMaxConnections sets value to MaxConnections
-func (o *EnhancedDB) SetMaxConnections(v int) {
-	o.MaxConnections = v
 }
 
 // GetDatabaseName returns value of DatabaseName
@@ -10897,19 +10884,17 @@ type EnhancedDBUpdateRequest struct {
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDBUpdateRequest) setDefaults() interface{} {
 	return &struct {
-		Name           string
-		Description    string
-		Tags           types.Tags
-		IconID         types.ID `mapconv:"Icon.ID"`
-		SettingsHash   string   `json:",omitempty" mapconv:",omitempty"`
-		MaxConnections int      `mapconv:"Config.MaxConnections"`
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID `mapconv:"Icon.ID"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Name:           o.GetName(),
-		Description:    o.GetDescription(),
-		Tags:           o.GetTags(),
-		IconID:         o.GetIconID(),
-		SettingsHash:   o.GetSettingsHash(),
-		MaxConnections: 50,
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		SettingsHash: o.GetSettingsHash(),
 	}
 }
 
@@ -11009,6 +10994,34 @@ func (o *EnhancedDBSetPasswordRequest) GetPassword() string {
 // SetPassword sets value to Password
 func (o *EnhancedDBSetPasswordRequest) SetPassword(v string) {
 	o.Password = v
+}
+
+/*************************************************
+* EnhancedDBConfig
+*************************************************/
+
+// EnhancedDBConfig represents API parameter/response structure
+type EnhancedDBConfig struct {
+	MaxConnections int
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *EnhancedDBConfig) setDefaults() interface{} {
+	return &struct {
+		MaxConnections int
+	}{
+		MaxConnections: o.GetMaxConnections(),
+	}
+}
+
+// GetMaxConnections returns value of MaxConnections
+func (o *EnhancedDBConfig) GetMaxConnections() int {
+	return o.MaxConnections
+}
+
+// SetMaxConnections sets value to MaxConnections
+func (o *EnhancedDBConfig) SetMaxConnections(v int) {
+	o.MaxConnections = v
 }
 
 /*************************************************

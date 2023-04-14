@@ -258,6 +258,7 @@ type EnhancedDBAPI interface {
 	Update(ctx context.Context, id types.ID, param *EnhancedDBUpdateRequest) (*EnhancedDB, error)
 	Delete(ctx context.Context, id types.ID) error
 	SetPassword(ctx context.Context, id types.ID, param *EnhancedDBSetPasswordRequest) error
+	GetConfig(ctx context.Context, id types.ID) (*EnhancedDBConfig, error)
 }
 
 /*************************************************
