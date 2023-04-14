@@ -31,19 +31,14 @@ type EnhancedDB struct {
 	ModifiedAt   *time.Time          `json:",omitempty" yaml:"modified_at,omitempty" structs:",omitempty"`
 	Availability types.EAvailability `json:",omitempty" yaml:"availability,omitempty" structs:",omitempty"`
 	Provider     *Provider           `json:",omitempty" yaml:"provider,omitempty" structs:",omitempty"`
-	Settings     *EnhancedDBSettings `json:",omitempty" yaml:"settings,omitempty" structs:",omitempty"`
+	Config       *EnhancedDBConfig   `json:",omitempty" yaml:"settings,omitempty" structs:",omitempty"`
 	SettingsHash string              `json:",omitempty" yaml:"settings_hash,omitempty" structs:",omitempty"`
 	Status       *EnhancedDBStatus   `json:",omitempty" yaml:"status" structs:",omitempty"`
 	ServiceClass string              `json:",omitempty" yaml:"service_class,omitempty" structs:",omitempty"`
 }
 
-// EnhancedDBSettings セッティング
-type EnhancedDBSettings struct {
-	EnhancedDB *EnhancedDBSetting `json:",omitempty" yaml:"enhanced_db,omitempty" structs:",omitempty"`
-}
-
-// EnhancedDBSetting セッティング
-type EnhancedDBSetting struct {
+// EnhancedDBConfig コンフィグ
+type EnhancedDBConfig struct {
 	MaxConnections int `json:"max_connections,omitempty" yaml:"max_connections,omitempty" structs:",omitempty"`
 }
 

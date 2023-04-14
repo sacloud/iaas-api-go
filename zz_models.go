@@ -10538,7 +10538,7 @@ type EnhancedDB struct {
 	CreatedAt      time.Time
 	ModifiedAt     time.Time
 	SettingsHash   string `json:",omitempty" mapconv:",omitempty"`
-	MaxConnections int    `mapconv:"Settings.EnhancedDB.MaxConnections"`
+	MaxConnections int    `mapconv:"Config.MaxConnections"`
 	DatabaseName   string `mapconv:"Status.DatabaseName"`
 	DatabaseType   string `mapconv:"Status.DatabaseType"`
 	Region         string `mapconv:"Status.Region"`
@@ -10558,7 +10558,7 @@ func (o *EnhancedDB) setDefaults() interface{} {
 		CreatedAt      time.Time
 		ModifiedAt     time.Time
 		SettingsHash   string `json:",omitempty" mapconv:",omitempty"`
-		MaxConnections int    `mapconv:"Settings.EnhancedDB.MaxConnections"`
+		MaxConnections int    `mapconv:"Config.MaxConnections"`
 		DatabaseName   string `mapconv:"Status.DatabaseName"`
 		DatabaseType   string `mapconv:"Status.DatabaseType"`
 		Region         string `mapconv:"Status.Region"`
@@ -10797,7 +10797,7 @@ func (o *EnhancedDBCreateRequest) setDefaults() interface{} {
 		Class          string   `mapconv:"Provider.Class"`
 		Region         string   `mapconv:"Status.Region"`
 		DatabaseType   string   `mapconv:"Status.DatabaseType"`
-		MaxConnections int      `mapconv:"Settings.EnhancedDB.MaxConnections"`
+		MaxConnections int      `mapconv:"Config.MaxConnections"`
 	}{
 		Name:           o.GetName(),
 		Description:    o.GetDescription(),
@@ -10902,7 +10902,7 @@ func (o *EnhancedDBUpdateRequest) setDefaults() interface{} {
 		Tags           types.Tags
 		IconID         types.ID `mapconv:"Icon.ID"`
 		SettingsHash   string   `json:",omitempty" mapconv:",omitempty"`
-		MaxConnections int      `mapconv:"Settings.EnhancedDB.MaxConnections"`
+		MaxConnections int      `mapconv:"Config.MaxConnections"`
 	}{
 		Name:           o.GetName(),
 		Description:    o.GetDescription(),
