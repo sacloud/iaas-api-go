@@ -10537,12 +10537,12 @@ type EnhancedDB struct {
 	IconID       types.ID `mapconv:"Icon.ID"`
 	CreatedAt    time.Time
 	ModifiedAt   time.Time
-	SettingsHash string `json:",omitempty" mapconv:",omitempty"`
-	DatabaseName string `mapconv:"Status.DatabaseName"`
-	DatabaseType string `mapconv:"Status.DatabaseType"`
-	Region       string `mapconv:"Status.Region"`
-	HostName     string `mapconv:"Status.HostName"`
-	Port         int    `mapconv:"Status.Port"`
+	SettingsHash string                 `json:",omitempty" mapconv:",omitempty"`
+	DatabaseName string                 `mapconv:"Status.DatabaseName"`
+	DatabaseType types.EnhancedDBType   `mapconv:"Status.DatabaseType"`
+	Region       types.EnhancedDBRegion `mapconv:"Status.Region"`
+	HostName     string                 `mapconv:"Status.HostName"`
+	Port         int                    `mapconv:"Status.Port"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -10556,12 +10556,12 @@ func (o *EnhancedDB) setDefaults() interface{} {
 		IconID       types.ID `mapconv:"Icon.ID"`
 		CreatedAt    time.Time
 		ModifiedAt   time.Time
-		SettingsHash string `json:",omitempty" mapconv:",omitempty"`
-		DatabaseName string `mapconv:"Status.DatabaseName"`
-		DatabaseType string `mapconv:"Status.DatabaseType"`
-		Region       string `mapconv:"Status.Region"`
-		HostName     string `mapconv:"Status.HostName"`
-		Port         int    `mapconv:"Status.Port"`
+		SettingsHash string                 `json:",omitempty" mapconv:",omitempty"`
+		DatabaseName string                 `mapconv:"Status.DatabaseName"`
+		DatabaseType types.EnhancedDBType   `mapconv:"Status.DatabaseType"`
+		Region       types.EnhancedDBRegion `mapconv:"Status.Region"`
+		HostName     string                 `mapconv:"Status.HostName"`
+		Port         int                    `mapconv:"Status.Port"`
 	}{
 		ID:           o.GetID(),
 		Name:         o.GetName(),
@@ -10721,22 +10721,22 @@ func (o *EnhancedDB) SetDatabaseName(v string) {
 }
 
 // GetDatabaseType returns value of DatabaseType
-func (o *EnhancedDB) GetDatabaseType() string {
+func (o *EnhancedDB) GetDatabaseType() types.EnhancedDBType {
 	return o.DatabaseType
 }
 
 // SetDatabaseType sets value to DatabaseType
-func (o *EnhancedDB) SetDatabaseType(v string) {
+func (o *EnhancedDB) SetDatabaseType(v types.EnhancedDBType) {
 	o.DatabaseType = v
 }
 
 // GetRegion returns value of Region
-func (o *EnhancedDB) GetRegion() string {
+func (o *EnhancedDB) GetRegion() types.EnhancedDBRegion {
 	return o.Region
 }
 
 // SetRegion sets value to Region
-func (o *EnhancedDB) SetRegion(v string) {
+func (o *EnhancedDB) SetRegion(v types.EnhancedDBRegion) {
 	o.Region = v
 }
 
@@ -10769,8 +10769,10 @@ type EnhancedDBCreateRequest struct {
 	Name         string
 	Description  string
 	Tags         types.Tags
-	IconID       types.ID `mapconv:"Icon.ID"`
-	DatabaseName string   `mapconv:"Status.DatabaseName"`
+	IconID       types.ID               `mapconv:"Icon.ID"`
+	DatabaseName string                 `mapconv:"Status.DatabaseName"`
+	DatabaseType types.EnhancedDBType   `mapconv:"Status.DatabaseType"`
+	Region       types.EnhancedDBRegion `mapconv:"Status.Region"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -10779,21 +10781,21 @@ func (o *EnhancedDBCreateRequest) setDefaults() interface{} {
 		Name           string
 		Description    string
 		Tags           types.Tags
-		IconID         types.ID `mapconv:"Icon.ID"`
-		DatabaseName   string   `mapconv:"Status.DatabaseName"`
-		Class          string   `mapconv:"Provider.Class"`
-		Region         string   `mapconv:"Status.Region"`
-		DatabaseType   string   `mapconv:"Status.DatabaseType"`
-		MaxConnections int      `mapconv:"Config.MaxConnections"`
+		IconID         types.ID               `mapconv:"Icon.ID"`
+		DatabaseName   string                 `mapconv:"Status.DatabaseName"`
+		DatabaseType   types.EnhancedDBType   `mapconv:"Status.DatabaseType"`
+		Region         types.EnhancedDBRegion `mapconv:"Status.Region"`
+		Class          string                 `mapconv:"Provider.Class"`
+		MaxConnections int                    `mapconv:"Config.MaxConnections"`
 	}{
 		Name:           o.GetName(),
 		Description:    o.GetDescription(),
 		Tags:           o.GetTags(),
 		IconID:         o.GetIconID(),
 		DatabaseName:   o.GetDatabaseName(),
+		DatabaseType:   o.GetDatabaseType(),
+		Region:         o.GetRegion(),
 		Class:          "enhanceddb",
-		Region:         "is1",
-		DatabaseType:   "tidb",
 		MaxConnections: 50,
 	}
 }
@@ -10866,6 +10868,26 @@ func (o *EnhancedDBCreateRequest) GetDatabaseName() string {
 // SetDatabaseName sets value to DatabaseName
 func (o *EnhancedDBCreateRequest) SetDatabaseName(v string) {
 	o.DatabaseName = v
+}
+
+// GetDatabaseType returns value of DatabaseType
+func (o *EnhancedDBCreateRequest) GetDatabaseType() types.EnhancedDBType {
+	return o.DatabaseType
+}
+
+// SetDatabaseType sets value to DatabaseType
+func (o *EnhancedDBCreateRequest) SetDatabaseType(v types.EnhancedDBType) {
+	o.DatabaseType = v
+}
+
+// GetRegion returns value of Region
+func (o *EnhancedDBCreateRequest) GetRegion() types.EnhancedDBRegion {
+	return o.Region
+}
+
+// SetRegion sets value to Region
+func (o *EnhancedDBCreateRequest) SetRegion(v types.EnhancedDBRegion) {
+	o.Region = v
 }
 
 /*************************************************

@@ -16,6 +16,7 @@ package fake
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/types"
@@ -44,10 +45,14 @@ func (o *EnhancedDBOp) Create(ctx context.Context, param *iaas.EnhancedDBCreateR
 	copySameNameField(param, result)
 	fill(result, fillID, fillCreatedAt)
 
-	result.DatabaseType = "tidb"
-	result.Region = "is1"
+	if result.DatabaseType == "" {
+		result.DatabaseType = "tidb"
+	}
+	if result.Region == "" {
+		result.Region = "is1"
+	}
 	result.Port = 3306
-	result.HostName = result.DatabaseName + ".tidb-is1.db.sakurausercontent.com"
+	result.HostName = fmt.Sprintf("%s.%s-%s.db.sakurausercontent.com", result.DatabaseName, result.DatabaseType, result.Region)
 	result.Availability = types.Availabilities.Available
 
 	putEnhancedDB(iaas.APIDefaultZone, result)
