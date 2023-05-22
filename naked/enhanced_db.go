@@ -44,11 +44,11 @@ type EnhancedDBConfig struct {
 
 // EnhancedDBStatus ステータス
 type EnhancedDBStatus struct {
-	DatabaseName string `json:"database_name,omitempty" yaml:"database_name,omitempty" structs:",omitempty"`
-	DatabaseType string `json:"database_type,omitempty" yaml:"database_type,omitempty" structs:",omitempty"`
-	Region       string `json:"region,omitempty" yaml:"region,omitempty" structs:",omitempty"`
-	HostName     string `json:"hostname,omitempty" yaml:"hostname,omitempty" structs:",omitempty"`
-	Port         int    `json:"port,omitempty" yaml:"port,omitempty" structs:",omitempty"`
+	DatabaseName string                 `json:"database_name,omitempty" yaml:"database_name,omitempty" structs:",omitempty"`
+	DatabaseType types.EnhancedDBType   `json:"database_type,omitempty" yaml:"database_type,omitempty" structs:",omitempty"`
+	Region       types.EnhancedDBRegion `json:"region,omitempty" yaml:"region,omitempty" structs:",omitempty"`
+	HostName     string                 `json:"hostname,omitempty" yaml:"hostname,omitempty" structs:",omitempty"`
+	Port         int                    `json:"port,omitempty" yaml:"port,omitempty" structs:",omitempty"`
 }
 
 // EnhancedDBPasswordSettings セッティング

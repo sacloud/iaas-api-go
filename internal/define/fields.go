@@ -1898,7 +1898,7 @@ func (f *fieldsDef) EnhancedDBDatabaseName() *dsl.FieldDesc {
 func (f *fieldsDef) EnhancedDBDatabaseType() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "DatabaseType",
-		Type: meta.TypeString,
+		Type: meta.Static(types.EnhancedDBType("")),
 		Tags: &dsl.FieldTags{
 			MapConv: "Status.DatabaseType",
 		},
@@ -1908,7 +1908,7 @@ func (f *fieldsDef) EnhancedDBDatabaseType() *dsl.FieldDesc {
 func (f *fieldsDef) EnhancedDBDatabaseRegion() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "Region",
-		Type: meta.TypeString,
+		Type: meta.Static(types.EnhancedDBRegion("")),
 		Tags: &dsl.FieldTags{
 			MapConv: "Status.Region",
 		},

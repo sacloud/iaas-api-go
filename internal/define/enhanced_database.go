@@ -133,22 +133,6 @@ var (
 				Value: `"enhanceddb"`,
 			},
 			{
-				Name: "Region",
-				Type: meta.TypeString,
-				Tags: &dsl.FieldTags{
-					MapConv: "Status.Region",
-				},
-				Value: `"is1"`,
-			},
-			{
-				Name: "DatabaseType",
-				Type: meta.TypeString,
-				Tags: &dsl.FieldTags{
-					MapConv: "Status.DatabaseType",
-				},
-				Value: `"tidb"`,
-			},
-			{
 				Name: "MaxConnections",
 				Type: meta.TypeInt,
 				Tags: &dsl.FieldTags{
@@ -166,6 +150,8 @@ var (
 
 			// settings
 			fields.EnhancedDBDatabaseName(),
+			fields.EnhancedDBDatabaseType(),
+			fields.EnhancedDBDatabaseRegion(),
 		},
 	}
 
