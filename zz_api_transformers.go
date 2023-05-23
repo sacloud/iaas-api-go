@@ -2774,6 +2774,36 @@ func (o *EnhancedDBOp) transformGetConfigResults(data []byte) (*enhancedDBGetCon
 	return results, nil
 }
 
+func (o *EnhancedDBOp) transformSetConfigArgs(id types.ID, param *EnhancedDBSetConfigRequest) (*enhancedDBSetConfigRequestEnvelope, error) {
+	if id == types.ID(int64(0)) {
+		id = types.ID(int64(0))
+	}
+	var arg0 interface{} = id
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	if param == nil {
+		param = &EnhancedDBSetConfigRequest{}
+	}
+	var arg1 interface{} = param
+	if v, ok := arg1.(argumentDefaulter); ok {
+		arg1 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{}
+		Arg1 interface{} `mapconv:"CommonServiceItem,recursive"`
+	}{
+		Arg0: arg0,
+		Arg1: arg1,
+	}
+
+	v := &enhancedDBSetConfigRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
 func (o *ESMEOp) transformFindArgs(conditions *FindCondition) (*eSMEFindRequestEnvelope, error) {
 	if conditions == nil {
 		conditions = &FindCondition{}

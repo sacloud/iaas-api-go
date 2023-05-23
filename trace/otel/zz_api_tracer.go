@@ -3497,6 +3497,31 @@ func (t *EnhancedDBTracer) GetConfig(ctx context.Context, id types.ID) (*iaas.En
 	return resultEnhancedDBConfig, err
 }
 
+// SetConfig is API call with trace log
+func (t *EnhancedDBTracer) SetConfig(ctx context.Context, id types.ID, param *iaas.EnhancedDBSetConfigRequest) error {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("libiaas.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.SetConfig", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	err := t.Internal.SetConfig(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+
+	}
+	return err
+}
+
 /*************************************************
 * ESMETracer
 *************************************************/

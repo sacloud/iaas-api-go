@@ -10778,25 +10778,27 @@ type EnhancedDBCreateRequest struct {
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDBCreateRequest) setDefaults() interface{} {
 	return &struct {
-		Name           string
-		Description    string
-		Tags           types.Tags
-		IconID         types.ID               `mapconv:"Icon.ID"`
-		DatabaseName   string                 `mapconv:"Status.DatabaseName"`
-		DatabaseType   types.EnhancedDBType   `mapconv:"Status.DatabaseType"`
-		Region         types.EnhancedDBRegion `mapconv:"Status.Region"`
-		Class          string                 `mapconv:"Provider.Class"`
-		MaxConnections int                    `mapconv:"Config.MaxConnections"`
+		Name            string
+		Description     string
+		Tags            types.Tags
+		IconID          types.ID               `mapconv:"Icon.ID"`
+		DatabaseName    string                 `mapconv:"Status.DatabaseName"`
+		DatabaseType    types.EnhancedDBType   `mapconv:"Status.DatabaseType"`
+		Region          types.EnhancedDBRegion `mapconv:"Status.Region"`
+		Class           string                 `mapconv:"Provider.Class"`
+		MaxConnections  int                    `mapconv:"Config.MaxConnections"`
+		AllowedNetworks []string               `mapconv:"Config.AllowedNetworks"`
 	}{
-		Name:           o.GetName(),
-		Description:    o.GetDescription(),
-		Tags:           o.GetTags(),
-		IconID:         o.GetIconID(),
-		DatabaseName:   o.GetDatabaseName(),
-		DatabaseType:   o.GetDatabaseType(),
-		Region:         o.GetRegion(),
-		Class:          "enhanceddb",
-		MaxConnections: 50,
+		Name:            o.GetName(),
+		Description:     o.GetDescription(),
+		Tags:            o.GetTags(),
+		IconID:          o.GetIconID(),
+		DatabaseName:    o.GetDatabaseName(),
+		DatabaseType:    o.GetDatabaseType(),
+		Region:          o.GetRegion(),
+		Class:           "enhanceddb",
+		MaxConnections:  50,
+		AllowedNetworks: []string{},
 	}
 }
 
@@ -11024,15 +11026,18 @@ func (o *EnhancedDBSetPasswordRequest) SetPassword(v string) {
 
 // EnhancedDBConfig represents API parameter/response structure
 type EnhancedDBConfig struct {
-	MaxConnections int
+	MaxConnections  int
+	AllowedNetworks []string
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *EnhancedDBConfig) setDefaults() interface{} {
 	return &struct {
-		MaxConnections int
+		MaxConnections  int
+		AllowedNetworks []string
 	}{
-		MaxConnections: o.GetMaxConnections(),
+		MaxConnections:  o.GetMaxConnections(),
+		AllowedNetworks: o.GetAllowedNetworks(),
 	}
 }
 
@@ -11044,6 +11049,46 @@ func (o *EnhancedDBConfig) GetMaxConnections() int {
 // SetMaxConnections sets value to MaxConnections
 func (o *EnhancedDBConfig) SetMaxConnections(v int) {
 	o.MaxConnections = v
+}
+
+// GetAllowedNetworks returns value of AllowedNetworks
+func (o *EnhancedDBConfig) GetAllowedNetworks() []string {
+	return o.AllowedNetworks
+}
+
+// SetAllowedNetworks sets value to AllowedNetworks
+func (o *EnhancedDBConfig) SetAllowedNetworks(v []string) {
+	o.AllowedNetworks = v
+}
+
+/*************************************************
+* EnhancedDBSetConfigRequest
+*************************************************/
+
+// EnhancedDBSetConfigRequest represents API parameter/response structure
+type EnhancedDBSetConfigRequest struct {
+	AllowedNetworks []string `mapconv:"EnhancedDB.AllowedNetworks"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *EnhancedDBSetConfigRequest) setDefaults() interface{} {
+	return &struct {
+		AllowedNetworks []string `mapconv:"EnhancedDB.AllowedNetworks"`
+		MaxConnections  int      `mapconv:"EnhancedDB.MaxConnections"`
+	}{
+		AllowedNetworks: o.GetAllowedNetworks(),
+		MaxConnections:  50,
+	}
+}
+
+// GetAllowedNetworks returns value of AllowedNetworks
+func (o *EnhancedDBSetConfigRequest) GetAllowedNetworks() []string {
+	return o.AllowedNetworks
+}
+
+// SetAllowedNetworks sets value to AllowedNetworks
+func (o *EnhancedDBSetConfigRequest) SetAllowedNetworks(v []string) {
+	o.AllowedNetworks = v
 }
 
 /*************************************************

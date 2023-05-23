@@ -39,7 +39,8 @@ type EnhancedDB struct {
 
 // EnhancedDBConfig コンフィグ
 type EnhancedDBConfig struct {
-	MaxConnections int `json:"max_connections,omitempty" yaml:"max_connections,omitempty" structs:",omitempty"`
+	MaxConnections  int      `json:"max_connections,omitempty" yaml:"max_connections,omitempty" structs:",omitempty"`
+	AllowedNetworks []string `json:"allowed_networks" yaml:"allowed_networks"`
 }
 
 // EnhancedDBStatus ステータス
@@ -49,6 +50,10 @@ type EnhancedDBStatus struct {
 	Region       types.EnhancedDBRegion `json:"region,omitempty" yaml:"region,omitempty" structs:",omitempty"`
 	HostName     string                 `json:"hostname,omitempty" yaml:"hostname,omitempty" structs:",omitempty"`
 	Port         int                    `json:"port,omitempty" yaml:"port,omitempty" structs:",omitempty"`
+}
+
+type EnhancedDBConfigSettings struct {
+	EnhancedDB *EnhancedDBConfig `json:",omitempty" yaml:"enhanced_db,omitempty" structs:",omitempty"`
 }
 
 // EnhancedDBPasswordSettings セッティング

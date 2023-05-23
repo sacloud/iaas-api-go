@@ -1103,6 +1103,11 @@ type enhancedDBGetConfigResponseEnvelope struct {
 	EnhancedDB *naked.EnhancedDBConfig `json:",omitempty"`
 }
 
+// enhancedDBSetConfigRequestEnvelope is envelop of API request
+type enhancedDBSetConfigRequestEnvelope struct {
+	CommonServiceItem *naked.EnhancedDBConfigSettings `json:",omitempty"`
+}
+
 // eSMEFindRequestEnvelope is envelop of API request
 type eSMEFindRequestEnvelope struct {
 	Count   int             `mapconv:",omitempty"`

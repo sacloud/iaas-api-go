@@ -4272,6 +4272,37 @@ func (t *EnhancedDBTracer) GetConfig(ctx context.Context, id types.ID) (*iaas.En
 	return resultEnhancedDBConfig, err
 }
 
+// SetConfig is API call with trace log
+func (t *EnhancedDBTracer) SetConfig(ctx context.Context, id types.ID, param *iaas.EnhancedDBSetConfigRequest) error {
+	log.Println("[TRACE] EnhancedDBAPI.SetConfig start")
+	targetArguments := struct {
+		Argid    types.ID                         `json:"id"`
+		Argparam *iaas.EnhancedDBSetConfigRequest `json:"param"`
+	}{
+		Argid:    id,
+		Argparam: param,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] EnhancedDBAPI.SetConfig end")
+	}()
+
+	err := t.Internal.SetConfig(ctx, id, param)
+	targetResults := struct {
+		Error error
+	}{
+		Error: err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return err
+}
+
 /*************************************************
 * ESMETracer
 *************************************************/

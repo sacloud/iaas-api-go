@@ -4764,6 +4764,41 @@ func (o *EnhancedDBOp) GetConfig(ctx context.Context, id types.ID) (*EnhancedDBC
 	return results.EnhancedDBConfig, nil
 }
 
+// SetConfig is API call
+func (o *EnhancedDBOp) SetConfig(ctx context.Context, id types.ID, param *EnhancedDBSetConfigRequest) error {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":    SakuraCloudAPIRoot,
+		"pathSuffix": o.PathSuffix,
+		"pathName":   o.PathName,
+		"zone":       APIDefaultZone,
+		"id":         id,
+		"param":      param,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/{{.id}}/enhanceddb/config", pathBuildParameter)
+	if err != nil {
+		return err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformSetConfigArgs(id, param)
+	if err != nil {
+		return err
+	}
+	body = v
+
+	// do request
+	_, err = o.Client.Do(ctx, "PUT", url, body)
+	if err != nil {
+		return err
+	}
+
+	// build results
+
+	return nil
+}
+
 /*************************************************
 * ESMEOp
 *************************************************/
