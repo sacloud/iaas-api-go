@@ -11,7 +11,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/sacloud/api-client-go v0.2.8
 	github.com/sacloud/go-http v0.1.6
-	github.com/sacloud/packages-go v0.0.8
+	github.com/sacloud/packages-go v0.0.9
 	github.com/stretchr/testify v1.8.3
 	golang.org/x/crypto v0.9.0
 )
