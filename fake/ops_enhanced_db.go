@@ -108,3 +108,8 @@ func (o *EnhancedDBOp) GetConfig(ctx context.Context, id types.ID) (*iaas.Enhanc
 
 	return &iaas.EnhancedDBConfig{MaxConnections: 50}, nil
 }
+
+func (o *EnhancedDBOp) SetConfig(ctx context.Context, id types.ID, param *iaas.EnhancedDBSetConfigRequest) error {
+	_, err := o.Read(ctx, id)
+	return err
+}

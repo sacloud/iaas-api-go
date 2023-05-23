@@ -88,12 +88,29 @@ var enhancedDatabaseAPI = &dsl.Resource{
 				},
 			},
 		},
+
+		// Set Config
+		{
+			ResourceName: enhancedDatabaseAPIName,
+			Name:         "SetConfig",
+			PathFormat:   dsl.IDAndSuffixPathFormat("enhanceddb/config"),
+			Method:       http.MethodPut,
+			RequestEnvelope: dsl.RequestEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: enhancedDatabaseConfigNakedType,
+				Name: "CommonServiceItem",
+			}),
+			Arguments: dsl.Arguments{
+				dsl.ArgumentID,
+				dsl.MappableArgument("param", enhancedDatabaseSetConfigParam, "CommonServiceItem"),
+			},
+		},
 	},
 }
 
 var (
-	enhancedDatabaseNakedType     = meta.Static(naked.EnhancedDB{})
-	enhancedDatabaseUserNakedType = meta.Static(naked.EnhancedDBPasswordSettings{})
+	enhancedDatabaseNakedType       = meta.Static(naked.EnhancedDB{})
+	enhancedDatabaseUserNakedType   = meta.Static(naked.EnhancedDBPasswordSettings{})
+	enhancedDatabaseConfigNakedType = meta.Static(naked.EnhancedDBConfigSettings{})
 
 	enhancedDatabaseView = &dsl.Model{
 		Name:      enhancedDatabaseAPIName,
@@ -139,6 +156,14 @@ var (
 					MapConv: "Config.MaxConnections",
 				},
 				Value: `50`,
+			},
+			{
+				Name: "AllowedNetworks",
+				Type: meta.TypeStringSlice,
+				Tags: &dsl.FieldTags{
+					MapConv: "Config.AllowedNetworks",
+				},
+				Value: `[]string{}`,
 			},
 		},
 		Fields: []*dsl.FieldDesc{
@@ -191,6 +216,34 @@ var (
 			{
 				Name: "MaxConnections",
 				Type: meta.TypeInt,
+			},
+			{
+				Name: "AllowedNetworks",
+				Type: meta.TypeStringSlice,
+			},
+		},
+	}
+
+	enhancedDatabaseSetConfigParam = &dsl.Model{
+		Name:      enhancedDatabaseAPIName + "SetConfigRequest",
+		NakedType: meta.Static(naked.EnhancedDBConfigSettings{}),
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "AllowedNetworks",
+				Type: meta.TypeStringSlice,
+				Tags: &dsl.FieldTags{
+					MapConv: "EnhancedDB.AllowedNetworks",
+				},
+			},
+		},
+		ConstFields: []*dsl.ConstFieldDesc{
+			{
+				Name: "MaxConnections",
+				Type: meta.TypeInt,
+				Tags: &dsl.FieldTags{
+					MapConv: "EnhancedDB.MaxConnections",
+				},
+				Value: `50`,
 			},
 		},
 	}

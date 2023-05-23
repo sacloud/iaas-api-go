@@ -55,12 +55,26 @@ func TestEnhancedDBOp_CRUD(t *testing.T) {
 			{
 				Func: func(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
 					edbOp := iaas.NewEnhancedDBOp(caller)
+					return nil, edbOp.SetConfig(ctx, ctx.ID, &iaas.EnhancedDBSetConfigRequest{
+						AllowedNetworks: []string{"192.0.2.1/32"},
+					})
+				},
+				SkipExtractID: true,
+			},
+			{
+				Func: func(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
+					edbOp := iaas.NewEnhancedDBOp(caller)
 					config, err := edbOp.GetConfig(ctx, ctx.ID)
 					if err != nil {
 						return nil, err
 					}
 					if config.MaxConnections != 50 {
 						return nil, fmt.Errorf("got unexpected value: MaxConnections: expect: %d actual: %d", 50, config.MaxConnections)
+					}
+					if testutil.IsAccTest() {
+						if len(config.AllowedNetworks) != 1 || config.AllowedNetworks[0] != "192.0.2.1/32" {
+							return nil, fmt.Errorf("got unexpected value: AllowedNetworks: expect: %s actual: %s", "[192.0.2.1/32]", config.AllowedNetworks)
+						}
 					}
 					return nil, nil
 				},
