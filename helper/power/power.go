@@ -178,13 +178,17 @@ func BootMobileGateway(ctx context.Context, client MobileGatewayAPI, zone string
 }
 
 // ShutdownMobileGateway シャットダウン
+//
+// HACK: forceオプションは現在指定不能になっているが、互換性維持のためにここの引数は残しておく
+//
+//	forceは指定しても利用されない
 func ShutdownMobileGateway(ctx context.Context, client MobileGatewayAPI, zone string, id types.ID, force bool) error {
 	return shutdown(ctx, &mobileGatewayHandler{
 		ctx:    ctx,
 		client: client,
 		zone:   zone,
 		id:     id,
-	}, force)
+	}, false)
 }
 
 type handler interface {
