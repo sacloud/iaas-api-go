@@ -21,7 +21,6 @@ import (
 
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/types"
-	"github.com/sacloud/packages-go/size"
 )
 
 var (
@@ -37,10 +36,7 @@ func ChangeServerPlan(
 	caller iaas.APICaller,
 	zone string,
 	id types.ID,
-	cpu int,
-	memoryGB int,
-	commitment types.ECommitment,
-	generation types.EPlanGeneration,
+	planRequest *iaas.ServerChangePlanRequest,
 ) (*iaas.Server, error) {
 	serverOp := iaas.NewServerOp(caller)
 	server, err := serverOp.Read(ctx, zone, id)
@@ -65,12 +61,7 @@ func ChangeServerPlan(
 		server = updated
 	}
 
-	return serverOp.ChangePlan(ctx, zone, server.ID, &iaas.ServerChangePlanRequest{
-		CPU:                  cpu,
-		MemoryMB:             memoryGB * size.GiB,
-		ServerPlanGeneration: generation,
-		ServerPlanCommitment: commitment,
-	})
+	return serverOp.ChangePlan(ctx, zone, server.ID, planRequest)
 }
 
 // ChangeRouterPlan 現在のIDをタグとして保持しつつプランを変更する

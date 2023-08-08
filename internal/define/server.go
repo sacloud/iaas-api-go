@@ -240,6 +240,7 @@ var (
 			fields.ServerPlanCPU(),
 			fields.ServerPlanMemoryMB(),
 			fields.ServerPlanGPU(),
+			fields.ServerPlanCPUModel(),
 			fields.ServerPlanCommitment(),
 			fields.ServerPlanGeneration(),
 			// zone
@@ -333,6 +334,7 @@ var (
 			fields.ServerPlanCPU(),
 			fields.ServerPlanMemoryMB(),
 			fields.ServerPlanGPU(),
+			fields.ServerPlanCPUModel(),
 			fields.ServerPlanCommitment(),
 			fields.ServerPlanGeneration(),
 			fields.ServerConnectedSwitch(),
@@ -382,6 +384,7 @@ var (
 			fields.CPU(),
 			fields.MemoryMB(),
 			fields.GPU(),
+			fields.CPUModel(),
 			fields.Generation(),
 			fields.Commitment(),
 		},

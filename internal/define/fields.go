@@ -197,6 +197,16 @@ func (f *fieldsDef) Generation() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) CPUModel() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "ServerPlanCPUModel",
+		Tags: &dsl.FieldTags{
+			JSON: "CPUModel,omitempty",
+		},
+		Type: meta.TypeString,
+	}
+}
+
 func (f *fieldsDef) Commitment() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "ServerPlanCommitment",
@@ -274,6 +284,16 @@ func (f *fieldsDef) ServerPlanGeneration() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) ServerPlanCPUModel() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "ServerPlanCPUModel",
+		Tags: &dsl.FieldTags{
+			MapConv: "ServerPlan.CPUModel",
+			JSON:    ",omitempty",
+		},
+		Type: meta.TypeString,
+	}
+}
 func (f *fieldsDef) ServerPlanCommitment() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "ServerPlanCommitment",
