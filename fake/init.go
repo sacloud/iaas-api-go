@@ -466,6 +466,17 @@ func initServerPlan(s Store, p *valuePool) {
 			Generation:   200,
 			Availability: types.Availabilities.Available,
 		},
+		{
+			ID:           p.generateID(),
+			Name:         "コア専有プラン/32Core-120GB",
+			CPU:          32,
+			MemoryMB:     120 * 1024 * size.MiB,
+			GPU:          0,
+			CPUModel:     "amd_epyc_7713p",
+			Commitment:   types.Commitments.DedicatedCPU,
+			Generation:   200,
+			Availability: types.Availabilities.Available,
+		},
 		// TODO add more plans
 	}
 

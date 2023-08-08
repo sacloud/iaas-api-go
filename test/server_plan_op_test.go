@@ -36,6 +36,7 @@ func TestServerPlanOp_Find(t *testing.T) {
 		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].ID, "ServerPlans.ID"),
 		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].Name, "ServerPlans.Name"),
 		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].CPU, "ServerPlans.CPU"),
+		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].CPUModel, "ServerPlans.CPUModel"),
 		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].Commitment, "ServerPlans.Commitment"),
 		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].Generation, "ServerPlans.Generation"),
 		testutil.AssertNotEmptyFunc(t, searched.ServerPlans[0].Availability, "ServerPlans.Availability"),
