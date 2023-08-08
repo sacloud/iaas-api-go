@@ -152,6 +152,7 @@ var (
 		"Availability",
 		"ServerPlanID",
 		"ServerPlanName",
+		"ServerPlanCPUModel",
 		"ServerPlanGeneration",
 		"ServerPlanCommitment",
 		"Zone",

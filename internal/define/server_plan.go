@@ -47,6 +47,7 @@ var (
 			fields.CPU(),
 			fields.MemoryMB(),
 			fields.GPU(),
+			fields.Def("CPUModel", meta.TypeString),
 			fields.Def("Commitment", meta.TypeCommitment),
 			fields.Def("Generation", meta.TypePlanGeneration),
 			fields.Availability(),
