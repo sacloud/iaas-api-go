@@ -1,6 +1,6 @@
 module github.com/sacloud/iaas-api-go
 
-go 1.20
+go 1.21
 
 require (
 	github.com/fatih/structs v1.1.0
