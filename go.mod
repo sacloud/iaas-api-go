@@ -9,7 +9,7 @@ require (
 	github.com/huandu/xstrings v1.4.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.5.0
-	github.com/sacloud/api-client-go v0.2.8
+	github.com/sacloud/api-client-go v0.2.9
 	github.com/sacloud/go-http v0.1.7
 	github.com/sacloud/packages-go v0.0.9
 	github.com/stretchr/testify v1.8.4
