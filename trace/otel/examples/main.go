@@ -80,7 +80,7 @@ func tracerProvider(url string) (*tracesdk.TracerProvider, error) {
 		// Record information about this application in an Resource.
 		tracesdk.WithResource(resource.NewWithAttributes(
 			semconv.SchemaURL,
-			semconv.ServiceNameKey.String("libsacloud"),
+			semconv.ServiceNameKey.String("iaas-api-go"),
 			attribute.String("version", iaas.Version),
 		)),
 	)

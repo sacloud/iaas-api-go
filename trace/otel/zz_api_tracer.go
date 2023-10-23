@@ -191,8 +191,8 @@ func newArchiveTracer(in iaas.ArchiveAPI, cnf *config) iaas.ArchiveAPI {
 func (t *ArchiveTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.ArchiveFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Find", options...)
 	defer func() {
@@ -217,8 +217,8 @@ func (t *ArchiveTracer) Find(ctx context.Context, zone string, conditions *iaas.
 func (t *ArchiveTracer) Create(ctx context.Context, zone string, param *iaas.ArchiveCreateRequest) (*iaas.Archive, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Create", options...)
 	defer func() {
@@ -243,8 +243,8 @@ func (t *ArchiveTracer) Create(ctx context.Context, zone string, param *iaas.Arc
 func (t *ArchiveTracer) CreateBlank(ctx context.Context, zone string, param *iaas.ArchiveCreateBlankRequest) (*iaas.Archive, *iaas.FTPServer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.CreateBlank", options...)
 	defer func() {
@@ -270,8 +270,8 @@ func (t *ArchiveTracer) CreateBlank(ctx context.Context, zone string, param *iaa
 func (t *ArchiveTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Archive, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Read", options...)
 	defer func() {
@@ -296,9 +296,9 @@ func (t *ArchiveTracer) Read(ctx context.Context, zone string, id types.ID) (*ia
 func (t *ArchiveTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.ArchiveUpdateRequest) (*iaas.Archive, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Update", options...)
 	defer func() {
@@ -323,8 +323,8 @@ func (t *ArchiveTracer) Update(ctx context.Context, zone string, id types.ID, pa
 func (t *ArchiveTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Delete", options...)
 	defer func() {
@@ -348,9 +348,9 @@ func (t *ArchiveTracer) Delete(ctx context.Context, zone string, id types.ID) er
 func (t *ArchiveTracer) OpenFTP(ctx context.Context, zone string, id types.ID, openOption *iaas.OpenFTPRequest) (*iaas.FTPServer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.openOption", forceString(openOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.openOption", forceString(openOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.OpenFTP", options...)
 	defer func() {
@@ -375,8 +375,8 @@ func (t *ArchiveTracer) OpenFTP(ctx context.Context, zone string, id types.ID, o
 func (t *ArchiveTracer) CloseFTP(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.CloseFTP", options...)
 	defer func() {
@@ -400,8 +400,8 @@ func (t *ArchiveTracer) CloseFTP(ctx context.Context, zone string, id types.ID) 
 func (t *ArchiveTracer) Share(ctx context.Context, zone string, id types.ID) (*iaas.ArchiveShareInfo, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Share", options...)
 	defer func() {
@@ -426,10 +426,10 @@ func (t *ArchiveTracer) Share(ctx context.Context, zone string, id types.ID) (*i
 func (t *ArchiveTracer) CreateFromShared(ctx context.Context, zone string, sourceArchiveID types.ID, destZoneID types.ID, param *iaas.ArchiveCreateRequestFromShared) (*iaas.Archive, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.sourceArchiveID", forceString(sourceArchiveID)),
-		attribute.String("libiaas.api.arguments.destZoneID", forceString(destZoneID)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.sourceArchiveID", forceString(sourceArchiveID)),
+		attribute.String("sacloud.api.arguments.destZoneID", forceString(destZoneID)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.CreateFromShared", options...)
 	defer func() {
@@ -454,10 +454,10 @@ func (t *ArchiveTracer) CreateFromShared(ctx context.Context, zone string, sourc
 func (t *ArchiveTracer) Transfer(ctx context.Context, zone string, sourceArchiveID types.ID, destZoneID types.ID, param *iaas.ArchiveTransferRequest) (*iaas.Archive, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.sourceArchiveID", forceString(sourceArchiveID)),
-		attribute.String("libiaas.api.arguments.destZoneID", forceString(destZoneID)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.sourceArchiveID", forceString(sourceArchiveID)),
+		attribute.String("sacloud.api.arguments.destZoneID", forceString(destZoneID)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ArchiveAPI.Transfer", options...)
 	defer func() {
@@ -541,8 +541,8 @@ func newAutoBackupTracer(in iaas.AutoBackupAPI, cnf *config) iaas.AutoBackupAPI 
 func (t *AutoBackupTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.AutoBackupFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoBackupAPI.Find", options...)
 	defer func() {
@@ -567,8 +567,8 @@ func (t *AutoBackupTracer) Find(ctx context.Context, zone string, conditions *ia
 func (t *AutoBackupTracer) Create(ctx context.Context, zone string, param *iaas.AutoBackupCreateRequest) (*iaas.AutoBackup, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoBackupAPI.Create", options...)
 	defer func() {
@@ -593,8 +593,8 @@ func (t *AutoBackupTracer) Create(ctx context.Context, zone string, param *iaas.
 func (t *AutoBackupTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.AutoBackup, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoBackupAPI.Read", options...)
 	defer func() {
@@ -619,9 +619,9 @@ func (t *AutoBackupTracer) Read(ctx context.Context, zone string, id types.ID) (
 func (t *AutoBackupTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.AutoBackupUpdateRequest) (*iaas.AutoBackup, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoBackupAPI.Update", options...)
 	defer func() {
@@ -646,9 +646,9 @@ func (t *AutoBackupTracer) Update(ctx context.Context, zone string, id types.ID,
 func (t *AutoBackupTracer) UpdateSettings(ctx context.Context, zone string, id types.ID, param *iaas.AutoBackupUpdateSettingsRequest) (*iaas.AutoBackup, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoBackupAPI.UpdateSettings", options...)
 	defer func() {
@@ -673,8 +673,8 @@ func (t *AutoBackupTracer) UpdateSettings(ctx context.Context, zone string, id t
 func (t *AutoBackupTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoBackupAPI.Delete", options...)
 	defer func() {
@@ -716,7 +716,7 @@ func newAutoScaleTracer(in iaas.AutoScaleAPI, cnf *config) iaas.AutoScaleAPI {
 func (t *AutoScaleTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.AutoScaleFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Find", options...)
 	defer func() {
@@ -741,7 +741,7 @@ func (t *AutoScaleTracer) Find(ctx context.Context, conditions *iaas.FindConditi
 func (t *AutoScaleTracer) Create(ctx context.Context, param *iaas.AutoScaleCreateRequest) (*iaas.AutoScale, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Create", options...)
 	defer func() {
@@ -766,7 +766,7 @@ func (t *AutoScaleTracer) Create(ctx context.Context, param *iaas.AutoScaleCreat
 func (t *AutoScaleTracer) Read(ctx context.Context, id types.ID) (*iaas.AutoScale, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Read", options...)
 	defer func() {
@@ -791,8 +791,8 @@ func (t *AutoScaleTracer) Read(ctx context.Context, id types.ID) (*iaas.AutoScal
 func (t *AutoScaleTracer) Update(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateRequest) (*iaas.AutoScale, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Update", options...)
 	defer func() {
@@ -817,8 +817,8 @@ func (t *AutoScaleTracer) Update(ctx context.Context, id types.ID, param *iaas.A
 func (t *AutoScaleTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.AutoScaleUpdateSettingsRequest) (*iaas.AutoScale, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.UpdateSettings", options...)
 	defer func() {
@@ -843,7 +843,7 @@ func (t *AutoScaleTracer) UpdateSettings(ctx context.Context, id types.ID, param
 func (t *AutoScaleTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Delete", options...)
 	defer func() {
@@ -867,7 +867,7 @@ func (t *AutoScaleTracer) Delete(ctx context.Context, id types.ID) error {
 func (t *AutoScaleTracer) Status(ctx context.Context, id types.ID) (*iaas.AutoScaleStatus, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.Status", options...)
 	defer func() {
@@ -892,7 +892,7 @@ func (t *AutoScaleTracer) Status(ctx context.Context, id types.ID) (*iaas.AutoSc
 func (t *AutoScaleTracer) ScaleUp(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.ScaleUp", options...)
 	defer func() {
@@ -916,7 +916,7 @@ func (t *AutoScaleTracer) ScaleUp(ctx context.Context, id types.ID) error {
 func (t *AutoScaleTracer) ScaleDown(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "AutoScaleAPI.ScaleDown", options...)
 	defer func() {
@@ -958,7 +958,7 @@ func newBillTracer(in iaas.BillAPI, cnf *config) iaas.BillAPI {
 func (t *BillTracer) ByContract(ctx context.Context, accountID types.ID) (*iaas.BillByContractResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.accountID", forceString(accountID)),
+		attribute.String("sacloud.api.arguments.accountID", forceString(accountID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BillAPI.ByContract", options...)
 	defer func() {
@@ -983,8 +983,8 @@ func (t *BillTracer) ByContract(ctx context.Context, accountID types.ID) (*iaas.
 func (t *BillTracer) ByContractYear(ctx context.Context, accountID types.ID, year int) (*iaas.BillByContractYearResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.accountID", forceString(accountID)),
-		attribute.String("libiaas.api.arguments.year", forceString(year)),
+		attribute.String("sacloud.api.arguments.accountID", forceString(accountID)),
+		attribute.String("sacloud.api.arguments.year", forceString(year)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BillAPI.ByContractYear", options...)
 	defer func() {
@@ -1009,9 +1009,9 @@ func (t *BillTracer) ByContractYear(ctx context.Context, accountID types.ID, yea
 func (t *BillTracer) ByContractYearMonth(ctx context.Context, accountID types.ID, year int, month int) (*iaas.BillByContractYearMonthResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.accountID", forceString(accountID)),
-		attribute.String("libiaas.api.arguments.year", forceString(year)),
-		attribute.String("libiaas.api.arguments.month", forceString(month)),
+		attribute.String("sacloud.api.arguments.accountID", forceString(accountID)),
+		attribute.String("sacloud.api.arguments.year", forceString(year)),
+		attribute.String("sacloud.api.arguments.month", forceString(month)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BillAPI.ByContractYearMonth", options...)
 	defer func() {
@@ -1036,7 +1036,7 @@ func (t *BillTracer) ByContractYearMonth(ctx context.Context, accountID types.ID
 func (t *BillTracer) Read(ctx context.Context, id types.ID) (*iaas.BillReadResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BillAPI.Read", options...)
 	defer func() {
@@ -1061,8 +1061,8 @@ func (t *BillTracer) Read(ctx context.Context, id types.ID) (*iaas.BillReadResul
 func (t *BillTracer) Details(ctx context.Context, MemberCode string, id types.ID) (*iaas.BillDetailsResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.MemberCode", forceString(MemberCode)),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.MemberCode", forceString(MemberCode)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BillAPI.Details", options...)
 	defer func() {
@@ -1087,8 +1087,8 @@ func (t *BillTracer) Details(ctx context.Context, MemberCode string, id types.ID
 func (t *BillTracer) DetailsCSV(ctx context.Context, MemberCode string, id types.ID) (*iaas.BillDetailCSV, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.MemberCode", forceString(MemberCode)),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.MemberCode", forceString(MemberCode)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BillAPI.DetailsCSV", options...)
 	defer func() {
@@ -1131,8 +1131,8 @@ func newBridgeTracer(in iaas.BridgeAPI, cnf *config) iaas.BridgeAPI {
 func (t *BridgeTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.BridgeFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BridgeAPI.Find", options...)
 	defer func() {
@@ -1157,8 +1157,8 @@ func (t *BridgeTracer) Find(ctx context.Context, zone string, conditions *iaas.F
 func (t *BridgeTracer) Create(ctx context.Context, zone string, param *iaas.BridgeCreateRequest) (*iaas.Bridge, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BridgeAPI.Create", options...)
 	defer func() {
@@ -1183,8 +1183,8 @@ func (t *BridgeTracer) Create(ctx context.Context, zone string, param *iaas.Brid
 func (t *BridgeTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Bridge, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BridgeAPI.Read", options...)
 	defer func() {
@@ -1209,9 +1209,9 @@ func (t *BridgeTracer) Read(ctx context.Context, zone string, id types.ID) (*iaa
 func (t *BridgeTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.BridgeUpdateRequest) (*iaas.Bridge, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BridgeAPI.Update", options...)
 	defer func() {
@@ -1236,8 +1236,8 @@ func (t *BridgeTracer) Update(ctx context.Context, zone string, id types.ID, par
 func (t *BridgeTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "BridgeAPI.Delete", options...)
 	defer func() {
@@ -1279,8 +1279,8 @@ func newCDROMTracer(in iaas.CDROMAPI, cnf *config) iaas.CDROMAPI {
 func (t *CDROMTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.CDROMFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.Find", options...)
 	defer func() {
@@ -1305,8 +1305,8 @@ func (t *CDROMTracer) Find(ctx context.Context, zone string, conditions *iaas.Fi
 func (t *CDROMTracer) Create(ctx context.Context, zone string, param *iaas.CDROMCreateRequest) (*iaas.CDROM, *iaas.FTPServer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.Create", options...)
 	defer func() {
@@ -1332,8 +1332,8 @@ func (t *CDROMTracer) Create(ctx context.Context, zone string, param *iaas.CDROM
 func (t *CDROMTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.CDROM, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.Read", options...)
 	defer func() {
@@ -1358,9 +1358,9 @@ func (t *CDROMTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas
 func (t *CDROMTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.CDROMUpdateRequest) (*iaas.CDROM, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.Update", options...)
 	defer func() {
@@ -1385,8 +1385,8 @@ func (t *CDROMTracer) Update(ctx context.Context, zone string, id types.ID, para
 func (t *CDROMTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.Delete", options...)
 	defer func() {
@@ -1410,9 +1410,9 @@ func (t *CDROMTracer) Delete(ctx context.Context, zone string, id types.ID) erro
 func (t *CDROMTracer) OpenFTP(ctx context.Context, zone string, id types.ID, openOption *iaas.OpenFTPRequest) (*iaas.FTPServer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.openOption", forceString(openOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.openOption", forceString(openOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.OpenFTP", options...)
 	defer func() {
@@ -1437,8 +1437,8 @@ func (t *CDROMTracer) OpenFTP(ctx context.Context, zone string, id types.ID, ope
 func (t *CDROMTracer) CloseFTP(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CDROMAPI.CloseFTP", options...)
 	defer func() {
@@ -1480,7 +1480,7 @@ func newCertificateAuthorityTracer(in iaas.CertificateAuthorityAPI, cnf *config)
 func (t *CertificateAuthorityTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.CertificateAuthorityFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.Find", options...)
 	defer func() {
@@ -1505,7 +1505,7 @@ func (t *CertificateAuthorityTracer) Find(ctx context.Context, conditions *iaas.
 func (t *CertificateAuthorityTracer) Create(ctx context.Context, param *iaas.CertificateAuthorityCreateRequest) (*iaas.CertificateAuthority, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.Create", options...)
 	defer func() {
@@ -1530,7 +1530,7 @@ func (t *CertificateAuthorityTracer) Create(ctx context.Context, param *iaas.Cer
 func (t *CertificateAuthorityTracer) Read(ctx context.Context, id types.ID) (*iaas.CertificateAuthority, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.Read", options...)
 	defer func() {
@@ -1555,8 +1555,8 @@ func (t *CertificateAuthorityTracer) Read(ctx context.Context, id types.ID) (*ia
 func (t *CertificateAuthorityTracer) Update(ctx context.Context, id types.ID, param *iaas.CertificateAuthorityUpdateRequest) (*iaas.CertificateAuthority, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.Update", options...)
 	defer func() {
@@ -1581,7 +1581,7 @@ func (t *CertificateAuthorityTracer) Update(ctx context.Context, id types.ID, pa
 func (t *CertificateAuthorityTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.Delete", options...)
 	defer func() {
@@ -1605,7 +1605,7 @@ func (t *CertificateAuthorityTracer) Delete(ctx context.Context, id types.ID) er
 func (t *CertificateAuthorityTracer) Detail(ctx context.Context, id types.ID) (*iaas.CertificateAuthorityDetail, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.Detail", options...)
 	defer func() {
@@ -1630,8 +1630,8 @@ func (t *CertificateAuthorityTracer) Detail(ctx context.Context, id types.ID) (*
 func (t *CertificateAuthorityTracer) AddClient(ctx context.Context, id types.ID, param *iaas.CertificateAuthorityAddClientParam) (*iaas.CertificateAuthorityAddClientOrServerResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.AddClient", options...)
 	defer func() {
@@ -1656,7 +1656,7 @@ func (t *CertificateAuthorityTracer) AddClient(ctx context.Context, id types.ID,
 func (t *CertificateAuthorityTracer) ListClients(ctx context.Context, id types.ID) (*iaas.CertificateAuthorityListClientsResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.ListClients", options...)
 	defer func() {
@@ -1681,8 +1681,8 @@ func (t *CertificateAuthorityTracer) ListClients(ctx context.Context, id types.I
 func (t *CertificateAuthorityTracer) ReadClient(ctx context.Context, id types.ID, clientID string) (*iaas.CertificateAuthorityClient, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.clientID", forceString(clientID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.clientID", forceString(clientID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.ReadClient", options...)
 	defer func() {
@@ -1707,8 +1707,8 @@ func (t *CertificateAuthorityTracer) ReadClient(ctx context.Context, id types.ID
 func (t *CertificateAuthorityTracer) RevokeClient(ctx context.Context, id types.ID, clientID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.clientID", forceString(clientID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.clientID", forceString(clientID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.RevokeClient", options...)
 	defer func() {
@@ -1732,8 +1732,8 @@ func (t *CertificateAuthorityTracer) RevokeClient(ctx context.Context, id types.
 func (t *CertificateAuthorityTracer) HoldClient(ctx context.Context, id types.ID, clientID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.clientID", forceString(clientID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.clientID", forceString(clientID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.HoldClient", options...)
 	defer func() {
@@ -1757,8 +1757,8 @@ func (t *CertificateAuthorityTracer) HoldClient(ctx context.Context, id types.ID
 func (t *CertificateAuthorityTracer) ResumeClient(ctx context.Context, id types.ID, clientID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.clientID", forceString(clientID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.clientID", forceString(clientID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.ResumeClient", options...)
 	defer func() {
@@ -1782,8 +1782,8 @@ func (t *CertificateAuthorityTracer) ResumeClient(ctx context.Context, id types.
 func (t *CertificateAuthorityTracer) DenyClient(ctx context.Context, id types.ID, clientID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.clientID", forceString(clientID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.clientID", forceString(clientID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.DenyClient", options...)
 	defer func() {
@@ -1807,8 +1807,8 @@ func (t *CertificateAuthorityTracer) DenyClient(ctx context.Context, id types.ID
 func (t *CertificateAuthorityTracer) AddServer(ctx context.Context, id types.ID, param *iaas.CertificateAuthorityAddServerParam) (*iaas.CertificateAuthorityAddClientOrServerResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.AddServer", options...)
 	defer func() {
@@ -1833,7 +1833,7 @@ func (t *CertificateAuthorityTracer) AddServer(ctx context.Context, id types.ID,
 func (t *CertificateAuthorityTracer) ListServers(ctx context.Context, id types.ID) (*iaas.CertificateAuthorityListServersResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.ListServers", options...)
 	defer func() {
@@ -1858,8 +1858,8 @@ func (t *CertificateAuthorityTracer) ListServers(ctx context.Context, id types.I
 func (t *CertificateAuthorityTracer) ReadServer(ctx context.Context, id types.ID, serverID string) (*iaas.CertificateAuthorityServer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.serverID", forceString(serverID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.serverID", forceString(serverID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.ReadServer", options...)
 	defer func() {
@@ -1884,8 +1884,8 @@ func (t *CertificateAuthorityTracer) ReadServer(ctx context.Context, id types.ID
 func (t *CertificateAuthorityTracer) RevokeServer(ctx context.Context, id types.ID, serverID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.serverID", forceString(serverID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.serverID", forceString(serverID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.RevokeServer", options...)
 	defer func() {
@@ -1909,8 +1909,8 @@ func (t *CertificateAuthorityTracer) RevokeServer(ctx context.Context, id types.
 func (t *CertificateAuthorityTracer) HoldServer(ctx context.Context, id types.ID, serverID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.serverID", forceString(serverID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.serverID", forceString(serverID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.HoldServer", options...)
 	defer func() {
@@ -1934,8 +1934,8 @@ func (t *CertificateAuthorityTracer) HoldServer(ctx context.Context, id types.ID
 func (t *CertificateAuthorityTracer) ResumeServer(ctx context.Context, id types.ID, serverID string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.serverID", forceString(serverID)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.serverID", forceString(serverID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CertificateAuthorityAPI.ResumeServer", options...)
 	defer func() {
@@ -1977,7 +1977,7 @@ func newContainerRegistryTracer(in iaas.ContainerRegistryAPI, cnf *config) iaas.
 func (t *ContainerRegistryTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.ContainerRegistryFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.Find", options...)
 	defer func() {
@@ -2002,7 +2002,7 @@ func (t *ContainerRegistryTracer) Find(ctx context.Context, conditions *iaas.Fin
 func (t *ContainerRegistryTracer) Create(ctx context.Context, param *iaas.ContainerRegistryCreateRequest) (*iaas.ContainerRegistry, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.Create", options...)
 	defer func() {
@@ -2027,7 +2027,7 @@ func (t *ContainerRegistryTracer) Create(ctx context.Context, param *iaas.Contai
 func (t *ContainerRegistryTracer) Read(ctx context.Context, id types.ID) (*iaas.ContainerRegistry, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.Read", options...)
 	defer func() {
@@ -2052,8 +2052,8 @@ func (t *ContainerRegistryTracer) Read(ctx context.Context, id types.ID) (*iaas.
 func (t *ContainerRegistryTracer) Update(ctx context.Context, id types.ID, param *iaas.ContainerRegistryUpdateRequest) (*iaas.ContainerRegistry, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.Update", options...)
 	defer func() {
@@ -2078,8 +2078,8 @@ func (t *ContainerRegistryTracer) Update(ctx context.Context, id types.ID, param
 func (t *ContainerRegistryTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.ContainerRegistryUpdateSettingsRequest) (*iaas.ContainerRegistry, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.UpdateSettings", options...)
 	defer func() {
@@ -2104,7 +2104,7 @@ func (t *ContainerRegistryTracer) UpdateSettings(ctx context.Context, id types.I
 func (t *ContainerRegistryTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.Delete", options...)
 	defer func() {
@@ -2128,7 +2128,7 @@ func (t *ContainerRegistryTracer) Delete(ctx context.Context, id types.ID) error
 func (t *ContainerRegistryTracer) ListUsers(ctx context.Context, id types.ID) (*iaas.ContainerRegistryUsers, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.ListUsers", options...)
 	defer func() {
@@ -2153,8 +2153,8 @@ func (t *ContainerRegistryTracer) ListUsers(ctx context.Context, id types.ID) (*
 func (t *ContainerRegistryTracer) AddUser(ctx context.Context, id types.ID, param *iaas.ContainerRegistryUserCreateRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.AddUser", options...)
 	defer func() {
@@ -2178,9 +2178,9 @@ func (t *ContainerRegistryTracer) AddUser(ctx context.Context, id types.ID, para
 func (t *ContainerRegistryTracer) UpdateUser(ctx context.Context, id types.ID, username string, param *iaas.ContainerRegistryUserUpdateRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.username", forceString(username)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.username", forceString(username)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.UpdateUser", options...)
 	defer func() {
@@ -2204,8 +2204,8 @@ func (t *ContainerRegistryTracer) UpdateUser(ctx context.Context, id types.ID, u
 func (t *ContainerRegistryTracer) DeleteUser(ctx context.Context, id types.ID, username string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.username", forceString(username)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.username", forceString(username)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ContainerRegistryAPI.DeleteUser", options...)
 	defer func() {
@@ -2247,7 +2247,7 @@ func newCouponTracer(in iaas.CouponAPI, cnf *config) iaas.CouponAPI {
 func (t *CouponTracer) Find(ctx context.Context, accountID types.ID) (*iaas.CouponFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.accountID", forceString(accountID)),
+		attribute.String("sacloud.api.arguments.accountID", forceString(accountID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "CouponAPI.Find", options...)
 	defer func() {
@@ -2290,8 +2290,8 @@ func newDatabaseTracer(in iaas.DatabaseAPI, cnf *config) iaas.DatabaseAPI {
 func (t *DatabaseTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.DatabaseFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Find", options...)
 	defer func() {
@@ -2316,8 +2316,8 @@ func (t *DatabaseTracer) Find(ctx context.Context, zone string, conditions *iaas
 func (t *DatabaseTracer) Create(ctx context.Context, zone string, param *iaas.DatabaseCreateRequest) (*iaas.Database, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Create", options...)
 	defer func() {
@@ -2342,8 +2342,8 @@ func (t *DatabaseTracer) Create(ctx context.Context, zone string, param *iaas.Da
 func (t *DatabaseTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Database, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Read", options...)
 	defer func() {
@@ -2368,9 +2368,9 @@ func (t *DatabaseTracer) Read(ctx context.Context, zone string, id types.ID) (*i
 func (t *DatabaseTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.DatabaseUpdateRequest) (*iaas.Database, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Update", options...)
 	defer func() {
@@ -2395,9 +2395,9 @@ func (t *DatabaseTracer) Update(ctx context.Context, zone string, id types.ID, p
 func (t *DatabaseTracer) UpdateSettings(ctx context.Context, zone string, id types.ID, param *iaas.DatabaseUpdateSettingsRequest) (*iaas.Database, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.UpdateSettings", options...)
 	defer func() {
@@ -2422,8 +2422,8 @@ func (t *DatabaseTracer) UpdateSettings(ctx context.Context, zone string, id typ
 func (t *DatabaseTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Delete", options...)
 	defer func() {
@@ -2447,8 +2447,8 @@ func (t *DatabaseTracer) Delete(ctx context.Context, zone string, id types.ID) e
 func (t *DatabaseTracer) Config(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Config", options...)
 	defer func() {
@@ -2472,8 +2472,8 @@ func (t *DatabaseTracer) Config(ctx context.Context, zone string, id types.ID) e
 func (t *DatabaseTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Boot", options...)
 	defer func() {
@@ -2497,9 +2497,9 @@ func (t *DatabaseTracer) Boot(ctx context.Context, zone string, id types.ID) err
 func (t *DatabaseTracer) Shutdown(ctx context.Context, zone string, id types.ID, shutdownOption *iaas.ShutdownOption) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.shutdownOption", forceString(shutdownOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.shutdownOption", forceString(shutdownOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Shutdown", options...)
 	defer func() {
@@ -2523,8 +2523,8 @@ func (t *DatabaseTracer) Shutdown(ctx context.Context, zone string, id types.ID,
 func (t *DatabaseTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Reset", options...)
 	defer func() {
@@ -2548,9 +2548,9 @@ func (t *DatabaseTracer) Reset(ctx context.Context, zone string, id types.ID) er
 func (t *DatabaseTracer) MonitorCPU(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.CPUTimeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.MonitorCPU", options...)
 	defer func() {
@@ -2575,9 +2575,9 @@ func (t *DatabaseTracer) MonitorCPU(ctx context.Context, zone string, id types.I
 func (t *DatabaseTracer) MonitorDisk(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.DiskActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.MonitorDisk", options...)
 	defer func() {
@@ -2602,9 +2602,9 @@ func (t *DatabaseTracer) MonitorDisk(ctx context.Context, zone string, id types.
 func (t *DatabaseTracer) MonitorInterface(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.InterfaceActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.MonitorInterface", options...)
 	defer func() {
@@ -2629,9 +2629,9 @@ func (t *DatabaseTracer) MonitorInterface(ctx context.Context, zone string, id t
 func (t *DatabaseTracer) MonitorDatabase(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.DatabaseActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.MonitorDatabase", options...)
 	defer func() {
@@ -2656,8 +2656,8 @@ func (t *DatabaseTracer) MonitorDatabase(ctx context.Context, zone string, id ty
 func (t *DatabaseTracer) Status(ctx context.Context, zone string, id types.ID) (*iaas.DatabaseStatus, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.Status", options...)
 	defer func() {
@@ -2682,8 +2682,8 @@ func (t *DatabaseTracer) Status(ctx context.Context, zone string, id types.ID) (
 func (t *DatabaseTracer) GetParameter(ctx context.Context, zone string, id types.ID) (*iaas.DatabaseParameter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.GetParameter", options...)
 	defer func() {
@@ -2708,9 +2708,9 @@ func (t *DatabaseTracer) GetParameter(ctx context.Context, zone string, id types
 func (t *DatabaseTracer) SetParameter(ctx context.Context, zone string, id types.ID, param map[string]interface{}) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DatabaseAPI.SetParameter", options...)
 	defer func() {
@@ -2752,8 +2752,8 @@ func newDiskTracer(in iaas.DiskAPI, cnf *config) iaas.DiskAPI {
 func (t *DiskTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.DiskFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Find", options...)
 	defer func() {
@@ -2778,9 +2778,9 @@ func (t *DiskTracer) Find(ctx context.Context, zone string, conditions *iaas.Fin
 func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID) (*iaas.Disk, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.createParam", forceString(createParam)),
-		attribute.String("libiaas.api.arguments.distantFrom", forceString(distantFrom)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.createParam", forceString(createParam)),
+		attribute.String("sacloud.api.arguments.distantFrom", forceString(distantFrom)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Create", options...)
 	defer func() {
@@ -2805,9 +2805,9 @@ func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.
 func (t *DiskTracer) Config(ctx context.Context, zone string, id types.ID, edit *iaas.DiskEditRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.edit", forceString(edit)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.edit", forceString(edit)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Config", options...)
 	defer func() {
@@ -2831,11 +2831,11 @@ func (t *DiskTracer) Config(ctx context.Context, zone string, id types.ID, edit 
 func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*iaas.Disk, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.createParam", forceString(createParam)),
-		attribute.String("libiaas.api.arguments.editParam", forceString(editParam)),
-		attribute.String("libiaas.api.arguments.bootAtAvailable", forceString(bootAtAvailable)),
-		attribute.String("libiaas.api.arguments.distantFrom", forceString(distantFrom)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.createParam", forceString(createParam)),
+		attribute.String("sacloud.api.arguments.editParam", forceString(editParam)),
+		attribute.String("sacloud.api.arguments.bootAtAvailable", forceString(bootAtAvailable)),
+		attribute.String("sacloud.api.arguments.distantFrom", forceString(distantFrom)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.CreateWithConfig", options...)
 	defer func() {
@@ -2860,9 +2860,9 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 func (t *DiskTracer) ResizePartition(ctx context.Context, zone string, id types.ID, param *iaas.DiskResizePartitionRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.ResizePartition", options...)
 	defer func() {
@@ -2886,9 +2886,9 @@ func (t *DiskTracer) ResizePartition(ctx context.Context, zone string, id types.
 func (t *DiskTracer) ConnectToServer(ctx context.Context, zone string, id types.ID, serverID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.serverID", forceString(serverID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.serverID", forceString(serverID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.ConnectToServer", options...)
 	defer func() {
@@ -2912,8 +2912,8 @@ func (t *DiskTracer) ConnectToServer(ctx context.Context, zone string, id types.
 func (t *DiskTracer) DisconnectFromServer(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.DisconnectFromServer", options...)
 	defer func() {
@@ -2937,8 +2937,8 @@ func (t *DiskTracer) DisconnectFromServer(ctx context.Context, zone string, id t
 func (t *DiskTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Disk, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Read", options...)
 	defer func() {
@@ -2963,9 +2963,9 @@ func (t *DiskTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.
 func (t *DiskTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.DiskUpdateRequest) (*iaas.Disk, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Update", options...)
 	defer func() {
@@ -2990,8 +2990,8 @@ func (t *DiskTracer) Update(ctx context.Context, zone string, id types.ID, param
 func (t *DiskTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Delete", options...)
 	defer func() {
@@ -3015,9 +3015,9 @@ func (t *DiskTracer) Delete(ctx context.Context, zone string, id types.ID) error
 func (t *DiskTracer) Monitor(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.DiskActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Monitor", options...)
 	defer func() {
@@ -3042,9 +3042,9 @@ func (t *DiskTracer) Monitor(ctx context.Context, zone string, id types.ID, cond
 func (t *DiskTracer) MonitorDisk(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.DiskActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.MonitorDisk", options...)
 	defer func() {
@@ -3087,8 +3087,8 @@ func newDiskPlanTracer(in iaas.DiskPlanAPI, cnf *config) iaas.DiskPlanAPI {
 func (t *DiskPlanTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.DiskPlanFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskPlanAPI.Find", options...)
 	defer func() {
@@ -3113,8 +3113,8 @@ func (t *DiskPlanTracer) Find(ctx context.Context, zone string, conditions *iaas
 func (t *DiskPlanTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.DiskPlan, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskPlanAPI.Read", options...)
 	defer func() {
@@ -3157,7 +3157,7 @@ func newDNSTracer(in iaas.DNSAPI, cnf *config) iaas.DNSAPI {
 func (t *DNSTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.DNSFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DNSAPI.Find", options...)
 	defer func() {
@@ -3182,7 +3182,7 @@ func (t *DNSTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*
 func (t *DNSTracer) Create(ctx context.Context, param *iaas.DNSCreateRequest) (*iaas.DNS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DNSAPI.Create", options...)
 	defer func() {
@@ -3207,7 +3207,7 @@ func (t *DNSTracer) Create(ctx context.Context, param *iaas.DNSCreateRequest) (*
 func (t *DNSTracer) Read(ctx context.Context, id types.ID) (*iaas.DNS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DNSAPI.Read", options...)
 	defer func() {
@@ -3232,8 +3232,8 @@ func (t *DNSTracer) Read(ctx context.Context, id types.ID) (*iaas.DNS, error) {
 func (t *DNSTracer) Update(ctx context.Context, id types.ID, param *iaas.DNSUpdateRequest) (*iaas.DNS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DNSAPI.Update", options...)
 	defer func() {
@@ -3258,8 +3258,8 @@ func (t *DNSTracer) Update(ctx context.Context, id types.ID, param *iaas.DNSUpda
 func (t *DNSTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.DNSUpdateSettingsRequest) (*iaas.DNS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DNSAPI.UpdateSettings", options...)
 	defer func() {
@@ -3284,7 +3284,7 @@ func (t *DNSTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas
 func (t *DNSTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DNSAPI.Delete", options...)
 	defer func() {
@@ -3326,7 +3326,7 @@ func newEnhancedDBTracer(in iaas.EnhancedDBAPI, cnf *config) iaas.EnhancedDBAPI 
 func (t *EnhancedDBTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.EnhancedDBFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.Find", options...)
 	defer func() {
@@ -3351,7 +3351,7 @@ func (t *EnhancedDBTracer) Find(ctx context.Context, conditions *iaas.FindCondit
 func (t *EnhancedDBTracer) Create(ctx context.Context, param *iaas.EnhancedDBCreateRequest) (*iaas.EnhancedDB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.Create", options...)
 	defer func() {
@@ -3376,7 +3376,7 @@ func (t *EnhancedDBTracer) Create(ctx context.Context, param *iaas.EnhancedDBCre
 func (t *EnhancedDBTracer) Read(ctx context.Context, id types.ID) (*iaas.EnhancedDB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.Read", options...)
 	defer func() {
@@ -3401,8 +3401,8 @@ func (t *EnhancedDBTracer) Read(ctx context.Context, id types.ID) (*iaas.Enhance
 func (t *EnhancedDBTracer) Update(ctx context.Context, id types.ID, param *iaas.EnhancedDBUpdateRequest) (*iaas.EnhancedDB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.Update", options...)
 	defer func() {
@@ -3427,7 +3427,7 @@ func (t *EnhancedDBTracer) Update(ctx context.Context, id types.ID, param *iaas.
 func (t *EnhancedDBTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.Delete", options...)
 	defer func() {
@@ -3451,8 +3451,8 @@ func (t *EnhancedDBTracer) Delete(ctx context.Context, id types.ID) error {
 func (t *EnhancedDBTracer) SetPassword(ctx context.Context, id types.ID, param *iaas.EnhancedDBSetPasswordRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.SetPassword", options...)
 	defer func() {
@@ -3476,7 +3476,7 @@ func (t *EnhancedDBTracer) SetPassword(ctx context.Context, id types.ID, param *
 func (t *EnhancedDBTracer) GetConfig(ctx context.Context, id types.ID) (*iaas.EnhancedDBConfig, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.GetConfig", options...)
 	defer func() {
@@ -3501,8 +3501,8 @@ func (t *EnhancedDBTracer) GetConfig(ctx context.Context, id types.ID) (*iaas.En
 func (t *EnhancedDBTracer) SetConfig(ctx context.Context, id types.ID, param *iaas.EnhancedDBSetConfigRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "EnhancedDBAPI.SetConfig", options...)
 	defer func() {
@@ -3544,7 +3544,7 @@ func newESMETracer(in iaas.ESMEAPI, cnf *config) iaas.ESMEAPI {
 func (t *ESMETracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.ESMEFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.Find", options...)
 	defer func() {
@@ -3569,7 +3569,7 @@ func (t *ESMETracer) Find(ctx context.Context, conditions *iaas.FindCondition) (
 func (t *ESMETracer) Create(ctx context.Context, param *iaas.ESMECreateRequest) (*iaas.ESME, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.Create", options...)
 	defer func() {
@@ -3594,7 +3594,7 @@ func (t *ESMETracer) Create(ctx context.Context, param *iaas.ESMECreateRequest) 
 func (t *ESMETracer) Read(ctx context.Context, id types.ID) (*iaas.ESME, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.Read", options...)
 	defer func() {
@@ -3619,8 +3619,8 @@ func (t *ESMETracer) Read(ctx context.Context, id types.ID) (*iaas.ESME, error) 
 func (t *ESMETracer) Update(ctx context.Context, id types.ID, param *iaas.ESMEUpdateRequest) (*iaas.ESME, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.Update", options...)
 	defer func() {
@@ -3645,7 +3645,7 @@ func (t *ESMETracer) Update(ctx context.Context, id types.ID, param *iaas.ESMEUp
 func (t *ESMETracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.Delete", options...)
 	defer func() {
@@ -3669,8 +3669,8 @@ func (t *ESMETracer) Delete(ctx context.Context, id types.ID) error {
 func (t *ESMETracer) SendMessageWithGeneratedOTP(ctx context.Context, id types.ID, param *iaas.ESMESendMessageWithGeneratedOTPRequest) (*iaas.ESMESendMessageResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.SendMessageWithGeneratedOTP", options...)
 	defer func() {
@@ -3695,8 +3695,8 @@ func (t *ESMETracer) SendMessageWithGeneratedOTP(ctx context.Context, id types.I
 func (t *ESMETracer) SendMessageWithInputtedOTP(ctx context.Context, id types.ID, param *iaas.ESMESendMessageWithInputtedOTPRequest) (*iaas.ESMESendMessageResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.SendMessageWithInputtedOTP", options...)
 	defer func() {
@@ -3721,7 +3721,7 @@ func (t *ESMETracer) SendMessageWithInputtedOTP(ctx context.Context, id types.ID
 func (t *ESMETracer) Logs(ctx context.Context, id types.ID) ([]*iaas.ESMELogs, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ESMEAPI.Logs", options...)
 	defer func() {
@@ -3764,7 +3764,7 @@ func newGSLBTracer(in iaas.GSLBAPI, cnf *config) iaas.GSLBAPI {
 func (t *GSLBTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.GSLBFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "GSLBAPI.Find", options...)
 	defer func() {
@@ -3789,7 +3789,7 @@ func (t *GSLBTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (
 func (t *GSLBTracer) Create(ctx context.Context, param *iaas.GSLBCreateRequest) (*iaas.GSLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "GSLBAPI.Create", options...)
 	defer func() {
@@ -3814,7 +3814,7 @@ func (t *GSLBTracer) Create(ctx context.Context, param *iaas.GSLBCreateRequest) 
 func (t *GSLBTracer) Read(ctx context.Context, id types.ID) (*iaas.GSLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "GSLBAPI.Read", options...)
 	defer func() {
@@ -3839,8 +3839,8 @@ func (t *GSLBTracer) Read(ctx context.Context, id types.ID) (*iaas.GSLB, error) 
 func (t *GSLBTracer) Update(ctx context.Context, id types.ID, param *iaas.GSLBUpdateRequest) (*iaas.GSLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "GSLBAPI.Update", options...)
 	defer func() {
@@ -3865,8 +3865,8 @@ func (t *GSLBTracer) Update(ctx context.Context, id types.ID, param *iaas.GSLBUp
 func (t *GSLBTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.GSLBUpdateSettingsRequest) (*iaas.GSLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "GSLBAPI.UpdateSettings", options...)
 	defer func() {
@@ -3891,7 +3891,7 @@ func (t *GSLBTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaa
 func (t *GSLBTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "GSLBAPI.Delete", options...)
 	defer func() {
@@ -3933,7 +3933,7 @@ func newIconTracer(in iaas.IconAPI, cnf *config) iaas.IconAPI {
 func (t *IconTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.IconFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IconAPI.Find", options...)
 	defer func() {
@@ -3958,7 +3958,7 @@ func (t *IconTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (
 func (t *IconTracer) Create(ctx context.Context, param *iaas.IconCreateRequest) (*iaas.Icon, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IconAPI.Create", options...)
 	defer func() {
@@ -3983,7 +3983,7 @@ func (t *IconTracer) Create(ctx context.Context, param *iaas.IconCreateRequest) 
 func (t *IconTracer) Read(ctx context.Context, id types.ID) (*iaas.Icon, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IconAPI.Read", options...)
 	defer func() {
@@ -4008,8 +4008,8 @@ func (t *IconTracer) Read(ctx context.Context, id types.ID) (*iaas.Icon, error) 
 func (t *IconTracer) Update(ctx context.Context, id types.ID, param *iaas.IconUpdateRequest) (*iaas.Icon, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IconAPI.Update", options...)
 	defer func() {
@@ -4034,7 +4034,7 @@ func (t *IconTracer) Update(ctx context.Context, id types.ID, param *iaas.IconUp
 func (t *IconTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IconAPI.Delete", options...)
 	defer func() {
@@ -4076,8 +4076,8 @@ func newInterfaceTracer(in iaas.InterfaceAPI, cnf *config) iaas.InterfaceAPI {
 func (t *InterfaceTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.InterfaceFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.Find", options...)
 	defer func() {
@@ -4102,8 +4102,8 @@ func (t *InterfaceTracer) Find(ctx context.Context, zone string, conditions *iaa
 func (t *InterfaceTracer) Create(ctx context.Context, zone string, param *iaas.InterfaceCreateRequest) (*iaas.Interface, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.Create", options...)
 	defer func() {
@@ -4128,8 +4128,8 @@ func (t *InterfaceTracer) Create(ctx context.Context, zone string, param *iaas.I
 func (t *InterfaceTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Interface, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.Read", options...)
 	defer func() {
@@ -4154,9 +4154,9 @@ func (t *InterfaceTracer) Read(ctx context.Context, zone string, id types.ID) (*
 func (t *InterfaceTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.InterfaceUpdateRequest) (*iaas.Interface, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.Update", options...)
 	defer func() {
@@ -4181,8 +4181,8 @@ func (t *InterfaceTracer) Update(ctx context.Context, zone string, id types.ID, 
 func (t *InterfaceTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.Delete", options...)
 	defer func() {
@@ -4206,9 +4206,9 @@ func (t *InterfaceTracer) Delete(ctx context.Context, zone string, id types.ID) 
 func (t *InterfaceTracer) Monitor(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.InterfaceActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.Monitor", options...)
 	defer func() {
@@ -4233,8 +4233,8 @@ func (t *InterfaceTracer) Monitor(ctx context.Context, zone string, id types.ID,
 func (t *InterfaceTracer) ConnectToSharedSegment(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.ConnectToSharedSegment", options...)
 	defer func() {
@@ -4258,9 +4258,9 @@ func (t *InterfaceTracer) ConnectToSharedSegment(ctx context.Context, zone strin
 func (t *InterfaceTracer) ConnectToSwitch(ctx context.Context, zone string, id types.ID, switchID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.switchID", forceString(switchID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.switchID", forceString(switchID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.ConnectToSwitch", options...)
 	defer func() {
@@ -4284,8 +4284,8 @@ func (t *InterfaceTracer) ConnectToSwitch(ctx context.Context, zone string, id t
 func (t *InterfaceTracer) DisconnectFromSwitch(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.DisconnectFromSwitch", options...)
 	defer func() {
@@ -4309,9 +4309,9 @@ func (t *InterfaceTracer) DisconnectFromSwitch(ctx context.Context, zone string,
 func (t *InterfaceTracer) ConnectToPacketFilter(ctx context.Context, zone string, id types.ID, packetFilterID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.packetFilterID", forceString(packetFilterID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.packetFilterID", forceString(packetFilterID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.ConnectToPacketFilter", options...)
 	defer func() {
@@ -4335,8 +4335,8 @@ func (t *InterfaceTracer) ConnectToPacketFilter(ctx context.Context, zone string
 func (t *InterfaceTracer) DisconnectFromPacketFilter(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InterfaceAPI.DisconnectFromPacketFilter", options...)
 	defer func() {
@@ -4378,8 +4378,8 @@ func newInternetTracer(in iaas.InternetAPI, cnf *config) iaas.InternetAPI {
 func (t *InternetTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.InternetFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.Find", options...)
 	defer func() {
@@ -4404,8 +4404,8 @@ func (t *InternetTracer) Find(ctx context.Context, zone string, conditions *iaas
 func (t *InternetTracer) Create(ctx context.Context, zone string, param *iaas.InternetCreateRequest) (*iaas.Internet, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.Create", options...)
 	defer func() {
@@ -4430,8 +4430,8 @@ func (t *InternetTracer) Create(ctx context.Context, zone string, param *iaas.In
 func (t *InternetTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Internet, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.Read", options...)
 	defer func() {
@@ -4456,9 +4456,9 @@ func (t *InternetTracer) Read(ctx context.Context, zone string, id types.ID) (*i
 func (t *InternetTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.InternetUpdateRequest) (*iaas.Internet, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.Update", options...)
 	defer func() {
@@ -4483,8 +4483,8 @@ func (t *InternetTracer) Update(ctx context.Context, zone string, id types.ID, p
 func (t *InternetTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.Delete", options...)
 	defer func() {
@@ -4508,9 +4508,9 @@ func (t *InternetTracer) Delete(ctx context.Context, zone string, id types.ID) e
 func (t *InternetTracer) UpdateBandWidth(ctx context.Context, zone string, id types.ID, param *iaas.InternetUpdateBandWidthRequest) (*iaas.Internet, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.UpdateBandWidth", options...)
 	defer func() {
@@ -4535,9 +4535,9 @@ func (t *InternetTracer) UpdateBandWidth(ctx context.Context, zone string, id ty
 func (t *InternetTracer) AddSubnet(ctx context.Context, zone string, id types.ID, param *iaas.InternetAddSubnetRequest) (*iaas.InternetSubnetOperationResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.AddSubnet", options...)
 	defer func() {
@@ -4562,10 +4562,10 @@ func (t *InternetTracer) AddSubnet(ctx context.Context, zone string, id types.ID
 func (t *InternetTracer) UpdateSubnet(ctx context.Context, zone string, id types.ID, subnetID types.ID, param *iaas.InternetUpdateSubnetRequest) (*iaas.InternetSubnetOperationResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.subnetID", forceString(subnetID)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.subnetID", forceString(subnetID)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.UpdateSubnet", options...)
 	defer func() {
@@ -4590,9 +4590,9 @@ func (t *InternetTracer) UpdateSubnet(ctx context.Context, zone string, id types
 func (t *InternetTracer) DeleteSubnet(ctx context.Context, zone string, id types.ID, subnetID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.subnetID", forceString(subnetID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.subnetID", forceString(subnetID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.DeleteSubnet", options...)
 	defer func() {
@@ -4616,9 +4616,9 @@ func (t *InternetTracer) DeleteSubnet(ctx context.Context, zone string, id types
 func (t *InternetTracer) Monitor(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.RouterActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.Monitor", options...)
 	defer func() {
@@ -4643,9 +4643,9 @@ func (t *InternetTracer) Monitor(ctx context.Context, zone string, id types.ID, 
 func (t *InternetTracer) MonitorRouter(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.RouterActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.MonitorRouter", options...)
 	defer func() {
@@ -4670,8 +4670,8 @@ func (t *InternetTracer) MonitorRouter(ctx context.Context, zone string, id type
 func (t *InternetTracer) EnableIPv6(ctx context.Context, zone string, id types.ID) (*iaas.IPv6NetInfo, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.EnableIPv6", options...)
 	defer func() {
@@ -4696,9 +4696,9 @@ func (t *InternetTracer) EnableIPv6(ctx context.Context, zone string, id types.I
 func (t *InternetTracer) DisableIPv6(ctx context.Context, zone string, id types.ID, ipv6netID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.ipv6netID", forceString(ipv6netID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.ipv6netID", forceString(ipv6netID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetAPI.DisableIPv6", options...)
 	defer func() {
@@ -4740,8 +4740,8 @@ func newInternetPlanTracer(in iaas.InternetPlanAPI, cnf *config) iaas.InternetPl
 func (t *InternetPlanTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.InternetPlanFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetPlanAPI.Find", options...)
 	defer func() {
@@ -4766,8 +4766,8 @@ func (t *InternetPlanTracer) Find(ctx context.Context, zone string, conditions *
 func (t *InternetPlanTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.InternetPlan, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "InternetPlanAPI.Read", options...)
 	defer func() {
@@ -4810,7 +4810,7 @@ func newIPAddressTracer(in iaas.IPAddressAPI, cnf *config) iaas.IPAddressAPI {
 func (t *IPAddressTracer) List(ctx context.Context, zone string) (*iaas.IPAddressListResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.zone", zone),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPAddressAPI.List", options...)
 	defer func() {
@@ -4835,8 +4835,8 @@ func (t *IPAddressTracer) List(ctx context.Context, zone string) (*iaas.IPAddres
 func (t *IPAddressTracer) Read(ctx context.Context, zone string, ipAddress string) (*iaas.IPAddress, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.ipAddress", forceString(ipAddress)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.ipAddress", forceString(ipAddress)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPAddressAPI.Read", options...)
 	defer func() {
@@ -4861,9 +4861,9 @@ func (t *IPAddressTracer) Read(ctx context.Context, zone string, ipAddress strin
 func (t *IPAddressTracer) UpdateHostName(ctx context.Context, zone string, ipAddress string, hostName string) (*iaas.IPAddress, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.ipAddress", forceString(ipAddress)),
-		attribute.String("libiaas.api.arguments.hostName", forceString(hostName)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.ipAddress", forceString(ipAddress)),
+		attribute.String("sacloud.api.arguments.hostName", forceString(hostName)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPAddressAPI.UpdateHostName", options...)
 	defer func() {
@@ -4906,7 +4906,7 @@ func newIPv6NetTracer(in iaas.IPv6NetAPI, cnf *config) iaas.IPv6NetAPI {
 func (t *IPv6NetTracer) List(ctx context.Context, zone string) (*iaas.IPv6NetListResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.zone", zone),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6NetAPI.List", options...)
 	defer func() {
@@ -4931,8 +4931,8 @@ func (t *IPv6NetTracer) List(ctx context.Context, zone string) (*iaas.IPv6NetLis
 func (t *IPv6NetTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.IPv6NetFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6NetAPI.Find", options...)
 	defer func() {
@@ -4957,8 +4957,8 @@ func (t *IPv6NetTracer) Find(ctx context.Context, zone string, conditions *iaas.
 func (t *IPv6NetTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.IPv6Net, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6NetAPI.Read", options...)
 	defer func() {
@@ -5001,8 +5001,8 @@ func newIPv6AddrTracer(in iaas.IPv6AddrAPI, cnf *config) iaas.IPv6AddrAPI {
 func (t *IPv6AddrTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.IPv6AddrFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6AddrAPI.Find", options...)
 	defer func() {
@@ -5027,8 +5027,8 @@ func (t *IPv6AddrTracer) Find(ctx context.Context, zone string, conditions *iaas
 func (t *IPv6AddrTracer) Create(ctx context.Context, zone string, param *iaas.IPv6AddrCreateRequest) (*iaas.IPv6Addr, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6AddrAPI.Create", options...)
 	defer func() {
@@ -5053,8 +5053,8 @@ func (t *IPv6AddrTracer) Create(ctx context.Context, zone string, param *iaas.IP
 func (t *IPv6AddrTracer) Read(ctx context.Context, zone string, ipv6addr string) (*iaas.IPv6Addr, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.ipv6addr", forceString(ipv6addr)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.ipv6addr", forceString(ipv6addr)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6AddrAPI.Read", options...)
 	defer func() {
@@ -5079,9 +5079,9 @@ func (t *IPv6AddrTracer) Read(ctx context.Context, zone string, ipv6addr string)
 func (t *IPv6AddrTracer) Update(ctx context.Context, zone string, ipv6addr string, param *iaas.IPv6AddrUpdateRequest) (*iaas.IPv6Addr, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.ipv6addr", forceString(ipv6addr)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.ipv6addr", forceString(ipv6addr)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6AddrAPI.Update", options...)
 	defer func() {
@@ -5106,8 +5106,8 @@ func (t *IPv6AddrTracer) Update(ctx context.Context, zone string, ipv6addr strin
 func (t *IPv6AddrTracer) Delete(ctx context.Context, zone string, ipv6addr string) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.ipv6addr", forceString(ipv6addr)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.ipv6addr", forceString(ipv6addr)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "IPv6AddrAPI.Delete", options...)
 	defer func() {
@@ -5149,7 +5149,7 @@ func newLicenseTracer(in iaas.LicenseAPI, cnf *config) iaas.LicenseAPI {
 func (t *LicenseTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.LicenseFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseAPI.Find", options...)
 	defer func() {
@@ -5174,7 +5174,7 @@ func (t *LicenseTracer) Find(ctx context.Context, conditions *iaas.FindCondition
 func (t *LicenseTracer) Create(ctx context.Context, param *iaas.LicenseCreateRequest) (*iaas.License, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseAPI.Create", options...)
 	defer func() {
@@ -5199,7 +5199,7 @@ func (t *LicenseTracer) Create(ctx context.Context, param *iaas.LicenseCreateReq
 func (t *LicenseTracer) Read(ctx context.Context, id types.ID) (*iaas.License, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseAPI.Read", options...)
 	defer func() {
@@ -5224,8 +5224,8 @@ func (t *LicenseTracer) Read(ctx context.Context, id types.ID) (*iaas.License, e
 func (t *LicenseTracer) Update(ctx context.Context, id types.ID, param *iaas.LicenseUpdateRequest) (*iaas.License, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseAPI.Update", options...)
 	defer func() {
@@ -5250,7 +5250,7 @@ func (t *LicenseTracer) Update(ctx context.Context, id types.ID, param *iaas.Lic
 func (t *LicenseTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseAPI.Delete", options...)
 	defer func() {
@@ -5292,7 +5292,7 @@ func newLicenseInfoTracer(in iaas.LicenseInfoAPI, cnf *config) iaas.LicenseInfoA
 func (t *LicenseInfoTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.LicenseInfoFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseInfoAPI.Find", options...)
 	defer func() {
@@ -5317,7 +5317,7 @@ func (t *LicenseInfoTracer) Find(ctx context.Context, conditions *iaas.FindCondi
 func (t *LicenseInfoTracer) Read(ctx context.Context, id types.ID) (*iaas.LicenseInfo, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LicenseInfoAPI.Read", options...)
 	defer func() {
@@ -5360,8 +5360,8 @@ func newLoadBalancerTracer(in iaas.LoadBalancerAPI, cnf *config) iaas.LoadBalanc
 func (t *LoadBalancerTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.LoadBalancerFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Find", options...)
 	defer func() {
@@ -5386,8 +5386,8 @@ func (t *LoadBalancerTracer) Find(ctx context.Context, zone string, conditions *
 func (t *LoadBalancerTracer) Create(ctx context.Context, zone string, param *iaas.LoadBalancerCreateRequest) (*iaas.LoadBalancer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Create", options...)
 	defer func() {
@@ -5412,8 +5412,8 @@ func (t *LoadBalancerTracer) Create(ctx context.Context, zone string, param *iaa
 func (t *LoadBalancerTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.LoadBalancer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Read", options...)
 	defer func() {
@@ -5438,9 +5438,9 @@ func (t *LoadBalancerTracer) Read(ctx context.Context, zone string, id types.ID)
 func (t *LoadBalancerTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.LoadBalancerUpdateRequest) (*iaas.LoadBalancer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Update", options...)
 	defer func() {
@@ -5465,9 +5465,9 @@ func (t *LoadBalancerTracer) Update(ctx context.Context, zone string, id types.I
 func (t *LoadBalancerTracer) UpdateSettings(ctx context.Context, zone string, id types.ID, param *iaas.LoadBalancerUpdateSettingsRequest) (*iaas.LoadBalancer, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.UpdateSettings", options...)
 	defer func() {
@@ -5492,8 +5492,8 @@ func (t *LoadBalancerTracer) UpdateSettings(ctx context.Context, zone string, id
 func (t *LoadBalancerTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Delete", options...)
 	defer func() {
@@ -5517,8 +5517,8 @@ func (t *LoadBalancerTracer) Delete(ctx context.Context, zone string, id types.I
 func (t *LoadBalancerTracer) Config(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Config", options...)
 	defer func() {
@@ -5542,8 +5542,8 @@ func (t *LoadBalancerTracer) Config(ctx context.Context, zone string, id types.I
 func (t *LoadBalancerTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Boot", options...)
 	defer func() {
@@ -5567,9 +5567,9 @@ func (t *LoadBalancerTracer) Boot(ctx context.Context, zone string, id types.ID)
 func (t *LoadBalancerTracer) Shutdown(ctx context.Context, zone string, id types.ID, shutdownOption *iaas.ShutdownOption) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.shutdownOption", forceString(shutdownOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.shutdownOption", forceString(shutdownOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Shutdown", options...)
 	defer func() {
@@ -5593,8 +5593,8 @@ func (t *LoadBalancerTracer) Shutdown(ctx context.Context, zone string, id types
 func (t *LoadBalancerTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Reset", options...)
 	defer func() {
@@ -5618,9 +5618,9 @@ func (t *LoadBalancerTracer) Reset(ctx context.Context, zone string, id types.ID
 func (t *LoadBalancerTracer) MonitorCPU(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.CPUTimeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.MonitorCPU", options...)
 	defer func() {
@@ -5645,9 +5645,9 @@ func (t *LoadBalancerTracer) MonitorCPU(ctx context.Context, zone string, id typ
 func (t *LoadBalancerTracer) MonitorInterface(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.InterfaceActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.MonitorInterface", options...)
 	defer func() {
@@ -5672,8 +5672,8 @@ func (t *LoadBalancerTracer) MonitorInterface(ctx context.Context, zone string, 
 func (t *LoadBalancerTracer) Status(ctx context.Context, zone string, id types.ID) (*iaas.LoadBalancerStatusResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LoadBalancerAPI.Status", options...)
 	defer func() {
@@ -5716,7 +5716,7 @@ func newLocalRouterTracer(in iaas.LocalRouterAPI, cnf *config) iaas.LocalRouterA
 func (t *LocalRouterTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.LocalRouterFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.Find", options...)
 	defer func() {
@@ -5741,7 +5741,7 @@ func (t *LocalRouterTracer) Find(ctx context.Context, conditions *iaas.FindCondi
 func (t *LocalRouterTracer) Create(ctx context.Context, param *iaas.LocalRouterCreateRequest) (*iaas.LocalRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.Create", options...)
 	defer func() {
@@ -5766,7 +5766,7 @@ func (t *LocalRouterTracer) Create(ctx context.Context, param *iaas.LocalRouterC
 func (t *LocalRouterTracer) Read(ctx context.Context, id types.ID) (*iaas.LocalRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.Read", options...)
 	defer func() {
@@ -5791,8 +5791,8 @@ func (t *LocalRouterTracer) Read(ctx context.Context, id types.ID) (*iaas.LocalR
 func (t *LocalRouterTracer) Update(ctx context.Context, id types.ID, param *iaas.LocalRouterUpdateRequest) (*iaas.LocalRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.Update", options...)
 	defer func() {
@@ -5817,8 +5817,8 @@ func (t *LocalRouterTracer) Update(ctx context.Context, id types.ID, param *iaas
 func (t *LocalRouterTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.LocalRouterUpdateSettingsRequest) (*iaas.LocalRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.UpdateSettings", options...)
 	defer func() {
@@ -5843,7 +5843,7 @@ func (t *LocalRouterTracer) UpdateSettings(ctx context.Context, id types.ID, par
 func (t *LocalRouterTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.Delete", options...)
 	defer func() {
@@ -5867,7 +5867,7 @@ func (t *LocalRouterTracer) Delete(ctx context.Context, id types.ID) error {
 func (t *LocalRouterTracer) HealthStatus(ctx context.Context, id types.ID) (*iaas.LocalRouterHealth, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.HealthStatus", options...)
 	defer func() {
@@ -5892,8 +5892,8 @@ func (t *LocalRouterTracer) HealthStatus(ctx context.Context, id types.ID) (*iaa
 func (t *LocalRouterTracer) MonitorLocalRouter(ctx context.Context, id types.ID, condition *iaas.MonitorCondition) (*iaas.LocalRouterActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "LocalRouterAPI.MonitorLocalRouter", options...)
 	defer func() {
@@ -5936,8 +5936,8 @@ func newMobileGatewayTracer(in iaas.MobileGatewayAPI, cnf *config) iaas.MobileGa
 func (t *MobileGatewayTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.MobileGatewayFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Find", options...)
 	defer func() {
@@ -5962,8 +5962,8 @@ func (t *MobileGatewayTracer) Find(ctx context.Context, zone string, conditions 
 func (t *MobileGatewayTracer) Create(ctx context.Context, zone string, param *iaas.MobileGatewayCreateRequest) (*iaas.MobileGateway, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Create", options...)
 	defer func() {
@@ -5988,8 +5988,8 @@ func (t *MobileGatewayTracer) Create(ctx context.Context, zone string, param *ia
 func (t *MobileGatewayTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.MobileGateway, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Read", options...)
 	defer func() {
@@ -6014,9 +6014,9 @@ func (t *MobileGatewayTracer) Read(ctx context.Context, zone string, id types.ID
 func (t *MobileGatewayTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.MobileGatewayUpdateRequest) (*iaas.MobileGateway, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Update", options...)
 	defer func() {
@@ -6041,9 +6041,9 @@ func (t *MobileGatewayTracer) Update(ctx context.Context, zone string, id types.
 func (t *MobileGatewayTracer) UpdateSettings(ctx context.Context, zone string, id types.ID, param *iaas.MobileGatewayUpdateSettingsRequest) (*iaas.MobileGateway, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.UpdateSettings", options...)
 	defer func() {
@@ -6068,8 +6068,8 @@ func (t *MobileGatewayTracer) UpdateSettings(ctx context.Context, zone string, i
 func (t *MobileGatewayTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Delete", options...)
 	defer func() {
@@ -6093,8 +6093,8 @@ func (t *MobileGatewayTracer) Delete(ctx context.Context, zone string, id types.
 func (t *MobileGatewayTracer) Config(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Config", options...)
 	defer func() {
@@ -6118,8 +6118,8 @@ func (t *MobileGatewayTracer) Config(ctx context.Context, zone string, id types.
 func (t *MobileGatewayTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Boot", options...)
 	defer func() {
@@ -6143,9 +6143,9 @@ func (t *MobileGatewayTracer) Boot(ctx context.Context, zone string, id types.ID
 func (t *MobileGatewayTracer) Shutdown(ctx context.Context, zone string, id types.ID, shutdownOption *iaas.ShutdownOption) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.shutdownOption", forceString(shutdownOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.shutdownOption", forceString(shutdownOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Shutdown", options...)
 	defer func() {
@@ -6169,8 +6169,8 @@ func (t *MobileGatewayTracer) Shutdown(ctx context.Context, zone string, id type
 func (t *MobileGatewayTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Reset", options...)
 	defer func() {
@@ -6194,9 +6194,9 @@ func (t *MobileGatewayTracer) Reset(ctx context.Context, zone string, id types.I
 func (t *MobileGatewayTracer) ConnectToSwitch(ctx context.Context, zone string, id types.ID, switchID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.switchID", forceString(switchID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.switchID", forceString(switchID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.ConnectToSwitch", options...)
 	defer func() {
@@ -6220,8 +6220,8 @@ func (t *MobileGatewayTracer) ConnectToSwitch(ctx context.Context, zone string, 
 func (t *MobileGatewayTracer) DisconnectFromSwitch(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.DisconnectFromSwitch", options...)
 	defer func() {
@@ -6245,8 +6245,8 @@ func (t *MobileGatewayTracer) DisconnectFromSwitch(ctx context.Context, zone str
 func (t *MobileGatewayTracer) GetDNS(ctx context.Context, zone string, id types.ID) (*iaas.MobileGatewayDNSSetting, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.GetDNS", options...)
 	defer func() {
@@ -6271,9 +6271,9 @@ func (t *MobileGatewayTracer) GetDNS(ctx context.Context, zone string, id types.
 func (t *MobileGatewayTracer) SetDNS(ctx context.Context, zone string, id types.ID, param *iaas.MobileGatewayDNSSetting) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.SetDNS", options...)
 	defer func() {
@@ -6297,8 +6297,8 @@ func (t *MobileGatewayTracer) SetDNS(ctx context.Context, zone string, id types.
 func (t *MobileGatewayTracer) GetSIMRoutes(ctx context.Context, zone string, id types.ID) (iaas.MobileGatewaySIMRoutes, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.GetSIMRoutes", options...)
 	defer func() {
@@ -6323,9 +6323,9 @@ func (t *MobileGatewayTracer) GetSIMRoutes(ctx context.Context, zone string, id 
 func (t *MobileGatewayTracer) SetSIMRoutes(ctx context.Context, zone string, id types.ID, param []*iaas.MobileGatewaySIMRouteParam) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.SetSIMRoutes", options...)
 	defer func() {
@@ -6349,8 +6349,8 @@ func (t *MobileGatewayTracer) SetSIMRoutes(ctx context.Context, zone string, id 
 func (t *MobileGatewayTracer) ListSIM(ctx context.Context, zone string, id types.ID) (iaas.MobileGatewaySIMs, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.ListSIM", options...)
 	defer func() {
@@ -6375,9 +6375,9 @@ func (t *MobileGatewayTracer) ListSIM(ctx context.Context, zone string, id types
 func (t *MobileGatewayTracer) AddSIM(ctx context.Context, zone string, id types.ID, param *iaas.MobileGatewayAddSIMRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.AddSIM", options...)
 	defer func() {
@@ -6401,9 +6401,9 @@ func (t *MobileGatewayTracer) AddSIM(ctx context.Context, zone string, id types.
 func (t *MobileGatewayTracer) DeleteSIM(ctx context.Context, zone string, id types.ID, simID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.simID", forceString(simID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.simID", forceString(simID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.DeleteSIM", options...)
 	defer func() {
@@ -6427,8 +6427,8 @@ func (t *MobileGatewayTracer) DeleteSIM(ctx context.Context, zone string, id typ
 func (t *MobileGatewayTracer) Logs(ctx context.Context, zone string, id types.ID) ([]*iaas.MobileGatewaySIMLogs, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.Logs", options...)
 	defer func() {
@@ -6453,8 +6453,8 @@ func (t *MobileGatewayTracer) Logs(ctx context.Context, zone string, id types.ID
 func (t *MobileGatewayTracer) GetTrafficConfig(ctx context.Context, zone string, id types.ID) (*iaas.MobileGatewayTrafficControl, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.GetTrafficConfig", options...)
 	defer func() {
@@ -6479,9 +6479,9 @@ func (t *MobileGatewayTracer) GetTrafficConfig(ctx context.Context, zone string,
 func (t *MobileGatewayTracer) SetTrafficConfig(ctx context.Context, zone string, id types.ID, param *iaas.MobileGatewayTrafficControl) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.SetTrafficConfig", options...)
 	defer func() {
@@ -6505,8 +6505,8 @@ func (t *MobileGatewayTracer) SetTrafficConfig(ctx context.Context, zone string,
 func (t *MobileGatewayTracer) DeleteTrafficConfig(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.DeleteTrafficConfig", options...)
 	defer func() {
@@ -6530,8 +6530,8 @@ func (t *MobileGatewayTracer) DeleteTrafficConfig(ctx context.Context, zone stri
 func (t *MobileGatewayTracer) TrafficStatus(ctx context.Context, zone string, id types.ID) (*iaas.MobileGatewayTrafficStatus, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.TrafficStatus", options...)
 	defer func() {
@@ -6556,10 +6556,10 @@ func (t *MobileGatewayTracer) TrafficStatus(ctx context.Context, zone string, id
 func (t *MobileGatewayTracer) MonitorInterface(ctx context.Context, zone string, id types.ID, index int, condition *iaas.MonitorCondition) (*iaas.InterfaceActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.index", forceString(index)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.index", forceString(index)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "MobileGatewayAPI.MonitorInterface", options...)
 	defer func() {
@@ -6602,8 +6602,8 @@ func newNFSTracer(in iaas.NFSAPI, cnf *config) iaas.NFSAPI {
 func (t *NFSTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.NFSFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Find", options...)
 	defer func() {
@@ -6628,8 +6628,8 @@ func (t *NFSTracer) Find(ctx context.Context, zone string, conditions *iaas.Find
 func (t *NFSTracer) Create(ctx context.Context, zone string, param *iaas.NFSCreateRequest) (*iaas.NFS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Create", options...)
 	defer func() {
@@ -6654,8 +6654,8 @@ func (t *NFSTracer) Create(ctx context.Context, zone string, param *iaas.NFSCrea
 func (t *NFSTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.NFS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Read", options...)
 	defer func() {
@@ -6680,9 +6680,9 @@ func (t *NFSTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.N
 func (t *NFSTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.NFSUpdateRequest) (*iaas.NFS, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Update", options...)
 	defer func() {
@@ -6707,8 +6707,8 @@ func (t *NFSTracer) Update(ctx context.Context, zone string, id types.ID, param 
 func (t *NFSTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Delete", options...)
 	defer func() {
@@ -6732,8 +6732,8 @@ func (t *NFSTracer) Delete(ctx context.Context, zone string, id types.ID) error 
 func (t *NFSTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Boot", options...)
 	defer func() {
@@ -6757,9 +6757,9 @@ func (t *NFSTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 func (t *NFSTracer) Shutdown(ctx context.Context, zone string, id types.ID, shutdownOption *iaas.ShutdownOption) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.shutdownOption", forceString(shutdownOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.shutdownOption", forceString(shutdownOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Shutdown", options...)
 	defer func() {
@@ -6783,8 +6783,8 @@ func (t *NFSTracer) Shutdown(ctx context.Context, zone string, id types.ID, shut
 func (t *NFSTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.Reset", options...)
 	defer func() {
@@ -6808,9 +6808,9 @@ func (t *NFSTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 func (t *NFSTracer) MonitorCPU(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.CPUTimeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.MonitorCPU", options...)
 	defer func() {
@@ -6835,9 +6835,9 @@ func (t *NFSTracer) MonitorCPU(ctx context.Context, zone string, id types.ID, co
 func (t *NFSTracer) MonitorFreeDiskSize(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.FreeDiskSizeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.MonitorFreeDiskSize", options...)
 	defer func() {
@@ -6862,9 +6862,9 @@ func (t *NFSTracer) MonitorFreeDiskSize(ctx context.Context, zone string, id typ
 func (t *NFSTracer) MonitorInterface(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.InterfaceActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NFSAPI.MonitorInterface", options...)
 	defer func() {
@@ -6907,7 +6907,7 @@ func newNoteTracer(in iaas.NoteAPI, cnf *config) iaas.NoteAPI {
 func (t *NoteTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.NoteFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NoteAPI.Find", options...)
 	defer func() {
@@ -6932,7 +6932,7 @@ func (t *NoteTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (
 func (t *NoteTracer) Create(ctx context.Context, param *iaas.NoteCreateRequest) (*iaas.Note, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NoteAPI.Create", options...)
 	defer func() {
@@ -6957,7 +6957,7 @@ func (t *NoteTracer) Create(ctx context.Context, param *iaas.NoteCreateRequest) 
 func (t *NoteTracer) Read(ctx context.Context, id types.ID) (*iaas.Note, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NoteAPI.Read", options...)
 	defer func() {
@@ -6982,8 +6982,8 @@ func (t *NoteTracer) Read(ctx context.Context, id types.ID) (*iaas.Note, error) 
 func (t *NoteTracer) Update(ctx context.Context, id types.ID, param *iaas.NoteUpdateRequest) (*iaas.Note, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NoteAPI.Update", options...)
 	defer func() {
@@ -7008,7 +7008,7 @@ func (t *NoteTracer) Update(ctx context.Context, id types.ID, param *iaas.NoteUp
 func (t *NoteTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "NoteAPI.Delete", options...)
 	defer func() {
@@ -7050,8 +7050,8 @@ func newPacketFilterTracer(in iaas.PacketFilterAPI, cnf *config) iaas.PacketFilt
 func (t *PacketFilterTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.PacketFilterFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PacketFilterAPI.Find", options...)
 	defer func() {
@@ -7076,8 +7076,8 @@ func (t *PacketFilterTracer) Find(ctx context.Context, zone string, conditions *
 func (t *PacketFilterTracer) Create(ctx context.Context, zone string, param *iaas.PacketFilterCreateRequest) (*iaas.PacketFilter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PacketFilterAPI.Create", options...)
 	defer func() {
@@ -7102,8 +7102,8 @@ func (t *PacketFilterTracer) Create(ctx context.Context, zone string, param *iaa
 func (t *PacketFilterTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.PacketFilter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PacketFilterAPI.Read", options...)
 	defer func() {
@@ -7128,10 +7128,10 @@ func (t *PacketFilterTracer) Read(ctx context.Context, zone string, id types.ID)
 func (t *PacketFilterTracer) Update(ctx context.Context, zone string, id types.ID, updateParam *iaas.PacketFilterUpdateRequest, originalExpressionHash string) (*iaas.PacketFilter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.updateParam", forceString(updateParam)),
-		attribute.String("libiaas.api.arguments.originalExpressionHash", forceString(originalExpressionHash)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.updateParam", forceString(updateParam)),
+		attribute.String("sacloud.api.arguments.originalExpressionHash", forceString(originalExpressionHash)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PacketFilterAPI.Update", options...)
 	defer func() {
@@ -7156,8 +7156,8 @@ func (t *PacketFilterTracer) Update(ctx context.Context, zone string, id types.I
 func (t *PacketFilterTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PacketFilterAPI.Delete", options...)
 	defer func() {
@@ -7199,8 +7199,8 @@ func newPrivateHostTracer(in iaas.PrivateHostAPI, cnf *config) iaas.PrivateHostA
 func (t *PrivateHostTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.PrivateHostFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostAPI.Find", options...)
 	defer func() {
@@ -7225,8 +7225,8 @@ func (t *PrivateHostTracer) Find(ctx context.Context, zone string, conditions *i
 func (t *PrivateHostTracer) Create(ctx context.Context, zone string, param *iaas.PrivateHostCreateRequest) (*iaas.PrivateHost, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostAPI.Create", options...)
 	defer func() {
@@ -7251,8 +7251,8 @@ func (t *PrivateHostTracer) Create(ctx context.Context, zone string, param *iaas
 func (t *PrivateHostTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.PrivateHost, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostAPI.Read", options...)
 	defer func() {
@@ -7277,9 +7277,9 @@ func (t *PrivateHostTracer) Read(ctx context.Context, zone string, id types.ID) 
 func (t *PrivateHostTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.PrivateHostUpdateRequest) (*iaas.PrivateHost, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostAPI.Update", options...)
 	defer func() {
@@ -7304,8 +7304,8 @@ func (t *PrivateHostTracer) Update(ctx context.Context, zone string, id types.ID
 func (t *PrivateHostTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostAPI.Delete", options...)
 	defer func() {
@@ -7347,8 +7347,8 @@ func newPrivateHostPlanTracer(in iaas.PrivateHostPlanAPI, cnf *config) iaas.Priv
 func (t *PrivateHostPlanTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.PrivateHostPlanFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostPlanAPI.Find", options...)
 	defer func() {
@@ -7373,8 +7373,8 @@ func (t *PrivateHostPlanTracer) Find(ctx context.Context, zone string, condition
 func (t *PrivateHostPlanTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.PrivateHostPlan, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostPlanAPI.Read", options...)
 	defer func() {
@@ -7417,7 +7417,7 @@ func newProxyLBTracer(in iaas.ProxyLBAPI, cnf *config) iaas.ProxyLBAPI {
 func (t *ProxyLBTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.ProxyLBFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.Find", options...)
 	defer func() {
@@ -7442,7 +7442,7 @@ func (t *ProxyLBTracer) Find(ctx context.Context, conditions *iaas.FindCondition
 func (t *ProxyLBTracer) Create(ctx context.Context, param *iaas.ProxyLBCreateRequest) (*iaas.ProxyLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.Create", options...)
 	defer func() {
@@ -7467,7 +7467,7 @@ func (t *ProxyLBTracer) Create(ctx context.Context, param *iaas.ProxyLBCreateReq
 func (t *ProxyLBTracer) Read(ctx context.Context, id types.ID) (*iaas.ProxyLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.Read", options...)
 	defer func() {
@@ -7492,8 +7492,8 @@ func (t *ProxyLBTracer) Read(ctx context.Context, id types.ID) (*iaas.ProxyLB, e
 func (t *ProxyLBTracer) Update(ctx context.Context, id types.ID, param *iaas.ProxyLBUpdateRequest) (*iaas.ProxyLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.Update", options...)
 	defer func() {
@@ -7518,8 +7518,8 @@ func (t *ProxyLBTracer) Update(ctx context.Context, id types.ID, param *iaas.Pro
 func (t *ProxyLBTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.ProxyLBUpdateSettingsRequest) (*iaas.ProxyLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.UpdateSettings", options...)
 	defer func() {
@@ -7544,7 +7544,7 @@ func (t *ProxyLBTracer) UpdateSettings(ctx context.Context, id types.ID, param *
 func (t *ProxyLBTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.Delete", options...)
 	defer func() {
@@ -7568,8 +7568,8 @@ func (t *ProxyLBTracer) Delete(ctx context.Context, id types.ID) error {
 func (t *ProxyLBTracer) ChangePlan(ctx context.Context, id types.ID, param *iaas.ProxyLBChangePlanRequest) (*iaas.ProxyLB, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.ChangePlan", options...)
 	defer func() {
@@ -7594,7 +7594,7 @@ func (t *ProxyLBTracer) ChangePlan(ctx context.Context, id types.ID, param *iaas
 func (t *ProxyLBTracer) GetCertificates(ctx context.Context, id types.ID) (*iaas.ProxyLBCertificates, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.GetCertificates", options...)
 	defer func() {
@@ -7619,8 +7619,8 @@ func (t *ProxyLBTracer) GetCertificates(ctx context.Context, id types.ID) (*iaas
 func (t *ProxyLBTracer) SetCertificates(ctx context.Context, id types.ID, param *iaas.ProxyLBSetCertificatesRequest) (*iaas.ProxyLBCertificates, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.SetCertificates", options...)
 	defer func() {
@@ -7645,7 +7645,7 @@ func (t *ProxyLBTracer) SetCertificates(ctx context.Context, id types.ID, param 
 func (t *ProxyLBTracer) DeleteCertificates(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.DeleteCertificates", options...)
 	defer func() {
@@ -7669,7 +7669,7 @@ func (t *ProxyLBTracer) DeleteCertificates(ctx context.Context, id types.ID) err
 func (t *ProxyLBTracer) RenewLetsEncryptCert(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.RenewLetsEncryptCert", options...)
 	defer func() {
@@ -7693,7 +7693,7 @@ func (t *ProxyLBTracer) RenewLetsEncryptCert(ctx context.Context, id types.ID) e
 func (t *ProxyLBTracer) HealthStatus(ctx context.Context, id types.ID) (*iaas.ProxyLBHealth, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.HealthStatus", options...)
 	defer func() {
@@ -7718,8 +7718,8 @@ func (t *ProxyLBTracer) HealthStatus(ctx context.Context, id types.ID) (*iaas.Pr
 func (t *ProxyLBTracer) MonitorConnection(ctx context.Context, id types.ID, condition *iaas.MonitorCondition) (*iaas.ConnectionActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ProxyLBAPI.MonitorConnection", options...)
 	defer func() {
@@ -7762,7 +7762,7 @@ func newRegionTracer(in iaas.RegionAPI, cnf *config) iaas.RegionAPI {
 func (t *RegionTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.RegionFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "RegionAPI.Find", options...)
 	defer func() {
@@ -7787,7 +7787,7 @@ func (t *RegionTracer) Find(ctx context.Context, conditions *iaas.FindCondition)
 func (t *RegionTracer) Read(ctx context.Context, id types.ID) (*iaas.Region, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "RegionAPI.Read", options...)
 	defer func() {
@@ -7830,8 +7830,8 @@ func newServerTracer(in iaas.ServerAPI, cnf *config) iaas.ServerAPI {
 func (t *ServerTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.ServerFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Find", options...)
 	defer func() {
@@ -7856,8 +7856,8 @@ func (t *ServerTracer) Find(ctx context.Context, zone string, conditions *iaas.F
 func (t *ServerTracer) Create(ctx context.Context, zone string, param *iaas.ServerCreateRequest) (*iaas.Server, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Create", options...)
 	defer func() {
@@ -7882,8 +7882,8 @@ func (t *ServerTracer) Create(ctx context.Context, zone string, param *iaas.Serv
 func (t *ServerTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Server, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Read", options...)
 	defer func() {
@@ -7908,9 +7908,9 @@ func (t *ServerTracer) Read(ctx context.Context, zone string, id types.ID) (*iaa
 func (t *ServerTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.ServerUpdateRequest) (*iaas.Server, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Update", options...)
 	defer func() {
@@ -7935,8 +7935,8 @@ func (t *ServerTracer) Update(ctx context.Context, zone string, id types.ID, par
 func (t *ServerTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Delete", options...)
 	defer func() {
@@ -7960,9 +7960,9 @@ func (t *ServerTracer) Delete(ctx context.Context, zone string, id types.ID) err
 func (t *ServerTracer) DeleteWithDisks(ctx context.Context, zone string, id types.ID, disks *iaas.ServerDeleteWithDisksRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.disks", forceString(disks)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.disks", forceString(disks)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.DeleteWithDisks", options...)
 	defer func() {
@@ -7986,9 +7986,9 @@ func (t *ServerTracer) DeleteWithDisks(ctx context.Context, zone string, id type
 func (t *ServerTracer) ChangePlan(ctx context.Context, zone string, id types.ID, plan *iaas.ServerChangePlanRequest) (*iaas.Server, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.plan", forceString(plan)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.plan", forceString(plan)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.ChangePlan", options...)
 	defer func() {
@@ -8013,9 +8013,9 @@ func (t *ServerTracer) ChangePlan(ctx context.Context, zone string, id types.ID,
 func (t *ServerTracer) InsertCDROM(ctx context.Context, zone string, id types.ID, insertParam *iaas.InsertCDROMRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.insertParam", forceString(insertParam)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.insertParam", forceString(insertParam)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.InsertCDROM", options...)
 	defer func() {
@@ -8039,9 +8039,9 @@ func (t *ServerTracer) InsertCDROM(ctx context.Context, zone string, id types.ID
 func (t *ServerTracer) EjectCDROM(ctx context.Context, zone string, id types.ID, ejectParam *iaas.EjectCDROMRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.ejectParam", forceString(ejectParam)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.ejectParam", forceString(ejectParam)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.EjectCDROM", options...)
 	defer func() {
@@ -8065,8 +8065,8 @@ func (t *ServerTracer) EjectCDROM(ctx context.Context, zone string, id types.ID,
 func (t *ServerTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Boot", options...)
 	defer func() {
@@ -8090,9 +8090,9 @@ func (t *ServerTracer) Boot(ctx context.Context, zone string, id types.ID) error
 func (t *ServerTracer) Shutdown(ctx context.Context, zone string, id types.ID, shutdownOption *iaas.ShutdownOption) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.shutdownOption", forceString(shutdownOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.shutdownOption", forceString(shutdownOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Shutdown", options...)
 	defer func() {
@@ -8116,8 +8116,8 @@ func (t *ServerTracer) Shutdown(ctx context.Context, zone string, id types.ID, s
 func (t *ServerTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Reset", options...)
 	defer func() {
@@ -8141,9 +8141,9 @@ func (t *ServerTracer) Reset(ctx context.Context, zone string, id types.ID) erro
 func (t *ServerTracer) BootWithVariables(ctx context.Context, zone string, id types.ID, param *iaas.ServerBootVariables) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.BootWithVariables", options...)
 	defer func() {
@@ -8167,9 +8167,9 @@ func (t *ServerTracer) BootWithVariables(ctx context.Context, zone string, id ty
 func (t *ServerTracer) SendKey(ctx context.Context, zone string, id types.ID, keyboardParam *iaas.SendKeyRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.keyboardParam", forceString(keyboardParam)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.keyboardParam", forceString(keyboardParam)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.SendKey", options...)
 	defer func() {
@@ -8193,8 +8193,8 @@ func (t *ServerTracer) SendKey(ctx context.Context, zone string, id types.ID, ke
 func (t *ServerTracer) SendNMI(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.SendNMI", options...)
 	defer func() {
@@ -8218,8 +8218,8 @@ func (t *ServerTracer) SendNMI(ctx context.Context, zone string, id types.ID) er
 func (t *ServerTracer) GetVNCProxy(ctx context.Context, zone string, id types.ID) (*iaas.VNCProxyInfo, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.GetVNCProxy", options...)
 	defer func() {
@@ -8244,9 +8244,9 @@ func (t *ServerTracer) GetVNCProxy(ctx context.Context, zone string, id types.ID
 func (t *ServerTracer) Monitor(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.CPUTimeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.Monitor", options...)
 	defer func() {
@@ -8271,9 +8271,9 @@ func (t *ServerTracer) Monitor(ctx context.Context, zone string, id types.ID, co
 func (t *ServerTracer) MonitorCPU(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.CPUTimeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerAPI.MonitorCPU", options...)
 	defer func() {
@@ -8316,8 +8316,8 @@ func newServerPlanTracer(in iaas.ServerPlanAPI, cnf *config) iaas.ServerPlanAPI 
 func (t *ServerPlanTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.ServerPlanFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerPlanAPI.Find", options...)
 	defer func() {
@@ -8342,8 +8342,8 @@ func (t *ServerPlanTracer) Find(ctx context.Context, zone string, conditions *ia
 func (t *ServerPlanTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.ServerPlan, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServerPlanAPI.Read", options...)
 	defer func() {
@@ -8386,8 +8386,8 @@ func newServiceClassTracer(in iaas.ServiceClassAPI, cnf *config) iaas.ServiceCla
 func (t *ServiceClassTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.ServiceClassFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ServiceClassAPI.Find", options...)
 	defer func() {
@@ -8430,7 +8430,7 @@ func newSIMTracer(in iaas.SIMAPI, cnf *config) iaas.SIMAPI {
 func (t *SIMTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SIMFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Find", options...)
 	defer func() {
@@ -8455,7 +8455,7 @@ func (t *SIMTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*
 func (t *SIMTracer) Create(ctx context.Context, param *iaas.SIMCreateRequest) (*iaas.SIM, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Create", options...)
 	defer func() {
@@ -8480,7 +8480,7 @@ func (t *SIMTracer) Create(ctx context.Context, param *iaas.SIMCreateRequest) (*
 func (t *SIMTracer) Read(ctx context.Context, id types.ID) (*iaas.SIM, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Read", options...)
 	defer func() {
@@ -8505,8 +8505,8 @@ func (t *SIMTracer) Read(ctx context.Context, id types.ID) (*iaas.SIM, error) {
 func (t *SIMTracer) Update(ctx context.Context, id types.ID, param *iaas.SIMUpdateRequest) (*iaas.SIM, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Update", options...)
 	defer func() {
@@ -8531,7 +8531,7 @@ func (t *SIMTracer) Update(ctx context.Context, id types.ID, param *iaas.SIMUpda
 func (t *SIMTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Delete", options...)
 	defer func() {
@@ -8555,7 +8555,7 @@ func (t *SIMTracer) Delete(ctx context.Context, id types.ID) error {
 func (t *SIMTracer) Activate(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Activate", options...)
 	defer func() {
@@ -8579,7 +8579,7 @@ func (t *SIMTracer) Activate(ctx context.Context, id types.ID) error {
 func (t *SIMTracer) Deactivate(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Deactivate", options...)
 	defer func() {
@@ -8603,8 +8603,8 @@ func (t *SIMTracer) Deactivate(ctx context.Context, id types.ID) error {
 func (t *SIMTracer) AssignIP(ctx context.Context, id types.ID, param *iaas.SIMAssignIPRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.AssignIP", options...)
 	defer func() {
@@ -8628,7 +8628,7 @@ func (t *SIMTracer) AssignIP(ctx context.Context, id types.ID, param *iaas.SIMAs
 func (t *SIMTracer) ClearIP(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.ClearIP", options...)
 	defer func() {
@@ -8652,8 +8652,8 @@ func (t *SIMTracer) ClearIP(ctx context.Context, id types.ID) error {
 func (t *SIMTracer) IMEILock(ctx context.Context, id types.ID, param *iaas.SIMIMEILockRequest) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.IMEILock", options...)
 	defer func() {
@@ -8677,7 +8677,7 @@ func (t *SIMTracer) IMEILock(ctx context.Context, id types.ID, param *iaas.SIMIM
 func (t *SIMTracer) IMEIUnlock(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.IMEIUnlock", options...)
 	defer func() {
@@ -8701,7 +8701,7 @@ func (t *SIMTracer) IMEIUnlock(ctx context.Context, id types.ID) error {
 func (t *SIMTracer) Logs(ctx context.Context, id types.ID) (*iaas.SIMLogsResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Logs", options...)
 	defer func() {
@@ -8726,7 +8726,7 @@ func (t *SIMTracer) Logs(ctx context.Context, id types.ID) (*iaas.SIMLogsResult,
 func (t *SIMTracer) GetNetworkOperator(ctx context.Context, id types.ID) ([]*iaas.SIMNetworkOperatorConfig, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.GetNetworkOperator", options...)
 	defer func() {
@@ -8751,8 +8751,8 @@ func (t *SIMTracer) GetNetworkOperator(ctx context.Context, id types.ID) ([]*iaa
 func (t *SIMTracer) SetNetworkOperator(ctx context.Context, id types.ID, configs []*iaas.SIMNetworkOperatorConfig) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.configs", forceString(configs)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.configs", forceString(configs)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.SetNetworkOperator", options...)
 	defer func() {
@@ -8776,8 +8776,8 @@ func (t *SIMTracer) SetNetworkOperator(ctx context.Context, id types.ID, configs
 func (t *SIMTracer) MonitorSIM(ctx context.Context, id types.ID, condition *iaas.MonitorCondition) (*iaas.LinkActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.MonitorSIM", options...)
 	defer func() {
@@ -8802,7 +8802,7 @@ func (t *SIMTracer) MonitorSIM(ctx context.Context, id types.ID, condition *iaas
 func (t *SIMTracer) Status(ctx context.Context, id types.ID) (*iaas.SIMInfo, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SIMAPI.Status", options...)
 	defer func() {
@@ -8845,7 +8845,7 @@ func newSimpleMonitorTracer(in iaas.SimpleMonitorAPI, cnf *config) iaas.SimpleMo
 func (t *SimpleMonitorTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SimpleMonitorFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.Find", options...)
 	defer func() {
@@ -8870,7 +8870,7 @@ func (t *SimpleMonitorTracer) Find(ctx context.Context, conditions *iaas.FindCon
 func (t *SimpleMonitorTracer) Create(ctx context.Context, param *iaas.SimpleMonitorCreateRequest) (*iaas.SimpleMonitor, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.Create", options...)
 	defer func() {
@@ -8895,7 +8895,7 @@ func (t *SimpleMonitorTracer) Create(ctx context.Context, param *iaas.SimpleMoni
 func (t *SimpleMonitorTracer) Read(ctx context.Context, id types.ID) (*iaas.SimpleMonitor, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.Read", options...)
 	defer func() {
@@ -8920,8 +8920,8 @@ func (t *SimpleMonitorTracer) Read(ctx context.Context, id types.ID) (*iaas.Simp
 func (t *SimpleMonitorTracer) Update(ctx context.Context, id types.ID, param *iaas.SimpleMonitorUpdateRequest) (*iaas.SimpleMonitor, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.Update", options...)
 	defer func() {
@@ -8946,8 +8946,8 @@ func (t *SimpleMonitorTracer) Update(ctx context.Context, id types.ID, param *ia
 func (t *SimpleMonitorTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.SimpleMonitorUpdateSettingsRequest) (*iaas.SimpleMonitor, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.UpdateSettings", options...)
 	defer func() {
@@ -8972,7 +8972,7 @@ func (t *SimpleMonitorTracer) UpdateSettings(ctx context.Context, id types.ID, p
 func (t *SimpleMonitorTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.Delete", options...)
 	defer func() {
@@ -8996,8 +8996,8 @@ func (t *SimpleMonitorTracer) Delete(ctx context.Context, id types.ID) error {
 func (t *SimpleMonitorTracer) MonitorResponseTime(ctx context.Context, id types.ID, condition *iaas.MonitorCondition) (*iaas.ResponseTimeSecActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.MonitorResponseTime", options...)
 	defer func() {
@@ -9022,7 +9022,7 @@ func (t *SimpleMonitorTracer) MonitorResponseTime(ctx context.Context, id types.
 func (t *SimpleMonitorTracer) HealthStatus(ctx context.Context, id types.ID) (*iaas.SimpleMonitorHealthStatus, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SimpleMonitorAPI.HealthStatus", options...)
 	defer func() {
@@ -9065,7 +9065,7 @@ func newSSHKeyTracer(in iaas.SSHKeyAPI, cnf *config) iaas.SSHKeyAPI {
 func (t *SSHKeyTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SSHKeyFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Find", options...)
 	defer func() {
@@ -9090,7 +9090,7 @@ func (t *SSHKeyTracer) Find(ctx context.Context, conditions *iaas.FindCondition)
 func (t *SSHKeyTracer) Create(ctx context.Context, param *iaas.SSHKeyCreateRequest) (*iaas.SSHKey, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Create", options...)
 	defer func() {
@@ -9115,7 +9115,7 @@ func (t *SSHKeyTracer) Create(ctx context.Context, param *iaas.SSHKeyCreateReque
 func (t *SSHKeyTracer) Generate(ctx context.Context, param *iaas.SSHKeyGenerateRequest) (*iaas.SSHKeyGenerated, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Generate", options...)
 	defer func() {
@@ -9140,7 +9140,7 @@ func (t *SSHKeyTracer) Generate(ctx context.Context, param *iaas.SSHKeyGenerateR
 func (t *SSHKeyTracer) Read(ctx context.Context, id types.ID) (*iaas.SSHKey, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Read", options...)
 	defer func() {
@@ -9165,8 +9165,8 @@ func (t *SSHKeyTracer) Read(ctx context.Context, id types.ID) (*iaas.SSHKey, err
 func (t *SSHKeyTracer) Update(ctx context.Context, id types.ID, param *iaas.SSHKeyUpdateRequest) (*iaas.SSHKey, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Update", options...)
 	defer func() {
@@ -9191,7 +9191,7 @@ func (t *SSHKeyTracer) Update(ctx context.Context, id types.ID, param *iaas.SSHK
 func (t *SSHKeyTracer) Delete(ctx context.Context, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Delete", options...)
 	defer func() {
@@ -9233,8 +9233,8 @@ func newSubnetTracer(in iaas.SubnetAPI, cnf *config) iaas.SubnetAPI {
 func (t *SubnetTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.SubnetFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SubnetAPI.Find", options...)
 	defer func() {
@@ -9259,8 +9259,8 @@ func (t *SubnetTracer) Find(ctx context.Context, zone string, conditions *iaas.F
 func (t *SubnetTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Subnet, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SubnetAPI.Read", options...)
 	defer func() {
@@ -9303,8 +9303,8 @@ func newSwitchTracer(in iaas.SwitchAPI, cnf *config) iaas.SwitchAPI {
 func (t *SwitchTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.SwitchFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.Find", options...)
 	defer func() {
@@ -9329,8 +9329,8 @@ func (t *SwitchTracer) Find(ctx context.Context, zone string, conditions *iaas.F
 func (t *SwitchTracer) Create(ctx context.Context, zone string, param *iaas.SwitchCreateRequest) (*iaas.Switch, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.Create", options...)
 	defer func() {
@@ -9355,8 +9355,8 @@ func (t *SwitchTracer) Create(ctx context.Context, zone string, param *iaas.Swit
 func (t *SwitchTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.Switch, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.Read", options...)
 	defer func() {
@@ -9381,9 +9381,9 @@ func (t *SwitchTracer) Read(ctx context.Context, zone string, id types.ID) (*iaa
 func (t *SwitchTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.SwitchUpdateRequest) (*iaas.Switch, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.Update", options...)
 	defer func() {
@@ -9408,8 +9408,8 @@ func (t *SwitchTracer) Update(ctx context.Context, zone string, id types.ID, par
 func (t *SwitchTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.Delete", options...)
 	defer func() {
@@ -9433,9 +9433,9 @@ func (t *SwitchTracer) Delete(ctx context.Context, zone string, id types.ID) err
 func (t *SwitchTracer) ConnectToBridge(ctx context.Context, zone string, id types.ID, bridgeID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.bridgeID", forceString(bridgeID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.bridgeID", forceString(bridgeID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.ConnectToBridge", options...)
 	defer func() {
@@ -9459,8 +9459,8 @@ func (t *SwitchTracer) ConnectToBridge(ctx context.Context, zone string, id type
 func (t *SwitchTracer) DisconnectFromBridge(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.DisconnectFromBridge", options...)
 	defer func() {
@@ -9484,8 +9484,8 @@ func (t *SwitchTracer) DisconnectFromBridge(ctx context.Context, zone string, id
 func (t *SwitchTracer) GetServers(ctx context.Context, zone string, id types.ID) (*iaas.SwitchGetServersResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "SwitchAPI.GetServers", options...)
 	defer func() {
@@ -9528,8 +9528,8 @@ func newVPCRouterTracer(in iaas.VPCRouterAPI, cnf *config) iaas.VPCRouterAPI {
 func (t *VPCRouterTracer) Find(ctx context.Context, zone string, conditions *iaas.FindCondition) (*iaas.VPCRouterFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Find", options...)
 	defer func() {
@@ -9554,8 +9554,8 @@ func (t *VPCRouterTracer) Find(ctx context.Context, zone string, conditions *iaa
 func (t *VPCRouterTracer) Create(ctx context.Context, zone string, param *iaas.VPCRouterCreateRequest) (*iaas.VPCRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Create", options...)
 	defer func() {
@@ -9580,8 +9580,8 @@ func (t *VPCRouterTracer) Create(ctx context.Context, zone string, param *iaas.V
 func (t *VPCRouterTracer) Read(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Read", options...)
 	defer func() {
@@ -9606,9 +9606,9 @@ func (t *VPCRouterTracer) Read(ctx context.Context, zone string, id types.ID) (*
 func (t *VPCRouterTracer) Update(ctx context.Context, zone string, id types.ID, param *iaas.VPCRouterUpdateRequest) (*iaas.VPCRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Update", options...)
 	defer func() {
@@ -9633,9 +9633,9 @@ func (t *VPCRouterTracer) Update(ctx context.Context, zone string, id types.ID, 
 func (t *VPCRouterTracer) UpdateSettings(ctx context.Context, zone string, id types.ID, param *iaas.VPCRouterUpdateSettingsRequest) (*iaas.VPCRouter, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.param", forceString(param)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.UpdateSettings", options...)
 	defer func() {
@@ -9660,8 +9660,8 @@ func (t *VPCRouterTracer) UpdateSettings(ctx context.Context, zone string, id ty
 func (t *VPCRouterTracer) Delete(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Delete", options...)
 	defer func() {
@@ -9685,8 +9685,8 @@ func (t *VPCRouterTracer) Delete(ctx context.Context, zone string, id types.ID) 
 func (t *VPCRouterTracer) Config(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Config", options...)
 	defer func() {
@@ -9710,8 +9710,8 @@ func (t *VPCRouterTracer) Config(ctx context.Context, zone string, id types.ID) 
 func (t *VPCRouterTracer) Boot(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Boot", options...)
 	defer func() {
@@ -9735,9 +9735,9 @@ func (t *VPCRouterTracer) Boot(ctx context.Context, zone string, id types.ID) er
 func (t *VPCRouterTracer) Shutdown(ctx context.Context, zone string, id types.ID, shutdownOption *iaas.ShutdownOption) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.shutdownOption", forceString(shutdownOption)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.shutdownOption", forceString(shutdownOption)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Shutdown", options...)
 	defer func() {
@@ -9761,8 +9761,8 @@ func (t *VPCRouterTracer) Shutdown(ctx context.Context, zone string, id types.ID
 func (t *VPCRouterTracer) Reset(ctx context.Context, zone string, id types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Reset", options...)
 	defer func() {
@@ -9786,10 +9786,10 @@ func (t *VPCRouterTracer) Reset(ctx context.Context, zone string, id types.ID) e
 func (t *VPCRouterTracer) ConnectToSwitch(ctx context.Context, zone string, id types.ID, nicIndex int, switchID types.ID) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.nicIndex", forceString(nicIndex)),
-		attribute.String("libiaas.api.arguments.switchID", forceString(switchID)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.nicIndex", forceString(nicIndex)),
+		attribute.String("sacloud.api.arguments.switchID", forceString(switchID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.ConnectToSwitch", options...)
 	defer func() {
@@ -9813,9 +9813,9 @@ func (t *VPCRouterTracer) ConnectToSwitch(ctx context.Context, zone string, id t
 func (t *VPCRouterTracer) DisconnectFromSwitch(ctx context.Context, zone string, id types.ID, nicIndex int) error {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.nicIndex", forceString(nicIndex)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.nicIndex", forceString(nicIndex)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.DisconnectFromSwitch", options...)
 	defer func() {
@@ -9839,9 +9839,9 @@ func (t *VPCRouterTracer) DisconnectFromSwitch(ctx context.Context, zone string,
 func (t *VPCRouterTracer) MonitorCPU(ctx context.Context, zone string, id types.ID, condition *iaas.MonitorCondition) (*iaas.CPUTimeActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.MonitorCPU", options...)
 	defer func() {
@@ -9866,10 +9866,10 @@ func (t *VPCRouterTracer) MonitorCPU(ctx context.Context, zone string, id types.
 func (t *VPCRouterTracer) MonitorInterface(ctx context.Context, zone string, id types.ID, index int, condition *iaas.MonitorCondition) (*iaas.InterfaceActivity, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.index", forceString(index)),
-		attribute.String("libiaas.api.arguments.condition", forceString(condition)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.index", forceString(index)),
+		attribute.String("sacloud.api.arguments.condition", forceString(condition)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.MonitorInterface", options...)
 	defer func() {
@@ -9894,8 +9894,8 @@ func (t *VPCRouterTracer) MonitorInterface(ctx context.Context, zone string, id 
 func (t *VPCRouterTracer) Status(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouterStatus, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Status", options...)
 	defer func() {
@@ -9920,8 +9920,8 @@ func (t *VPCRouterTracer) Status(ctx context.Context, zone string, id types.ID) 
 func (t *VPCRouterTracer) Logs(ctx context.Context, zone string, id types.ID) (*iaas.VPCRouterLog, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Logs", options...)
 	defer func() {
@@ -9946,9 +9946,9 @@ func (t *VPCRouterTracer) Logs(ctx context.Context, zone string, id types.ID) (*
 func (t *VPCRouterTracer) Ping(ctx context.Context, zone string, id types.ID, destination string) (*iaas.VPCRouterPingResults, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.zone", zone),
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
-		attribute.String("libiaas.api.arguments.destination", forceString(destination)),
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.destination", forceString(destination)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "VPCRouterAPI.Ping", options...)
 	defer func() {
@@ -9991,7 +9991,7 @@ func newZoneTracer(in iaas.ZoneAPI, cnf *config) iaas.ZoneAPI {
 func (t *ZoneTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.ZoneFindResult, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.conditions", forceString(conditions)),
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ZoneAPI.Find", options...)
 	defer func() {
@@ -10016,7 +10016,7 @@ func (t *ZoneTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (
 func (t *ZoneTracer) Read(ctx context.Context, id types.ID) (*iaas.Zone, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("libiaas.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "ZoneAPI.Read", options...)
 	defer func() {
