@@ -88,10 +88,10 @@ func (t *{{ $typeName }}Tracer) {{ .MethodName }}(ctx context.Context{{if not $r
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
 {{if not $resource.IsGlobal -}}
-		attribute.String("libiaas.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.zone", zone),
 {{ end -}}
 {{ range .Arguments -}}
-		attribute.String("libiaas.api.arguments.{{.ArgName}}", forceString({{.ArgName}})),
+		attribute.String("sacloud.api.arguments.{{.ArgName}}", forceString({{.ArgName}})),
 {{ end -}}
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "{{ $typeName }}API.{{ .MethodName }}", options...)
