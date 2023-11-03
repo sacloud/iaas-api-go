@@ -16,6 +16,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -30,27 +31,27 @@ import (
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/exporters/jaeger"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/sdk/resource"
 	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
 )
 
-// ref: https://github.com/open-telemetry/opentelemetry-go/blob/v1.2.0/example/jaeger/main.go
-
-// Example ローカルのJaegerを利用する例
+// Example ローカルのJaegerへOTLPでエクスポートする例
+//
+// あらかじめJaegerを起動しておくこと
+//
+//	$ docker run -d --name jaeger -p 4317:4317 -p 16686:16686 jaegertracing/all-in-one:latest
 func main() {
-	ctx := context.Background()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
 
-	tp, err := tracerProvider("http://localhost:14268/api/traces")
+	tp, err := tracerProvider(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	otel.SetTracerProvider(tp)
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	// Cleanly shutdown and flush telemetry when the application exits.
 	defer func(ctx context.Context) {
@@ -65,18 +66,23 @@ func main() {
 	// サンプルAPIリクエスト
 	op(ctx)
 
+	fmt.Println("done")
 	// Jaeger UI( http://localhost:16686/search など)を開くとトレースが確認できるはず
 }
 
-func tracerProvider(url string) (*tracesdk.TracerProvider, error) {
-	// Create the Jaeger exporter
-	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(url)))
+func tracerProvider(ctx context.Context) (*tracesdk.TracerProvider, error) {
+	if os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT") == "" {
+		os.Setenv("OTEL_EXPORTER_OTLP_ENDPOINT", "http://localhost:4317")
+	}
+	// Create the OTLP/gRPC exporter
+	exp, err := otlptracegrpc.New(ctx)
 	if err != nil {
 		return nil, err
 	}
 	tp := tracesdk.NewTracerProvider(
 		// Always be sure to batch in production.
 		tracesdk.WithBatcher(exp),
+
 		// Record information about this application in an Resource.
 		tracesdk.WithResource(resource.NewWithAttributes(
 			semconv.SchemaURL,

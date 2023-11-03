@@ -26,17 +26,19 @@ import (
 	"github.com/sacloud/iaas-api-go/types"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/exporters/jaeger"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/sdk/resource"
 	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
 )
 
-// ref: https://github.com/open-telemetry/opentelemetry-go/blob/a65d50a4c6412ebaf4b8a5ffeed8eae2a9417ef1/example/jaeger/main.go
-
 // Example ローカルのJaegerを利用する例
+//
+// あらかじめJaegerを起動しておくこと
+//
+//	$ docker run -d --name jaeger -p 4317:4317 -p 16686:16686 jaegertracing/all-in-one:latest
 func Example() {
-	tp, err := tracerProvider("http://localhost:14268/api/traces")
+	tp, err := tracerProvider()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -68,25 +70,24 @@ func Example() {
 	// Jaeger UI( http://localhost:16686/search など)を開くとトレースが確認できるはず
 }
 
-// tracerProvider returns an OpenTelemetry TracerProvider configured to use
-// the Jaeger exporter that will send spans to the provided url. The returned
-// TracerProvider will also use a Resource configured with all the information
-// about the application.
-func tracerProvider(url string) (*tracesdk.TracerProvider, error) {
-	// Create the Jaeger exporter
-	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(url)))
+func tracerProvider() (*tracesdk.TracerProvider, error) {
+	if os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT") == "" {
+		os.Setenv("OTEL_EXPORTER_OTLP_ENDPOINT", "http://localhost:4317")
+	}
+	// Create the OTLP/gRPC exporter
+	exp, err := otlptracegrpc.New(context.Background())
 	if err != nil {
 		return nil, err
 	}
 	tp := tracesdk.NewTracerProvider(
 		// Always be sure to batch in production.
 		tracesdk.WithBatcher(exp),
+
 		// Record information about this application in an Resource.
 		tracesdk.WithResource(resource.NewWithAttributes(
 			semconv.SchemaURL,
 			semconv.ServiceNameKey.String("iaas-api-go"),
-			attribute.String("exporter", "jaeger"),
-			attribute.Int64("ID", 1),
+			attribute.String("version", iaas.Version),
 		)),
 	)
 	return tp, nil
