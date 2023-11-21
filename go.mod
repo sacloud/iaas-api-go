@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/fatih/structs v1.1.0
-	github.com/fsnotify/fsnotify v1.6.0
+	github.com/fsnotify/fsnotify v1.7.0
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/huandu/xstrings v1.4.0
 	github.com/mitchellh/go-homedir v1.1.0
