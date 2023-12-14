@@ -10,7 +10,7 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/sacloud/api-client-go v0.2.10
-	github.com/sacloud/go-http v0.1.7
+	github.com/sacloud/go-http v0.1.8
 	github.com/sacloud/packages-go v0.0.10
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/crypto v0.16.0
