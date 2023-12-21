@@ -2182,6 +2182,17 @@ func (f *fieldsDef) DiskConnection() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) DiskEncryptionAlgorithm() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "EncryptionAlgorithm",
+		Type: meta.Static(types.EDiskEncryptionAlgorithm("")),
+		Tags: &dsl.FieldTags{
+			JSON:    ",omitempty",
+			MapConv: ",omitempty",
+		},
+	}
+}
+
 func (f *fieldsDef) DiskConnectionOrder() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "ConnectionOrder",
