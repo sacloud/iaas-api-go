@@ -219,6 +219,7 @@ var (
 			fields.Availability(),
 			fields.DiskConnection(),
 			fields.DiskConnectionOrder(),
+			fields.DiskEncryptionAlgorithm(),
 			fields.DiskReinstallCount(),
 			fields.Def("JobStatus", models.migrationJobStatus()),
 			fields.SizeMB(),
@@ -246,6 +247,7 @@ var (
 		Fields: []*dsl.FieldDesc{
 			fields.DiskPlanID(),
 			fields.DiskConnection(),
+			fields.DiskEncryptionAlgorithm(),
 			fields.SourceDiskID(),
 			fields.SourceArchiveID(),
 			fields.ServerID(),
