@@ -288,6 +288,7 @@ var (
 			fields.Availability(),
 			fields.DiskConnection(),
 			fields.DiskConnectionOrder(),
+			fields.DiskEncryptionAlgorithm(),
 			fields.DiskReinstallCount(),
 			fields.SizeMB(),
 			fields.DiskPlanID(),
