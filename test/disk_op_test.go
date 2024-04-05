@@ -92,19 +92,21 @@ var (
 	}
 
 	createDiskParam = &iaas.DiskCreateRequest{
-		DiskPlanID:  types.DiskPlans.SSD,
-		Connection:  types.DiskConnections.VirtIO,
-		Name:        testutil.ResourceName("disk"),
-		Description: "desc",
-		Tags:        []string{"tag1", "tag2"},
-		SizeMB:      20 * size.GiB,
+		DiskPlanID:          types.DiskPlans.SSD,
+		Connection:          types.DiskConnections.VirtIO,
+		EncryptionAlgorithm: types.DiskEncryptionAlgorithms.AES256XTS,
+		Name:                testutil.ResourceName("disk"),
+		Description:         "desc",
+		Tags:                []string{"tag1", "tag2"},
+		SizeMB:              20 * size.GiB,
 	}
 	createDiskExpected = &iaas.Disk{
-		Name:        createDiskParam.Name,
-		Description: createDiskParam.Description,
-		Tags:        createDiskParam.Tags,
-		DiskPlanID:  createDiskParam.DiskPlanID,
-		Connection:  createDiskParam.Connection,
+		Name:                createDiskParam.Name,
+		Description:         createDiskParam.Description,
+		Tags:                createDiskParam.Tags,
+		DiskPlanID:          createDiskParam.DiskPlanID,
+		Connection:          createDiskParam.Connection,
+		EncryptionAlgorithm: createDiskParam.EncryptionAlgorithm,
 	}
 	updateDiskParam = &iaas.DiskUpdateRequest{
 		Name:        testutil.ResourceName("disk-upd"),
@@ -113,20 +115,22 @@ var (
 		IconID:      testIconID,
 	}
 	updateDiskExpected = &iaas.Disk{
-		Name:        updateDiskParam.Name,
-		Description: updateDiskParam.Description,
-		Tags:        updateDiskParam.Tags,
-		DiskPlanID:  createDiskParam.DiskPlanID,
-		Connection:  createDiskParam.Connection,
-		IconID:      updateDiskParam.IconID,
+		Name:                updateDiskParam.Name,
+		Description:         updateDiskParam.Description,
+		Tags:                updateDiskParam.Tags,
+		DiskPlanID:          createDiskParam.DiskPlanID,
+		Connection:          createDiskParam.Connection,
+		EncryptionAlgorithm: createDiskParam.EncryptionAlgorithm,
+		IconID:              updateDiskParam.IconID,
 	}
 	updateDiskToMinParam = &iaas.DiskUpdateRequest{
 		Name: testutil.ResourceName("disk-to-min"),
 	}
 	updateDiskToMinExpected = &iaas.Disk{
-		Name:       updateDiskToMinParam.Name,
-		DiskPlanID: createDiskParam.DiskPlanID,
-		Connection: createDiskParam.Connection,
+		Name:                updateDiskToMinParam.Name,
+		DiskPlanID:          createDiskParam.DiskPlanID,
+		Connection:          createDiskParam.Connection,
+		EncryptionAlgorithm: createDiskParam.EncryptionAlgorithm,
 	}
 )
 
