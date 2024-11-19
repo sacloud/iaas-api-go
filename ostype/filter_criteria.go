@@ -22,14 +22,6 @@ import (
 
 // ArchiveCriteria OSTypeごとのアーカイブ検索条件
 var ArchiveCriteria = map[ArchiveOSType]search.Filter{
-	CentOS: {
-		search.Key(keys.Tags):  search.TagsAndEqual("distro-centos"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
-	CentOS7: {
-		search.Key(keys.Tags):  search.TagsAndEqual("centos-7-latest"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
 	AlmaLinux: {
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-alma"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
@@ -70,6 +62,10 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-ubuntu"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
+	Ubuntu2404: {
+		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-24.04-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
 	Ubuntu2204: {
 		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-22.04-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
@@ -78,16 +74,8 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-20.04-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
-	Ubuntu1804: {
-		search.Key(keys.Tags):  search.TagsAndEqual("ubuntu-18.04-latest"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
 	Debian: {
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "distro-debian"),
-		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
-	},
-	Debian10: {
-		search.Key(keys.Tags):  search.TagsAndEqual("debian-10-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
 	Debian11: {

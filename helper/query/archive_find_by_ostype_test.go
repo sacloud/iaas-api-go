@@ -41,15 +41,15 @@ func TestFindArchiveByOSType(t *testing.T) {
 			expectedError: errors.New("unsupported ostype.ArchiveOSType: Custom"),
 		},
 		{
-			input: ostype.CentOS,
+			input: ostype.Ubuntu,
 			finder: &dummyArchiveFinder{
 				archive: &iaas.ArchiveFindResult{}, // count: 0
 			},
 			expectedValue: nil,
-			expectedError: errors.New("archive not found with ostype.ArchiveOSType: CentOS"),
+			expectedError: errors.New("archive not found with ostype.ArchiveOSType: Ubuntu"),
 		},
 		{
-			input: ostype.CentOS,
+			input: ostype.Ubuntu,
 			finder: &dummyArchiveFinder{
 				archive: &iaas.ArchiveFindResult{
 					Count: 2,
