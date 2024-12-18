@@ -111,3 +111,13 @@ func (p *ExternalPermission) PermittedWebAccel() bool {
 func (p *ExternalPermission) PermittedPHY() bool {
 	return strings.Contains(string(*p), "dedicatedphy")
 }
+
+// PermittedAppRun AppRunの権限を持つか
+func (p *ExternalPermission) PermittedAppRun() bool {
+	return strings.Contains(string(*p), "apprun")
+}
+
+// PermittedKoukaryokuDOK 高火力DOKの権限を持つか
+func (p *ExternalPermission) PermittedKoukaryokuDOK() bool {
+	return strings.Contains(string(*p), "koukaryokudok")
+}
