@@ -1,6 +1,7 @@
-build:
-  skip: true
+version: 2
+builds:
+  - skip: true
 release:
   draft: false
 changelog:
-  skip: false
+  disable: false
