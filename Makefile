@@ -1,6 +1,6 @@
 #====================
 AUTHOR         ?= The sacloud/iaas-api-go Authors
-COPYRIGHT_YEAR ?= 2022-2023
+COPYRIGHT_YEAR ?= 2022-2025
 
 include includes/go/common.mk
 #====================
