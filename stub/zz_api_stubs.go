@@ -5217,6 +5217,123 @@ func (s *SimpleMonitorStub) HealthStatus(ctx context.Context, id types.ID) (*iaa
 }
 
 /*************************************************
+* SimpleNotificationDestinationStub
+*************************************************/
+
+// SimpleNotificationDestinationFindStubResult is expected values of the Find operation
+type SimpleNotificationDestinationFindStubResult struct {
+	Values *iaas.SimpleNotificationDestinationFindResult
+	Err    error
+}
+
+// SimpleNotificationDestinationCreateStubResult is expected values of the Create operation
+type SimpleNotificationDestinationCreateStubResult struct {
+	SimpleNotificationDestination *iaas.SimpleNotificationDestination
+	Err                           error
+}
+
+// SimpleNotificationDestinationReadStubResult is expected values of the Read operation
+type SimpleNotificationDestinationReadStubResult struct {
+	SimpleNotificationDestination *iaas.SimpleNotificationDestination
+	Err                           error
+}
+
+// SimpleNotificationDestinationUpdateStubResult is expected values of the Update operation
+type SimpleNotificationDestinationUpdateStubResult struct {
+	SimpleNotificationDestination *iaas.SimpleNotificationDestination
+	Err                           error
+}
+
+// SimpleNotificationDestinationUpdateSettingsStubResult is expected values of the UpdateSettings operation
+type SimpleNotificationDestinationUpdateSettingsStubResult struct {
+	SimpleNotificationDestination *iaas.SimpleNotificationDestination
+	Err                           error
+}
+
+// SimpleNotificationDestinationDeleteStubResult is expected values of the Delete operation
+type SimpleNotificationDestinationDeleteStubResult struct {
+	Err error
+}
+
+// SimpleNotificationDestinationStatusStubResult is expected values of the Status operation
+type SimpleNotificationDestinationStatusStubResult struct {
+	SimpleNotificationDestinationStatus *iaas.SimpleNotificationDestinationStatus
+	Err                                 error
+}
+
+// SimpleNotificationDestinationStub is for trace SimpleNotificationDestinationOp operations
+type SimpleNotificationDestinationStub struct {
+	FindStubResult           *SimpleNotificationDestinationFindStubResult
+	CreateStubResult         *SimpleNotificationDestinationCreateStubResult
+	ReadStubResult           *SimpleNotificationDestinationReadStubResult
+	UpdateStubResult         *SimpleNotificationDestinationUpdateStubResult
+	UpdateSettingsStubResult *SimpleNotificationDestinationUpdateSettingsStubResult
+	DeleteStubResult         *SimpleNotificationDestinationDeleteStubResult
+	StatusStubResult         *SimpleNotificationDestinationStatusStubResult
+}
+
+// NewSimpleNotificationDestinationStub creates new SimpleNotificationDestinationStub instance
+func NewSimpleNotificationDestinationStub(caller iaas.APICaller) iaas.SimpleNotificationDestinationAPI {
+	return &SimpleNotificationDestinationStub{}
+}
+
+// Find is API call with trace log
+func (s *SimpleNotificationDestinationStub) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SimpleNotificationDestinationFindResult, error) {
+	if s.FindStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.FindStubResult is not set")
+	}
+	return s.FindStubResult.Values, s.FindStubResult.Err
+}
+
+// Create is API call with trace log
+func (s *SimpleNotificationDestinationStub) Create(ctx context.Context, param *iaas.SimpleNotificationDestinationCreateRequest) (*iaas.SimpleNotificationDestination, error) {
+	if s.CreateStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.CreateStubResult is not set")
+	}
+	return s.CreateStubResult.SimpleNotificationDestination, s.CreateStubResult.Err
+}
+
+// Read is API call with trace log
+func (s *SimpleNotificationDestinationStub) Read(ctx context.Context, id types.ID) (*iaas.SimpleNotificationDestination, error) {
+	if s.ReadStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.ReadStubResult is not set")
+	}
+	return s.ReadStubResult.SimpleNotificationDestination, s.ReadStubResult.Err
+}
+
+// Update is API call with trace log
+func (s *SimpleNotificationDestinationStub) Update(ctx context.Context, id types.ID, param *iaas.SimpleNotificationDestinationUpdateRequest) (*iaas.SimpleNotificationDestination, error) {
+	if s.UpdateStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.UpdateStubResult is not set")
+	}
+	return s.UpdateStubResult.SimpleNotificationDestination, s.UpdateStubResult.Err
+}
+
+// UpdateSettings is API call with trace log
+func (s *SimpleNotificationDestinationStub) UpdateSettings(ctx context.Context, id types.ID, param *iaas.SimpleNotificationDestinationUpdateSettingsRequest) (*iaas.SimpleNotificationDestination, error) {
+	if s.UpdateSettingsStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.UpdateSettingsStubResult is not set")
+	}
+	return s.UpdateSettingsStubResult.SimpleNotificationDestination, s.UpdateSettingsStubResult.Err
+}
+
+// Delete is API call with trace log
+func (s *SimpleNotificationDestinationStub) Delete(ctx context.Context, id types.ID) error {
+	if s.DeleteStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.DeleteStubResult is not set")
+	}
+	return s.DeleteStubResult.Err
+}
+
+// Status is API call with trace log
+func (s *SimpleNotificationDestinationStub) Status(ctx context.Context, id types.ID) (*iaas.SimpleNotificationDestinationStatus, error) {
+	if s.StatusStubResult == nil {
+		log.Fatal("SimpleNotificationDestinationStub.StatusStubResult is not set")
+	}
+	return s.StatusStubResult.SimpleNotificationDestinationStatus, s.StatusStubResult.Err
+}
+
+/*************************************************
 * SSHKeyStub
 *************************************************/
 

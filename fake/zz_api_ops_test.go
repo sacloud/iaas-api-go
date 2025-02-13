@@ -188,6 +188,10 @@ func TestResourceOps(t *testing.T) {
 		t.Fatalf("%s is not iaas.SimpleMonitor", op)
 	}
 
+	if op, ok := NewSimpleNotificationDestinationOp().(iaas.SimpleNotificationDestinationAPI); !ok {
+		t.Fatalf("%s is not iaas.SimpleNotificationDestination", op)
+	}
+
 	if op, ok := NewSSHKeyOp().(iaas.SSHKeyAPI); !ok {
 		t.Fatalf("%s is not iaas.SSHKey", op)
 	}

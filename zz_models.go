@@ -27210,6 +27210,542 @@ func (o *SimpleMonitorHealthStatus) SetLatestLogs(v []string) {
 }
 
 /*************************************************
+* SimpleNotificationDestination
+*************************************************/
+
+// SimpleNotificationDestination represents API parameter/response structure
+type SimpleNotificationDestination struct {
+	ID           types.ID
+	Name         string
+	Description  string
+	Tags         types.Tags
+	Availability types.EAvailability
+	IconID       types.ID `mapconv:"Icon.ID"`
+	CreatedAt    time.Time
+	ModifiedAt   time.Time
+	Type         types.ESimpleNotificationDestinationTypes `mapconv:"Settings.Type"`
+	Disabled     bool                                      `mapconv:"Settings.Disabled"`
+	Value        string                                    `mapconv:"Settings.Value"`
+	SettingsHash string                                    `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationDestination) setDefaults() interface{} {
+	return &struct {
+		ID           types.ID
+		Name         string
+		Description  string
+		Tags         types.Tags
+		Availability types.EAvailability
+		IconID       types.ID `mapconv:"Icon.ID"`
+		CreatedAt    time.Time
+		ModifiedAt   time.Time
+		Type         types.ESimpleNotificationDestinationTypes `mapconv:"Settings.Type"`
+		Disabled     bool                                      `mapconv:"Settings.Disabled"`
+		Value        string                                    `mapconv:"Settings.Value"`
+		SettingsHash string                                    `json:",omitempty" mapconv:",omitempty"`
+	}{
+		ID:           o.GetID(),
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		Availability: o.GetAvailability(),
+		IconID:       o.GetIconID(),
+		CreatedAt:    o.GetCreatedAt(),
+		ModifiedAt:   o.GetModifiedAt(),
+		Type:         o.GetType(),
+		Disabled:     o.GetDisabled(),
+		Value:        o.GetValue(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetID returns value of ID
+func (o *SimpleNotificationDestination) GetID() types.ID {
+	return o.ID
+}
+
+// SetID sets value to ID
+func (o *SimpleNotificationDestination) SetID(v types.ID) {
+	o.ID = v
+}
+
+// SetStringID .
+func (o *SimpleNotificationDestination) SetStringID(id string) {
+	accessor.SetStringID(o, id)
+}
+
+// GetStringID .
+func (o *SimpleNotificationDestination) GetStringID() string {
+	return accessor.GetStringID(o)
+}
+
+// SetInt64ID .
+func (o *SimpleNotificationDestination) SetInt64ID(id int64) {
+	accessor.SetInt64ID(o, id)
+}
+
+// GetInt64ID .
+func (o *SimpleNotificationDestination) GetInt64ID() int64 {
+	return accessor.GetInt64ID(o)
+}
+
+// GetName returns value of Name
+func (o *SimpleNotificationDestination) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *SimpleNotificationDestination) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *SimpleNotificationDestination) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *SimpleNotificationDestination) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *SimpleNotificationDestination) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *SimpleNotificationDestination) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *SimpleNotificationDestination) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *SimpleNotificationDestination) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *SimpleNotificationDestination) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *SimpleNotificationDestination) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetAvailability returns value of Availability
+func (o *SimpleNotificationDestination) GetAvailability() types.EAvailability {
+	return o.Availability
+}
+
+// SetAvailability sets value to Availability
+func (o *SimpleNotificationDestination) SetAvailability(v types.EAvailability) {
+	o.Availability = v
+}
+
+// GetIconID returns value of IconID
+func (o *SimpleNotificationDestination) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *SimpleNotificationDestination) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetCreatedAt returns value of CreatedAt
+func (o *SimpleNotificationDestination) GetCreatedAt() time.Time {
+	return o.CreatedAt
+}
+
+// SetCreatedAt sets value to CreatedAt
+func (o *SimpleNotificationDestination) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetModifiedAt returns value of ModifiedAt
+func (o *SimpleNotificationDestination) GetModifiedAt() time.Time {
+	return o.ModifiedAt
+}
+
+// SetModifiedAt sets value to ModifiedAt
+func (o *SimpleNotificationDestination) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = v
+}
+
+// GetType returns value of Type
+func (o *SimpleNotificationDestination) GetType() types.ESimpleNotificationDestinationTypes {
+	return o.Type
+}
+
+// SetType sets value to Type
+func (o *SimpleNotificationDestination) SetType(v types.ESimpleNotificationDestinationTypes) {
+	o.Type = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationDestination) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationDestination) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetValue returns value of Value
+func (o *SimpleNotificationDestination) GetValue() string {
+	return o.Value
+}
+
+// SetValue sets value to Value
+func (o *SimpleNotificationDestination) SetValue(v string) {
+	o.Value = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *SimpleNotificationDestination) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *SimpleNotificationDestination) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* SimpleNotificationDestinationCreateRequest
+*************************************************/
+
+// SimpleNotificationDestinationCreateRequest represents API parameter/response structure
+type SimpleNotificationDestinationCreateRequest struct {
+	Name        string
+	Description string
+	Tags        types.Tags
+	IconID      types.ID                                  `mapconv:"Icon.ID"`
+	Type        types.ESimpleNotificationDestinationTypes `mapconv:"Settings.Type"`
+	Disabled    bool                                      `mapconv:"Settings.Disabled"`
+	Value       string                                    `mapconv:"Settings.Value"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationDestinationCreateRequest) setDefaults() interface{} {
+	return &struct {
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID                                  `mapconv:"Icon.ID"`
+		Type         types.ESimpleNotificationDestinationTypes `mapconv:"Settings.Type"`
+		Disabled     bool                                      `mapconv:"Settings.Disabled"`
+		Value        string                                    `mapconv:"Settings.Value"`
+		Class        string                                    `mapconv:"Provider.Class"`
+		ServiceClass string
+	}{
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		Type:         o.GetType(),
+		Disabled:     o.GetDisabled(),
+		Value:        o.GetValue(),
+		Class:        "saknoticedestination",
+		ServiceClass: "cloud/saknoticedestination/1",
+	}
+}
+
+// GetName returns value of Name
+func (o *SimpleNotificationDestinationCreateRequest) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *SimpleNotificationDestinationCreateRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *SimpleNotificationDestinationCreateRequest) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *SimpleNotificationDestinationCreateRequest) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *SimpleNotificationDestinationCreateRequest) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *SimpleNotificationDestinationCreateRequest) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *SimpleNotificationDestinationCreateRequest) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *SimpleNotificationDestinationCreateRequest) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *SimpleNotificationDestinationCreateRequest) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *SimpleNotificationDestinationCreateRequest) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetIconID returns value of IconID
+func (o *SimpleNotificationDestinationCreateRequest) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *SimpleNotificationDestinationCreateRequest) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetType returns value of Type
+func (o *SimpleNotificationDestinationCreateRequest) GetType() types.ESimpleNotificationDestinationTypes {
+	return o.Type
+}
+
+// SetType sets value to Type
+func (o *SimpleNotificationDestinationCreateRequest) SetType(v types.ESimpleNotificationDestinationTypes) {
+	o.Type = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationDestinationCreateRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationDestinationCreateRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetValue returns value of Value
+func (o *SimpleNotificationDestinationCreateRequest) GetValue() string {
+	return o.Value
+}
+
+// SetValue sets value to Value
+func (o *SimpleNotificationDestinationCreateRequest) SetValue(v string) {
+	o.Value = v
+}
+
+/*************************************************
+* SimpleNotificationDestinationUpdateRequest
+*************************************************/
+
+// SimpleNotificationDestinationUpdateRequest represents API parameter/response structure
+type SimpleNotificationDestinationUpdateRequest struct {
+	Name         string
+	Description  string
+	Tags         types.Tags
+	IconID       types.ID `mapconv:"Icon.ID"`
+	Disabled     bool     `mapconv:"Settings.Disabled"`
+	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationDestinationUpdateRequest) setDefaults() interface{} {
+	return &struct {
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID `mapconv:"Icon.ID"`
+		Disabled     bool     `mapconv:"Settings.Disabled"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	}{
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		Disabled:     o.GetDisabled(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetName returns value of Name
+func (o *SimpleNotificationDestinationUpdateRequest) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *SimpleNotificationDestinationUpdateRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *SimpleNotificationDestinationUpdateRequest) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *SimpleNotificationDestinationUpdateRequest) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *SimpleNotificationDestinationUpdateRequest) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *SimpleNotificationDestinationUpdateRequest) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *SimpleNotificationDestinationUpdateRequest) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *SimpleNotificationDestinationUpdateRequest) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *SimpleNotificationDestinationUpdateRequest) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *SimpleNotificationDestinationUpdateRequest) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetIconID returns value of IconID
+func (o *SimpleNotificationDestinationUpdateRequest) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *SimpleNotificationDestinationUpdateRequest) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationDestinationUpdateRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationDestinationUpdateRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *SimpleNotificationDestinationUpdateRequest) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *SimpleNotificationDestinationUpdateRequest) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* SimpleNotificationDestinationUpdateSettingsRequest
+*************************************************/
+
+// SimpleNotificationDestinationUpdateSettingsRequest represents API parameter/response structure
+type SimpleNotificationDestinationUpdateSettingsRequest struct {
+	Disabled     bool   `mapconv:"Settings.Disabled"`
+	SettingsHash string `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationDestinationUpdateSettingsRequest) setDefaults() interface{} {
+	return &struct {
+		Disabled     bool   `mapconv:"Settings.Disabled"`
+		SettingsHash string `json:",omitempty" mapconv:",omitempty"`
+	}{
+		Disabled:     o.GetDisabled(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationDestinationUpdateSettingsRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationDestinationUpdateSettingsRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *SimpleNotificationDestinationUpdateSettingsRequest) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *SimpleNotificationDestinationUpdateSettingsRequest) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* SimpleNotificationDestinationStatus
+*************************************************/
+
+// SimpleNotificationDestinationStatus represents API parameter/response structure
+type SimpleNotificationDestinationStatus struct {
+	Disabled   bool
+	ModifiedAt time.Time
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationDestinationStatus) setDefaults() interface{} {
+	return &struct {
+		Disabled   bool
+		ModifiedAt time.Time
+	}{
+		Disabled:   o.GetDisabled(),
+		ModifiedAt: o.GetModifiedAt(),
+	}
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationDestinationStatus) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationDestinationStatus) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetModifiedAt returns value of ModifiedAt
+func (o *SimpleNotificationDestinationStatus) GetModifiedAt() time.Time {
+	return o.ModifiedAt
+}
+
+// SetModifiedAt sets value to ModifiedAt
+func (o *SimpleNotificationDestinationStatus) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = v
+}
+
+/*************************************************
 * SSHKey
 *************************************************/
 

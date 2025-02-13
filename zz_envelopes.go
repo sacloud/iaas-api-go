@@ -2900,6 +2900,80 @@ type simpleMonitorHealthStatusResponseEnvelope struct {
 	SimpleMonitor *naked.SimpleMonitorHealthCheckStatus `json:",omitempty"`
 }
 
+// simpleNotificationDestinationFindRequestEnvelope is envelop of API request
+type simpleNotificationDestinationFindRequestEnvelope struct {
+	Count   int             `mapconv:",omitempty"`
+	From    int             `mapconv:",omitempty"`
+	Sort    search.SortKeys `json:",omitempty" mapconv:",omitempty"`
+	Filter  search.Filter   `json:",omitempty" mapconv:",omitempty"`
+	Include []string        `json:",omitempty" mapconv:",omitempty"`
+	Exclude []string        `json:",omitempty" mapconv:",omitempty"`
+}
+
+// simpleNotificationDestinationFindResponseEnvelope is envelop of API response
+type simpleNotificationDestinationFindResponseEnvelope struct {
+	Total int `json:",omitempty"` // トータル件数
+	From  int `json:",omitempty"` // ページング開始ページ
+	Count int `json:",omitempty"` // 件数
+
+	CommonServiceItems []*naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationCreateRequestEnvelope is envelop of API request
+type simpleNotificationDestinationCreateRequestEnvelope struct {
+	CommonServiceItem *naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationCreateResponseEnvelope is envelop of API response
+type simpleNotificationDestinationCreateResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationReadResponseEnvelope is envelop of API response
+type simpleNotificationDestinationReadResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationUpdateRequestEnvelope is envelop of API request
+type simpleNotificationDestinationUpdateRequestEnvelope struct {
+	CommonServiceItem *naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationUpdateResponseEnvelope is envelop of API response
+type simpleNotificationDestinationUpdateResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationUpdateSettingsRequestEnvelope is envelop of API request
+type simpleNotificationDestinationUpdateSettingsRequestEnvelope struct {
+	CommonServiceItem *naked.SimpleNotificationDestinationSettingsUpdate `json:",omitempty"`
+}
+
+// simpleNotificationDestinationUpdateSettingsResponseEnvelope is envelop of API response
+type simpleNotificationDestinationUpdateSettingsResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	CommonServiceItem *naked.SimpleNotificationDestination `json:",omitempty"`
+}
+
+// simpleNotificationDestinationStatusResponseEnvelope is envelop of API response
+type simpleNotificationDestinationStatusResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	SimpleNotificationDestination *naked.SimpleNotificationDestinationRunningStatus `json:",omitempty"`
+}
+
 // sSHKeyFindRequestEnvelope is envelop of API request
 type sSHKeyFindRequestEnvelope struct {
 	Count   int             `mapconv:",omitempty"`

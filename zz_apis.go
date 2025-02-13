@@ -668,6 +668,21 @@ type SimpleMonitorAPI interface {
 }
 
 /*************************************************
+* SimpleNotificationDestinationAPI
+*************************************************/
+
+// SimpleNotificationDestinationAPI is interface for operate SimpleNotificationDestination resource
+type SimpleNotificationDestinationAPI interface {
+	Find(ctx context.Context, conditions *FindCondition) (*SimpleNotificationDestinationFindResult, error)
+	Create(ctx context.Context, param *SimpleNotificationDestinationCreateRequest) (*SimpleNotificationDestination, error)
+	Read(ctx context.Context, id types.ID) (*SimpleNotificationDestination, error)
+	Update(ctx context.Context, id types.ID, param *SimpleNotificationDestinationUpdateRequest) (*SimpleNotificationDestination, error)
+	UpdateSettings(ctx context.Context, id types.ID, param *SimpleNotificationDestinationUpdateSettingsRequest) (*SimpleNotificationDestination, error)
+	Delete(ctx context.Context, id types.ID) error
+	Status(ctx context.Context, id types.ID) (*SimpleNotificationDestinationStatus, error)
+}
+
+/*************************************************
 * SSHKeyAPI
 *************************************************/
 

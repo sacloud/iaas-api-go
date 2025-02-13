@@ -155,6 +155,9 @@ func switchFactoryFuncToFake() {
 	iaas.SetClientFactoryFunc(ResourceSimpleMonitor, func(caller iaas.APICaller) interface{} {
 		return NewSimpleMonitorOp()
 	})
+	iaas.SetClientFactoryFunc(ResourceSimpleNotificationDestination, func(caller iaas.APICaller) interface{} {
+		return NewSimpleNotificationDestinationOp()
+	})
 	iaas.SetClientFactoryFunc(ResourceSSHKey, func(caller iaas.APICaller) interface{} {
 		return NewSSHKeyOp()
 	})
@@ -825,6 +828,22 @@ type SimpleMonitorOp struct {
 func NewSimpleMonitorOp() iaas.SimpleMonitorAPI {
 	return &SimpleMonitorOp{
 		key: ResourceSimpleMonitor,
+	}
+}
+
+/*************************************************
+* SimpleNotificationDestinationOp
+*************************************************/
+
+// SimpleNotificationDestinationOp is fake implementation of SimpleNotificationDestinationAPI interface
+type SimpleNotificationDestinationOp struct {
+	key string
+}
+
+// NewSimpleNotificationDestinationOp creates new SimpleNotificationDestinationOp instance
+func NewSimpleNotificationDestinationOp() iaas.SimpleNotificationDestinationAPI {
+	return &SimpleNotificationDestinationOp{
+		key: ResourceSimpleNotificationDestination,
 	}
 }
 
