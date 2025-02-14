@@ -5334,6 +5334,137 @@ func (s *SimpleNotificationDestinationStub) Status(ctx context.Context, id types
 }
 
 /*************************************************
+* SimpleNotificationGroupStub
+*************************************************/
+
+// SimpleNotificationGroupFindStubResult is expected values of the Find operation
+type SimpleNotificationGroupFindStubResult struct {
+	Values *iaas.SimpleNotificationGroupFindResult
+	Err    error
+}
+
+// SimpleNotificationGroupCreateStubResult is expected values of the Create operation
+type SimpleNotificationGroupCreateStubResult struct {
+	SimpleNotificationGroup *iaas.SimpleNotificationGroup
+	Err                     error
+}
+
+// SimpleNotificationGroupReadStubResult is expected values of the Read operation
+type SimpleNotificationGroupReadStubResult struct {
+	SimpleNotificationGroup *iaas.SimpleNotificationGroup
+	Err                     error
+}
+
+// SimpleNotificationGroupUpdateStubResult is expected values of the Update operation
+type SimpleNotificationGroupUpdateStubResult struct {
+	SimpleNotificationGroup *iaas.SimpleNotificationGroup
+	Err                     error
+}
+
+// SimpleNotificationGroupUpdateSettingsStubResult is expected values of the UpdateSettings operation
+type SimpleNotificationGroupUpdateSettingsStubResult struct {
+	SimpleNotificationGroup *iaas.SimpleNotificationGroup
+	Err                     error
+}
+
+// SimpleNotificationGroupDeleteStubResult is expected values of the Delete operation
+type SimpleNotificationGroupDeleteStubResult struct {
+	Err error
+}
+
+// SimpleNotificationGroupPostMessageStubResult is expected values of the PostMessage operation
+type SimpleNotificationGroupPostMessageStubResult struct {
+	Err error
+}
+
+// SimpleNotificationGroupHistoryStubResult is expected values of the History operation
+type SimpleNotificationGroupHistoryStubResult struct {
+	SimpleNotificationHistories *iaas.SimpleNotificationHistories
+	Err                         error
+}
+
+// SimpleNotificationGroupStub is for trace SimpleNotificationGroupOp operations
+type SimpleNotificationGroupStub struct {
+	FindStubResult           *SimpleNotificationGroupFindStubResult
+	CreateStubResult         *SimpleNotificationGroupCreateStubResult
+	ReadStubResult           *SimpleNotificationGroupReadStubResult
+	UpdateStubResult         *SimpleNotificationGroupUpdateStubResult
+	UpdateSettingsStubResult *SimpleNotificationGroupUpdateSettingsStubResult
+	DeleteStubResult         *SimpleNotificationGroupDeleteStubResult
+	PostMessageStubResult    *SimpleNotificationGroupPostMessageStubResult
+	HistoryStubResult        *SimpleNotificationGroupHistoryStubResult
+}
+
+// NewSimpleNotificationGroupStub creates new SimpleNotificationGroupStub instance
+func NewSimpleNotificationGroupStub(caller iaas.APICaller) iaas.SimpleNotificationGroupAPI {
+	return &SimpleNotificationGroupStub{}
+}
+
+// Find is API call with trace log
+func (s *SimpleNotificationGroupStub) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SimpleNotificationGroupFindResult, error) {
+	if s.FindStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.FindStubResult is not set")
+	}
+	return s.FindStubResult.Values, s.FindStubResult.Err
+}
+
+// Create is API call with trace log
+func (s *SimpleNotificationGroupStub) Create(ctx context.Context, param *iaas.SimpleNotificationGroupCreateRequest) (*iaas.SimpleNotificationGroup, error) {
+	if s.CreateStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.CreateStubResult is not set")
+	}
+	return s.CreateStubResult.SimpleNotificationGroup, s.CreateStubResult.Err
+}
+
+// Read is API call with trace log
+func (s *SimpleNotificationGroupStub) Read(ctx context.Context, id types.ID) (*iaas.SimpleNotificationGroup, error) {
+	if s.ReadStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.ReadStubResult is not set")
+	}
+	return s.ReadStubResult.SimpleNotificationGroup, s.ReadStubResult.Err
+}
+
+// Update is API call with trace log
+func (s *SimpleNotificationGroupStub) Update(ctx context.Context, id types.ID, param *iaas.SimpleNotificationGroupUpdateRequest) (*iaas.SimpleNotificationGroup, error) {
+	if s.UpdateStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.UpdateStubResult is not set")
+	}
+	return s.UpdateStubResult.SimpleNotificationGroup, s.UpdateStubResult.Err
+}
+
+// UpdateSettings is API call with trace log
+func (s *SimpleNotificationGroupStub) UpdateSettings(ctx context.Context, id types.ID, param *iaas.SimpleNotificationGroupUpdateSettingsRequest) (*iaas.SimpleNotificationGroup, error) {
+	if s.UpdateSettingsStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.UpdateSettingsStubResult is not set")
+	}
+	return s.UpdateSettingsStubResult.SimpleNotificationGroup, s.UpdateSettingsStubResult.Err
+}
+
+// Delete is API call with trace log
+func (s *SimpleNotificationGroupStub) Delete(ctx context.Context, id types.ID) error {
+	if s.DeleteStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.DeleteStubResult is not set")
+	}
+	return s.DeleteStubResult.Err
+}
+
+// PostMessage is API call with trace log
+func (s *SimpleNotificationGroupStub) PostMessage(ctx context.Context, id types.ID, message string) error {
+	if s.PostMessageStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.PostMessageStubResult is not set")
+	}
+	return s.PostMessageStubResult.Err
+}
+
+// History is API call with trace log
+func (s *SimpleNotificationGroupStub) History(ctx context.Context) (*iaas.SimpleNotificationHistories, error) {
+	if s.HistoryStubResult == nil {
+		log.Fatal("SimpleNotificationGroupStub.HistoryStubResult is not set")
+	}
+	return s.HistoryStubResult.SimpleNotificationHistories, s.HistoryStubResult.Err
+}
+
+/*************************************************
 * SSHKeyStub
 *************************************************/
 

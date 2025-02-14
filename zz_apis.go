@@ -683,6 +683,22 @@ type SimpleNotificationDestinationAPI interface {
 }
 
 /*************************************************
+* SimpleNotificationGroupAPI
+*************************************************/
+
+// SimpleNotificationGroupAPI is interface for operate SimpleNotificationGroup resource
+type SimpleNotificationGroupAPI interface {
+	Find(ctx context.Context, conditions *FindCondition) (*SimpleNotificationGroupFindResult, error)
+	Create(ctx context.Context, param *SimpleNotificationGroupCreateRequest) (*SimpleNotificationGroup, error)
+	Read(ctx context.Context, id types.ID) (*SimpleNotificationGroup, error)
+	Update(ctx context.Context, id types.ID, param *SimpleNotificationGroupUpdateRequest) (*SimpleNotificationGroup, error)
+	UpdateSettings(ctx context.Context, id types.ID, param *SimpleNotificationGroupUpdateSettingsRequest) (*SimpleNotificationGroup, error)
+	Delete(ctx context.Context, id types.ID) error
+	PostMessage(ctx context.Context, id types.ID, message string) error
+	History(ctx context.Context) (*SimpleNotificationHistories, error)
+}
+
+/*************************************************
 * SSHKeyAPI
 *************************************************/
 

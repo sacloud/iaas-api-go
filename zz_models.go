@@ -27746,6 +27746,834 @@ func (o *SimpleNotificationDestinationStatus) SetModifiedAt(v time.Time) {
 }
 
 /*************************************************
+* SimpleNotificationGroup
+*************************************************/
+
+// SimpleNotificationGroup represents API parameter/response structure
+type SimpleNotificationGroup struct {
+	ID           types.ID
+	Name         string
+	Description  string
+	Tags         types.Tags
+	Availability types.EAvailability
+	IconID       types.ID `mapconv:"Icon.ID"`
+	CreatedAt    time.Time
+	ModifiedAt   time.Time
+	Destinations []string `mapconv:"Settings.Destinations"`
+	Disabled     bool     `mapconv:"Settings.Disabled"`
+	Sources      []string `mapconv:"Settings.Sources"`
+	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationGroup) setDefaults() interface{} {
+	return &struct {
+		ID           types.ID
+		Name         string
+		Description  string
+		Tags         types.Tags
+		Availability types.EAvailability
+		IconID       types.ID `mapconv:"Icon.ID"`
+		CreatedAt    time.Time
+		ModifiedAt   time.Time
+		Destinations []string `mapconv:"Settings.Destinations"`
+		Disabled     bool     `mapconv:"Settings.Disabled"`
+		Sources      []string `mapconv:"Settings.Sources"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	}{
+		ID:           o.GetID(),
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		Availability: o.GetAvailability(),
+		IconID:       o.GetIconID(),
+		CreatedAt:    o.GetCreatedAt(),
+		ModifiedAt:   o.GetModifiedAt(),
+		Destinations: o.GetDestinations(),
+		Disabled:     o.GetDisabled(),
+		Sources:      o.GetSources(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetID returns value of ID
+func (o *SimpleNotificationGroup) GetID() types.ID {
+	return o.ID
+}
+
+// SetID sets value to ID
+func (o *SimpleNotificationGroup) SetID(v types.ID) {
+	o.ID = v
+}
+
+// SetStringID .
+func (o *SimpleNotificationGroup) SetStringID(id string) {
+	accessor.SetStringID(o, id)
+}
+
+// GetStringID .
+func (o *SimpleNotificationGroup) GetStringID() string {
+	return accessor.GetStringID(o)
+}
+
+// SetInt64ID .
+func (o *SimpleNotificationGroup) SetInt64ID(id int64) {
+	accessor.SetInt64ID(o, id)
+}
+
+// GetInt64ID .
+func (o *SimpleNotificationGroup) GetInt64ID() int64 {
+	return accessor.GetInt64ID(o)
+}
+
+// GetName returns value of Name
+func (o *SimpleNotificationGroup) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *SimpleNotificationGroup) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *SimpleNotificationGroup) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *SimpleNotificationGroup) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *SimpleNotificationGroup) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *SimpleNotificationGroup) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *SimpleNotificationGroup) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *SimpleNotificationGroup) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *SimpleNotificationGroup) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *SimpleNotificationGroup) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetAvailability returns value of Availability
+func (o *SimpleNotificationGroup) GetAvailability() types.EAvailability {
+	return o.Availability
+}
+
+// SetAvailability sets value to Availability
+func (o *SimpleNotificationGroup) SetAvailability(v types.EAvailability) {
+	o.Availability = v
+}
+
+// GetIconID returns value of IconID
+func (o *SimpleNotificationGroup) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *SimpleNotificationGroup) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetCreatedAt returns value of CreatedAt
+func (o *SimpleNotificationGroup) GetCreatedAt() time.Time {
+	return o.CreatedAt
+}
+
+// SetCreatedAt sets value to CreatedAt
+func (o *SimpleNotificationGroup) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetModifiedAt returns value of ModifiedAt
+func (o *SimpleNotificationGroup) GetModifiedAt() time.Time {
+	return o.ModifiedAt
+}
+
+// SetModifiedAt sets value to ModifiedAt
+func (o *SimpleNotificationGroup) SetModifiedAt(v time.Time) {
+	o.ModifiedAt = v
+}
+
+// GetDestinations returns value of Destinations
+func (o *SimpleNotificationGroup) GetDestinations() []string {
+	return o.Destinations
+}
+
+// SetDestinations sets value to Destinations
+func (o *SimpleNotificationGroup) SetDestinations(v []string) {
+	o.Destinations = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationGroup) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationGroup) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetSources returns value of Sources
+func (o *SimpleNotificationGroup) GetSources() []string {
+	return o.Sources
+}
+
+// SetSources sets value to Sources
+func (o *SimpleNotificationGroup) SetSources(v []string) {
+	o.Sources = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *SimpleNotificationGroup) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *SimpleNotificationGroup) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* SimpleNotificationGroupCreateRequest
+*************************************************/
+
+// SimpleNotificationGroupCreateRequest represents API parameter/response structure
+type SimpleNotificationGroupCreateRequest struct {
+	Name         string
+	Description  string
+	Tags         types.Tags
+	IconID       types.ID `mapconv:"Icon.ID"`
+	Destinations []string `mapconv:"Settings.Destinations"`
+	Disabled     bool     `mapconv:"Settings.Disabled"`
+	Sources      []string `mapconv:"Settings.Sources"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationGroupCreateRequest) setDefaults() interface{} {
+	return &struct {
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID `mapconv:"Icon.ID"`
+		Destinations []string `mapconv:"Settings.Destinations"`
+		Disabled     bool     `mapconv:"Settings.Disabled"`
+		Sources      []string `mapconv:"Settings.Sources"`
+		Class        string   `mapconv:"Provider.Class"`
+		ServiceClass string
+	}{
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		Destinations: o.GetDestinations(),
+		Disabled:     o.GetDisabled(),
+		Sources:      o.GetSources(),
+		Class:        "saknoticegroup",
+		ServiceClass: "cloud/saknoticegroup/1",
+	}
+}
+
+// GetName returns value of Name
+func (o *SimpleNotificationGroupCreateRequest) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *SimpleNotificationGroupCreateRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *SimpleNotificationGroupCreateRequest) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *SimpleNotificationGroupCreateRequest) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *SimpleNotificationGroupCreateRequest) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *SimpleNotificationGroupCreateRequest) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *SimpleNotificationGroupCreateRequest) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *SimpleNotificationGroupCreateRequest) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *SimpleNotificationGroupCreateRequest) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *SimpleNotificationGroupCreateRequest) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetIconID returns value of IconID
+func (o *SimpleNotificationGroupCreateRequest) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *SimpleNotificationGroupCreateRequest) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetDestinations returns value of Destinations
+func (o *SimpleNotificationGroupCreateRequest) GetDestinations() []string {
+	return o.Destinations
+}
+
+// SetDestinations sets value to Destinations
+func (o *SimpleNotificationGroupCreateRequest) SetDestinations(v []string) {
+	o.Destinations = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationGroupCreateRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationGroupCreateRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetSources returns value of Sources
+func (o *SimpleNotificationGroupCreateRequest) GetSources() []string {
+	return o.Sources
+}
+
+// SetSources sets value to Sources
+func (o *SimpleNotificationGroupCreateRequest) SetSources(v []string) {
+	o.Sources = v
+}
+
+/*************************************************
+* SimpleNotificationGroupUpdateRequest
+*************************************************/
+
+// SimpleNotificationGroupUpdateRequest represents API parameter/response structure
+type SimpleNotificationGroupUpdateRequest struct {
+	Name         string
+	Description  string
+	Tags         types.Tags
+	IconID       types.ID `mapconv:"Icon.ID"`
+	Destinations []string `mapconv:"Settings.Destinations"`
+	Disabled     bool     `mapconv:"Settings.Disabled"`
+	Sources      []string `mapconv:"Settings.Sources"`
+	SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationGroupUpdateRequest) setDefaults() interface{} {
+	return &struct {
+		Name         string
+		Description  string
+		Tags         types.Tags
+		IconID       types.ID `mapconv:"Icon.ID"`
+		Destinations []string `mapconv:"Settings.Destinations"`
+		Disabled     bool     `mapconv:"Settings.Disabled"`
+		Sources      []string `mapconv:"Settings.Sources"`
+		SettingsHash string   `json:",omitempty" mapconv:",omitempty"`
+	}{
+		Name:         o.GetName(),
+		Description:  o.GetDescription(),
+		Tags:         o.GetTags(),
+		IconID:       o.GetIconID(),
+		Destinations: o.GetDestinations(),
+		Disabled:     o.GetDisabled(),
+		Sources:      o.GetSources(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetName returns value of Name
+func (o *SimpleNotificationGroupUpdateRequest) GetName() string {
+	return o.Name
+}
+
+// SetName sets value to Name
+func (o *SimpleNotificationGroupUpdateRequest) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns value of Description
+func (o *SimpleNotificationGroupUpdateRequest) GetDescription() string {
+	return o.Description
+}
+
+// SetDescription sets value to Description
+func (o *SimpleNotificationGroupUpdateRequest) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetTags returns value of Tags
+func (o *SimpleNotificationGroupUpdateRequest) GetTags() types.Tags {
+	return o.Tags
+}
+
+// SetTags sets value to Tags
+func (o *SimpleNotificationGroupUpdateRequest) SetTags(v types.Tags) {
+	o.Tags = v
+}
+
+// HasTag 指定のタグが存在する場合trueを返す
+func (o *SimpleNotificationGroupUpdateRequest) HasTag(tag string) bool {
+	return accessor.HasTag(o, tag)
+}
+
+// AppendTag 指定のタグを追加
+func (o *SimpleNotificationGroupUpdateRequest) AppendTag(tag string) {
+	accessor.AppendTag(o, tag)
+}
+
+// RemoveTag 指定のタグを削除
+func (o *SimpleNotificationGroupUpdateRequest) RemoveTag(tag string) {
+	accessor.RemoveTag(o, tag)
+}
+
+// ClearTags タグを全クリア
+func (o *SimpleNotificationGroupUpdateRequest) ClearTags() {
+	accessor.ClearTags(o)
+}
+
+// GetIconID returns value of IconID
+func (o *SimpleNotificationGroupUpdateRequest) GetIconID() types.ID {
+	return o.IconID
+}
+
+// SetIconID sets value to IconID
+func (o *SimpleNotificationGroupUpdateRequest) SetIconID(v types.ID) {
+	o.IconID = v
+}
+
+// GetDestinations returns value of Destinations
+func (o *SimpleNotificationGroupUpdateRequest) GetDestinations() []string {
+	return o.Destinations
+}
+
+// SetDestinations sets value to Destinations
+func (o *SimpleNotificationGroupUpdateRequest) SetDestinations(v []string) {
+	o.Destinations = v
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationGroupUpdateRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationGroupUpdateRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetSources returns value of Sources
+func (o *SimpleNotificationGroupUpdateRequest) GetSources() []string {
+	return o.Sources
+}
+
+// SetSources sets value to Sources
+func (o *SimpleNotificationGroupUpdateRequest) SetSources(v []string) {
+	o.Sources = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *SimpleNotificationGroupUpdateRequest) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *SimpleNotificationGroupUpdateRequest) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* SimpleNotificationGroupUpdateSettingsRequest
+*************************************************/
+
+// SimpleNotificationGroupUpdateSettingsRequest represents API parameter/response structure
+type SimpleNotificationGroupUpdateSettingsRequest struct {
+	Disabled     bool   `mapconv:"Settings.Disabled"`
+	SettingsHash string `json:",omitempty" mapconv:",omitempty"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationGroupUpdateSettingsRequest) setDefaults() interface{} {
+	return &struct {
+		Disabled     bool   `mapconv:"Settings.Disabled"`
+		SettingsHash string `json:",omitempty" mapconv:",omitempty"`
+	}{
+		Disabled:     o.GetDisabled(),
+		SettingsHash: o.GetSettingsHash(),
+	}
+}
+
+// GetDisabled returns value of Disabled
+func (o *SimpleNotificationGroupUpdateSettingsRequest) GetDisabled() bool {
+	return o.Disabled
+}
+
+// SetDisabled sets value to Disabled
+func (o *SimpleNotificationGroupUpdateSettingsRequest) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
+// GetSettingsHash returns value of SettingsHash
+func (o *SimpleNotificationGroupUpdateSettingsRequest) GetSettingsHash() string {
+	return o.SettingsHash
+}
+
+// SetSettingsHash sets value to SettingsHash
+func (o *SimpleNotificationGroupUpdateSettingsRequest) SetSettingsHash(v string) {
+	o.SettingsHash = v
+}
+
+/*************************************************
+* SimpleNotificationHistories
+*************************************************/
+
+// SimpleNotificationHistories represents API parameter/response structure
+type SimpleNotificationHistories struct {
+	NotificationHistories []*SimpleNotificationHistory
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationHistories) setDefaults() interface{} {
+	return &struct {
+		NotificationHistories []*SimpleNotificationHistory
+	}{
+		NotificationHistories: o.GetNotificationHistories(),
+	}
+}
+
+// GetNotificationHistories returns value of NotificationHistories
+func (o *SimpleNotificationHistories) GetNotificationHistories() []*SimpleNotificationHistory {
+	return o.NotificationHistories
+}
+
+// SetNotificationHistories sets value to NotificationHistories
+func (o *SimpleNotificationHistories) SetNotificationHistories(v []*SimpleNotificationHistory) {
+	o.NotificationHistories = v
+}
+
+/*************************************************
+* SimpleNotificationHistory
+*************************************************/
+
+// SimpleNotificationHistory represents API parameter/response structure
+type SimpleNotificationHistory struct {
+	RequestID  string
+	SourceID   string
+	ReceivedAt time.Time
+	Message    *SimpleNotificationHistoryMessage
+	Statuses   []*SimpleNotificationHistoryStatus
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationHistory) setDefaults() interface{} {
+	return &struct {
+		RequestID  string
+		SourceID   string
+		ReceivedAt time.Time
+		Message    *SimpleNotificationHistoryMessage
+		Statuses   []*SimpleNotificationHistoryStatus
+	}{
+		RequestID:  o.GetRequestID(),
+		SourceID:   o.GetSourceID(),
+		ReceivedAt: o.GetReceivedAt(),
+		Message:    o.GetMessage(),
+		Statuses:   o.GetStatuses(),
+	}
+}
+
+// GetRequestID returns value of RequestID
+func (o *SimpleNotificationHistory) GetRequestID() string {
+	return o.RequestID
+}
+
+// SetRequestID sets value to RequestID
+func (o *SimpleNotificationHistory) SetRequestID(v string) {
+	o.RequestID = v
+}
+
+// GetSourceID returns value of SourceID
+func (o *SimpleNotificationHistory) GetSourceID() string {
+	return o.SourceID
+}
+
+// SetSourceID sets value to SourceID
+func (o *SimpleNotificationHistory) SetSourceID(v string) {
+	o.SourceID = v
+}
+
+// GetReceivedAt returns value of ReceivedAt
+func (o *SimpleNotificationHistory) GetReceivedAt() time.Time {
+	return o.ReceivedAt
+}
+
+// SetReceivedAt sets value to ReceivedAt
+func (o *SimpleNotificationHistory) SetReceivedAt(v time.Time) {
+	o.ReceivedAt = v
+}
+
+// GetMessage returns value of Message
+func (o *SimpleNotificationHistory) GetMessage() *SimpleNotificationHistoryMessage {
+	return o.Message
+}
+
+// SetMessage sets value to Message
+func (o *SimpleNotificationHistory) SetMessage(v *SimpleNotificationHistoryMessage) {
+	o.Message = v
+}
+
+// GetStatuses returns value of Statuses
+func (o *SimpleNotificationHistory) GetStatuses() []*SimpleNotificationHistoryStatus {
+	return o.Statuses
+}
+
+// SetStatuses sets value to Statuses
+func (o *SimpleNotificationHistory) SetStatuses(v []*SimpleNotificationHistoryStatus) {
+	o.Statuses = v
+}
+
+/*************************************************
+* SimpleNotificationHistoryMessage
+*************************************************/
+
+// SimpleNotificationHistoryMessage represents API parameter/response structure
+type SimpleNotificationHistoryMessage struct {
+	Body      string
+	Color     string
+	ColorCode string
+	IconURL   string
+	ImageURL  string
+	Title     string
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationHistoryMessage) setDefaults() interface{} {
+	return &struct {
+		Body      string
+		Color     string
+		ColorCode string
+		IconURL   string
+		ImageURL  string
+		Title     string
+	}{
+		Body:      o.GetBody(),
+		Color:     o.GetColor(),
+		ColorCode: o.GetColorCode(),
+		IconURL:   o.GetIconURL(),
+		ImageURL:  o.GetImageURL(),
+		Title:     o.GetTitle(),
+	}
+}
+
+// GetBody returns value of Body
+func (o *SimpleNotificationHistoryMessage) GetBody() string {
+	return o.Body
+}
+
+// SetBody sets value to Body
+func (o *SimpleNotificationHistoryMessage) SetBody(v string) {
+	o.Body = v
+}
+
+// GetColor returns value of Color
+func (o *SimpleNotificationHistoryMessage) GetColor() string {
+	return o.Color
+}
+
+// SetColor sets value to Color
+func (o *SimpleNotificationHistoryMessage) SetColor(v string) {
+	o.Color = v
+}
+
+// GetColorCode returns value of ColorCode
+func (o *SimpleNotificationHistoryMessage) GetColorCode() string {
+	return o.ColorCode
+}
+
+// SetColorCode sets value to ColorCode
+func (o *SimpleNotificationHistoryMessage) SetColorCode(v string) {
+	o.ColorCode = v
+}
+
+// GetIconURL returns value of IconURL
+func (o *SimpleNotificationHistoryMessage) GetIconURL() string {
+	return o.IconURL
+}
+
+// SetIconURL sets value to IconURL
+func (o *SimpleNotificationHistoryMessage) SetIconURL(v string) {
+	o.IconURL = v
+}
+
+// GetImageURL returns value of ImageURL
+func (o *SimpleNotificationHistoryMessage) GetImageURL() string {
+	return o.ImageURL
+}
+
+// SetImageURL sets value to ImageURL
+func (o *SimpleNotificationHistoryMessage) SetImageURL(v string) {
+	o.ImageURL = v
+}
+
+// GetTitle returns value of Title
+func (o *SimpleNotificationHistoryMessage) GetTitle() string {
+	return o.Title
+}
+
+// SetTitle sets value to Title
+func (o *SimpleNotificationHistoryMessage) SetTitle(v string) {
+	o.Title = v
+}
+
+/*************************************************
+* SimpleNotificationHistoryStatus
+*************************************************/
+
+// SimpleNotificationHistoryStatus represents API parameter/response structure
+type SimpleNotificationHistoryStatus struct {
+	ID                    string
+	Status                int
+	ErrorInfo             string
+	NotificationRequestID string
+	GroupID               string
+	CreatedAt             time.Time
+	UpdatedAt             time.Time
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *SimpleNotificationHistoryStatus) setDefaults() interface{} {
+	return &struct {
+		ID                    string
+		Status                int
+		ErrorInfo             string
+		NotificationRequestID string
+		GroupID               string
+		CreatedAt             time.Time
+		UpdatedAt             time.Time
+	}{
+		ID:                    o.GetID(),
+		Status:                o.GetStatus(),
+		ErrorInfo:             o.GetErrorInfo(),
+		NotificationRequestID: o.GetNotificationRequestID(),
+		GroupID:               o.GetGroupID(),
+		CreatedAt:             o.GetCreatedAt(),
+		UpdatedAt:             o.GetUpdatedAt(),
+	}
+}
+
+// GetID returns value of ID
+func (o *SimpleNotificationHistoryStatus) GetID() string {
+	return o.ID
+}
+
+// SetID sets value to ID
+func (o *SimpleNotificationHistoryStatus) SetID(v string) {
+	o.ID = v
+}
+
+// GetStatus returns value of Status
+func (o *SimpleNotificationHistoryStatus) GetStatus() int {
+	return o.Status
+}
+
+// SetStatus sets value to Status
+func (o *SimpleNotificationHistoryStatus) SetStatus(v int) {
+	o.Status = v
+}
+
+// GetErrorInfo returns value of ErrorInfo
+func (o *SimpleNotificationHistoryStatus) GetErrorInfo() string {
+	return o.ErrorInfo
+}
+
+// SetErrorInfo sets value to ErrorInfo
+func (o *SimpleNotificationHistoryStatus) SetErrorInfo(v string) {
+	o.ErrorInfo = v
+}
+
+// GetNotificationRequestID returns value of NotificationRequestID
+func (o *SimpleNotificationHistoryStatus) GetNotificationRequestID() string {
+	return o.NotificationRequestID
+}
+
+// SetNotificationRequestID sets value to NotificationRequestID
+func (o *SimpleNotificationHistoryStatus) SetNotificationRequestID(v string) {
+	o.NotificationRequestID = v
+}
+
+// GetGroupID returns value of GroupID
+func (o *SimpleNotificationHistoryStatus) GetGroupID() string {
+	return o.GroupID
+}
+
+// SetGroupID sets value to GroupID
+func (o *SimpleNotificationHistoryStatus) SetGroupID(v string) {
+	o.GroupID = v
+}
+
+// GetCreatedAt returns value of CreatedAt
+func (o *SimpleNotificationHistoryStatus) GetCreatedAt() time.Time {
+	return o.CreatedAt
+}
+
+// SetCreatedAt sets value to CreatedAt
+func (o *SimpleNotificationHistoryStatus) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns value of UpdatedAt
+func (o *SimpleNotificationHistoryStatus) GetUpdatedAt() time.Time {
+	return o.UpdatedAt
+}
+
+// SetUpdatedAt sets value to UpdatedAt
+func (o *SimpleNotificationHistoryStatus) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = v
+}
+
+/*************************************************
 * SSHKey
 *************************************************/
 
