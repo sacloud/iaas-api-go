@@ -152,6 +152,12 @@ func addClientFactoryHooks(cnf *config) {
 	iaas.AddClientFacotyHookFunc("SimpleMonitor", func(in interface{}) interface{} {
 		return newSimpleMonitorTracer(in.(iaas.SimpleMonitorAPI), cnf)
 	})
+	iaas.AddClientFacotyHookFunc("SimpleNotificationDestination", func(in interface{}) interface{} {
+		return newSimpleNotificationDestinationTracer(in.(iaas.SimpleNotificationDestinationAPI), cnf)
+	})
+	iaas.AddClientFacotyHookFunc("SimpleNotificationGroup", func(in interface{}) interface{} {
+		return newSimpleNotificationGroupTracer(in.(iaas.SimpleNotificationGroupAPI), cnf)
+	})
 	iaas.AddClientFacotyHookFunc("SSHKey", func(in interface{}) interface{} {
 		return newSSHKeyTracer(in.(iaas.SSHKeyAPI), cnf)
 	})
@@ -9041,6 +9047,417 @@ func (t *SimpleMonitorTracer) HealthStatus(ctx context.Context, id types.ID) (*i
 
 	}
 	return resultSimpleMonitorHealthStatus, err
+}
+
+/*************************************************
+* SimpleNotificationDestinationTracer
+*************************************************/
+
+// SimpleNotificationDestinationTracer is for trace SimpleNotificationDestinationOp operations
+type SimpleNotificationDestinationTracer struct {
+	Internal iaas.SimpleNotificationDestinationAPI
+	config   *config
+}
+
+// NewSimpleNotificationDestinationTracer creates new SimpleNotificationDestinationTracer instance
+func newSimpleNotificationDestinationTracer(in iaas.SimpleNotificationDestinationAPI, cnf *config) iaas.SimpleNotificationDestinationAPI {
+	return &SimpleNotificationDestinationTracer{
+		Internal: in,
+		config:   cnf,
+	}
+}
+
+// Find is API call with trace log
+func (t *SimpleNotificationDestinationTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SimpleNotificationDestinationFindResult, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.Find", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	result, err := t.Internal.Find(ctx, conditions)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.result", forceString(result)))
+
+	}
+	return result, err
+}
+
+// Create is API call with trace log
+func (t *SimpleNotificationDestinationTracer) Create(ctx context.Context, param *iaas.SimpleNotificationDestinationCreateRequest) (*iaas.SimpleNotificationDestination, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.Create", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationDestination, err := t.Internal.Create(ctx, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationDestination", forceString(resultSimpleNotificationDestination)))
+
+	}
+	return resultSimpleNotificationDestination, err
+}
+
+// Read is API call with trace log
+func (t *SimpleNotificationDestinationTracer) Read(ctx context.Context, id types.ID) (*iaas.SimpleNotificationDestination, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.Read", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationDestination, err := t.Internal.Read(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationDestination", forceString(resultSimpleNotificationDestination)))
+
+	}
+	return resultSimpleNotificationDestination, err
+}
+
+// Update is API call with trace log
+func (t *SimpleNotificationDestinationTracer) Update(ctx context.Context, id types.ID, param *iaas.SimpleNotificationDestinationUpdateRequest) (*iaas.SimpleNotificationDestination, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.Update", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationDestination, err := t.Internal.Update(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationDestination", forceString(resultSimpleNotificationDestination)))
+
+	}
+	return resultSimpleNotificationDestination, err
+}
+
+// UpdateSettings is API call with trace log
+func (t *SimpleNotificationDestinationTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.SimpleNotificationDestinationUpdateSettingsRequest) (*iaas.SimpleNotificationDestination, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.UpdateSettings", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationDestination, err := t.Internal.UpdateSettings(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationDestination", forceString(resultSimpleNotificationDestination)))
+
+	}
+	return resultSimpleNotificationDestination, err
+}
+
+// Delete is API call with trace log
+func (t *SimpleNotificationDestinationTracer) Delete(ctx context.Context, id types.ID) error {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.Delete", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	err := t.Internal.Delete(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+
+	}
+	return err
+}
+
+// Status is API call with trace log
+func (t *SimpleNotificationDestinationTracer) Status(ctx context.Context, id types.ID) (*iaas.SimpleNotificationDestinationStatus, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationDestinationAPI.Status", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationDestinationStatus, err := t.Internal.Status(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationDestinationStatus", forceString(resultSimpleNotificationDestinationStatus)))
+
+	}
+	return resultSimpleNotificationDestinationStatus, err
+}
+
+/*************************************************
+* SimpleNotificationGroupTracer
+*************************************************/
+
+// SimpleNotificationGroupTracer is for trace SimpleNotificationGroupOp operations
+type SimpleNotificationGroupTracer struct {
+	Internal iaas.SimpleNotificationGroupAPI
+	config   *config
+}
+
+// NewSimpleNotificationGroupTracer creates new SimpleNotificationGroupTracer instance
+func newSimpleNotificationGroupTracer(in iaas.SimpleNotificationGroupAPI, cnf *config) iaas.SimpleNotificationGroupAPI {
+	return &SimpleNotificationGroupTracer{
+		Internal: in,
+		config:   cnf,
+	}
+}
+
+// Find is API call with trace log
+func (t *SimpleNotificationGroupTracer) Find(ctx context.Context, conditions *iaas.FindCondition) (*iaas.SimpleNotificationGroupFindResult, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.conditions", forceString(conditions)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.Find", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	result, err := t.Internal.Find(ctx, conditions)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.result", forceString(result)))
+
+	}
+	return result, err
+}
+
+// Create is API call with trace log
+func (t *SimpleNotificationGroupTracer) Create(ctx context.Context, param *iaas.SimpleNotificationGroupCreateRequest) (*iaas.SimpleNotificationGroup, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.Create", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationGroup, err := t.Internal.Create(ctx, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationGroup", forceString(resultSimpleNotificationGroup)))
+
+	}
+	return resultSimpleNotificationGroup, err
+}
+
+// Read is API call with trace log
+func (t *SimpleNotificationGroupTracer) Read(ctx context.Context, id types.ID) (*iaas.SimpleNotificationGroup, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.Read", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationGroup, err := t.Internal.Read(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationGroup", forceString(resultSimpleNotificationGroup)))
+
+	}
+	return resultSimpleNotificationGroup, err
+}
+
+// Update is API call with trace log
+func (t *SimpleNotificationGroupTracer) Update(ctx context.Context, id types.ID, param *iaas.SimpleNotificationGroupUpdateRequest) (*iaas.SimpleNotificationGroup, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.Update", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationGroup, err := t.Internal.Update(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationGroup", forceString(resultSimpleNotificationGroup)))
+
+	}
+	return resultSimpleNotificationGroup, err
+}
+
+// UpdateSettings is API call with trace log
+func (t *SimpleNotificationGroupTracer) UpdateSettings(ctx context.Context, id types.ID, param *iaas.SimpleNotificationGroupUpdateSettingsRequest) (*iaas.SimpleNotificationGroup, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.param", forceString(param)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.UpdateSettings", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationGroup, err := t.Internal.UpdateSettings(ctx, id, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationGroup", forceString(resultSimpleNotificationGroup)))
+
+	}
+	return resultSimpleNotificationGroup, err
+}
+
+// Delete is API call with trace log
+func (t *SimpleNotificationGroupTracer) Delete(ctx context.Context, id types.ID) error {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.Delete", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	err := t.Internal.Delete(ctx, id)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+
+	}
+	return err
+}
+
+// PostMessage is API call with trace log
+func (t *SimpleNotificationGroupTracer) PostMessage(ctx context.Context, id types.ID, message string) error {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.id", forceString(id)),
+		attribute.String("sacloud.api.arguments.message", forceString(message)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.PostMessage", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	err := t.Internal.PostMessage(ctx, id, message)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+
+	}
+	return err
+}
+
+// History is API call with trace log
+func (t *SimpleNotificationGroupTracer) History(ctx context.Context) (*iaas.SimpleNotificationHistories, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes())
+	ctx, span = t.config.Tracer.Start(ctx, "SimpleNotificationGroupAPI.History", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultSimpleNotificationHistories, err := t.Internal.History(ctx)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultSimpleNotificationHistories", forceString(resultSimpleNotificationHistories)))
+
+	}
+	return resultSimpleNotificationHistories, err
 }
 
 /*************************************************

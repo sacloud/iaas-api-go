@@ -2090,6 +2090,112 @@ type simpleMonitorHealthStatusResult struct {
 	SimpleMonitorHealthStatus *SimpleMonitorHealthStatus `json:",omitempty" mapconv:"SimpleMonitor,omitempty,recursive"`
 }
 
+// SimpleNotificationDestinationFindResult represents the Result of API
+type SimpleNotificationDestinationFindResult struct {
+	Total int `json:",omitempty"` // Total count of target resources
+	From  int `json:",omitempty"` // Current page number
+	Count int `json:",omitempty"` // Count of current page
+
+	SimpleNotificationDestinations []*SimpleNotificationDestination `json:",omitempty" mapconv:"[]CommonServiceItems,omitempty,recursive"`
+}
+
+// Values returns find results
+func (r *SimpleNotificationDestinationFindResult) Values() []interface{} {
+	var results []interface{}
+	for _, v := range r.SimpleNotificationDestinations {
+		results = append(results, v)
+	}
+	return results
+}
+
+// simpleNotificationDestinationCreateResult represents the Result of API
+type simpleNotificationDestinationCreateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationDestination *SimpleNotificationDestination `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationDestinationReadResult represents the Result of API
+type simpleNotificationDestinationReadResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationDestination *SimpleNotificationDestination `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationDestinationUpdateResult represents the Result of API
+type simpleNotificationDestinationUpdateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationDestination *SimpleNotificationDestination `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationDestinationUpdateSettingsResult represents the Result of API
+type simpleNotificationDestinationUpdateSettingsResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationDestination *SimpleNotificationDestination `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationDestinationStatusResult represents the Result of API
+type simpleNotificationDestinationStatusResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationDestinationStatus *SimpleNotificationDestinationStatus `json:",omitempty" mapconv:"SimpleNotificationDestination,omitempty,recursive"`
+}
+
+// SimpleNotificationGroupFindResult represents the Result of API
+type SimpleNotificationGroupFindResult struct {
+	Total int `json:",omitempty"` // Total count of target resources
+	From  int `json:",omitempty"` // Current page number
+	Count int `json:",omitempty"` // Count of current page
+
+	SimpleNotificationGroups []*SimpleNotificationGroup `json:",omitempty" mapconv:"[]CommonServiceItems,omitempty,recursive"`
+}
+
+// Values returns find results
+func (r *SimpleNotificationGroupFindResult) Values() []interface{} {
+	var results []interface{}
+	for _, v := range r.SimpleNotificationGroups {
+		results = append(results, v)
+	}
+	return results
+}
+
+// simpleNotificationGroupCreateResult represents the Result of API
+type simpleNotificationGroupCreateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationGroup *SimpleNotificationGroup `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationGroupReadResult represents the Result of API
+type simpleNotificationGroupReadResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationGroup *SimpleNotificationGroup `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationGroupUpdateResult represents the Result of API
+type simpleNotificationGroupUpdateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationGroup *SimpleNotificationGroup `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationGroupUpdateSettingsResult represents the Result of API
+type simpleNotificationGroupUpdateSettingsResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationGroup *SimpleNotificationGroup `json:",omitempty" mapconv:"CommonServiceItem,omitempty,recursive"`
+}
+
+// simpleNotificationGroupHistoryResult represents the Result of API
+type simpleNotificationGroupHistoryResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	SimpleNotificationHistories *SimpleNotificationHistories `json:",omitempty" mapconv:"NotificationHistories,omitempty,recursive"`
+}
+
 // SSHKeyFindResult represents the Result of API
 type SSHKeyFindResult struct {
 	Total int `json:",omitempty"` // Total count of target resources
