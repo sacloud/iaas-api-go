@@ -1,6 +1,7 @@
 module github.com/sacloud/iaas-api-go
 
 go 1.21
+toolchain go1.23.6
 
 require (
 	github.com/fatih/structs v1.1.0
@@ -13,7 +14,7 @@ require (
 	github.com/sacloud/go-http v0.1.9
 	github.com/sacloud/packages-go v0.0.11
 	github.com/stretchr/testify v1.10.0
-	golang.org/x/crypto v0.33.0
+	golang.org/x/crypto v0.35.0
 )
 
 require (
