@@ -1170,6 +1170,62 @@ func putSimpleMonitor(zone string, value *iaas.SimpleMonitor) {
 	ds().Put(ResourceSimpleMonitor, zone, 0, value)
 }
 
+func getSimpleNotificationDestination(zone string) []*iaas.SimpleNotificationDestination {
+	values := ds().List(ResourceSimpleNotificationDestination, zone)
+	var ret []*iaas.SimpleNotificationDestination
+	for _, v := range values {
+		if v, ok := v.(*iaas.SimpleNotificationDestination); ok {
+			ret = append(ret, v)
+		}
+	}
+	return ret
+}
+
+func getSimpleNotificationDestinationByID(zone string, id types.ID) *iaas.SimpleNotificationDestination {
+	v := ds().Get(ResourceSimpleNotificationDestination, zone, id)
+	if v, ok := v.(*iaas.SimpleNotificationDestination); ok {
+		return v
+	}
+	return nil
+}
+
+func putSimpleNotificationDestination(zone string, value *iaas.SimpleNotificationDestination) {
+	var v interface{} = value
+	if id, ok := v.(accessor.ID); ok {
+		ds().Put(ResourceSimpleNotificationDestination, zone, id.GetID(), value)
+		return
+	}
+	ds().Put(ResourceSimpleNotificationDestination, zone, 0, value)
+}
+
+func getSimpleNotificationGroup(zone string) []*iaas.SimpleNotificationGroup {
+	values := ds().List(ResourceSimpleNotificationGroup, zone)
+	var ret []*iaas.SimpleNotificationGroup
+	for _, v := range values {
+		if v, ok := v.(*iaas.SimpleNotificationGroup); ok {
+			ret = append(ret, v)
+		}
+	}
+	return ret
+}
+
+func getSimpleNotificationGroupByID(zone string, id types.ID) *iaas.SimpleNotificationGroup {
+	v := ds().Get(ResourceSimpleNotificationGroup, zone, id)
+	if v, ok := v.(*iaas.SimpleNotificationGroup); ok {
+		return v
+	}
+	return nil
+}
+
+func putSimpleNotificationGroup(zone string, value *iaas.SimpleNotificationGroup) {
+	var v interface{} = value
+	if id, ok := v.(accessor.ID); ok {
+		ds().Put(ResourceSimpleNotificationGroup, zone, id.GetID(), value)
+		return
+	}
+	ds().Put(ResourceSimpleNotificationGroup, zone, 0, value)
+}
+
 func getSSHKey(zone string) []*iaas.SSHKey {
 	values := ds().List(ResourceSSHKey, zone)
 	var ret []*iaas.SSHKey

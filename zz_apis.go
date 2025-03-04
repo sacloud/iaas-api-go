@@ -668,6 +668,37 @@ type SimpleMonitorAPI interface {
 }
 
 /*************************************************
+* SimpleNotificationDestinationAPI
+*************************************************/
+
+// SimpleNotificationDestinationAPI is interface for operate SimpleNotificationDestination resource
+type SimpleNotificationDestinationAPI interface {
+	Find(ctx context.Context, conditions *FindCondition) (*SimpleNotificationDestinationFindResult, error)
+	Create(ctx context.Context, param *SimpleNotificationDestinationCreateRequest) (*SimpleNotificationDestination, error)
+	Read(ctx context.Context, id types.ID) (*SimpleNotificationDestination, error)
+	Update(ctx context.Context, id types.ID, param *SimpleNotificationDestinationUpdateRequest) (*SimpleNotificationDestination, error)
+	UpdateSettings(ctx context.Context, id types.ID, param *SimpleNotificationDestinationUpdateSettingsRequest) (*SimpleNotificationDestination, error)
+	Delete(ctx context.Context, id types.ID) error
+	Status(ctx context.Context, id types.ID) (*SimpleNotificationDestinationStatus, error)
+}
+
+/*************************************************
+* SimpleNotificationGroupAPI
+*************************************************/
+
+// SimpleNotificationGroupAPI is interface for operate SimpleNotificationGroup resource
+type SimpleNotificationGroupAPI interface {
+	Find(ctx context.Context, conditions *FindCondition) (*SimpleNotificationGroupFindResult, error)
+	Create(ctx context.Context, param *SimpleNotificationGroupCreateRequest) (*SimpleNotificationGroup, error)
+	Read(ctx context.Context, id types.ID) (*SimpleNotificationGroup, error)
+	Update(ctx context.Context, id types.ID, param *SimpleNotificationGroupUpdateRequest) (*SimpleNotificationGroup, error)
+	UpdateSettings(ctx context.Context, id types.ID, param *SimpleNotificationGroupUpdateSettingsRequest) (*SimpleNotificationGroup, error)
+	Delete(ctx context.Context, id types.ID) error
+	PostMessage(ctx context.Context, id types.ID, message string) error
+	History(ctx context.Context) (*SimpleNotificationHistories, error)
+}
+
+/*************************************************
 * SSHKeyAPI
 *************************************************/
 
