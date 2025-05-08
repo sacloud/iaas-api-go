@@ -9528,31 +9528,6 @@ func (t *SSHKeyTracer) Create(ctx context.Context, param *iaas.SSHKeyCreateReque
 	return resultSSHKey, err
 }
 
-// Generate is API call with trace log
-func (t *SSHKeyTracer) Generate(ctx context.Context, param *iaas.SSHKeyGenerateRequest) (*iaas.SSHKeyGenerated, error) {
-	var span trace.Span
-	options := append(t.config.SpanStartOptions, trace.WithAttributes(
-		attribute.String("sacloud.api.arguments.param", forceString(param)),
-	))
-	ctx, span = t.config.Tracer.Start(ctx, "SSHKeyAPI.Generate", options...)
-	defer func() {
-		span.End()
-	}()
-
-	// for http trace
-	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
-	resultSSHKeyGenerated, err := t.Internal.Generate(ctx, param)
-
-	if err != nil {
-		span.SetStatus(codes.Error, err.Error())
-	} else {
-		span.SetStatus(codes.Ok, "")
-		span.SetAttributes(attribute.String("libiaas.api.results.resultSSHKeyGenerated", forceString(resultSSHKeyGenerated)))
-
-	}
-	return resultSSHKeyGenerated, err
-}
-
 // Read is API call with trace log
 func (t *SSHKeyTracer) Read(ctx context.Context, id types.ID) (*iaas.SSHKey, error) {
 	var span trace.Span

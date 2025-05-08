@@ -65,23 +65,6 @@ func (o *SSHKeyOp) Create(ctx context.Context, param *iaas.SSHKeyCreateRequest) 
 	return result, nil
 }
 
-// Generate is fake implementation
-func (o *SSHKeyOp) Generate(ctx context.Context, param *iaas.SSHKeyGenerateRequest) (*iaas.SSHKeyGenerated, error) {
-	key := &iaas.SSHKey{}
-	copySameNameField(param, key)
-	fill(key, fillID, fillCreatedAt)
-
-	result := &iaas.SSHKeyGenerated{}
-	copySameNameField(key, result)
-
-	result.PublicKey = GeneratedPublicKey
-	result.PrivateKey = GeneratedPrivateKey
-	result.Fingerprint = GeneratedFingerprint
-
-	putSSHKey(iaas.APIDefaultZone, key)
-	return result, nil
-}
-
 // Read is fake implementation
 func (o *SSHKeyOp) Read(ctx context.Context, id types.ID) (*iaas.SSHKey, error) {
 	value := getSSHKeyByID(iaas.APIDefaultZone, id)

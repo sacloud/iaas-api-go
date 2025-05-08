@@ -3085,19 +3085,6 @@ type sSHKeyCreateResponseEnvelope struct {
 	SSHKey *naked.SSHKey `json:",omitempty"`
 }
 
-// sSHKeyGenerateRequestEnvelope is envelop of API request
-type sSHKeyGenerateRequestEnvelope struct {
-	SSHKey *naked.SSHKey `json:",omitempty"`
-}
-
-// sSHKeyGenerateResponseEnvelope is envelop of API response
-type sSHKeyGenerateResponseEnvelope struct {
-	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
-	Success types.APIResult `json:",omitempty"`      // success項目
-
-	SSHKey *naked.SSHKey `json:",omitempty"`
-}
-
 // sSHKeyReadResponseEnvelope is envelop of API response
 type sSHKeyReadResponseEnvelope struct {
 	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目

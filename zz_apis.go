@@ -706,7 +706,6 @@ type SimpleNotificationGroupAPI interface {
 type SSHKeyAPI interface {
 	Find(ctx context.Context, conditions *FindCondition) (*SSHKeyFindResult, error)
 	Create(ctx context.Context, param *SSHKeyCreateRequest) (*SSHKey, error)
-	Generate(ctx context.Context, param *SSHKeyGenerateRequest) (*SSHKeyGenerated, error)
 	Read(ctx context.Context, id types.ID) (*SSHKey, error)
 	Update(ctx context.Context, id types.ID, param *SSHKeyUpdateRequest) (*SSHKey, error)
 	Delete(ctx context.Context, id types.ID) error

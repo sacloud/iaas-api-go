@@ -55,39 +55,6 @@ func TestSSHKeyOpCRUD(t *testing.T) {
 	})
 }
 
-func TestSSHKeyOp_Generate(t *testing.T) {
-	testutil.RunCRUD(t, &testutil.CRUDTestCase{
-		Parallel:           true,
-		IgnoreStartupWait:  true,
-		SetupAPICallerFunc: singletonAPICaller,
-		Create: &testutil.CRUDTestFunc{
-			Func: func(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
-				client := iaas.NewSSHKeyOp(caller)
-				return client.Generate(ctx, &iaas.SSHKeyGenerateRequest{
-					Name:        testutil.ResourceName("sshkey-generate"),
-					Description: "libsacloud-sshKey-generate",
-					PassPhrase:  "libsacloud-sshKey-passphrase",
-				})
-			},
-			CheckFunc: func(t testutil.TestT, ctx *testutil.CRUDTestContext, v interface{}) error {
-				sshKey := v.(*iaas.SSHKeyGenerated)
-				return testutil.DoAsserts(
-					testutil.AssertNotNilFunc(t, sshKey, "SSHKeyGenerated"),
-					testutil.AssertNotEmptyFunc(t, sshKey.PublicKey, "SSHKeyGenerated.PublicKey"),
-					testutil.AssertNotEmptyFunc(t, sshKey.PrivateKey, "SSHKeyGenerated.PrivateKey"),
-					testutil.AssertNotEmptyFunc(t, sshKey.Fingerprint, "SSHKeyGenerated.Fingerprint"),
-				)
-			},
-		},
-		Read: &testutil.CRUDTestFunc{
-			Func: testSSHKeyRead,
-		},
-		Delete: &testutil.CRUDTestDeleteFunc{
-			Func: testSSHKeyDelete,
-		},
-	})
-}
-
 var (
 	fakePublicKey   = `ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAs7YFtxjGrI49MCBnSFbUPxqz0e5HSGQPnLlPJ0u/9w4WLpoOZYmoQDTMfuFA61qv+0dp5mpMZPj3f5YEGlwUFKPy3Cmrp0ub1nYDb7n62s+Xf68TNvbVgQMLF0xdOaWxdRsQwmH8lOWan1Ubc8iwfOa3TNGwOzGLMjdW3PiJ7hcE7nFqnmbQUabHWow8G6JYDHKyjAdpz+edK8u+LY0iEP8M8VAjRJKJVg4p1/oDjHFKI0qjfjitKzoLm5FGaFv8afH2WQSpu/2To7d/RaLhfoMZsUReLSxeDnQkKGERXrAywTHnFu60cOaT3EvaAhP1H3BPj2LESm8M4ja9FaARnQ== `
 	fakeFingerprint = "79:d7:ac:b8:cf:cf:01:44:b2:19:ba:d4:82:fd:c4:2d"
