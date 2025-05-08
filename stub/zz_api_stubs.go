@@ -5480,12 +5480,6 @@ type SSHKeyCreateStubResult struct {
 	Err    error
 }
 
-// SSHKeyGenerateStubResult is expected values of the Generate operation
-type SSHKeyGenerateStubResult struct {
-	SSHKeyGenerated *iaas.SSHKeyGenerated
-	Err             error
-}
-
 // SSHKeyReadStubResult is expected values of the Read operation
 type SSHKeyReadStubResult struct {
 	SSHKey *iaas.SSHKey
@@ -5505,12 +5499,11 @@ type SSHKeyDeleteStubResult struct {
 
 // SSHKeyStub is for trace SSHKeyOp operations
 type SSHKeyStub struct {
-	FindStubResult     *SSHKeyFindStubResult
-	CreateStubResult   *SSHKeyCreateStubResult
-	GenerateStubResult *SSHKeyGenerateStubResult
-	ReadStubResult     *SSHKeyReadStubResult
-	UpdateStubResult   *SSHKeyUpdateStubResult
-	DeleteStubResult   *SSHKeyDeleteStubResult
+	FindStubResult   *SSHKeyFindStubResult
+	CreateStubResult *SSHKeyCreateStubResult
+	ReadStubResult   *SSHKeyReadStubResult
+	UpdateStubResult *SSHKeyUpdateStubResult
+	DeleteStubResult *SSHKeyDeleteStubResult
 }
 
 // NewSSHKeyStub creates new SSHKeyStub instance
@@ -5532,14 +5525,6 @@ func (s *SSHKeyStub) Create(ctx context.Context, param *iaas.SSHKeyCreateRequest
 		log.Fatal("SSHKeyStub.CreateStubResult is not set")
 	}
 	return s.CreateStubResult.SSHKey, s.CreateStubResult.Err
-}
-
-// Generate is API call with trace log
-func (s *SSHKeyStub) Generate(ctx context.Context, param *iaas.SSHKeyGenerateRequest) (*iaas.SSHKeyGenerated, error) {
-	if s.GenerateStubResult == nil {
-		log.Fatal("SSHKeyStub.GenerateStubResult is not set")
-	}
-	return s.GenerateStubResult.SSHKeyGenerated, s.GenerateStubResult.Err
 }
 
 // Read is API call with trace log

@@ -2221,13 +2221,6 @@ type sSHKeyCreateResult struct {
 	SSHKey *SSHKey `json:",omitempty" mapconv:"SSHKey,omitempty,recursive"`
 }
 
-// sSHKeyGenerateResult represents the Result of API
-type sSHKeyGenerateResult struct {
-	IsOk bool `json:",omitempty"` // is_ok
-
-	SSHKeyGenerated *SSHKeyGenerated `json:",omitempty" mapconv:"SSHKey,omitempty,recursive"`
-}
-
 // sSHKeyReadResult represents the Result of API
 type sSHKeyReadResult struct {
 	IsOk bool `json:",omitempty"` // is_ok

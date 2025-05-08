@@ -15,8 +15,6 @@
 package define
 
 import (
-	"net/http"
-
 	"github.com/sacloud/iaas-api-go/internal/define/names"
 	"github.com/sacloud/iaas-api-go/internal/define/ops"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
@@ -40,33 +38,6 @@ var sshKeyAPI = &dsl.Resource{
 
 		// create
 		ops.Create(sshKeyAPIName, sshKeyNakedType, sshKeyCreateParam, sshKeyView),
-
-		// generate
-		{
-			ResourceName: sshKeyAPIName,
-			Name:         "Generate",
-			PathFormat:   dsl.DefaultPathFormat + "/generate",
-			Method:       http.MethodPost,
-			RequestEnvelope: dsl.RequestEnvelope(&dsl.EnvelopePayloadDesc{
-				Type: sshKeyNakedType,
-				Name: sshKeyAPIName,
-			}),
-			Arguments: dsl.Arguments{
-				dsl.MappableArgument("param", sshKeyGenerateParam, sshKeyAPIName),
-			},
-			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
-				Type: sshKeyNakedType,
-				Name: sshKeyAPIName,
-			}),
-			Results: dsl.Results{
-				{
-					SourceField: sshKeyAPIName,
-					DestField:   sshKeyGeneratedView.Name,
-					IsPlural:    false,
-					Model:       sshKeyGeneratedView,
-				},
-			},
-		},
 
 		// read
 		ops.Read(sshKeyAPIName, sshKeyNakedType, sshKeyView),
@@ -97,12 +68,6 @@ var (
 		Fields:    sshKeyFields,
 	}
 
-	sshKeyGeneratedView = &dsl.Model{
-		Name:      sshKeyAPIName + "Generated",
-		NakedType: sshKeyNakedType,
-		Fields:    append(sshKeyFields, fields.PrivateKey()),
-	}
-
 	sshKeyCreateParam = &dsl.Model{
 		Name:      names.CreateParameterName(sshKeyAPIName),
 		NakedType: sshKeyNakedType,
@@ -110,23 +75,6 @@ var (
 			fields.Name(),
 			fields.Description(),
 			fields.PublicKey(),
-		},
-	}
-
-	sshKeyGenerateParam = &dsl.Model{
-		Name:      names.RequestParameterName(sshKeyAPIName, "Generate"),
-		NakedType: sshKeyNakedType,
-		Fields: []*dsl.FieldDesc{
-			fields.Name(),
-			fields.Description(),
-			fields.PassPhrase(),
-		},
-		ConstFields: []*dsl.ConstFieldDesc{
-			{
-				Name:  "GenerateFormat",
-				Type:  meta.TypeString,
-				Value: `"openssh"`,
-			},
 		},
 	}
 

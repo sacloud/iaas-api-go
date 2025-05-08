@@ -12762,43 +12762,6 @@ func (o *SSHKeyOp) Create(ctx context.Context, param *SSHKeyCreateRequest) (*SSH
 	return results.SSHKey, nil
 }
 
-// Generate is API call
-func (o *SSHKeyOp) Generate(ctx context.Context, param *SSHKeyGenerateRequest) (*SSHKeyGenerated, error) {
-	// build request URL
-	pathBuildParameter := map[string]interface{}{
-		"rootURL":    SakuraCloudAPIRoot,
-		"pathSuffix": o.PathSuffix,
-		"pathName":   o.PathName,
-		"zone":       APIDefaultZone,
-		"param":      param,
-	}
-
-	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}/generate", pathBuildParameter)
-	if err != nil {
-		return nil, err
-	}
-	// build request body
-	var body interface{}
-	v, err := o.transformGenerateArgs(param)
-	if err != nil {
-		return nil, err
-	}
-	body = v
-
-	// do request
-	data, err := o.Client.Do(ctx, "POST", url, body)
-	if err != nil {
-		return nil, err
-	}
-
-	// build results
-	results, err := o.transformGenerateResults(data)
-	if err != nil {
-		return nil, err
-	}
-	return results.SSHKeyGenerated, nil
-}
-
 // Read is API call
 func (o *SSHKeyOp) Read(ctx context.Context, id types.ID) (*SSHKey, error) {
 	// build request URL

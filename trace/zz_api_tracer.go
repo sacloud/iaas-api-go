@@ -11664,37 +11664,6 @@ func (t *SSHKeyTracer) Create(ctx context.Context, param *iaas.SSHKeyCreateReque
 	return resultSSHKey, err
 }
 
-// Generate is API call with trace log
-func (t *SSHKeyTracer) Generate(ctx context.Context, param *iaas.SSHKeyGenerateRequest) (*iaas.SSHKeyGenerated, error) {
-	log.Println("[TRACE] SSHKeyAPI.Generate start")
-	targetArguments := struct {
-		Argparam *iaas.SSHKeyGenerateRequest `json:"param"`
-	}{
-		Argparam: param,
-	}
-	if d, err := json.Marshal(targetArguments); err == nil {
-		log.Printf("[TRACE] \targs: %s\n", string(d))
-	}
-
-	defer func() {
-		log.Println("[TRACE] SSHKeyAPI.Generate end")
-	}()
-
-	resultSSHKeyGenerated, err := t.Internal.Generate(ctx, param)
-	targetResults := struct {
-		SSHKeyGenerated *iaas.SSHKeyGenerated
-		Error           error
-	}{
-		SSHKeyGenerated: resultSSHKeyGenerated,
-		Error:           err,
-	}
-	if d, err := json.Marshal(targetResults); err == nil {
-		log.Printf("[TRACE] \tresults: %s\n", string(d))
-	}
-
-	return resultSSHKeyGenerated, err
-}
-
 // Read is API call with trace log
 func (t *SSHKeyTracer) Read(ctx context.Context, id types.ID) (*iaas.SSHKey, error) {
 	log.Println("[TRACE] SSHKeyAPI.Read start")
