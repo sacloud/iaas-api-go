@@ -56,6 +56,8 @@ const (
 	Debian
 	// Debian11 OS種別:Debian11
 	Debian11
+	// Debian12 OS種別:Debian12
+	Debian12
 
 	// Kusanagi OS種別:Kusanagi(CentOS)
 	Kusanagi
@@ -77,6 +79,7 @@ var ArchiveOSTypes = []ArchiveOSType{
 	Ubuntu2204,
 	Debian,
 	Debian11,
+	Debian12,
 	Kusanagi,
 }
 
@@ -86,7 +89,7 @@ var OSTypeShortNames = []string{
 	"rockylinux", "rockylinux9", "rockylinux8",
 	"miracle", "miraclelinux", "miracle8", "miraclelinux8", "miracle9", "miraclelinux9",
 	"ubuntu", "ubuntu2404", "ubuntu2204",
-	"debian", "debian11",
+	"debian", "debian11", "debian12",
 	"kusanagi",
 }
 
@@ -98,7 +101,7 @@ func (o ArchiveOSType) IsSupportDiskEdit() bool {
 		RockyLinux, RockyLinux9, RockyLinux8,
 		MiracleLinux, MiracleLinux8, MiracleLinux9,
 		Ubuntu, Ubuntu2404, Ubuntu2204,
-		Debian, Debian11,
+		Debian, Debian11, Debian12,
 		Kusanagi:
 		return true
 	default:
@@ -137,6 +140,8 @@ func StrToOSType(osType string) ArchiveOSType {
 		return Debian
 	case "debian11":
 		return Debian11
+	case "debian12":
+		return Debian12
 	case "kusanagi":
 		return Kusanagi
 	default:

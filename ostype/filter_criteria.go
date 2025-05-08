@@ -78,6 +78,10 @@ var ArchiveCriteria = map[ArchiveOSType]search.Filter{
 		search.Key(keys.Tags):  search.TagsAndEqual("debian-11-latest"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
 	},
+	Debian12: {
+		search.Key(keys.Tags):  search.TagsAndEqual("debian-12-latest"),
+		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
+	},
 	Kusanagi: {
 		search.Key(keys.Tags):  search.TagsAndEqual("current-stable", "pkg-kusanagi"),
 		search.Key(keys.Scope): search.ExactMatch(types.Scopes.Shared.String()),
