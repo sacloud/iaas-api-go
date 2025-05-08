@@ -51,8 +51,6 @@ const (
 	Ubuntu2404
 	// Ubuntu2204 OS種別:Ubuntu(Jammy Jellyfish)
 	Ubuntu2204
-	// Ubuntu2004 OS種別:Ubuntu(Focal Fossa)
-	Ubuntu2004
 
 	// Debian OS種別:Debian
 	Debian
@@ -77,7 +75,6 @@ var ArchiveOSTypes = []ArchiveOSType{
 	Ubuntu,
 	Ubuntu2404,
 	Ubuntu2204,
-	Ubuntu2004,
 	Debian,
 	Debian11,
 	Kusanagi,
@@ -88,7 +85,7 @@ var OSTypeShortNames = []string{
 	"almalinux", "almalinux9", "almalinux8",
 	"rockylinux", "rockylinux9", "rockylinux8",
 	"miracle", "miraclelinux", "miracle8", "miraclelinux8", "miracle9", "miraclelinux9",
-	"ubuntu", "ubuntu2404", "ubuntu2204", "ubuntu2004",
+	"ubuntu", "ubuntu2404", "ubuntu2204",
 	"debian", "debian11",
 	"kusanagi",
 }
@@ -100,7 +97,7 @@ func (o ArchiveOSType) IsSupportDiskEdit() bool {
 		AlmaLinux, AlmaLinux9, AlmaLinux8,
 		RockyLinux, RockyLinux9, RockyLinux8,
 		MiracleLinux, MiracleLinux8, MiracleLinux9,
-		Ubuntu, Ubuntu2404, Ubuntu2204, Ubuntu2004,
+		Ubuntu, Ubuntu2404, Ubuntu2204,
 		Debian, Debian11,
 		Kusanagi:
 		return true
@@ -136,8 +133,6 @@ func StrToOSType(osType string) ArchiveOSType {
 		return Ubuntu2404
 	case "ubuntu2204":
 		return Ubuntu2204
-	case "ubuntu2004":
-		return Ubuntu2004
 	case "debian":
 		return Debian
 	case "debian11":
