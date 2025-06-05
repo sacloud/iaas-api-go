@@ -7867,40 +7867,6 @@ func (o *SSHKeyOp) transformCreateResults(data []byte) (*sSHKeyCreateResult, err
 	return results, nil
 }
 
-func (o *SSHKeyOp) transformGenerateArgs(param *SSHKeyGenerateRequest) (*sSHKeyGenerateRequestEnvelope, error) {
-	if param == nil {
-		param = &SSHKeyGenerateRequest{}
-	}
-	var arg0 interface{} = param
-	if v, ok := arg0.(argumentDefaulter); ok {
-		arg0 = v.setDefaults()
-	}
-	args := &struct {
-		Arg0 interface{} `mapconv:"SSHKey,recursive"`
-	}{
-		Arg0: arg0,
-	}
-
-	v := &sSHKeyGenerateRequestEnvelope{}
-	if err := mapconv.ConvertTo(args, v); err != nil {
-		return nil, err
-	}
-	return v, nil
-}
-
-func (o *SSHKeyOp) transformGenerateResults(data []byte) (*sSHKeyGenerateResult, error) {
-	nakedResponse := &sSHKeyGenerateResponseEnvelope{}
-	if err := json.Unmarshal(data, nakedResponse); err != nil {
-		return nil, err
-	}
-
-	results := &sSHKeyGenerateResult{}
-	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
-		return nil, err
-	}
-	return results, nil
-}
-
 func (o *SSHKeyOp) transformReadResults(data []byte) (*sSHKeyReadResult, error) {
 	nakedResponse := &sSHKeyReadResponseEnvelope{}
 	if err := json.Unmarshal(data, nakedResponse); err != nil {
