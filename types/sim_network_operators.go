@@ -25,18 +25,15 @@ func (o ESIMOperatorName) String() string {
 // SIMOperators SIMキャリア名
 var SIMOperators = struct {
 	KDDI     ESIMOperatorName
-	Docomo   ESIMOperatorName
 	SoftBank ESIMOperatorName
 }{
 	KDDI:     ESIMOperatorName("KDDI"),
-	Docomo:   ESIMOperatorName("NTT DOCOMO"),
 	SoftBank: ESIMOperatorName("SoftBank"),
 }
 
 // SIMOperatorShortNameMap 省略名をキーとするESIMOperatorNameのマップ
 var SIMOperatorShortNameMap = map[string]ESIMOperatorName{
 	"kddi":     SIMOperators.KDDI,
-	"docomo":   SIMOperators.Docomo,
 	"softbank": SIMOperators.SoftBank,
 }
 
