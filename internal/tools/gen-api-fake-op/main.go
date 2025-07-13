@@ -37,33 +37,37 @@ func init() {
 
 func main() {
 	// generate xxxOp
-	outputPath := apisDestination
+	outputPath := filepath.Join(tools.ProjectRootPath(), apisDestination)
+
 	tools.WriteFileWithTemplate(&tools.TemplateConfig{
-		OutputPath: filepath.Join(tools.ProjectRootPath(), outputPath),
+		OutputPath: outputPath,
 		Template:   apisTmpl,
 		Parameter:  define.APIs,
 	})
+
 	log.Printf("generated: %s\n", outputPath)
 
 	// generate funcs
 	dsl.IsOutOfSacloudPackage = true
 	for _, resource := range define.APIs {
-		dest := fmt.Sprintf(opsDestination, resource.FileSafeName())
+		dest := filepath.Join(tools.ProjectRootPath(), fmt.Sprintf(opsDestination, resource.FileSafeName()))
+
 		wrote := tools.WriteFileWithTemplate(&tools.TemplateConfig{
-			OutputPath:         filepath.Join(tools.ProjectRootPath(), dest),
+			OutputPath:         dest,
 			Template:           opsTmpl,
 			Parameter:          resource,
 			PreventOverwriting: true,
 		})
 		if wrote {
-			log.Printf("generated: %s\n", filepath.Join(tools.ProjectRootPath(), dest))
+			log.Printf("generated: %s\n", dest)
 		}
 	}
 
 	// generate xxxOp
-	outputPath = testDestination
+	outputPath = filepath.Join(tools.ProjectRootPath(), testDestination)
+
 	tools.WriteFileWithTemplate(&tools.TemplateConfig{
-		OutputPath: filepath.Join(tools.ProjectRootPath(), outputPath),
+		OutputPath: outputPath,
 		Template:   testTmpl,
 		Parameter:  define.APIs,
 	})
