@@ -15,4 +15,4 @@
 package iaas
 
 // Version バージョン
-const Version = "1.16.0"
+const Version = "1.16.1"
