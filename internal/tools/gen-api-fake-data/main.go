@@ -54,12 +54,16 @@ var fakeDataDefines = []struct {
 func main() {
 	for _, generator := range fakeDataDefines {
 		param := generator.parameterFunc()
+
+		outputPath := filepath.Join(tools.ProjectRootPath(), generator.destination)
+
 		tools.WriteFileWithTemplate(&tools.TemplateConfig{
-			OutputPath: filepath.Join(tools.ProjectRootPath(), generator.destination),
+			OutputPath: outputPath,
 			Template:   generator.template,
 			Parameter:  param,
 		})
-		log.Printf("generated: %s\n", filepath.Join(tools.ProjectRootPath(), generator.destination))
+
+		log.Printf("generated: %s\n", outputPath)
 	}
 }
 

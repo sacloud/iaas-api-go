@@ -30,12 +30,14 @@ func init() {
 }
 
 func main() {
-	outputPath := destination
+	outputPath := filepath.Join(tools.ProjectRootPath(), destination)
+
 	tools.WriteFileWithTemplate(&tools.TemplateConfig{
-		OutputPath: filepath.Join(tools.ProjectRootPath(), outputPath),
+		OutputPath: outputPath,
 		Template:   tmpl,
 		Parameter:  define.APIs,
 	})
+
 	log.Printf("generated: %s\n", outputPath)
 }
 

@@ -70,6 +70,11 @@ func Gopath() string {
 
 // ProjectRootPath プロジェクトルートパス
 func ProjectRootPath() string {
+	value := os.Getenv("IAAS_API_PROJECT_ROOT_PATH")
+	if value != "" {
+		return value
+	}
+
 	return filepath.Join(Gopath(), "src/github.com/sacloud/iaas-api-go")
 }
 
