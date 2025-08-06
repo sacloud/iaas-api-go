@@ -26,7 +26,6 @@ import (
 var apiLocker = mutexkv.NewMutexKV()
 
 func init() {
-
 	SetClientFactoryFunc("Archive", func(caller APICaller) interface{} {
 		return &ArchiveOp{
 			Client:     caller,

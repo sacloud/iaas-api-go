@@ -56,8 +56,8 @@ func SingletonAPICaller() iaas.APICaller {
 	defer accTestMu.Unlock()
 	accTestOnce.Do(func() {
 		if !IsAccTest() {
-			os.Setenv("SAKURACLOUD_ACCESS_TOKEN", "dummy")
-			os.Setenv("SAKURACLOUD_ACCESS_TOKEN_SECRET", "dummy")
+			os.Setenv("SAKURACLOUD_ACCESS_TOKEN", "dummy")        //nolint:errcheck,gosec
+			os.Setenv("SAKURACLOUD_ACCESS_TOKEN_SECRET", "dummy") //nolint:errcheck,gosec
 		}
 
 		accessToken := os.Getenv("SAKURACLOUD_ACCESS_TOKEN")

@@ -713,7 +713,7 @@ func TestProxyLBOpLetsEncryptAndHealth(t *testing.T) {
 		return
 	}
 	defer func() {
-		proxyLBOp.Delete(ctx, proxyLB.ID) //nolint:errcheck
+		proxyLBOp.Delete(ctx, proxyLB.ID) //nolint:errcheck,gosec
 	}()
 
 	// read DNS
@@ -750,7 +750,7 @@ func TestProxyLBOpLetsEncryptAndHealth(t *testing.T) {
 				records = append(records, dns.Records[i])
 			}
 		}
-		dnsOp.Update(ctx, dns.ID, &iaas.DNSUpdateRequest{Records: records}) //nolint:errcheck
+		dnsOp.Update(ctx, dns.ID, &iaas.DNSUpdateRequest{Records: records}) //nolint:errcheck,gosec
 	}()
 
 	time.Sleep(time.Minute)
