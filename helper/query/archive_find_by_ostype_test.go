@@ -96,7 +96,7 @@ func TestAccFindArchiveByOSType(t *testing.T) {
 	archiveOp := iaas.NewArchiveOp(caller)
 	ctx := context.Background()
 
-	zones := []string{"is1a", "is1b", "tk1a", "tk1v"}
+	zones := []string{"is1a", "is1b", "tk1a", "tk1b", "tk1v"} // TODO is1cリリース後にtypes.ZoneNamesを使うように切り替える
 
 	for _, zone := range zones {
 		for _, os := range ostype.ArchiveOSTypes {
