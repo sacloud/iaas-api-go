@@ -23,7 +23,6 @@ import (
 )
 
 func TestResourceOps(t *testing.T) {
-
 	if op, ok := NewArchiveOp().(iaas.ArchiveAPI); !ok {
 		t.Fatalf("%s is not iaas.Archive", op)
 	}
@@ -215,5 +214,4 @@ func TestResourceOps(t *testing.T) {
 	if op, ok := NewZoneOp().(iaas.ZoneAPI); !ok {
 		t.Fatalf("%s is not iaas.Zone", op)
 	}
-
 }

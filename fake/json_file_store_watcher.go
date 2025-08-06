@@ -32,7 +32,7 @@ func (s *JSONFileStore) startWatcher() {
 	log.Printf("file watch start: %q", s.Path)
 
 	go func() {
-		defer watcher.Close()
+		defer watcher.Close() //nolint:errcheck
 		for {
 			select {
 			case event, ok := <-watcher.Events:
