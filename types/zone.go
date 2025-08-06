@@ -21,14 +21,16 @@ const (
 	ZoneTk1bID = ID(21002)
 	// ZoneIs1aID 石狩第1ゾーン
 	ZoneIs1aID = ID(31001)
-	// ZoneIs1bID 石狩第1ゾーン
+	// ZoneIs1bID 石狩第2ゾーン
 	ZoneIs1bID = ID(31002)
+	// ZoneIs1cID 石狩第3ゾーン
+	ZoneIs1cID = ID(31003)
 	// ZoneTk1vID サンドボックスゾーン
 	ZoneTk1vID = ID(29001)
 )
 
 // ZoneNames 利用できるゾーンの一覧
-var ZoneNames = []string{"tk1a", "tk1b", "is1a", "is1b", "tk1v"}
+var ZoneNames = []string{"tk1a", "tk1b", "is1a", "is1b", "is1c", "tk1v"}
 
 // ZoneIDs ゾーンIDと名称のマップ
 var ZoneIDs = map[string]ID{
@@ -36,5 +38,6 @@ var ZoneIDs = map[string]ID{
 	"tk1b": ZoneTk1bID,
 	"is1a": ZoneIs1aID,
 	"is1b": ZoneIs1bID,
+	"is1c": ZoneIs1cID,
 	"tk1v": ZoneTk1vID,
 }
