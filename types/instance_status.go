@@ -14,6 +14,8 @@
 
 package types
 
+import "strings"
+
 // EServerInstanceStatus サーバーインスタンスステータス
 type EServerInstanceStatus string
 
@@ -32,10 +34,10 @@ var ServerInstanceStatuses = &struct {
 
 // IsUp インスタンスが起動しているか判定
 func (e EServerInstanceStatus) IsUp() bool {
-	return e == ServerInstanceStatuses.Up
+	return strings.ToLower(string(e)) == strings.ToLower(string(ServerInstanceStatuses.Up))
 }
 
 // IsDown インスタンスがダウンしているか確認
 func (e EServerInstanceStatus) IsDown() bool {
-	return e == ServerInstanceStatuses.Down
+	return strings.ToLower(string(e)) == strings.ToLower(string(ServerInstanceStatuses.Down))
 }
