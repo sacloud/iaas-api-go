@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.17.1](https://github.com/sacloud/iaas-api-go/compare/v1.17.0...v1.17.1) - 2025-09-04
+- ubuntu-20.04 -> 22.04, 24.04, latest by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/383
+- go: bump golang.org/x/crypto from 0.40.0 to 0.41.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/382
+- InstanceStatusの判定を小文字で統一 by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/391
+- go: bump github.com/stretchr/testify from 1.10.0 to 1.11.1 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/389
+- go: bump github.com/sacloud/api-client-go from 0.3.2 to 0.3.3 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/387
+- textlint: ignore CHANGELOG.md by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/392
+- ci: bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/385
+
 ## [v1.17.0](https://github.com/sacloud/iaas-api-go/compare/v1.16.1...v1.17.0) - 2025-08-06
 - go: bump golang.org/x/crypto from 0.39.0 to 0.40.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/375
 - go: bump github.com/sacloud/api-client-go from 0.3.0 to 0.3.2 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/374
