@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.17.2](https://github.com/sacloud/iaas-api-go/compare/v1.17.1...v1.17.2) - 2025-09-25
+- go: bump golang.org/x/crypto from 0.41.0 to 0.42.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/394
+- ci: bump actions/setup-go from 5 to 6 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/393
+
 ## [v1.17.1](https://github.com/sacloud/iaas-api-go/compare/v1.17.0...v1.17.1) - 2025-09-04
 - ubuntu-20.04 -> 22.04, 24.04, latest by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/383
 - go: bump golang.org/x/crypto from 0.40.0 to 0.41.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/382
