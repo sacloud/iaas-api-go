@@ -669,25 +669,29 @@ func (m *rawMonitorValues) monitorDatabaseValues() (MonitorDatabaseValues, error
 	for k, v := range *m {
 		if v.TotalMemorySize == nil || v.UsedMemorySize == nil ||
 			v.TotalDisk1Size == nil || v.UsedDisk1Size == nil ||
-			v.TotalDisk2Size == nil || v.UsedDisk2Size == nil ||
-			v.BinlogUsedSizeKiB == nil || v.DelayTimeSec == nil {
+			v.TotalDisk2Size == nil || v.UsedDisk2Size == nil {
 			continue
 		}
 		time, err := time.Parse(time.RFC3339, k) // RFC3339 ≒ ISO8601
 		if err != nil {
 			return nil, err
 		}
-		values = append(values, &MonitorDatabaseValue{
-			Time:              time,
-			TotalMemorySize:   *v.TotalMemorySize,
-			UsedMemorySize:    *v.UsedMemorySize,
-			TotalDisk1Size:    *v.TotalDisk1Size,
-			UsedDisk1Size:     *v.UsedDisk1Size,
-			TotalDisk2Size:    *v.TotalDisk2Size,
-			UsedDisk2Size:     *v.UsedDisk2Size,
-			BinlogUsedSizeKiB: *v.BinlogUsedSizeKiB,
-			DelayTimeSec:      *v.DelayTimeSec,
-		})
+		value := &MonitorDatabaseValue{
+			Time:            time,
+			TotalMemorySize: *v.TotalMemorySize,
+			UsedMemorySize:  *v.UsedMemorySize,
+			TotalDisk1Size:  *v.TotalDisk1Size,
+			UsedDisk1Size:   *v.UsedDisk1Size,
+			TotalDisk2Size:  *v.TotalDisk2Size,
+			UsedDisk2Size:   *v.UsedDisk2Size,
+		}
+		if v.BinlogUsedSizeKiB != nil {
+			value.BinlogUsedSizeKiB = *v.BinlogUsedSizeKiB
+		}
+		if v.DelayTimeSec != nil {
+			value.DelayTimeSec = *v.DelayTimeSec
+		}
+		values = append(values, value)
 	}
 
 	sort.Slice(values, func(i, j int) bool { return values[i].Time.Before(values[j].Time) })
