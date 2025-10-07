@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.17.3](https://github.com/sacloud/iaas-api-go/compare/v1.17.2...v1.17.3) - 2025-10-07
+- Handle optional BinlogUsedSizeKiB and DelayTimeSec in DB monitor by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/396
+
 ## [v1.17.2](https://github.com/sacloud/iaas-api-go/compare/v1.17.1...v1.17.2) - 2025-09-25
 - go: bump golang.org/x/crypto from 0.41.0 to 0.42.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/394
 - ci: bump actions/setup-go from 5 to 6 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/393
