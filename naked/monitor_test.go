@@ -140,6 +140,14 @@ const (
             "Used-Disk2-Size"    : 62.0,
             "binlogUsedSizeKiB": 72.0,
             "delayTimeSec"     : 82.0
+        },
+        "1970-01-01T00:00:05Z": {
+            "Total-Memory-Size"  : 13.0, 
+            "Used-Memory-Size"   : 23.0,
+            "Total-Disk1-Size"   : 33.0,
+            "Used-Disk1-Size"    : 43.0,
+            "Total-Disk2-Size"   : 53.0,
+            "Used-Disk2-Size"    : 63.0
         }
     }`
 
@@ -362,6 +370,17 @@ func TestMonitorValues_UnmarshalJSON(t *testing.T) {
 						UsedDisk2Size:     float64(62.0),
 						BinlogUsedSizeKiB: float64(72.0),
 						DelayTimeSec:      float64(82.0),
+					},
+					{
+						Time:              time.Unix(5, 0).UTC(),
+						TotalMemorySize:   float64(13.0),
+						UsedMemorySize:    float64(23.0),
+						TotalDisk1Size:    float64(33.0),
+						UsedDisk1Size:     float64(43.0),
+						TotalDisk2Size:    float64(53.0),
+						UsedDisk2Size:     float64(63.0),
+						BinlogUsedSizeKiB: float64(0.0),
+						DelayTimeSec:      float64(0.0),
 					},
 				},
 			},
