@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.17.4](https://github.com/sacloud/iaas-api-go/compare/v1.17.3...v1.17.4) - 2025-10-08
+- Always include password field in ContainerRegistryUser by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/398
+
 ## [v1.17.3](https://github.com/sacloud/iaas-api-go/compare/v1.17.2...v1.17.3) - 2025-10-07
 - Handle optional BinlogUsedSizeKiB and DelayTimeSec in DB monitor by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/396
 
