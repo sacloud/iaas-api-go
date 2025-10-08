@@ -8752,6 +8752,7 @@ type Disk struct {
 	Connection                types.EDiskConnection `json:",omitempty" mapconv:",omitempty"`
 	ConnectionOrder           int
 	EncryptionAlgorithm       types.EDiskEncryptionAlgorithm `json:",omitempty" mapconv:",omitempty"`
+	KMSKeyID                  types.ID                       `mapconv:"EncryptionKey.KMSKeyID"`
 	ReinstallCount            int
 	JobStatus                 *JobStatus
 	SizeMB                    int
@@ -8783,6 +8784,7 @@ func (o *Disk) setDefaults() interface{} {
 		Connection                types.EDiskConnection `json:",omitempty" mapconv:",omitempty"`
 		ConnectionOrder           int
 		EncryptionAlgorithm       types.EDiskEncryptionAlgorithm `json:",omitempty" mapconv:",omitempty"`
+		KMSKeyID                  types.ID                       `mapconv:"EncryptionKey.KMSKeyID"`
 		ReinstallCount            int
 		JobStatus                 *JobStatus
 		SizeMB                    int
@@ -8810,6 +8812,7 @@ func (o *Disk) setDefaults() interface{} {
 		Connection:                o.GetConnection(),
 		ConnectionOrder:           o.GetConnectionOrder(),
 		EncryptionAlgorithm:       o.GetEncryptionAlgorithm(),
+		KMSKeyID:                  o.GetKMSKeyID(),
 		ReinstallCount:            o.GetReinstallCount(),
 		JobStatus:                 o.GetJobStatus(),
 		SizeMB:                    o.GetSizeMB(),
@@ -8949,6 +8952,16 @@ func (o *Disk) GetEncryptionAlgorithm() types.EDiskEncryptionAlgorithm {
 // SetEncryptionAlgorithm sets value to EncryptionAlgorithm
 func (o *Disk) SetEncryptionAlgorithm(v types.EDiskEncryptionAlgorithm) {
 	o.EncryptionAlgorithm = v
+}
+
+// GetKMSKeyID returns value of KMSKeyID
+func (o *Disk) GetKMSKeyID() types.ID {
+	return o.KMSKeyID
+}
+
+// SetKMSKeyID sets value to KMSKeyID
+func (o *Disk) SetKMSKeyID(v types.ID) {
+	o.KMSKeyID = v
 }
 
 // GetReinstallCount returns value of ReinstallCount

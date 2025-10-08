@@ -16,6 +16,7 @@ package test
 
 import (
 	"errors"
+	"os"
 	"testing"
 
 	"github.com/sacloud/iaas-api-go"
@@ -27,6 +28,10 @@ import (
 )
 
 func TestDiskOp_BlankDiskCRUD(t *testing.T) {
+	if testutil.IsAccTest() && os.Getenv("SAKURACLOUD_KMS_KEY_ID") == "" {
+		t.Skip("SAKURACLOUD_KMS_KEY_ID is required when running the acceptance test")
+	}
+
 	testutil.RunCRUD(t, &testutil.CRUDTestCase{
 		Parallel: true,
 
@@ -107,6 +112,7 @@ var (
 		DiskPlanID:          createDiskParam.DiskPlanID,
 		Connection:          createDiskParam.Connection,
 		EncryptionAlgorithm: createDiskParam.EncryptionAlgorithm,
+		KMSKeyID:            types.StringID(os.Getenv("SAKURACLOUD_KMS_KEY_ID")),
 	}
 	updateDiskParam = &iaas.DiskUpdateRequest{
 		Name:        testutil.ResourceName("disk-upd"),
@@ -121,6 +127,7 @@ var (
 		DiskPlanID:          createDiskParam.DiskPlanID,
 		Connection:          createDiskParam.Connection,
 		EncryptionAlgorithm: createDiskParam.EncryptionAlgorithm,
+		KMSKeyID:            types.StringID(os.Getenv("SAKURACLOUD_KMS_KEY_ID")),
 		IconID:              updateDiskParam.IconID,
 	}
 	updateDiskToMinParam = &iaas.DiskUpdateRequest{
@@ -131,12 +138,13 @@ var (
 		DiskPlanID:          createDiskParam.DiskPlanID,
 		Connection:          createDiskParam.Connection,
 		EncryptionAlgorithm: createDiskParam.EncryptionAlgorithm,
+		KMSKeyID:            types.StringID(os.Getenv("SAKURACLOUD_KMS_KEY_ID")),
 	}
 )
 
 func testDiskCreate(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
 	client := iaas.NewDiskOp(caller)
-	return client.Create(ctx, testZone, createDiskParam, nil)
+	return client.Create(ctx, testZone, createDiskParam, nil, types.StringID(os.Getenv("SAKURACLOUD_KMS_KEY_ID")))
 }
 
 func testDiskRead(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
@@ -190,7 +198,7 @@ func TestDiskOp_Config(t *testing.T) {
 					DiskPlanID:      types.DiskPlans.SSD,
 					SizeMB:          20 * size.GiB,
 					SourceArchiveID: archiveID,
-				}, nil)
+				}, nil, 0)
 				if err != nil {
 					return nil, err
 				}

@@ -2193,6 +2193,16 @@ func (f *fieldsDef) DiskEncryptionAlgorithm() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) KMSKeyID() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "KMSKeyID",
+		Tags: &dsl.FieldTags{
+			MapConv: "EncryptionKey.KMSKeyID",
+		},
+		Type: meta.TypeID,
+	}
+}
+
 func (f *fieldsDef) DiskConnectionOrder() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "ConnectionOrder",

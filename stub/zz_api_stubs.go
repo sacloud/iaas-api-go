@@ -1623,7 +1623,7 @@ func (s *DiskStub) Find(ctx context.Context, zone string, conditions *iaas.FindC
 }
 
 // Create is API call with trace log
-func (s *DiskStub) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID) (*iaas.Disk, error) {
+func (s *DiskStub) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID) (*iaas.Disk, error) {
 	if s.CreateStubResult == nil {
 		log.Fatal("DiskStub.CreateStubResult is not set")
 	}
@@ -1639,7 +1639,7 @@ func (s *DiskStub) Config(ctx context.Context, zone string, id types.ID, edit *i
 }
 
 // CreateWithConfig is API call with trace log
-func (s *DiskStub) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*iaas.Disk, error) {
+func (s *DiskStub) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID) (*iaas.Disk, error) {
 	if s.CreateWithConfigStubResult == nil {
 		log.Fatal("DiskStub.CreateWithConfigStubResult is not set")
 	}

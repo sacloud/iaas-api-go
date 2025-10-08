@@ -847,8 +847,9 @@ type diskFindResponseEnvelope struct {
 
 // diskCreateRequestEnvelope is envelop of API request
 type diskCreateRequestEnvelope struct {
-	Disk        *naked.Disk `json:",omitempty"`
-	DistantFrom []types.ID  `json:",omitempty"`
+	Disk        *naked.Disk   `json:",omitempty"`
+	DistantFrom []types.ID    `json:",omitempty"`
+	KMSKey      *naked.KMSKey `json:",omitempty"`
 }
 
 // diskCreateResponseEnvelope is envelop of API response
@@ -880,6 +881,7 @@ type diskCreateWithConfigRequestEnvelope struct {
 	Config          *naked.DiskEdit `json:",omitempty"`
 	BootAtAvailable bool            `json:",omitempty"`
 	DistantFrom     []types.ID      `json:",omitempty"`
+	KMSKey          *naked.KMSKey   `json:",omitempty"`
 }
 
 // diskCreateWithConfigResponseEnvelope is envelop of API response

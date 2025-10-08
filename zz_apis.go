@@ -209,9 +209,9 @@ type DatabaseAPI interface {
 // DiskAPI is interface for operate Disk resource
 type DiskAPI interface {
 	Find(ctx context.Context, zone string, conditions *FindCondition) (*DiskFindResult, error)
-	Create(ctx context.Context, zone string, createParam *DiskCreateRequest, distantFrom []types.ID) (*Disk, error)
+	Create(ctx context.Context, zone string, createParam *DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID) (*Disk, error)
 	Config(ctx context.Context, zone string, id types.ID, edit *DiskEditRequest) error
-	CreateWithConfig(ctx context.Context, zone string, createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*Disk, error)
+	CreateWithConfig(ctx context.Context, zone string, createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID) (*Disk, error)
 	ResizePartition(ctx context.Context, zone string, id types.ID, param *DiskResizePartitionRequest) error
 	ConnectToServer(ctx context.Context, zone string, id types.ID, serverID types.ID) error
 	DisconnectFromServer(ctx context.Context, zone string, id types.ID) error
