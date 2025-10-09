@@ -3387,16 +3387,18 @@ func (t *DiskTracer) Find(ctx context.Context, zone string, conditions *iaas.Fin
 }
 
 // Create is API call with trace log
-func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID) (*iaas.Disk, error) {
+func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID) (*iaas.Disk, error) {
 	log.Println("[TRACE] DiskAPI.Create start")
 	targetArguments := struct {
 		Argzone        string
 		ArgcreateParam *iaas.DiskCreateRequest `json:"createParam"`
 		ArgdistantFrom []types.ID              `json:"distantFrom"`
+		ArgkmeKeyID    types.ID                `json:"kmeKeyID"`
 	}{
 		Argzone:        zone,
 		ArgcreateParam: createParam,
 		ArgdistantFrom: distantFrom,
+		ArgkmeKeyID:    kmeKeyID,
 	}
 	if d, err := json.Marshal(targetArguments); err == nil {
 		log.Printf("[TRACE] \targs: %s\n", string(d))
@@ -3406,7 +3408,7 @@ func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.
 		log.Println("[TRACE] DiskAPI.Create end")
 	}()
 
-	resultDisk, err := t.Internal.Create(ctx, zone, createParam, distantFrom)
+	resultDisk, err := t.Internal.Create(ctx, zone, createParam, distantFrom, kmeKeyID)
 	targetResults := struct {
 		Disk  *iaas.Disk
 		Error error
@@ -3455,7 +3457,7 @@ func (t *DiskTracer) Config(ctx context.Context, zone string, id types.ID, edit 
 }
 
 // CreateWithConfig is API call with trace log
-func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*iaas.Disk, error) {
+func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID) (*iaas.Disk, error) {
 	log.Println("[TRACE] DiskAPI.CreateWithConfig start")
 	targetArguments := struct {
 		Argzone            string
@@ -3463,12 +3465,14 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 		ArgeditParam       *iaas.DiskEditRequest   `json:"editParam"`
 		ArgbootAtAvailable bool                    `json:"bootAtAvailable"`
 		ArgdistantFrom     []types.ID              `json:"distantFrom"`
+		ArgkmeKeyID        types.ID                `json:"kmeKeyID"`
 	}{
 		Argzone:            zone,
 		ArgcreateParam:     createParam,
 		ArgeditParam:       editParam,
 		ArgbootAtAvailable: bootAtAvailable,
 		ArgdistantFrom:     distantFrom,
+		ArgkmeKeyID:        kmeKeyID,
 	}
 	if d, err := json.Marshal(targetArguments); err == nil {
 		log.Printf("[TRACE] \targs: %s\n", string(d))
@@ -3478,7 +3482,7 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 		log.Println("[TRACE] DiskAPI.CreateWithConfig end")
 	}()
 
-	resultDisk, err := t.Internal.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom)
+	resultDisk, err := t.Internal.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID)
 	targetResults := struct {
 		Disk  *iaas.Disk
 		Error error

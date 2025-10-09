@@ -2087,7 +2087,7 @@ func (o *DiskOp) transformFindResults(data []byte) (*DiskFindResult, error) {
 	return results, nil
 }
 
-func (o *DiskOp) transformCreateArgs(createParam *DiskCreateRequest, distantFrom []types.ID) (*diskCreateRequestEnvelope, error) {
+func (o *DiskOp) transformCreateArgs(createParam *DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID) (*diskCreateRequestEnvelope, error) {
 	if createParam == nil {
 		createParam = &DiskCreateRequest{}
 	}
@@ -2102,12 +2102,21 @@ func (o *DiskOp) transformCreateArgs(createParam *DiskCreateRequest, distantFrom
 	if v, ok := arg1.(argumentDefaulter); ok {
 		arg1 = v.setDefaults()
 	}
+	if kmeKeyID == types.ID(int64(0)) {
+		kmeKeyID = types.ID(int64(0))
+	}
+	var arg2 interface{} = kmeKeyID
+	if v, ok := arg2.(argumentDefaulter); ok {
+		arg2 = v.setDefaults()
+	}
 	args := &struct {
 		Arg0 interface{} `mapconv:"Disk,recursive"`
 		Arg1 interface{} `mapconv:"DistantFrom"`
+		Arg2 interface{} `mapconv:"KMSKey.ID"`
 	}{
 		Arg0: arg0,
 		Arg1: arg1,
+		Arg2: arg2,
 	}
 
 	v := &diskCreateRequestEnvelope{}
@@ -2160,7 +2169,7 @@ func (o *DiskOp) transformConfigArgs(id types.ID, edit *DiskEditRequest) (*diskC
 	return v, nil
 }
 
-func (o *DiskOp) transformCreateWithConfigArgs(createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*diskCreateWithConfigRequestEnvelope, error) {
+func (o *DiskOp) transformCreateWithConfigArgs(createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID) (*diskCreateWithConfigRequestEnvelope, error) {
 	if createParam == nil {
 		createParam = &DiskCreateRequest{}
 	}
@@ -2189,16 +2198,25 @@ func (o *DiskOp) transformCreateWithConfigArgs(createParam *DiskCreateRequest, e
 	if v, ok := arg3.(argumentDefaulter); ok {
 		arg3 = v.setDefaults()
 	}
+	if kmeKeyID == types.ID(int64(0)) {
+		kmeKeyID = types.ID(int64(0))
+	}
+	var arg4 interface{} = kmeKeyID
+	if v, ok := arg4.(argumentDefaulter); ok {
+		arg4 = v.setDefaults()
+	}
 	args := &struct {
 		Arg0 interface{} `mapconv:"Disk,recursive"`
 		Arg1 interface{} `mapconv:"Config,recursive"`
 		Arg2 interface{} `mapconv:"BootAtAvailable"`
 		Arg3 interface{} `mapconv:"DistantFrom"`
+		Arg4 interface{} `mapconv:"KMSKey.ID"`
 	}{
 		Arg0: arg0,
 		Arg1: arg1,
 		Arg2: arg2,
 		Arg3: arg3,
+		Arg4: arg4,
 	}
 
 	v := &diskCreateWithConfigRequestEnvelope{}

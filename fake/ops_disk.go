@@ -41,11 +41,12 @@ func (o *DiskOp) Find(ctx context.Context, zone string, conditions *iaas.FindCon
 }
 
 // Create is fake implementation
-func (o *DiskOp) Create(ctx context.Context, zone string, param *iaas.DiskCreateRequest, distantFrom []types.ID) (*iaas.Disk, error) {
+func (o *DiskOp) Create(ctx context.Context, zone string, param *iaas.DiskCreateRequest, distantFrom []types.ID, kmsKeyID types.ID) (*iaas.Disk, error) {
 	result := &iaas.Disk{}
 	copySameNameField(param, result)
 	fill(result, fillID, fillCreatedAt, fillDiskPlan)
 	result.Availability = types.Availabilities.Migrating
+	result.KMSKeyID = kmsKeyID
 
 	result.Storage = &iaas.Storage{
 		ID:   types.ID(123456789012),
@@ -155,7 +156,7 @@ func (o *DiskOp) Config(ctx context.Context, zone string, id types.ID, edit *iaa
 }
 
 // CreateWithConfig is fake implementation
-func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*iaas.Disk, error) {
+func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmsKeyID types.ID) (*iaas.Disk, error) {
 	// check
 	if !createParam.ServerID.IsEmpty() {
 		serverOp := NewServerOp()
@@ -165,7 +166,7 @@ func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam 
 		}
 	}
 
-	result, err := o.Create(ctx, zone, createParam, distantFrom)
+	result, err := o.Create(ctx, zone, createParam, distantFrom, kmsKeyID)
 	if err != nil {
 		return nil, err
 	}

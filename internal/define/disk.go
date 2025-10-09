@@ -53,6 +53,10 @@ var diskAPI = &dsl.Resource{
 					Type: diskDistantFromType,
 					Name: "DistantFrom",
 				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.KMSKey{}),
+					Name: "KMSKey",
+				},
 			),
 			Arguments: dsl.Arguments{
 				{
@@ -64,6 +68,11 @@ var diskAPI = &dsl.Resource{
 					Name:       "distantFrom",
 					MapConvTag: "DistantFrom",
 					Type:       diskDistantFromType,
+				},
+				{
+					Name:       "kmeKeyID",
+					MapConvTag: "KMSKey.ID",
+					Type:       meta.TypeID,
 				},
 			},
 			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
@@ -116,6 +125,10 @@ var diskAPI = &dsl.Resource{
 					Type: diskDistantFromType,
 					Name: "DistantFrom",
 				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.KMSKey{}),
+					Name: "KMSKey",
+				},
 			),
 			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
 				Type: diskNakedType,
@@ -141,6 +154,11 @@ var diskAPI = &dsl.Resource{
 					Name:       "distantFrom",
 					Type:       diskDistantFromType,
 					MapConvTag: "DistantFrom",
+				},
+				{
+					Name:       "kmeKeyID",
+					MapConvTag: "KMSKey.ID",
+					Type:       meta.TypeID,
 				},
 			},
 			Results: dsl.Results{
@@ -220,6 +238,7 @@ var (
 			fields.DiskConnection(),
 			fields.DiskConnectionOrder(),
 			fields.DiskEncryptionAlgorithm(),
+			fields.KMSKeyID(),
 			fields.DiskReinstallCount(),
 			fields.Def("JobStatus", models.migrationJobStatus()),
 			fields.SizeMB(),

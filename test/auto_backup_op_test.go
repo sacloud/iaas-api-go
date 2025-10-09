@@ -36,7 +36,7 @@ func TestAutoBackupOpCRUD(t *testing.T) {
 				Name:       testutil.ResourceName("-disk-for-autobackup"),
 				SizeMB:     20 * size.GiB,
 				DiskPlanID: types.DiskPlans.SSD,
-			}, nil)
+			}, nil, 0)
 			if !assert.NoError(t, err) {
 				return err
 			}

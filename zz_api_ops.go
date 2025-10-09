@@ -3821,7 +3821,7 @@ func (o *DiskOp) Find(ctx context.Context, zone string, conditions *FindConditio
 }
 
 // Create is API call
-func (o *DiskOp) Create(ctx context.Context, zone string, createParam *DiskCreateRequest, distantFrom []types.ID) (*Disk, error) {
+func (o *DiskOp) Create(ctx context.Context, zone string, createParam *DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID) (*Disk, error) {
 	// build request URL
 	pathBuildParameter := map[string]interface{}{
 		"rootURL":     SakuraCloudAPIRoot,
@@ -3830,6 +3830,7 @@ func (o *DiskOp) Create(ctx context.Context, zone string, createParam *DiskCreat
 		"zone":        zone,
 		"createParam": createParam,
 		"distantFrom": distantFrom,
+		"kmeKeyID":    kmeKeyID,
 	}
 
 	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
@@ -3838,7 +3839,7 @@ func (o *DiskOp) Create(ctx context.Context, zone string, createParam *DiskCreat
 	}
 	// build request body
 	var body interface{}
-	v, err := o.transformCreateArgs(createParam, distantFrom)
+	v, err := o.transformCreateArgs(createParam, distantFrom, kmeKeyID)
 	if err != nil {
 		return nil, err
 	}
@@ -3894,7 +3895,7 @@ func (o *DiskOp) Config(ctx context.Context, zone string, id types.ID, edit *Dis
 }
 
 // CreateWithConfig is API call
-func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*Disk, error) {
+func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID) (*Disk, error) {
 	// build request URL
 	pathBuildParameter := map[string]interface{}{
 		"rootURL":         SakuraCloudAPIRoot,
@@ -3905,6 +3906,7 @@ func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam 
 		"editParam":       editParam,
 		"bootAtAvailable": bootAtAvailable,
 		"distantFrom":     distantFrom,
+		"kmeKeyID":        kmeKeyID,
 	}
 
 	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
@@ -3913,7 +3915,7 @@ func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam 
 	}
 	// build request body
 	var body interface{}
-	v, err := o.transformCreateWithConfigArgs(createParam, editParam, bootAtAvailable, distantFrom)
+	v, err := o.transformCreateWithConfigArgs(createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID)
 	if err != nil {
 		return nil, err
 	}

@@ -2781,12 +2781,13 @@ func (t *DiskTracer) Find(ctx context.Context, zone string, conditions *iaas.Fin
 }
 
 // Create is API call with trace log
-func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID) (*iaas.Disk, error) {
+func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID) (*iaas.Disk, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
 		attribute.String("sacloud.api.arguments.zone", zone),
 		attribute.String("sacloud.api.arguments.createParam", forceString(createParam)),
 		attribute.String("sacloud.api.arguments.distantFrom", forceString(distantFrom)),
+		attribute.String("sacloud.api.arguments.kmeKeyID", forceString(kmeKeyID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.Create", options...)
 	defer func() {
@@ -2795,7 +2796,7 @@ func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.
 
 	// for http trace
 	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
-	resultDisk, err := t.Internal.Create(ctx, zone, createParam, distantFrom)
+	resultDisk, err := t.Internal.Create(ctx, zone, createParam, distantFrom, kmeKeyID)
 
 	if err != nil {
 		span.SetStatus(codes.Error, err.Error())
@@ -2834,7 +2835,7 @@ func (t *DiskTracer) Config(ctx context.Context, zone string, id types.ID, edit 
 }
 
 // CreateWithConfig is API call with trace log
-func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID) (*iaas.Disk, error) {
+func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID) (*iaas.Disk, error) {
 	var span trace.Span
 	options := append(t.config.SpanStartOptions, trace.WithAttributes(
 		attribute.String("sacloud.api.arguments.zone", zone),
@@ -2842,6 +2843,7 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 		attribute.String("sacloud.api.arguments.editParam", forceString(editParam)),
 		attribute.String("sacloud.api.arguments.bootAtAvailable", forceString(bootAtAvailable)),
 		attribute.String("sacloud.api.arguments.distantFrom", forceString(distantFrom)),
+		attribute.String("sacloud.api.arguments.kmeKeyID", forceString(kmeKeyID)),
 	))
 	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.CreateWithConfig", options...)
 	defer func() {
@@ -2850,7 +2852,7 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 
 	// for http trace
 	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
-	resultDisk, err := t.Internal.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom)
+	resultDisk, err := t.Internal.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID)
 
 	if err != nil {
 		span.SetStatus(codes.Error, err.Error())
