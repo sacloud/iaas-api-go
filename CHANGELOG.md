@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.18.0](https://github.com/sacloud/iaas-api-go/compare/v1.17.4...v1.18.0) - 2025-10-09
+- go: bump golang.org/x/crypto from 0.42.0 to 0.43.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/401
+- Disk: BYOK by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/400
+
 ## [v1.17.4](https://github.com/sacloud/iaas-api-go/compare/v1.17.3...v1.17.4) - 2025-10-08
 - Always include password field in ContainerRegistryUser by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/398
 
