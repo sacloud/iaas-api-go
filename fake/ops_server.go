@@ -47,17 +47,17 @@ func (o *ServerOp) Create(ctx context.Context, zone string, param *iaas.ServerCr
 	fill(result, fillID, fillCreatedAt)
 
 	result.Availability = types.Availabilities.Migrating
-	if param.ServerPlanGeneration == types.PlanGenerations.Default {
+	if param.Generation == types.PlanGenerations.Default {
 		switch zone {
 		case "is1a":
-			result.ServerPlanGeneration = types.PlanGenerations.G200
+			result.Generation = types.PlanGenerations.G200
 		default:
-			result.ServerPlanGeneration = types.PlanGenerations.G100
+			result.Generation = types.PlanGenerations.G100
 		}
 	}
 	// TODO プランAPIを実装したら修正する
-	result.ServerPlanID = types.StringID(fmt.Sprintf("%03d%03d%03d", result.ServerPlanGeneration, result.GetMemoryGB(), result.CPU))
-	result.ServerPlanName = fmt.Sprintf("世代:%03d メモリ:%03d CPU:%03d", result.ServerPlanGeneration, result.GetMemoryGB(), result.CPU)
+	result.ServerPlanID = types.StringID(fmt.Sprintf("%03d%03d%03d", result.Generation, result.GetMemoryGB(), result.CPU))
+	result.ServerPlanName = fmt.Sprintf("世代:%03d メモリ:%03d CPU:%03d", result.Generation, result.GetMemoryGB(), result.CPU)
 
 	// NIC操作のためにあらかじめ登録しておく
 	putServer(zone, result)
@@ -228,16 +228,18 @@ func (o *ServerOp) ChangePlan(ctx context.Context, zone string, id types.ID, pla
 		return nil, newErrorConflict(o.key, id, fmt.Sprintf("Server[%d] is running", value.ID))
 	}
 
-	value.CPU = plan.CPU
 	value.MemoryMB = plan.MemoryMB
-	value.ServerPlanCPUModel = plan.ServerPlanCPUModel
-	if value.ServerPlanCPUModel == "" {
-		value.ServerPlanCPUModel = "uncategorized"
+	value.CPU = plan.CPU
+	value.CPUModel = plan.CPUModel
+	if value.CPUModel == "" {
+		value.CPUModel = "uncategorized"
 	}
-	value.ServerPlanCommitment = plan.ServerPlanCommitment
-	value.ServerPlanGeneration = plan.ServerPlanGeneration
-	value.ServerPlanID = types.StringID(fmt.Sprintf("%03d%03d%03d", value.ServerPlanGeneration, value.GetMemoryGB(), value.CPU))
-	value.ServerPlanName = fmt.Sprintf("世代:%03d メモリ:%03d CPU:%03d", value.ServerPlanGeneration, value.GetMemoryGB(), value.CPU)
+	value.Commitment = plan.Commitment
+	value.Generation = plan.Generation
+	value.GPU = plan.GPU
+	value.GPUModel = plan.GPUModel
+	value.ServerPlanID = types.StringID(fmt.Sprintf("%03d%03d%03d", value.Generation, value.GetMemoryGB(), value.CPU))
+	value.ServerPlanName = fmt.Sprintf("世代:%03d メモリ:%03d CPU:%03d", value.Generation, value.GetMemoryGB(), value.CPU)
 
 	// ID変更
 	ds().Delete(o.key, zone, value.ID)

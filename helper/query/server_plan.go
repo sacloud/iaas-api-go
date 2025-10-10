@@ -29,6 +29,7 @@ type FindServerPlanRequest struct {
 	CPU        int
 	MemoryGB   int
 	GPU        int
+	GPUModel   string
 	CPUModel   string
 	Commitment types.ECommitment
 	Generation types.EPlanGeneration
@@ -41,7 +42,6 @@ func (f *FindServerPlanRequest) findCondition() *iaas.FindCondition {
 		},
 		Filter: search.Filter{
 			search.Key("Commitment"): types.Commitments.Standard,
-			search.Key("GPU"):        f.GPU,
 		},
 		Count: 1000,
 	}
@@ -52,6 +52,9 @@ func (f *FindServerPlanRequest) findCondition() *iaas.FindCondition {
 		cond.Filter[search.Key("MemoryMB")] = size.GiBToMiB(f.MemoryGB)
 	}
 
+	if f.GPU > 0 {
+		cond.Filter[search.Key("GPU")] = f.GPU
+	}
 	if f.Generation != types.PlanGenerations.Default {
 		cond.Filter[search.Key("Generation")] = f.Generation
 	}
@@ -60,6 +63,9 @@ func (f *FindServerPlanRequest) findCondition() *iaas.FindCondition {
 	}
 	if f.CPUModel != "" {
 		cond.Filter[search.Key("CPUModel")] = f.CPUModel
+	}
+	if f.GPUModel != "" {
+		cond.Filter[search.Key("GPUModel")] = f.GPUModel
 	}
 	return cond
 }
