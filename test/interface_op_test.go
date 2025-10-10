@@ -39,8 +39,8 @@ func TestInterface_Operations(t *testing.T) {
 				//ConnectedSwitches: []*ConnectedSwitch{
 				//	{Scope: types.Scopes.Shared},
 				// },
-				ServerPlanCommitment: types.Commitments.Standard,
-				Name:                 testutil.ResourceName("server-with-interface"),
+				Commitment: types.Commitments.Standard,
+				Name:       testutil.ResourceName("server-with-interface"),
 			})
 			if !assert.NoError(t, err) {
 				return err

@@ -2583,12 +2583,13 @@ type serverDeleteWithDisksRequestEnvelope struct {
 
 // serverChangePlanRequestEnvelope is envelop of API request
 type serverChangePlanRequestEnvelope struct {
-	CPU                  int                   `json:",omitempty"`
-	MemoryMB             int                   `json:",omitempty"`
-	GPU                  int                   `json:",omitempty"`
-	ServerPlanCPUModel   string                `json:"CPUModel,omitempty"`
-	ServerPlanGeneration types.EPlanGeneration `json:"Generation,omitempty"`
-	ServerPlanCommitment types.ECommitment     `json:"Commitment,omitempty"`
+	CPU        int                   `json:",omitempty"`
+	MemoryMB   int                   `json:",omitempty"`
+	GPU        int                   `json:",omitempty"`
+	GPUModel   string                `json:"GPUModel,omitempty"`
+	CPUModel   string                `json:"CPUModel,omitempty"`
+	Generation types.EPlanGeneration `json:"Generation,omitempty"`
+	Commitment types.ECommitment     `json:"Commitment,omitempty"`
 }
 
 // serverChangePlanResponseEnvelope is envelop of API response

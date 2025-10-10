@@ -153,6 +153,16 @@ func (f *fieldsDef) GPU() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) GPUModel() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "GPUModel",
+		Tags: &dsl.FieldTags{
+			JSON: "GPUModel,omitempty",
+		},
+		Type: meta.TypeString,
+	}
+}
+
 /*
 func (f *fieldsDef) ServerPlanCPU() *schema.FieldDesc {
 	return &schema.FieldDesc{
@@ -189,7 +199,7 @@ func (f *fieldsDef) MemoryMB() *dsl.FieldDesc {
 
 func (f *fieldsDef) Generation() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPlanGeneration",
+		Name: "Generation",
 		Tags: &dsl.FieldTags{
 			JSON: "Generation,omitempty",
 		},
@@ -199,7 +209,7 @@ func (f *fieldsDef) Generation() *dsl.FieldDesc {
 
 func (f *fieldsDef) CPUModel() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPlanCPUModel",
+		Name: "CPUModel",
 		Tags: &dsl.FieldTags{
 			JSON: "CPUModel,omitempty",
 		},
@@ -209,7 +219,7 @@ func (f *fieldsDef) CPUModel() *dsl.FieldDesc {
 
 func (f *fieldsDef) Commitment() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPlanCommitment",
+		Name: "Commitment",
 		Tags: &dsl.FieldTags{
 			JSON: "Commitment,omitempty",
 		},
@@ -274,9 +284,20 @@ func (f *fieldsDef) ServerPlanGPU() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) ServerPlanGPUModel() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "GPUModel",
+		Tags: &dsl.FieldTags{
+			MapConv: "ServerPlan.GPUModel",
+			JSON:    ",omitempty",
+		},
+		Type: meta.TypeString,
+	}
+}
+
 func (f *fieldsDef) ServerPlanGeneration() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPlanGeneration",
+		Name: "Generation",
 		Type: meta.TypePlanGeneration,
 		Tags: &dsl.FieldTags{
 			MapConv: "ServerPlan.Generation",
@@ -286,7 +307,7 @@ func (f *fieldsDef) ServerPlanGeneration() *dsl.FieldDesc {
 
 func (f *fieldsDef) ServerPlanCPUModel() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPlanCPUModel",
+		Name: "CPUModel",
 		Tags: &dsl.FieldTags{
 			MapConv: "ServerPlan.CPUModel",
 			JSON:    ",omitempty",
@@ -296,7 +317,7 @@ func (f *fieldsDef) ServerPlanCPUModel() *dsl.FieldDesc {
 }
 func (f *fieldsDef) ServerPlanCommitment() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
-		Name: "ServerPlanCommitment",
+		Name: "Commitment",
 		Tags: &dsl.FieldTags{
 			MapConv: "ServerPlan.Commitment",
 			JSON:    ",omitempty",

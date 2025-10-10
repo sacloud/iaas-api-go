@@ -70,15 +70,15 @@ func Example_serverCRUD() {
 	ctx := context.Background()
 	serverOp := iaas.NewServerOp(client)
 	server, err := serverOp.Create(ctx, "is1a", &iaas.ServerCreateRequest{
-		CPU:                  1,
-		MemoryMB:             1 * size.GiB,
-		ServerPlanCommitment: types.Commitments.Standard,
-		ServerPlanGeneration: types.PlanGenerations.Default,
-		ConnectedSwitches:    []*iaas.ConnectedSwitch{{Scope: types.Scopes.Shared}},
-		InterfaceDriver:      types.InterfaceDrivers.VirtIO,
-		Name:                 "libsacloud-example",
-		Description:          "description",
-		Tags:                 types.Tags{"tag1", "tag2"},
+		CPU:               1,
+		MemoryMB:          1 * size.GiB,
+		Commitment:        types.Commitments.Standard,
+		Generation:        types.PlanGenerations.Default,
+		ConnectedSwitches: []*iaas.ConnectedSwitch{{Scope: types.Scopes.Shared}},
+		InterfaceDriver:   types.InterfaceDrivers.VirtIO,
+		Name:              "libsacloud-example",
+		Description:       "description",
+		Tags:              types.Tags{"tag1", "tag2"},
 		//IconID:               0,
 		WaitDiskMigration: false,
 	})

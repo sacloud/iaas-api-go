@@ -22843,9 +22843,10 @@ type Server struct {
 	CPU                     int                         `mapconv:"ServerPlan.CPU"`
 	MemoryMB                int                         `mapconv:"ServerPlan.MemoryMB"`
 	GPU                     int                         `mapconv:"ServerPlan.GPU"`
-	ServerPlanCPUModel      string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
-	ServerPlanCommitment    types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
-	ServerPlanGeneration    types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
+	GPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.GPUModel"`
+	CPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
+	Commitment              types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
+	Generation              types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
 	Zone                    *ZoneInfo                   `json:",omitempty" mapconv:",omitempty,recursive"`
 	InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
 	InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
@@ -22880,9 +22881,10 @@ func (o *Server) setDefaults() interface{} {
 		CPU                     int                         `mapconv:"ServerPlan.CPU"`
 		MemoryMB                int                         `mapconv:"ServerPlan.MemoryMB"`
 		GPU                     int                         `mapconv:"ServerPlan.GPU"`
-		ServerPlanCPUModel      string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
-		ServerPlanCommitment    types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
-		ServerPlanGeneration    types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
+		GPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.GPUModel"`
+		CPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
+		Commitment              types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
+		Generation              types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
 		Zone                    *ZoneInfo                   `json:",omitempty" mapconv:",omitempty,recursive"`
 		InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
 		InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
@@ -22913,9 +22915,10 @@ func (o *Server) setDefaults() interface{} {
 		CPU:                     o.GetCPU(),
 		MemoryMB:                o.GetMemoryMB(),
 		GPU:                     o.GetGPU(),
-		ServerPlanCPUModel:      o.GetServerPlanCPUModel(),
-		ServerPlanCommitment:    o.GetServerPlanCommitment(),
-		ServerPlanGeneration:    o.GetServerPlanGeneration(),
+		GPUModel:                o.GetGPUModel(),
+		CPUModel:                o.GetCPUModel(),
+		Commitment:              o.GetCommitment(),
+		Generation:              o.GetGeneration(),
 		Zone:                    o.GetZone(),
 		InstanceHostName:        o.GetInstanceHostName(),
 		InstanceHostInfoURL:     o.GetInstanceHostInfoURL(),
@@ -23104,37 +23107,47 @@ func (o *Server) SetGPU(v int) {
 	o.GPU = v
 }
 
-// GetServerPlanCPUModel returns value of ServerPlanCPUModel
-func (o *Server) GetServerPlanCPUModel() string {
-	return o.ServerPlanCPUModel
+// GetGPUModel returns value of GPUModel
+func (o *Server) GetGPUModel() string {
+	return o.GPUModel
 }
 
-// SetServerPlanCPUModel sets value to ServerPlanCPUModel
-func (o *Server) SetServerPlanCPUModel(v string) {
-	o.ServerPlanCPUModel = v
+// SetGPUModel sets value to GPUModel
+func (o *Server) SetGPUModel(v string) {
+	o.GPUModel = v
 }
 
-// GetServerPlanCommitment returns value of ServerPlanCommitment
-func (o *Server) GetServerPlanCommitment() types.ECommitment {
-	if o.ServerPlanCommitment == types.ECommitment("") {
+// GetCPUModel returns value of CPUModel
+func (o *Server) GetCPUModel() string {
+	return o.CPUModel
+}
+
+// SetCPUModel sets value to CPUModel
+func (o *Server) SetCPUModel(v string) {
+	o.CPUModel = v
+}
+
+// GetCommitment returns value of Commitment
+func (o *Server) GetCommitment() types.ECommitment {
+	if o.Commitment == types.ECommitment("") {
 		return types.Commitments.Standard
 	}
-	return o.ServerPlanCommitment
+	return o.Commitment
 }
 
-// SetServerPlanCommitment sets value to ServerPlanCommitment
-func (o *Server) SetServerPlanCommitment(v types.ECommitment) {
-	o.ServerPlanCommitment = v
+// SetCommitment sets value to Commitment
+func (o *Server) SetCommitment(v types.ECommitment) {
+	o.Commitment = v
 }
 
-// GetServerPlanGeneration returns value of ServerPlanGeneration
-func (o *Server) GetServerPlanGeneration() types.EPlanGeneration {
-	return o.ServerPlanGeneration
+// GetGeneration returns value of Generation
+func (o *Server) GetGeneration() types.EPlanGeneration {
+	return o.Generation
 }
 
-// SetServerPlanGeneration sets value to ServerPlanGeneration
-func (o *Server) SetServerPlanGeneration(v types.EPlanGeneration) {
-	o.ServerPlanGeneration = v
+// SetGeneration sets value to Generation
+func (o *Server) SetGeneration(v types.EPlanGeneration) {
+	o.Generation = v
 }
 
 // GetZone returns value of Zone
@@ -23696,54 +23709,57 @@ func (o *ServerConnectedDisk) SetStorage(v *Storage) {
 
 // ServerCreateRequest represents API parameter/response structure
 type ServerCreateRequest struct {
-	CPU                  int                   `mapconv:"ServerPlan.CPU"`
-	MemoryMB             int                   `mapconv:"ServerPlan.MemoryMB"`
-	GPU                  int                   `mapconv:"ServerPlan.GPU"`
-	ServerPlanCPUModel   string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
-	ServerPlanCommitment types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
-	ServerPlanGeneration types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
-	ConnectedSwitches    []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
-	InterfaceDriver      types.EInterfaceDriver
-	Name                 string
-	Description          string
-	Tags                 types.Tags
-	IconID               types.ID `mapconv:"Icon.ID"`
-	WaitDiskMigration    bool     `json:",omitempty" mapconv:",omitempty"`
-	PrivateHostID        types.ID `mapconv:"PrivateHost.ID"`
+	CPU               int                   `mapconv:"ServerPlan.CPU"`
+	MemoryMB          int                   `mapconv:"ServerPlan.MemoryMB"`
+	GPU               int                   `mapconv:"ServerPlan.GPU"`
+	GPUModel          string                `json:",omitempty" mapconv:"ServerPlan.GPUModel"`
+	CPUModel          string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
+	Commitment        types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
+	Generation        types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
+	ConnectedSwitches []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
+	InterfaceDriver   types.EInterfaceDriver
+	Name              string
+	Description       string
+	Tags              types.Tags
+	IconID            types.ID `mapconv:"Icon.ID"`
+	WaitDiskMigration bool     `json:",omitempty" mapconv:",omitempty"`
+	PrivateHostID     types.ID `mapconv:"PrivateHost.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServerCreateRequest) setDefaults() interface{} {
 	return &struct {
-		CPU                  int                   `mapconv:"ServerPlan.CPU"`
-		MemoryMB             int                   `mapconv:"ServerPlan.MemoryMB"`
-		GPU                  int                   `mapconv:"ServerPlan.GPU"`
-		ServerPlanCPUModel   string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
-		ServerPlanCommitment types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
-		ServerPlanGeneration types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
-		ConnectedSwitches    []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
-		InterfaceDriver      types.EInterfaceDriver
-		Name                 string
-		Description          string
-		Tags                 types.Tags
-		IconID               types.ID `mapconv:"Icon.ID"`
-		WaitDiskMigration    bool     `json:",omitempty" mapconv:",omitempty"`
-		PrivateHostID        types.ID `mapconv:"PrivateHost.ID"`
+		CPU               int                   `mapconv:"ServerPlan.CPU"`
+		MemoryMB          int                   `mapconv:"ServerPlan.MemoryMB"`
+		GPU               int                   `mapconv:"ServerPlan.GPU"`
+		GPUModel          string                `json:",omitempty" mapconv:"ServerPlan.GPUModel"`
+		CPUModel          string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
+		Commitment        types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
+		Generation        types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
+		ConnectedSwitches []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
+		InterfaceDriver   types.EInterfaceDriver
+		Name              string
+		Description       string
+		Tags              types.Tags
+		IconID            types.ID `mapconv:"Icon.ID"`
+		WaitDiskMigration bool     `json:",omitempty" mapconv:",omitempty"`
+		PrivateHostID     types.ID `mapconv:"PrivateHost.ID"`
 	}{
-		CPU:                  o.GetCPU(),
-		MemoryMB:             o.GetMemoryMB(),
-		GPU:                  o.GetGPU(),
-		ServerPlanCPUModel:   o.GetServerPlanCPUModel(),
-		ServerPlanCommitment: o.GetServerPlanCommitment(),
-		ServerPlanGeneration: o.GetServerPlanGeneration(),
-		ConnectedSwitches:    o.GetConnectedSwitches(),
-		InterfaceDriver:      o.GetInterfaceDriver(),
-		Name:                 o.GetName(),
-		Description:          o.GetDescription(),
-		Tags:                 o.GetTags(),
-		IconID:               o.GetIconID(),
-		WaitDiskMigration:    o.GetWaitDiskMigration(),
-		PrivateHostID:        o.GetPrivateHostID(),
+		CPU:               o.GetCPU(),
+		MemoryMB:          o.GetMemoryMB(),
+		GPU:               o.GetGPU(),
+		GPUModel:          o.GetGPUModel(),
+		CPUModel:          o.GetCPUModel(),
+		Commitment:        o.GetCommitment(),
+		Generation:        o.GetGeneration(),
+		ConnectedSwitches: o.GetConnectedSwitches(),
+		InterfaceDriver:   o.GetInterfaceDriver(),
+		Name:              o.GetName(),
+		Description:       o.GetDescription(),
+		Tags:              o.GetTags(),
+		IconID:            o.GetIconID(),
+		WaitDiskMigration: o.GetWaitDiskMigration(),
+		PrivateHostID:     o.GetPrivateHostID(),
 	}
 }
 
@@ -23782,37 +23798,47 @@ func (o *ServerCreateRequest) SetGPU(v int) {
 	o.GPU = v
 }
 
-// GetServerPlanCPUModel returns value of ServerPlanCPUModel
-func (o *ServerCreateRequest) GetServerPlanCPUModel() string {
-	return o.ServerPlanCPUModel
+// GetGPUModel returns value of GPUModel
+func (o *ServerCreateRequest) GetGPUModel() string {
+	return o.GPUModel
 }
 
-// SetServerPlanCPUModel sets value to ServerPlanCPUModel
-func (o *ServerCreateRequest) SetServerPlanCPUModel(v string) {
-	o.ServerPlanCPUModel = v
+// SetGPUModel sets value to GPUModel
+func (o *ServerCreateRequest) SetGPUModel(v string) {
+	o.GPUModel = v
 }
 
-// GetServerPlanCommitment returns value of ServerPlanCommitment
-func (o *ServerCreateRequest) GetServerPlanCommitment() types.ECommitment {
-	if o.ServerPlanCommitment == types.ECommitment("") {
+// GetCPUModel returns value of CPUModel
+func (o *ServerCreateRequest) GetCPUModel() string {
+	return o.CPUModel
+}
+
+// SetCPUModel sets value to CPUModel
+func (o *ServerCreateRequest) SetCPUModel(v string) {
+	o.CPUModel = v
+}
+
+// GetCommitment returns value of Commitment
+func (o *ServerCreateRequest) GetCommitment() types.ECommitment {
+	if o.Commitment == types.ECommitment("") {
 		return types.Commitments.Standard
 	}
-	return o.ServerPlanCommitment
+	return o.Commitment
 }
 
-// SetServerPlanCommitment sets value to ServerPlanCommitment
-func (o *ServerCreateRequest) SetServerPlanCommitment(v types.ECommitment) {
-	o.ServerPlanCommitment = v
+// SetCommitment sets value to Commitment
+func (o *ServerCreateRequest) SetCommitment(v types.ECommitment) {
+	o.Commitment = v
 }
 
-// GetServerPlanGeneration returns value of ServerPlanGeneration
-func (o *ServerCreateRequest) GetServerPlanGeneration() types.EPlanGeneration {
-	return o.ServerPlanGeneration
+// GetGeneration returns value of Generation
+func (o *ServerCreateRequest) GetGeneration() types.EPlanGeneration {
+	return o.Generation
 }
 
-// SetServerPlanGeneration sets value to ServerPlanGeneration
-func (o *ServerCreateRequest) SetServerPlanGeneration(v types.EPlanGeneration) {
-	o.ServerPlanGeneration = v
+// SetGeneration sets value to Generation
+func (o *ServerCreateRequest) SetGeneration(v types.EPlanGeneration) {
+	o.Generation = v
 }
 
 // GetConnectedSwitches returns value of ConnectedSwitches
@@ -24129,30 +24155,33 @@ func (o *ServerDeleteWithDisksRequest) SetIDs(v []types.ID) {
 
 // ServerChangePlanRequest represents API parameter/response structure
 type ServerChangePlanRequest struct {
-	CPU                  int
-	MemoryMB             int
-	GPU                  int
-	ServerPlanCPUModel   string                `json:"CPUModel,omitempty"`
-	ServerPlanGeneration types.EPlanGeneration `json:"Generation,omitempty"`
-	ServerPlanCommitment types.ECommitment     `json:"Commitment,omitempty"`
+	CPU        int
+	MemoryMB   int
+	GPU        int
+	GPUModel   string                `json:"GPUModel,omitempty"`
+	CPUModel   string                `json:"CPUModel,omitempty"`
+	Generation types.EPlanGeneration `json:"Generation,omitempty"`
+	Commitment types.ECommitment     `json:"Commitment,omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServerChangePlanRequest) setDefaults() interface{} {
 	return &struct {
-		CPU                  int
-		MemoryMB             int
-		GPU                  int
-		ServerPlanCPUModel   string                `json:"CPUModel,omitempty"`
-		ServerPlanGeneration types.EPlanGeneration `json:"Generation,omitempty"`
-		ServerPlanCommitment types.ECommitment     `json:"Commitment,omitempty"`
+		CPU        int
+		MemoryMB   int
+		GPU        int
+		GPUModel   string                `json:"GPUModel,omitempty"`
+		CPUModel   string                `json:"CPUModel,omitempty"`
+		Generation types.EPlanGeneration `json:"Generation,omitempty"`
+		Commitment types.ECommitment     `json:"Commitment,omitempty"`
 	}{
-		CPU:                  o.GetCPU(),
-		MemoryMB:             o.GetMemoryMB(),
-		GPU:                  o.GetGPU(),
-		ServerPlanCPUModel:   o.GetServerPlanCPUModel(),
-		ServerPlanGeneration: o.GetServerPlanGeneration(),
-		ServerPlanCommitment: o.GetServerPlanCommitment(),
+		CPU:        o.GetCPU(),
+		MemoryMB:   o.GetMemoryMB(),
+		GPU:        o.GetGPU(),
+		GPUModel:   o.GetGPUModel(),
+		CPUModel:   o.GetCPUModel(),
+		Generation: o.GetGeneration(),
+		Commitment: o.GetCommitment(),
 	}
 }
 
@@ -24196,37 +24225,47 @@ func (o *ServerChangePlanRequest) SetGPU(v int) {
 	o.GPU = v
 }
 
-// GetServerPlanCPUModel returns value of ServerPlanCPUModel
-func (o *ServerChangePlanRequest) GetServerPlanCPUModel() string {
-	return o.ServerPlanCPUModel
+// GetGPUModel returns value of GPUModel
+func (o *ServerChangePlanRequest) GetGPUModel() string {
+	return o.GPUModel
 }
 
-// SetServerPlanCPUModel sets value to ServerPlanCPUModel
-func (o *ServerChangePlanRequest) SetServerPlanCPUModel(v string) {
-	o.ServerPlanCPUModel = v
+// SetGPUModel sets value to GPUModel
+func (o *ServerChangePlanRequest) SetGPUModel(v string) {
+	o.GPUModel = v
 }
 
-// GetServerPlanGeneration returns value of ServerPlanGeneration
-func (o *ServerChangePlanRequest) GetServerPlanGeneration() types.EPlanGeneration {
-	return o.ServerPlanGeneration
+// GetCPUModel returns value of CPUModel
+func (o *ServerChangePlanRequest) GetCPUModel() string {
+	return o.CPUModel
 }
 
-// SetServerPlanGeneration sets value to ServerPlanGeneration
-func (o *ServerChangePlanRequest) SetServerPlanGeneration(v types.EPlanGeneration) {
-	o.ServerPlanGeneration = v
+// SetCPUModel sets value to CPUModel
+func (o *ServerChangePlanRequest) SetCPUModel(v string) {
+	o.CPUModel = v
 }
 
-// GetServerPlanCommitment returns value of ServerPlanCommitment
-func (o *ServerChangePlanRequest) GetServerPlanCommitment() types.ECommitment {
-	if o.ServerPlanCommitment == types.ECommitment("") {
+// GetGeneration returns value of Generation
+func (o *ServerChangePlanRequest) GetGeneration() types.EPlanGeneration {
+	return o.Generation
+}
+
+// SetGeneration sets value to Generation
+func (o *ServerChangePlanRequest) SetGeneration(v types.EPlanGeneration) {
+	o.Generation = v
+}
+
+// GetCommitment returns value of Commitment
+func (o *ServerChangePlanRequest) GetCommitment() types.ECommitment {
+	if o.Commitment == types.ECommitment("") {
 		return types.Commitments.Standard
 	}
-	return o.ServerPlanCommitment
+	return o.Commitment
 }
 
-// SetServerPlanCommitment sets value to ServerPlanCommitment
-func (o *ServerChangePlanRequest) SetServerPlanCommitment(v types.ECommitment) {
-	o.ServerPlanCommitment = v
+// SetCommitment sets value to Commitment
+func (o *ServerChangePlanRequest) SetCommitment(v types.ECommitment) {
+	o.Commitment = v
 }
 
 /*************************************************
@@ -24498,6 +24537,7 @@ type ServerPlan struct {
 	CPU          int
 	MemoryMB     int
 	GPU          int
+	GPUModel     string
 	CPUModel     string
 	Commitment   types.ECommitment
 	Generation   types.EPlanGeneration
@@ -24512,6 +24552,7 @@ func (o *ServerPlan) setDefaults() interface{} {
 		CPU          int
 		MemoryMB     int
 		GPU          int
+		GPUModel     string
 		CPUModel     string
 		Commitment   types.ECommitment
 		Generation   types.EPlanGeneration
@@ -24522,6 +24563,7 @@ func (o *ServerPlan) setDefaults() interface{} {
 		CPU:          o.GetCPU(),
 		MemoryMB:     o.GetMemoryMB(),
 		GPU:          o.GetGPU(),
+		GPUModel:     o.GetGPUModel(),
 		CPUModel:     o.GetCPUModel(),
 		Commitment:   o.GetCommitment(),
 		Generation:   o.GetGeneration(),
@@ -24607,6 +24649,16 @@ func (o *ServerPlan) GetGPU() int {
 // SetGPU sets value to GPU
 func (o *ServerPlan) SetGPU(v int) {
 	o.GPU = v
+}
+
+// GetGPUModel returns value of GPUModel
+func (o *ServerPlan) GetGPUModel() string {
+	return o.GPUModel
+}
+
+// SetGPUModel sets value to GPUModel
+func (o *ServerPlan) SetGPUModel(v string) {
+	o.GPUModel = v
 }
 
 // GetCPUModel returns value of CPUModel

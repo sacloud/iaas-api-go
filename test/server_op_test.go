@@ -152,9 +152,9 @@ var (
 		"Availability",
 		"ServerPlanID",
 		"ServerPlanName",
-		"ServerPlanCPUModel",
-		"ServerPlanGeneration",
-		"ServerPlanCommitment",
+		"CPUModel",
+		"Generation",
+		"Commitment",
 		"Zone",
 		"HostName",
 		"InstanceHostName",
@@ -173,8 +173,9 @@ var (
 		"ModifiedAt",
 	}
 	createServerParam = &iaas.ServerCreateRequest{
-		CPU:      1,
-		MemoryMB: 1 * size.GiB,
+		CPU:        1,
+		MemoryMB:   1 * size.GiB,
+		Generation: types.PlanGenerations.G100,
 		ConnectedSwitches: []*iaas.ConnectedSwitch{
 			{
 				Scope: types.Scopes.Shared,
@@ -193,6 +194,7 @@ var (
 		InterfaceDriver: createServerParam.InterfaceDriver,
 		CPU:             createServerParam.CPU,
 		MemoryMB:        createServerParam.MemoryMB,
+		Generation:      createServerParam.Generation,
 	}
 	updateServerParam = &iaas.ServerUpdateRequest{
 		Name:            testutil.ResourceName("server-upd"),
@@ -208,6 +210,7 @@ var (
 		InterfaceDriver: updateServerParam.InterfaceDriver,
 		CPU:             createServerParam.CPU,
 		MemoryMB:        createServerParam.MemoryMB,
+		Generation:      createServerParam.Generation,
 		IconID:          testIconID,
 	}
 	updateServerToMinParam = &iaas.ServerUpdateRequest{
@@ -219,6 +222,7 @@ var (
 		InterfaceDriver: updateServerToMinParam.InterfaceDriver,
 		CPU:             createServerParam.CPU,
 		MemoryMB:        createServerParam.MemoryMB,
+		Generation:      createServerParam.Generation,
 	}
 )
 
