@@ -24,11 +24,11 @@ func _() {
 	var x [1]struct{}
 	_ = x[Custom-0]
 	_ = x[AlmaLinux-1]
-	_ = x[AlmaLinux9-2]
-	_ = x[AlmaLinux8-3]
+	_ = x[AlmaLinux10-2]
+	_ = x[AlmaLinux9-3]
 	_ = x[RockyLinux-4]
-	_ = x[RockyLinux9-5]
-	_ = x[RockyLinux8-6]
+	_ = x[RockyLinux10-5]
+	_ = x[RockyLinux9-6]
 	_ = x[MiracleLinux-7]
 	_ = x[MiracleLinux8-8]
 	_ = x[MiracleLinux9-9]
@@ -41,9 +41,9 @@ func _() {
 	_ = x[Kusanagi-16]
 }
 
-const _ArchiveOSType_name = "CustomAlmaLinuxAlmaLinux9AlmaLinux8RockyLinuxRockyLinux9RockyLinux8MiracleLinuxMiracleLinux8MiracleLinux9UbuntuUbuntu2404Ubuntu2204DebianDebian11Debian12Kusanagi"
+const _ArchiveOSType_name = "CustomAlmaLinuxAlmaLinux10AlmaLinux9RockyLinuxRockyLinux10RockyLinux9MiracleLinuxMiracleLinux8MiracleLinux9UbuntuUbuntu2404Ubuntu2204DebianDebian11Debian12Kusanagi"
 
-var _ArchiveOSType_index = [...]uint8{0, 6, 15, 25, 35, 45, 56, 67, 79, 92, 105, 111, 121, 131, 137, 145, 153, 161}
+var _ArchiveOSType_index = [...]uint8{0, 6, 15, 26, 36, 46, 58, 69, 81, 94, 107, 113, 123, 133, 139, 147, 155, 163}
 
 func (i ArchiveOSType) String() string {
 	if i < 0 || i >= ArchiveOSType(len(_ArchiveOSType_index)-1) {
