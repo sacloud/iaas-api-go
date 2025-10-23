@@ -26,23 +26,23 @@ const (
 
 	// AlmaLinux OS種別: Alma Linux
 	AlmaLinux
+	// AlmaLinux10 OS種別: Alma Linux10
+	AlmaLinux10
 	// AlmaLinux9 OS種別: Alma Linux9
 	AlmaLinux9
-	// AlmaLinux8 OS種別: Alma Linux8
-	AlmaLinux8
 
 	// RockyLinux OS種別: Rocky Linux
 	RockyLinux
+	// RockyLinux10 OS種別: Rocky Linux10
+	RockyLinux10
 	// RockyLinux9 OS種別: Rocky Linux9
 	RockyLinux9
-	// RockyLinux8 OS種別: Rocky Linux8
-	RockyLinux8
 
 	// MiracleLinux OS種別: MIRACLE LINUX
 	MiracleLinux
 	// MiracleLinux8 OS種別: MIRACLE LINUX8
 	MiracleLinux8
-	// MiracleLinux9 OS種別: MIRACLE LINUX8
+	// MiracleLinux9 OS種別: MIRACLE LINUX9
 	MiracleLinux9
 
 	// Ubuntu OS種別:Ubuntu
@@ -66,11 +66,11 @@ const (
 // ArchiveOSTypes アーカイブ種別のリスト
 var ArchiveOSTypes = []ArchiveOSType{
 	AlmaLinux,
+	AlmaLinux10,
 	AlmaLinux9,
-	AlmaLinux8,
 	RockyLinux,
+	RockyLinux10,
 	RockyLinux9,
-	RockyLinux8,
 	MiracleLinux,
 	MiracleLinux8,
 	MiracleLinux9,
@@ -85,8 +85,8 @@ var ArchiveOSTypes = []ArchiveOSType{
 
 // OSTypeShortNames OSTypeとして利用できる文字列のリスト
 var OSTypeShortNames = []string{
-	"almalinux", "almalinux9", "almalinux8",
-	"rockylinux", "rockylinux9", "rockylinux8",
+	"almalinux", "almalinux10", "almalinux9",
+	"rockylinux", "rockylinux10", "rockylinux9",
 	"miracle", "miraclelinux", "miracle8", "miraclelinux8", "miracle9", "miraclelinux9",
 	"ubuntu", "ubuntu2404", "ubuntu2204",
 	"debian", "debian11", "debian12",
@@ -97,8 +97,8 @@ var OSTypeShortNames = []string{
 func (o ArchiveOSType) IsSupportDiskEdit() bool {
 	switch o {
 	case
-		AlmaLinux, AlmaLinux9, AlmaLinux8,
-		RockyLinux, RockyLinux9, RockyLinux8,
+		AlmaLinux, AlmaLinux10, AlmaLinux9,
+		RockyLinux, RockyLinux10, RockyLinux9,
 		MiracleLinux, MiracleLinux8, MiracleLinux9,
 		Ubuntu, Ubuntu2404, Ubuntu2204,
 		Debian, Debian11, Debian12,
@@ -114,16 +114,16 @@ func StrToOSType(osType string) ArchiveOSType {
 	switch osType {
 	case "almalinux":
 		return AlmaLinux
+	case "almalinux10":
+		return AlmaLinux10
 	case "almalinux9":
 		return AlmaLinux9
-	case "almalinux8":
-		return AlmaLinux8
 	case "rockylinux":
 		return RockyLinux
+	case "rockylinux10":
+		return RockyLinux10
 	case "rockylinux9":
 		return RockyLinux9
-	case "rockylinux8":
-		return RockyLinux8
 	case "miracle", "miraclelinux":
 		return MiracleLinux
 	case "miracle8", "miraclelinux8":
