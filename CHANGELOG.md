@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.20.0](https://github.com/sacloud/iaas-api-go/compare/v1.19.0...v1.20.0) - 2025-10-23
+- Update ostype: AlmaLinux 9/10 & Rocky Linux 9/10 by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/405
+
 ## [v1.19.0](https://github.com/sacloud/iaas-api-go/compare/v1.18.0...v1.19.0) - 2025-10-10
 - feat(koukaryoku-vrt): add GPUModel field by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/403
 
