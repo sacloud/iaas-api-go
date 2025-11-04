@@ -986,6 +986,16 @@ func (f *fieldsDef) GSLBSorryServer() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) GSLBMonitoringSuiteLog() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "MonitoringSuiteLog",
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.GSLB.MonitoringSuiteLog,recursive",
+		},
+		Type: models.monitoringSuiteLog(),
+	}
+}
+
 func (f *fieldsDef) AutoBackupBackupSpanWeekdays() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "BackupSpanWeekdays",
@@ -1077,6 +1087,16 @@ func (f *fieldsDef) DNSRecords() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) DNSMonitoringSuiteLog() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "MonitoringSuiteLog",
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.DNS.MonitoringSuiteLog,recursive",
+		},
+		Type: models.monitoringSuiteLog(),
+	}
+}
+
 func (f *fieldsDef) DNSZone() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "DNSZone",
@@ -1153,6 +1173,16 @@ func (f *fieldsDef) CAStatusSubject() *dsl.FieldDesc {
 		Tags: &dsl.FieldTags{
 			MapConv: "Status.Subject",
 		},
+	}
+}
+
+func (f *fieldsDef) SimpleMonitorMonitoringSuiteLog() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "MonitoringSuiteLog",
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.SimpleMonitor.MonitoringSuiteLog,recursive",
+		},
+		Type: models.monitoringSuiteLog(),
 	}
 }
 
@@ -1732,6 +1762,16 @@ func (f *fieldsDef) ProxyLBBackendHttpKeepAlive() *dsl.FieldDesc {
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.ProxyLB.BackendHttpKeepAlive,recursive",
 		},
+	}
+}
+
+func (f *fieldsDef) ProxyLBMonitoringSuiteLog() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "MonitoringSuiteLog",
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.ProxyLB.MonitoringSuiteLog,recursive",
+		},
+		Type: models.monitoringSuiteLog(),
 	}
 }
 
