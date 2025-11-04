@@ -72,6 +72,7 @@ var (
 
 			// settings
 			fields.DNSRecords(),
+			fields.DNSMonitoringSuiteLog(),
 			fields.SettingsHash(),
 
 			// status
@@ -105,6 +106,7 @@ var (
 
 			// setting
 			fields.DNSRecords(),
+			fields.DNSMonitoringSuiteLog(),
 
 			// common fields
 			fields.Description(),
@@ -124,6 +126,7 @@ var (
 
 			// setting
 			fields.DNSRecords(),
+			fields.DNSMonitoringSuiteLog(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -135,6 +138,7 @@ var (
 		Fields: []*dsl.FieldDesc{
 			// setting
 			fields.DNSRecords(),
+			fields.DNSMonitoringSuiteLog(),
 			// settings hash
 			fields.SettingsHash(),
 		},
