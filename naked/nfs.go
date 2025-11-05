@@ -32,7 +32,7 @@ type NFS struct {
 	Availability types.EAvailability `json:",omitempty" yaml:"availability,omitempty" structs:",omitempty"`
 	Class        string              `json:",omitempty" yaml:"class,omitempty" structs:",omitempty"`
 	Instance     *Instance           `json:",omitempty" yaml:"instance,omitempty" structs:",omitempty"`
-	Interfaces   []*Interface        `json:",omitempty" yaml:"interfaces,omitempty" structs:",omitempty"`
+	Interfaces   Interfaces          `json:",omitempty" yaml:"interfaces,omitempty" structs:",omitempty"`
 	Plan         *AppliancePlan      `json:",omitempty" yaml:"plan,omitempty" structs:",omitempty"`
 	Remark       *ApplianceRemark    `json:",omitempty" yaml:"remark,omitempty" structs:",omitempty"`
 	ServiceClass string              `json:",omitempty" yaml:"service_class,omitempty" structs:",omitempty"`

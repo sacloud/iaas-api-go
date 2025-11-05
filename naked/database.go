@@ -37,7 +37,7 @@ type Database struct {
 	ServiceClass string              `json:",omitempty" yaml:"service_class,omitempty" structs:",omitempty"`
 	Plan         *AppliancePlan      `json:",omitempty" yaml:"plan,omitempty" structs:",omitempty"`
 	Instance     *Instance           `json:",omitempty" yaml:"instance,omitempty" structs:",omitempty"`
-	Interfaces   []*Interface        `json:",omitempty" yaml:"interfaces,omitempty" structs:",omitempty"`
+	Interfaces   Interfaces          `json:",omitempty" yaml:"interfaces,omitempty" structs:",omitempty"`
 	Switch       *Switch             `json:",omitempty" yaml:"switch,omitempty" structs:",omitempty"`
 	Settings     *DatabaseSettings   `json:",omitempty" yaml:"settings,omitempty" structs:",omitempty"`
 	SettingsHash string              `json:",omitempty" yaml:"settings_hash,omitempty" structs:",omitempty"`
