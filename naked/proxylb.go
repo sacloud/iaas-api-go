@@ -95,7 +95,6 @@ type ProxyLBSetting struct {
 	Timeout              ProxyLBTimeout               `json:",omitempty" yaml:"timeout,omitempty" structs:",omitempty"`                  // タイムアウト
 	Gzip                 ProxyLBGzip                  `yaml:"gzip"`                                                                      // Gzip
 	BackendHttpKeepAlive *ProxyLBBackendHTTPKeepAlive `json:",omitempty" yaml:",backend_http_keey_alive,omitempty" structs:",omitempty"` // 実サーバとのHTTP持続接続
-	MonitoringSuiteLog   *MonitoringSuiteLog          `json:",omitempty" yaml:"monitoring_suite_log,omitempty" structs:",omitempty"`
 	ProxyProtocol        ProxyLBProxyProtocol         `yaml:"proxy_protocol"`
 	Syslog               ProxyLBSyslog                `yaml:"syslog"`
 }

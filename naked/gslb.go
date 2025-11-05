@@ -50,12 +50,11 @@ type GSLBSettings struct {
 
 // GSLBSetting GSLBの設定
 type GSLBSetting struct {
-	DelayLoop          int                       `json:",omitempty" yaml:"delay_loop,omitempty" structs:",omitempty"`
-	HealthCheck        *GSLBHealthCheck          `json:",omitempty" yaml:"health_check,omitempty" structs:",omitempty"`
-	Weighted           types.StringFlag          `yaml:"weighted"`
-	Servers            []*GSLBServer             `yaml:"servers"`
-	SorryServer        string                    `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // ソーリーサーバー
-	MonitoringSuiteLog *MonitoringSuiteLogString `json:",omitempty" yaml:"monitoring_suite_log,omitempty" structs:",omitempty"`
+	DelayLoop   int              `json:",omitempty" yaml:"delay_loop,omitempty" structs:",omitempty"`
+	HealthCheck *GSLBHealthCheck `json:",omitempty" yaml:"health_check,omitempty" structs:",omitempty"`
+	Weighted    types.StringFlag `yaml:"weighted"`
+	Servers     []*GSLBServer    `yaml:"servers"`
+	SorryServer string           `json:",omitempty" yaml:",omitempty" structs:",omitempty"` // ソーリーサーバー
 }
 
 // GSLBHealthCheck ヘルスチェック
