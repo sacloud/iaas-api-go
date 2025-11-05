@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.21.0](https://github.com/sacloud/iaas-api-go/compare/v1.20.0...v1.21.0) - 2025-11-05
+- Send signals to MonitoringSuite by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/407
+- Handle cases where Interfaces may contain null values in DB/NFS/LoadBalancer by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/409
+
 ## [v1.20.0](https://github.com/sacloud/iaas-api-go/compare/v1.19.0...v1.20.0) - 2025-10-23
 - Update ostype: AlmaLinux 9/10 & Rocky Linux 9/10 by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/405
 
