@@ -76,7 +76,6 @@ var (
 			fields.GSLBWeighted(),
 			fields.GSLBHealthCheck(),
 			fields.GSLBSorryServer(),
-			fields.GSLBMonitoringSuiteLog(),
 			fields.GSLBDestinationServers(),
 		},
 	}
@@ -99,7 +98,6 @@ var (
 			fields.GSLBDelayLoop(),
 			fields.GSLBWeighted(),
 			fields.GSLBSorryServer(),
-			fields.GSLBMonitoringSuiteLog(),
 			fields.GSLBDestinationServers(),
 
 			fields.Name(),
@@ -123,7 +121,6 @@ var (
 			fields.GSLBDelayLoop(),
 			fields.GSLBWeighted(),
 			fields.GSLBSorryServer(),
-			fields.GSLBMonitoringSuiteLog(),
 			fields.GSLBDestinationServers(),
 			// settings hash
 			fields.SettingsHash(),
@@ -139,7 +136,6 @@ var (
 			fields.GSLBDelayLoop(),
 			fields.GSLBWeighted(),
 			fields.GSLBSorryServer(),
-			fields.GSLBMonitoringSuiteLog(),
 			fields.GSLBDestinationServers(),
 			// settings hash
 			fields.SettingsHash(),

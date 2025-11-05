@@ -99,8 +99,6 @@ var (
 			fields.SimpleMonitorNotifyInterval(),
 			// settings - timeout
 			fields.SimpleMonitorTimeout(),
-			// settings - monitoring suite log
-			fields.SimpleMonitorMonitoringSuiteLog(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -148,8 +146,6 @@ var (
 
 			fields.SimpleMonitorTimeout(),
 
-			fields.SimpleMonitorMonitoringSuiteLog(),
-
 			fields.Description(),
 			fields.Tags(),
 			fields.IconID(),
@@ -177,9 +173,6 @@ var (
 			fields.SimpleMonitorNotifyInterval(),
 
 			fields.SimpleMonitorTimeout(),
-
-			fields.SimpleMonitorMonitoringSuiteLog(),
-
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -210,9 +203,6 @@ var (
 			fields.SimpleMonitorNotifyInterval(),
 
 			fields.SimpleMonitorTimeout(),
-
-			fields.SimpleMonitorMonitoringSuiteLog(),
-
 			// settings hash
 			fields.SettingsHash(),
 		},

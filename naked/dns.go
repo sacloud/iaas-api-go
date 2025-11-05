@@ -57,8 +57,7 @@ type DNSSettings struct {
 
 // DNSSetting DNSセッティング
 type DNSSetting struct {
-	ResourceRecordSets []*DNSRecord              `yaml:"resource_record_sets"`
-	MonitoringSuiteLog *MonitoringSuiteLogString `json:",omitempty" yaml:"monitoring_suite_log,omitempty" structs:",omitempty"`
+	ResourceRecordSets []*DNSRecord `yaml:"resource_record_sets"`
 }
 
 // MarshalJSON nullの場合に空配列を出力するための実装
