@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.22.0](https://github.com/sacloud/iaas-api-go/compare/v1.21.1...v1.22.0) - 2025-11-13
+- feat: Add monitoring suite integration for SimpleMonitor, DNS, GSLB, ELB, and VPNRouter by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/414
+- go: bump golang.org/x/crypto from 0.43.0 to 0.44.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/413
+
 ## [v1.21.1](https://github.com/sacloud/iaas-api-go/compare/v1.21.0...v1.21.1) - 2025-11-05
 - Revert "Send signals to MonitoringSuite" by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/411
 
