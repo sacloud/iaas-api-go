@@ -10047,48 +10047,51 @@ func (o *DiskPlanSizeInfo) SetSizeGB(size int) {
 
 // DNS represents API parameter/response structure
 type DNS struct {
-	ID             types.ID
-	Name           string
-	Description    string
-	Tags           types.Tags
-	Availability   types.EAvailability
-	IconID         types.ID `mapconv:"Icon.ID"`
-	CreatedAt      time.Time
-	ModifiedAt     time.Time
-	Records        DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-	SettingsHash   string     `json:",omitempty" mapconv:",omitempty"`
-	DNSZone        string     `mapconv:"Status.Zone"`
-	DNSNameServers []string   `mapconv:"Status.NS"`
+	ID                 types.ID
+	Name               string
+	Description        string
+	Tags               types.Tags
+	Availability       types.EAvailability
+	IconID             types.ID `mapconv:"Icon.ID"`
+	CreatedAt          time.Time
+	ModifiedAt         time.Time
+	Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+	SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
+	DNSZone            string              `mapconv:"Status.Zone"`
+	DNSNameServers     []string            `mapconv:"Status.NS"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNS) setDefaults() interface{} {
 	return &struct {
-		ID             types.ID
-		Name           string
-		Description    string
-		Tags           types.Tags
-		Availability   types.EAvailability
-		IconID         types.ID `mapconv:"Icon.ID"`
-		CreatedAt      time.Time
-		ModifiedAt     time.Time
-		Records        DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-		SettingsHash   string     `json:",omitempty" mapconv:",omitempty"`
-		DNSZone        string     `mapconv:"Status.Zone"`
-		DNSNameServers []string   `mapconv:"Status.NS"`
+		ID                 types.ID
+		Name               string
+		Description        string
+		Tags               types.Tags
+		Availability       types.EAvailability
+		IconID             types.ID `mapconv:"Icon.ID"`
+		CreatedAt          time.Time
+		ModifiedAt         time.Time
+		Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+		SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
+		DNSZone            string              `mapconv:"Status.Zone"`
+		DNSNameServers     []string            `mapconv:"Status.NS"`
 	}{
-		ID:             o.GetID(),
-		Name:           o.GetName(),
-		Description:    o.GetDescription(),
-		Tags:           o.GetTags(),
-		Availability:   o.GetAvailability(),
-		IconID:         o.GetIconID(),
-		CreatedAt:      o.GetCreatedAt(),
-		ModifiedAt:     o.GetModifiedAt(),
-		Records:        o.GetRecords(),
-		SettingsHash:   o.GetSettingsHash(),
-		DNSZone:        o.GetDNSZone(),
-		DNSNameServers: o.GetDNSNameServers(),
+		ID:                 o.GetID(),
+		Name:               o.GetName(),
+		Description:        o.GetDescription(),
+		Tags:               o.GetTags(),
+		Availability:       o.GetAvailability(),
+		IconID:             o.GetIconID(),
+		CreatedAt:          o.GetCreatedAt(),
+		ModifiedAt:         o.GetModifiedAt(),
+		Records:            o.GetRecords(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
+		SettingsHash:       o.GetSettingsHash(),
+		DNSZone:            o.GetDNSZone(),
+		DNSNameServers:     o.GetDNSNameServers(),
 	}
 }
 
@@ -10222,6 +10225,16 @@ func (o *DNS) SetRecords(v DNSRecords) {
 	o.Records = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *DNS) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *DNS) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *DNS) GetSettingsHash() string {
 	return o.SettingsHash
@@ -10320,34 +10333,65 @@ func (o *DNSRecord) SetTTL(v int) {
 }
 
 /*************************************************
+* MonitoringSuiteLog
+*************************************************/
+
+// MonitoringSuiteLog represents API parameter/response structure
+type MonitoringSuiteLog struct {
+	Enabled bool
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *MonitoringSuiteLog) setDefaults() interface{} {
+	return &struct {
+		Enabled bool
+	}{
+		Enabled: o.GetEnabled(),
+	}
+}
+
+// GetEnabled returns value of Enabled
+func (o *MonitoringSuiteLog) GetEnabled() bool {
+	return o.Enabled
+}
+
+// SetEnabled sets value to Enabled
+func (o *MonitoringSuiteLog) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+/*************************************************
 * DNSCreateRequest
 *************************************************/
 
 // DNSCreateRequest represents API parameter/response structure
 type DNSCreateRequest struct {
-	Name        string     `mapconv:"Name/Status.Zone"`
-	Records     DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-	Description string
-	Tags        types.Tags
-	IconID      types.ID `mapconv:"Icon.ID"`
+	Name               string              `mapconv:"Name/Status.Zone"`
+	Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+	Description        string
+	Tags               types.Tags
+	IconID             types.ID `mapconv:"Icon.ID"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNSCreateRequest) setDefaults() interface{} {
 	return &struct {
-		Name        string     `mapconv:"Name/Status.Zone"`
-		Records     DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-		Description string
-		Tags        types.Tags
-		IconID      types.ID `mapconv:"Icon.ID"`
-		Class       string   `mapconv:"Provider.Class"`
+		Name               string              `mapconv:"Name/Status.Zone"`
+		Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+		Description        string
+		Tags               types.Tags
+		IconID             types.ID `mapconv:"Icon.ID"`
+		Class              string   `mapconv:"Provider.Class"`
 	}{
-		Name:        o.GetName(),
-		Records:     o.GetRecords(),
-		Description: o.GetDescription(),
-		Tags:        o.GetTags(),
-		IconID:      o.GetIconID(),
-		Class:       "dns",
+		Name:               o.GetName(),
+		Records:            o.GetRecords(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
+		Description:        o.GetDescription(),
+		Tags:               o.GetTags(),
+		IconID:             o.GetIconID(),
+		Class:              "dns",
 	}
 }
 
@@ -10369,6 +10413,16 @@ func (o *DNSCreateRequest) GetRecords() DNSRecords {
 // SetRecords sets value to Records
 func (o *DNSCreateRequest) SetRecords(v DNSRecords) {
 	o.Records = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *DNSCreateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *DNSCreateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetDescription returns value of Description
@@ -10427,27 +10481,30 @@ func (o *DNSCreateRequest) SetIconID(v types.ID) {
 
 // DNSUpdateRequest represents API parameter/response structure
 type DNSUpdateRequest struct {
-	Description  string
-	Tags         types.Tags
-	IconID       types.ID   `mapconv:"Icon.ID"`
-	Records      DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-	SettingsHash string     `json:",omitempty" mapconv:",omitempty"`
+	Description        string
+	Tags               types.Tags
+	IconID             types.ID            `mapconv:"Icon.ID"`
+	Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+	SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNSUpdateRequest) setDefaults() interface{} {
 	return &struct {
-		Description  string
-		Tags         types.Tags
-		IconID       types.ID   `mapconv:"Icon.ID"`
-		Records      DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-		SettingsHash string     `json:",omitempty" mapconv:",omitempty"`
+		Description        string
+		Tags               types.Tags
+		IconID             types.ID            `mapconv:"Icon.ID"`
+		Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+		SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Description:  o.GetDescription(),
-		Tags:         o.GetTags(),
-		IconID:       o.GetIconID(),
-		Records:      o.GetRecords(),
-		SettingsHash: o.GetSettingsHash(),
+		Description:        o.GetDescription(),
+		Tags:               o.GetTags(),
+		IconID:             o.GetIconID(),
+		Records:            o.GetRecords(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
+		SettingsHash:       o.GetSettingsHash(),
 	}
 }
 
@@ -10511,6 +10568,16 @@ func (o *DNSUpdateRequest) SetRecords(v DNSRecords) {
 	o.Records = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *DNSUpdateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *DNSUpdateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *DNSUpdateRequest) GetSettingsHash() string {
 	return o.SettingsHash
@@ -10527,18 +10594,21 @@ func (o *DNSUpdateRequest) SetSettingsHash(v string) {
 
 // DNSUpdateSettingsRequest represents API parameter/response structure
 type DNSUpdateSettingsRequest struct {
-	Records      DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-	SettingsHash string     `json:",omitempty" mapconv:",omitempty"`
+	Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+	SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *DNSUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		Records      DNSRecords `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-		SettingsHash string     `json:",omitempty" mapconv:",omitempty"`
+		Records            DNSRecords          `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
+		SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 	}{
-		Records:      o.GetRecords(),
-		SettingsHash: o.GetSettingsHash(),
+		Records:            o.GetRecords(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
+		SettingsHash:       o.GetSettingsHash(),
 	}
 }
 
@@ -10550,6 +10620,16 @@ func (o *DNSUpdateSettingsRequest) GetRecords() DNSRecords {
 // SetRecords sets value to Records
 func (o *DNSUpdateSettingsRequest) SetRecords(v DNSRecords) {
 	o.Records = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *DNSUpdateSettingsRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *DNSUpdateSettingsRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -11764,13 +11844,14 @@ type GSLB struct {
 	IconID             types.ID `mapconv:"Icon.ID"`
 	CreatedAt          time.Time
 	ModifiedAt         time.Time
-	SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
-	FQDN               string           `mapconv:"Status.FQDN"`
-	DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-	Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-	HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-	SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-	DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
+	SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
+	FQDN               string              `mapconv:"Status.FQDN"`
+	DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+	Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+	HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+	SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+	DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -11784,13 +11865,14 @@ func (o *GSLB) setDefaults() interface{} {
 		IconID             types.ID `mapconv:"Icon.ID"`
 		CreatedAt          time.Time
 		ModifiedAt         time.Time
-		SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
-		FQDN               string           `mapconv:"Status.FQDN"`
-		DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-		Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-		HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-		SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-		DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
+		SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
+		FQDN               string              `mapconv:"Status.FQDN"`
+		DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+		Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+		HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+		SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+		DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
 	}{
 		ID:                 o.GetID(),
 		Name:               o.GetName(),
@@ -11806,6 +11888,7 @@ func (o *GSLB) setDefaults() interface{} {
 		Weighted:           o.GetWeighted(),
 		HealthCheck:        o.GetHealthCheck(),
 		SorryServer:        o.GetSorryServer(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		DestinationServers: o.GetDestinationServers(),
 	}
 }
@@ -11993,6 +12076,16 @@ func (o *GSLB) SetSorryServer(v string) {
 	o.SorryServer = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *GSLB) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *GSLB) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetDestinationServers returns value of DestinationServers
 func (o *GSLB) GetDestinationServers() GSLBServers {
 	return o.DestinationServers
@@ -12143,11 +12236,12 @@ func (o *GSLBServer) SetWeight(v types.StringNumber) {
 
 // GSLBCreateRequest represents API parameter/response structure
 type GSLBCreateRequest struct {
-	HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-	DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-	Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-	SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-	DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
+	HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+	DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+	Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+	SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+	DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
 	Name               string
 	Description        string
 	Tags               types.Tags
@@ -12157,11 +12251,12 @@ type GSLBCreateRequest struct {
 // setDefaults implements iaas.argumentDefaulter
 func (o *GSLBCreateRequest) setDefaults() interface{} {
 	return &struct {
-		HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-		DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-		Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-		SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-		DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
+		HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+		DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+		Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+		SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+		DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
 		Name               string
 		Description        string
 		Tags               types.Tags
@@ -12172,6 +12267,7 @@ func (o *GSLBCreateRequest) setDefaults() interface{} {
 		DelayLoop:          o.GetDelayLoop(),
 		Weighted:           o.GetWeighted(),
 		SorryServer:        o.GetSorryServer(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		DestinationServers: o.GetDestinationServers(),
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
@@ -12222,6 +12318,16 @@ func (o *GSLBCreateRequest) GetSorryServer() string {
 // SetSorryServer sets value to SorryServer
 func (o *GSLBCreateRequest) SetSorryServer(v string) {
 	o.SorryServer = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *GSLBCreateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *GSLBCreateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetDestinationServers returns value of DestinationServers
@@ -12303,13 +12409,14 @@ type GSLBUpdateRequest struct {
 	Name               string
 	Description        string
 	Tags               types.Tags
-	IconID             types.ID         `mapconv:"Icon.ID"`
-	HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-	DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-	Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-	SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-	DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
-	SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
+	IconID             types.ID            `mapconv:"Icon.ID"`
+	HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+	DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+	Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+	SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+	DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
+	SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -12318,13 +12425,14 @@ func (o *GSLBUpdateRequest) setDefaults() interface{} {
 		Name               string
 		Description        string
 		Tags               types.Tags
-		IconID             types.ID         `mapconv:"Icon.ID"`
-		HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-		DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-		Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-		SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-		DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
-		SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
+		IconID             types.ID            `mapconv:"Icon.ID"`
+		HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+		DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+		Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+		SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+		DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
+		SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
@@ -12334,6 +12442,7 @@ func (o *GSLBUpdateRequest) setDefaults() interface{} {
 		DelayLoop:          o.GetDelayLoop(),
 		Weighted:           o.GetWeighted(),
 		SorryServer:        o.GetSorryServer(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		DestinationServers: o.GetDestinationServers(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
@@ -12442,6 +12551,16 @@ func (o *GSLBUpdateRequest) SetSorryServer(v string) {
 	o.SorryServer = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *GSLBUpdateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *GSLBUpdateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetDestinationServers returns value of DestinationServers
 func (o *GSLBUpdateRequest) GetDestinationServers() GSLBServers {
 	return o.DestinationServers
@@ -12468,28 +12587,31 @@ func (o *GSLBUpdateRequest) SetSettingsHash(v string) {
 
 // GSLBUpdateSettingsRequest represents API parameter/response structure
 type GSLBUpdateSettingsRequest struct {
-	HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-	DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-	Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-	SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-	DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
-	SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
+	HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+	DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+	Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+	SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+	MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+	DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
+	SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *GSLBUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
-		HealthCheck        *GSLBHealthCheck `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-		DelayLoop          int              `mapconv:"Settings.GSLB.DelayLoop"`
-		Weighted           types.StringFlag `mapconv:"Settings.GSLB.Weighted"`
-		SorryServer        string           `mapconv:"Settings.GSLB.SorryServer"`
-		DestinationServers GSLBServers      `mapconv:"Settings.GSLB.[]Servers,recursive"`
-		SettingsHash       string           `json:",omitempty" mapconv:",omitempty"`
+		HealthCheck        *GSLBHealthCheck    `mapconv:"Settings.GSLB.HealthCheck,recursive"`
+		DelayLoop          int                 `mapconv:"Settings.GSLB.DelayLoop"`
+		Weighted           types.StringFlag    `mapconv:"Settings.GSLB.Weighted"`
+		SorryServer        string              `mapconv:"Settings.GSLB.SorryServer"`
+		MonitoringSuiteLog *MonitoringSuiteLog `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
+		DestinationServers GSLBServers         `mapconv:"Settings.GSLB.[]Servers,recursive"`
+		SettingsHash       string              `json:",omitempty" mapconv:",omitempty"`
 	}{
 		HealthCheck:        o.GetHealthCheck(),
 		DelayLoop:          o.GetDelayLoop(),
 		Weighted:           o.GetWeighted(),
 		SorryServer:        o.GetSorryServer(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		DestinationServers: o.GetDestinationServers(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
@@ -12536,6 +12658,16 @@ func (o *GSLBUpdateSettingsRequest) GetSorryServer() string {
 // SetSorryServer sets value to SorryServer
 func (o *GSLBUpdateSettingsRequest) SetSorryServer(v string) {
 	o.SorryServer = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *GSLBUpdateSettingsRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *GSLBUpdateSettingsRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetDestinationServers returns value of DestinationServers
@@ -20514,6 +20646,7 @@ type ProxyLB struct {
 	StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
 	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
@@ -20546,6 +20679,7 @@ func (o *ProxyLB) setDefaults() interface{} {
 		StickySession        *ProxyLBStickySession        `mapconv:"Settings.ProxyLB.StickySession,recursive"`
 		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
@@ -20574,6 +20708,7 @@ func (o *ProxyLB) setDefaults() interface{} {
 		StickySession:        o.GetStickySession(),
 		Gzip:                 o.GetGzip(),
 		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		MonitoringSuiteLog:   o.GetMonitoringSuiteLog(),
 		ProxyProtocol:        o.GetProxyProtocol(),
 		Syslog:               o.GetSyslog(),
 		Timeout:              o.GetTimeout(),
@@ -20804,6 +20939,16 @@ func (o *ProxyLB) GetBackendHttpKeepAlive() *ProxyLBBackendHttpKeepAlive {
 // SetBackendHttpKeepAlive sets value to BackendHttpKeepAlive
 func (o *ProxyLB) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeepAlive) {
 	o.BackendHttpKeepAlive = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *ProxyLB) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *ProxyLB) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetProxyProtocol returns value of ProxyProtocol
@@ -21673,6 +21818,7 @@ type ProxyLBCreateRequest struct {
 	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
 	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 	UseVIPFailover       bool                         `mapconv:"Status.UseVIPFailover"`
@@ -21697,6 +21843,7 @@ func (o *ProxyLBCreateRequest) setDefaults() interface{} {
 		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
 		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 		UseVIPFailover       bool                         `mapconv:"Status.UseVIPFailover"`
@@ -21718,6 +21865,7 @@ func (o *ProxyLBCreateRequest) setDefaults() interface{} {
 		Timeout:              o.GetTimeout(),
 		Gzip:                 o.GetGzip(),
 		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		MonitoringSuiteLog:   o.GetMonitoringSuiteLog(),
 		ProxyProtocol:        o.GetProxyProtocol(),
 		Syslog:               o.GetSyslog(),
 		UseVIPFailover:       o.GetUseVIPFailover(),
@@ -21840,6 +21988,16 @@ func (o *ProxyLBCreateRequest) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeep
 	o.BackendHttpKeepAlive = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *ProxyLBCreateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *ProxyLBCreateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetProxyProtocol returns value of ProxyProtocol
 func (o *ProxyLBCreateRequest) GetProxyProtocol() *ProxyLBProxyProtocol {
 	return o.ProxyProtocol
@@ -21956,6 +22114,7 @@ type ProxyLBUpdateRequest struct {
 	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
 	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 	SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
@@ -21978,6 +22137,7 @@ func (o *ProxyLBUpdateRequest) setDefaults() interface{} {
 		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
 		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 		SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
@@ -21996,6 +22156,7 @@ func (o *ProxyLBUpdateRequest) setDefaults() interface{} {
 		Timeout:              o.GetTimeout(),
 		Gzip:                 o.GetGzip(),
 		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		MonitoringSuiteLog:   o.GetMonitoringSuiteLog(),
 		ProxyProtocol:        o.GetProxyProtocol(),
 		Syslog:               o.GetSyslog(),
 		SettingsHash:         o.GetSettingsHash(),
@@ -22106,6 +22267,16 @@ func (o *ProxyLBUpdateRequest) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeep
 	o.BackendHttpKeepAlive = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *ProxyLBUpdateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *ProxyLBUpdateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetProxyProtocol returns value of ProxyProtocol
 func (o *ProxyLBUpdateRequest) GetProxyProtocol() *ProxyLBProxyProtocol {
 	return o.ProxyProtocol
@@ -22212,6 +22383,7 @@ type ProxyLBUpdateSettingsRequest struct {
 	Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
 	Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 	BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+	MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 	ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 	Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 	SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
@@ -22230,6 +22402,7 @@ func (o *ProxyLBUpdateSettingsRequest) setDefaults() interface{} {
 		Timeout              *ProxyLBTimeout              `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
 		Gzip                 *ProxyLBGzip                 `mapconv:"Settings.ProxyLB.Gzip,recursive"`
 		BackendHttpKeepAlive *ProxyLBBackendHttpKeepAlive `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
+		MonitoringSuiteLog   *MonitoringSuiteLog          `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
 		ProxyProtocol        *ProxyLBProxyProtocol        `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
 		Syslog               *ProxyLBSyslog               `mapconv:"Settings.ProxyLB.Syslog,recursive"`
 		SettingsHash         string                       `json:",omitempty" mapconv:",omitempty"`
@@ -22244,6 +22417,7 @@ func (o *ProxyLBUpdateSettingsRequest) setDefaults() interface{} {
 		Timeout:              o.GetTimeout(),
 		Gzip:                 o.GetGzip(),
 		BackendHttpKeepAlive: o.GetBackendHttpKeepAlive(),
+		MonitoringSuiteLog:   o.GetMonitoringSuiteLog(),
 		ProxyProtocol:        o.GetProxyProtocol(),
 		Syslog:               o.GetSyslog(),
 		SettingsHash:         o.GetSettingsHash(),
@@ -22348,6 +22522,16 @@ func (o *ProxyLBUpdateSettingsRequest) GetBackendHttpKeepAlive() *ProxyLBBackend
 // SetBackendHttpKeepAlive sets value to BackendHttpKeepAlive
 func (o *ProxyLBUpdateSettingsRequest) SetBackendHttpKeepAlive(v *ProxyLBBackendHttpKeepAlive) {
 	o.BackendHttpKeepAlive = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *ProxyLBUpdateSettingsRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *ProxyLBUpdateSettingsRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetProxyProtocol returns value of ProxyProtocol
@@ -25894,6 +26078,7 @@ type SimpleMonitor struct {
 	SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 	NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 	Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+	MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 	SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -25921,6 +26106,7 @@ func (o *SimpleMonitor) setDefaults() interface{} {
 		SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 		NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 		Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+		MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 		SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 	}{
 		ID:                 o.GetID(),
@@ -25944,6 +26130,7 @@ func (o *SimpleMonitor) setDefaults() interface{} {
 		SlackWebhooksURL:   o.GetSlackWebhooksURL(),
 		NotifyInterval:     o.GetNotifyInterval(),
 		Timeout:            o.GetTimeout(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -26208,6 +26395,16 @@ func (o *SimpleMonitor) GetTimeout() int {
 // SetTimeout sets value to Timeout
 func (o *SimpleMonitor) SetTimeout(v int) {
 	o.Timeout = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *SimpleMonitor) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *SimpleMonitor) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -26487,6 +26684,7 @@ type SimpleMonitorCreateRequest struct {
 	SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 	NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 	Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+	MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 	Description        string
 	Tags               types.Tags
 	IconID             types.ID `mapconv:"Icon.ID"`
@@ -26507,6 +26705,7 @@ func (o *SimpleMonitorCreateRequest) setDefaults() interface{} {
 		SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 		NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 		Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+		MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 		Description        string
 		Tags               types.Tags
 		IconID             types.ID `mapconv:"Icon.ID"`
@@ -26524,6 +26723,7 @@ func (o *SimpleMonitorCreateRequest) setDefaults() interface{} {
 		SlackWebhooksURL:   o.GetSlackWebhooksURL(),
 		NotifyInterval:     o.GetNotifyInterval(),
 		Timeout:            o.GetTimeout(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		Description:        o.GetDescription(),
 		Tags:               o.GetTags(),
 		IconID:             o.GetIconID(),
@@ -26663,6 +26863,16 @@ func (o *SimpleMonitorCreateRequest) SetTimeout(v int) {
 	o.Timeout = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *SimpleMonitorCreateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *SimpleMonitorCreateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetDescription returns value of Description
 func (o *SimpleMonitorCreateRequest) GetDescription() string {
 	return o.Description
@@ -26733,6 +26943,7 @@ type SimpleMonitorUpdateRequest struct {
 	SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 	NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 	Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+	MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 	SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -26753,6 +26964,7 @@ func (o *SimpleMonitorUpdateRequest) setDefaults() interface{} {
 		SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 		NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 		Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+		MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 		SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Description:        o.GetDescription(),
@@ -26769,6 +26981,7 @@ func (o *SimpleMonitorUpdateRequest) setDefaults() interface{} {
 		SlackWebhooksURL:   o.GetSlackWebhooksURL(),
 		NotifyInterval:     o.GetNotifyInterval(),
 		Timeout:            o.GetTimeout(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -26945,6 +27158,16 @@ func (o *SimpleMonitorUpdateRequest) SetTimeout(v int) {
 	o.Timeout = v
 }
 
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *SimpleMonitorUpdateRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *SimpleMonitorUpdateRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *SimpleMonitorUpdateRequest) GetSettingsHash() string {
 	return o.SettingsHash
@@ -26972,6 +27195,7 @@ type SimpleMonitorUpdateSettingsRequest struct {
 	SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 	NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 	Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+	MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 	SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -26989,6 +27213,7 @@ func (o *SimpleMonitorUpdateSettingsRequest) setDefaults() interface{} {
 		SlackWebhooksURL   string                    `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
 		NotifyInterval     int                       `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
 		Timeout            int                       `mapconv:"Settings.SimpleMonitor.Timeout"`
+		MonitoringSuiteLog *MonitoringSuiteLog       `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
 		SettingsHash       string                    `json:",omitempty" mapconv:",omitempty"`
 	}{
 		MaxCheckAttempts:   o.GetMaxCheckAttempts(),
@@ -27002,6 +27227,7 @@ func (o *SimpleMonitorUpdateSettingsRequest) setDefaults() interface{} {
 		SlackWebhooksURL:   o.GetSlackWebhooksURL(),
 		NotifyInterval:     o.GetNotifyInterval(),
 		Timeout:            o.GetTimeout(),
+		MonitoringSuiteLog: o.GetMonitoringSuiteLog(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -27126,6 +27352,16 @@ func (o *SimpleMonitorUpdateSettingsRequest) GetTimeout() int {
 // SetTimeout sets value to Timeout
 func (o *SimpleMonitorUpdateSettingsRequest) SetTimeout(v int) {
 	o.Timeout = v
+}
+
+// GetMonitoringSuiteLog returns value of MonitoringSuiteLog
+func (o *SimpleMonitorUpdateSettingsRequest) GetMonitoringSuiteLog() *MonitoringSuiteLog {
+	return o.MonitoringSuiteLog
+}
+
+// SetMonitoringSuiteLog sets value to MonitoringSuiteLog
+func (o *SimpleMonitorUpdateSettingsRequest) SetMonitoringSuiteLog(v *MonitoringSuiteLog) {
+	o.MonitoringSuiteLog = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -29977,6 +30213,7 @@ type VPCRouterSetting struct {
 	StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
 	SyslogHost                string                         `mapconv:"Router.SyslogHost"`
 	ScheduledMaintenance      *VPCRouterScheduledMaintenance `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
+	MonitoringSuite           *MonitoringSuite               `mapconv:"Router.MonitoringSuite,omitempty,recursive"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -30002,6 +30239,7 @@ func (o *VPCRouterSetting) setDefaults() interface{} {
 		StaticRoute               []*VPCRouterStaticRoute        `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
 		SyslogHost                string                         `mapconv:"Router.SyslogHost"`
 		ScheduledMaintenance      *VPCRouterScheduledMaintenance `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
+		MonitoringSuite           *MonitoringSuite               `mapconv:"Router.MonitoringSuite,omitempty,recursive"`
 	}{
 		VRID:                      o.GetVRID(),
 		InternetConnectionEnabled: o.GetInternetConnectionEnabled(),
@@ -30023,6 +30261,7 @@ func (o *VPCRouterSetting) setDefaults() interface{} {
 		StaticRoute:               o.GetStaticRoute(),
 		SyslogHost:                o.GetSyslogHost(),
 		ScheduledMaintenance:      o.GetScheduledMaintenance(),
+		MonitoringSuite:           o.GetMonitoringSuite(),
 	}
 }
 
@@ -30224,6 +30463,16 @@ func (o *VPCRouterSetting) GetScheduledMaintenance() *VPCRouterScheduledMaintena
 // SetScheduledMaintenance sets value to ScheduledMaintenance
 func (o *VPCRouterSetting) SetScheduledMaintenance(v *VPCRouterScheduledMaintenance) {
 	o.ScheduledMaintenance = v
+}
+
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *VPCRouterSetting) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *VPCRouterSetting) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
 }
 
 /*************************************************
@@ -31356,6 +31605,34 @@ func (o *VPCRouterScheduledMaintenance) GetHour() int {
 // SetHour sets value to Hour
 func (o *VPCRouterScheduledMaintenance) SetHour(v int) {
 	o.Hour = v
+}
+
+/*************************************************
+* MonitoringSuite
+*************************************************/
+
+// MonitoringSuite represents API parameter/response structure
+type MonitoringSuite struct {
+	Enabled bool
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *MonitoringSuite) setDefaults() interface{} {
+	return &struct {
+		Enabled bool
+	}{
+		Enabled: o.GetEnabled(),
+	}
+}
+
+// GetEnabled returns value of Enabled
+func (o *MonitoringSuite) GetEnabled() bool {
+	return o.Enabled
+}
+
+// SetEnabled sets value to Enabled
+func (o *MonitoringSuite) SetEnabled(v bool) {
+	o.Enabled = v
 }
 
 /*************************************************

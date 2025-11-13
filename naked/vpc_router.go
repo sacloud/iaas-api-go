@@ -71,6 +71,7 @@ type VPCRouterSetting struct {
 	StaticRoutes         *VPCRouterStaticRoutes         `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	SyslogHost           string                         `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
 	ScheduledMaintenance *VPCRouterScheduledMaintenance `json:",omitempty" yaml:",omitempty" structs:",omitempty"`
+	MonitoringSuite      *MonitoringSuiteString         `json:",omitempty" yaml:"monitoring_suite_log,omitempty" structs:",omitempty"`
 }
 
 // VPCRouterInternetConnection インターフェース

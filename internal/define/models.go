@@ -931,6 +931,13 @@ func (m *modelsDef) vpcRouterSetting() *dsl.Model {
 					MapConv: "Router.ScheduledMaintenance,omitempty,recursive",
 				},
 			},
+			{
+				Name: "MonitoringSuite",
+				Type: m.monitoringSuite(),
+				Tags: &dsl.FieldTags{
+					MapConv: "Router.MonitoringSuite,omitempty,recursive",
+				},
+			},
 		},
 	}
 }
@@ -1520,6 +1527,30 @@ func (m *modelsDef) migrationJobStatus() *dsl.Model {
 					fields.Def("Status", meta.TypeString),
 				},
 			}),
+		},
+	}
+}
+
+func (m *modelsDef) monitoringSuiteLog() *dsl.Model {
+	return &dsl.Model{
+		Name: "MonitoringSuiteLog",
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "Enabled",
+				Type: meta.TypeFlag,
+			},
+		},
+	}
+}
+
+func (m *modelsDef) monitoringSuite() *dsl.Model {
+	return &dsl.Model{
+		Name: "MonitoringSuite",
+		Fields: []*dsl.FieldDesc{
+			{
+				Name: "Enabled",
+				Type: meta.TypeFlag,
+			},
 		},
 	}
 }
