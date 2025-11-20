@@ -15,7 +15,7 @@ require (
 	github.com/sacloud/go-http v0.1.9
 	github.com/sacloud/packages-go v0.0.11
 	github.com/stretchr/testify v1.11.1
-	golang.org/x/crypto v0.44.0
+	golang.org/x/crypto v0.45.0
 )
 
 require (
