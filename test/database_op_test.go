@@ -200,13 +200,16 @@ var (
 		IPAddresses:    createDatabaseParam.IPAddresses,
 		Conf: &iaas.DatabaseRemarkDBConfCommon{
 			DatabaseName:     types.RDBMSTypesMariaDB.String(),
-			DatabaseVersion:  "10.4",
-			DatabaseRevision: "10.4.12",
+			DatabaseVersion:  "10.11",
+			DatabaseRevision: "10.11.9",
 			DefaultUser:      "exa.mple",
 			UserPassword:     "LibsacloudExamplePassword01",
 		},
 		CommonSetting:      createDatabaseParam.CommonSetting,
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
 	}
 	updateDatabaseSettingsParam = &iaas.DatabaseUpdateSettingsRequest{
 		CommonSetting: &iaas.DatabaseSettingCommon{
@@ -236,6 +239,9 @@ var (
 			ReplicaPassword: "replica-user-password-upd",
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
 	}
 	updateDatabaseParam = &iaas.DatabaseUpdateRequest{
 		Name:        testutil.ResourceName("db-upd"),
@@ -270,6 +276,9 @@ var (
 			ReplicaPassword: "replica-user-password",
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
 	}
 	updateDatabaseToFullParam = &iaas.DatabaseUpdateRequest{
 		Name:        testutil.ResourceName("db-to-full"),
@@ -316,7 +325,10 @@ var (
 		},
 		BackupSetting:      updateDatabaseToFullParam.BackupSetting,
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
-		IconID:             updateDatabaseToFullParam.IconID,
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
+		IconID: updateDatabaseToFullParam.IconID,
 	}
 	updateDatabaseToMinParam = &iaas.DatabaseUpdateRequest{
 		Name: testutil.ResourceName("db-to-min"),
@@ -346,6 +358,9 @@ var (
 			ReplicaPassword: "replica-user-password",
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
 	}
 )
 

@@ -6309,6 +6309,7 @@ type Database struct {
 	IPAddresses             []string                     `mapconv:"Remark.[]Servers.IPAddress"`
 	ZoneID                  types.ID                     `mapconv:"Remark.Zone.ID"`
 	Interfaces              []*InterfaceView             `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
+	Disk                    *DatabaseDisk                `mapconv:"Disk,recursive"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -6340,6 +6341,7 @@ func (o *Database) setDefaults() interface{} {
 		IPAddresses             []string                     `mapconv:"Remark.[]Servers.IPAddress"`
 		ZoneID                  types.ID                     `mapconv:"Remark.Zone.ID"`
 		Interfaces              []*InterfaceView             `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
+		Disk                    *DatabaseDisk                `mapconv:"Disk,recursive"`
 	}{
 		ID:                      o.GetID(),
 		Class:                   o.GetClass(),
@@ -6367,6 +6369,7 @@ func (o *Database) setDefaults() interface{} {
 		IPAddresses:             o.GetIPAddresses(),
 		ZoneID:                  o.GetZoneID(),
 		Interfaces:              o.GetInterfaces(),
+		Disk:                    o.GetDisk(),
 	}
 }
 
@@ -6668,6 +6671,16 @@ func (o *Database) GetInterfaces() []*InterfaceView {
 // SetInterfaces sets value to Interfaces
 func (o *Database) SetInterfaces(v []*InterfaceView) {
 	o.Interfaces = v
+}
+
+// GetDisk returns value of Disk
+func (o *Database) GetDisk() *DatabaseDisk {
+	return o.Disk
+}
+
+// SetDisk sets value to Disk
+func (o *Database) SetDisk(v *DatabaseDisk) {
+	o.Disk = v
 }
 
 /*************************************************
@@ -7327,6 +7340,47 @@ func (o *InterfaceView) SetUpstreamType(v types.EUpstreamNetworkType) {
 }
 
 /*************************************************
+* DatabaseDisk
+*************************************************/
+
+// DatabaseDisk represents API parameter/response structure
+type DatabaseDisk struct {
+	EncryptionAlgorithm types.EDiskEncryptionAlgorithm
+	EncryptionKeyID     types.ID `mapconv:"EncryptionKey.KMSKeyID"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseDisk) setDefaults() interface{} {
+	return &struct {
+		EncryptionAlgorithm types.EDiskEncryptionAlgorithm
+		EncryptionKeyID     types.ID `mapconv:"EncryptionKey.KMSKeyID"`
+	}{
+		EncryptionAlgorithm: o.GetEncryptionAlgorithm(),
+		EncryptionKeyID:     o.GetEncryptionKeyID(),
+	}
+}
+
+// GetEncryptionAlgorithm returns value of EncryptionAlgorithm
+func (o *DatabaseDisk) GetEncryptionAlgorithm() types.EDiskEncryptionAlgorithm {
+	return o.EncryptionAlgorithm
+}
+
+// SetEncryptionAlgorithm sets value to EncryptionAlgorithm
+func (o *DatabaseDisk) SetEncryptionAlgorithm(v types.EDiskEncryptionAlgorithm) {
+	o.EncryptionAlgorithm = v
+}
+
+// GetEncryptionKeyID returns value of EncryptionKeyID
+func (o *DatabaseDisk) GetEncryptionKeyID() types.ID {
+	return o.EncryptionKeyID
+}
+
+// SetEncryptionKeyID sets value to EncryptionKeyID
+func (o *DatabaseDisk) SetEncryptionKeyID(v types.ID) {
+	o.EncryptionKeyID = v
+}
+
+/*************************************************
 * DatabaseCreateRequest
 *************************************************/
 
@@ -7343,6 +7397,7 @@ type DatabaseCreateRequest struct {
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	Disk               *DatabaseDisk                `mapconv:"Disk,recursive"`
 	Name               string
 	Description        string
 	Tags               types.Tags
@@ -7363,6 +7418,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		Disk               *DatabaseDisk                `mapconv:"Disk,recursive"`
 		Name               string
 		Description        string
 		Tags               types.Tags
@@ -7380,6 +7436,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		Disk:               o.GetDisk(),
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
 		Tags:               o.GetTags(),
@@ -7496,6 +7553,16 @@ func (o *DatabaseCreateRequest) GetInterfaceSettings() []*DatabaseSettingsInterf
 // SetInterfaceSettings sets value to InterfaceSettings
 func (o *DatabaseCreateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
 	o.InterfaceSettings = v
+}
+
+// GetDisk returns value of Disk
+func (o *DatabaseCreateRequest) GetDisk() *DatabaseDisk {
+	return o.Disk
+}
+
+// SetDisk sets value to Disk
+func (o *DatabaseCreateRequest) SetDisk(v *DatabaseDisk) {
+	o.Disk = v
 }
 
 // GetName returns value of Name

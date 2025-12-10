@@ -46,8 +46,9 @@ const _ArchiveOSType_name = "CustomAlmaLinuxAlmaLinux10AlmaLinux9RockyLinuxRocky
 var _ArchiveOSType_index = [...]uint8{0, 6, 15, 26, 36, 46, 58, 69, 81, 94, 107, 113, 123, 133, 139, 147, 155, 163}
 
 func (i ArchiveOSType) String() string {
-	if i < 0 || i >= ArchiveOSType(len(_ArchiveOSType_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_ArchiveOSType_index)-1 {
 		return "ArchiveOSType(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _ArchiveOSType_name[_ArchiveOSType_index[i]:_ArchiveOSType_index[i+1]]
+	return _ArchiveOSType_name[_ArchiveOSType_index[idx]:_ArchiveOSType_index[idx+1]]
 }

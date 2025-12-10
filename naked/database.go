@@ -42,8 +42,14 @@ type Database struct {
 	Settings     *DatabaseSettings   `json:",omitempty" yaml:"settings,omitempty" structs:",omitempty"`
 	SettingsHash string              `json:",omitempty" yaml:"settings_hash,omitempty" structs:",omitempty"`
 	Remark       *ApplianceRemark    `json:",omitempty" yaml:"remark,omitempty" structs:",omitempty"`
+	Disk         *DatabaseDisk       `json:",omitempty" yaml:"disk,omitempty" structs:",omitempty"`
 
 	Generation interface{}
+}
+
+type DatabaseDisk struct {
+	EncryptionAlgorithm types.EDiskEncryptionAlgorithm `json:",omitempty" yaml:"encryption_algorithm,omitempty" structs:",omitempty"`
+	EncryptionKey       *EncryptionKey                 `json:",omitempty" yaml:"kms_key,omitempty" structs:",omitempty"`
 }
 
 // DatabaseSettingsUpdate データベース
@@ -54,7 +60,8 @@ type DatabaseSettingsUpdate struct {
 
 // DatabaseSettings データベース設定
 type DatabaseSettings struct {
-	DBConf *DatabaseSetting `json:",omitempty" yaml:"db_conf,omitempty" structs:",omitempty"`
+	DBConf          *DatabaseSetting `json:",omitempty" yaml:"db_conf,omitempty" structs:",omitempty"`
+	MonitoringSuite *MonitoringSuite `json:",omitempty" yaml:"monitoring_suite_log,omitempty" structs:",omitempty"`
 }
 
 // DatabaseSetting データベース設定

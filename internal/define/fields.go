@@ -2456,6 +2456,29 @@ func (f *fieldsDef) RemarkSourceAppliance() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) DatabaseDisk() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Disk",
+		Type: &dsl.Model{
+			Name:      "DatabaseDisk",
+			NakedType: meta.Static(naked.DatabaseDisk{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("EncryptionAlgorithm", meta.Static(types.EDiskEncryptionAlgorithm(""))),
+				{
+					Name: "EncryptionKeyID",
+					Type: meta.TypeID,
+					Tags: &dsl.FieldTags{
+						MapConv: "EncryptionKey.KMSKeyID",
+					},
+				},
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Disk,recursive",
+		},
+	}
+}
+
 func (f *fieldsDef) DatabaseSettingsCommon() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "CommonSetting",

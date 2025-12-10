@@ -178,6 +178,9 @@ var (
 			fields.RemarkZoneID(),
 			// interfaces
 			fields.Interfaces(),
+
+			// disk
+			fields.DatabaseDisk(),
 		},
 	}
 
@@ -204,6 +207,8 @@ var (
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+
+			fields.DatabaseDisk(),
 
 			fields.Name(),
 			fields.Description(),
