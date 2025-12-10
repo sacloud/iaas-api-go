@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.23.0](https://github.com/sacloud/iaas-api-go/compare/v1.22.0...v1.23.0) - 2025-12-10
+- Database: Disk Encryption by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/420
+- Database: MonitoringSuite by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/422
+- ci: bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/417
+- go: bump github.com/sacloud/packages-go from 0.0.11 to 0.0.12 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/418
+- go: bump golang.org/x/crypto from 0.44.0 to 0.46.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/419
+- Database: Continuous Backup by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/424
+
 ## [v1.22.0](https://github.com/sacloud/iaas-api-go/compare/v1.21.1...v1.22.0) - 2025-11-13
 - feat: Add monitoring suite integration for SimpleMonitor, DNS, GSLB, ELB, and VPNRouter by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/414
 - go: bump golang.org/x/crypto from 0.43.0 to 0.44.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/413
