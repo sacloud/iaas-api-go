@@ -6296,6 +6296,7 @@ type Database struct {
 	BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 	ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite         *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	SettingsHash            string                       `json:",omitempty" mapconv:",omitempty"`
 	InstanceHostName        string                       `mapconv:"Instance.Host.Name"`
 	InstanceHostInfoURL     string                       `mapconv:"Instance.Host.InfoURL"`
@@ -6328,6 +6329,7 @@ func (o *Database) setDefaults() interface{} {
 		BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 		ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite         *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		SettingsHash            string                       `json:",omitempty" mapconv:",omitempty"`
 		InstanceHostName        string                       `mapconv:"Instance.Host.Name"`
 		InstanceHostInfoURL     string                       `mapconv:"Instance.Host.InfoURL"`
@@ -6356,6 +6358,7 @@ func (o *Database) setDefaults() interface{} {
 		BackupSetting:           o.GetBackupSetting(),
 		ReplicationSetting:      o.GetReplicationSetting(),
 		InterfaceSettings:       o.GetInterfaceSettings(),
+		MonitoringSuite:         o.GetMonitoringSuite(),
 		SettingsHash:            o.GetSettingsHash(),
 		InstanceHostName:        o.GetInstanceHostName(),
 		InstanceHostInfoURL:     o.GetInstanceHostInfoURL(),
@@ -6541,6 +6544,16 @@ func (o *Database) GetInterfaceSettings() []*DatabaseSettingsInterface {
 // SetInterfaceSettings sets value to InterfaceSettings
 func (o *Database) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
 	o.InterfaceSettings = v
+}
+
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *Database) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *Database) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -6991,6 +7004,34 @@ func (o *DatabaseSettingsInterface) SetIndex(v int) {
 }
 
 /*************************************************
+* MonitoringSuite
+*************************************************/
+
+// MonitoringSuite represents API parameter/response structure
+type MonitoringSuite struct {
+	Enabled bool
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *MonitoringSuite) setDefaults() interface{} {
+	return &struct {
+		Enabled bool
+	}{
+		Enabled: o.GetEnabled(),
+	}
+}
+
+// GetEnabled returns value of Enabled
+func (o *MonitoringSuite) GetEnabled() bool {
+	return o.Enabled
+}
+
+// SetEnabled sets value to Enabled
+func (o *MonitoringSuite) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+/*************************************************
 * DatabaseRemarkDBConfCommon
 *************************************************/
 
@@ -7397,6 +7438,7 @@ type DatabaseCreateRequest struct {
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	Disk               *DatabaseDisk                `mapconv:"Disk,recursive"`
 	Name               string
 	Description        string
@@ -7418,6 +7460,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		Disk               *DatabaseDisk                `mapconv:"Disk,recursive"`
 		Name               string
 		Description        string
@@ -7436,6 +7479,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		MonitoringSuite:    o.GetMonitoringSuite(),
 		Disk:               o.GetDisk(),
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
@@ -7555,6 +7599,16 @@ func (o *DatabaseCreateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterf
 	o.InterfaceSettings = v
 }
 
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *DatabaseCreateRequest) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *DatabaseCreateRequest) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
+}
+
 // GetDisk returns value of Disk
 func (o *DatabaseCreateRequest) GetDisk() *DatabaseDisk {
 	return o.Disk
@@ -7639,6 +7693,7 @@ type DatabaseUpdateRequest struct {
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -7653,6 +7708,7 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Name:               o.GetName(),
@@ -7663,6 +7719,7 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		MonitoringSuite:    o.GetMonitoringSuite(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -7767,6 +7824,16 @@ func (o *DatabaseUpdateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterf
 	o.InterfaceSettings = v
 }
 
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *DatabaseUpdateRequest) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *DatabaseUpdateRequest) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *DatabaseUpdateRequest) GetSettingsHash() string {
 	return o.SettingsHash
@@ -7787,6 +7854,7 @@ type DatabaseUpdateSettingsRequest struct {
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -7797,12 +7865,14 @@ func (o *DatabaseUpdateSettingsRequest) setDefaults() interface{} {
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		MonitoringSuite:    o.GetMonitoringSuite(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -7845,6 +7915,16 @@ func (o *DatabaseUpdateSettingsRequest) GetInterfaceSettings() []*DatabaseSettin
 // SetInterfaceSettings sets value to InterfaceSettings
 func (o *DatabaseUpdateSettingsRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
 	o.InterfaceSettings = v
+}
+
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *DatabaseUpdateSettingsRequest) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *DatabaseUpdateSettingsRequest) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -31672,34 +31752,6 @@ func (o *VPCRouterScheduledMaintenance) GetHour() int {
 // SetHour sets value to Hour
 func (o *VPCRouterScheduledMaintenance) SetHour(v int) {
 	o.Hour = v
-}
-
-/*************************************************
-* MonitoringSuite
-*************************************************/
-
-// MonitoringSuite represents API parameter/response structure
-type MonitoringSuite struct {
-	Enabled bool
-}
-
-// setDefaults implements iaas.argumentDefaulter
-func (o *MonitoringSuite) setDefaults() interface{} {
-	return &struct {
-		Enabled bool
-	}{
-		Enabled: o.GetEnabled(),
-	}
-}
-
-// GetEnabled returns value of Enabled
-func (o *MonitoringSuite) GetEnabled() bool {
-	return o.Enabled
-}
-
-// SetEnabled sets value to Enabled
-func (o *MonitoringSuite) SetEnabled(v bool) {
-	o.Enabled = v
 }
 
 /*************************************************

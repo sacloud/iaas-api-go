@@ -159,6 +159,7 @@ var (
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 			fields.SettingsHash(),
 
 			// instance
@@ -207,6 +208,7 @@ var (
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 
 			fields.DatabaseDisk(),
 
@@ -232,6 +234,7 @@ var (
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -246,6 +249,7 @@ var (
 			fields.DatabaseSettingsBackup(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 			// settings hash
 			fields.SettingsHash(),
 		},
