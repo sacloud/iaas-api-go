@@ -68,6 +68,7 @@ type DatabaseSettings struct {
 type DatabaseSetting struct {
 	Common      *DatabaseSettingCommon      `json:",omitempty" yaml:"common,omitempty" structs:",omitempty"`
 	Backup      *DatabaseSettingBackup      `json:",omitempty" yaml:"backup,omitempty" structs:",omitempty"`
+	Backupv2    *DatabaseSettingBackupv2    `json:",omitempty" yaml:"backupv2,omitempty" structs:",omitempty"`
 	Replication *DatabaseSettingReplication `json:",omitempty" yaml:"replication,omitempty" structs:",omitempty"`
 	Interfaces  DatabaseSettingInterfaces   `json:",omitempty" yaml:"common,omitempty" structs:",omitempty"`
 }
@@ -129,7 +130,16 @@ type DatabaseSettingBackup struct {
 	Rotate    int                   `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
 	Time      string                `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
 	DayOfWeek []types.EDayOfTheWeek `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
-	Connect   string                // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
+	Connect   string                `json:",omitempty" yaml:"connect,omitempty" structs:",omitempty"` // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
+}
+
+// DatabaseSettingBackupv2 データベース設定 継続的バックアップ(バックアップv2)設定
+type DatabaseSettingBackupv2 struct {
+	Rotate         int                   `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
+	Time           string                `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
+	DayOfWeek      []types.EDayOfTheWeek `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
+	Connect        string                `json:",omitempty" yaml:"connect,omitempty" structs:",omitempty"` // バックアップ先NFS: 例:`nfs://192.168.0.41/export`
+	FirstEnabledAt *time.Time            `json:",omitempty" yaml:"first_enabled_at,omitempty" structs:",omitempty"`
 }
 
 // UnmarshalJSON 配列/オブジェクトが混在することへの対応
