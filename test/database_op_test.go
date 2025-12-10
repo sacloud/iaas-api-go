@@ -189,6 +189,9 @@ var (
 		ReplicationSetting: &iaas.DatabaseReplicationSetting{
 			Model: types.DatabaseReplicationModels.MasterSlave,
 		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
 	}
 	createDatabaseExpected = &iaas.Database{
 		Name:           createDatabaseParam.Name,
@@ -207,6 +210,9 @@ var (
 		},
 		CommonSetting:      createDatabaseParam.CommonSetting,
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
 		Disk: &iaas.DatabaseDisk{
 			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
 		},
@@ -218,6 +224,9 @@ var (
 			UserPassword:    "LibsacloudExamplePassword01up1",
 			ReplicaUser:     "replica-upd",
 			ReplicaPassword: "replica-user-password-upd",
+		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: false,
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
 	}
@@ -239,6 +248,9 @@ var (
 			ReplicaPassword: "replica-user-password-upd",
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: false,
+		},
 		Disk: &iaas.DatabaseDisk{
 			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
 		},
@@ -256,6 +268,9 @@ var (
 		},
 		ReplicationSetting: &iaas.DatabaseReplicationSetting{
 			Model: types.DatabaseReplicationModels.MasterSlave,
+		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: false,
 		},
 	}
 	updateDatabaseExpected = &iaas.Database{
@@ -276,6 +291,9 @@ var (
 			ReplicaPassword: "replica-user-password",
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: false,
+		},
 		Disk: &iaas.DatabaseDisk{
 			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
 		},
@@ -303,6 +321,9 @@ var (
 		ReplicationSetting: &iaas.DatabaseReplicationSetting{
 			Model: types.DatabaseReplicationModels.MasterSlave,
 		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
 		IconID: testIconID,
 	}
 	updateDatabaseToFullExpected = &iaas.Database{
@@ -325,6 +346,9 @@ var (
 		},
 		BackupSetting:      updateDatabaseToFullParam.BackupSetting,
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
 		Disk: &iaas.DatabaseDisk{
 			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
 		},
@@ -340,6 +364,9 @@ var (
 		},
 		ReplicationSetting: &iaas.DatabaseReplicationSetting{
 			Model: types.DatabaseReplicationModels.MasterSlave,
+		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: false,
 		},
 	}
 	updateDatabaseToMinExpected = &iaas.Database{
@@ -358,6 +385,9 @@ var (
 			ReplicaPassword: "replica-user-password",
 		},
 		ReplicationSetting: createDatabaseParam.ReplicationSetting,
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: false,
+		},
 		Disk: &iaas.DatabaseDisk{
 			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
 		},

@@ -2520,6 +2520,16 @@ func (f *fieldsDef) DatabaseSettingsBackup() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) DatabaseSettingsMonitoringSuite() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "MonitoringSuite",
+		Type: models.monitoringSuite(),
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.MonitoringSuite,omitempty,recursive",
+		},
+	}
+}
+
 func (f *fieldsDef) DatabaseSettingsReplication() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "ReplicationSetting",
