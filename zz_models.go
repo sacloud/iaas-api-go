@@ -6294,6 +6294,7 @@ type Database struct {
 	ModifiedAt              time.Time
 	CommonSetting           *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting         *DatabaseSettingBackupv2View `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 	MonitoringSuite         *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -6327,6 +6328,7 @@ func (o *Database) setDefaults() interface{} {
 		ModifiedAt              time.Time
 		CommonSetting           *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting         *DatabaseSettingBackupv2View `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 		MonitoringSuite         *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -6356,6 +6358,7 @@ func (o *Database) setDefaults() interface{} {
 		ModifiedAt:              o.GetModifiedAt(),
 		CommonSetting:           o.GetCommonSetting(),
 		BackupSetting:           o.GetBackupSetting(),
+		Backupv2Setting:         o.GetBackupv2Setting(),
 		ReplicationSetting:      o.GetReplicationSetting(),
 		InterfaceSettings:       o.GetInterfaceSettings(),
 		MonitoringSuite:         o.GetMonitoringSuite(),
@@ -6524,6 +6527,16 @@ func (o *Database) GetBackupSetting() *DatabaseSettingBackup {
 // SetBackupSetting sets value to BackupSetting
 func (o *Database) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
+}
+
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *Database) GetBackupv2Setting() *DatabaseSettingBackupv2View {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *Database) SetBackupv2Setting(v *DatabaseSettingBackupv2View) {
+	o.Backupv2Setting = v
 }
 
 // GetReplicationSetting returns value of ReplicationSetting
@@ -6867,6 +6880,86 @@ func (o *DatabaseSettingBackup) GetConnect() string {
 // SetConnect sets value to Connect
 func (o *DatabaseSettingBackup) SetConnect(v string) {
 	o.Connect = v
+}
+
+/*************************************************
+* DatabaseSettingBackupv2View
+*************************************************/
+
+// DatabaseSettingBackupv2View represents API parameter/response structure
+type DatabaseSettingBackupv2View struct {
+	Rotate         int
+	Time           string
+	DayOfWeek      []types.EDayOfTheWeek
+	Connect        string
+	FirstEnabledAt time.Time
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseSettingBackupv2View) setDefaults() interface{} {
+	return &struct {
+		Rotate         int
+		Time           string
+		DayOfWeek      []types.EDayOfTheWeek
+		Connect        string
+		FirstEnabledAt time.Time
+	}{
+		Rotate:         o.GetRotate(),
+		Time:           o.GetTime(),
+		DayOfWeek:      o.GetDayOfWeek(),
+		Connect:        o.GetConnect(),
+		FirstEnabledAt: o.GetFirstEnabledAt(),
+	}
+}
+
+// GetRotate returns value of Rotate
+func (o *DatabaseSettingBackupv2View) GetRotate() int {
+	return o.Rotate
+}
+
+// SetRotate sets value to Rotate
+func (o *DatabaseSettingBackupv2View) SetRotate(v int) {
+	o.Rotate = v
+}
+
+// GetTime returns value of Time
+func (o *DatabaseSettingBackupv2View) GetTime() string {
+	return o.Time
+}
+
+// SetTime sets value to Time
+func (o *DatabaseSettingBackupv2View) SetTime(v string) {
+	o.Time = v
+}
+
+// GetDayOfWeek returns value of DayOfWeek
+func (o *DatabaseSettingBackupv2View) GetDayOfWeek() []types.EDayOfTheWeek {
+	return o.DayOfWeek
+}
+
+// SetDayOfWeek sets value to DayOfWeek
+func (o *DatabaseSettingBackupv2View) SetDayOfWeek(v []types.EDayOfTheWeek) {
+	o.DayOfWeek = v
+}
+
+// GetConnect returns value of Connect
+func (o *DatabaseSettingBackupv2View) GetConnect() string {
+	return o.Connect
+}
+
+// SetConnect sets value to Connect
+func (o *DatabaseSettingBackupv2View) SetConnect(v string) {
+	o.Connect = v
+}
+
+// GetFirstEnabledAt returns value of FirstEnabledAt
+func (o *DatabaseSettingBackupv2View) GetFirstEnabledAt() time.Time {
+	return o.FirstEnabledAt
+}
+
+// SetFirstEnabledAt sets value to FirstEnabledAt
+func (o *DatabaseSettingBackupv2View) SetFirstEnabledAt(v time.Time) {
+	o.FirstEnabledAt = v
 }
 
 /*************************************************
@@ -7436,6 +7529,7 @@ type DatabaseCreateRequest struct {
 	SourceID           types.ID                     `mapconv:"Remark.SourceAppliance.ID"`
 	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -7458,6 +7552,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		SourceID           types.ID                     `mapconv:"Remark.SourceAppliance.ID"`
 		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -7477,6 +7572,7 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		SourceID:           o.GetSourceID(),
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
+		Backupv2Setting:    o.GetBackupv2Setting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
 		MonitoringSuite:    o.GetMonitoringSuite(),
@@ -7577,6 +7673,16 @@ func (o *DatabaseCreateRequest) GetBackupSetting() *DatabaseSettingBackup {
 // SetBackupSetting sets value to BackupSetting
 func (o *DatabaseCreateRequest) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
+}
+
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *DatabaseCreateRequest) GetBackupv2Setting() *DatabaseSettingBackupv2 {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *DatabaseCreateRequest) SetBackupv2Setting(v *DatabaseSettingBackupv2) {
+	o.Backupv2Setting = v
 }
 
 // GetReplicationSetting returns value of ReplicationSetting
@@ -7680,6 +7786,73 @@ func (o *DatabaseCreateRequest) SetIconID(v types.ID) {
 }
 
 /*************************************************
+* DatabaseSettingBackupv2
+*************************************************/
+
+// DatabaseSettingBackupv2 represents API parameter/response structure
+type DatabaseSettingBackupv2 struct {
+	Rotate    int
+	Time      string
+	DayOfWeek []types.EDayOfTheWeek
+	Connect   string
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseSettingBackupv2) setDefaults() interface{} {
+	return &struct {
+		Rotate    int
+		Time      string
+		DayOfWeek []types.EDayOfTheWeek
+		Connect   string
+	}{
+		Rotate:    o.GetRotate(),
+		Time:      o.GetTime(),
+		DayOfWeek: o.GetDayOfWeek(),
+		Connect:   o.GetConnect(),
+	}
+}
+
+// GetRotate returns value of Rotate
+func (o *DatabaseSettingBackupv2) GetRotate() int {
+	return o.Rotate
+}
+
+// SetRotate sets value to Rotate
+func (o *DatabaseSettingBackupv2) SetRotate(v int) {
+	o.Rotate = v
+}
+
+// GetTime returns value of Time
+func (o *DatabaseSettingBackupv2) GetTime() string {
+	return o.Time
+}
+
+// SetTime sets value to Time
+func (o *DatabaseSettingBackupv2) SetTime(v string) {
+	o.Time = v
+}
+
+// GetDayOfWeek returns value of DayOfWeek
+func (o *DatabaseSettingBackupv2) GetDayOfWeek() []types.EDayOfTheWeek {
+	return o.DayOfWeek
+}
+
+// SetDayOfWeek sets value to DayOfWeek
+func (o *DatabaseSettingBackupv2) SetDayOfWeek(v []types.EDayOfTheWeek) {
+	o.DayOfWeek = v
+}
+
+// GetConnect returns value of Connect
+func (o *DatabaseSettingBackupv2) GetConnect() string {
+	return o.Connect
+}
+
+// SetConnect sets value to Connect
+func (o *DatabaseSettingBackupv2) SetConnect(v string) {
+	o.Connect = v
+}
+
+/*************************************************
 * DatabaseUpdateRequest
 *************************************************/
 
@@ -7691,6 +7864,7 @@ type DatabaseUpdateRequest struct {
 	IconID             types.ID                     `mapconv:"Icon.ID"`
 	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -7706,6 +7880,7 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		IconID             types.ID                     `mapconv:"Icon.ID"`
 		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -7717,6 +7892,7 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		IconID:             o.GetIconID(),
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
+		Backupv2Setting:    o.GetBackupv2Setting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
 		MonitoringSuite:    o.GetMonitoringSuite(),
@@ -7804,6 +7980,16 @@ func (o *DatabaseUpdateRequest) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
 }
 
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *DatabaseUpdateRequest) GetBackupv2Setting() *DatabaseSettingBackupv2 {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *DatabaseUpdateRequest) SetBackupv2Setting(v *DatabaseSettingBackupv2) {
+	o.Backupv2Setting = v
+}
+
 // GetReplicationSetting returns value of ReplicationSetting
 func (o *DatabaseUpdateRequest) GetReplicationSetting() *DatabaseReplicationSetting {
 	return o.ReplicationSetting
@@ -7852,6 +8038,7 @@ func (o *DatabaseUpdateRequest) SetSettingsHash(v string) {
 type DatabaseUpdateSettingsRequest struct {
 	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -7863,6 +8050,7 @@ func (o *DatabaseUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
 		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
 		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
@@ -7870,6 +8058,7 @@ func (o *DatabaseUpdateSettingsRequest) setDefaults() interface{} {
 	}{
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
+		Backupv2Setting:    o.GetBackupv2Setting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
 		MonitoringSuite:    o.GetMonitoringSuite(),
@@ -7895,6 +8084,16 @@ func (o *DatabaseUpdateSettingsRequest) GetBackupSetting() *DatabaseSettingBacku
 // SetBackupSetting sets value to BackupSetting
 func (o *DatabaseUpdateSettingsRequest) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
+}
+
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *DatabaseUpdateSettingsRequest) GetBackupv2Setting() *DatabaseSettingBackupv2 {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *DatabaseUpdateSettingsRequest) SetBackupv2Setting(v *DatabaseSettingBackupv2) {
+	o.Backupv2Setting = v
 }
 
 // GetReplicationSetting returns value of ReplicationSetting

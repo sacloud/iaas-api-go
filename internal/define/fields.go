@@ -2520,6 +2520,45 @@ func (f *fieldsDef) DatabaseSettingsBackup() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) DatabaseSettingsBackupv2() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Backupv2Setting",
+		Type: &dsl.Model{
+			Name:      "DatabaseSettingBackupv2",
+			NakedType: meta.Static(naked.DatabaseSettingBackupv2{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("Rotate", meta.TypeInt),
+				fields.Def("Time", meta.TypeString),
+				fields.Def("DayOfWeek", meta.Static([]types.EDayOfTheWeek{})),
+				fields.Def("Connect", meta.TypeString),
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.DBConf.Backupv2,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) DatabaseSettingsBackupv2View() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Backupv2Setting",
+		Type: &dsl.Model{
+			Name:      "DatabaseSettingBackupv2View",
+			NakedType: meta.Static(naked.DatabaseSettingBackupv2{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("Rotate", meta.TypeInt),
+				fields.Def("Time", meta.TypeString),
+				fields.Def("DayOfWeek", meta.Static([]types.EDayOfTheWeek{})),
+				fields.Def("Connect", meta.TypeString),
+				fields.Def("FirstEnabledAt", meta.TypeTime),
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.DBConf.Backupv2,recursive",
+		},
+	}
+}
+
 func (f *fieldsDef) DatabaseSettingsMonitoringSuite() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "MonitoringSuite",

@@ -148,6 +148,55 @@ func TestDatabaseOpCRUD(t *testing.T) {
 	})
 }
 
+func TestDatabaseOpCRUDWithBackupV2(t *testing.T) {
+	// Note: バージョン省略後のサーバサイドでの算出処理をfakeが実装していないためAccTestだけとする
+	if !testutil.IsAccTest() {
+		t.Skip()
+	}
+	testutil.RunCRUD(t, &testutil.CRUDTestCase{
+		Parallel: true,
+
+		SetupAPICallerFunc: singletonAPICaller,
+		Setup: setupSwitchFunc("db",
+			createDatabaseWithBackupv2Param,
+			createDatabaseWithBackupv2Expected,
+			updateDatabaseWithBackupv2Expected,
+		),
+		Create: &testutil.CRUDTestFunc{
+			Func: testDatabaseCreateWithBackupv2,
+			CheckFunc: testutil.AssertEqualWithExpected(&testutil.CRUDTestExpect{
+				ExpectValue:  createDatabaseWithBackupv2Expected,
+				IgnoreFields: ignoreDatabaseFields,
+			}),
+		},
+		Read: &testutil.CRUDTestFunc{
+			Func: testDatabaseRead,
+			CheckFunc: testutil.AssertEqualWithExpected(&testutil.CRUDTestExpect{
+				ExpectValue:  createDatabaseWithBackupv2Expected,
+				IgnoreFields: ignoreDatabaseFields,
+			}),
+		},
+		Updates: []*testutil.CRUDTestFunc{
+			{
+				Func: testDatabaseUpdateWithBackupv2,
+				CheckFunc: testutil.AssertEqualWithExpected(&testutil.CRUDTestExpect{
+					ExpectValue:  updateDatabaseWithBackupv2Expected,
+					IgnoreFields: ignoreDatabaseFields,
+				}),
+			},
+		},
+		Shutdown: func(ctx *testutil.CRUDTestContext, caller iaas.APICaller) error {
+			client := iaas.NewDatabaseOp(caller)
+			return power.ShutdownDatabase(ctx, client, testZone, ctx.ID, true)
+		},
+		Delete: &testutil.CRUDTestDeleteFunc{
+			Func: testDatabaseDelete,
+		},
+
+		Cleanup: cleanupSwitchFunc("db"),
+	})
+}
+
 var (
 	ignoreDatabaseFields = []string{
 		"ID",
@@ -163,6 +212,7 @@ var (
 		"CreatedAt",
 		"ModifiedAt",
 		"SettingsHash",
+		"Backupv2Setting.FirstEnabledAt",
 	}
 
 	createDatabaseParam = &iaas.DatabaseCreateRequest{
@@ -392,6 +442,141 @@ var (
 			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
 		},
 	}
+
+	createDatabaseWithBackupv2Param = &iaas.DatabaseCreateRequest{
+		PlanID:         types.DatabasePlans.DB10GB,
+		IPAddresses:    []string{"192.168.0.11"},
+		NetworkMaskLen: 24,
+		DefaultRoute:   "192.168.0.1",
+		Name:           testutil.ResourceName("db-with-backupv2"),
+		Description:    "desc",
+		Tags:           []string{"tag1", "tag2"},
+
+		Conf: &iaas.DatabaseRemarkDBConfCommon{
+			DatabaseName:    types.RDBMSTypesMariaDB.String(),
+			DatabaseVersion: "10.11",
+			DefaultUser:     "exa.mple",
+			UserPassword:    "LibsacloudExamplePassword01",
+		},
+		CommonSetting: &iaas.DatabaseSettingCommon{
+			ServicePort:     5432,
+			DefaultUser:     "exa.mple",
+			UserPassword:    "LibsacloudExamplePassword01",
+			ReplicaUser:     "replica",
+			ReplicaPassword: "replica-user-password",
+		},
+		Backupv2Setting: &iaas.DatabaseSettingBackupv2{
+			Rotate: 8,
+			Time:   "00:00",
+			DayOfWeek: []types.EDayOfTheWeek{
+				types.DaysOfTheWeek.Sunday,
+				types.DaysOfTheWeek.Monday,
+			},
+			Connect: "nfs://192.0.2.254/export",
+		},
+		ReplicationSetting: &iaas.DatabaseReplicationSetting{
+			Model: types.DatabaseReplicationModels.MasterSlave,
+		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
+	}
+
+	createDatabaseWithBackupv2Expected = &iaas.Database{
+		Name:           createDatabaseWithBackupv2Param.Name,
+		Description:    createDatabaseWithBackupv2Param.Description,
+		Availability:   types.Availabilities.Available,
+		PlanID:         createDatabaseWithBackupv2Param.PlanID,
+		DefaultRoute:   createDatabaseWithBackupv2Param.DefaultRoute,
+		NetworkMaskLen: createDatabaseWithBackupv2Param.NetworkMaskLen,
+		IPAddresses:    createDatabaseWithBackupv2Param.IPAddresses,
+		Conf: &iaas.DatabaseRemarkDBConfCommon{
+			DatabaseName:     types.RDBMSTypesMariaDB.String(),
+			DatabaseVersion:  "10.11",
+			DatabaseRevision: "10.11.9",
+			DefaultUser:      "exa.mple",
+			UserPassword:     "LibsacloudExamplePassword01",
+		},
+		CommonSetting:      createDatabaseWithBackupv2Param.CommonSetting,
+		ReplicationSetting: createDatabaseWithBackupv2Param.ReplicationSetting,
+		Backupv2Setting: &iaas.DatabaseSettingBackupv2View{
+			Rotate:    createDatabaseWithBackupv2Param.Backupv2Setting.Rotate,
+			Time:      createDatabaseWithBackupv2Param.Backupv2Setting.Time,
+			DayOfWeek: createDatabaseWithBackupv2Param.Backupv2Setting.DayOfWeek,
+			Connect:   createDatabaseWithBackupv2Param.Backupv2Setting.Connect,
+			// FirstEnabledAt: time.Time{},
+		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
+	}
+
+	updateDatabaseWithBackupv2Param = &iaas.DatabaseUpdateRequest{
+		Name:        testutil.ResourceName("db-with-backupv2"),
+		Tags:        []string{"tag1-upd", "tag2-upd"},
+		Description: "desc-upd",
+		Backupv2Setting: &iaas.DatabaseSettingBackupv2{
+			Rotate: 8,
+			Time:   "01:00",
+			DayOfWeek: []types.EDayOfTheWeek{
+				types.DaysOfTheWeek.Sunday,
+				types.DaysOfTheWeek.Monday,
+			},
+			Connect: "nfs://192.0.2.254/export",
+		},
+		CommonSetting: &iaas.DatabaseSettingCommon{
+			ServicePort:     54321,
+			DefaultUser:     "exa.mple",
+			UserPassword:    "LibsacloudExamplePassword03",
+			SourceNetwork:   []string{"192.168.11.0/24", "192.168.12.0/24"},
+			ReplicaUser:     "replica",
+			ReplicaPassword: "replica-user-password",
+		},
+		ReplicationSetting: &iaas.DatabaseReplicationSetting{
+			Model: types.DatabaseReplicationModels.MasterSlave,
+		},
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
+		IconID: testIconID,
+	}
+	updateDatabaseWithBackupv2Expected = &iaas.Database{
+		Name:           updateDatabaseWithBackupv2Param.Name,
+		Description:    updateDatabaseWithBackupv2Param.Description,
+		Availability:   types.Availabilities.Available,
+		PlanID:         createDatabaseWithBackupv2Param.PlanID,
+		InstanceStatus: types.ServerInstanceStatuses.Up,
+		DefaultRoute:   createDatabaseWithBackupv2Param.DefaultRoute,
+		NetworkMaskLen: createDatabaseWithBackupv2Param.NetworkMaskLen,
+		IPAddresses:    createDatabaseWithBackupv2Param.IPAddresses,
+		Conf:           createDatabaseWithBackupv2Expected.Conf,
+		CommonSetting: &iaas.DatabaseSettingCommon{
+			ServicePort:     54321,
+			DefaultUser:     "exa.mple",
+			UserPassword:    "LibsacloudExamplePassword03",
+			SourceNetwork:   []string{"192.168.11.0/24", "192.168.12.0/24"},
+			ReplicaUser:     "replica",
+			ReplicaPassword: "replica-user-password",
+		},
+		Backupv2Setting: &iaas.DatabaseSettingBackupv2View{
+			Rotate:    updateDatabaseWithBackupv2Param.Backupv2Setting.Rotate,
+			Time:      updateDatabaseWithBackupv2Param.Backupv2Setting.Time,
+			DayOfWeek: updateDatabaseWithBackupv2Param.Backupv2Setting.DayOfWeek,
+			Connect:   updateDatabaseWithBackupv2Param.Backupv2Setting.Connect,
+			// FirstEnabledAt: time.Time{},
+		},
+		ReplicationSetting: updateDatabaseWithBackupv2Param.ReplicationSetting,
+		MonitoringSuite: &iaas.MonitoringSuite{
+			Enabled: true,
+		},
+		Disk: &iaas.DatabaseDisk{
+			EncryptionAlgorithm: types.DiskEncryptionAlgorithms.None,
+		},
+		IconID: updateDatabaseWithBackupv2Param.IconID,
+	}
 )
 
 func testDatabaseCreate(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
@@ -431,6 +616,20 @@ func testDatabaseUpdateToMin(ctx *testutil.CRUDTestContext, caller iaas.APICalle
 func testDatabaseDelete(ctx *testutil.CRUDTestContext, caller iaas.APICaller) error {
 	client := iaas.NewDatabaseOp(caller)
 	return client.Delete(ctx, testZone, ctx.ID)
+}
+
+func testDatabaseCreateWithBackupv2(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
+	client := iaas.NewDatabaseOp(caller)
+	db, err := client.Create(ctx, testZone, createDatabaseWithBackupv2Param)
+	if err != nil {
+		return nil, err
+	}
+	return wait.UntilDatabaseIsUp(ctx, client, testZone, db.ID)
+}
+
+func testDatabaseUpdateWithBackupv2(ctx *testutil.CRUDTestContext, caller iaas.APICaller) (interface{}, error) {
+	client := iaas.NewDatabaseOp(caller)
+	return client.Update(ctx, testZone, ctx.ID, updateDatabaseWithBackupv2Param)
 }
 
 // TestCreateProxyDatabase 冗長化オプションが有効なデータベースアプライアンスの作成テスト

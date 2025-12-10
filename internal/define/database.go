@@ -157,6 +157,7 @@ var (
 			// settings
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2View(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
 			fields.DatabaseSettingsMonitoringSuite(),
@@ -206,6 +207,7 @@ var (
 
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
 			fields.DatabaseSettingsMonitoringSuite(),
@@ -232,6 +234,7 @@ var (
 			// settings
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
 			fields.DatabaseSettingsMonitoringSuite(),
@@ -247,6 +250,7 @@ var (
 			// settings
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
 			fields.DatabaseSettingsMonitoringSuite(),
