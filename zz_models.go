@@ -23377,6 +23377,7 @@ type Server struct {
 	CPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 	Commitment              types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 	Generation              types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
+	ConfidentialVM          bool                        `mapconv:"ServerPlan.ConfidentialVM"`
 	Zone                    *ZoneInfo                   `json:",omitempty" mapconv:",omitempty,recursive"`
 	InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
 	InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
@@ -23415,6 +23416,7 @@ func (o *Server) setDefaults() interface{} {
 		CPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 		Commitment              types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 		Generation              types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
+		ConfidentialVM          bool                        `mapconv:"ServerPlan.ConfidentialVM"`
 		Zone                    *ZoneInfo                   `json:",omitempty" mapconv:",omitempty,recursive"`
 		InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
 		InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
@@ -23449,6 +23451,7 @@ func (o *Server) setDefaults() interface{} {
 		CPUModel:                o.GetCPUModel(),
 		Commitment:              o.GetCommitment(),
 		Generation:              o.GetGeneration(),
+		ConfidentialVM:          o.GetConfidentialVM(),
 		Zone:                    o.GetZone(),
 		InstanceHostName:        o.GetInstanceHostName(),
 		InstanceHostInfoURL:     o.GetInstanceHostInfoURL(),
@@ -23678,6 +23681,16 @@ func (o *Server) GetGeneration() types.EPlanGeneration {
 // SetGeneration sets value to Generation
 func (o *Server) SetGeneration(v types.EPlanGeneration) {
 	o.Generation = v
+}
+
+// GetConfidentialVM returns value of ConfidentialVM
+func (o *Server) GetConfidentialVM() bool {
+	return o.ConfidentialVM
+}
+
+// SetConfidentialVM sets value to ConfidentialVM
+func (o *Server) SetConfidentialVM(v bool) {
+	o.ConfidentialVM = v
 }
 
 // GetZone returns value of Zone
@@ -24246,6 +24259,7 @@ type ServerCreateRequest struct {
 	CPUModel          string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 	Commitment        types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 	Generation        types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
+	ConfidentialVM    bool                  `mapconv:"ServerPlan.ConfidentialVM"`
 	ConnectedSwitches []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
 	InterfaceDriver   types.EInterfaceDriver
 	Name              string
@@ -24266,6 +24280,7 @@ func (o *ServerCreateRequest) setDefaults() interface{} {
 		CPUModel          string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 		Commitment        types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 		Generation        types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
+		ConfidentialVM    bool                  `mapconv:"ServerPlan.ConfidentialVM"`
 		ConnectedSwitches []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
 		InterfaceDriver   types.EInterfaceDriver
 		Name              string
@@ -24282,6 +24297,7 @@ func (o *ServerCreateRequest) setDefaults() interface{} {
 		CPUModel:          o.GetCPUModel(),
 		Commitment:        o.GetCommitment(),
 		Generation:        o.GetGeneration(),
+		ConfidentialVM:    o.GetConfidentialVM(),
 		ConnectedSwitches: o.GetConnectedSwitches(),
 		InterfaceDriver:   o.GetInterfaceDriver(),
 		Name:              o.GetName(),
@@ -24369,6 +24385,16 @@ func (o *ServerCreateRequest) GetGeneration() types.EPlanGeneration {
 // SetGeneration sets value to Generation
 func (o *ServerCreateRequest) SetGeneration(v types.EPlanGeneration) {
 	o.Generation = v
+}
+
+// GetConfidentialVM returns value of ConfidentialVM
+func (o *ServerCreateRequest) GetConfidentialVM() bool {
+	return o.ConfidentialVM
+}
+
+// SetConfidentialVM sets value to ConfidentialVM
+func (o *ServerCreateRequest) SetConfidentialVM(v bool) {
+	o.ConfidentialVM = v
 }
 
 // GetConnectedSwitches returns value of ConnectedSwitches
@@ -25062,42 +25088,45 @@ func (o *VNCProxyInfo) SetVNCFile(v string) {
 
 // ServerPlan represents API parameter/response structure
 type ServerPlan struct {
-	ID           types.ID
-	Name         string
-	CPU          int
-	MemoryMB     int
-	GPU          int
-	GPUModel     string
-	CPUModel     string
-	Commitment   types.ECommitment
-	Generation   types.EPlanGeneration
-	Availability types.EAvailability
+	ID             types.ID
+	Name           string
+	CPU            int
+	MemoryMB       int
+	GPU            int
+	GPUModel       string
+	CPUModel       string
+	Commitment     types.ECommitment
+	Generation     types.EPlanGeneration
+	ConfidentialVM bool
+	Availability   types.EAvailability
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServerPlan) setDefaults() interface{} {
 	return &struct {
-		ID           types.ID
-		Name         string
-		CPU          int
-		MemoryMB     int
-		GPU          int
-		GPUModel     string
-		CPUModel     string
-		Commitment   types.ECommitment
-		Generation   types.EPlanGeneration
-		Availability types.EAvailability
+		ID             types.ID
+		Name           string
+		CPU            int
+		MemoryMB       int
+		GPU            int
+		GPUModel       string
+		CPUModel       string
+		Commitment     types.ECommitment
+		Generation     types.EPlanGeneration
+		ConfidentialVM bool
+		Availability   types.EAvailability
 	}{
-		ID:           o.GetID(),
-		Name:         o.GetName(),
-		CPU:          o.GetCPU(),
-		MemoryMB:     o.GetMemoryMB(),
-		GPU:          o.GetGPU(),
-		GPUModel:     o.GetGPUModel(),
-		CPUModel:     o.GetCPUModel(),
-		Commitment:   o.GetCommitment(),
-		Generation:   o.GetGeneration(),
-		Availability: o.GetAvailability(),
+		ID:             o.GetID(),
+		Name:           o.GetName(),
+		CPU:            o.GetCPU(),
+		MemoryMB:       o.GetMemoryMB(),
+		GPU:            o.GetGPU(),
+		GPUModel:       o.GetGPUModel(),
+		CPUModel:       o.GetCPUModel(),
+		Commitment:     o.GetCommitment(),
+		Generation:     o.GetGeneration(),
+		ConfidentialVM: o.GetConfidentialVM(),
+		Availability:   o.GetAvailability(),
 	}
 }
 
@@ -25219,6 +25248,16 @@ func (o *ServerPlan) GetGeneration() types.EPlanGeneration {
 // SetGeneration sets value to Generation
 func (o *ServerPlan) SetGeneration(v types.EPlanGeneration) {
 	o.Generation = v
+}
+
+// GetConfidentialVM returns value of ConfidentialVM
+func (o *ServerPlan) GetConfidentialVM() bool {
+	return o.ConfidentialVM
+}
+
+// SetConfidentialVM sets value to ConfidentialVM
+func (o *ServerPlan) SetConfidentialVM(v bool) {
+	o.ConfidentialVM = v
 }
 
 // GetAvailability returns value of Availability

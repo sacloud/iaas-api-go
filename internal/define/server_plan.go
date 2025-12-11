@@ -51,6 +51,7 @@ var (
 			fields.Def("CPUModel", meta.TypeString),
 			fields.Def("Commitment", meta.TypeCommitment),
 			fields.Def("Generation", meta.TypePlanGeneration),
+			fields.Def("ConfidentialVM", meta.TypeFlag),
 			fields.Availability(),
 		},
 	}
