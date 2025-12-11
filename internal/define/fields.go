@@ -327,6 +327,16 @@ func (f *fieldsDef) ServerPlanCommitment() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) ServerPlanConfidentialVM() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "ConfidentialVM",
+		Tags: &dsl.FieldTags{
+			MapConv: "ServerPlan.ConfidentialVM",
+		},
+		Type: meta.TypeFlag,
+	}
+}
+
 func (f *fieldsDef) PlanID() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "PlanID",
