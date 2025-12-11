@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.23.1](https://github.com/sacloud/iaas-api-go/compare/v1.23.0...v1.23.1) - 2025-12-11
+- fix: add almalinux8 and rockylinux8 back to ostype by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/425
+
 ## [v1.23.0](https://github.com/sacloud/iaas-api-go/compare/v1.22.0...v1.23.0) - 2025-12-10
 - Database: Disk Encryption by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/420
 - Database: MonitoringSuite by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/422
