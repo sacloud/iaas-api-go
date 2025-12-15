@@ -1,13 +1,11 @@
 module github.com/sacloud/iaas-api-go/trace/otel
 
-go 1.24.0
-
-toolchain go1.24.4
+go 1.25
 
 replace github.com/sacloud/iaas-api-go => ../../
 
 require (
-	github.com/sacloud/api-client-go v0.3.3
+	github.com/sacloud/api-client-go v0.3.4
 	github.com/sacloud/iaas-api-go v0.0.0-00010101000000-000000000000
 	github.com/stretchr/testify v1.11.1
 	go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.45.0
