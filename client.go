@@ -26,6 +26,7 @@ import (
 	client "github.com/sacloud/api-client-go"
 	sacloudhttp "github.com/sacloud/go-http"
 	"github.com/sacloud/iaas-api-go/types"
+	"github.com/sacloud/saclient-go"
 )
 
 var (
@@ -73,8 +74,10 @@ type APICaller interface {
 //
 // リトライ時にcontext.Canceled、またはcontext.DeadlineExceededの場合はリトライしない
 type Client struct {
-	factory *client.Factory
+	sa saclient.ClientAPI
 }
+
+func NewClientFromSaclient(sa saclient.ClientAPI) *Client { return &Client{sa} }
 
 // NewClient APIクライアント作成
 func NewClient(token, secret string) *Client {
@@ -95,8 +98,9 @@ func NewClientWithOptions(opts *client.Options) *Client {
 	if len(opts.CheckRetryStatusCodes) == 0 {
 		opts.CheckRetryStatusCodes = defaultCheckRetryStatusCodes
 	}
-	factory := client.NewFactory(opts)
-	return &Client{factory: factory}
+	var sa saclient.Client
+	sa.CompatSettingsFromAPIClientOptions(opts)
+	return NewClientFromSaclient(&sa)
 }
 
 // Do APIコール実施
@@ -107,7 +111,7 @@ func (c *Client) Do(ctx context.Context, method, uri string, body interface{}) (
 	}
 
 	// API call
-	resp, err := c.factory.NewHttpRequestDoer().Do(req)
+	resp, err := c.sa.Do(req)
 	if err != nil {
 		return nil, err
 	}
