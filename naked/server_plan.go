@@ -18,15 +18,16 @@ import "github.com/sacloud/iaas-api-go/types"
 
 // ServerPlan サーバープラン
 type ServerPlan struct {
-	ID           types.ID            `json:",omitempty" yaml:"id,omitempty" structs:",omitempty"`
-	Name         string              `json:",omitempty" yaml:"name,omitempty" structs:",omitempty"`
-	CPU          int                 `json:",omitempty" yaml:"cpu,omitempty" structs:",omitempty"`
-	MemoryMB     int                 `json:",omitempty" yaml:"memory_mb,omitempty" structs:",omitempty"`
-	GPU          int                 `json:",omitempty" yaml:"gpu,omitempty" structs:",omitempty"`
-	GPUModel     string              `json:",omitempty" yaml:"gpu_model,omitempty" structs:",omitempty"`
-	CPUModel     string              `json:",omitempty" yaml:"cpu_model,omitempty" structs:",omitempty"`
-	Commitment   types.ECommitment   `json:",omitempty" yaml:"commitment,omitempty" structs:",omitempty"`
-	Generation   int                 `json:",omitempty" yaml:"generation,omitempty" structs:",omitempty"`
-	ServiceClass string              `json:",omitempty" yaml:"service_class,omitempty" structs:",omitempty"`
-	Availability types.EAvailability `json:",omitempty" yaml:"availability,omitempty" structs:",omitempty"`
+	ID             types.ID            `json:",omitempty" yaml:"id,omitempty" structs:",omitempty"`
+	Name           string              `json:",omitempty" yaml:"name,omitempty" structs:",omitempty"`
+	CPU            int                 `json:",omitempty" yaml:"cpu,omitempty" structs:",omitempty"`
+	MemoryMB       int                 `json:",omitempty" yaml:"memory_mb,omitempty" structs:",omitempty"`
+	GPU            int                 `json:",omitempty" yaml:"gpu,omitempty" structs:",omitempty"`
+	GPUModel       string              `json:",omitempty" yaml:"gpu_model,omitempty" structs:",omitempty"`
+	CPUModel       string              `json:",omitempty" yaml:"cpu_model,omitempty" structs:",omitempty"`
+	Commitment     types.ECommitment   `json:",omitempty" yaml:"commitment,omitempty" structs:",omitempty"`
+	Generation     int                 `json:",omitempty" yaml:"generation,omitempty" structs:",omitempty"`
+	ConfidentialVM bool                `yaml:"confidential_vm"`
+	ServiceClass   string              `json:",omitempty" yaml:"service_class,omitempty" structs:",omitempty"`
+	Availability   types.EAvailability `json:",omitempty" yaml:"availability,omitempty" structs:",omitempty"`
 }

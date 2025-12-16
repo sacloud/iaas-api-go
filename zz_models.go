@@ -6294,8 +6294,10 @@ type Database struct {
 	ModifiedAt              time.Time
 	CommonSetting           *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting         *DatabaseSettingBackupv2View `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite         *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	SettingsHash            string                       `json:",omitempty" mapconv:",omitempty"`
 	InstanceHostName        string                       `mapconv:"Instance.Host.Name"`
 	InstanceHostInfoURL     string                       `mapconv:"Instance.Host.InfoURL"`
@@ -6309,6 +6311,7 @@ type Database struct {
 	IPAddresses             []string                     `mapconv:"Remark.[]Servers.IPAddress"`
 	ZoneID                  types.ID                     `mapconv:"Remark.Zone.ID"`
 	Interfaces              []*InterfaceView             `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
+	Disk                    *DatabaseDisk                `mapconv:"Disk,recursive"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -6325,8 +6328,10 @@ func (o *Database) setDefaults() interface{} {
 		ModifiedAt              time.Time
 		CommonSetting           *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting           *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting         *DatabaseSettingBackupv2View `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting      *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings       []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite         *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		SettingsHash            string                       `json:",omitempty" mapconv:",omitempty"`
 		InstanceHostName        string                       `mapconv:"Instance.Host.Name"`
 		InstanceHostInfoURL     string                       `mapconv:"Instance.Host.InfoURL"`
@@ -6340,6 +6345,7 @@ func (o *Database) setDefaults() interface{} {
 		IPAddresses             []string                     `mapconv:"Remark.[]Servers.IPAddress"`
 		ZoneID                  types.ID                     `mapconv:"Remark.Zone.ID"`
 		Interfaces              []*InterfaceView             `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
+		Disk                    *DatabaseDisk                `mapconv:"Disk,recursive"`
 	}{
 		ID:                      o.GetID(),
 		Class:                   o.GetClass(),
@@ -6352,8 +6358,10 @@ func (o *Database) setDefaults() interface{} {
 		ModifiedAt:              o.GetModifiedAt(),
 		CommonSetting:           o.GetCommonSetting(),
 		BackupSetting:           o.GetBackupSetting(),
+		Backupv2Setting:         o.GetBackupv2Setting(),
 		ReplicationSetting:      o.GetReplicationSetting(),
 		InterfaceSettings:       o.GetInterfaceSettings(),
+		MonitoringSuite:         o.GetMonitoringSuite(),
 		SettingsHash:            o.GetSettingsHash(),
 		InstanceHostName:        o.GetInstanceHostName(),
 		InstanceHostInfoURL:     o.GetInstanceHostInfoURL(),
@@ -6367,6 +6375,7 @@ func (o *Database) setDefaults() interface{} {
 		IPAddresses:             o.GetIPAddresses(),
 		ZoneID:                  o.GetZoneID(),
 		Interfaces:              o.GetInterfaces(),
+		Disk:                    o.GetDisk(),
 	}
 }
 
@@ -6520,6 +6529,16 @@ func (o *Database) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
 }
 
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *Database) GetBackupv2Setting() *DatabaseSettingBackupv2View {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *Database) SetBackupv2Setting(v *DatabaseSettingBackupv2View) {
+	o.Backupv2Setting = v
+}
+
 // GetReplicationSetting returns value of ReplicationSetting
 func (o *Database) GetReplicationSetting() *DatabaseReplicationSetting {
 	return o.ReplicationSetting
@@ -6538,6 +6557,16 @@ func (o *Database) GetInterfaceSettings() []*DatabaseSettingsInterface {
 // SetInterfaceSettings sets value to InterfaceSettings
 func (o *Database) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
 	o.InterfaceSettings = v
+}
+
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *Database) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *Database) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -6668,6 +6697,16 @@ func (o *Database) GetInterfaces() []*InterfaceView {
 // SetInterfaces sets value to Interfaces
 func (o *Database) SetInterfaces(v []*InterfaceView) {
 	o.Interfaces = v
+}
+
+// GetDisk returns value of Disk
+func (o *Database) GetDisk() *DatabaseDisk {
+	return o.Disk
+}
+
+// SetDisk sets value to Disk
+func (o *Database) SetDisk(v *DatabaseDisk) {
+	o.Disk = v
 }
 
 /*************************************************
@@ -6844,6 +6883,86 @@ func (o *DatabaseSettingBackup) SetConnect(v string) {
 }
 
 /*************************************************
+* DatabaseSettingBackupv2View
+*************************************************/
+
+// DatabaseSettingBackupv2View represents API parameter/response structure
+type DatabaseSettingBackupv2View struct {
+	Rotate         int
+	Time           string
+	DayOfWeek      []types.EDayOfTheWeek
+	Connect        string
+	FirstEnabledAt time.Time
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseSettingBackupv2View) setDefaults() interface{} {
+	return &struct {
+		Rotate         int
+		Time           string
+		DayOfWeek      []types.EDayOfTheWeek
+		Connect        string
+		FirstEnabledAt time.Time
+	}{
+		Rotate:         o.GetRotate(),
+		Time:           o.GetTime(),
+		DayOfWeek:      o.GetDayOfWeek(),
+		Connect:        o.GetConnect(),
+		FirstEnabledAt: o.GetFirstEnabledAt(),
+	}
+}
+
+// GetRotate returns value of Rotate
+func (o *DatabaseSettingBackupv2View) GetRotate() int {
+	return o.Rotate
+}
+
+// SetRotate sets value to Rotate
+func (o *DatabaseSettingBackupv2View) SetRotate(v int) {
+	o.Rotate = v
+}
+
+// GetTime returns value of Time
+func (o *DatabaseSettingBackupv2View) GetTime() string {
+	return o.Time
+}
+
+// SetTime sets value to Time
+func (o *DatabaseSettingBackupv2View) SetTime(v string) {
+	o.Time = v
+}
+
+// GetDayOfWeek returns value of DayOfWeek
+func (o *DatabaseSettingBackupv2View) GetDayOfWeek() []types.EDayOfTheWeek {
+	return o.DayOfWeek
+}
+
+// SetDayOfWeek sets value to DayOfWeek
+func (o *DatabaseSettingBackupv2View) SetDayOfWeek(v []types.EDayOfTheWeek) {
+	o.DayOfWeek = v
+}
+
+// GetConnect returns value of Connect
+func (o *DatabaseSettingBackupv2View) GetConnect() string {
+	return o.Connect
+}
+
+// SetConnect sets value to Connect
+func (o *DatabaseSettingBackupv2View) SetConnect(v string) {
+	o.Connect = v
+}
+
+// GetFirstEnabledAt returns value of FirstEnabledAt
+func (o *DatabaseSettingBackupv2View) GetFirstEnabledAt() time.Time {
+	return o.FirstEnabledAt
+}
+
+// SetFirstEnabledAt sets value to FirstEnabledAt
+func (o *DatabaseSettingBackupv2View) SetFirstEnabledAt(v time.Time) {
+	o.FirstEnabledAt = v
+}
+
+/*************************************************
 * DatabaseReplicationSetting
 *************************************************/
 
@@ -6975,6 +7094,34 @@ func (o *DatabaseSettingsInterface) GetIndex() int {
 // SetIndex sets value to Index
 func (o *DatabaseSettingsInterface) SetIndex(v int) {
 	o.Index = v
+}
+
+/*************************************************
+* MonitoringSuite
+*************************************************/
+
+// MonitoringSuite represents API parameter/response structure
+type MonitoringSuite struct {
+	Enabled bool
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *MonitoringSuite) setDefaults() interface{} {
+	return &struct {
+		Enabled bool
+	}{
+		Enabled: o.GetEnabled(),
+	}
+}
+
+// GetEnabled returns value of Enabled
+func (o *MonitoringSuite) GetEnabled() bool {
+	return o.Enabled
+}
+
+// SetEnabled sets value to Enabled
+func (o *MonitoringSuite) SetEnabled(v bool) {
+	o.Enabled = v
 }
 
 /*************************************************
@@ -7327,6 +7474,47 @@ func (o *InterfaceView) SetUpstreamType(v types.EUpstreamNetworkType) {
 }
 
 /*************************************************
+* DatabaseDisk
+*************************************************/
+
+// DatabaseDisk represents API parameter/response structure
+type DatabaseDisk struct {
+	EncryptionAlgorithm types.EDiskEncryptionAlgorithm
+	EncryptionKeyID     types.ID `mapconv:"EncryptionKey.KMSKeyID"`
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseDisk) setDefaults() interface{} {
+	return &struct {
+		EncryptionAlgorithm types.EDiskEncryptionAlgorithm
+		EncryptionKeyID     types.ID `mapconv:"EncryptionKey.KMSKeyID"`
+	}{
+		EncryptionAlgorithm: o.GetEncryptionAlgorithm(),
+		EncryptionKeyID:     o.GetEncryptionKeyID(),
+	}
+}
+
+// GetEncryptionAlgorithm returns value of EncryptionAlgorithm
+func (o *DatabaseDisk) GetEncryptionAlgorithm() types.EDiskEncryptionAlgorithm {
+	return o.EncryptionAlgorithm
+}
+
+// SetEncryptionAlgorithm sets value to EncryptionAlgorithm
+func (o *DatabaseDisk) SetEncryptionAlgorithm(v types.EDiskEncryptionAlgorithm) {
+	o.EncryptionAlgorithm = v
+}
+
+// GetEncryptionKeyID returns value of EncryptionKeyID
+func (o *DatabaseDisk) GetEncryptionKeyID() types.ID {
+	return o.EncryptionKeyID
+}
+
+// SetEncryptionKeyID sets value to EncryptionKeyID
+func (o *DatabaseDisk) SetEncryptionKeyID(v types.ID) {
+	o.EncryptionKeyID = v
+}
+
+/*************************************************
 * DatabaseCreateRequest
 *************************************************/
 
@@ -7341,8 +7529,11 @@ type DatabaseCreateRequest struct {
 	SourceID           types.ID                     `mapconv:"Remark.SourceAppliance.ID"`
 	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
+	Disk               *DatabaseDisk                `mapconv:"Disk,recursive"`
 	Name               string
 	Description        string
 	Tags               types.Tags
@@ -7361,8 +7552,11 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		SourceID           types.ID                     `mapconv:"Remark.SourceAppliance.ID"`
 		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
+		Disk               *DatabaseDisk                `mapconv:"Disk,recursive"`
 		Name               string
 		Description        string
 		Tags               types.Tags
@@ -7378,8 +7572,11 @@ func (o *DatabaseCreateRequest) setDefaults() interface{} {
 		SourceID:           o.GetSourceID(),
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
+		Backupv2Setting:    o.GetBackupv2Setting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		MonitoringSuite:    o.GetMonitoringSuite(),
+		Disk:               o.GetDisk(),
 		Name:               o.GetName(),
 		Description:        o.GetDescription(),
 		Tags:               o.GetTags(),
@@ -7478,6 +7675,16 @@ func (o *DatabaseCreateRequest) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
 }
 
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *DatabaseCreateRequest) GetBackupv2Setting() *DatabaseSettingBackupv2 {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *DatabaseCreateRequest) SetBackupv2Setting(v *DatabaseSettingBackupv2) {
+	o.Backupv2Setting = v
+}
+
 // GetReplicationSetting returns value of ReplicationSetting
 func (o *DatabaseCreateRequest) GetReplicationSetting() *DatabaseReplicationSetting {
 	return o.ReplicationSetting
@@ -7496,6 +7703,26 @@ func (o *DatabaseCreateRequest) GetInterfaceSettings() []*DatabaseSettingsInterf
 // SetInterfaceSettings sets value to InterfaceSettings
 func (o *DatabaseCreateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
 	o.InterfaceSettings = v
+}
+
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *DatabaseCreateRequest) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *DatabaseCreateRequest) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
+}
+
+// GetDisk returns value of Disk
+func (o *DatabaseCreateRequest) GetDisk() *DatabaseDisk {
+	return o.Disk
+}
+
+// SetDisk sets value to Disk
+func (o *DatabaseCreateRequest) SetDisk(v *DatabaseDisk) {
+	o.Disk = v
 }
 
 // GetName returns value of Name
@@ -7559,6 +7786,73 @@ func (o *DatabaseCreateRequest) SetIconID(v types.ID) {
 }
 
 /*************************************************
+* DatabaseSettingBackupv2
+*************************************************/
+
+// DatabaseSettingBackupv2 represents API parameter/response structure
+type DatabaseSettingBackupv2 struct {
+	Rotate    int
+	Time      string
+	DayOfWeek []types.EDayOfTheWeek
+	Connect   string
+}
+
+// setDefaults implements iaas.argumentDefaulter
+func (o *DatabaseSettingBackupv2) setDefaults() interface{} {
+	return &struct {
+		Rotate    int
+		Time      string
+		DayOfWeek []types.EDayOfTheWeek
+		Connect   string
+	}{
+		Rotate:    o.GetRotate(),
+		Time:      o.GetTime(),
+		DayOfWeek: o.GetDayOfWeek(),
+		Connect:   o.GetConnect(),
+	}
+}
+
+// GetRotate returns value of Rotate
+func (o *DatabaseSettingBackupv2) GetRotate() int {
+	return o.Rotate
+}
+
+// SetRotate sets value to Rotate
+func (o *DatabaseSettingBackupv2) SetRotate(v int) {
+	o.Rotate = v
+}
+
+// GetTime returns value of Time
+func (o *DatabaseSettingBackupv2) GetTime() string {
+	return o.Time
+}
+
+// SetTime sets value to Time
+func (o *DatabaseSettingBackupv2) SetTime(v string) {
+	o.Time = v
+}
+
+// GetDayOfWeek returns value of DayOfWeek
+func (o *DatabaseSettingBackupv2) GetDayOfWeek() []types.EDayOfTheWeek {
+	return o.DayOfWeek
+}
+
+// SetDayOfWeek sets value to DayOfWeek
+func (o *DatabaseSettingBackupv2) SetDayOfWeek(v []types.EDayOfTheWeek) {
+	o.DayOfWeek = v
+}
+
+// GetConnect returns value of Connect
+func (o *DatabaseSettingBackupv2) GetConnect() string {
+	return o.Connect
+}
+
+// SetConnect sets value to Connect
+func (o *DatabaseSettingBackupv2) SetConnect(v string) {
+	o.Connect = v
+}
+
+/*************************************************
 * DatabaseUpdateRequest
 *************************************************/
 
@@ -7570,8 +7864,10 @@ type DatabaseUpdateRequest struct {
 	IconID             types.ID                     `mapconv:"Icon.ID"`
 	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -7584,8 +7880,10 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		IconID             types.ID                     `mapconv:"Icon.ID"`
 		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
 		Name:               o.GetName(),
@@ -7594,8 +7892,10 @@ func (o *DatabaseUpdateRequest) setDefaults() interface{} {
 		IconID:             o.GetIconID(),
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
+		Backupv2Setting:    o.GetBackupv2Setting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		MonitoringSuite:    o.GetMonitoringSuite(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -7680,6 +7980,16 @@ func (o *DatabaseUpdateRequest) SetBackupSetting(v *DatabaseSettingBackup) {
 	o.BackupSetting = v
 }
 
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *DatabaseUpdateRequest) GetBackupv2Setting() *DatabaseSettingBackupv2 {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *DatabaseUpdateRequest) SetBackupv2Setting(v *DatabaseSettingBackupv2) {
+	o.Backupv2Setting = v
+}
+
 // GetReplicationSetting returns value of ReplicationSetting
 func (o *DatabaseUpdateRequest) GetReplicationSetting() *DatabaseReplicationSetting {
 	return o.ReplicationSetting
@@ -7700,6 +8010,16 @@ func (o *DatabaseUpdateRequest) SetInterfaceSettings(v []*DatabaseSettingsInterf
 	o.InterfaceSettings = v
 }
 
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *DatabaseUpdateRequest) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *DatabaseUpdateRequest) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
+}
+
 // GetSettingsHash returns value of SettingsHash
 func (o *DatabaseUpdateRequest) GetSettingsHash() string {
 	return o.SettingsHash
@@ -7718,8 +8038,10 @@ func (o *DatabaseUpdateRequest) SetSettingsHash(v string) {
 type DatabaseUpdateSettingsRequest struct {
 	CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 	BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+	Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 	ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 	InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+	MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 	SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 }
 
@@ -7728,14 +8050,18 @@ func (o *DatabaseUpdateSettingsRequest) setDefaults() interface{} {
 	return &struct {
 		CommonSetting      *DatabaseSettingCommon       `mapconv:"Settings.DBConf.Common,recursive"`
 		BackupSetting      *DatabaseSettingBackup       `mapconv:"Settings.DBConf.Backup,recursive"`
+		Backupv2Setting    *DatabaseSettingBackupv2     `mapconv:"Settings.DBConf.Backupv2,recursive"`
 		ReplicationSetting *DatabaseReplicationSetting  `mapconv:"Settings.DBConf.Replication,recursive"`
 		InterfaceSettings  []*DatabaseSettingsInterface `mapconv:"Settings.DBConf.[]Interfaces,omitempty,recursive"`
+		MonitoringSuite    *MonitoringSuite             `mapconv:"Settings.MonitoringSuite,omitempty,recursive"`
 		SettingsHash       string                       `json:",omitempty" mapconv:",omitempty"`
 	}{
 		CommonSetting:      o.GetCommonSetting(),
 		BackupSetting:      o.GetBackupSetting(),
+		Backupv2Setting:    o.GetBackupv2Setting(),
 		ReplicationSetting: o.GetReplicationSetting(),
 		InterfaceSettings:  o.GetInterfaceSettings(),
+		MonitoringSuite:    o.GetMonitoringSuite(),
 		SettingsHash:       o.GetSettingsHash(),
 	}
 }
@@ -7760,6 +8086,16 @@ func (o *DatabaseUpdateSettingsRequest) SetBackupSetting(v *DatabaseSettingBacku
 	o.BackupSetting = v
 }
 
+// GetBackupv2Setting returns value of Backupv2Setting
+func (o *DatabaseUpdateSettingsRequest) GetBackupv2Setting() *DatabaseSettingBackupv2 {
+	return o.Backupv2Setting
+}
+
+// SetBackupv2Setting sets value to Backupv2Setting
+func (o *DatabaseUpdateSettingsRequest) SetBackupv2Setting(v *DatabaseSettingBackupv2) {
+	o.Backupv2Setting = v
+}
+
 // GetReplicationSetting returns value of ReplicationSetting
 func (o *DatabaseUpdateSettingsRequest) GetReplicationSetting() *DatabaseReplicationSetting {
 	return o.ReplicationSetting
@@ -7778,6 +8114,16 @@ func (o *DatabaseUpdateSettingsRequest) GetInterfaceSettings() []*DatabaseSettin
 // SetInterfaceSettings sets value to InterfaceSettings
 func (o *DatabaseUpdateSettingsRequest) SetInterfaceSettings(v []*DatabaseSettingsInterface) {
 	o.InterfaceSettings = v
+}
+
+// GetMonitoringSuite returns value of MonitoringSuite
+func (o *DatabaseUpdateSettingsRequest) GetMonitoringSuite() *MonitoringSuite {
+	return o.MonitoringSuite
+}
+
+// SetMonitoringSuite sets value to MonitoringSuite
+func (o *DatabaseUpdateSettingsRequest) SetMonitoringSuite(v *MonitoringSuite) {
+	o.MonitoringSuite = v
 }
 
 // GetSettingsHash returns value of SettingsHash
@@ -23031,6 +23377,7 @@ type Server struct {
 	CPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 	Commitment              types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 	Generation              types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
+	ConfidentialVM          bool                        `mapconv:"ServerPlan.ConfidentialVM"`
 	Zone                    *ZoneInfo                   `json:",omitempty" mapconv:",omitempty,recursive"`
 	InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
 	InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
@@ -23069,6 +23416,7 @@ func (o *Server) setDefaults() interface{} {
 		CPUModel                string                      `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 		Commitment              types.ECommitment           `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 		Generation              types.EPlanGeneration       `mapconv:"ServerPlan.Generation"`
+		ConfidentialVM          bool                        `mapconv:"ServerPlan.ConfidentialVM"`
 		Zone                    *ZoneInfo                   `json:",omitempty" mapconv:",omitempty,recursive"`
 		InstanceHostName        string                      `mapconv:"Instance.Host.Name"`
 		InstanceHostInfoURL     string                      `mapconv:"Instance.Host.InfoURL"`
@@ -23103,6 +23451,7 @@ func (o *Server) setDefaults() interface{} {
 		CPUModel:                o.GetCPUModel(),
 		Commitment:              o.GetCommitment(),
 		Generation:              o.GetGeneration(),
+		ConfidentialVM:          o.GetConfidentialVM(),
 		Zone:                    o.GetZone(),
 		InstanceHostName:        o.GetInstanceHostName(),
 		InstanceHostInfoURL:     o.GetInstanceHostInfoURL(),
@@ -23332,6 +23681,16 @@ func (o *Server) GetGeneration() types.EPlanGeneration {
 // SetGeneration sets value to Generation
 func (o *Server) SetGeneration(v types.EPlanGeneration) {
 	o.Generation = v
+}
+
+// GetConfidentialVM returns value of ConfidentialVM
+func (o *Server) GetConfidentialVM() bool {
+	return o.ConfidentialVM
+}
+
+// SetConfidentialVM sets value to ConfidentialVM
+func (o *Server) SetConfidentialVM(v bool) {
+	o.ConfidentialVM = v
 }
 
 // GetZone returns value of Zone
@@ -23900,6 +24259,7 @@ type ServerCreateRequest struct {
 	CPUModel          string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 	Commitment        types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 	Generation        types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
+	ConfidentialVM    bool                  `mapconv:"ServerPlan.ConfidentialVM"`
 	ConnectedSwitches []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
 	InterfaceDriver   types.EInterfaceDriver
 	Name              string
@@ -23920,6 +24280,7 @@ func (o *ServerCreateRequest) setDefaults() interface{} {
 		CPUModel          string                `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 		Commitment        types.ECommitment     `json:",omitempty" mapconv:"ServerPlan.Commitment"`
 		Generation        types.EPlanGeneration `mapconv:"ServerPlan.Generation"`
+		ConfidentialVM    bool                  `mapconv:"ServerPlan.ConfidentialVM"`
 		ConnectedSwitches []*ConnectedSwitch    `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
 		InterfaceDriver   types.EInterfaceDriver
 		Name              string
@@ -23936,6 +24297,7 @@ func (o *ServerCreateRequest) setDefaults() interface{} {
 		CPUModel:          o.GetCPUModel(),
 		Commitment:        o.GetCommitment(),
 		Generation:        o.GetGeneration(),
+		ConfidentialVM:    o.GetConfidentialVM(),
 		ConnectedSwitches: o.GetConnectedSwitches(),
 		InterfaceDriver:   o.GetInterfaceDriver(),
 		Name:              o.GetName(),
@@ -24023,6 +24385,16 @@ func (o *ServerCreateRequest) GetGeneration() types.EPlanGeneration {
 // SetGeneration sets value to Generation
 func (o *ServerCreateRequest) SetGeneration(v types.EPlanGeneration) {
 	o.Generation = v
+}
+
+// GetConfidentialVM returns value of ConfidentialVM
+func (o *ServerCreateRequest) GetConfidentialVM() bool {
+	return o.ConfidentialVM
+}
+
+// SetConfidentialVM sets value to ConfidentialVM
+func (o *ServerCreateRequest) SetConfidentialVM(v bool) {
+	o.ConfidentialVM = v
 }
 
 // GetConnectedSwitches returns value of ConnectedSwitches
@@ -24716,42 +25088,45 @@ func (o *VNCProxyInfo) SetVNCFile(v string) {
 
 // ServerPlan represents API parameter/response structure
 type ServerPlan struct {
-	ID           types.ID
-	Name         string
-	CPU          int
-	MemoryMB     int
-	GPU          int
-	GPUModel     string
-	CPUModel     string
-	Commitment   types.ECommitment
-	Generation   types.EPlanGeneration
-	Availability types.EAvailability
+	ID             types.ID
+	Name           string
+	CPU            int
+	MemoryMB       int
+	GPU            int
+	GPUModel       string
+	CPUModel       string
+	Commitment     types.ECommitment
+	Generation     types.EPlanGeneration
+	ConfidentialVM bool
+	Availability   types.EAvailability
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *ServerPlan) setDefaults() interface{} {
 	return &struct {
-		ID           types.ID
-		Name         string
-		CPU          int
-		MemoryMB     int
-		GPU          int
-		GPUModel     string
-		CPUModel     string
-		Commitment   types.ECommitment
-		Generation   types.EPlanGeneration
-		Availability types.EAvailability
+		ID             types.ID
+		Name           string
+		CPU            int
+		MemoryMB       int
+		GPU            int
+		GPUModel       string
+		CPUModel       string
+		Commitment     types.ECommitment
+		Generation     types.EPlanGeneration
+		ConfidentialVM bool
+		Availability   types.EAvailability
 	}{
-		ID:           o.GetID(),
-		Name:         o.GetName(),
-		CPU:          o.GetCPU(),
-		MemoryMB:     o.GetMemoryMB(),
-		GPU:          o.GetGPU(),
-		GPUModel:     o.GetGPUModel(),
-		CPUModel:     o.GetCPUModel(),
-		Commitment:   o.GetCommitment(),
-		Generation:   o.GetGeneration(),
-		Availability: o.GetAvailability(),
+		ID:             o.GetID(),
+		Name:           o.GetName(),
+		CPU:            o.GetCPU(),
+		MemoryMB:       o.GetMemoryMB(),
+		GPU:            o.GetGPU(),
+		GPUModel:       o.GetGPUModel(),
+		CPUModel:       o.GetCPUModel(),
+		Commitment:     o.GetCommitment(),
+		Generation:     o.GetGeneration(),
+		ConfidentialVM: o.GetConfidentialVM(),
+		Availability:   o.GetAvailability(),
 	}
 }
 
@@ -24873,6 +25248,16 @@ func (o *ServerPlan) GetGeneration() types.EPlanGeneration {
 // SetGeneration sets value to Generation
 func (o *ServerPlan) SetGeneration(v types.EPlanGeneration) {
 	o.Generation = v
+}
+
+// GetConfidentialVM returns value of ConfidentialVM
+func (o *ServerPlan) GetConfidentialVM() bool {
+	return o.ConfidentialVM
+}
+
+// SetConfidentialVM sets value to ConfidentialVM
+func (o *ServerPlan) SetConfidentialVM(v bool) {
+	o.ConfidentialVM = v
 }
 
 // GetAvailability returns value of Availability
@@ -31605,34 +31990,6 @@ func (o *VPCRouterScheduledMaintenance) GetHour() int {
 // SetHour sets value to Hour
 func (o *VPCRouterScheduledMaintenance) SetHour(v int) {
 	o.Hour = v
-}
-
-/*************************************************
-* MonitoringSuite
-*************************************************/
-
-// MonitoringSuite represents API parameter/response structure
-type MonitoringSuite struct {
-	Enabled bool
-}
-
-// setDefaults implements iaas.argumentDefaulter
-func (o *MonitoringSuite) setDefaults() interface{} {
-	return &struct {
-		Enabled bool
-	}{
-		Enabled: o.GetEnabled(),
-	}
-}
-
-// GetEnabled returns value of Enabled
-func (o *MonitoringSuite) GetEnabled() bool {
-	return o.Enabled
-}
-
-// SetEnabled sets value to Enabled
-func (o *MonitoringSuite) SetEnabled(v bool) {
-	o.Enabled = v
 }
 
 /*************************************************

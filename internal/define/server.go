@@ -244,6 +244,7 @@ var (
 			fields.ServerPlanCPUModel(),
 			fields.ServerPlanCommitment(),
 			fields.ServerPlanGeneration(),
+			fields.ServerPlanConfidentialVM(),
 			// zone
 			fields.Zone(),
 			// instance
@@ -340,6 +341,7 @@ var (
 			fields.ServerPlanCPUModel(),
 			fields.ServerPlanCommitment(),
 			fields.ServerPlanGeneration(),
+			fields.ServerPlanConfidentialVM(),
 			fields.ServerConnectedSwitch(),
 			fields.InterfaceDriver(),
 			fields.Name(),

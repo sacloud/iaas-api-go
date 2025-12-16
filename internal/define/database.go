@@ -157,8 +157,10 @@ var (
 			// settings
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2View(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 			fields.SettingsHash(),
 
 			// instance
@@ -178,6 +180,9 @@ var (
 			fields.RemarkZoneID(),
 			// interfaces
 			fields.Interfaces(),
+
+			// disk
+			fields.DatabaseDisk(),
 		},
 	}
 
@@ -202,8 +207,12 @@ var (
 
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
+
+			fields.DatabaseDisk(),
 
 			fields.Name(),
 			fields.Description(),
@@ -225,8 +234,10 @@ var (
 			// settings
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 			// settings hash
 			fields.SettingsHash(),
 		},
@@ -239,8 +250,10 @@ var (
 			// settings
 			fields.DatabaseSettingsCommon(),
 			fields.DatabaseSettingsBackup(),
+			fields.DatabaseSettingsBackupv2(),
 			fields.DatabaseSettingsReplication(),
 			fields.DatabaseSettingsInterfaces(),
+			fields.DatabaseSettingsMonitoringSuite(),
 			// settings hash
 			fields.SettingsHash(),
 		},

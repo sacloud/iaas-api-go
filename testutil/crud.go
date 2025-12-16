@@ -20,6 +20,7 @@ import (
 	"log"
 	"net/http"
 	"runtime/debug"
+	"strings"
 	"sync"
 	"time"
 
@@ -152,12 +153,41 @@ func (c *CRUDTestExpect) Prepare(actual interface{}) (interface{}, interface{}) 
 			log.Fatalf("prepare is failed: json.Unmarshal returned error: %s", err)
 		}
 		for _, key := range c.IgnoreFields {
-			delete(m, key)
+			c.deleteByPath(m, key)
 		}
 		return m
 	}
 
 	return toMap(c.ExpectValue), toMap(actual)
+}
+
+// deleteByPath removes a nested field specified by dot-separated path (e.g. "aaa.bbb")
+func (c *CRUDTestExpect) deleteByPath(m map[string]interface{}, path string) {
+	keys := strings.Split(path, ".")
+	last := len(keys) - 1
+
+	current := m
+	for i, k := range keys {
+		v, ok := current[k]
+		if !ok {
+			// key not found → nothing to do
+			return
+		}
+
+		if i == last {
+			// 最終キーなら削除
+			delete(current, k)
+			return
+		}
+
+		// 次に進むための map かどうか確認
+		next, ok := v.(map[string]interface{})
+		if !ok {
+			// 途中で map でなくなったら削除不能
+			return
+		}
+		current = next
+	}
 }
 
 // RunCRUD 任意の条件でCRUD操作をテストする

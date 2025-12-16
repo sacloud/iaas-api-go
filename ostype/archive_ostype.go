@@ -30,6 +30,8 @@ const (
 	AlmaLinux10
 	// AlmaLinux9 OS種別: Alma Linux9
 	AlmaLinux9
+	// AlmaLinux8 OS種別: Alma Linux8
+	AlmaLinux8
 
 	// RockyLinux OS種別: Rocky Linux
 	RockyLinux
@@ -37,13 +39,15 @@ const (
 	RockyLinux10
 	// RockyLinux9 OS種別: Rocky Linux9
 	RockyLinux9
+	// RockyLinux8 OS種別: Rocky Linux8
+	RockyLinux8
 
 	// MiracleLinux OS種別: MIRACLE LINUX
 	MiracleLinux
-	// MiracleLinux8 OS種別: MIRACLE LINUX8
-	MiracleLinux8
 	// MiracleLinux9 OS種別: MIRACLE LINUX9
 	MiracleLinux9
+	// MiracleLinux8 OS種別: MIRACLE LINUX8
+	MiracleLinux8
 
 	// Ubuntu OS種別:Ubuntu
 	Ubuntu
@@ -54,10 +58,10 @@ const (
 
 	// Debian OS種別:Debian
 	Debian
-	// Debian11 OS種別:Debian11
-	Debian11
 	// Debian12 OS種別:Debian12
 	Debian12
+	// Debian11 OS種別:Debian11
+	Debian11
 
 	// Kusanagi OS種別:Kusanagi(CentOS)
 	Kusanagi
@@ -68,28 +72,30 @@ var ArchiveOSTypes = []ArchiveOSType{
 	AlmaLinux,
 	AlmaLinux10,
 	AlmaLinux9,
+	AlmaLinux8,
 	RockyLinux,
 	RockyLinux10,
 	RockyLinux9,
+	RockyLinux8,
 	MiracleLinux,
-	MiracleLinux8,
 	MiracleLinux9,
+	MiracleLinux8,
 	Ubuntu,
 	Ubuntu2404,
 	Ubuntu2204,
 	Debian,
-	Debian11,
 	Debian12,
+	Debian11,
 	Kusanagi,
 }
 
 // OSTypeShortNames OSTypeとして利用できる文字列のリスト
 var OSTypeShortNames = []string{
-	"almalinux", "almalinux10", "almalinux9",
-	"rockylinux", "rockylinux10", "rockylinux9",
-	"miracle", "miraclelinux", "miracle8", "miraclelinux8", "miracle9", "miraclelinux9",
+	"almalinux", "almalinux10", "almalinux9", "almalinux8",
+	"rockylinux", "rockylinux10", "rockylinux9", "rockylinux8",
+	"miracle", "miraclelinux", "miracle9", "miraclelinux9", "miracle8", "miraclelinux8",
 	"ubuntu", "ubuntu2404", "ubuntu2204",
-	"debian", "debian11", "debian12",
+	"debian", "debian12", "debian11",
 	"kusanagi",
 }
 
@@ -97,11 +103,11 @@ var OSTypeShortNames = []string{
 func (o ArchiveOSType) IsSupportDiskEdit() bool {
 	switch o {
 	case
-		AlmaLinux, AlmaLinux10, AlmaLinux9,
-		RockyLinux, RockyLinux10, RockyLinux9,
-		MiracleLinux, MiracleLinux8, MiracleLinux9,
+		AlmaLinux, AlmaLinux10, AlmaLinux9, AlmaLinux8,
+		RockyLinux, RockyLinux10, RockyLinux9, RockyLinux8,
+		MiracleLinux, MiracleLinux9, MiracleLinux8,
 		Ubuntu, Ubuntu2404, Ubuntu2204,
-		Debian, Debian11, Debian12,
+		Debian, Debian12, Debian11,
 		Kusanagi:
 		return true
 	default:
@@ -118,18 +124,22 @@ func StrToOSType(osType string) ArchiveOSType {
 		return AlmaLinux10
 	case "almalinux9":
 		return AlmaLinux9
+	case "almalinux8":
+		return AlmaLinux8
 	case "rockylinux":
 		return RockyLinux
 	case "rockylinux10":
 		return RockyLinux10
 	case "rockylinux9":
 		return RockyLinux9
+	case "rockylinux8":
+		return RockyLinux8
 	case "miracle", "miraclelinux":
 		return MiracleLinux
-	case "miracle8", "miraclelinux8":
-		return MiracleLinux8
 	case "miracle9", "miraclelinux9":
 		return MiracleLinux9
+	case "miracle8", "miraclelinux8":
+		return MiracleLinux8
 	case "ubuntu":
 		return Ubuntu
 	case "ubuntu2404":
@@ -138,10 +148,10 @@ func StrToOSType(osType string) ArchiveOSType {
 		return Ubuntu2204
 	case "debian":
 		return Debian
-	case "debian11":
-		return Debian11
 	case "debian12":
 		return Debian12
+	case "debian11":
+		return Debian11
 	case "kusanagi":
 		return Kusanagi
 	default:

@@ -42,8 +42,14 @@ type Database struct {
 	Settings     *DatabaseSettings   `json:",omitempty" yaml:"settings,omitempty" structs:",omitempty"`
 	SettingsHash string              `json:",omitempty" yaml:"settings_hash,omitempty" structs:",omitempty"`
 	Remark       *ApplianceRemark    `json:",omitempty" yaml:"remark,omitempty" structs:",omitempty"`
+	Disk         *DatabaseDisk       `json:",omitempty" yaml:"disk,omitempty" structs:",omitempty"`
 
 	Generation interface{}
+}
+
+type DatabaseDisk struct {
+	EncryptionAlgorithm types.EDiskEncryptionAlgorithm `json:",omitempty" yaml:"encryption_algorithm,omitempty" structs:",omitempty"`
+	EncryptionKey       *EncryptionKey                 `json:",omitempty" yaml:"kms_key,omitempty" structs:",omitempty"`
 }
 
 // DatabaseSettingsUpdate データベース
@@ -54,13 +60,15 @@ type DatabaseSettingsUpdate struct {
 
 // DatabaseSettings データベース設定
 type DatabaseSettings struct {
-	DBConf *DatabaseSetting `json:",omitempty" yaml:"db_conf,omitempty" structs:",omitempty"`
+	DBConf          *DatabaseSetting `json:",omitempty" yaml:"db_conf,omitempty" structs:",omitempty"`
+	MonitoringSuite *MonitoringSuite `json:",omitempty" yaml:"monitoring_suite_log,omitempty" structs:",omitempty"`
 }
 
 // DatabaseSetting データベース設定
 type DatabaseSetting struct {
 	Common      *DatabaseSettingCommon      `json:",omitempty" yaml:"common,omitempty" structs:",omitempty"`
 	Backup      *DatabaseSettingBackup      `json:",omitempty" yaml:"backup,omitempty" structs:",omitempty"`
+	Backupv2    *DatabaseSettingBackupv2    `json:",omitempty" yaml:"backupv2,omitempty" structs:",omitempty"`
 	Replication *DatabaseSettingReplication `json:",omitempty" yaml:"replication,omitempty" structs:",omitempty"`
 	Interfaces  DatabaseSettingInterfaces   `json:",omitempty" yaml:"common,omitempty" structs:",omitempty"`
 }
@@ -122,7 +130,16 @@ type DatabaseSettingBackup struct {
 	Rotate    int                   `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
 	Time      string                `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
 	DayOfWeek []types.EDayOfTheWeek `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
-	Connect   string                // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
+	Connect   string                `json:",omitempty" yaml:"connect,omitempty" structs:",omitempty"` // 冗長化オプション有効時のバックアップ先NFS 例:`nfs://192.168.0.41/export`
+}
+
+// DatabaseSettingBackupv2 データベース設定 継続的バックアップ(バックアップv2)設定
+type DatabaseSettingBackupv2 struct {
+	Rotate         int                   `json:",omitempty" yaml:"rotate,omitempty" structs:",omitempty"`
+	Time           string                `json:",omitempty" yaml:"time,omitempty" structs:",omitempty"`
+	DayOfWeek      []types.EDayOfTheWeek `json:",omitempty" yaml:"day_of_week,omitempty" structs:",omitempty"`
+	Connect        string                `json:",omitempty" yaml:"connect,omitempty" structs:",omitempty"` // バックアップ先NFS: 例:`nfs://192.168.0.41/export`
+	FirstEnabledAt *time.Time            `json:",omitempty" yaml:"first_enabled_at,omitempty" structs:",omitempty"`
 }
 
 // UnmarshalJSON 配列/オブジェクトが混在することへの対応

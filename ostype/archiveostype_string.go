@@ -26,28 +26,31 @@ func _() {
 	_ = x[AlmaLinux-1]
 	_ = x[AlmaLinux10-2]
 	_ = x[AlmaLinux9-3]
-	_ = x[RockyLinux-4]
-	_ = x[RockyLinux10-5]
-	_ = x[RockyLinux9-6]
-	_ = x[MiracleLinux-7]
-	_ = x[MiracleLinux8-8]
-	_ = x[MiracleLinux9-9]
-	_ = x[Ubuntu-10]
-	_ = x[Ubuntu2404-11]
-	_ = x[Ubuntu2204-12]
-	_ = x[Debian-13]
-	_ = x[Debian11-14]
-	_ = x[Debian12-15]
-	_ = x[Kusanagi-16]
+	_ = x[AlmaLinux8-4]
+	_ = x[RockyLinux-5]
+	_ = x[RockyLinux10-6]
+	_ = x[RockyLinux9-7]
+	_ = x[RockyLinux8-8]
+	_ = x[MiracleLinux-9]
+	_ = x[MiracleLinux9-10]
+	_ = x[MiracleLinux8-11]
+	_ = x[Ubuntu-12]
+	_ = x[Ubuntu2404-13]
+	_ = x[Ubuntu2204-14]
+	_ = x[Debian-15]
+	_ = x[Debian12-16]
+	_ = x[Debian11-17]
+	_ = x[Kusanagi-18]
 }
 
-const _ArchiveOSType_name = "CustomAlmaLinuxAlmaLinux10AlmaLinux9RockyLinuxRockyLinux10RockyLinux9MiracleLinuxMiracleLinux8MiracleLinux9UbuntuUbuntu2404Ubuntu2204DebianDebian11Debian12Kusanagi"
+const _ArchiveOSType_name = "CustomAlmaLinuxAlmaLinux10AlmaLinux9AlmaLinux8RockyLinuxRockyLinux10RockyLinux9RockyLinux8MiracleLinuxMiracleLinux9MiracleLinux8UbuntuUbuntu2404Ubuntu2204DebianDebian12Debian11Kusanagi"
 
-var _ArchiveOSType_index = [...]uint8{0, 6, 15, 26, 36, 46, 58, 69, 81, 94, 107, 113, 123, 133, 139, 147, 155, 163}
+var _ArchiveOSType_index = [...]uint8{0, 6, 15, 26, 36, 46, 56, 68, 79, 90, 102, 115, 128, 134, 144, 154, 160, 168, 176, 184}
 
 func (i ArchiveOSType) String() string {
-	if i < 0 || i >= ArchiveOSType(len(_ArchiveOSType_index)-1) {
+	idx := int(i) - 0
+	if i < 0 || idx >= len(_ArchiveOSType_index)-1 {
 		return "ArchiveOSType(" + strconv.FormatInt(int64(i), 10) + ")"
 	}
-	return _ArchiveOSType_name[_ArchiveOSType_index[i]:_ArchiveOSType_index[i+1]]
+	return _ArchiveOSType_name[_ArchiveOSType_index[idx]:_ArchiveOSType_index[idx+1]]
 }

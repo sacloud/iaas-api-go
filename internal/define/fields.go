@@ -327,6 +327,16 @@ func (f *fieldsDef) ServerPlanCommitment() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) ServerPlanConfidentialVM() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "ConfidentialVM",
+		Tags: &dsl.FieldTags{
+			MapConv: "ServerPlan.ConfidentialVM",
+		},
+		Type: meta.TypeFlag,
+	}
+}
+
 func (f *fieldsDef) PlanID() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "PlanID",
@@ -2456,6 +2466,29 @@ func (f *fieldsDef) RemarkSourceAppliance() *dsl.FieldDesc {
 	}
 }
 
+func (f *fieldsDef) DatabaseDisk() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Disk",
+		Type: &dsl.Model{
+			Name:      "DatabaseDisk",
+			NakedType: meta.Static(naked.DatabaseDisk{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("EncryptionAlgorithm", meta.Static(types.EDiskEncryptionAlgorithm(""))),
+				{
+					Name: "EncryptionKeyID",
+					Type: meta.TypeID,
+					Tags: &dsl.FieldTags{
+						MapConv: "EncryptionKey.KMSKeyID",
+					},
+				},
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Disk,recursive",
+		},
+	}
+}
+
 func (f *fieldsDef) DatabaseSettingsCommon() *dsl.FieldDesc {
 	return &dsl.FieldDesc{
 		Name: "CommonSetting",
@@ -2493,6 +2526,55 @@ func (f *fieldsDef) DatabaseSettingsBackup() *dsl.FieldDesc {
 		},
 		Tags: &dsl.FieldTags{
 			MapConv: "Settings.DBConf.Backup,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) DatabaseSettingsBackupv2() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Backupv2Setting",
+		Type: &dsl.Model{
+			Name:      "DatabaseSettingBackupv2",
+			NakedType: meta.Static(naked.DatabaseSettingBackupv2{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("Rotate", meta.TypeInt),
+				fields.Def("Time", meta.TypeString),
+				fields.Def("DayOfWeek", meta.Static([]types.EDayOfTheWeek{})),
+				fields.Def("Connect", meta.TypeString),
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.DBConf.Backupv2,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) DatabaseSettingsBackupv2View() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "Backupv2Setting",
+		Type: &dsl.Model{
+			Name:      "DatabaseSettingBackupv2View",
+			NakedType: meta.Static(naked.DatabaseSettingBackupv2{}),
+			Fields: []*dsl.FieldDesc{
+				fields.Def("Rotate", meta.TypeInt),
+				fields.Def("Time", meta.TypeString),
+				fields.Def("DayOfWeek", meta.Static([]types.EDayOfTheWeek{})),
+				fields.Def("Connect", meta.TypeString),
+				fields.Def("FirstEnabledAt", meta.TypeTime),
+			},
+		},
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.DBConf.Backupv2,recursive",
+		},
+	}
+}
+
+func (f *fieldsDef) DatabaseSettingsMonitoringSuite() *dsl.FieldDesc {
+	return &dsl.FieldDesc{
+		Name: "MonitoringSuite",
+		Type: models.monitoringSuite(),
+		Tags: &dsl.FieldTags{
+			MapConv: "Settings.MonitoringSuite,omitempty,recursive",
 		},
 	}
 }
