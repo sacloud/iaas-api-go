@@ -80,6 +80,8 @@ type Client struct {
 func NewClientFromSaclient(sa saclient.ClientAPI) *Client { return &Client{sa} }
 
 // NewClient APIクライアント作成
+//
+// Deprecated: この関数からは指定できない設定項目がある
 func NewClient(token, secret string) *Client {
 	opts := &client.Options{
 		AccessToken:       token,
@@ -89,11 +91,15 @@ func NewClient(token, secret string) *Client {
 }
 
 // NewClientFromEnv 環境変数からAPIキーを取得してAPIクライアントを作成する
+//
+// Deprecated: これを呼ばなくても環境変数は勝手に読む
 func NewClientFromEnv() *Client {
 	return NewClientWithOptions(client.OptionsFromEnv())
 }
 
 // NewClientWithOptions 指定のオプションでAPIクライアントを作成する
+//
+// Deprecated: この関数からは指定できない設定項目がある
 func NewClientWithOptions(opts *client.Options) *Client {
 	if len(opts.CheckRetryStatusCodes) == 0 {
 		opts.CheckRetryStatusCodes = defaultCheckRetryStatusCodes
