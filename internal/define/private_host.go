@@ -15,6 +15,8 @@
 package define
 
 import (
+	"net/http"
+
 	"github.com/sacloud/iaas-api-go/internal/define/names"
 	"github.com/sacloud/iaas-api-go/internal/define/ops"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
@@ -37,6 +39,48 @@ var privateHostAPI = &dsl.Resource{
 
 		// create
 		ops.Create(privateHostAPIName, privateHostNakedType, privateHostCreateParam, privateHostView),
+
+		// create with the dedicated storage contract
+		{
+			ResourceName: privateHostAPIName,
+			Name:         "CreateWithDedicatedStorage",
+			PathFormat:   dsl.DefaultPathFormat,
+			Method:       http.MethodPost,
+			RequestEnvelope: dsl.RequestEnvelope(
+				&dsl.EnvelopePayloadDesc{
+					Type: privateHostNakedType,
+					Name: "PrivateHost",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.DedicatedStorageContract{}),
+					Name: "TargetDedicatedStorageContract",
+				},
+			),
+			Arguments: dsl.Arguments{
+				{
+					Name:       "createParam",
+					MapConvTag: "PrivateHost,recursive",
+					Type:       privateHostCreateParam,
+				},
+				{
+					Name:       "dedicatedStorageContractID",
+					MapConvTag: "TargetDedicatedStorageContract.ID",
+					Type:       meta.TypeID,
+				},
+			},
+			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: privateHostNakedType,
+				Name: "PrivateHost",
+			}),
+			Results: dsl.Results{
+				{
+					SourceField: "PrivateHost",
+					DestField:   privateHostView.Name,
+					IsPlural:    false,
+					Model:       privateHostView,
+				},
+			},
+		},
 
 		// read
 		ops.Read(privateHostAPIName, privateHostNakedType, privateHostView),
@@ -82,6 +126,20 @@ var (
 				Type: meta.TypeInt,
 				Tags: &dsl.FieldTags{
 					MapConv: "Plan.CPU",
+				},
+			},
+			{
+				Name: "CPUModel",
+				Type: meta.TypeString,
+				Tags: &dsl.FieldTags{
+					MapConv: "Plan.CPUModel",
+				},
+			},
+			{
+				Name: "Dedicated",
+				Type: meta.TypeFlag,
+				Tags: &dsl.FieldTags{
+					MapConv: "Plan.Dedicated",
 				},
 			},
 			{

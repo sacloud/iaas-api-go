@@ -40,7 +40,9 @@ type PrivateHostPlan struct {
 	Name         string              `json:",omitempty" yaml:"name,omitempty" structs:",omitempty"`
 	Class        string              `json:",omitempty" yaml:"class,omitempty" structs:",omitempty"`
 	CPU          int                 `json:",omitempty" yaml:"cpu,omitempty" structs:",omitempty"`
+	CPUModel     string              `json:",omitempty" yaml:"cpu_model,omitempty" structs:",omitempty"`
 	MemoryMB     int                 `json:",omitempty" yaml:"memory_mb,omitempty" structs:",omitempty"`
+	Dedicated    bool                `yaml:"dedicated"`
 	ServiceClass string              `json:",omitempty" yaml:"service_class,omitempty" structs:",omitempty"`
 	Availability types.EAvailability `json:",omitempty" yaml:"availability,omitempty" structs:",omitempty"`
 }

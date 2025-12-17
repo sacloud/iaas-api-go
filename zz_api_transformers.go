@@ -2139,6 +2139,67 @@ func (o *DiskOp) transformCreateResults(data []byte) (*diskCreateResult, error) 
 	return results, nil
 }
 
+func (o *DiskOp) transformCreateOnDedicatedStorageArgs(createParam *DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*diskCreateOnDedicatedStorageRequestEnvelope, error) {
+	if createParam == nil {
+		createParam = &DiskCreateRequest{}
+	}
+	var arg0 interface{} = createParam
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	if distantFrom == nil {
+		distantFrom = []types.ID{}
+	}
+	var arg1 interface{} = distantFrom
+	if v, ok := arg1.(argumentDefaulter); ok {
+		arg1 = v.setDefaults()
+	}
+	if kmeKeyID == types.ID(int64(0)) {
+		kmeKeyID = types.ID(int64(0))
+	}
+	var arg2 interface{} = kmeKeyID
+	if v, ok := arg2.(argumentDefaulter); ok {
+		arg2 = v.setDefaults()
+	}
+	if dedicatedStorageContractID == types.ID(int64(0)) {
+		dedicatedStorageContractID = types.ID(int64(0))
+	}
+	var arg3 interface{} = dedicatedStorageContractID
+	if v, ok := arg3.(argumentDefaulter); ok {
+		arg3 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{} `mapconv:"Disk,recursive"`
+		Arg1 interface{} `mapconv:"DistantFrom"`
+		Arg2 interface{} `mapconv:"KMSKey.ID"`
+		Arg3 interface{} `mapconv:"TargetDedicatedStorageContract.ID"`
+	}{
+		Arg0: arg0,
+		Arg1: arg1,
+		Arg2: arg2,
+		Arg3: arg3,
+	}
+
+	v := &diskCreateOnDedicatedStorageRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *DiskOp) transformCreateOnDedicatedStorageResults(data []byte) (*diskCreateOnDedicatedStorageResult, error) {
+	nakedResponse := &diskCreateOnDedicatedStorageResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &diskCreateOnDedicatedStorageResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
 func (o *DiskOp) transformConfigArgs(id types.ID, edit *DiskEditRequest) (*diskConfigRequestEnvelope, error) {
 	if id == types.ID(int64(0)) {
 		id = types.ID(int64(0))
@@ -2233,6 +2294,85 @@ func (o *DiskOp) transformCreateWithConfigResults(data []byte) (*diskCreateWithC
 	}
 
 	results := &diskCreateWithConfigResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *DiskOp) transformCreateOnDedicatedStorageWithConfigArgs(createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*diskCreateOnDedicatedStorageWithConfigRequestEnvelope, error) {
+	if createParam == nil {
+		createParam = &DiskCreateRequest{}
+	}
+	var arg0 interface{} = createParam
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	if editParam == nil {
+		editParam = &DiskEditRequest{}
+	}
+	var arg1 interface{} = editParam
+	if v, ok := arg1.(argumentDefaulter); ok {
+		arg1 = v.setDefaults()
+	}
+	if bootAtAvailable == false {
+		bootAtAvailable = false
+	}
+	var arg2 interface{} = bootAtAvailable
+	if v, ok := arg2.(argumentDefaulter); ok {
+		arg2 = v.setDefaults()
+	}
+	if distantFrom == nil {
+		distantFrom = []types.ID{}
+	}
+	var arg3 interface{} = distantFrom
+	if v, ok := arg3.(argumentDefaulter); ok {
+		arg3 = v.setDefaults()
+	}
+	if kmeKeyID == types.ID(int64(0)) {
+		kmeKeyID = types.ID(int64(0))
+	}
+	var arg4 interface{} = kmeKeyID
+	if v, ok := arg4.(argumentDefaulter); ok {
+		arg4 = v.setDefaults()
+	}
+	if dedicatedStorageContractID == types.ID(int64(0)) {
+		dedicatedStorageContractID = types.ID(int64(0))
+	}
+	var arg5 interface{} = dedicatedStorageContractID
+	if v, ok := arg5.(argumentDefaulter); ok {
+		arg5 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{} `mapconv:"Disk,recursive"`
+		Arg1 interface{} `mapconv:"Config,recursive"`
+		Arg2 interface{} `mapconv:"BootAtAvailable"`
+		Arg3 interface{} `mapconv:"DistantFrom"`
+		Arg4 interface{} `mapconv:"KMSKey.ID"`
+		Arg5 interface{} `mapconv:"TargetDedicatedStorageContract.ID"`
+	}{
+		Arg0: arg0,
+		Arg1: arg1,
+		Arg2: arg2,
+		Arg3: arg3,
+		Arg4: arg4,
+		Arg5: arg5,
+	}
+
+	v := &diskCreateOnDedicatedStorageWithConfigRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *DiskOp) transformCreateOnDedicatedStorageWithConfigResults(data []byte) (*diskCreateOnDedicatedStorageWithConfigResult, error) {
+	nakedResponse := &diskCreateOnDedicatedStorageWithConfigResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &diskCreateOnDedicatedStorageWithConfigResult{}
 	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
 		return nil, err
 	}
@@ -5903,6 +6043,49 @@ func (o *PrivateHostOp) transformCreateResults(data []byte) (*privateHostCreateR
 	}
 
 	results := &privateHostCreateResult{}
+	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
+		return nil, err
+	}
+	return results, nil
+}
+
+func (o *PrivateHostOp) transformCreateWithDedicatedStorageArgs(createParam *PrivateHostCreateRequest, dedicatedStorageContractID types.ID) (*privateHostCreateWithDedicatedStorageRequestEnvelope, error) {
+	if createParam == nil {
+		createParam = &PrivateHostCreateRequest{}
+	}
+	var arg0 interface{} = createParam
+	if v, ok := arg0.(argumentDefaulter); ok {
+		arg0 = v.setDefaults()
+	}
+	if dedicatedStorageContractID == types.ID(int64(0)) {
+		dedicatedStorageContractID = types.ID(int64(0))
+	}
+	var arg1 interface{} = dedicatedStorageContractID
+	if v, ok := arg1.(argumentDefaulter); ok {
+		arg1 = v.setDefaults()
+	}
+	args := &struct {
+		Arg0 interface{} `mapconv:"PrivateHost,recursive"`
+		Arg1 interface{} `mapconv:"TargetDedicatedStorageContract.ID"`
+	}{
+		Arg0: arg0,
+		Arg1: arg1,
+	}
+
+	v := &privateHostCreateWithDedicatedStorageRequestEnvelope{}
+	if err := mapconv.ConvertTo(args, v); err != nil {
+		return nil, err
+	}
+	return v, nil
+}
+
+func (o *PrivateHostOp) transformCreateWithDedicatedStorageResults(data []byte) (*privateHostCreateWithDedicatedStorageResult, error) {
+	nakedResponse := &privateHostCreateWithDedicatedStorageResponseEnvelope{}
+	if err := json.Unmarshal(data, nakedResponse); err != nil {
+		return nil, err
+	}
+
+	results := &privateHostCreateWithDedicatedStorageResult{}
 	if err := mapconv.ConvertFrom(nakedResponse, results); err != nil {
 		return nil, err
 	}

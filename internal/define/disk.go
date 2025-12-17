@@ -89,6 +89,66 @@ var diskAPI = &dsl.Resource{
 			},
 		},
 
+		// create disk on dedicated storage
+		{
+			ResourceName: diskAPIName,
+			Name:         "CreateOnDedicatedStorage",
+			PathFormat:   dsl.DefaultPathFormat,
+			Method:       http.MethodPost,
+			RequestEnvelope: dsl.RequestEnvelope(
+				&dsl.EnvelopePayloadDesc{
+					Type: diskNakedType,
+					Name: "Disk",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: diskDistantFromType,
+					Name: "DistantFrom",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.KMSKey{}),
+					Name: "KMSKey",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.DedicatedStorageContract{}),
+					Name: "TargetDedicatedStorageContract",
+				},
+			),
+			Arguments: dsl.Arguments{
+				{
+					Name:       "createParam",
+					MapConvTag: "Disk,recursive",
+					Type:       diskCreateParam,
+				},
+				{
+					Name:       "distantFrom",
+					MapConvTag: "DistantFrom",
+					Type:       diskDistantFromType,
+				},
+				{
+					Name:       "kmeKeyID",
+					MapConvTag: "KMSKey.ID",
+					Type:       meta.TypeID,
+				},
+				{
+					Name:       "dedicatedStorageContractID",
+					MapConvTag: "TargetDedicatedStorageContract.ID",
+					Type:       meta.TypeID,
+				},
+			},
+			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: diskNakedType,
+				Name: "Disk",
+			}),
+			Results: dsl.Results{
+				{
+					SourceField: "Disk",
+					DestField:   diskModel.Name,
+					IsPlural:    false,
+					Model:       diskModel,
+				},
+			},
+		},
+
 		// config(DiskEdit)
 		{
 			ResourceName:    diskAPIName,
@@ -158,6 +218,84 @@ var diskAPI = &dsl.Resource{
 				{
 					Name:       "kmeKeyID",
 					MapConvTag: "KMSKey.ID",
+					Type:       meta.TypeID,
+				},
+			},
+			Results: dsl.Results{
+				{
+					SourceField: "Disk",
+					DestField:   diskModel.Name,
+					IsPlural:    false,
+					Model:       diskModel,
+				},
+			},
+		},
+
+		// create disk on dedicated storage with config(DiskEdit)
+		{
+			ResourceName: diskAPIName,
+			Name:         "CreateOnDedicatedStorageWithConfig",
+			PathFormat:   dsl.DefaultPathFormat,
+			Method:       http.MethodPost,
+			RequestEnvelope: dsl.RequestEnvelope(
+				&dsl.EnvelopePayloadDesc{
+					Type: diskNakedType,
+					Name: "Disk",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: diskEditNakedType,
+					Name: "Config",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.TypeFlag,
+					Name: "BootAtAvailable",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: diskDistantFromType,
+					Name: "DistantFrom",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.KMSKey{}),
+					Name: "KMSKey",
+				},
+				&dsl.EnvelopePayloadDesc{
+					Type: meta.Static(&naked.DedicatedStorageContract{}),
+					Name: "TargetDedicatedStorageContract",
+				},
+			),
+			ResponseEnvelope: dsl.ResponseEnvelope(&dsl.EnvelopePayloadDesc{
+				Type: diskNakedType,
+				Name: "Disk",
+			}),
+			Arguments: dsl.Arguments{
+				{
+					Name:       "createParam",
+					MapConvTag: "Disk,recursive",
+					Type:       diskCreateParam,
+				},
+				{
+					Name:       "editParam",
+					MapConvTag: "Config,recursive",
+					Type:       diskEditParam,
+				},
+				{
+					Name:       "bootAtAvailable",
+					Type:       meta.TypeFlag,
+					MapConvTag: "BootAtAvailable",
+				},
+				{
+					Name:       "distantFrom",
+					Type:       diskDistantFromType,
+					MapConvTag: "DistantFrom",
+				},
+				{
+					Name:       "kmeKeyID",
+					MapConvTag: "KMSKey.ID",
+					Type:       meta.TypeID,
+				},
+				{
+					Name:       "dedicatedStorageContractID",
+					MapConvTag: "TargetDedicatedStorageContract.ID",
 					Type:       meta.TypeID,
 				},
 			},

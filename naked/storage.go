@@ -18,11 +18,16 @@ import "github.com/sacloud/iaas-api-go/types"
 
 // Storage ストレージ
 type Storage struct {
-	ID          types.ID  `json:",omitempty" yaml:"id,omitempty" structs:",omitempty"`
-	Name        string    `json:",omitempty" yaml:"name,omitempty" structs:",omitempty"`
-	Description string    `json:",omitempty" yaml:"description,omitempty" structs:",omitempty"`
-	Generation  int       `json:",omitempty" yaml:"generation,omitempty" structs:",omitempty"`
-	Class       string    `json:",omitempty" yaml:"class,omitempty" structs:",omitempty"`
-	DiskPlan    *DiskPlan `json:",omitempty" yaml:"disk_plan,omitempty" structs:",omitempty"`
-	Zone        *Zone     `json:",omitempty" yaml:"zone,omitempty" structs:",omitempty"`
+	ID                       types.ID                  `json:",omitempty" yaml:"id,omitempty" structs:",omitempty"`
+	Name                     string                    `json:",omitempty" yaml:"name,omitempty" structs:",omitempty"`
+	Description              string                    `json:",omitempty" yaml:"description,omitempty" structs:",omitempty"`
+	Generation               int                       `json:",omitempty" yaml:"generation,omitempty" structs:",omitempty"`
+	Class                    string                    `json:",omitempty" yaml:"class,omitempty" structs:",omitempty"`
+	DiskPlan                 *DiskPlan                 `json:",omitempty" yaml:"disk_plan,omitempty" structs:",omitempty"`
+	Zone                     *Zone                     `json:",omitempty" yaml:"zone,omitempty" structs:",omitempty"`
+	DedicatedStorageContract *DedicatedStorageContract `json:",omitempty" yaml:"dedicated_storage_contract,omitempty" structs:",omitempty"`
+}
+
+type DedicatedStorageContract struct {
+	ID types.ID `json:",omitempty" yaml:"id,omitempty" structs:",omitempty"`
 }

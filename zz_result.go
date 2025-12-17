@@ -674,8 +674,22 @@ type diskCreateResult struct {
 	Disk *Disk `json:",omitempty" mapconv:"Disk,omitempty,recursive"`
 }
 
+// diskCreateOnDedicatedStorageResult represents the Result of API
+type diskCreateOnDedicatedStorageResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	Disk *Disk `json:",omitempty" mapconv:"Disk,omitempty,recursive"`
+}
+
 // diskCreateWithConfigResult represents the Result of API
 type diskCreateWithConfigResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	Disk *Disk `json:",omitempty" mapconv:"Disk,omitempty,recursive"`
+}
+
+// diskCreateOnDedicatedStorageWithConfigResult represents the Result of API
+type diskCreateOnDedicatedStorageWithConfigResult struct {
 	IsOk bool `json:",omitempty"` // is_ok
 
 	Disk *Disk `json:",omitempty" mapconv:"Disk,omitempty,recursive"`
@@ -1692,6 +1706,13 @@ func (r *PrivateHostFindResult) Values() []interface{} {
 
 // privateHostCreateResult represents the Result of API
 type privateHostCreateResult struct {
+	IsOk bool `json:",omitempty"` // is_ok
+
+	PrivateHost *PrivateHost `json:",omitempty" mapconv:"PrivateHost,omitempty,recursive"`
+}
+
+// privateHostCreateWithDedicatedStorageResult represents the Result of API
+type privateHostCreateWithDedicatedStorageResult struct {
 	IsOk bool `json:",omitempty"` // is_ok
 
 	PrivateHost *PrivateHost `json:",omitempty" mapconv:"PrivateHost,omitempty,recursive"`

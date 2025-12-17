@@ -59,6 +59,10 @@ func (o *PrivateHostOp) Create(ctx context.Context, zone string, param *iaas.Pri
 	return result, nil
 }
 
+func (o *PrivateHostOp) CreateWithDedicatedStorage(ctx context.Context, zone string, param *iaas.PrivateHostCreateRequest, dedicatedStorageContractID types.ID) (*iaas.PrivateHost, error) {
+	return o.Create(ctx, zone, param)
+}
+
 // Read is fake implementation
 func (o *PrivateHostOp) Read(ctx context.Context, zone string, id types.ID) (*iaas.PrivateHost, error) {
 	value := getPrivateHostByID(zone, id)

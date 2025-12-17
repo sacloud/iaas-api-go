@@ -2808,6 +2808,35 @@ func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.
 	return resultDisk, err
 }
 
+// CreateOnDedicatedStorage is API call with trace log
+func (t *DiskTracer) CreateOnDedicatedStorage(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.createParam", forceString(createParam)),
+		attribute.String("sacloud.api.arguments.distantFrom", forceString(distantFrom)),
+		attribute.String("sacloud.api.arguments.kmeKeyID", forceString(kmeKeyID)),
+		attribute.String("sacloud.api.arguments.dedicatedStorageContractID", forceString(dedicatedStorageContractID)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.CreateOnDedicatedStorage", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultDisk, err := t.Internal.CreateOnDedicatedStorage(ctx, zone, createParam, distantFrom, kmeKeyID, dedicatedStorageContractID)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultDisk", forceString(resultDisk)))
+
+	}
+	return resultDisk, err
+}
+
 // Config is API call with trace log
 func (t *DiskTracer) Config(ctx context.Context, zone string, id types.ID, edit *iaas.DiskEditRequest) error {
 	var span trace.Span
@@ -2853,6 +2882,37 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 	// for http trace
 	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
 	resultDisk, err := t.Internal.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultDisk", forceString(resultDisk)))
+
+	}
+	return resultDisk, err
+}
+
+// CreateOnDedicatedStorageWithConfig is API call with trace log
+func (t *DiskTracer) CreateOnDedicatedStorageWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.createParam", forceString(createParam)),
+		attribute.String("sacloud.api.arguments.editParam", forceString(editParam)),
+		attribute.String("sacloud.api.arguments.bootAtAvailable", forceString(bootAtAvailable)),
+		attribute.String("sacloud.api.arguments.distantFrom", forceString(distantFrom)),
+		attribute.String("sacloud.api.arguments.kmeKeyID", forceString(kmeKeyID)),
+		attribute.String("sacloud.api.arguments.dedicatedStorageContractID", forceString(dedicatedStorageContractID)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "DiskAPI.CreateOnDedicatedStorageWithConfig", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultDisk, err := t.Internal.CreateOnDedicatedStorageWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID, dedicatedStorageContractID)
 
 	if err != nil {
 		span.SetStatus(codes.Error, err.Error())
@@ -7244,6 +7304,33 @@ func (t *PrivateHostTracer) Create(ctx context.Context, zone string, param *iaas
 	// for http trace
 	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
 	resultPrivateHost, err := t.Internal.Create(ctx, zone, param)
+
+	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+	} else {
+		span.SetStatus(codes.Ok, "")
+		span.SetAttributes(attribute.String("libiaas.api.results.resultPrivateHost", forceString(resultPrivateHost)))
+
+	}
+	return resultPrivateHost, err
+}
+
+// CreateWithDedicatedStorage is API call with trace log
+func (t *PrivateHostTracer) CreateWithDedicatedStorage(ctx context.Context, zone string, createParam *iaas.PrivateHostCreateRequest, dedicatedStorageContractID types.ID) (*iaas.PrivateHost, error) {
+	var span trace.Span
+	options := append(t.config.SpanStartOptions, trace.WithAttributes(
+		attribute.String("sacloud.api.arguments.zone", zone),
+		attribute.String("sacloud.api.arguments.createParam", forceString(createParam)),
+		attribute.String("sacloud.api.arguments.dedicatedStorageContractID", forceString(dedicatedStorageContractID)),
+	))
+	ctx, span = t.config.Tracer.Start(ctx, "PrivateHostAPI.CreateWithDedicatedStorage", options...)
+	defer func() {
+		span.End()
+	}()
+
+	// for http trace
+	ctx = httptrace.WithClientTrace(ctx, otelhttptrace.NewClientTrace(ctx))
+	resultPrivateHost, err := t.Internal.CreateWithDedicatedStorage(ctx, zone, createParam, dedicatedStorageContractID)
 
 	if err != nil {
 		span.SetStatus(codes.Error, err.Error())
