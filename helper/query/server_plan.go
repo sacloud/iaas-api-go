@@ -26,22 +26,29 @@ import (
 
 // FindServerPlanRequest サーバプラン検索パラメータ
 type FindServerPlanRequest struct {
-	CPU        int
-	MemoryGB   int
-	GPU        int
-	GPUModel   string
-	CPUModel   string
-	Commitment types.ECommitment
-	Generation types.EPlanGeneration
+	CPU            int
+	MemoryGB       int
+	GPU            int
+	GPUModel       string
+	CPUModel       string
+	Commitment     types.ECommitment
+	Generation     types.EPlanGeneration
+	ConfidentialVM bool
 }
 
 func (f *FindServerPlanRequest) findCondition() *iaas.FindCondition {
+	confidentialVM := 0
+	if f.ConfidentialVM {
+		confidentialVM = 1
+	}
+
 	cond := &iaas.FindCondition{
 		Sort: search.SortKeys{
 			{Key: "Generation", Order: search.SortDesc},
 		},
 		Filter: search.Filter{
-			search.Key("Commitment"): types.Commitments.Standard,
+			search.Key("Commitment"):     types.Commitments.Standard,
+			search.Key("ConfidentialVM"): confidentialVM, // HACK: bool型は0/1として指定する必要がある模様
 		},
 		Count: 1000,
 	}
