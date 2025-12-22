@@ -473,24 +473,27 @@ func (o *BundleInfo) SetServiceClass(v string) {
 
 // Storage represents API parameter/response structure
 type Storage struct {
-	ID         types.ID
-	Name       string
-	Class      string `json:",omitempty" mapconv:",omitempty"`
-	Generation int    `json:",omitempty" mapconv:",omitempty"`
+	ID                         types.ID
+	Name                       string
+	Class                      string   `json:",omitempty" mapconv:",omitempty"`
+	Generation                 int      `json:",omitempty" mapconv:",omitempty"`
+	DedicatedStorageContractID types.ID `json:",omitempty" mapconv:"DedicatedStorageContract.ID,omitempty"`
 }
 
 // setDefaults implements iaas.argumentDefaulter
 func (o *Storage) setDefaults() interface{} {
 	return &struct {
-		ID         types.ID
-		Name       string
-		Class      string `json:",omitempty" mapconv:",omitempty"`
-		Generation int    `json:",omitempty" mapconv:",omitempty"`
+		ID                         types.ID
+		Name                       string
+		Class                      string   `json:",omitempty" mapconv:",omitempty"`
+		Generation                 int      `json:",omitempty" mapconv:",omitempty"`
+		DedicatedStorageContractID types.ID `json:",omitempty" mapconv:"DedicatedStorageContract.ID,omitempty"`
 	}{
-		ID:         o.GetID(),
-		Name:       o.GetName(),
-		Class:      o.GetClass(),
-		Generation: o.GetGeneration(),
+		ID:                         o.GetID(),
+		Name:                       o.GetName(),
+		Class:                      o.GetClass(),
+		Generation:                 o.GetGeneration(),
+		DedicatedStorageContractID: o.GetDedicatedStorageContractID(),
 	}
 }
 
@@ -552,6 +555,16 @@ func (o *Storage) GetGeneration() int {
 // SetGeneration sets value to Generation
 func (o *Storage) SetGeneration(v int) {
 	o.Generation = v
+}
+
+// GetDedicatedStorageContractID returns value of DedicatedStorageContractID
+func (o *Storage) GetDedicatedStorageContractID() types.ID {
+	return o.DedicatedStorageContractID
+}
+
+// SetDedicatedStorageContractID sets value to DedicatedStorageContractID
+func (o *Storage) SetDedicatedStorageContractID(v types.ID) {
+	o.DedicatedStorageContractID = v
 }
 
 /*************************************************
@@ -20417,6 +20430,8 @@ type PrivateHost struct {
 	PlanName         string   `mapconv:"Plan.Name"`
 	PlanClass        string   `mapconv:"Plan.Class"`
 	CPU              int      `mapconv:"Plan.CPU"`
+	CPUModel         string   `mapconv:"Plan.CPUModel"`
+	Dedicated        bool     `mapconv:"Plan.Dedicated"`
 	MemoryMB         int      `mapconv:"Plan.MemoryMB"`
 	AssignedCPU      int
 	AssignedMemoryMB int
@@ -20436,6 +20451,8 @@ func (o *PrivateHost) setDefaults() interface{} {
 		PlanName         string   `mapconv:"Plan.Name"`
 		PlanClass        string   `mapconv:"Plan.Class"`
 		CPU              int      `mapconv:"Plan.CPU"`
+		CPUModel         string   `mapconv:"Plan.CPUModel"`
+		Dedicated        bool     `mapconv:"Plan.Dedicated"`
 		MemoryMB         int      `mapconv:"Plan.MemoryMB"`
 		AssignedCPU      int
 		AssignedMemoryMB int
@@ -20451,6 +20468,8 @@ func (o *PrivateHost) setDefaults() interface{} {
 		PlanName:         o.GetPlanName(),
 		PlanClass:        o.GetPlanClass(),
 		CPU:              o.GetCPU(),
+		CPUModel:         o.GetCPUModel(),
+		Dedicated:        o.GetDedicated(),
 		MemoryMB:         o.GetMemoryMB(),
 		AssignedCPU:      o.GetAssignedCPU(),
 		AssignedMemoryMB: o.GetAssignedMemoryMB(),
@@ -20596,6 +20615,26 @@ func (o *PrivateHost) GetCPU() int {
 // SetCPU sets value to CPU
 func (o *PrivateHost) SetCPU(v int) {
 	o.CPU = v
+}
+
+// GetCPUModel returns value of CPUModel
+func (o *PrivateHost) GetCPUModel() string {
+	return o.CPUModel
+}
+
+// SetCPUModel sets value to CPUModel
+func (o *PrivateHost) SetCPUModel(v string) {
+	o.CPUModel = v
+}
+
+// GetDedicated returns value of Dedicated
+func (o *PrivateHost) GetDedicated() bool {
+	return o.Dedicated
+}
+
+// SetDedicated sets value to Dedicated
+func (o *PrivateHost) SetDedicated(v bool) {
+	o.Dedicated = v
 }
 
 // GetMemoryMB returns value of MemoryMB
@@ -20855,6 +20894,8 @@ type PrivateHostPlan struct {
 	Name         string
 	Class        string
 	CPU          int
+	CPUModel     string `json:"CPUModel,omitempty"`
+	Dedicated    bool
 	MemoryMB     int
 	Availability types.EAvailability
 }
@@ -20866,6 +20907,8 @@ func (o *PrivateHostPlan) setDefaults() interface{} {
 		Name         string
 		Class        string
 		CPU          int
+		CPUModel     string `json:"CPUModel,omitempty"`
+		Dedicated    bool
 		MemoryMB     int
 		Availability types.EAvailability
 	}{
@@ -20873,6 +20916,8 @@ func (o *PrivateHostPlan) setDefaults() interface{} {
 		Name:         o.GetName(),
 		Class:        o.GetClass(),
 		CPU:          o.GetCPU(),
+		CPUModel:     o.GetCPUModel(),
+		Dedicated:    o.GetDedicated(),
 		MemoryMB:     o.GetMemoryMB(),
 		Availability: o.GetAvailability(),
 	}
@@ -20936,6 +20981,26 @@ func (o *PrivateHostPlan) GetCPU() int {
 // SetCPU sets value to CPU
 func (o *PrivateHostPlan) SetCPU(v int) {
 	o.CPU = v
+}
+
+// GetCPUModel returns value of CPUModel
+func (o *PrivateHostPlan) GetCPUModel() string {
+	return o.CPUModel
+}
+
+// SetCPUModel sets value to CPUModel
+func (o *PrivateHostPlan) SetCPUModel(v string) {
+	o.CPUModel = v
+}
+
+// GetDedicated returns value of Dedicated
+func (o *PrivateHostPlan) GetDedicated() bool {
+	return o.Dedicated
+}
+
+// SetDedicated sets value to Dedicated
+func (o *PrivateHostPlan) SetDedicated(v bool) {
+	o.Dedicated = v
 }
 
 // GetMemoryMB returns value of MemoryMB

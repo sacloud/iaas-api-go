@@ -3859,6 +3859,46 @@ func (o *DiskOp) Create(ctx context.Context, zone string, createParam *DiskCreat
 	return results.Disk, nil
 }
 
+// CreateOnDedicatedStorage is API call
+func (o *DiskOp) CreateOnDedicatedStorage(ctx context.Context, zone string, createParam *DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*Disk, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":                    SakuraCloudAPIRoot,
+		"pathSuffix":                 o.PathSuffix,
+		"pathName":                   o.PathName,
+		"zone":                       zone,
+		"createParam":                createParam,
+		"distantFrom":                distantFrom,
+		"kmeKeyID":                   kmeKeyID,
+		"dedicatedStorageContractID": dedicatedStorageContractID,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformCreateOnDedicatedStorageArgs(createParam, distantFrom, kmeKeyID, dedicatedStorageContractID)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformCreateOnDedicatedStorageResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.Disk, nil
+}
+
 // Config is API call
 func (o *DiskOp) Config(ctx context.Context, zone string, id types.ID, edit *DiskEditRequest) error {
 	// build request URL
@@ -3929,6 +3969,48 @@ func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam 
 
 	// build results
 	results, err := o.transformCreateWithConfigResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.Disk, nil
+}
+
+// CreateOnDedicatedStorageWithConfig is API call
+func (o *DiskOp) CreateOnDedicatedStorageWithConfig(ctx context.Context, zone string, createParam *DiskCreateRequest, editParam *DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*Disk, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":                    SakuraCloudAPIRoot,
+		"pathSuffix":                 o.PathSuffix,
+		"pathName":                   o.PathName,
+		"zone":                       zone,
+		"createParam":                createParam,
+		"editParam":                  editParam,
+		"bootAtAvailable":            bootAtAvailable,
+		"distantFrom":                distantFrom,
+		"kmeKeyID":                   kmeKeyID,
+		"dedicatedStorageContractID": dedicatedStorageContractID,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformCreateOnDedicatedStorageWithConfigArgs(createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID, dedicatedStorageContractID)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformCreateOnDedicatedStorageWithConfigResults(data)
 	if err != nil {
 		return nil, err
 	}
@@ -9715,6 +9797,44 @@ func (o *PrivateHostOp) Create(ctx context.Context, zone string, param *PrivateH
 
 	// build results
 	results, err := o.transformCreateResults(data)
+	if err != nil {
+		return nil, err
+	}
+	return results.PrivateHost, nil
+}
+
+// CreateWithDedicatedStorage is API call
+func (o *PrivateHostOp) CreateWithDedicatedStorage(ctx context.Context, zone string, createParam *PrivateHostCreateRequest, dedicatedStorageContractID types.ID) (*PrivateHost, error) {
+	// build request URL
+	pathBuildParameter := map[string]interface{}{
+		"rootURL":                    SakuraCloudAPIRoot,
+		"pathSuffix":                 o.PathSuffix,
+		"pathName":                   o.PathName,
+		"zone":                       zone,
+		"createParam":                createParam,
+		"dedicatedStorageContractID": dedicatedStorageContractID,
+	}
+
+	url, err := buildURL("{{.rootURL}}/{{.zone}}/{{.pathSuffix}}/{{.pathName}}", pathBuildParameter)
+	if err != nil {
+		return nil, err
+	}
+	// build request body
+	var body interface{}
+	v, err := o.transformCreateWithDedicatedStorageArgs(createParam, dedicatedStorageContractID)
+	if err != nil {
+		return nil, err
+	}
+	body = v
+
+	// do request
+	data, err := o.Client.Do(ctx, "POST", url, body)
+	if err != nil {
+		return nil, err
+	}
+
+	// build results
+	results, err := o.transformCreateWithDedicatedStorageResults(data)
 	if err != nil {
 		return nil, err
 	}

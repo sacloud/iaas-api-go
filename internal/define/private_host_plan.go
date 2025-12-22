@@ -46,6 +46,11 @@ var (
 			fields.Name(),
 			fields.Class(),
 			fields.CPU(),
+			fields.CPUModel(),
+			{
+				Name: "Dedicated",
+				Type: meta.TypeFlag,
+			},
 			fields.MemoryMB(),
 			fields.Availability(),
 		},

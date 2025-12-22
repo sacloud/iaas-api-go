@@ -860,6 +860,22 @@ type diskCreateResponseEnvelope struct {
 	Disk *naked.Disk `json:",omitempty"`
 }
 
+// diskCreateOnDedicatedStorageRequestEnvelope is envelop of API request
+type diskCreateOnDedicatedStorageRequestEnvelope struct {
+	Disk                           *naked.Disk                     `json:",omitempty"`
+	DistantFrom                    []types.ID                      `json:",omitempty"`
+	KMSKey                         *naked.KMSKey                   `json:",omitempty"`
+	TargetDedicatedStorageContract *naked.DedicatedStorageContract `json:",omitempty"`
+}
+
+// diskCreateOnDedicatedStorageResponseEnvelope is envelop of API response
+type diskCreateOnDedicatedStorageResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	Disk *naked.Disk `json:",omitempty"`
+}
+
 // diskConfigRequestEnvelope is envelop of API request
 type diskConfigRequestEnvelope struct {
 	Background          bool                  `json:",omitempty" mapconv:",omitempty"`
@@ -886,6 +902,24 @@ type diskCreateWithConfigRequestEnvelope struct {
 
 // diskCreateWithConfigResponseEnvelope is envelop of API response
 type diskCreateWithConfigResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	Disk *naked.Disk `json:",omitempty"`
+}
+
+// diskCreateOnDedicatedStorageWithConfigRequestEnvelope is envelop of API request
+type diskCreateOnDedicatedStorageWithConfigRequestEnvelope struct {
+	Disk                           *naked.Disk                     `json:",omitempty"`
+	Config                         *naked.DiskEdit                 `json:",omitempty"`
+	BootAtAvailable                bool                            `json:",omitempty"`
+	DistantFrom                    []types.ID                      `json:",omitempty"`
+	KMSKey                         *naked.KMSKey                   `json:",omitempty"`
+	TargetDedicatedStorageContract *naked.DedicatedStorageContract `json:",omitempty"`
+}
+
+// diskCreateOnDedicatedStorageWithConfigResponseEnvelope is envelop of API response
+type diskCreateOnDedicatedStorageWithConfigResponseEnvelope struct {
 	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
 	Success types.APIResult `json:",omitempty"`      // success項目
 
@@ -2320,6 +2354,20 @@ type privateHostCreateRequestEnvelope struct {
 
 // privateHostCreateResponseEnvelope is envelop of API response
 type privateHostCreateResponseEnvelope struct {
+	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
+	Success types.APIResult `json:",omitempty"`      // success項目
+
+	PrivateHost *naked.PrivateHost `json:",omitempty"`
+}
+
+// privateHostCreateWithDedicatedStorageRequestEnvelope is envelop of API request
+type privateHostCreateWithDedicatedStorageRequestEnvelope struct {
+	PrivateHost                    *naked.PrivateHost              `json:",omitempty"`
+	TargetDedicatedStorageContract *naked.DedicatedStorageContract `json:",omitempty"`
+}
+
+// privateHostCreateWithDedicatedStorageResponseEnvelope is envelop of API response
+type privateHostCreateWithDedicatedStorageResponseEnvelope struct {
 	IsOk    bool            `json:"is_ok,omitempty"` // is_ok項目
 	Success types.APIResult `json:",omitempty"`      // success項目
 

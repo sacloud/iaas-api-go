@@ -104,6 +104,10 @@ func (o *DiskOp) Create(ctx context.Context, zone string, param *iaas.DiskCreate
 	return result, nil
 }
 
+func (o *DiskOp) CreateOnDedicatedStorage(ctx context.Context, zone string, param *iaas.DiskCreateRequest, distantFrom []types.ID, kmsKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	return o.Create(ctx, zone, param, distantFrom, kmsKeyID)
+}
+
 // Config is fake implementation
 func (o *DiskOp) Config(ctx context.Context, zone string, id types.ID, edit *iaas.DiskEditRequest) error {
 	disk, err := o.Read(ctx, zone, id)
@@ -196,6 +200,10 @@ func (o *DiskOp) CreateWithConfig(ctx context.Context, zone string, createParam 
 		}
 	}
 	return result, nil
+}
+
+func (o *DiskOp) CreateOnDedicatedStorageWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmsKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	return o.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmsKeyID)
 }
 
 // ResizePartition is fake implementation

@@ -3423,6 +3423,45 @@ func (t *DiskTracer) Create(ctx context.Context, zone string, createParam *iaas.
 	return resultDisk, err
 }
 
+// CreateOnDedicatedStorage is API call with trace log
+func (t *DiskTracer) CreateOnDedicatedStorage(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	log.Println("[TRACE] DiskAPI.CreateOnDedicatedStorage start")
+	targetArguments := struct {
+		Argzone                       string
+		ArgcreateParam                *iaas.DiskCreateRequest `json:"createParam"`
+		ArgdistantFrom                []types.ID              `json:"distantFrom"`
+		ArgkmeKeyID                   types.ID                `json:"kmeKeyID"`
+		ArgdedicatedStorageContractID types.ID                `json:"dedicatedStorageContractID"`
+	}{
+		Argzone:                       zone,
+		ArgcreateParam:                createParam,
+		ArgdistantFrom:                distantFrom,
+		ArgkmeKeyID:                   kmeKeyID,
+		ArgdedicatedStorageContractID: dedicatedStorageContractID,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] DiskAPI.CreateOnDedicatedStorage end")
+	}()
+
+	resultDisk, err := t.Internal.CreateOnDedicatedStorage(ctx, zone, createParam, distantFrom, kmeKeyID, dedicatedStorageContractID)
+	targetResults := struct {
+		Disk  *iaas.Disk
+		Error error
+	}{
+		Disk:  resultDisk,
+		Error: err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultDisk, err
+}
+
 // Config is API call with trace log
 func (t *DiskTracer) Config(ctx context.Context, zone string, id types.ID, edit *iaas.DiskEditRequest) error {
 	log.Println("[TRACE] DiskAPI.Config start")
@@ -3483,6 +3522,49 @@ func (t *DiskTracer) CreateWithConfig(ctx context.Context, zone string, createPa
 	}()
 
 	resultDisk, err := t.Internal.CreateWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID)
+	targetResults := struct {
+		Disk  *iaas.Disk
+		Error error
+	}{
+		Disk:  resultDisk,
+		Error: err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultDisk, err
+}
+
+// CreateOnDedicatedStorageWithConfig is API call with trace log
+func (t *DiskTracer) CreateOnDedicatedStorageWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	log.Println("[TRACE] DiskAPI.CreateOnDedicatedStorageWithConfig start")
+	targetArguments := struct {
+		Argzone                       string
+		ArgcreateParam                *iaas.DiskCreateRequest `json:"createParam"`
+		ArgeditParam                  *iaas.DiskEditRequest   `json:"editParam"`
+		ArgbootAtAvailable            bool                    `json:"bootAtAvailable"`
+		ArgdistantFrom                []types.ID              `json:"distantFrom"`
+		ArgkmeKeyID                   types.ID                `json:"kmeKeyID"`
+		ArgdedicatedStorageContractID types.ID                `json:"dedicatedStorageContractID"`
+	}{
+		Argzone:                       zone,
+		ArgcreateParam:                createParam,
+		ArgeditParam:                  editParam,
+		ArgbootAtAvailable:            bootAtAvailable,
+		ArgdistantFrom:                distantFrom,
+		ArgkmeKeyID:                   kmeKeyID,
+		ArgdedicatedStorageContractID: dedicatedStorageContractID,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] DiskAPI.CreateOnDedicatedStorageWithConfig end")
+	}()
+
+	resultDisk, err := t.Internal.CreateOnDedicatedStorageWithConfig(ctx, zone, createParam, editParam, bootAtAvailable, distantFrom, kmeKeyID, dedicatedStorageContractID)
 	targetResults := struct {
 		Disk  *iaas.Disk
 		Error error
@@ -8881,6 +8963,41 @@ func (t *PrivateHostTracer) Create(ctx context.Context, zone string, param *iaas
 	}()
 
 	resultPrivateHost, err := t.Internal.Create(ctx, zone, param)
+	targetResults := struct {
+		PrivateHost *iaas.PrivateHost
+		Error       error
+	}{
+		PrivateHost: resultPrivateHost,
+		Error:       err,
+	}
+	if d, err := json.Marshal(targetResults); err == nil {
+		log.Printf("[TRACE] \tresults: %s\n", string(d))
+	}
+
+	return resultPrivateHost, err
+}
+
+// CreateWithDedicatedStorage is API call with trace log
+func (t *PrivateHostTracer) CreateWithDedicatedStorage(ctx context.Context, zone string, createParam *iaas.PrivateHostCreateRequest, dedicatedStorageContractID types.ID) (*iaas.PrivateHost, error) {
+	log.Println("[TRACE] PrivateHostAPI.CreateWithDedicatedStorage start")
+	targetArguments := struct {
+		Argzone                       string
+		ArgcreateParam                *iaas.PrivateHostCreateRequest `json:"createParam"`
+		ArgdedicatedStorageContractID types.ID                       `json:"dedicatedStorageContractID"`
+	}{
+		Argzone:                       zone,
+		ArgcreateParam:                createParam,
+		ArgdedicatedStorageContractID: dedicatedStorageContractID,
+	}
+	if d, err := json.Marshal(targetArguments); err == nil {
+		log.Printf("[TRACE] \targs: %s\n", string(d))
+	}
+
+	defer func() {
+		log.Println("[TRACE] PrivateHostAPI.CreateWithDedicatedStorage end")
+	}()
+
+	resultPrivateHost, err := t.Internal.CreateWithDedicatedStorage(ctx, zone, createParam, dedicatedStorageContractID)
 	targetResults := struct {
 		PrivateHost *iaas.PrivateHost
 		Error       error

@@ -415,6 +415,14 @@ func (m *modelsDef) storageModel() *dsl.Model {
 					JSON:    ",omitempty",
 				},
 			},
+			{
+				Name: "DedicatedStorageContractID",
+				Type: meta.TypeID,
+				Tags: &dsl.FieldTags{
+					MapConv: "DedicatedStorageContract.ID,omitempty",
+					JSON:    ",omitempty",
+				},
+			},
 		},
 	}
 }

@@ -1538,6 +1538,12 @@ type DiskCreateStubResult struct {
 	Err  error
 }
 
+// DiskCreateOnDedicatedStorageStubResult is expected values of the CreateOnDedicatedStorage operation
+type DiskCreateOnDedicatedStorageStubResult struct {
+	Disk *iaas.Disk
+	Err  error
+}
+
 // DiskConfigStubResult is expected values of the Config operation
 type DiskConfigStubResult struct {
 	Err error
@@ -1545,6 +1551,12 @@ type DiskConfigStubResult struct {
 
 // DiskCreateWithConfigStubResult is expected values of the CreateWithConfig operation
 type DiskCreateWithConfigStubResult struct {
+	Disk *iaas.Disk
+	Err  error
+}
+
+// DiskCreateOnDedicatedStorageWithConfigStubResult is expected values of the CreateOnDedicatedStorageWithConfig operation
+type DiskCreateOnDedicatedStorageWithConfigStubResult struct {
 	Disk *iaas.Disk
 	Err  error
 }
@@ -1595,18 +1607,20 @@ type DiskMonitorDiskStubResult struct {
 
 // DiskStub is for trace DiskOp operations
 type DiskStub struct {
-	FindStubResult                 *DiskFindStubResult
-	CreateStubResult               *DiskCreateStubResult
-	ConfigStubResult               *DiskConfigStubResult
-	CreateWithConfigStubResult     *DiskCreateWithConfigStubResult
-	ResizePartitionStubResult      *DiskResizePartitionStubResult
-	ConnectToServerStubResult      *DiskConnectToServerStubResult
-	DisconnectFromServerStubResult *DiskDisconnectFromServerStubResult
-	ReadStubResult                 *DiskReadStubResult
-	UpdateStubResult               *DiskUpdateStubResult
-	DeleteStubResult               *DiskDeleteStubResult
-	MonitorStubResult              *DiskMonitorStubResult
-	MonitorDiskStubResult          *DiskMonitorDiskStubResult
+	FindStubResult                               *DiskFindStubResult
+	CreateStubResult                             *DiskCreateStubResult
+	CreateOnDedicatedStorageStubResult           *DiskCreateOnDedicatedStorageStubResult
+	ConfigStubResult                             *DiskConfigStubResult
+	CreateWithConfigStubResult                   *DiskCreateWithConfigStubResult
+	CreateOnDedicatedStorageWithConfigStubResult *DiskCreateOnDedicatedStorageWithConfigStubResult
+	ResizePartitionStubResult                    *DiskResizePartitionStubResult
+	ConnectToServerStubResult                    *DiskConnectToServerStubResult
+	DisconnectFromServerStubResult               *DiskDisconnectFromServerStubResult
+	ReadStubResult                               *DiskReadStubResult
+	UpdateStubResult                             *DiskUpdateStubResult
+	DeleteStubResult                             *DiskDeleteStubResult
+	MonitorStubResult                            *DiskMonitorStubResult
+	MonitorDiskStubResult                        *DiskMonitorDiskStubResult
 }
 
 // NewDiskStub creates new DiskStub instance
@@ -1630,6 +1644,14 @@ func (s *DiskStub) Create(ctx context.Context, zone string, createParam *iaas.Di
 	return s.CreateStubResult.Disk, s.CreateStubResult.Err
 }
 
+// CreateOnDedicatedStorage is API call with trace log
+func (s *DiskStub) CreateOnDedicatedStorage(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	if s.CreateOnDedicatedStorageStubResult == nil {
+		log.Fatal("DiskStub.CreateOnDedicatedStorageStubResult is not set")
+	}
+	return s.CreateOnDedicatedStorageStubResult.Disk, s.CreateOnDedicatedStorageStubResult.Err
+}
+
 // Config is API call with trace log
 func (s *DiskStub) Config(ctx context.Context, zone string, id types.ID, edit *iaas.DiskEditRequest) error {
 	if s.ConfigStubResult == nil {
@@ -1644,6 +1666,14 @@ func (s *DiskStub) CreateWithConfig(ctx context.Context, zone string, createPara
 		log.Fatal("DiskStub.CreateWithConfigStubResult is not set")
 	}
 	return s.CreateWithConfigStubResult.Disk, s.CreateWithConfigStubResult.Err
+}
+
+// CreateOnDedicatedStorageWithConfig is API call with trace log
+func (s *DiskStub) CreateOnDedicatedStorageWithConfig(ctx context.Context, zone string, createParam *iaas.DiskCreateRequest, editParam *iaas.DiskEditRequest, bootAtAvailable bool, distantFrom []types.ID, kmeKeyID types.ID, dedicatedStorageContractID types.ID) (*iaas.Disk, error) {
+	if s.CreateOnDedicatedStorageWithConfigStubResult == nil {
+		log.Fatal("DiskStub.CreateOnDedicatedStorageWithConfigStubResult is not set")
+	}
+	return s.CreateOnDedicatedStorageWithConfigStubResult.Disk, s.CreateOnDedicatedStorageWithConfigStubResult.Err
 }
 
 // ResizePartition is API call with trace log
@@ -4133,6 +4163,12 @@ type PrivateHostCreateStubResult struct {
 	Err         error
 }
 
+// PrivateHostCreateWithDedicatedStorageStubResult is expected values of the CreateWithDedicatedStorage operation
+type PrivateHostCreateWithDedicatedStorageStubResult struct {
+	PrivateHost *iaas.PrivateHost
+	Err         error
+}
+
 // PrivateHostReadStubResult is expected values of the Read operation
 type PrivateHostReadStubResult struct {
 	PrivateHost *iaas.PrivateHost
@@ -4152,11 +4188,12 @@ type PrivateHostDeleteStubResult struct {
 
 // PrivateHostStub is for trace PrivateHostOp operations
 type PrivateHostStub struct {
-	FindStubResult   *PrivateHostFindStubResult
-	CreateStubResult *PrivateHostCreateStubResult
-	ReadStubResult   *PrivateHostReadStubResult
-	UpdateStubResult *PrivateHostUpdateStubResult
-	DeleteStubResult *PrivateHostDeleteStubResult
+	FindStubResult                       *PrivateHostFindStubResult
+	CreateStubResult                     *PrivateHostCreateStubResult
+	CreateWithDedicatedStorageStubResult *PrivateHostCreateWithDedicatedStorageStubResult
+	ReadStubResult                       *PrivateHostReadStubResult
+	UpdateStubResult                     *PrivateHostUpdateStubResult
+	DeleteStubResult                     *PrivateHostDeleteStubResult
 }
 
 // NewPrivateHostStub creates new PrivateHostStub instance
@@ -4178,6 +4215,14 @@ func (s *PrivateHostStub) Create(ctx context.Context, zone string, param *iaas.P
 		log.Fatal("PrivateHostStub.CreateStubResult is not set")
 	}
 	return s.CreateStubResult.PrivateHost, s.CreateStubResult.Err
+}
+
+// CreateWithDedicatedStorage is API call with trace log
+func (s *PrivateHostStub) CreateWithDedicatedStorage(ctx context.Context, zone string, createParam *iaas.PrivateHostCreateRequest, dedicatedStorageContractID types.ID) (*iaas.PrivateHost, error) {
+	if s.CreateWithDedicatedStorageStubResult == nil {
+		log.Fatal("PrivateHostStub.CreateWithDedicatedStorageStubResult is not set")
+	}
+	return s.CreateWithDedicatedStorageStubResult.PrivateHost, s.CreateWithDedicatedStorageStubResult.Err
 }
 
 // Read is API call with trace log
