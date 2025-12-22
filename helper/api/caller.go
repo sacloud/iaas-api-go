@@ -19,6 +19,7 @@ import (
 	"time"
 
 	client "github.com/sacloud/api-client-go"
+	"github.com/sacloud/api-client-go/profile"
 	"github.com/sacloud/iaas-api-go"
 	"github.com/sacloud/iaas-api-go/defaults"
 	"github.com/sacloud/iaas-api-go/fake"
@@ -30,7 +31,23 @@ func NewCaller() (iaas.APICaller, error) {
 	if err != nil {
 		return nil, err
 	}
-	return NewCallerWithOptions(&CallerOptions{Options: clientOpts}), nil
+	return NewCallerWithOptions(defaultCallerOption(clientOpts)), nil
+}
+
+func defaultCallerOption(options *client.Options) *CallerOptions {
+	profileValue := options.ProfileConfigValue()
+	if profileValue == nil {
+		profileValue = &profile.ConfigValue{}
+	}
+	return &CallerOptions{
+		Options:       options,
+		APIRootURL:    profileValue.APIRootURL,
+		DefaultZone:   profileValue.DefaultZone,
+		Zones:         profileValue.Zones,
+		TraceAPI:      options.Trace,
+		FakeMode:      profileValue.FakeMode,
+		FakeStorePath: profileValue.FakeStorePath,
+	}
 }
 
 // NewCallerWithOptions 指定のオプションでiaas.APICallerを構築して返す
