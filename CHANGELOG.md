@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.24.1](https://github.com/sacloud/iaas-api-go/compare/v1.24.0...v1.24.1) - 2025-12-22
+- feat: support ConfidentialVM field for query.FindServerPlan() by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/433
+
 ## [v1.24.0](https://github.com/sacloud/iaas-api-go/compare/v1.23.1...v1.24.0) - 2025-12-22
 - feat: Confidential VM by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/427
 - sacloud/api-client-go v0.3.4 by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/429
