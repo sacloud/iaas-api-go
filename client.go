@@ -105,7 +105,9 @@ func NewClientWithOptions(opts *client.Options) *Client {
 		opts.CheckRetryStatusCodes = defaultCheckRetryStatusCodes
 	}
 	var sa saclient.Client
-	sa.CompatSettingsFromAPIClientOptions(opts)
+	if err := sa.CompatSettingsFromAPIClientOptions(opts); err != nil {
+		return nil
+	}
 	return NewClientFromSaclient(&sa)
 }
 
