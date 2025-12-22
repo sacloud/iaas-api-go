@@ -26,6 +26,7 @@ import (
 	client "github.com/sacloud/api-client-go"
 	sacloudhttp "github.com/sacloud/go-http"
 	"github.com/sacloud/iaas-api-go/types"
+	"github.com/sacloud/saclient-go"
 )
 
 var (
@@ -73,10 +74,14 @@ type APICaller interface {
 //
 // リトライ時にcontext.Canceled、またはcontext.DeadlineExceededの場合はリトライしない
 type Client struct {
-	factory *client.Factory
+	sa saclient.ClientAPI
 }
 
+func NewClientFromSaclient(sa saclient.ClientAPI) *Client { return &Client{sa} }
+
 // NewClient APIクライアント作成
+//
+// Deprecated: この関数からは指定できない設定項目がある
 func NewClient(token, secret string) *Client {
 	opts := &client.Options{
 		AccessToken:       token,
@@ -86,17 +91,24 @@ func NewClient(token, secret string) *Client {
 }
 
 // NewClientFromEnv 環境変数からAPIキーを取得してAPIクライアントを作成する
+//
+// Deprecated: これを呼ばなくても環境変数は勝手に読む
 func NewClientFromEnv() *Client {
 	return NewClientWithOptions(client.OptionsFromEnv())
 }
 
 // NewClientWithOptions 指定のオプションでAPIクライアントを作成する
+//
+// Deprecated: この関数からは指定できない設定項目がある
 func NewClientWithOptions(opts *client.Options) *Client {
 	if len(opts.CheckRetryStatusCodes) == 0 {
 		opts.CheckRetryStatusCodes = defaultCheckRetryStatusCodes
 	}
-	factory := client.NewFactory(opts)
-	return &Client{factory: factory}
+	var sa saclient.Client
+	if err := sa.CompatSettingsFromAPIClientOptions(opts); err != nil {
+		return nil
+	}
+	return NewClientFromSaclient(&sa)
 }
 
 // Do APIコール実施
@@ -107,7 +119,7 @@ func (c *Client) Do(ctx context.Context, method, uri string, body interface{}) (
 	}
 
 	// API call
-	resp, err := c.factory.NewHttpRequestDoer().Do(req)
+	resp, err := c.sa.Do(req)
 	if err != nil {
 		return nil, err
 	}
