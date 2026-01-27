@@ -1580,6 +1580,10 @@ func (f *fieldsDef) ProxyLBServers() *dsl.FieldDesc {
 					Name: "Enabled",
 					Type: meta.TypeFlag,
 				},
+				{
+					Name: "ProxySSL",
+					Type: meta.TypeFlag,
+				},
 			},
 		},
 		Tags: &dsl.FieldTags{

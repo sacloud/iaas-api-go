@@ -156,7 +156,8 @@ type ProxyLBServer struct {
 	IPAddress   string `json:",omitempty" yaml:"ip_address,omitempty" structs:",omitempty"` // IPアドレス
 	Port        int    `json:",omitempty" yaml:"port,omitempty" structs:",omitempty"`       // ポート
 	ServerGroup string `yaml:"server_group"`                                                // サーバグループ
-	Enabled     bool   // 有効/無効
+	Enabled     bool   `yaml:"enabled"`                                                     // 有効/無効
+	ProxySSL    bool   `yaml:"proxy_ssl"`                                                   // ProxySSLの有効/無効
 }
 
 // ProxyLBRule ProxyLBの振り分けルール

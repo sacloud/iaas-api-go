@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -21704,6 +21704,7 @@ type ProxyLBServer struct {
 	Port        int
 	ServerGroup string
 	Enabled     bool
+	ProxySSL    bool
 }
 
 // setDefaults implements iaas.argumentDefaulter
@@ -21713,11 +21714,13 @@ func (o *ProxyLBServer) setDefaults() interface{} {
 		Port        int
 		ServerGroup string
 		Enabled     bool
+		ProxySSL    bool
 	}{
 		IPAddress:   o.GetIPAddress(),
 		Port:        o.GetPort(),
 		ServerGroup: o.GetServerGroup(),
 		Enabled:     o.GetEnabled(),
+		ProxySSL:    o.GetProxySSL(),
 	}
 }
 
@@ -21759,6 +21762,16 @@ func (o *ProxyLBServer) GetEnabled() bool {
 // SetEnabled sets value to Enabled
 func (o *ProxyLBServer) SetEnabled(v bool) {
 	o.Enabled = v
+}
+
+// GetProxySSL returns value of ProxySSL
+func (o *ProxyLBServer) GetProxySSL() bool {
+	return o.ProxySSL
+}
+
+// SetProxySSL sets value to ProxySSL
+func (o *ProxyLBServer) SetProxySSL(v bool) {
+	o.ProxySSL = v
 }
 
 /*************************************************
