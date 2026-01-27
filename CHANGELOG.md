@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.25.0](https://github.com/sacloud/iaas-api-go/compare/v1.24.2...v1.25.0) - 2026-01-27
+- docs: typo by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/443
+- feat: added ProxySSL field to EnhancedLB.Servers by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/445
+- Add string representations for load balancer plans by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/446
+- go: bump github.com/sacloud/api-client-go from 0.3.4 to 0.3.5 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/442
+- go: bump github.com/sacloud/saclient-go from 0.2.6 to 0.2.7 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/440
+- go: bump golang.org/x/crypto from 0.46.0 to 0.47.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/439
+
 ## [v1.24.2](https://github.com/sacloud/iaas-api-go/compare/v1.24.1...v1.24.2) - 2026-01-08
 - github.com/sacloud/saclient-go v0.2.6 by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/436
 
