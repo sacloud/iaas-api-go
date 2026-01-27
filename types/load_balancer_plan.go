@@ -25,6 +25,9 @@ var LoadBalancerPlans = struct {
 	HighSpec: ID(2),
 }
 
+// LoadBalancerPlanStrings ロードバランサーのプランを表す文字列
+var LoadBalancerPlanStrings = []string{"standard", "highspec"}
+
 // LoadBalancerPlanNameMap ロードバランサのIDとプラン名のマップ
 var LoadBalancerPlanNameMap = map[ID]string{
 	LoadBalancerPlans.Standard: "standard",
