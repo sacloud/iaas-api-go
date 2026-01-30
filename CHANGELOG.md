@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.25.1](https://github.com/sacloud/iaas-api-go/compare/v1.25.0...v1.25.1) - 2026-01-30
+- tagpr: use custom major/minorLabels by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/448
+
 ## [v1.25.0](https://github.com/sacloud/iaas-api-go/compare/v1.24.2...v1.25.0) - 2026-01-27
 - docs: typo by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/443
 - feat: added ProxySSL field to EnhancedLB.Servers by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/445
