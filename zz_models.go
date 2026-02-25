@@ -28220,7 +28220,7 @@ func (o *SimpleNotificationDestinationCreateRequest) setDefaults() interface{} {
 		Disabled:     o.GetDisabled(),
 		Value:        o.GetValue(),
 		Class:        "saknoticedestination",
-		ServiceClass: "cloud/saknoticedestination/1",
+		ServiceClass: "cloud/saknoticedestination/2",
 	}
 }
 
@@ -28756,7 +28756,7 @@ func (o *SimpleNotificationGroupCreateRequest) setDefaults() interface{} {
 		Disabled:     o.GetDisabled(),
 		Sources:      o.GetSources(),
 		Class:        "saknoticegroup",
-		ServiceClass: "cloud/saknoticegroup/1",
+		ServiceClass: "cloud/saknoticegroup/2",
 	}
 }
 
