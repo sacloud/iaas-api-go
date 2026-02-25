@@ -136,7 +136,7 @@ var (
 			{
 				Name:  "ServiceClass",
 				Type:  meta.TypeString,
-				Value: `"cloud/saknoticedestination/1"`,
+				Value: `"cloud/saknoticedestination/2"`,
 			},
 		},
 		Fields: []*dsl.FieldDesc{
