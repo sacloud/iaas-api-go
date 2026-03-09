@@ -58,7 +58,7 @@ var switchAPI = &dsl.Resource{
 		),
 
 		// disconnect from bridge
-		ops.WithIDAction(switchAPIName, "DisconnectFromBridge", http.MethodDelete, "to/bridge/"),
+		ops.WithIDAction(switchAPIName, "DisconnectFromBridge", http.MethodDelete, "to/bridge"),
 
 		// find connected servers
 		{
