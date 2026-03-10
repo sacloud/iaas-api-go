@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.26.0](https://github.com/sacloud/iaas-api-go/compare/v1.25.0...v1.26.0) - 2026-03-10
+- tagpr: use custom major/minorLabels by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/448
+- go: bump github.com/sacloud/saclient-go from 0.2.7 to 0.3.1 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/450
+- feat: update constant value for simple-notification by @sugyan in https://github.com/sacloud/iaas-api-go/pull/452
+- Remove trailing slash by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/453
+- go: bump golang.org/x/crypto from 0.47.0 to 0.48.0 by @dependabot[bot] in https://github.com/sacloud/iaas-api-go/pull/451
+
 ## [v1.25.0](https://github.com/sacloud/iaas-api-go/compare/v1.24.2...v1.25.0) - 2026-01-27
 - docs: typo by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/443
 - feat: added ProxySSL field to EnhancedLB.Servers by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/445
