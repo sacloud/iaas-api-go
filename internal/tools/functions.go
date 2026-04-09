@@ -30,12 +30,16 @@ type TemplateConfig struct {
 	Template           string
 	Parameter          interface{}
 	PreventOverwriting bool
+	FuncMap            template.FuncMap // 追加: テンプレート関数
 }
 
 // WriteFileWithTemplate 指定の設定に従いファイル出力
 func WriteFileWithTemplate(config *TemplateConfig) bool {
 	buf := bytes.NewBufferString("")
 	t := template.New("t")
+	if config.FuncMap != nil {
+		t = t.Funcs(config.FuncMap)
+	}
 	template.Must(t.Parse(config.Template))
 	if err := t.Execute(buf, config.Parameter); err != nil {
 		log.Fatalf("writing output: %s", err)

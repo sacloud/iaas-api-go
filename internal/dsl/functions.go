@@ -47,6 +47,11 @@ func toSnakeCaseName(name string) string {
 	return strings.ReplaceAll(normalizeResourceName(xstrings.ToSnakeCase(name)), "-", "_")
 }
 
+// ToSnakeCaseName はCamelCaseの名前をsnake_caseに変換する（ジェネレータ向けエクスポート関数）
+func ToSnakeCaseName(name string) string {
+	return toSnakeCaseName(name)
+}
+
 func toLower(name string) string {
 	return strings.ReplaceAll(normalizeResourceName(xstrings.ToSnakeCase(name)), "_", "")
 }

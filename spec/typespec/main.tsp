@@ -1,0 +1,29 @@
+// Copyright 2022-2025 The sacloud/iaas-api-go Authors
+
+import "@typespec/http";
+import "@typespec/openapi3";
+
+import "./resources.tsp";
+import "./types.tsp";
+
+@service(#{ title: "Sakura Cloud IaaS API" })
+// @route("/api/cloud/1.1")
+namespace Sacloud.IaaS;
+
+using TypeSpec.Http;
+
+// カスタム型定義
+scalar ID extends string;
+scalar Tags;
+scalar StringNumber extends string;
+scalar StringFlag extends string;
+
+// API エラーレスポンス
+@error
+model ApiError {
+  is_fatal?: boolean;
+  serial?: string;
+  status?: string;
+  error_code?: string;
+  error_msg?: string;
+}
