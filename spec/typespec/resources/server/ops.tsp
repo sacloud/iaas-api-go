@@ -14,7 +14,7 @@ interface ServerOp {
   @route("/{zone}/api/cloud/1.1/server")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: ServerFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): ServerFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface ServerOp {
   @route("/{zone}/api/cloud/1.1/server")
   create(
     @path zone: string,
-    param: ServerCreateRequest,
+    @body body: ServerCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): ServerCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface ServerOp {
   update(
     @path zone: string,
     @path id: string,
-    param: ServerUpdateRequest,
+    @body body: ServerUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): ServerUpdateResponseEnvelope | ApiError;
 
@@ -57,7 +57,7 @@ interface ServerOp {
   changePlan(
     @path zone: string,
     @path id: string,
-    plan: ServerChangePlanRequest,
+    @body body: ServerChangePlanRequestEnvelope,
     ...CommonRequestHeaders,
   ): ServerChangePlanResponseEnvelope | ApiError;
 
@@ -66,7 +66,7 @@ interface ServerOp {
   insertCDROM(
     @path zone: string,
     @path id: string,
-    insertParam: InsertCDROMRequest,
+    @body body: ServerInsertCDROMRequestEnvelope,
     ...CommonRequestHeaders,
   ): void | ApiError;
 
@@ -75,7 +75,7 @@ interface ServerOp {
   ejectCDROM(
     @path zone: string,
     @path id: string,
-    ejectParam: EjectCDROMRequest,
+    @body body: ServerEjectCDROMRequestEnvelope,
     ...CommonRequestHeaders,
   ): void | ApiError;
 
@@ -93,7 +93,7 @@ interface ServerOp {
   shutdown(
     @path zone: string,
     @path id: string,
-    shutdownOption: ShutdownOption,
+    @body body: ServerShutdownRequestEnvelope,
     ...CommonRequestHeaders,
   ): void | ApiError;
 
@@ -110,7 +110,7 @@ interface ServerOp {
   sendKey(
     @path zone: string,
     @path id: string,
-    keyboardParam: SendKeyRequest,
+    @body body: ServerSendKeyRequestEnvelope,
     ...CommonRequestHeaders,
   ): void | ApiError;
 

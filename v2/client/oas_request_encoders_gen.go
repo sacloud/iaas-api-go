@@ -123,7 +123,7 @@ func encodeArchiveOpCreateRequest(
 }
 
 func encodeArchiveOpFindRequest(
-	req *ArchiveOpFindReq,
+	req *ArchiveFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -165,7 +165,7 @@ func encodeArchiveOpTransferRequest(
 }
 
 func encodeArchiveOpUpdateRequest(
-	req *ArchiveOpUpdateReq,
+	req *ArchiveUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -179,7 +179,7 @@ func encodeArchiveOpUpdateRequest(
 }
 
 func encodeBridgeOpCreateRequest(
-	req *BridgeOpCreateReq,
+	req *BridgeCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -193,7 +193,7 @@ func encodeBridgeOpCreateRequest(
 }
 
 func encodeBridgeOpFindRequest(
-	req *BridgeOpFindReq,
+	req *BridgeFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -207,7 +207,7 @@ func encodeBridgeOpFindRequest(
 }
 
 func encodeBridgeOpUpdateRequest(
-	req *BridgeOpUpdateReq,
+	req *BridgeUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -221,7 +221,7 @@ func encodeBridgeOpUpdateRequest(
 }
 
 func encodeCDROMOpCreateRequest(
-	req *CDROMOpCreateReq,
+	req *CDROMCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -235,7 +235,7 @@ func encodeCDROMOpCreateRequest(
 }
 
 func encodeCDROMOpFindRequest(
-	req *CDROMOpFindReq,
+	req *CDROMFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -249,7 +249,7 @@ func encodeCDROMOpFindRequest(
 }
 
 func encodeCDROMOpOpenFTPRequest(
-	req *CDROMOpOpenFTPReq,
+	req *CDROMOpenFTPRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -263,7 +263,7 @@ func encodeCDROMOpOpenFTPRequest(
 }
 
 func encodeCDROMOpUpdateRequest(
-	req *CDROMOpUpdateReq,
+	req *CDROMUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -403,7 +403,7 @@ func encodeDatabaseOpSetParameterRequest(
 }
 
 func encodeDiskOpConfigRequest(
-	req *DiskOpConfigReq,
+	req *DiskConfigRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -431,7 +431,7 @@ func encodeDiskOpCreateRequest(
 }
 
 func encodeDiskOpFindRequest(
-	req *DiskOpFindReq,
+	req *DiskFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -459,7 +459,7 @@ func encodeDiskOpMonitorRequest(
 }
 
 func encodeDiskOpResizePartitionRequest(
-	req *DiskOpResizePartitionReq,
+	req *DiskResizePartitionRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -473,7 +473,7 @@ func encodeDiskOpResizePartitionRequest(
 }
 
 func encodeDiskOpUpdateRequest(
-	req *DiskOpUpdateReq,
+	req *DiskUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -487,7 +487,7 @@ func encodeDiskOpUpdateRequest(
 }
 
 func encodeDiskPlanOpFindRequest(
-	req *DiskPlanOpFindReq,
+	req *DiskPlanFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -557,7 +557,7 @@ func encodeEnhancedDBOpSetPasswordRequest(
 }
 
 func encodeIPAddressOpUpdateHostNameRequest(
-	req *IPAddressOpUpdateHostNameReq,
+	req *IPAddressUpdateHostNameRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -571,7 +571,7 @@ func encodeIPAddressOpUpdateHostNameRequest(
 }
 
 func encodeIPv6AddrOpCreateRequest(
-	req *IPv6AddrOpCreateReq,
+	req *IPv6AddrCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -585,7 +585,7 @@ func encodeIPv6AddrOpCreateRequest(
 }
 
 func encodeIPv6AddrOpFindRequest(
-	req *IPv6AddrOpFindReq,
+	req *IPv6AddrFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -599,7 +599,7 @@ func encodeIPv6AddrOpFindRequest(
 }
 
 func encodeIPv6AddrOpUpdateRequest(
-	req *IPv6AddrOpUpdateReq,
+	req *IPv6AddrUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -627,7 +627,7 @@ func encodeIPv6NetOpListRequest(
 }
 
 func encodeIconOpCreateRequest(
-	req *IconOpCreateReq,
+	req *IconCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -641,7 +641,7 @@ func encodeIconOpCreateRequest(
 }
 
 func encodeIconOpFindRequest(
-	req *IconOpFindReq,
+	req *IconFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -655,7 +655,7 @@ func encodeIconOpFindRequest(
 }
 
 func encodeIconOpUpdateRequest(
-	req *IconOpUpdateReq,
+	req *IconUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -669,7 +669,7 @@ func encodeIconOpUpdateRequest(
 }
 
 func encodeInterfaceOpCreateRequest(
-	req *InterfaceOpCreateReq,
+	req *InterfaceCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -683,7 +683,7 @@ func encodeInterfaceOpCreateRequest(
 }
 
 func encodeInterfaceOpFindRequest(
-	req *InterfaceOpFindReq,
+	req *InterfaceFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -697,7 +697,7 @@ func encodeInterfaceOpFindRequest(
 }
 
 func encodeInterfaceOpMonitorRequest(
-	req *InterfaceOpMonitorReq,
+	req *InterfaceMonitorRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -711,7 +711,7 @@ func encodeInterfaceOpMonitorRequest(
 }
 
 func encodeInterfaceOpUpdateRequest(
-	req *InterfaceOpUpdateReq,
+	req *InterfaceUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -725,7 +725,7 @@ func encodeInterfaceOpUpdateRequest(
 }
 
 func encodeInternetOpAddSubnetRequest(
-	req *InternetOpAddSubnetReq,
+	req *InternetAddSubnetRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -739,7 +739,7 @@ func encodeInternetOpAddSubnetRequest(
 }
 
 func encodeInternetOpCreateRequest(
-	req *InternetOpCreateReq,
+	req *InternetCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -753,7 +753,7 @@ func encodeInternetOpCreateRequest(
 }
 
 func encodeInternetOpFindRequest(
-	req *InternetOpFindReq,
+	req *InternetFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -781,7 +781,7 @@ func encodeInternetOpMonitorRequest(
 }
 
 func encodeInternetOpUpdateRequest(
-	req *InternetOpUpdateReq,
+	req *InternetUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -795,7 +795,7 @@ func encodeInternetOpUpdateRequest(
 }
 
 func encodeInternetOpUpdateBandWidthRequest(
-	req *InternetOpUpdateBandWidthReq,
+	req *InternetUpdateBandWidthRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -809,7 +809,7 @@ func encodeInternetOpUpdateBandWidthRequest(
 }
 
 func encodeInternetOpUpdateSubnetRequest(
-	req *InternetOpUpdateSubnetReq,
+	req *InternetUpdateSubnetRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -823,7 +823,7 @@ func encodeInternetOpUpdateSubnetRequest(
 }
 
 func encodeInternetPlanOpFindRequest(
-	req *InternetPlanOpFindReq,
+	req *InternetPlanFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -837,7 +837,7 @@ func encodeInternetPlanOpFindRequest(
 }
 
 func encodeLicenseInfoOpFindRequest(
-	req *LicenseInfoOpFindReq,
+	req *LicenseInfoFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -851,7 +851,7 @@ func encodeLicenseInfoOpFindRequest(
 }
 
 func encodeLicenseOpCreateRequest(
-	req *LicenseOpCreateReq,
+	req *LicenseCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -865,7 +865,7 @@ func encodeLicenseOpCreateRequest(
 }
 
 func encodeLicenseOpFindRequest(
-	req *LicenseOpFindReq,
+	req *LicenseFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -879,7 +879,7 @@ func encodeLicenseOpFindRequest(
 }
 
 func encodeLicenseOpUpdateRequest(
-	req *LicenseOpUpdateReq,
+	req *LicenseUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -963,7 +963,7 @@ func encodeMobileGatewayOpSetTrafficConfigRequest(
 }
 
 func encodeNoteOpCreateRequest(
-	req *NoteOpCreateReq,
+	req *NoteCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -977,7 +977,7 @@ func encodeNoteOpCreateRequest(
 }
 
 func encodeNoteOpFindRequest(
-	req *NoteOpFindReq,
+	req *NoteFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -991,7 +991,7 @@ func encodeNoteOpFindRequest(
 }
 
 func encodeNoteOpUpdateRequest(
-	req *NoteOpUpdateReq,
+	req *NoteUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1005,7 +1005,7 @@ func encodeNoteOpUpdateRequest(
 }
 
 func encodePacketFilterOpCreateRequest(
-	req *PacketFilterOpCreateReq,
+	req *PacketFilterCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1019,7 +1019,7 @@ func encodePacketFilterOpCreateRequest(
 }
 
 func encodePacketFilterOpFindRequest(
-	req *PacketFilterOpFindReq,
+	req *PacketFilterFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1033,7 +1033,7 @@ func encodePacketFilterOpFindRequest(
 }
 
 func encodePacketFilterOpUpdateRequest(
-	req *PacketFilterOpUpdateReq,
+	req *PacketFilterUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1061,7 +1061,7 @@ func encodePrivateHostOpCreateRequest(
 }
 
 func encodePrivateHostOpFindRequest(
-	req *PrivateHostOpFindReq,
+	req *PrivateHostFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1075,7 +1075,7 @@ func encodePrivateHostOpFindRequest(
 }
 
 func encodePrivateHostOpUpdateRequest(
-	req *PrivateHostOpUpdateReq,
+	req *PrivateHostUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1089,7 +1089,7 @@ func encodePrivateHostOpUpdateRequest(
 }
 
 func encodePrivateHostPlanOpFindRequest(
-	req *PrivateHostPlanOpFindReq,
+	req *PrivateHostPlanFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1145,7 +1145,7 @@ func encodeProxyLBOpSetCertificatesRequest(
 }
 
 func encodeRegionOpFindRequest(
-	req *RegionOpFindReq,
+	req *RegionFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1215,7 +1215,7 @@ func encodeSIMOpSetNetworkOperatorRequest(
 }
 
 func encodeSSHKeyOpCreateRequest(
-	req *SSHKeyOpCreateReq,
+	req *SSHKeyCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1229,7 +1229,7 @@ func encodeSSHKeyOpCreateRequest(
 }
 
 func encodeSSHKeyOpFindRequest(
-	req *SSHKeyOpFindReq,
+	req *SSHKeyFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1243,7 +1243,7 @@ func encodeSSHKeyOpFindRequest(
 }
 
 func encodeSSHKeyOpUpdateRequest(
-	req *SSHKeyOpUpdateReq,
+	req *SSHKeyUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1271,7 +1271,7 @@ func encodeServerOpBootRequest(
 }
 
 func encodeServerOpChangePlanRequest(
-	req *ServerOpChangePlanReq,
+	req *ServerChangePlanRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1285,7 +1285,7 @@ func encodeServerOpChangePlanRequest(
 }
 
 func encodeServerOpCreateRequest(
-	req *ServerOpCreateReq,
+	req *ServerCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1313,7 +1313,7 @@ func encodeServerOpDeleteRequest(
 }
 
 func encodeServerOpEjectCDROMRequest(
-	req *ServerOpEjectCDROMReq,
+	req *ServerEjectCDROMRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1327,7 +1327,7 @@ func encodeServerOpEjectCDROMRequest(
 }
 
 func encodeServerOpFindRequest(
-	req *ServerOpFindReq,
+	req *ServerFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1341,7 +1341,7 @@ func encodeServerOpFindRequest(
 }
 
 func encodeServerOpInsertCDROMRequest(
-	req *ServerOpInsertCDROMReq,
+	req *ServerInsertCDROMRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1369,7 +1369,7 @@ func encodeServerOpMonitorRequest(
 }
 
 func encodeServerOpSendKeyRequest(
-	req *ServerOpSendKeyReq,
+	req *ServerSendKeyRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1383,7 +1383,7 @@ func encodeServerOpSendKeyRequest(
 }
 
 func encodeServerOpShutdownRequest(
-	req *ServerOpShutdownReq,
+	req *ServerShutdownRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1397,7 +1397,7 @@ func encodeServerOpShutdownRequest(
 }
 
 func encodeServerOpUpdateRequest(
-	req *ServerOpUpdateReq,
+	req *ServerUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1411,7 +1411,7 @@ func encodeServerOpUpdateRequest(
 }
 
 func encodeServerPlanOpFindRequest(
-	req *ServerPlanOpFindReq,
+	req *ServerPlanFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1425,7 +1425,7 @@ func encodeServerPlanOpFindRequest(
 }
 
 func encodeServiceClassOpFindRequest(
-	req *ServiceClassOpFindReq,
+	req *ServiceClassFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1467,7 +1467,7 @@ func encodeSimpleNotificationGroupOpPostMessageRequest(
 }
 
 func encodeSubnetOpFindRequest(
-	req *SubnetOpFindReq,
+	req *SubnetFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1481,7 +1481,7 @@ func encodeSubnetOpFindRequest(
 }
 
 func encodeSwitchOpCreateRequest(
-	req *SwitchOpCreateReq,
+	req *SwitchCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1495,7 +1495,7 @@ func encodeSwitchOpCreateRequest(
 }
 
 func encodeSwitchOpFindRequest(
-	req *SwitchOpFindReq,
+	req *SwitchFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1509,7 +1509,7 @@ func encodeSwitchOpFindRequest(
 }
 
 func encodeSwitchOpUpdateRequest(
-	req *SwitchOpUpdateReq,
+	req *SwitchUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1523,7 +1523,7 @@ func encodeSwitchOpUpdateRequest(
 }
 
 func encodeZoneOpFindRequest(
-	req *ZoneOpFindReq,
+	req *ZoneFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"

@@ -14,7 +14,7 @@ interface LicenseInfoOp {
   @route("/{zone}/api/cloud/1.1/product/license")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: LicenseInfoFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): LicenseInfoFindResponseEnvelope | ApiError;
 

@@ -14,7 +14,7 @@ interface ServiceClassOp {
   @route("/{zone}/api/cloud/1.1/public/price")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: ServiceClassFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): ServiceClassFindResponseEnvelope | ApiError;
 }

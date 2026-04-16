@@ -576,6 +576,65 @@ func (s *ArchiveCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ArchiveFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ArchiveFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *ArchiveFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -616,15 +675,6 @@ func (s *ArchiveOpCreateReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ArchiveOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *ArchiveOpShareReq) SetFake() {
 	{
 		{
@@ -635,15 +685,6 @@ func (s *ArchiveOpShareReq) SetFake() {
 
 // SetFake set fake values.
 func (s *ArchiveOpTransferReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ArchiveOpUpdateReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
@@ -718,32 +759,10 @@ func (s *ArchiveTransferResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ArchiveUpdateRequest) SetFake() {
+func (s *ArchiveUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.Archive.SetFake()
 		}
 	}
 }
@@ -1509,15 +1528,10 @@ func (s *Bridge) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *BridgeCreateRequest) SetFake() {
+func (s *BridgeCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
+			s.Bridge.SetFake()
 		}
 	}
 }
@@ -1538,6 +1552,65 @@ func (s *BridgeCreateResponseEnvelope) SetFake() {
 		{
 			s.Bridge.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *BridgeFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *BridgeFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -1597,33 +1670,6 @@ func (s *BridgeInfo) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *BridgeOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BridgeOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BridgeOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *BridgeReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -1672,15 +1718,10 @@ func (s *BridgeSwitchInfo) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *BridgeUpdateRequest) SetFake() {
+func (s *BridgeUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
+			s.Bridge.SetFake()
 		}
 	}
 }
@@ -1795,37 +1836,10 @@ func (s *CDROM) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *CDROMCreateRequest) SetFake() {
+func (s *CDROMCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.SizeMB = int32(0)
-		}
-	}
-	{
-		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.CDROM.SetFake()
 		}
 	}
 }
@@ -1851,6 +1865,65 @@ func (s *CDROMCreateResponseEnvelope) SetFake() {
 		{
 			s.FTPServer.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CDROMFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CDROMFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -1886,37 +1959,10 @@ func (s *CDROMFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *CDROMOpCreateReq) SetFake() {
+func (s *CDROMOpenFTPRequestEnvelope) SetFake() {
 	{
 		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CDROMOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CDROMOpOpenFTPReq) SetFake() {
-	{
-		{
-			s.OpenOption.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CDROMOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
+			s.ChangePassword = true
 		}
 	}
 }
@@ -1960,32 +2006,10 @@ func (s *CDROMReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *CDROMUpdateRequest) SetFake() {
+func (s *CDROMUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.CDROM.SetFake()
 		}
 	}
 }
@@ -3472,20 +3496,6 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetFake
 }
 
 // SetFake set fake values.
-func (s *ConnectedSwitch) SetFake() {
-	{
-		{
-			s.ID = int64(0)
-		}
-	}
-	{
-		{
-			s.Scope.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *ContainerRegistryListUsersResponseEnvelope) SetFake() {
 	{
 		{
@@ -4644,6 +4654,79 @@ func (s *Disk) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *DiskConfigRequestEnvelope) SetFake() {
+	{
+		{
+			s.Background = true
+		}
+	}
+	{
+		{
+			s.Password = "string"
+		}
+	}
+	{
+		{
+			s.SSHKey.SetFake()
+		}
+	}
+	{
+		{
+			s.SSHKeys = nil
+			for i := 0; i < 0; i++ {
+				var elem DiskEditSSHKey
+				{
+					elem.SetFake()
+				}
+				s.SSHKeys = append(s.SSHKeys, elem)
+			}
+		}
+	}
+	{
+		{
+			s.DisablePWAuth = true
+		}
+	}
+	{
+		{
+			s.EnableDHCP = true
+		}
+	}
+	{
+		{
+			s.ChangePartitionUUID = true
+		}
+	}
+	{
+		{
+			s.HostName = "string"
+		}
+	}
+	{
+		{
+			s.Notes = nil
+			for i := 0; i < 0; i++ {
+				var elem DiskEditNote
+				{
+					elem.SetFake()
+				}
+				s.Notes = append(s.Notes, elem)
+			}
+		}
+	}
+	{
+		{
+			s.UserIPAddress = "string"
+		}
+	}
+	{
+		{
+			s.UserSubnet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *DiskCreateRequest) SetFake() {
 	{
 		{
@@ -4860,6 +4943,65 @@ func (s *DiskEditUserSubnet) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *DiskFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *DiskFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -4910,15 +5052,6 @@ func (s *DiskMonitorResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *DiskOpConfigReq) SetFake() {
-	{
-		{
-			s.Edit.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *DiskOpCreateReq) SetFake() {
 	{
 		{
@@ -4960,37 +5093,10 @@ func (s *DiskOpCreateReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *DiskOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *DiskOpMonitorReq) SetFake() {
 	{
 		{
 			s.Condition.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *DiskOpResizePartitionReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *DiskOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
 		}
 	}
 }
@@ -5032,6 +5138,65 @@ func (s *DiskPlan) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *DiskPlanFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskPlanFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *DiskPlanFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -5058,15 +5223,6 @@ func (s *DiskPlanFindResponseEnvelope) SetFake() {
 				}
 				s.DiskPlans = append(s.DiskPlans, elem)
 			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *DiskPlanOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }
@@ -5134,7 +5290,7 @@ func (s *DiskReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *DiskResizePartitionRequest) SetFake() {
+func (s *DiskResizePartitionRequestEnvelope) SetFake() {
 	{
 		{
 			s.Background = true
@@ -5143,37 +5299,10 @@ func (s *DiskResizePartitionRequest) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *DiskUpdateRequest) SetFake() {
+func (s *DiskUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
-		}
-	}
-	{
-		{
-			s.Connection.SetFake()
+			s.Disk.SetFake()
 		}
 	}
 }
@@ -5658,15 +5787,6 @@ func (s *EUpstreamNetworkType) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *EjectCDROMRequest) SetFake() {
-	{
-		{
-			s.ID = int64(0)
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *EnhancedDBConfig) SetFake() {
 	{
 		{
@@ -5914,15 +6034,6 @@ func (s *IPAddressListResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IPAddressOpUpdateHostNameReq) SetFake() {
-	{
-		{
-			s.HostName = "string"
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *IPAddressReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -5934,6 +6045,15 @@ func (s *IPAddressReadResponseEnvelope) SetFake() {
 			s.Success = "string"
 		}
 	}
+	{
+		{
+			s.IPAddress.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IPAddressUpdateHostNameRequestEnvelope) SetFake() {
 	{
 		{
 			s.IPAddress.SetFake()
@@ -5990,15 +6110,10 @@ func (s *IPv6Addr) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IPv6AddrCreateRequest) SetFake() {
+func (s *IPv6AddrCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.IPv6Addr = "string"
-		}
-	}
-	{
-		{
-			s.HostName = "string"
+			s.IPv6Addr.SetFake()
 		}
 	}
 }
@@ -6019,6 +6134,65 @@ func (s *IPv6AddrCreateResponseEnvelope) SetFake() {
 		{
 			s.IPv6Addr.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IPv6AddrFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IPv6AddrFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -6054,33 +6228,6 @@ func (s *IPv6AddrFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IPv6AddrOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IPv6AddrOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IPv6AddrOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *IPv6AddrReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -6100,10 +6247,10 @@ func (s *IPv6AddrReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IPv6AddrUpdateRequest) SetFake() {
+func (s *IPv6AddrUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.HostName = "string"
+			s.IPv6Addr.SetFake()
 		}
 	}
 }
@@ -6257,27 +6404,10 @@ func (s *Icon) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IconCreateRequest) SetFake() {
+func (s *IconCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Image = "string"
+			s.Icon.SetFake()
 		}
 	}
 }
@@ -6298,6 +6428,65 @@ func (s *IconCreateResponseEnvelope) SetFake() {
 		{
 			s.Icon.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IconFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IconFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -6333,33 +6522,6 @@ func (s *IconFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IconOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IconOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IconOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *IconReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -6379,22 +6541,10 @@ func (s *IconReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IconUpdateRequest) SetFake() {
+func (s *IconUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
+			s.Icon.SetFake()
 		}
 	}
 }
@@ -6419,19 +6569,10 @@ func (s *IconUpdateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InsertCDROMRequest) SetFake() {
+func (s *InterfaceCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.ID = int64(0)
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceCreateRequest) SetFake() {
-	{
-		{
-			s.ServerID = int64(0)
+			s.Interface.SetFake()
 		}
 	}
 }
@@ -6452,6 +6593,65 @@ func (s *InterfaceCreateResponseEnvelope) SetFake() {
 		{
 			s.Interface.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -6487,6 +6687,20 @@ func (s *InterfaceFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *InterfaceMonitorRequestEnvelope) SetFake() {
+	{
+		{
+			s.Start = time.Now()
+		}
+	}
+	{
+		{
+			s.End = time.Now()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *InterfaceMonitorResponseEnvelope) SetFake() {
 	{
 		{
@@ -6501,42 +6715,6 @@ func (s *InterfaceMonitorResponseEnvelope) SetFake() {
 	{
 		{
 			s.Data = []byte("null")
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceOpMonitorReq) SetFake() {
-	{
-		{
-			s.Condition.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
 		}
 	}
 }
@@ -6561,10 +6739,10 @@ func (s *InterfaceReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InterfaceUpdateRequest) SetFake() {
+func (s *InterfaceUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.UserIPAddress = "string"
+			s.Interface.SetFake()
 		}
 	}
 }
@@ -6739,7 +6917,7 @@ func (s *Internet) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetAddSubnetRequest) SetFake() {
+func (s *InternetAddSubnetRequestEnvelope) SetFake() {
 	{
 		{
 			s.NetworkMaskLen = int32(0)
@@ -6772,42 +6950,10 @@ func (s *InternetAddSubnetResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetCreateRequest) SetFake() {
+func (s *InternetCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
-		}
-	}
-	{
-		{
-			s.NetworkMaskLen = int32(0)
-		}
-	}
-	{
-		{
-			s.BandWidthMbps = int32(0)
+			s.Internet.SetFake()
 		}
 	}
 }
@@ -6847,6 +6993,65 @@ func (s *InternetEnableIPv6ResponseEnvelope) SetFake() {
 		{
 			s.IPv6Net.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -6901,64 +7106,10 @@ func (s *InternetMonitorResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetOpAddSubnetReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *InternetOpMonitorReq) SetFake() {
 	{
 		{
 			s.Condition.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetOpUpdateBandWidthReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetOpUpdateSubnetReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
 		}
 	}
 }
@@ -6984,6 +7135,65 @@ func (s *InternetPlan) SetFake() {
 		{
 			s.Availability.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetPlanFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetPlanFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -7014,15 +7224,6 @@ func (s *InternetPlanFindResponseEnvelope) SetFake() {
 				}
 				s.InternetPlans = append(s.InternetPlans, elem)
 			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetPlanOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }
@@ -7100,10 +7301,10 @@ func (s *InternetSubnet) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetUpdateBandWidthRequest) SetFake() {
+func (s *InternetUpdateBandWidthRequestEnvelope) SetFake() {
 	{
 		{
-			s.BandWidthMbps = int32(0)
+			s.Internet.SetFake()
 		}
 	}
 }
@@ -7128,32 +7329,10 @@ func (s *InternetUpdateBandWidthResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetUpdateRequest) SetFake() {
+func (s *InternetUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.Internet.SetFake()
 		}
 	}
 }
@@ -7178,7 +7357,7 @@ func (s *InternetUpdateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetUpdateSubnetRequest) SetFake() {
+func (s *InternetUpdateSubnetRequestEnvelope) SetFake() {
 	{
 		{
 			s.NextHop = "string"
@@ -7273,15 +7452,10 @@ func (s *License) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *LicenseCreateRequest) SetFake() {
+func (s *LicenseCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.LicenseInfoID = int64(0)
+			s.License.SetFake()
 		}
 	}
 }
@@ -7302,6 +7476,65 @@ func (s *LicenseCreateResponseEnvelope) SetFake() {
 		{
 			s.License.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *LicenseFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *LicenseFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -7366,6 +7599,65 @@ func (s *LicenseInfo) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *LicenseInfoFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *LicenseInfoFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *LicenseInfoFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -7397,15 +7689,6 @@ func (s *LicenseInfoFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *LicenseInfoOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *LicenseInfoReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -7420,33 +7703,6 @@ func (s *LicenseInfoReadResponseEnvelope) SetFake() {
 	{
 		{
 			s.LicenseInfo.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *LicenseOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *LicenseOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *LicenseOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
 		}
 	}
 }
@@ -7471,10 +7727,10 @@ func (s *LicenseReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *LicenseUpdateRequest) SetFake() {
+func (s *LicenseUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
+			s.License.SetFake()
 		}
 	}
 }
@@ -8195,37 +8451,10 @@ func (s *Note) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *NoteCreateRequest) SetFake() {
+func (s *NoteCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
-		}
-	}
-	{
-		{
-			s.Class = "string"
-		}
-	}
-	{
-		{
-			s.Content = "string"
+			s.Note.SetFake()
 		}
 	}
 }
@@ -8246,6 +8475,65 @@ func (s *NoteCreateResponseEnvelope) SetFake() {
 		{
 			s.Note.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *NoteFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *NoteFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -8281,33 +8569,6 @@ func (s *NoteFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *NoteOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *NoteOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *NoteOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *NoteReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -8327,37 +8588,10 @@ func (s *NoteReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *NoteUpdateRequest) SetFake() {
+func (s *NoteUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
-		}
-	}
-	{
-		{
-			s.Class = "string"
-		}
-	}
-	{
-		{
-			s.Content = "string"
+			s.Note.SetFake()
 		}
 	}
 }
@@ -8968,27 +9202,10 @@ func (s *PacketFilter) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PacketFilterCreateRequest) SetFake() {
+func (s *PacketFilterCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Expression = nil
-			for i := 0; i < 0; i++ {
-				var elem PacketFilterExpression
-				{
-					elem.SetFake()
-				}
-				s.Expression = append(s.Expression, elem)
-			}
+			s.PacketFilter.SetFake()
 		}
 	}
 }
@@ -9047,6 +9264,65 @@ func (s *PacketFilterExpression) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *PacketFilterFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *PacketFilterFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *PacketFilterFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -9078,38 +9354,6 @@ func (s *PacketFilterFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PacketFilterOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PacketFilterOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PacketFilterOpUpdateReq) SetFake() {
-	{
-		{
-			s.UpdateParam.SetFake()
-		}
-	}
-	{
-		{
-			s.OriginalExpressionHash = "string"
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *PacketFilterReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -9129,27 +9373,15 @@ func (s *PacketFilterReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PacketFilterUpdateRequest) SetFake() {
+func (s *PacketFilterUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
+			s.PacketFilter.SetFake()
 		}
 	}
 	{
 		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Expression = nil
-			for i := 0; i < 0; i++ {
-				var elem PacketFilterExpression
-				{
-					elem.SetFake()
-				}
-				s.Expression = append(s.Expression, elem)
-			}
+			s.OriginalExpressionHash = "string"
 		}
 	}
 }
@@ -9384,6 +9616,65 @@ func (s *PrivateHostCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *PrivateHostFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *PrivateHostFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *PrivateHostFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -9434,24 +9725,6 @@ func (s *PrivateHostOpCreateReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PrivateHostOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PrivateHostOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *PrivateHostPlan) SetFake() {
 	{
 		{
@@ -9496,6 +9769,65 @@ func (s *PrivateHostPlan) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *PrivateHostPlanFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *PrivateHostPlanFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *PrivateHostPlanFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -9522,15 +9854,6 @@ func (s *PrivateHostPlanFindResponseEnvelope) SetFake() {
 				}
 				s.PrivateHostPlans = append(s.PrivateHostPlans, elem)
 			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PrivateHostPlanOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }
@@ -9574,32 +9897,10 @@ func (s *PrivateHostReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PrivateHostUpdateRequest) SetFake() {
+func (s *PrivateHostUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.PrivateHost.SetFake()
 		}
 	}
 }
@@ -10351,6 +10652,65 @@ func (s *Region) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *RegionFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *RegionFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *RegionFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -10377,15 +10737,6 @@ func (s *RegionFindResponseEnvelope) SetFake() {
 				}
 				s.Regions = append(s.Regions, elem)
 			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *RegionOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }
@@ -10633,20 +10984,10 @@ func (s *SSHKey) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SSHKeyCreateRequest) SetFake() {
+func (s *SSHKeyCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.PublicKey = "string"
+			s.SSHKey.SetFake()
 		}
 	}
 }
@@ -10667,6 +11008,65 @@ func (s *SSHKeyCreateResponseEnvelope) SetFake() {
 		{
 			s.SSHKey.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SSHKeyFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SSHKeyFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -10702,33 +11102,6 @@ func (s *SSHKeyFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SSHKeyOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SSHKeyOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SSHKeyOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *SSHKeyReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -10748,15 +11121,10 @@ func (s *SSHKeyReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SSHKeyUpdateRequest) SetFake() {
+func (s *SSHKeyUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
+			s.SSHKey.SetFake()
 		}
 	}
 }
@@ -10776,27 +11144,6 @@ func (s *SSHKeyUpdateResponseEnvelope) SetFake() {
 	{
 		{
 			s.SSHKey.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SendKeyRequest) SetFake() {
-	{
-		{
-			s.Key = "string"
-		}
-	}
-	{
-		{
-			s.Keys = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Keys = append(s.Keys, elem)
-			}
 		}
 	}
 }
@@ -11045,6 +11392,45 @@ func (s *ServerChangePlanRequest) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerChangePlanRequestEnvelope) SetFake() {
+	{
+		{
+			s.CPU = int32(0)
+		}
+	}
+	{
+		{
+			s.MemoryMB = int32(0)
+		}
+	}
+	{
+		{
+			s.GPU = int32(0)
+		}
+	}
+	{
+		{
+			s.GPUModel = "string"
+		}
+	}
+	{
+		{
+			s.CPUModel = "string"
+		}
+	}
+	{
+		{
+			s.Generation.SetFake()
+		}
+	}
+	{
+		{
+			s.Commitment.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerChangePlanResponseEnvelope) SetFake() {
 	{
 		{
@@ -11118,99 +11504,10 @@ func (s *ServerConnectedDisk) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ServerCreateRequest) SetFake() {
+func (s *ServerCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.CPU = int32(0)
-		}
-	}
-	{
-		{
-			s.MemoryMB = int32(0)
-		}
-	}
-	{
-		{
-			s.GPU = int32(0)
-		}
-	}
-	{
-		{
-			s.GPUModel = "string"
-		}
-	}
-	{
-		{
-			s.CPUModel = "string"
-		}
-	}
-	{
-		{
-			s.Commitment.SetFake()
-		}
-	}
-	{
-		{
-			s.Generation.SetFake()
-		}
-	}
-	{
-		{
-			s.ConfidentialVM = true
-		}
-	}
-	{
-		{
-			s.ConnectedSwitches = nil
-			for i := 0; i < 0; i++ {
-				var elem ConnectedSwitch
-				{
-					elem.SetFake()
-				}
-				s.ConnectedSwitches = append(s.ConnectedSwitches, elem)
-			}
-		}
-	}
-	{
-		{
-			s.InterfaceDriver.SetFake()
-		}
-	}
-	{
-		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
-		}
-	}
-	{
-		{
-			s.WaitDiskMigration = true
-		}
-	}
-	{
-		{
-			s.PrivateHostID = int64(0)
+			s.Server.SetFake()
 		}
 	}
 }
@@ -11247,6 +11544,74 @@ func (s *ServerDeleteWithDisksRequest) SetFake() {
 				s.IDs = append(s.IDs, elem)
 			}
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerEjectCDROMRequestEnvelope) SetFake() {
+	{
+		{
+			s.CDROM.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -11301,6 +11666,15 @@ func (s *ServerGetVNCProxyResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerInsertCDROMRequestEnvelope) SetFake() {
+	{
+		{
+			s.CDROM.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerMonitorResponseEnvelope) SetFake() {
 	{
 		{
@@ -11329,55 +11703,10 @@ func (s *ServerOpBootReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ServerOpChangePlanReq) SetFake() {
-	{
-		{
-			s.Plan.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *ServerOpDeleteReq) SetFake() {
 	{
 		{
 			s.Disks.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerOpEjectCDROMReq) SetFake() {
-	{
-		{
-			s.EjectParam.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerOpInsertCDROMReq) SetFake() {
-	{
-		{
-			s.InsertParam.SetFake()
 		}
 	}
 }
@@ -11392,29 +11721,61 @@ func (s *ServerOpMonitorReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ServerOpSendKeyReq) SetFake() {
+func (s *ServerPlanFindRequestEnvelope) SetFake() {
 	{
 		{
-			s.KeyboardParam.SetFake()
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
 		}
 	}
 }
 
 // SetFake set fake values.
-func (s *ServerOpShutdownReq) SetFake() {
-	{
-		{
-			s.ShutdownOption.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
+func (s *ServerPlanFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -11445,15 +11806,6 @@ func (s *ServerPlanFindResponseEnvelope) SetFake() {
 				}
 				s.ServerPlans = append(s.ServerPlans, elem)
 			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerPlanOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }
@@ -11497,42 +11849,40 @@ func (s *ServerReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ServerUpdateRequest) SetFake() {
+func (s *ServerSendKeyRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
+			s.Key = "string"
 		}
 	}
 	{
 		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
+			s.Keys = nil
 			for i := 0; i < 0; i++ {
 				var elem string
 				{
 					elem = "string"
 				}
-				s.Tags = append(s.Tags, elem)
+				s.Keys = append(s.Keys, elem)
 			}
 		}
 	}
+}
+
+// SetFake set fake values.
+func (s *ServerShutdownRequestEnvelope) SetFake() {
 	{
 		{
-			s.IconID = int64(0)
+			s.Force = true
 		}
 	}
+}
+
+// SetFake set fake values.
+func (s *ServerUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.PrivateHostID = int64(0)
-		}
-	}
-	{
-		{
-			s.InterfaceDriver.SetFake()
+			s.Server.SetFake()
 		}
 	}
 }
@@ -11591,6 +11941,65 @@ func (s *ServiceClass) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServiceClassFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServiceClassFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *ServiceClassFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -11617,15 +12026,6 @@ func (s *ServiceClassFindResponseEnvelope) SetFake() {
 				}
 				s.ServiceClasses = append(s.ServiceClasses, elem)
 			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServiceClassOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }
@@ -12001,6 +12401,65 @@ func (s *Storage) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SubnetFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SubnetFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *SubnetFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -12032,15 +12491,6 @@ func (s *SubnetFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SubnetOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *SubnetReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -12060,42 +12510,10 @@ func (s *SubnetReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SwitchCreateRequest) SetFake() {
+func (s *SwitchCreateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.NetworkMaskLen = int32(0)
-		}
-	}
-	{
-		{
-			s.DefaultRoute = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.Switch.SetFake()
 		}
 	}
 }
@@ -12116,6 +12534,65 @@ func (s *SwitchCreateResponseEnvelope) SetFake() {
 		{
 			s.Switch.SetFake()
 		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SwitchFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SwitchFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -12242,33 +12719,6 @@ func (s *SwitchInfo) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SwitchOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SwitchOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SwitchOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *SwitchReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -12288,42 +12738,10 @@ func (s *SwitchReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SwitchUpdateRequest) SetFake() {
+func (s *SwitchUpdateRequestEnvelope) SetFake() {
 	{
 		{
-			s.Name = "string"
-		}
-	}
-	{
-		{
-			s.NetworkMaskLen = int32(0)
-		}
-	}
-	{
-		{
-			s.DefaultRoute = "string"
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.IconID = int64(0)
+			s.Switch.SetFake()
 		}
 	}
 }
@@ -12459,6 +12877,65 @@ func (s *VPCRouterPingResults) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ZoneFindRequestEnvelope) SetFake() {
+	{
+		{
+			s.Count = int32(0)
+		}
+	}
+	{
+		{
+			s.From = int32(0)
+		}
+	}
+	{
+		{
+			s.Sort = []byte("null")
+		}
+	}
+	{
+		{
+			s.Filter.SetFake()
+		}
+	}
+	{
+		{
+			s.Include = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Include = append(s.Include, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Exclude = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Exclude = append(s.Exclude, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ZoneFindRequestEnvelopeFilter) SetFake() {
+	var (
+		elem jx.Raw
+		m    map[string]jx.Raw = s.init()
+	)
+	for i := 0; i < 0; i++ {
+		m[fmt.Sprintf("fake%d", i)] = elem
+	}
+}
+
+// SetFake set fake values.
 func (s *ZoneFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -12524,15 +13001,6 @@ func (s *ZoneInfo) SetFake() {
 	{
 		{
 			s.Region.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ZoneOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
 		}
 	}
 }

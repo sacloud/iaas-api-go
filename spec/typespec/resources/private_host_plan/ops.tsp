@@ -14,7 +14,7 @@ interface PrivateHostPlanOp {
   @route("/{zone}/api/cloud/1.1/product/privatehost")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: PrivateHostPlanFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): PrivateHostPlanFindResponseEnvelope | ApiError;
 

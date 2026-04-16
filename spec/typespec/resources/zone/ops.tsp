@@ -14,7 +14,7 @@ interface ZoneOp {
   @route("/{zone}/api/cloud/1.1/zone")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: ZoneFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): ZoneFindResponseEnvelope | ApiError;
 

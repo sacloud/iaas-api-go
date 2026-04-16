@@ -14,7 +14,7 @@ interface RegionOp {
   @route("/{zone}/api/cloud/1.1/region")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: RegionFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): RegionFindResponseEnvelope | ApiError;
 

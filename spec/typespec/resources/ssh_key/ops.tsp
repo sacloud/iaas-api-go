@@ -14,7 +14,7 @@ interface SSHKeyOp {
   @route("/{zone}/api/cloud/1.1/sshkey")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: SSHKeyFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): SSHKeyFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface SSHKeyOp {
   @route("/{zone}/api/cloud/1.1/sshkey")
   create(
     @path zone: string,
-    param: SSHKeyCreateRequest,
+    @body body: SSHKeyCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): SSHKeyCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface SSHKeyOp {
   update(
     @path zone: string,
     @path id: string,
-    param: SSHKeyUpdateRequest,
+    @body body: SSHKeyUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): SSHKeyUpdateResponseEnvelope | ApiError;
 

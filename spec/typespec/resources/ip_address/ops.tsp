@@ -30,7 +30,7 @@ interface IPAddressOp {
   updateHostName(
     @path zone: string,
     @path ipAddress: string,
-    hostName: string,
+    @body body: IPAddressUpdateHostNameRequestEnvelope,
     ...CommonRequestHeaders,
   ): IPAddressUpdateHostNameResponseEnvelope | ApiError;
 }

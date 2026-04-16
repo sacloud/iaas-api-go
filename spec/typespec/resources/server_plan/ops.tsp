@@ -14,7 +14,7 @@ interface ServerPlanOp {
   @route("/{zone}/api/cloud/1.1/product/server")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: ServerPlanFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): ServerPlanFindResponseEnvelope | ApiError;
 

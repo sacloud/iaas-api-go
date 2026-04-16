@@ -14,7 +14,7 @@ interface CDROMOp {
   @route("/{zone}/api/cloud/1.1/cdrom")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: CDROMFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): CDROMFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface CDROMOp {
   @route("/{zone}/api/cloud/1.1/cdrom")
   create(
     @path zone: string,
-    param: CDROMCreateRequest,
+    @body body: CDROMCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): CDROMCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface CDROMOp {
   update(
     @path zone: string,
     @path id: string,
-    param: CDROMUpdateRequest,
+    @body body: CDROMUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): CDROMUpdateResponseEnvelope | ApiError;
 
@@ -56,7 +56,7 @@ interface CDROMOp {
   openFTP(
     @path zone: string,
     @path id: string,
-    openOption: OpenFTPRequest,
+    @body body: CDROMOpenFTPRequestEnvelope,
     ...CommonRequestHeaders,
   ): CDROMOpenFTPResponseEnvelope | ApiError;
 

@@ -92,7 +92,7 @@ type Invoker interface {
 	// ArchiveOpFind invokes ArchiveOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/archive
-	ArchiveOpFind(ctx context.Context, request *ArchiveOpFindReq, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error)
+	ArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error)
 	// ArchiveOpRead invokes ArchiveOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/archive/{id}
@@ -108,7 +108,7 @@ type Invoker interface {
 	// ArchiveOpUpdate invokes ArchiveOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/archive/{id}
-	ArchiveOpUpdate(ctx context.Context, request *ArchiveOpUpdateReq, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error)
+	ArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error)
 	// AuthStatusOpRead invokes AuthStatusOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/auth-status
@@ -152,7 +152,7 @@ type Invoker interface {
 	// BridgeOpCreate invokes BridgeOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/bridge
-	BridgeOpCreate(ctx context.Context, request *BridgeOpCreateReq, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error)
+	BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error)
 	// BridgeOpDelete invokes BridgeOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/bridge/{id}
@@ -160,7 +160,7 @@ type Invoker interface {
 	// BridgeOpFind invokes BridgeOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/bridge
-	BridgeOpFind(ctx context.Context, request *BridgeOpFindReq, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error)
+	BridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error)
 	// BridgeOpRead invokes BridgeOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/bridge/{id}
@@ -168,7 +168,7 @@ type Invoker interface {
 	// BridgeOpUpdate invokes BridgeOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/bridge/{id}
-	BridgeOpUpdate(ctx context.Context, request *BridgeOpUpdateReq, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error)
+	BridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error)
 	// CDROMOpCloseFTP invokes CDROMOp_closeFTP operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
@@ -176,7 +176,7 @@ type Invoker interface {
 	// CDROMOpCreate invokes CDROMOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/cdrom
-	CDROMOpCreate(ctx context.Context, request *CDROMOpCreateReq, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error)
+	CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error)
 	// CDROMOpDelete invokes CDROMOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}
@@ -184,11 +184,11 @@ type Invoker interface {
 	// CDROMOpFind invokes CDROMOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/cdrom
-	CDROMOpFind(ctx context.Context, request *CDROMOpFindReq, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error)
+	CDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error)
 	// CDROMOpOpenFTP invokes CDROMOp_openFTP operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
-	CDROMOpOpenFTP(ctx context.Context, request *CDROMOpOpenFTPReq, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error)
+	CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error)
 	// CDROMOpRead invokes CDROMOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/cdrom/{id}
@@ -196,7 +196,7 @@ type Invoker interface {
 	// CDROMOpUpdate invokes CDROMOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/cdrom/{id}
-	CDROMOpUpdate(ctx context.Context, request *CDROMOpUpdateReq, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error)
+	CDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error)
 	// CertificateAuthorityOpAddClient invokes CertificateAuthorityOp_addClient operation.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
@@ -312,7 +312,7 @@ type Invoker interface {
 	// DiskOpConfig invokes DiskOp_config operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/config
-	DiskOpConfig(ctx context.Context, request *DiskOpConfigReq, params DiskOpConfigParams) error
+	DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) error
 	// DiskOpConnectToServer invokes DiskOp_connectToServer operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
@@ -332,7 +332,7 @@ type Invoker interface {
 	// DiskOpFind invokes DiskOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk
-	DiskOpFind(ctx context.Context, request *DiskOpFindReq, params DiskOpFindParams) (*DiskFindResponseEnvelope, error)
+	DiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (*DiskFindResponseEnvelope, error)
 	// DiskOpMonitor invokes DiskOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk/{id}/monitor
@@ -344,15 +344,15 @@ type Invoker interface {
 	// DiskOpResizePartition invokes DiskOp_resizePartition operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
-	DiskOpResizePartition(ctx context.Context, request *DiskOpResizePartitionReq, params DiskOpResizePartitionParams) error
+	DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) error
 	// DiskOpUpdate invokes DiskOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}
-	DiskOpUpdate(ctx context.Context, request *DiskOpUpdateReq, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error)
+	DiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error)
 	// DiskPlanOpFind invokes DiskPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/disk
-	DiskPlanOpFind(ctx context.Context, request *DiskPlanOpFindReq, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error)
+	DiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error)
 	// DiskPlanOpRead invokes DiskPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/disk/{id}
@@ -392,11 +392,11 @@ type Invoker interface {
 	// IPAddressOpUpdateHostName invokes IPAddressOp_updateHostName operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
-	IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressOpUpdateHostNameReq, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error)
+	IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error)
 	// IPv6AddrOpCreate invokes IPv6AddrOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/ipv6addr
-	IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrOpCreateReq, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error)
+	IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error)
 	// IPv6AddrOpDelete invokes IPv6AddrOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
@@ -404,7 +404,7 @@ type Invoker interface {
 	// IPv6AddrOpFind invokes IPv6AddrOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr
-	IPv6AddrOpFind(ctx context.Context, request *IPv6AddrOpFindReq, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error)
+	IPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error)
 	// IPv6AddrOpRead invokes IPv6AddrOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr/{id}
@@ -412,7 +412,7 @@ type Invoker interface {
 	// IPv6AddrOpUpdate invokes IPv6AddrOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/ipv6addr/{id}
-	IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrOpUpdateReq, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error)
+	IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error)
 	// IPv6NetOpList invokes IPv6NetOp_list operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6net
@@ -424,7 +424,7 @@ type Invoker interface {
 	// IconOpCreate invokes IconOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/icon
-	IconOpCreate(ctx context.Context, request *IconOpCreateReq, params IconOpCreateParams) (*IconCreateResponseEnvelope, error)
+	IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (*IconCreateResponseEnvelope, error)
 	// IconOpDelete invokes IconOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/icon/{id}
@@ -432,7 +432,7 @@ type Invoker interface {
 	// IconOpFind invokes IconOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/icon
-	IconOpFind(ctx context.Context, request *IconOpFindReq, params IconOpFindParams) (*IconFindResponseEnvelope, error)
+	IconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (*IconFindResponseEnvelope, error)
 	// IconOpRead invokes IconOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/icon/{id}
@@ -440,7 +440,7 @@ type Invoker interface {
 	// IconOpUpdate invokes IconOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/icon/{id}
-	IconOpUpdate(ctx context.Context, request *IconOpUpdateReq, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error)
+	IconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error)
 	// InterfaceOpConnectToPacketFilter invokes InterfaceOp_connectToPacketFilter operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
@@ -456,7 +456,7 @@ type Invoker interface {
 	// InterfaceOpCreate invokes InterfaceOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/interface
-	InterfaceOpCreate(ctx context.Context, request *InterfaceOpCreateReq, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error)
+	InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error)
 	// InterfaceOpDelete invokes InterfaceOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}
@@ -472,11 +472,11 @@ type Invoker interface {
 	// InterfaceOpFind invokes InterfaceOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/interface
-	InterfaceOpFind(ctx context.Context, request *InterfaceOpFindReq, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error)
+	InterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error)
 	// InterfaceOpMonitor invokes InterfaceOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/interface/{id}/monitor
-	InterfaceOpMonitor(ctx context.Context, request *InterfaceOpMonitorReq, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error)
+	InterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error)
 	// InterfaceOpRead invokes InterfaceOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/interface/{id}
@@ -484,15 +484,15 @@ type Invoker interface {
 	// InterfaceOpUpdate invokes InterfaceOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}
-	InterfaceOpUpdate(ctx context.Context, request *InterfaceOpUpdateReq, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error)
+	InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error)
 	// InternetOpAddSubnet invokes InternetOp_addSubnet operation.
 	//
 	// POST /{zone}/api/cloud/1.1/internet/{id}/subnet
-	InternetOpAddSubnet(ctx context.Context, request *InternetOpAddSubnetReq, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error)
+	InternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error)
 	// InternetOpCreate invokes InternetOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/internet
-	InternetOpCreate(ctx context.Context, request *InternetOpCreateReq, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error)
+	InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error)
 	// InternetOpDelete invokes InternetOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}
@@ -512,7 +512,7 @@ type Invoker interface {
 	// InternetOpFind invokes InternetOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/internet
-	InternetOpFind(ctx context.Context, request *InternetOpFindReq, params InternetOpFindParams) (*InternetFindResponseEnvelope, error)
+	InternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (*InternetFindResponseEnvelope, error)
 	// InternetOpMonitor invokes InternetOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/internet/{id}/monitor
@@ -524,19 +524,19 @@ type Invoker interface {
 	// InternetOpUpdate invokes InternetOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/internet/{id}
-	InternetOpUpdate(ctx context.Context, request *InternetOpUpdateReq, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error)
+	InternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error)
 	// InternetOpUpdateBandWidth invokes InternetOp_updateBandWidth operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/internet/{id}/bandwidth
-	InternetOpUpdateBandWidth(ctx context.Context, request *InternetOpUpdateBandWidthReq, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error)
+	InternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error)
 	// InternetOpUpdateSubnet invokes InternetOp_updateSubnet operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
-	InternetOpUpdateSubnet(ctx context.Context, request *InternetOpUpdateSubnetReq, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error)
+	InternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error)
 	// InternetPlanOpFind invokes InternetPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/internet
-	InternetPlanOpFind(ctx context.Context, request *InternetPlanOpFindReq, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error)
+	InternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error)
 	// InternetPlanOpRead invokes InternetPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/internet/{id}
@@ -544,7 +544,7 @@ type Invoker interface {
 	// LicenseInfoOpFind invokes LicenseInfoOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/license
-	LicenseInfoOpFind(ctx context.Context, request *LicenseInfoOpFindReq, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error)
+	LicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error)
 	// LicenseInfoOpRead invokes LicenseInfoOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/license/{id}
@@ -552,7 +552,7 @@ type Invoker interface {
 	// LicenseOpCreate invokes LicenseOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/license
-	LicenseOpCreate(ctx context.Context, request *LicenseOpCreateReq, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error)
+	LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error)
 	// LicenseOpDelete invokes LicenseOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/license/{id}
@@ -560,7 +560,7 @@ type Invoker interface {
 	// LicenseOpFind invokes LicenseOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/license
-	LicenseOpFind(ctx context.Context, request *LicenseOpFindReq, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error)
+	LicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error)
 	// LicenseOpRead invokes LicenseOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/license/{id}
@@ -568,7 +568,7 @@ type Invoker interface {
 	// LicenseOpUpdate invokes LicenseOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/license/{id}
-	LicenseOpUpdate(ctx context.Context, request *LicenseOpUpdateReq, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error)
+	LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error)
 	// LocalRouterOpMonitorLocalRouter invokes LocalRouterOp_monitorLocalRouter operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor
@@ -632,7 +632,7 @@ type Invoker interface {
 	// NoteOpCreate invokes NoteOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/note
-	NoteOpCreate(ctx context.Context, request *NoteOpCreateReq, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error)
+	NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error)
 	// NoteOpDelete invokes NoteOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/note/{id}
@@ -640,7 +640,7 @@ type Invoker interface {
 	// NoteOpFind invokes NoteOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/note
-	NoteOpFind(ctx context.Context, request *NoteOpFindReq, params NoteOpFindParams) (*NoteFindResponseEnvelope, error)
+	NoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (*NoteFindResponseEnvelope, error)
 	// NoteOpRead invokes NoteOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/note/{id}
@@ -648,11 +648,11 @@ type Invoker interface {
 	// NoteOpUpdate invokes NoteOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/note/{id}
-	NoteOpUpdate(ctx context.Context, request *NoteOpUpdateReq, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error)
+	NoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error)
 	// PacketFilterOpCreate invokes PacketFilterOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/packetfilter
-	PacketFilterOpCreate(ctx context.Context, request *PacketFilterOpCreateReq, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error)
+	PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error)
 	// PacketFilterOpDelete invokes PacketFilterOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
@@ -660,7 +660,7 @@ type Invoker interface {
 	// PacketFilterOpFind invokes PacketFilterOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/packetfilter
-	PacketFilterOpFind(ctx context.Context, request *PacketFilterOpFindReq, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error)
+	PacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error)
 	// PacketFilterOpRead invokes PacketFilterOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/packetfilter/{id}
@@ -668,7 +668,7 @@ type Invoker interface {
 	// PacketFilterOpUpdate invokes PacketFilterOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/packetfilter/{id}
-	PacketFilterOpUpdate(ctx context.Context, request *PacketFilterOpUpdateReq, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error)
+	PacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error)
 	// PrivateHostOpCreate invokes PrivateHostOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/privatehost
@@ -680,7 +680,7 @@ type Invoker interface {
 	// PrivateHostOpFind invokes PrivateHostOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/privatehost
-	PrivateHostOpFind(ctx context.Context, request *PrivateHostOpFindReq, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error)
+	PrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error)
 	// PrivateHostOpRead invokes PrivateHostOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/privatehost/{id}
@@ -688,11 +688,11 @@ type Invoker interface {
 	// PrivateHostOpUpdate invokes PrivateHostOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/privatehost/{id}
-	PrivateHostOpUpdate(ctx context.Context, request *PrivateHostOpUpdateReq, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error)
+	PrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error)
 	// PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/privatehost
-	PrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanOpFindReq, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error)
+	PrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error)
 	// PrivateHostPlanOpRead invokes PrivateHostPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/privatehost/{id}
@@ -724,7 +724,7 @@ type Invoker interface {
 	// RegionOpFind invokes RegionOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/region
-	RegionOpFind(ctx context.Context, request *RegionOpFindReq, params RegionOpFindParams) (*RegionFindResponseEnvelope, error)
+	RegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (*RegionFindResponseEnvelope, error)
 	// RegionOpRead invokes RegionOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/region/{id}
@@ -776,7 +776,7 @@ type Invoker interface {
 	// SSHKeyOpCreate invokes SSHKeyOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/sshkey
-	SSHKeyOpCreate(ctx context.Context, request *SSHKeyOpCreateReq, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error)
+	SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error)
 	// SSHKeyOpDelete invokes SSHKeyOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/sshkey/{id}
@@ -784,7 +784,7 @@ type Invoker interface {
 	// SSHKeyOpFind invokes SSHKeyOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/sshkey
-	SSHKeyOpFind(ctx context.Context, request *SSHKeyOpFindReq, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error)
+	SSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error)
 	// SSHKeyOpRead invokes SSHKeyOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/sshkey/{id}
@@ -792,7 +792,7 @@ type Invoker interface {
 	// SSHKeyOpUpdate invokes SSHKeyOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/sshkey/{id}
-	SSHKeyOpUpdate(ctx context.Context, request *SSHKeyOpUpdateReq, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error)
+	SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error)
 	// ServerOpBoot invokes ServerOp_boot operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/power
@@ -800,11 +800,11 @@ type Invoker interface {
 	// ServerOpChangePlan invokes ServerOp_changePlan operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/plan
-	ServerOpChangePlan(ctx context.Context, request *ServerOpChangePlanReq, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error)
+	ServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error)
 	// ServerOpCreate invokes ServerOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/server
-	ServerOpCreate(ctx context.Context, request *ServerOpCreateReq, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error)
+	ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error)
 	// ServerOpDelete invokes ServerOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}
@@ -812,11 +812,11 @@ type Invoker interface {
 	// ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
-	ServerOpEjectCDROM(ctx context.Context, request *ServerOpEjectCDROMReq, params ServerOpEjectCDROMParams) error
+	ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) error
 	// ServerOpFind invokes ServerOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server
-	ServerOpFind(ctx context.Context, request *ServerOpFindReq, params ServerOpFindParams) (*ServerFindResponseEnvelope, error)
+	ServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (*ServerFindResponseEnvelope, error)
 	// ServerOpGetVNCProxy invokes ServerOp_getVNCProxy operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/vnc/proxy
@@ -824,7 +824,7 @@ type Invoker interface {
 	// ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
-	ServerOpInsertCDROM(ctx context.Context, request *ServerOpInsertCDROMReq, params ServerOpInsertCDROMParams) error
+	ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) error
 	// ServerOpMonitor invokes ServerOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/monitor
@@ -840,7 +840,7 @@ type Invoker interface {
 	// ServerOpSendKey invokes ServerOp_sendKey operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
-	ServerOpSendKey(ctx context.Context, request *ServerOpSendKeyReq, params ServerOpSendKeyParams) error
+	ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) error
 	// ServerOpSendNMI invokes ServerOp_sendNMI operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
@@ -848,15 +848,15 @@ type Invoker interface {
 	// ServerOpShutdown invokes ServerOp_shutdown operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/power
-	ServerOpShutdown(ctx context.Context, request *ServerOpShutdownReq, params ServerOpShutdownParams) error
+	ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) error
 	// ServerOpUpdate invokes ServerOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}
-	ServerOpUpdate(ctx context.Context, request *ServerOpUpdateReq, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error)
+	ServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error)
 	// ServerPlanOpFind invokes ServerPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/server
-	ServerPlanOpFind(ctx context.Context, request *ServerPlanOpFindReq, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error)
+	ServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error)
 	// ServerPlanOpRead invokes ServerPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/server/{id}
@@ -864,7 +864,7 @@ type Invoker interface {
 	// ServiceClassOpFind invokes ServiceClassOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/public/price
-	ServiceClassOpFind(ctx context.Context, request *ServiceClassOpFindReq, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error)
+	ServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error)
 	// SimpleMonitorOpMonitorResponseTime invokes SimpleMonitorOp_monitorResponseTime operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
@@ -884,7 +884,7 @@ type Invoker interface {
 	// SubnetOpFind invokes SubnetOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/subnet
-	SubnetOpFind(ctx context.Context, request *SubnetOpFindReq, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error)
+	SubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error)
 	// SubnetOpRead invokes SubnetOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/subnet/{id}
@@ -896,7 +896,7 @@ type Invoker interface {
 	// SwitchOpCreate invokes SwitchOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/switch
-	SwitchOpCreate(ctx context.Context, request *SwitchOpCreateReq, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error)
+	SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error)
 	// SwitchOpDelete invokes SwitchOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/switch/{id}
@@ -908,7 +908,7 @@ type Invoker interface {
 	// SwitchOpFind invokes SwitchOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/switch
-	SwitchOpFind(ctx context.Context, request *SwitchOpFindReq, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error)
+	SwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error)
 	// SwitchOpGetServers invokes SwitchOp_getServers operation.
 	//
 	// GET /{zone}/api/cloud/1.1/switch/{id}/server
@@ -920,7 +920,7 @@ type Invoker interface {
 	// SwitchOpUpdate invokes SwitchOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/switch/{id}
-	SwitchOpUpdate(ctx context.Context, request *SwitchOpUpdateReq, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error)
+	SwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error)
 	// VPCRouterOpConnectToSwitch invokes VPCRouterOp_connectToSwitch operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
@@ -940,7 +940,7 @@ type Invoker interface {
 	// ZoneOpFind invokes ZoneOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/zone
-	ZoneOpFind(ctx context.Context, request *ZoneOpFindReq, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error)
+	ZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error)
 	// ZoneOpRead invokes ZoneOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/zone/{id}
@@ -3023,12 +3023,21 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 // ArchiveOpFind invokes ArchiveOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/archive
-func (c *Client) ArchiveOpFind(ctx context.Context, request *ArchiveOpFindReq, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error) {
+func (c *Client) ArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error) {
 	res, err := c.sendArchiveOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveOpFindReq, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -3515,12 +3524,12 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveOpTr
 // ArchiveOpUpdate invokes ArchiveOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/archive/{id}
-func (c *Client) ArchiveOpUpdate(ctx context.Context, request *ArchiveOpUpdateReq, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error) {
+func (c *Client) ArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error) {
 	res, err := c.sendArchiveOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveOpUpdateReq, params ArchiveOpUpdateParams) (res *ArchiveUpdateResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (res *ArchiveUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -4867,12 +4876,21 @@ func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (r
 // BridgeOpCreate invokes BridgeOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/bridge
-func (c *Client) BridgeOpCreate(ctx context.Context, request *BridgeOpCreateReq, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error) {
+func (c *Client) BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error) {
 	res, err := c.sendBridgeOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeOpCreateReq, params BridgeOpCreateParams) (res *BridgeCreateResponseEnvelope, err error) {
+func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (res *BridgeCreateResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -5088,12 +5106,21 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 // BridgeOpFind invokes BridgeOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/bridge
-func (c *Client) BridgeOpFind(ctx context.Context, request *BridgeOpFindReq, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error) {
+func (c *Client) BridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error) {
 	res, err := c.sendBridgeOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeOpFindReq, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
+func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -5309,12 +5336,21 @@ func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams
 // BridgeOpUpdate invokes BridgeOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/bridge/{id}
-func (c *Client) BridgeOpUpdate(ctx context.Context, request *BridgeOpUpdateReq, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error) {
+func (c *Client) BridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error) {
 	res, err := c.sendBridgeOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeOpUpdateReq, params BridgeOpUpdateParams) (res *BridgeUpdateResponseEnvelope, err error) {
+func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (res *BridgeUpdateResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -5549,12 +5585,12 @@ func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTP
 // CDROMOpCreate invokes CDROMOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/cdrom
-func (c *Client) CDROMOpCreate(ctx context.Context, request *CDROMOpCreateReq, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error) {
+func (c *Client) CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error) {
 	res, err := c.sendCDROMOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMOpCreateReq, params CDROMOpCreateParams) (res *CDROMCreateResponseEnvelope, err error) {
+func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (res *CDROMCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -5779,12 +5815,21 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 // CDROMOpFind invokes CDROMOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/cdrom
-func (c *Client) CDROMOpFind(ctx context.Context, request *CDROMOpFindReq, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error) {
+func (c *Client) CDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error) {
 	res, err := c.sendCDROMOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMOpFindReq, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
+func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -5882,12 +5927,12 @@ func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMOpFindReq, p
 // CDROMOpOpenFTP invokes CDROMOp_openFTP operation.
 //
 // PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
-func (c *Client) CDROMOpOpenFTP(ctx context.Context, request *CDROMOpOpenFTPReq, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error) {
+func (c *Client) CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error) {
 	res, err := c.sendCDROMOpOpenFTP(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpOpenFTPReq, params CDROMOpOpenFTPParams) (res *CDROMOpenFTPResponseEnvelope, err error) {
+func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (res *CDROMOpenFTPResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -6122,12 +6167,12 @@ func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) 
 // CDROMOpUpdate invokes CDROMOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/cdrom/{id}
-func (c *Client) CDROMOpUpdate(ctx context.Context, request *CDROMOpUpdateReq, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error) {
+func (c *Client) CDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error) {
 	res, err := c.sendCDROMOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMOpUpdateReq, params CDROMOpUpdateParams) (res *CDROMUpdateResponseEnvelope, err error) {
+func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (res *CDROMUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -9537,12 +9582,12 @@ func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *Databa
 // DiskOpConfig invokes DiskOp_config operation.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/config
-func (c *Client) DiskOpConfig(ctx context.Context, request *DiskOpConfigReq, params DiskOpConfigParams) error {
+func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) error {
 	_, err := c.sendDiskOpConfig(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskOpConfigReq, params DiskOpConfigParams) (res *DiskOpConfigNoContent, err error) {
+func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (res *DiskOpConfigNoContent, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -10154,12 +10199,21 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 // DiskOpFind invokes DiskOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/disk
-func (c *Client) DiskOpFind(ctx context.Context, request *DiskOpFindReq, params DiskOpFindParams) (*DiskFindResponseEnvelope, error) {
+func (c *Client) DiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (*DiskFindResponseEnvelope, error) {
 	res, err := c.sendDiskOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskOpFindReq, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
+func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -10497,12 +10551,12 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 // DiskOpResizePartition invokes DiskOp_resizePartition operation.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
-func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskOpResizePartitionReq, params DiskOpResizePartitionParams) error {
+func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) error {
 	_, err := c.sendDiskOpResizePartition(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskOpResizePartitionReq, params DiskOpResizePartitionParams) (res *DiskOpResizePartitionNoContent, err error) {
+func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (res *DiskOpResizePartitionNoContent, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -10619,12 +10673,12 @@ func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskOpR
 // DiskOpUpdate invokes DiskOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}
-func (c *Client) DiskOpUpdate(ctx context.Context, request *DiskOpUpdateReq, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error) {
+func (c *Client) DiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error) {
 	res, err := c.sendDiskOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskOpUpdateReq, params DiskOpUpdateParams) (res *DiskUpdateResponseEnvelope, err error) {
+func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (res *DiskUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -10749,12 +10803,21 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskOpUpdateReq,
 // DiskPlanOpFind invokes DiskPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/disk
-func (c *Client) DiskPlanOpFind(ctx context.Context, request *DiskPlanOpFindReq, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error) {
+func (c *Client) DiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error) {
 	res, err := c.sendDiskPlanOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanOpFindReq, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
+func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -11845,12 +11908,12 @@ func (c *Client) sendIPAddressOpRead(ctx context.Context, params IPAddressOpRead
 // IPAddressOpUpdateHostName invokes IPAddressOp_updateHostName operation.
 //
 // PUT /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
-func (c *Client) IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressOpUpdateHostNameReq, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error) {
+func (c *Client) IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error) {
 	res, err := c.sendIPAddressOpUpdateHostName(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPAddressOpUpdateHostNameReq, params IPAddressOpUpdateHostNameParams) (res *IPAddressUpdateHostNameResponseEnvelope, err error) {
+func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (res *IPAddressUpdateHostNameResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -11966,12 +12029,12 @@ func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPA
 // IPv6AddrOpCreate invokes IPv6AddrOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/ipv6addr
-func (c *Client) IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrOpCreateReq, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error) {
+func (c *Client) IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrOpCreateReq, params IPv6AddrOpCreateParams) (res *IPv6AddrCreateResponseEnvelope, err error) {
+func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (res *IPv6AddrCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12187,12 +12250,21 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 // IPv6AddrOpFind invokes IPv6AddrOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/ipv6addr
-func (c *Client) IPv6AddrOpFind(ctx context.Context, request *IPv6AddrOpFindReq, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error) {
+func (c *Client) IPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrOpFindReq, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
+func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12408,12 +12480,12 @@ func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadPa
 // IPv6AddrOpUpdate invokes IPv6AddrOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/ipv6addr/{id}
-func (c *Client) IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrOpUpdateReq, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error) {
+func (c *Client) IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrOpUpdateReq, params IPv6AddrOpUpdateParams) (res *IPv6AddrUpdateResponseEnvelope, err error) {
+func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (res *IPv6AddrUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -12750,12 +12822,12 @@ func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadPara
 // IconOpCreate invokes IconOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/icon
-func (c *Client) IconOpCreate(ctx context.Context, request *IconOpCreateReq, params IconOpCreateParams) (*IconCreateResponseEnvelope, error) {
+func (c *Client) IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (*IconCreateResponseEnvelope, error) {
 	res, err := c.sendIconOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIconOpCreate(ctx context.Context, request *IconOpCreateReq, params IconOpCreateParams) (res *IconCreateResponseEnvelope, err error) {
+func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (res *IconCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -12980,12 +13052,21 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 // IconOpFind invokes IconOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/icon
-func (c *Client) IconOpFind(ctx context.Context, request *IconOpFindReq, params IconOpFindParams) (*IconFindResponseEnvelope, error) {
+func (c *Client) IconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (*IconFindResponseEnvelope, error) {
 	res, err := c.sendIconOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIconOpFind(ctx context.Context, request *IconOpFindReq, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
+func (c *Client) sendIconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -13201,12 +13282,12 @@ func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (r
 // IconOpUpdate invokes IconOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/icon/{id}
-func (c *Client) IconOpUpdate(ctx context.Context, request *IconOpUpdateReq, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error) {
+func (c *Client) IconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error) {
 	res, err := c.sendIconOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconOpUpdateReq, params IconOpUpdateParams) (res *IconUpdateResponseEnvelope, err error) {
+func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (res *IconUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -13724,12 +13805,12 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 // InterfaceOpCreate invokes InterfaceOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/interface
-func (c *Client) InterfaceOpCreate(ctx context.Context, request *InterfaceOpCreateReq, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error) {
+func (c *Client) InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceOpCreateReq, params InterfaceOpCreateParams) (res *InterfaceCreateResponseEnvelope, err error) {
+func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (res *InterfaceCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14183,12 +14264,21 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 // InterfaceOpFind invokes InterfaceOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/interface
-func (c *Client) InterfaceOpFind(ctx context.Context, request *InterfaceOpFindReq, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error) {
+func (c *Client) InterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceOpFindReq, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
+func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14286,12 +14376,12 @@ func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceOpFi
 // InterfaceOpMonitor invokes InterfaceOp_monitor operation.
 //
 // GET /{zone}/api/cloud/1.1/interface/{id}/monitor
-func (c *Client) InterfaceOpMonitor(ctx context.Context, request *InterfaceOpMonitorReq, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error) {
+func (c *Client) InterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpMonitor(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceOpMonitorReq, params InterfaceOpMonitorParams) (res *InterfaceMonitorResponseEnvelope, err error) {
+func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (res *InterfaceMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -14526,12 +14616,12 @@ func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpRead
 // InterfaceOpUpdate invokes InterfaceOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}
-func (c *Client) InterfaceOpUpdate(ctx context.Context, request *InterfaceOpUpdateReq, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error) {
+func (c *Client) InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceOpUpdateReq, params InterfaceOpUpdateParams) (res *InterfaceUpdateResponseEnvelope, err error) {
+func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (res *InterfaceUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -14647,12 +14737,12 @@ func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceOp
 // InternetOpAddSubnet invokes InternetOp_addSubnet operation.
 //
 // POST /{zone}/api/cloud/1.1/internet/{id}/subnet
-func (c *Client) InternetOpAddSubnet(ctx context.Context, request *InternetOpAddSubnetReq, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error) {
+func (c *Client) InternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error) {
 	res, err := c.sendInternetOpAddSubnet(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetOpAddSubnetReq, params InternetOpAddSubnetParams) (res *InternetAddSubnetResponseEnvelope, err error) {
+func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (res *InternetAddSubnetResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -14769,12 +14859,12 @@ func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetO
 // InternetOpCreate invokes InternetOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/internet
-func (c *Client) InternetOpCreate(ctx context.Context, request *InternetOpCreateReq, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error) {
+func (c *Client) InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error) {
 	res, err := c.sendInternetOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetOpCreateReq, params InternetOpCreateParams) (res *InternetCreateResponseEnvelope, err error) {
+func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (res *InternetCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -15392,12 +15482,21 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 // InternetOpFind invokes InternetOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/internet
-func (c *Client) InternetOpFind(ctx context.Context, request *InternetOpFindReq, params InternetOpFindParams) (*InternetFindResponseEnvelope, error) {
+func (c *Client) InternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (*InternetFindResponseEnvelope, error) {
 	res, err := c.sendInternetOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetOpFindReq, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
+func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15735,12 +15834,12 @@ func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadPa
 // InternetOpUpdate invokes InternetOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/internet/{id}
-func (c *Client) InternetOpUpdate(ctx context.Context, request *InternetOpUpdateReq, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error) {
+func (c *Client) InternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetOpUpdateReq, params InternetOpUpdateParams) (res *InternetUpdateResponseEnvelope, err error) {
+func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (res *InternetUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -15865,12 +15964,21 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetOpUp
 // InternetOpUpdateBandWidth invokes InternetOp_updateBandWidth operation.
 //
 // PUT /{zone}/api/cloud/1.1/internet/{id}/bandwidth
-func (c *Client) InternetOpUpdateBandWidth(ctx context.Context, request *InternetOpUpdateBandWidthReq, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error) {
+func (c *Client) InternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdateBandWidth(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *InternetOpUpdateBandWidthReq, params InternetOpUpdateBandWidthParams) (res *InternetUpdateBandWidthResponseEnvelope, err error) {
+func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (res *InternetUpdateBandWidthResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -15987,12 +16095,12 @@ func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *Int
 // InternetOpUpdateSubnet invokes InternetOp_updateSubnet operation.
 //
 // PUT /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
-func (c *Client) InternetOpUpdateSubnet(ctx context.Context, request *InternetOpUpdateSubnetReq, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error) {
+func (c *Client) InternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdateSubnet(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *InternetOpUpdateSubnetReq, params InternetOpUpdateSubnetParams) (res *InternetUpdateSubnetResponseEnvelope, err error) {
+func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (res *InternetUpdateSubnetResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -16127,12 +16235,21 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 // InternetPlanOpFind invokes InternetPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/internet
-func (c *Client) InternetPlanOpFind(ctx context.Context, request *InternetPlanOpFindReq, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error) {
+func (c *Client) InternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error) {
 	res, err := c.sendInternetPlanOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPlanOpFindReq, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
+func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -16348,12 +16465,21 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 // LicenseInfoOpFind invokes LicenseInfoOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/license
-func (c *Client) LicenseInfoOpFind(ctx context.Context, request *LicenseInfoOpFindReq, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error) {
+func (c *Client) LicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error) {
 	res, err := c.sendLicenseInfoOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfoOpFindReq, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
+func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -16569,12 +16695,12 @@ func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOp
 // LicenseOpCreate invokes LicenseOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/license
-func (c *Client) LicenseOpCreate(ctx context.Context, request *LicenseOpCreateReq, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error) {
+func (c *Client) LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error) {
 	res, err := c.sendLicenseOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseOpCreateReq, params LicenseOpCreateParams) (res *LicenseCreateResponseEnvelope, err error) {
+func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (res *LicenseCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -16790,12 +16916,21 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 // LicenseOpFind invokes LicenseOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/license
-func (c *Client) LicenseOpFind(ctx context.Context, request *LicenseOpFindReq, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error) {
+func (c *Client) LicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error) {
 	res, err := c.sendLicenseOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseOpFindReq, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
+func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -17011,12 +17146,12 @@ func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadPara
 // LicenseOpUpdate invokes LicenseOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/license/{id}
-func (c *Client) LicenseOpUpdate(ctx context.Context, request *LicenseOpUpdateReq, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error) {
+func (c *Client) LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error) {
 	res, err := c.sendLicenseOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseOpUpdateReq, params LicenseOpUpdateParams) (res *LicenseUpdateResponseEnvelope, err error) {
+func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (res *LicenseUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -18782,12 +18917,12 @@ func (c *Client) sendMobileGatewayOpTrafficStatus(ctx context.Context, params Mo
 // NoteOpCreate invokes NoteOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/note
-func (c *Client) NoteOpCreate(ctx context.Context, request *NoteOpCreateReq, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error) {
+func (c *Client) NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error) {
 	res, err := c.sendNoteOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteOpCreateReq, params NoteOpCreateParams) (res *NoteCreateResponseEnvelope, err error) {
+func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (res *NoteCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -19012,12 +19147,21 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 // NoteOpFind invokes NoteOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/note
-func (c *Client) NoteOpFind(ctx context.Context, request *NoteOpFindReq, params NoteOpFindParams) (*NoteFindResponseEnvelope, error) {
+func (c *Client) NoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (*NoteFindResponseEnvelope, error) {
 	res, err := c.sendNoteOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteOpFindReq, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
+func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19233,12 +19377,12 @@ func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (r
 // NoteOpUpdate invokes NoteOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/note/{id}
-func (c *Client) NoteOpUpdate(ctx context.Context, request *NoteOpUpdateReq, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error) {
+func (c *Client) NoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error) {
 	res, err := c.sendNoteOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteOpUpdateReq, params NoteOpUpdateParams) (res *NoteUpdateResponseEnvelope, err error) {
+func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (res *NoteUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -19363,12 +19507,12 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteOpUpdateReq,
 // PacketFilterOpCreate invokes PacketFilterOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/packetfilter
-func (c *Client) PacketFilterOpCreate(ctx context.Context, request *PacketFilterOpCreateReq, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error) {
+func (c *Client) PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFilterOpCreateReq, params PacketFilterOpCreateParams) (res *PacketFilterCreateResponseEnvelope, err error) {
+func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (res *PacketFilterCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -19593,12 +19737,21 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 // PacketFilterOpFind invokes PacketFilterOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/packetfilter
-func (c *Client) PacketFilterOpFind(ctx context.Context, request *PacketFilterOpFindReq, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error) {
+func (c *Client) PacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilterOpFindReq, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
+func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19814,12 +19967,12 @@ func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilter
 // PacketFilterOpUpdate invokes PacketFilterOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/packetfilter/{id}
-func (c *Client) PacketFilterOpUpdate(ctx context.Context, request *PacketFilterOpUpdateReq, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error) {
+func (c *Client) PacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFilterOpUpdateReq, params PacketFilterOpUpdateParams) (res *PacketFilterUpdateResponseEnvelope, err error) {
+func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (res *PacketFilterUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -20174,12 +20327,21 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 // PrivateHostOpFind invokes PrivateHostOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/privatehost
-func (c *Client) PrivateHostOpFind(ctx context.Context, request *PrivateHostOpFindReq, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error) {
+func (c *Client) PrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHostOpFindReq, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -20395,12 +20557,12 @@ func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOp
 // PrivateHostOpUpdate invokes PrivateHostOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/privatehost/{id}
-func (c *Client) PrivateHostOpUpdate(ctx context.Context, request *PrivateHostOpUpdateReq, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error) {
+func (c *Client) PrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHostOpUpdateReq, params PrivateHostOpUpdateParams) (res *PrivateHostUpdateResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (res *PrivateHostUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -20525,12 +20687,21 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 // PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/privatehost
-func (c *Client) PrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanOpFindReq, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error) {
+func (c *Client) PrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error) {
 	res, err := c.sendPrivateHostPlanOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanOpFindReq, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -21400,12 +21571,21 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 // RegionOpFind invokes RegionOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/region
-func (c *Client) RegionOpFind(ctx context.Context, request *RegionOpFindReq, params RegionOpFindParams) (*RegionFindResponseEnvelope, error) {
+func (c *Client) RegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (*RegionFindResponseEnvelope, error) {
 	res, err := c.sendRegionOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionOpFindReq, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
+func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -22808,12 +22988,12 @@ func (c *Client) sendSIMOpStatus(ctx context.Context, params SIMOpStatusParams) 
 // SSHKeyOpCreate invokes SSHKeyOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/sshkey
-func (c *Client) SSHKeyOpCreate(ctx context.Context, request *SSHKeyOpCreateReq, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error) {
+func (c *Client) SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyOpCreateReq, params SSHKeyOpCreateParams) (res *SSHKeyCreateResponseEnvelope, err error) {
+func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (res *SSHKeyCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -23029,12 +23209,21 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 // SSHKeyOpFind invokes SSHKeyOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/sshkey
-func (c *Client) SSHKeyOpFind(ctx context.Context, request *SSHKeyOpFindReq, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error) {
+func (c *Client) SSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyOpFindReq, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
+func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -23250,12 +23439,12 @@ func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams
 // SSHKeyOpUpdate invokes SSHKeyOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/sshkey/{id}
-func (c *Client) SSHKeyOpUpdate(ctx context.Context, request *SSHKeyOpUpdateReq, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error) {
+func (c *Client) SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyOpUpdateReq, params SSHKeyOpUpdateParams) (res *SSHKeyUpdateResponseEnvelope, err error) {
+func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (res *SSHKeyUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -23493,12 +23682,12 @@ func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerOpBootReq,
 // ServerOpChangePlan invokes ServerOp_changePlan operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/plan
-func (c *Client) ServerOpChangePlan(ctx context.Context, request *ServerOpChangePlanReq, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error) {
+func (c *Client) ServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error) {
 	res, err := c.sendServerOpChangePlan(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerOpChangePlanReq, params ServerOpChangePlanParams) (res *ServerChangePlanResponseEnvelope, err error) {
+func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (res *ServerChangePlanResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -23615,12 +23804,12 @@ func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerOpCh
 // ServerOpCreate invokes ServerOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/server
-func (c *Client) ServerOpCreate(ctx context.Context, request *ServerOpCreateReq, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error) {
+func (c *Client) ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error) {
 	res, err := c.sendServerOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerOpCreateReq, params ServerOpCreateParams) (res *ServerCreateResponseEnvelope, err error) {
+func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (res *ServerCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -23857,12 +24046,21 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerOpDelete
 // ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
-func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerOpEjectCDROMReq, params ServerOpEjectCDROMParams) error {
+func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) error {
 	_, err := c.sendServerOpEjectCDROM(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerOpEjectCDROMReq, params ServerOpEjectCDROMParams) (res *ServerOpEjectCDROMNoContent, err error) {
+func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (res *ServerOpEjectCDROMNoContent, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -23979,12 +24177,21 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerOpEj
 // ServerOpFind invokes ServerOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/server
-func (c *Client) ServerOpFind(ctx context.Context, request *ServerOpFindReq, params ServerOpFindParams) (*ServerFindResponseEnvelope, error) {
+func (c *Client) ServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (*ServerFindResponseEnvelope, error) {
 	res, err := c.sendServerOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpFind(ctx context.Context, request *ServerOpFindReq, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
+func (c *Client) sendServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -24201,12 +24408,21 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 // ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
-func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerOpInsertCDROMReq, params ServerOpInsertCDROMParams) error {
+func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) error {
 	_, err := c.sendServerOpInsertCDROM(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerOpInsertCDROMReq, params ServerOpInsertCDROMParams) (res *ServerOpInsertCDROMNoContent, err error) {
+func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (res *ServerOpInsertCDROMNoContent, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -24682,12 +24898,12 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 // ServerOpSendKey invokes ServerOp_sendKey operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
-func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerOpSendKeyReq, params ServerOpSendKeyParams) error {
+func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) error {
 	_, err := c.sendServerOpSendKey(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerOpSendKeyReq, params ServerOpSendKeyParams) (res *ServerOpSendKeyNoContent, err error) {
+func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (res *ServerOpSendKeyNoContent, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -24932,12 +25148,12 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 // ServerOpShutdown invokes ServerOp_shutdown operation.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}/power
-func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerOpShutdownReq, params ServerOpShutdownParams) error {
+func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) error {
 	_, err := c.sendServerOpShutdown(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerOpShutdownReq, params ServerOpShutdownParams) (res *ServerOpShutdownNoContent, err error) {
+func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (res *ServerOpShutdownNoContent, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -25054,12 +25270,12 @@ func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerOpShut
 // ServerOpUpdate invokes ServerOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}
-func (c *Client) ServerOpUpdate(ctx context.Context, request *ServerOpUpdateReq, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error) {
+func (c *Client) ServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error) {
 	res, err := c.sendServerOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerOpUpdateReq, params ServerOpUpdateParams) (res *ServerUpdateResponseEnvelope, err error) {
+func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (res *ServerUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -25184,12 +25400,21 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerOpUpdate
 // ServerPlanOpFind invokes ServerPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/server
-func (c *Client) ServerPlanOpFind(ctx context.Context, request *ServerPlanOpFindReq, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error) {
+func (c *Client) ServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error) {
 	res, err := c.sendServerPlanOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanOpFindReq, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
+func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -25405,12 +25630,21 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 // ServiceClassOpFind invokes ServiceClassOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/public/price
-func (c *Client) ServiceClassOpFind(ctx context.Context, request *ServiceClassOpFindReq, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error) {
+func (c *Client) ServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error) {
 	res, err := c.sendServiceClassOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceClassOpFindReq, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
+func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -25919,12 +26153,21 @@ func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, r
 // SubnetOpFind invokes SubnetOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/subnet
-func (c *Client) SubnetOpFind(ctx context.Context, request *SubnetOpFindReq, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error) {
+func (c *Client) SubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error) {
 	res, err := c.sendSubnetOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetOpFindReq, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
+func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -26277,21 +26520,12 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 // SwitchOpCreate invokes SwitchOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/switch
-func (c *Client) SwitchOpCreate(ctx context.Context, request *SwitchOpCreateReq, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error) {
+func (c *Client) SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error) {
 	res, err := c.sendSwitchOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchOpCreateReq, params SwitchOpCreateParams) (res *SwitchCreateResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
+func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (res *SwitchCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -26626,12 +26860,21 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 // SwitchOpFind invokes SwitchOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/switch
-func (c *Client) SwitchOpFind(ctx context.Context, request *SwitchOpFindReq, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error) {
+func (c *Client) SwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error) {
 	res, err := c.sendSwitchOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchOpFindReq, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
+func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -26966,21 +27209,12 @@ func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams
 // SwitchOpUpdate invokes SwitchOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/switch/{id}
-func (c *Client) SwitchOpUpdate(ctx context.Context, request *SwitchOpUpdateReq, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error) {
+func (c *Client) SwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error) {
 	res, err := c.sendSwitchOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchOpUpdateReq, params SwitchOpUpdateParams) (res *SwitchUpdateResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
+func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (res *SwitchUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -27594,12 +27828,21 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 // ZoneOpFind invokes ZoneOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/zone
-func (c *Client) ZoneOpFind(ctx context.Context, request *ZoneOpFindReq, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error) {
+func (c *Client) ZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error) {
 	res, err := c.sendZoneOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneOpFindReq, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
+func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string

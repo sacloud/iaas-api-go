@@ -193,6 +193,40 @@ func (s *ArchiveCreateResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *ArchiveFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *ArchiveFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -279,29 +313,6 @@ func (s *ArchiveOpTransferReq) Validate() error {
 	return nil
 }
 
-func (s *ArchiveOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *ArchiveReadResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -348,20 +359,20 @@ func (s *ArchiveTransferResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *ArchiveUpdateRequest) Validate() error {
+func (s *ArchiveUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Archive.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Archive",
 			Error: err,
 		})
 	}
@@ -863,6 +874,29 @@ func (s *Bridge) Validate() error {
 	return nil
 }
 
+func (s *BridgeCreateRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.Bridge.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Bridge",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *BridgeCreateResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -877,6 +911,40 @@ func (s *BridgeCreateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Bridge",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *BridgeFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -949,6 +1017,29 @@ func (s *BridgeReadResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *BridgeUpdateRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.Bridge.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Bridge",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *BridgeUpdateResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -995,20 +1086,20 @@ func (s *CDROM) Validate() error {
 	return nil
 }
 
-func (s *CDROMCreateRequest) Validate() error {
+func (s *CDROMCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.CDROM.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "CDROM",
 			Error: err,
 		})
 	}
@@ -1032,6 +1123,40 @@ func (s *CDROMCreateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "CDROM",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *CDROMFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -1081,52 +1206,6 @@ func (s *CDROMFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *CDROMOpCreateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *CDROMOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *CDROMReadResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -1150,20 +1229,20 @@ func (s *CDROMReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *CDROMUpdateRequest) Validate() error {
+func (s *CDROMUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.CDROM.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "CDROM",
 			Error: err,
 		})
 	}
@@ -2456,6 +2535,40 @@ func (s *Disk) Validate() error {
 	return nil
 }
 
+func (s *DiskConfigRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.SSHKeys == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "SSHKeys",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Notes == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Notes",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *DiskCreateRequest) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -2536,6 +2649,40 @@ func (s *DiskEditRequest) Validate() error {
 	return nil
 }
 
+func (s *DiskFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *DiskFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -2567,29 +2714,6 @@ func (s *DiskFindResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Disks",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *DiskOpConfigReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Edit.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "edit",
 			Error: err,
 		})
 	}
@@ -2651,29 +2775,6 @@ func (s *DiskOpCreateReq) Validate() error {
 	return nil
 }
 
-func (s *DiskOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *DiskPlan) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -2688,6 +2789,40 @@ func (s *DiskPlan) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Size",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *DiskPlanFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -2783,20 +2918,20 @@ func (s *DiskReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *DiskUpdateRequest) Validate() error {
+func (s *DiskUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Disk.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Disk",
 			Error: err,
 		})
 	}
@@ -2965,6 +3100,40 @@ func (s *IPAddressListResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *IPv6AddrFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *IPv6AddrFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -3034,20 +3203,20 @@ func (s *Icon) Validate() error {
 	return nil
 }
 
-func (s *IconCreateRequest) Validate() error {
+func (s *IconCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Icon.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Icon",
 			Error: err,
 		})
 	}
@@ -3071,6 +3240,40 @@ func (s *IconCreateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Icon",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *IconFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -3120,52 +3323,6 @@ func (s *IconFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *IconOpCreateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *IconOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *IconReadResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -3189,20 +3346,20 @@ func (s *IconReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *IconUpdateRequest) Validate() error {
+func (s *IconUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Icon.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Icon",
 			Error: err,
 		})
 	}
@@ -3226,6 +3383,40 @@ func (s *IconUpdateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Icon",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *InterfaceFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -3292,20 +3483,20 @@ func (s *Internet) Validate() error {
 	return nil
 }
 
-func (s *InternetCreateRequest) Validate() error {
+func (s *InternetCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Internet.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Internet",
 			Error: err,
 		})
 	}
@@ -3329,6 +3520,40 @@ func (s *InternetCreateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Internet",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *InternetFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -3378,43 +3603,31 @@ func (s *InternetFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *InternetOpCreateReq) Validate() error {
+func (s *InternetPlanFindRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "param",
+			Name:  "Include",
 			Error: err,
 		})
 	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *InternetOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "param",
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -3470,6 +3683,29 @@ func (s *InternetReadResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *InternetUpdateBandWidthRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.Internet.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Internet",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *InternetUpdateBandWidthResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -3493,20 +3729,20 @@ func (s *InternetUpdateBandWidthResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *InternetUpdateRequest) Validate() error {
+func (s *InternetUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Internet.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Internet",
 			Error: err,
 		})
 	}
@@ -3539,6 +3775,40 @@ func (s *InternetUpdateResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *LicenseFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *LicenseFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -3553,6 +3823,40 @@ func (s *LicenseFindResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Licenses",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *LicenseInfoFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -3849,20 +4153,20 @@ func (s *Note) Validate() error {
 	return nil
 }
 
-func (s *NoteCreateRequest) Validate() error {
+func (s *NoteCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Note.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Note",
 			Error: err,
 		})
 	}
@@ -3886,6 +4190,40 @@ func (s *NoteCreateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Note",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *NoteFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -3935,52 +4273,6 @@ func (s *NoteFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *NoteOpCreateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *NoteOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *NoteReadResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -4004,20 +4296,20 @@ func (s *NoteReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *NoteUpdateRequest) Validate() error {
+func (s *NoteUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Note.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Note",
 			Error: err,
 		})
 	}
@@ -4073,20 +4365,20 @@ func (s *PacketFilter) Validate() error {
 	return nil
 }
 
-func (s *PacketFilterCreateRequest) Validate() error {
+func (s *PacketFilterCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Expression == nil {
-			return errors.New("nil is invalid value")
+		if err := s.PacketFilter.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Expression",
+			Name:  "PacketFilter",
 			Error: err,
 		})
 	}
@@ -4110,6 +4402,40 @@ func (s *PacketFilterCreateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "PacketFilter",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *PacketFilterFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -4159,52 +4485,6 @@ func (s *PacketFilterFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *PacketFilterOpCreateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *PacketFilterOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.UpdateParam.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "updateParam",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *PacketFilterReadResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -4228,20 +4508,20 @@ func (s *PacketFilterReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *PacketFilterUpdateRequest) Validate() error {
+func (s *PacketFilterUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Expression == nil {
-			return errors.New("nil is invalid value")
+		if err := s.PacketFilter.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Expression",
+			Name:  "PacketFilter",
 			Error: err,
 		})
 	}
@@ -4343,6 +4623,40 @@ func (s *PrivateHostCreateResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *PrivateHostFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *PrivateHostFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -4431,20 +4745,31 @@ func (s *PrivateHostOpCreateReq) Validate() error {
 	return nil
 }
 
-func (s *PrivateHostOpUpdateReq) Validate() error {
+func (s *PrivateHostPlanFindRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "param",
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -4500,20 +4825,20 @@ func (s *PrivateHostReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *PrivateHostUpdateRequest) Validate() error {
+func (s *PrivateHostUpdateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if err := s.PrivateHost.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "PrivateHost",
 			Error: err,
 		})
 	}
@@ -4848,6 +5173,40 @@ func (s *Region) Validate() error {
 	return nil
 }
 
+func (s *RegionFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *RegionFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -5003,6 +5362,40 @@ func (s *SIMStatusResponseEnvelope) Validate() error {
 	return nil
 }
 
+func (s *SSHKeyFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *SSHKeyFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -5017,29 +5410,6 @@ func (s *SSHKeyFindResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "SSHKeys",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *SendKeyRequest) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if s.Keys == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "Keys",
 			Error: err,
 		})
 	}
@@ -5128,31 +5498,20 @@ func (s *ServerChangePlanResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *ServerCreateRequest) Validate() error {
+func (s *ServerCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.ConnectedSwitches == nil {
-			return errors.New("nil is invalid value")
+		if err := s.Server.Validate(); err != nil {
+			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "ConnectedSwitches",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Server",
 			Error: err,
 		})
 	}
@@ -5208,6 +5567,63 @@ func (s *ServerDeleteWithDisksRequest) Validate() error {
 	return nil
 }
 
+func (s *ServerEjectCDROMRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.CDROM.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "CDROM",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *ServerFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *ServerFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -5248,20 +5664,20 @@ func (s *ServerFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *ServerOpCreateReq) Validate() error {
+func (s *ServerInsertCDROMRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
+		if err := s.CDROM.Validate(); err != nil {
 			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "param",
+			Name:  "CDROM",
 			Error: err,
 		})
 	}
@@ -5301,43 +5717,31 @@ func (s *ServerOpDeleteReq) Validate() error {
 	return nil
 }
 
-func (s *ServerOpSendKeyReq) Validate() error {
+func (s *ServerPlanFindRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.KeyboardParam.Validate(); err != nil {
-			return err
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "keyboardParam",
+			Name:  "Include",
 			Error: err,
 		})
 	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *ServerOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "param",
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -5393,20 +5797,43 @@ func (s *ServerReadResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *ServerUpdateRequest) Validate() error {
+func (s *ServerSendKeyRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
+		if s.Keys == nil {
 			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Keys",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *ServerUpdateRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.Server.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Server",
 			Error: err,
 		})
 	}
@@ -5430,6 +5857,40 @@ func (s *ServerUpdateResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Server",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *ServiceClassFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -5548,6 +6009,40 @@ func (s *SimpleNotificationHistory) Validate() error {
 	return nil
 }
 
+func (s *SubnetFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
 func (s *SubnetFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -5571,20 +6066,31 @@ func (s *SubnetFindResponseEnvelope) Validate() error {
 	return nil
 }
 
-func (s *SwitchCreateRequest) Validate() error {
+func (s *SwitchFindRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
+		if s.Include == nil {
 			return errors.New("nil is invalid value")
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}
@@ -5702,75 +6208,6 @@ func (s *SwitchInfo) Validate() error {
 	return nil
 }
 
-func (s *SwitchOpCreateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *SwitchOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *SwitchUpdateRequest) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "Tags",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *VPCRouterPingResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -5808,6 +6245,40 @@ func (s *VPCRouterPingResults) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Result",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *ZoneFindRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if s.Include == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Include",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if s.Exclude == nil {
+			return errors.New("nil is invalid value")
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Exclude",
 			Error: err,
 		})
 	}

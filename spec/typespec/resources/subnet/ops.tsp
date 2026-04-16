@@ -14,7 +14,7 @@ interface SubnetOp {
   @route("/{zone}/api/cloud/1.1/subnet")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: SubnetFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): SubnetFindResponseEnvelope | ApiError;
 

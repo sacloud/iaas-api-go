@@ -14,7 +14,7 @@ interface InternetPlanOp {
   @route("/{zone}/api/cloud/1.1/product/internet")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: InternetPlanFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetPlanFindResponseEnvelope | ApiError;
 

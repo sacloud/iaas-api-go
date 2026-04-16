@@ -14,7 +14,7 @@ interface BridgeOp {
   @route("/{zone}/api/cloud/1.1/bridge")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: BridgeFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): BridgeFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface BridgeOp {
   @route("/{zone}/api/cloud/1.1/bridge")
   create(
     @path zone: string,
-    param: BridgeCreateRequest,
+    @body body: BridgeCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): BridgeCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface BridgeOp {
   update(
     @path zone: string,
     @path id: string,
-    param: BridgeUpdateRequest,
+    @body body: BridgeUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): BridgeUpdateResponseEnvelope | ApiError;
 

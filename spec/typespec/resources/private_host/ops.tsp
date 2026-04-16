@@ -14,7 +14,7 @@ interface PrivateHostOp {
   @route("/{zone}/api/cloud/1.1/privatehost")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: PrivateHostFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): PrivateHostFindResponseEnvelope | ApiError;
 
@@ -41,7 +41,7 @@ interface PrivateHostOp {
   update(
     @path zone: string,
     @path id: string,
-    param: PrivateHostUpdateRequest,
+    @body body: PrivateHostUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): PrivateHostUpdateResponseEnvelope | ApiError;
 

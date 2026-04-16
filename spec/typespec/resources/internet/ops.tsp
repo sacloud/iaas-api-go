@@ -14,7 +14,7 @@ interface InternetOp {
   @route("/{zone}/api/cloud/1.1/internet")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: InternetFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface InternetOp {
   @route("/{zone}/api/cloud/1.1/internet")
   create(
     @path zone: string,
-    param: InternetCreateRequest,
+    @body body: InternetCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface InternetOp {
   update(
     @path zone: string,
     @path id: string,
-    param: InternetUpdateRequest,
+    @body body: InternetUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetUpdateResponseEnvelope | ApiError;
 
@@ -56,7 +56,7 @@ interface InternetOp {
   updateBandWidth(
     @path zone: string,
     @path id: string,
-    param: InternetUpdateBandWidthRequest,
+    @body body: InternetUpdateBandWidthRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetUpdateBandWidthResponseEnvelope | ApiError;
 
@@ -65,7 +65,7 @@ interface InternetOp {
   addSubnet(
     @path zone: string,
     @path id: string,
-    param: InternetAddSubnetRequest,
+    @body body: InternetAddSubnetRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetAddSubnetResponseEnvelope | ApiError;
 
@@ -75,7 +75,7 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @path subnetID: string,
-    param: InternetUpdateSubnetRequest,
+    @body body: InternetUpdateSubnetRequestEnvelope,
     ...CommonRequestHeaders,
   ): InternetUpdateSubnetResponseEnvelope | ApiError;
 

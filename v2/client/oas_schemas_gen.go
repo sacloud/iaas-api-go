@@ -1067,6 +1067,95 @@ func (s *ArchiveCreateResponseEnvelope) SetArchive(val Archive) {
 	s.Archive = val
 }
 
+// Request envelope for archiveFindRequestEnvelope.
+// Ref: #/components/schemas/ArchiveFindRequestEnvelope
+type ArchiveFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter ArchiveFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *ArchiveFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *ArchiveFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *ArchiveFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *ArchiveFindRequestEnvelope) GetFilter() ArchiveFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *ArchiveFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *ArchiveFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *ArchiveFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *ArchiveFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *ArchiveFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *ArchiveFindRequestEnvelope) SetFilter(val ArchiveFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *ArchiveFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *ArchiveFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type ArchiveFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *ArchiveFindRequestEnvelopeFilter) init() ArchiveFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for archiveFindResponseEnvelope.
 // Ref: #/components/schemas/ArchiveFindResponseEnvelope
 type ArchiveFindResponseEnvelope struct {
@@ -1140,20 +1229,6 @@ func (s *ArchiveOpCreateReq) SetParam(val ArchiveCreateRequest) {
 // ArchiveOpDeleteNoContent is response for ArchiveOpDelete operation.
 type ArchiveOpDeleteNoContent struct{}
 
-type ArchiveOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *ArchiveOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *ArchiveOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
 type ArchiveOpShareReq struct {
 	OpenOption OptOpenFTPRequest `json:"openOption"`
 }
@@ -1179,20 +1254,6 @@ func (s *ArchiveOpTransferReq) GetParam() ArchiveCreateRequestFromShared {
 
 // SetParam sets the value of Param.
 func (s *ArchiveOpTransferReq) SetParam(val ArchiveCreateRequestFromShared) {
-	s.Param = val
-}
-
-type ArchiveOpUpdateReq struct {
-	Param ArchiveUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *ArchiveOpUpdateReq) GetParam() ArchiveUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *ArchiveOpUpdateReq) SetParam(val ArchiveUpdateRequest) {
 	s.Param = val
 }
 
@@ -1334,52 +1395,21 @@ func (s *ArchiveTransferResponseEnvelope) SetArchive(val Archive) {
 	s.Archive = val
 }
 
-// Ref: #/components/schemas/ArchiveUpdateRequest
-type ArchiveUpdateRequest struct {
-	Name        string   `json:"Name"`
-	Description string   `json:"Description"`
-	Tags        []string `json:"Tags"`
-	IconID      int64    `json:"IconID"`
+// Request envelope for archiveUpdateRequestEnvelope.
+// Ref: #/components/schemas/ArchiveUpdateRequestEnvelope
+type ArchiveUpdateRequestEnvelope struct {
+	// Archive.
+	Archive Archive `json:"Archive"`
 }
 
-// GetName returns the value of Name.
-func (s *ArchiveUpdateRequest) GetName() string {
-	return s.Name
+// GetArchive returns the value of Archive.
+func (s *ArchiveUpdateRequestEnvelope) GetArchive() Archive {
+	return s.Archive
 }
 
-// GetDescription returns the value of Description.
-func (s *ArchiveUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *ArchiveUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *ArchiveUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetName sets the value of Name.
-func (s *ArchiveUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *ArchiveUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *ArchiveUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *ArchiveUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetArchive sets the value of Archive.
+func (s *ArchiveUpdateRequestEnvelope) SetArchive(val Archive) {
+	s.Archive = val
 }
 
 // Response envelope for archiveUpdateResponseEnvelope.
@@ -2828,30 +2858,21 @@ func (s *Bridge) SetSwitchInZone(val BridgeSwitchInfo) {
 	s.SwitchInZone = val
 }
 
-// Ref: #/components/schemas/BridgeCreateRequest
-type BridgeCreateRequest struct {
-	Name        string `json:"Name"`
-	Description string `json:"Description"`
+// Request envelope for bridgeCreateRequestEnvelope.
+// Ref: #/components/schemas/BridgeCreateRequestEnvelope
+type BridgeCreateRequestEnvelope struct {
+	// Bridge.
+	Bridge Bridge `json:"Bridge"`
 }
 
-// GetName returns the value of Name.
-func (s *BridgeCreateRequest) GetName() string {
-	return s.Name
+// GetBridge returns the value of Bridge.
+func (s *BridgeCreateRequestEnvelope) GetBridge() Bridge {
+	return s.Bridge
 }
 
-// GetDescription returns the value of Description.
-func (s *BridgeCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// SetName sets the value of Name.
-func (s *BridgeCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *BridgeCreateRequest) SetDescription(val string) {
-	s.Description = val
+// SetBridge sets the value of Bridge.
+func (s *BridgeCreateRequestEnvelope) SetBridge(val Bridge) {
+	s.Bridge = val
 }
 
 // Response envelope for bridgeCreateResponseEnvelope.
@@ -2893,6 +2914,95 @@ func (s *BridgeCreateResponseEnvelope) SetSuccess(val string) {
 // SetBridge sets the value of Bridge.
 func (s *BridgeCreateResponseEnvelope) SetBridge(val Bridge) {
 	s.Bridge = val
+}
+
+// Request envelope for bridgeFindRequestEnvelope.
+// Ref: #/components/schemas/BridgeFindRequestEnvelope
+type BridgeFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter BridgeFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *BridgeFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *BridgeFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *BridgeFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *BridgeFindRequestEnvelope) GetFilter() BridgeFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *BridgeFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *BridgeFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *BridgeFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *BridgeFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *BridgeFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *BridgeFindRequestEnvelope) SetFilter(val BridgeFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *BridgeFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *BridgeFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type BridgeFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *BridgeFindRequestEnvelopeFilter) init() BridgeFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for bridgeFindResponseEnvelope.
@@ -2996,50 +3106,8 @@ func (s *BridgeInfo) SetZoneName(val string) {
 	s.ZoneName = val
 }
 
-type BridgeOpCreateReq struct {
-	Param BridgeCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *BridgeOpCreateReq) GetParam() BridgeCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *BridgeOpCreateReq) SetParam(val BridgeCreateRequest) {
-	s.Param = val
-}
-
 // BridgeOpDeleteNoContent is response for BridgeOpDelete operation.
 type BridgeOpDeleteNoContent struct{}
-
-type BridgeOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *BridgeOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *BridgeOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type BridgeOpUpdateReq struct {
-	Param BridgeUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *BridgeOpUpdateReq) GetParam() BridgeUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *BridgeOpUpdateReq) SetParam(val BridgeUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for bridgeReadResponseEnvelope.
 // Ref: #/components/schemas/BridgeReadResponseEnvelope
@@ -3141,30 +3209,21 @@ func (s *BridgeSwitchInfo) SetApplianceCount(val int32) {
 	s.ApplianceCount = val
 }
 
-// Ref: #/components/schemas/BridgeUpdateRequest
-type BridgeUpdateRequest struct {
-	Name        string `json:"Name"`
-	Description string `json:"Description"`
+// Request envelope for bridgeUpdateRequestEnvelope.
+// Ref: #/components/schemas/BridgeUpdateRequestEnvelope
+type BridgeUpdateRequestEnvelope struct {
+	// Bridge.
+	Bridge Bridge `json:"Bridge"`
 }
 
-// GetName returns the value of Name.
-func (s *BridgeUpdateRequest) GetName() string {
-	return s.Name
+// GetBridge returns the value of Bridge.
+func (s *BridgeUpdateRequestEnvelope) GetBridge() Bridge {
+	return s.Bridge
 }
 
-// GetDescription returns the value of Description.
-func (s *BridgeUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// SetName sets the value of Name.
-func (s *BridgeUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *BridgeUpdateRequest) SetDescription(val string) {
-	s.Description = val
+// SetBridge sets the value of Bridge.
+func (s *BridgeUpdateRequestEnvelope) SetBridge(val Bridge) {
+	s.Bridge = val
 }
 
 // Response envelope for bridgeUpdateResponseEnvelope.
@@ -3381,63 +3440,21 @@ func (s *CDROM) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
-// Ref: #/components/schemas/CDROMCreateRequest
-type CDROMCreateRequest struct {
-	SizeMB      int32    `json:"SizeMB"`
-	Name        string   `json:"Name"`
-	Description string   `json:"Description"`
-	Tags        []string `json:"Tags"`
-	IconID      int64    `json:"IconID"`
+// Request envelope for cDROMCreateRequestEnvelope.
+// Ref: #/components/schemas/CDROMCreateRequestEnvelope
+type CDROMCreateRequestEnvelope struct {
+	// CDROM.
+	CDROM CDROM `json:"CDROM"`
 }
 
-// GetSizeMB returns the value of SizeMB.
-func (s *CDROMCreateRequest) GetSizeMB() int32 {
-	return s.SizeMB
+// GetCDROM returns the value of CDROM.
+func (s *CDROMCreateRequestEnvelope) GetCDROM() CDROM {
+	return s.CDROM
 }
 
-// GetName returns the value of Name.
-func (s *CDROMCreateRequest) GetName() string {
-	return s.Name
-}
-
-// GetDescription returns the value of Description.
-func (s *CDROMCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *CDROMCreateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *CDROMCreateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetSizeMB sets the value of SizeMB.
-func (s *CDROMCreateRequest) SetSizeMB(val int32) {
-	s.SizeMB = val
-}
-
-// SetName sets the value of Name.
-func (s *CDROMCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *CDROMCreateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *CDROMCreateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *CDROMCreateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetCDROM sets the value of CDROM.
+func (s *CDROMCreateRequestEnvelope) SetCDROM(val CDROM) {
+	s.CDROM = val
 }
 
 // Response envelope for cDROMCreateResponseEnvelope.
@@ -3491,6 +3508,95 @@ func (s *CDROMCreateResponseEnvelope) SetCDROM(val CDROM) {
 // SetFTPServer sets the value of FTPServer.
 func (s *CDROMCreateResponseEnvelope) SetFTPServer(val FTPServer) {
 	s.FTPServer = val
+}
+
+// Request envelope for cDROMFindRequestEnvelope.
+// Ref: #/components/schemas/CDROMFindRequestEnvelope
+type CDROMFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter CDROMFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *CDROMFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *CDROMFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *CDROMFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *CDROMFindRequestEnvelope) GetFilter() CDROMFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *CDROMFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *CDROMFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *CDROMFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *CDROMFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *CDROMFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *CDROMFindRequestEnvelope) SetFilter(val CDROMFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *CDROMFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *CDROMFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type CDROMFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *CDROMFindRequestEnvelopeFilter) init() CDROMFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for cDROMFindResponseEnvelope.
@@ -3549,63 +3655,24 @@ func (s *CDROMFindResponseEnvelope) SetCDROMs(val []CDROM) {
 // CDROMOpCloseFTPNoContent is response for CDROMOpCloseFTP operation.
 type CDROMOpCloseFTPNoContent struct{}
 
-type CDROMOpCreateReq struct {
-	Param CDROMCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *CDROMOpCreateReq) GetParam() CDROMCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *CDROMOpCreateReq) SetParam(val CDROMCreateRequest) {
-	s.Param = val
-}
-
 // CDROMOpDeleteNoContent is response for CDROMOpDelete operation.
 type CDROMOpDeleteNoContent struct{}
 
-type CDROMOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
+// Request envelope for cDROMOpenFTPRequestEnvelope.
+// Ref: #/components/schemas/CDROMOpenFTPRequestEnvelope
+type CDROMOpenFTPRequestEnvelope struct {
+	// ChangePassword.
+	ChangePassword bool `json:"ChangePassword"`
 }
 
-// GetConditions returns the value of Conditions.
-func (s *CDROMOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
+// GetChangePassword returns the value of ChangePassword.
+func (s *CDROMOpenFTPRequestEnvelope) GetChangePassword() bool {
+	return s.ChangePassword
 }
 
-// SetConditions sets the value of Conditions.
-func (s *CDROMOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type CDROMOpOpenFTPReq struct {
-	OpenOption OpenFTPRequest `json:"openOption"`
-}
-
-// GetOpenOption returns the value of OpenOption.
-func (s *CDROMOpOpenFTPReq) GetOpenOption() OpenFTPRequest {
-	return s.OpenOption
-}
-
-// SetOpenOption sets the value of OpenOption.
-func (s *CDROMOpOpenFTPReq) SetOpenOption(val OpenFTPRequest) {
-	s.OpenOption = val
-}
-
-type CDROMOpUpdateReq struct {
-	Param CDROMUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *CDROMOpUpdateReq) GetParam() CDROMUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *CDROMOpUpdateReq) SetParam(val CDROMUpdateRequest) {
-	s.Param = val
+// SetChangePassword sets the value of ChangePassword.
+func (s *CDROMOpenFTPRequestEnvelope) SetChangePassword(val bool) {
+	s.ChangePassword = val
 }
 
 // Response envelope for cDROMOpenFTPResponseEnvelope.
@@ -3690,52 +3757,21 @@ func (s *CDROMReadResponseEnvelope) SetCDROM(val CDROM) {
 	s.CDROM = val
 }
 
-// Ref: #/components/schemas/CDROMUpdateRequest
-type CDROMUpdateRequest struct {
-	Name        string   `json:"Name"`
-	Description string   `json:"Description"`
-	Tags        []string `json:"Tags"`
-	IconID      int64    `json:"IconID"`
+// Request envelope for cDROMUpdateRequestEnvelope.
+// Ref: #/components/schemas/CDROMUpdateRequestEnvelope
+type CDROMUpdateRequestEnvelope struct {
+	// CDROM.
+	CDROM CDROM `json:"CDROM"`
 }
 
-// GetName returns the value of Name.
-func (s *CDROMUpdateRequest) GetName() string {
-	return s.Name
+// GetCDROM returns the value of CDROM.
+func (s *CDROMUpdateRequestEnvelope) GetCDROM() CDROM {
+	return s.CDROM
 }
 
-// GetDescription returns the value of Description.
-func (s *CDROMUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *CDROMUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *CDROMUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetName sets the value of Name.
-func (s *CDROMUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *CDROMUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *CDROMUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *CDROMUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetCDROM sets the value of CDROM.
+func (s *CDROMUpdateRequestEnvelope) SetCDROM(val CDROM) {
+	s.CDROM = val
 }
 
 // Response envelope for cDROMUpdateResponseEnvelope.
@@ -6385,32 +6421,6 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetInco
 	s.IncomingWebhooksURL = val
 }
 
-// Ref: #/components/schemas/ConnectedSwitch
-type ConnectedSwitch struct {
-	ID    int64  `json:"ID"`
-	Scope EScope `json:"Scope"`
-}
-
-// GetID returns the value of ID.
-func (s *ConnectedSwitch) GetID() int64 {
-	return s.ID
-}
-
-// GetScope returns the value of Scope.
-func (s *ConnectedSwitch) GetScope() EScope {
-	return s.Scope
-}
-
-// SetID sets the value of ID.
-func (s *ConnectedSwitch) SetID(val int64) {
-	s.ID = val
-}
-
-// SetScope sets the value of Scope.
-func (s *ConnectedSwitch) SetScope(val EScope) {
-	s.Scope = val
-}
-
 // Response envelope for containerRegistryListUsersResponseEnvelope.
 // Ref: #/components/schemas/ContainerRegistryListUsersResponseEnvelope
 type ContainerRegistryListUsersResponseEnvelope struct {
@@ -8597,6 +8607,143 @@ func (s *Disk) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
+// Request envelope for diskConfigRequestEnvelope.
+// Ref: #/components/schemas/DiskConfigRequestEnvelope
+type DiskConfigRequestEnvelope struct {
+	// Background.
+	Background bool `json:"Background"`
+	// Password.
+	Password string `json:"Password"`
+	// SSHKey.
+	SSHKey DiskEditSSHKey `json:"SSHKey"`
+	// SSHKeys.
+	SSHKeys []DiskEditSSHKey `json:"SSHKeys"`
+	// DisablePWAuth.
+	DisablePWAuth bool `json:"DisablePWAuth"`
+	// EnableDHCP.
+	EnableDHCP bool `json:"EnableDHCP"`
+	// ChangePartitionUUID.
+	ChangePartitionUUID bool `json:"ChangePartitionUUID"`
+	// HostName.
+	HostName string `json:"HostName"`
+	// Notes.
+	Notes []DiskEditNote `json:"Notes"`
+	// UserIPAddress.
+	UserIPAddress string `json:"UserIPAddress"`
+	// UserSubnet.
+	UserSubnet DiskEditUserSubnet `json:"UserSubnet"`
+}
+
+// GetBackground returns the value of Background.
+func (s *DiskConfigRequestEnvelope) GetBackground() bool {
+	return s.Background
+}
+
+// GetPassword returns the value of Password.
+func (s *DiskConfigRequestEnvelope) GetPassword() string {
+	return s.Password
+}
+
+// GetSSHKey returns the value of SSHKey.
+func (s *DiskConfigRequestEnvelope) GetSSHKey() DiskEditSSHKey {
+	return s.SSHKey
+}
+
+// GetSSHKeys returns the value of SSHKeys.
+func (s *DiskConfigRequestEnvelope) GetSSHKeys() []DiskEditSSHKey {
+	return s.SSHKeys
+}
+
+// GetDisablePWAuth returns the value of DisablePWAuth.
+func (s *DiskConfigRequestEnvelope) GetDisablePWAuth() bool {
+	return s.DisablePWAuth
+}
+
+// GetEnableDHCP returns the value of EnableDHCP.
+func (s *DiskConfigRequestEnvelope) GetEnableDHCP() bool {
+	return s.EnableDHCP
+}
+
+// GetChangePartitionUUID returns the value of ChangePartitionUUID.
+func (s *DiskConfigRequestEnvelope) GetChangePartitionUUID() bool {
+	return s.ChangePartitionUUID
+}
+
+// GetHostName returns the value of HostName.
+func (s *DiskConfigRequestEnvelope) GetHostName() string {
+	return s.HostName
+}
+
+// GetNotes returns the value of Notes.
+func (s *DiskConfigRequestEnvelope) GetNotes() []DiskEditNote {
+	return s.Notes
+}
+
+// GetUserIPAddress returns the value of UserIPAddress.
+func (s *DiskConfigRequestEnvelope) GetUserIPAddress() string {
+	return s.UserIPAddress
+}
+
+// GetUserSubnet returns the value of UserSubnet.
+func (s *DiskConfigRequestEnvelope) GetUserSubnet() DiskEditUserSubnet {
+	return s.UserSubnet
+}
+
+// SetBackground sets the value of Background.
+func (s *DiskConfigRequestEnvelope) SetBackground(val bool) {
+	s.Background = val
+}
+
+// SetPassword sets the value of Password.
+func (s *DiskConfigRequestEnvelope) SetPassword(val string) {
+	s.Password = val
+}
+
+// SetSSHKey sets the value of SSHKey.
+func (s *DiskConfigRequestEnvelope) SetSSHKey(val DiskEditSSHKey) {
+	s.SSHKey = val
+}
+
+// SetSSHKeys sets the value of SSHKeys.
+func (s *DiskConfigRequestEnvelope) SetSSHKeys(val []DiskEditSSHKey) {
+	s.SSHKeys = val
+}
+
+// SetDisablePWAuth sets the value of DisablePWAuth.
+func (s *DiskConfigRequestEnvelope) SetDisablePWAuth(val bool) {
+	s.DisablePWAuth = val
+}
+
+// SetEnableDHCP sets the value of EnableDHCP.
+func (s *DiskConfigRequestEnvelope) SetEnableDHCP(val bool) {
+	s.EnableDHCP = val
+}
+
+// SetChangePartitionUUID sets the value of ChangePartitionUUID.
+func (s *DiskConfigRequestEnvelope) SetChangePartitionUUID(val bool) {
+	s.ChangePartitionUUID = val
+}
+
+// SetHostName sets the value of HostName.
+func (s *DiskConfigRequestEnvelope) SetHostName(val string) {
+	s.HostName = val
+}
+
+// SetNotes sets the value of Notes.
+func (s *DiskConfigRequestEnvelope) SetNotes(val []DiskEditNote) {
+	s.Notes = val
+}
+
+// SetUserIPAddress sets the value of UserIPAddress.
+func (s *DiskConfigRequestEnvelope) SetUserIPAddress(val string) {
+	s.UserIPAddress = val
+}
+
+// SetUserSubnet sets the value of UserSubnet.
+func (s *DiskConfigRequestEnvelope) SetUserSubnet(val DiskEditUserSubnet) {
+	s.UserSubnet = val
+}
+
 // Ref: #/components/schemas/DiskCreateRequest
 type DiskCreateRequest struct {
 	DiskPlanID          int64                    `json:"DiskPlanID"`
@@ -8988,6 +9135,95 @@ func (s *DiskEditUserSubnet) SetNetworkMaskLen(val int32) {
 	s.NetworkMaskLen = val
 }
 
+// Request envelope for diskFindRequestEnvelope.
+// Ref: #/components/schemas/DiskFindRequestEnvelope
+type DiskFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter DiskFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *DiskFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *DiskFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *DiskFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *DiskFindRequestEnvelope) GetFilter() DiskFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *DiskFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *DiskFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *DiskFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *DiskFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *DiskFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *DiskFindRequestEnvelope) SetFilter(val DiskFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *DiskFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *DiskFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type DiskFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *DiskFindRequestEnvelopeFilter) init() DiskFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for diskFindResponseEnvelope.
 // Ref: #/components/schemas/DiskFindResponseEnvelope
 type DiskFindResponseEnvelope struct {
@@ -9085,20 +9321,6 @@ func (s *DiskMonitorResponseEnvelope) SetData(val jx.Raw) {
 // DiskOpConfigNoContent is response for DiskOpConfig operation.
 type DiskOpConfigNoContent struct{}
 
-type DiskOpConfigReq struct {
-	Edit DiskEditRequest `json:"edit"`
-}
-
-// GetEdit returns the value of Edit.
-func (s *DiskOpConfigReq) GetEdit() DiskEditRequest {
-	return s.Edit
-}
-
-// SetEdit sets the value of Edit.
-func (s *DiskOpConfigReq) SetEdit(val DiskEditRequest) {
-	s.Edit = val
-}
-
 // DiskOpConnectToServerNoContent is response for DiskOpConnectToServer operation.
 type DiskOpConnectToServerNoContent struct{}
 
@@ -9177,20 +9399,6 @@ type DiskOpDeleteNoContent struct{}
 // DiskOpDisconnectFromServerNoContent is response for DiskOpDisconnectFromServer operation.
 type DiskOpDisconnectFromServerNoContent struct{}
 
-type DiskOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *DiskOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *DiskOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
 type DiskOpMonitorReq struct {
 	Condition MonitorCondition `json:"condition"`
 }
@@ -9207,34 +9415,6 @@ func (s *DiskOpMonitorReq) SetCondition(val MonitorCondition) {
 
 // DiskOpResizePartitionNoContent is response for DiskOpResizePartition operation.
 type DiskOpResizePartitionNoContent struct{}
-
-type DiskOpResizePartitionReq struct {
-	Param DiskResizePartitionRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *DiskOpResizePartitionReq) GetParam() DiskResizePartitionRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *DiskOpResizePartitionReq) SetParam(val DiskResizePartitionRequest) {
-	s.Param = val
-}
-
-type DiskOpUpdateReq struct {
-	Param DiskUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *DiskOpUpdateReq) GetParam() DiskUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *DiskOpUpdateReq) SetParam(val DiskUpdateRequest) {
-	s.Param = val
-}
 
 // Ref: #/components/schemas/DiskPlan
 type DiskPlan struct {
@@ -9295,6 +9475,95 @@ func (s *DiskPlan) SetSize(val []DiskPlanSizeInfo) {
 	s.Size = val
 }
 
+// Request envelope for diskPlanFindRequestEnvelope.
+// Ref: #/components/schemas/DiskPlanFindRequestEnvelope
+type DiskPlanFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter DiskPlanFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *DiskPlanFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *DiskPlanFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *DiskPlanFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *DiskPlanFindRequestEnvelope) GetFilter() DiskPlanFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *DiskPlanFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *DiskPlanFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *DiskPlanFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *DiskPlanFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *DiskPlanFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *DiskPlanFindRequestEnvelope) SetFilter(val DiskPlanFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *DiskPlanFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *DiskPlanFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type DiskPlanFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *DiskPlanFindRequestEnvelopeFilter) init() DiskPlanFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for diskPlanFindResponseEnvelope.
 // Ref: #/components/schemas/DiskPlanFindResponseEnvelope
 type DiskPlanFindResponseEnvelope struct {
@@ -9346,20 +9615,6 @@ func (s *DiskPlanFindResponseEnvelope) SetCount(val int32) {
 // SetDiskPlans sets the value of DiskPlans.
 func (s *DiskPlanFindResponseEnvelope) SetDiskPlans(val []DiskPlan) {
 	s.DiskPlans = val
-}
-
-type DiskPlanOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *DiskPlanOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *DiskPlanOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Response envelope for diskPlanReadResponseEnvelope.
@@ -9492,78 +9747,38 @@ func (s *DiskReadResponseEnvelope) SetDisk(val Disk) {
 	s.Disk = val
 }
 
-// Ref: #/components/schemas/DiskResizePartitionRequest
-type DiskResizePartitionRequest struct {
+// Request envelope for diskResizePartitionRequestEnvelope.
+// Ref: #/components/schemas/DiskResizePartitionRequestEnvelope
+type DiskResizePartitionRequestEnvelope struct {
+	// Background.
 	Background bool `json:"Background"`
 }
 
 // GetBackground returns the value of Background.
-func (s *DiskResizePartitionRequest) GetBackground() bool {
+func (s *DiskResizePartitionRequestEnvelope) GetBackground() bool {
 	return s.Background
 }
 
 // SetBackground sets the value of Background.
-func (s *DiskResizePartitionRequest) SetBackground(val bool) {
+func (s *DiskResizePartitionRequestEnvelope) SetBackground(val bool) {
 	s.Background = val
 }
 
-// Ref: #/components/schemas/DiskUpdateRequest
-type DiskUpdateRequest struct {
-	Name        string          `json:"Name"`
-	Description string          `json:"Description"`
-	Tags        []string        `json:"Tags"`
-	IconID      int64           `json:"IconID"`
-	Connection  EDiskConnection `json:"Connection"`
+// Request envelope for diskUpdateRequestEnvelope.
+// Ref: #/components/schemas/DiskUpdateRequestEnvelope
+type DiskUpdateRequestEnvelope struct {
+	// Disk.
+	Disk Disk `json:"Disk"`
 }
 
-// GetName returns the value of Name.
-func (s *DiskUpdateRequest) GetName() string {
-	return s.Name
+// GetDisk returns the value of Disk.
+func (s *DiskUpdateRequestEnvelope) GetDisk() Disk {
+	return s.Disk
 }
 
-// GetDescription returns the value of Description.
-func (s *DiskUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *DiskUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *DiskUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// GetConnection returns the value of Connection.
-func (s *DiskUpdateRequest) GetConnection() EDiskConnection {
-	return s.Connection
-}
-
-// SetName sets the value of Name.
-func (s *DiskUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *DiskUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *DiskUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *DiskUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
-}
-
-// SetConnection sets the value of Connection.
-func (s *DiskUpdateRequest) SetConnection(val EDiskConnection) {
-	s.Connection = val
+// SetDisk sets the value of Disk.
+func (s *DiskUpdateRequestEnvelope) SetDisk(val Disk) {
+	s.Disk = val
 }
 
 // Response envelope for diskUpdateResponseEnvelope.
@@ -10100,21 +10315,6 @@ type ESimpleNotificationDestinationTypes string
 
 type EUpstreamNetworkType string
 
-// Ref: #/components/schemas/EjectCDROMRequest
-type EjectCDROMRequest struct {
-	ID int64 `json:"ID"`
-}
-
-// GetID returns the value of ID.
-func (s *EjectCDROMRequest) GetID() int64 {
-	return s.ID
-}
-
-// SetID sets the value of ID.
-func (s *EjectCDROMRequest) SetID(val int64) {
-	s.ID = val
-}
-
 // Ref: #/components/schemas/EnhancedDBConfig
 type EnhancedDBConfig struct {
 	MaxConnections  int32    `json:"MaxConnections"`
@@ -10545,20 +10745,6 @@ func (s *IPAddressListResponseEnvelope) SetIPAddress(val []IPAddress) {
 	s.IPAddress = val
 }
 
-type IPAddressOpUpdateHostNameReq struct {
-	HostName string `json:"hostName"`
-}
-
-// GetHostName returns the value of HostName.
-func (s *IPAddressOpUpdateHostNameReq) GetHostName() string {
-	return s.HostName
-}
-
-// SetHostName sets the value of HostName.
-func (s *IPAddressOpUpdateHostNameReq) SetHostName(val string) {
-	s.HostName = val
-}
-
 // Response envelope for iPAddressReadResponseEnvelope.
 // Ref: #/components/schemas/IPAddressReadResponseEnvelope
 type IPAddressReadResponseEnvelope struct {
@@ -10597,6 +10783,23 @@ func (s *IPAddressReadResponseEnvelope) SetSuccess(val string) {
 
 // SetIPAddress sets the value of IPAddress.
 func (s *IPAddressReadResponseEnvelope) SetIPAddress(val IPAddress) {
+	s.IPAddress = val
+}
+
+// Request envelope for iPAddressUpdateHostNameRequestEnvelope.
+// Ref: #/components/schemas/IPAddressUpdateHostNameRequestEnvelope
+type IPAddressUpdateHostNameRequestEnvelope struct {
+	// IPAddress.
+	IPAddress IPAddress `json:"IPAddress"`
+}
+
+// GetIPAddress returns the value of IPAddress.
+func (s *IPAddressUpdateHostNameRequestEnvelope) GetIPAddress() IPAddress {
+	return s.IPAddress
+}
+
+// SetIPAddress sets the value of IPAddress.
+func (s *IPAddressUpdateHostNameRequestEnvelope) SetIPAddress(val IPAddress) {
 	s.IPAddress = val
 }
 
@@ -10700,30 +10903,21 @@ func (s *IPv6Addr) SetInterfaceID(val int64) {
 	s.InterfaceID = val
 }
 
-// Ref: #/components/schemas/IPv6AddrCreateRequest
-type IPv6AddrCreateRequest struct {
-	IPv6Addr string `json:"IPv6Addr"`
-	HostName string `json:"HostName"`
+// Request envelope for iPv6AddrCreateRequestEnvelope.
+// Ref: #/components/schemas/IPv6AddrCreateRequestEnvelope
+type IPv6AddrCreateRequestEnvelope struct {
+	// IPv6Addr.
+	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
-func (s *IPv6AddrCreateRequest) GetIPv6Addr() string {
+func (s *IPv6AddrCreateRequestEnvelope) GetIPv6Addr() IPv6Addr {
 	return s.IPv6Addr
 }
 
-// GetHostName returns the value of HostName.
-func (s *IPv6AddrCreateRequest) GetHostName() string {
-	return s.HostName
-}
-
 // SetIPv6Addr sets the value of IPv6Addr.
-func (s *IPv6AddrCreateRequest) SetIPv6Addr(val string) {
+func (s *IPv6AddrCreateRequestEnvelope) SetIPv6Addr(val IPv6Addr) {
 	s.IPv6Addr = val
-}
-
-// SetHostName sets the value of HostName.
-func (s *IPv6AddrCreateRequest) SetHostName(val string) {
-	s.HostName = val
 }
 
 // Response envelope for iPv6AddrCreateResponseEnvelope.
@@ -10765,6 +10959,95 @@ func (s *IPv6AddrCreateResponseEnvelope) SetSuccess(val string) {
 // SetIPv6Addr sets the value of IPv6Addr.
 func (s *IPv6AddrCreateResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 	s.IPv6Addr = val
+}
+
+// Request envelope for iPv6AddrFindRequestEnvelope.
+// Ref: #/components/schemas/IPv6AddrFindRequestEnvelope
+type IPv6AddrFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter IPv6AddrFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *IPv6AddrFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *IPv6AddrFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *IPv6AddrFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *IPv6AddrFindRequestEnvelope) GetFilter() IPv6AddrFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *IPv6AddrFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *IPv6AddrFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *IPv6AddrFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *IPv6AddrFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *IPv6AddrFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *IPv6AddrFindRequestEnvelope) SetFilter(val IPv6AddrFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *IPv6AddrFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *IPv6AddrFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type IPv6AddrFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *IPv6AddrFindRequestEnvelopeFilter) init() IPv6AddrFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for iPv6AddrFindResponseEnvelope.
@@ -10820,50 +11103,8 @@ func (s *IPv6AddrFindResponseEnvelope) SetIPv6Addrs(val []IPv6Addr) {
 	s.IPv6Addrs = val
 }
 
-type IPv6AddrOpCreateReq struct {
-	Param IPv6AddrCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *IPv6AddrOpCreateReq) GetParam() IPv6AddrCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *IPv6AddrOpCreateReq) SetParam(val IPv6AddrCreateRequest) {
-	s.Param = val
-}
-
 // IPv6AddrOpDeleteNoContent is response for IPv6AddrOpDelete operation.
 type IPv6AddrOpDeleteNoContent struct{}
-
-type IPv6AddrOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *IPv6AddrOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *IPv6AddrOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type IPv6AddrOpUpdateReq struct {
-	Param IPv6AddrUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *IPv6AddrOpUpdateReq) GetParam() IPv6AddrUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *IPv6AddrOpUpdateReq) SetParam(val IPv6AddrUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for iPv6AddrReadResponseEnvelope.
 // Ref: #/components/schemas/IPv6AddrReadResponseEnvelope
@@ -10906,19 +11147,21 @@ func (s *IPv6AddrReadResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 	s.IPv6Addr = val
 }
 
-// Ref: #/components/schemas/IPv6AddrUpdateRequest
-type IPv6AddrUpdateRequest struct {
-	HostName string `json:"HostName"`
+// Request envelope for iPv6AddrUpdateRequestEnvelope.
+// Ref: #/components/schemas/IPv6AddrUpdateRequestEnvelope
+type IPv6AddrUpdateRequestEnvelope struct {
+	// IPv6Addr.
+	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
 
-// GetHostName returns the value of HostName.
-func (s *IPv6AddrUpdateRequest) GetHostName() string {
-	return s.HostName
+// GetIPv6Addr returns the value of IPv6Addr.
+func (s *IPv6AddrUpdateRequestEnvelope) GetIPv6Addr() IPv6Addr {
+	return s.IPv6Addr
 }
 
-// SetHostName sets the value of HostName.
-func (s *IPv6AddrUpdateRequest) SetHostName(val string) {
-	s.HostName = val
+// SetIPv6Addr sets the value of IPv6Addr.
+func (s *IPv6AddrUpdateRequestEnvelope) SetIPv6Addr(val IPv6Addr) {
+	s.IPv6Addr = val
 }
 
 // Response envelope for iPv6AddrUpdateResponseEnvelope.
@@ -11199,41 +11442,21 @@ func (s *Icon) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
-// Ref: #/components/schemas/IconCreateRequest
-type IconCreateRequest struct {
-	Name  string   `json:"Name"`
-	Tags  []string `json:"Tags"`
-	Image string   `json:"Image"`
+// Request envelope for iconCreateRequestEnvelope.
+// Ref: #/components/schemas/IconCreateRequestEnvelope
+type IconCreateRequestEnvelope struct {
+	// Icon.
+	Icon Icon `json:"Icon"`
 }
 
-// GetName returns the value of Name.
-func (s *IconCreateRequest) GetName() string {
-	return s.Name
+// GetIcon returns the value of Icon.
+func (s *IconCreateRequestEnvelope) GetIcon() Icon {
+	return s.Icon
 }
 
-// GetTags returns the value of Tags.
-func (s *IconCreateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetImage returns the value of Image.
-func (s *IconCreateRequest) GetImage() string {
-	return s.Image
-}
-
-// SetName sets the value of Name.
-func (s *IconCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetTags sets the value of Tags.
-func (s *IconCreateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetImage sets the value of Image.
-func (s *IconCreateRequest) SetImage(val string) {
-	s.Image = val
+// SetIcon sets the value of Icon.
+func (s *IconCreateRequestEnvelope) SetIcon(val Icon) {
+	s.Icon = val
 }
 
 // Response envelope for iconCreateResponseEnvelope.
@@ -11275,6 +11498,95 @@ func (s *IconCreateResponseEnvelope) SetSuccess(val string) {
 // SetIcon sets the value of Icon.
 func (s *IconCreateResponseEnvelope) SetIcon(val Icon) {
 	s.Icon = val
+}
+
+// Request envelope for iconFindRequestEnvelope.
+// Ref: #/components/schemas/IconFindRequestEnvelope
+type IconFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter IconFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *IconFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *IconFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *IconFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *IconFindRequestEnvelope) GetFilter() IconFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *IconFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *IconFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *IconFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *IconFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *IconFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *IconFindRequestEnvelope) SetFilter(val IconFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *IconFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *IconFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type IconFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *IconFindRequestEnvelopeFilter) init() IconFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for iconFindResponseEnvelope.
@@ -11330,50 +11642,8 @@ func (s *IconFindResponseEnvelope) SetIcons(val []Icon) {
 	s.Icons = val
 }
 
-type IconOpCreateReq struct {
-	Param IconCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *IconOpCreateReq) GetParam() IconCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *IconOpCreateReq) SetParam(val IconCreateRequest) {
-	s.Param = val
-}
-
 // IconOpDeleteNoContent is response for IconOpDelete operation.
 type IconOpDeleteNoContent struct{}
-
-type IconOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *IconOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *IconOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type IconOpUpdateReq struct {
-	Param IconUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *IconOpUpdateReq) GetParam() IconUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *IconOpUpdateReq) SetParam(val IconUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for iconReadResponseEnvelope.
 // Ref: #/components/schemas/IconReadResponseEnvelope
@@ -11416,30 +11686,21 @@ func (s *IconReadResponseEnvelope) SetIcon(val Icon) {
 	s.Icon = val
 }
 
-// Ref: #/components/schemas/IconUpdateRequest
-type IconUpdateRequest struct {
-	Name string   `json:"Name"`
-	Tags []string `json:"Tags"`
+// Request envelope for iconUpdateRequestEnvelope.
+// Ref: #/components/schemas/IconUpdateRequestEnvelope
+type IconUpdateRequestEnvelope struct {
+	// Icon.
+	Icon Icon `json:"Icon"`
 }
 
-// GetName returns the value of Name.
-func (s *IconUpdateRequest) GetName() string {
-	return s.Name
+// GetIcon returns the value of Icon.
+func (s *IconUpdateRequestEnvelope) GetIcon() Icon {
+	return s.Icon
 }
 
-// GetTags returns the value of Tags.
-func (s *IconUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// SetName sets the value of Name.
-func (s *IconUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetTags sets the value of Tags.
-func (s *IconUpdateRequest) SetTags(val []string) {
-	s.Tags = val
+// SetIcon sets the value of Icon.
+func (s *IconUpdateRequestEnvelope) SetIcon(val Icon) {
+	s.Icon = val
 }
 
 // Response envelope for iconUpdateResponseEnvelope.
@@ -11483,34 +11744,21 @@ func (s *IconUpdateResponseEnvelope) SetIcon(val Icon) {
 	s.Icon = val
 }
 
-// Ref: #/components/schemas/InsertCDROMRequest
-type InsertCDROMRequest struct {
-	ID int64 `json:"ID"`
+// Request envelope for interfaceCreateRequestEnvelope.
+// Ref: #/components/schemas/InterfaceCreateRequestEnvelope
+type InterfaceCreateRequestEnvelope struct {
+	// Interface.
+	Interface InterfaceView `json:"Interface"`
 }
 
-// GetID returns the value of ID.
-func (s *InsertCDROMRequest) GetID() int64 {
-	return s.ID
+// GetInterface returns the value of Interface.
+func (s *InterfaceCreateRequestEnvelope) GetInterface() InterfaceView {
+	return s.Interface
 }
 
-// SetID sets the value of ID.
-func (s *InsertCDROMRequest) SetID(val int64) {
-	s.ID = val
-}
-
-// Ref: #/components/schemas/InterfaceCreateRequest
-type InterfaceCreateRequest struct {
-	ServerID int64 `json:"ServerID"`
-}
-
-// GetServerID returns the value of ServerID.
-func (s *InterfaceCreateRequest) GetServerID() int64 {
-	return s.ServerID
-}
-
-// SetServerID sets the value of ServerID.
-func (s *InterfaceCreateRequest) SetServerID(val int64) {
-	s.ServerID = val
+// SetInterface sets the value of Interface.
+func (s *InterfaceCreateRequestEnvelope) SetInterface(val InterfaceView) {
+	s.Interface = val
 }
 
 // Response envelope for interfaceCreateResponseEnvelope.
@@ -11552,6 +11800,95 @@ func (s *InterfaceCreateResponseEnvelope) SetSuccess(val string) {
 // SetInterface sets the value of Interface.
 func (s *InterfaceCreateResponseEnvelope) SetInterface(val InterfaceView) {
 	s.Interface = val
+}
+
+// Request envelope for interfaceFindRequestEnvelope.
+// Ref: #/components/schemas/InterfaceFindRequestEnvelope
+type InterfaceFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter InterfaceFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *InterfaceFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *InterfaceFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *InterfaceFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *InterfaceFindRequestEnvelope) GetFilter() InterfaceFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *InterfaceFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *InterfaceFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *InterfaceFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *InterfaceFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *InterfaceFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *InterfaceFindRequestEnvelope) SetFilter(val InterfaceFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *InterfaceFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *InterfaceFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type InterfaceFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *InterfaceFindRequestEnvelopeFilter) init() InterfaceFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for interfaceFindResponseEnvelope.
@@ -11607,6 +11944,35 @@ func (s *InterfaceFindResponseEnvelope) SetInterfaces(val []InterfaceView) {
 	s.Interfaces = val
 }
 
+// Request envelope for interfaceMonitorRequestEnvelope.
+// Ref: #/components/schemas/InterfaceMonitorRequestEnvelope
+type InterfaceMonitorRequestEnvelope struct {
+	// Start.
+	Start time.Time `json:"Start"`
+	// End.
+	End time.Time `json:"End"`
+}
+
+// GetStart returns the value of Start.
+func (s *InterfaceMonitorRequestEnvelope) GetStart() time.Time {
+	return s.Start
+}
+
+// GetEnd returns the value of End.
+func (s *InterfaceMonitorRequestEnvelope) GetEnd() time.Time {
+	return s.End
+}
+
+// SetStart sets the value of Start.
+func (s *InterfaceMonitorRequestEnvelope) SetStart(val time.Time) {
+	s.Start = val
+}
+
+// SetEnd sets the value of End.
+func (s *InterfaceMonitorRequestEnvelope) SetEnd(val time.Time) {
+	s.End = val
+}
+
 // Response envelope for interfaceMonitorResponseEnvelope.
 // Ref: #/components/schemas/InterfaceMonitorResponseEnvelope
 type InterfaceMonitorResponseEnvelope struct {
@@ -11657,20 +12023,6 @@ type InterfaceOpConnectToSharedSegmentNoContent struct{}
 // InterfaceOpConnectToSwitchNoContent is response for InterfaceOpConnectToSwitch operation.
 type InterfaceOpConnectToSwitchNoContent struct{}
 
-type InterfaceOpCreateReq struct {
-	Param InterfaceCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InterfaceOpCreateReq) GetParam() InterfaceCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InterfaceOpCreateReq) SetParam(val InterfaceCreateRequest) {
-	s.Param = val
-}
-
 // InterfaceOpDeleteNoContent is response for InterfaceOpDelete operation.
 type InterfaceOpDeleteNoContent struct{}
 
@@ -11679,48 +12031,6 @@ type InterfaceOpDisconnectFromPacketFilterNoContent struct{}
 
 // InterfaceOpDisconnectFromSwitchNoContent is response for InterfaceOpDisconnectFromSwitch operation.
 type InterfaceOpDisconnectFromSwitchNoContent struct{}
-
-type InterfaceOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *InterfaceOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *InterfaceOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type InterfaceOpMonitorReq struct {
-	Condition MonitorCondition `json:"condition"`
-}
-
-// GetCondition returns the value of Condition.
-func (s *InterfaceOpMonitorReq) GetCondition() MonitorCondition {
-	return s.Condition
-}
-
-// SetCondition sets the value of Condition.
-func (s *InterfaceOpMonitorReq) SetCondition(val MonitorCondition) {
-	s.Condition = val
-}
-
-type InterfaceOpUpdateReq struct {
-	Param InterfaceUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InterfaceOpUpdateReq) GetParam() InterfaceUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InterfaceOpUpdateReq) SetParam(val InterfaceUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for interfaceReadResponseEnvelope.
 // Ref: #/components/schemas/InterfaceReadResponseEnvelope
@@ -11763,19 +12073,21 @@ func (s *InterfaceReadResponseEnvelope) SetInterface(val InterfaceView) {
 	s.Interface = val
 }
 
-// Ref: #/components/schemas/InterfaceUpdateRequest
-type InterfaceUpdateRequest struct {
-	UserIPAddress string `json:"UserIPAddress"`
+// Request envelope for interfaceUpdateRequestEnvelope.
+// Ref: #/components/schemas/InterfaceUpdateRequestEnvelope
+type InterfaceUpdateRequestEnvelope struct {
+	// Interface.
+	Interface InterfaceView `json:"Interface"`
 }
 
-// GetUserIPAddress returns the value of UserIPAddress.
-func (s *InterfaceUpdateRequest) GetUserIPAddress() string {
-	return s.UserIPAddress
+// GetInterface returns the value of Interface.
+func (s *InterfaceUpdateRequestEnvelope) GetInterface() InterfaceView {
+	return s.Interface
 }
 
-// SetUserIPAddress sets the value of UserIPAddress.
-func (s *InterfaceUpdateRequest) SetUserIPAddress(val string) {
-	s.UserIPAddress = val
+// SetInterface sets the value of Interface.
+func (s *InterfaceUpdateRequestEnvelope) SetInterface(val InterfaceView) {
+	s.Interface = val
 }
 
 // Response envelope for interfaceUpdateResponseEnvelope.
@@ -12124,29 +12436,32 @@ func (s *Internet) SetSwitch(val SwitchInfo) {
 	s.Switch = val
 }
 
-// Ref: #/components/schemas/InternetAddSubnetRequest
-type InternetAddSubnetRequest struct {
-	NetworkMaskLen int32  `json:"NetworkMaskLen"`
-	NextHop        string `json:"NextHop"`
+// Request envelope for internetAddSubnetRequestEnvelope.
+// Ref: #/components/schemas/InternetAddSubnetRequestEnvelope
+type InternetAddSubnetRequestEnvelope struct {
+	// NetworkMaskLen.
+	NetworkMaskLen int32 `json:"NetworkMaskLen"`
+	// NextHop.
+	NextHop string `json:"NextHop"`
 }
 
 // GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *InternetAddSubnetRequest) GetNetworkMaskLen() int32 {
+func (s *InternetAddSubnetRequestEnvelope) GetNetworkMaskLen() int32 {
 	return s.NetworkMaskLen
 }
 
 // GetNextHop returns the value of NextHop.
-func (s *InternetAddSubnetRequest) GetNextHop() string {
+func (s *InternetAddSubnetRequestEnvelope) GetNextHop() string {
 	return s.NextHop
 }
 
 // SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *InternetAddSubnetRequest) SetNetworkMaskLen(val int32) {
+func (s *InternetAddSubnetRequestEnvelope) SetNetworkMaskLen(val int32) {
 	s.NetworkMaskLen = val
 }
 
 // SetNextHop sets the value of NextHop.
-func (s *InternetAddSubnetRequest) SetNextHop(val string) {
+func (s *InternetAddSubnetRequestEnvelope) SetNextHop(val string) {
 	s.NextHop = val
 }
 
@@ -12191,74 +12506,21 @@ func (s *InternetAddSubnetResponseEnvelope) SetSubnet(val InternetSubnet) {
 	s.Subnet = val
 }
 
-// Ref: #/components/schemas/InternetCreateRequest
-type InternetCreateRequest struct {
-	Name           string   `json:"Name"`
-	Description    string   `json:"Description"`
-	Tags           []string `json:"Tags"`
-	IconID         int64    `json:"IconID"`
-	NetworkMaskLen int32    `json:"NetworkMaskLen"`
-	BandWidthMbps  int32    `json:"BandWidthMbps"`
+// Request envelope for internetCreateRequestEnvelope.
+// Ref: #/components/schemas/InternetCreateRequestEnvelope
+type InternetCreateRequestEnvelope struct {
+	// Internet.
+	Internet Internet `json:"Internet"`
 }
 
-// GetName returns the value of Name.
-func (s *InternetCreateRequest) GetName() string {
-	return s.Name
+// GetInternet returns the value of Internet.
+func (s *InternetCreateRequestEnvelope) GetInternet() Internet {
+	return s.Internet
 }
 
-// GetDescription returns the value of Description.
-func (s *InternetCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *InternetCreateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *InternetCreateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *InternetCreateRequest) GetNetworkMaskLen() int32 {
-	return s.NetworkMaskLen
-}
-
-// GetBandWidthMbps returns the value of BandWidthMbps.
-func (s *InternetCreateRequest) GetBandWidthMbps() int32 {
-	return s.BandWidthMbps
-}
-
-// SetName sets the value of Name.
-func (s *InternetCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *InternetCreateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *InternetCreateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *InternetCreateRequest) SetIconID(val int64) {
-	s.IconID = val
-}
-
-// SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *InternetCreateRequest) SetNetworkMaskLen(val int32) {
-	s.NetworkMaskLen = val
-}
-
-// SetBandWidthMbps sets the value of BandWidthMbps.
-func (s *InternetCreateRequest) SetBandWidthMbps(val int32) {
-	s.BandWidthMbps = val
+// SetInternet sets the value of Internet.
+func (s *InternetCreateRequestEnvelope) SetInternet(val Internet) {
+	s.Internet = val
 }
 
 // Response envelope for internetCreateResponseEnvelope.
@@ -12341,6 +12603,95 @@ func (s *InternetEnableIPv6ResponseEnvelope) SetSuccess(val string) {
 // SetIPv6Net sets the value of IPv6Net.
 func (s *InternetEnableIPv6ResponseEnvelope) SetIPv6Net(val IPv6NetInfo) {
 	s.IPv6Net = val
+}
+
+// Request envelope for internetFindRequestEnvelope.
+// Ref: #/components/schemas/InternetFindRequestEnvelope
+type InternetFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter InternetFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *InternetFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *InternetFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *InternetFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *InternetFindRequestEnvelope) GetFilter() InternetFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *InternetFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *InternetFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *InternetFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *InternetFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *InternetFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *InternetFindRequestEnvelope) SetFilter(val InternetFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *InternetFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *InternetFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type InternetFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *InternetFindRequestEnvelopeFilter) init() InternetFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for internetFindResponseEnvelope.
@@ -12437,34 +12788,6 @@ func (s *InternetMonitorResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
 }
 
-type InternetOpAddSubnetReq struct {
-	Param InternetAddSubnetRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InternetOpAddSubnetReq) GetParam() InternetAddSubnetRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InternetOpAddSubnetReq) SetParam(val InternetAddSubnetRequest) {
-	s.Param = val
-}
-
-type InternetOpCreateReq struct {
-	Param InternetCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InternetOpCreateReq) GetParam() InternetCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InternetOpCreateReq) SetParam(val InternetCreateRequest) {
-	s.Param = val
-}
-
 // InternetOpDeleteNoContent is response for InternetOpDelete operation.
 type InternetOpDeleteNoContent struct{}
 
@@ -12473,20 +12796,6 @@ type InternetOpDeleteSubnetNoContent struct{}
 
 // InternetOpDisableIPv6NoContent is response for InternetOpDisableIPv6 operation.
 type InternetOpDisableIPv6NoContent struct{}
-
-type InternetOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *InternetOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *InternetOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
 
 type InternetOpMonitorReq struct {
 	Condition MonitorCondition `json:"condition"`
@@ -12500,48 +12809,6 @@ func (s *InternetOpMonitorReq) GetCondition() MonitorCondition {
 // SetCondition sets the value of Condition.
 func (s *InternetOpMonitorReq) SetCondition(val MonitorCondition) {
 	s.Condition = val
-}
-
-type InternetOpUpdateBandWidthReq struct {
-	Param InternetUpdateBandWidthRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InternetOpUpdateBandWidthReq) GetParam() InternetUpdateBandWidthRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InternetOpUpdateBandWidthReq) SetParam(val InternetUpdateBandWidthRequest) {
-	s.Param = val
-}
-
-type InternetOpUpdateReq struct {
-	Param InternetUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InternetOpUpdateReq) GetParam() InternetUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InternetOpUpdateReq) SetParam(val InternetUpdateRequest) {
-	s.Param = val
-}
-
-type InternetOpUpdateSubnetReq struct {
-	Param InternetUpdateSubnetRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *InternetOpUpdateSubnetReq) GetParam() InternetUpdateSubnetRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *InternetOpUpdateSubnetReq) SetParam(val InternetUpdateSubnetRequest) {
-	s.Param = val
 }
 
 // Ref: #/components/schemas/InternetPlan
@@ -12590,6 +12857,95 @@ func (s *InternetPlan) SetBandWidthMbps(val int32) {
 // SetAvailability sets the value of Availability.
 func (s *InternetPlan) SetAvailability(val EAvailability) {
 	s.Availability = val
+}
+
+// Request envelope for internetPlanFindRequestEnvelope.
+// Ref: #/components/schemas/InternetPlanFindRequestEnvelope
+type InternetPlanFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter InternetPlanFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *InternetPlanFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *InternetPlanFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *InternetPlanFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *InternetPlanFindRequestEnvelope) GetFilter() InternetPlanFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *InternetPlanFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *InternetPlanFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *InternetPlanFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *InternetPlanFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *InternetPlanFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *InternetPlanFindRequestEnvelope) SetFilter(val InternetPlanFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *InternetPlanFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *InternetPlanFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type InternetPlanFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *InternetPlanFindRequestEnvelopeFilter) init() InternetPlanFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for internetPlanFindResponseEnvelope.
@@ -12643,20 +12999,6 @@ func (s *InternetPlanFindResponseEnvelope) SetCount(val int32) {
 // SetInternetPlans sets the value of InternetPlans.
 func (s *InternetPlanFindResponseEnvelope) SetInternetPlans(val []InternetPlan) {
 	s.InternetPlans = val
-}
-
-type InternetPlanOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *InternetPlanOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *InternetPlanOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Response envelope for internetPlanReadResponseEnvelope.
@@ -12811,19 +13153,21 @@ func (s *InternetSubnet) SetNetworkMaskLen(val int32) {
 	s.NetworkMaskLen = val
 }
 
-// Ref: #/components/schemas/InternetUpdateBandWidthRequest
-type InternetUpdateBandWidthRequest struct {
-	BandWidthMbps int32 `json:"BandWidthMbps"`
+// Request envelope for internetUpdateBandWidthRequestEnvelope.
+// Ref: #/components/schemas/InternetUpdateBandWidthRequestEnvelope
+type InternetUpdateBandWidthRequestEnvelope struct {
+	// Internet.
+	Internet Internet `json:"Internet"`
 }
 
-// GetBandWidthMbps returns the value of BandWidthMbps.
-func (s *InternetUpdateBandWidthRequest) GetBandWidthMbps() int32 {
-	return s.BandWidthMbps
+// GetInternet returns the value of Internet.
+func (s *InternetUpdateBandWidthRequestEnvelope) GetInternet() Internet {
+	return s.Internet
 }
 
-// SetBandWidthMbps sets the value of BandWidthMbps.
-func (s *InternetUpdateBandWidthRequest) SetBandWidthMbps(val int32) {
-	s.BandWidthMbps = val
+// SetInternet sets the value of Internet.
+func (s *InternetUpdateBandWidthRequestEnvelope) SetInternet(val Internet) {
+	s.Internet = val
 }
 
 // Response envelope for internetUpdateBandWidthResponseEnvelope.
@@ -12867,52 +13211,21 @@ func (s *InternetUpdateBandWidthResponseEnvelope) SetInternet(val Internet) {
 	s.Internet = val
 }
 
-// Ref: #/components/schemas/InternetUpdateRequest
-type InternetUpdateRequest struct {
-	Name        string   `json:"Name"`
-	Description string   `json:"Description"`
-	Tags        []string `json:"Tags"`
-	IconID      int64    `json:"IconID"`
+// Request envelope for internetUpdateRequestEnvelope.
+// Ref: #/components/schemas/InternetUpdateRequestEnvelope
+type InternetUpdateRequestEnvelope struct {
+	// Internet.
+	Internet Internet `json:"Internet"`
 }
 
-// GetName returns the value of Name.
-func (s *InternetUpdateRequest) GetName() string {
-	return s.Name
+// GetInternet returns the value of Internet.
+func (s *InternetUpdateRequestEnvelope) GetInternet() Internet {
+	return s.Internet
 }
 
-// GetDescription returns the value of Description.
-func (s *InternetUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *InternetUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *InternetUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetName sets the value of Name.
-func (s *InternetUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *InternetUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *InternetUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *InternetUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetInternet sets the value of Internet.
+func (s *InternetUpdateRequestEnvelope) SetInternet(val Internet) {
+	s.Internet = val
 }
 
 // Response envelope for internetUpdateResponseEnvelope.
@@ -12956,18 +13269,20 @@ func (s *InternetUpdateResponseEnvelope) SetInternet(val Internet) {
 	s.Internet = val
 }
 
-// Ref: #/components/schemas/InternetUpdateSubnetRequest
-type InternetUpdateSubnetRequest struct {
+// Request envelope for internetUpdateSubnetRequestEnvelope.
+// Ref: #/components/schemas/InternetUpdateSubnetRequestEnvelope
+type InternetUpdateSubnetRequestEnvelope struct {
+	// NextHop.
 	NextHop string `json:"NextHop"`
 }
 
 // GetNextHop returns the value of NextHop.
-func (s *InternetUpdateSubnetRequest) GetNextHop() string {
+func (s *InternetUpdateSubnetRequestEnvelope) GetNextHop() string {
 	return s.NextHop
 }
 
 // SetNextHop sets the value of NextHop.
-func (s *InternetUpdateSubnetRequest) SetNextHop(val string) {
+func (s *InternetUpdateSubnetRequestEnvelope) SetNextHop(val string) {
 	s.NextHop = val
 }
 
@@ -13145,30 +13460,21 @@ func (s *License) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
-// Ref: #/components/schemas/LicenseCreateRequest
-type LicenseCreateRequest struct {
-	Name          string `json:"Name"`
-	LicenseInfoID int64  `json:"LicenseInfoID"`
+// Request envelope for licenseCreateRequestEnvelope.
+// Ref: #/components/schemas/LicenseCreateRequestEnvelope
+type LicenseCreateRequestEnvelope struct {
+	// License.
+	License License `json:"License"`
 }
 
-// GetName returns the value of Name.
-func (s *LicenseCreateRequest) GetName() string {
-	return s.Name
+// GetLicense returns the value of License.
+func (s *LicenseCreateRequestEnvelope) GetLicense() License {
+	return s.License
 }
 
-// GetLicenseInfoID returns the value of LicenseInfoID.
-func (s *LicenseCreateRequest) GetLicenseInfoID() int64 {
-	return s.LicenseInfoID
-}
-
-// SetName sets the value of Name.
-func (s *LicenseCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetLicenseInfoID sets the value of LicenseInfoID.
-func (s *LicenseCreateRequest) SetLicenseInfoID(val int64) {
-	s.LicenseInfoID = val
+// SetLicense sets the value of License.
+func (s *LicenseCreateRequestEnvelope) SetLicense(val License) {
+	s.License = val
 }
 
 // Response envelope for licenseCreateResponseEnvelope.
@@ -13210,6 +13516,95 @@ func (s *LicenseCreateResponseEnvelope) SetSuccess(val string) {
 // SetLicense sets the value of License.
 func (s *LicenseCreateResponseEnvelope) SetLicense(val License) {
 	s.License = val
+}
+
+// Request envelope for licenseFindRequestEnvelope.
+// Ref: #/components/schemas/LicenseFindRequestEnvelope
+type LicenseFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter LicenseFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *LicenseFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *LicenseFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *LicenseFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *LicenseFindRequestEnvelope) GetFilter() LicenseFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *LicenseFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *LicenseFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *LicenseFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *LicenseFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *LicenseFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *LicenseFindRequestEnvelope) SetFilter(val LicenseFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *LicenseFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *LicenseFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type LicenseFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *LicenseFindRequestEnvelopeFilter) init() LicenseFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for licenseFindResponseEnvelope.
@@ -13324,6 +13719,95 @@ func (s *LicenseInfo) SetTermsOfUse(val string) {
 	s.TermsOfUse = val
 }
 
+// Request envelope for licenseInfoFindRequestEnvelope.
+// Ref: #/components/schemas/LicenseInfoFindRequestEnvelope
+type LicenseInfoFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter LicenseInfoFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *LicenseInfoFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *LicenseInfoFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *LicenseInfoFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *LicenseInfoFindRequestEnvelope) GetFilter() LicenseInfoFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *LicenseInfoFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *LicenseInfoFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *LicenseInfoFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *LicenseInfoFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *LicenseInfoFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *LicenseInfoFindRequestEnvelope) SetFilter(val LicenseInfoFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *LicenseInfoFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *LicenseInfoFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type LicenseInfoFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *LicenseInfoFindRequestEnvelopeFilter) init() LicenseInfoFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for licenseInfoFindResponseEnvelope.
 // Ref: #/components/schemas/LicenseInfoFindResponseEnvelope
 type LicenseInfoFindResponseEnvelope struct {
@@ -13377,20 +13861,6 @@ func (s *LicenseInfoFindResponseEnvelope) SetLicenseInfo(val []LicenseInfo) {
 	s.LicenseInfo = val
 }
 
-type LicenseInfoOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *LicenseInfoOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *LicenseInfoOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
 // Response envelope for licenseInfoReadResponseEnvelope.
 // Ref: #/components/schemas/LicenseInfoReadResponseEnvelope
 type LicenseInfoReadResponseEnvelope struct {
@@ -13432,50 +13902,8 @@ func (s *LicenseInfoReadResponseEnvelope) SetLicenseInfo(val LicenseInfo) {
 	s.LicenseInfo = val
 }
 
-type LicenseOpCreateReq struct {
-	Param LicenseCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *LicenseOpCreateReq) GetParam() LicenseCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *LicenseOpCreateReq) SetParam(val LicenseCreateRequest) {
-	s.Param = val
-}
-
 // LicenseOpDeleteNoContent is response for LicenseOpDelete operation.
 type LicenseOpDeleteNoContent struct{}
-
-type LicenseOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *LicenseOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *LicenseOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type LicenseOpUpdateReq struct {
-	Param LicenseUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *LicenseOpUpdateReq) GetParam() LicenseUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *LicenseOpUpdateReq) SetParam(val LicenseUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for licenseReadResponseEnvelope.
 // Ref: #/components/schemas/LicenseReadResponseEnvelope
@@ -13518,19 +13946,21 @@ func (s *LicenseReadResponseEnvelope) SetLicense(val License) {
 	s.License = val
 }
 
-// Ref: #/components/schemas/LicenseUpdateRequest
-type LicenseUpdateRequest struct {
-	Name string `json:"Name"`
+// Request envelope for licenseUpdateRequestEnvelope.
+// Ref: #/components/schemas/LicenseUpdateRequestEnvelope
+type LicenseUpdateRequestEnvelope struct {
+	// License.
+	License License `json:"License"`
 }
 
-// GetName returns the value of Name.
-func (s *LicenseUpdateRequest) GetName() string {
-	return s.Name
+// GetLicense returns the value of License.
+func (s *LicenseUpdateRequestEnvelope) GetLicense() License {
+	return s.License
 }
 
-// SetName sets the value of Name.
-func (s *LicenseUpdateRequest) SetName(val string) {
-	s.Name = val
+// SetLicense sets the value of License.
+func (s *LicenseUpdateRequestEnvelope) SetLicense(val License) {
+	s.License = val
 }
 
 // Response envelope for licenseUpdateResponseEnvelope.
@@ -14868,63 +15298,21 @@ func (s *Note) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
-// Ref: #/components/schemas/NoteCreateRequest
-type NoteCreateRequest struct {
-	Name    string   `json:"Name"`
-	Tags    []string `json:"Tags"`
-	IconID  int64    `json:"IconID"`
-	Class   string   `json:"Class"`
-	Content string   `json:"Content"`
+// Request envelope for noteCreateRequestEnvelope.
+// Ref: #/components/schemas/NoteCreateRequestEnvelope
+type NoteCreateRequestEnvelope struct {
+	// Note.
+	Note Note `json:"Note"`
 }
 
-// GetName returns the value of Name.
-func (s *NoteCreateRequest) GetName() string {
-	return s.Name
+// GetNote returns the value of Note.
+func (s *NoteCreateRequestEnvelope) GetNote() Note {
+	return s.Note
 }
 
-// GetTags returns the value of Tags.
-func (s *NoteCreateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *NoteCreateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// GetClass returns the value of Class.
-func (s *NoteCreateRequest) GetClass() string {
-	return s.Class
-}
-
-// GetContent returns the value of Content.
-func (s *NoteCreateRequest) GetContent() string {
-	return s.Content
-}
-
-// SetName sets the value of Name.
-func (s *NoteCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetTags sets the value of Tags.
-func (s *NoteCreateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *NoteCreateRequest) SetIconID(val int64) {
-	s.IconID = val
-}
-
-// SetClass sets the value of Class.
-func (s *NoteCreateRequest) SetClass(val string) {
-	s.Class = val
-}
-
-// SetContent sets the value of Content.
-func (s *NoteCreateRequest) SetContent(val string) {
-	s.Content = val
+// SetNote sets the value of Note.
+func (s *NoteCreateRequestEnvelope) SetNote(val Note) {
+	s.Note = val
 }
 
 // Response envelope for noteCreateResponseEnvelope.
@@ -14966,6 +15354,95 @@ func (s *NoteCreateResponseEnvelope) SetSuccess(val string) {
 // SetNote sets the value of Note.
 func (s *NoteCreateResponseEnvelope) SetNote(val Note) {
 	s.Note = val
+}
+
+// Request envelope for noteFindRequestEnvelope.
+// Ref: #/components/schemas/NoteFindRequestEnvelope
+type NoteFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter NoteFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *NoteFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *NoteFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *NoteFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *NoteFindRequestEnvelope) GetFilter() NoteFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *NoteFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *NoteFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *NoteFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *NoteFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *NoteFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *NoteFindRequestEnvelope) SetFilter(val NoteFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *NoteFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *NoteFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type NoteFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *NoteFindRequestEnvelopeFilter) init() NoteFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for noteFindResponseEnvelope.
@@ -15021,50 +15498,8 @@ func (s *NoteFindResponseEnvelope) SetNotes(val []Note) {
 	s.Notes = val
 }
 
-type NoteOpCreateReq struct {
-	Param NoteCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *NoteOpCreateReq) GetParam() NoteCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *NoteOpCreateReq) SetParam(val NoteCreateRequest) {
-	s.Param = val
-}
-
 // NoteOpDeleteNoContent is response for NoteOpDelete operation.
 type NoteOpDeleteNoContent struct{}
-
-type NoteOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *NoteOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *NoteOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type NoteOpUpdateReq struct {
-	Param NoteUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *NoteOpUpdateReq) GetParam() NoteUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *NoteOpUpdateReq) SetParam(val NoteUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for noteReadResponseEnvelope.
 // Ref: #/components/schemas/NoteReadResponseEnvelope
@@ -15107,63 +15542,21 @@ func (s *NoteReadResponseEnvelope) SetNote(val Note) {
 	s.Note = val
 }
 
-// Ref: #/components/schemas/NoteUpdateRequest
-type NoteUpdateRequest struct {
-	Name    string   `json:"Name"`
-	Tags    []string `json:"Tags"`
-	IconID  int64    `json:"IconID"`
-	Class   string   `json:"Class"`
-	Content string   `json:"Content"`
+// Request envelope for noteUpdateRequestEnvelope.
+// Ref: #/components/schemas/NoteUpdateRequestEnvelope
+type NoteUpdateRequestEnvelope struct {
+	// Note.
+	Note Note `json:"Note"`
 }
 
-// GetName returns the value of Name.
-func (s *NoteUpdateRequest) GetName() string {
-	return s.Name
+// GetNote returns the value of Note.
+func (s *NoteUpdateRequestEnvelope) GetNote() Note {
+	return s.Note
 }
 
-// GetTags returns the value of Tags.
-func (s *NoteUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *NoteUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// GetClass returns the value of Class.
-func (s *NoteUpdateRequest) GetClass() string {
-	return s.Class
-}
-
-// GetContent returns the value of Content.
-func (s *NoteUpdateRequest) GetContent() string {
-	return s.Content
-}
-
-// SetName sets the value of Name.
-func (s *NoteUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetTags sets the value of Tags.
-func (s *NoteUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *NoteUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
-}
-
-// SetClass sets the value of Class.
-func (s *NoteUpdateRequest) SetClass(val string) {
-	s.Class = val
-}
-
-// SetContent sets the value of Content.
-func (s *NoteUpdateRequest) SetContent(val string) {
-	s.Content = val
+// SetNote sets the value of Note.
+func (s *NoteUpdateRequestEnvelope) SetNote(val Note) {
+	s.Note = val
 }
 
 // Response envelope for noteUpdateResponseEnvelope.
@@ -18017,41 +18410,21 @@ func (s *PacketFilter) SetCreatedAt(val time.Time) {
 	s.CreatedAt = val
 }
 
-// Ref: #/components/schemas/PacketFilterCreateRequest
-type PacketFilterCreateRequest struct {
-	Name        string                   `json:"Name"`
-	Description string                   `json:"Description"`
-	Expression  []PacketFilterExpression `json:"Expression"`
+// Request envelope for packetFilterCreateRequestEnvelope.
+// Ref: #/components/schemas/PacketFilterCreateRequestEnvelope
+type PacketFilterCreateRequestEnvelope struct {
+	// PacketFilter.
+	PacketFilter PacketFilter `json:"PacketFilter"`
 }
 
-// GetName returns the value of Name.
-func (s *PacketFilterCreateRequest) GetName() string {
-	return s.Name
+// GetPacketFilter returns the value of PacketFilter.
+func (s *PacketFilterCreateRequestEnvelope) GetPacketFilter() PacketFilter {
+	return s.PacketFilter
 }
 
-// GetDescription returns the value of Description.
-func (s *PacketFilterCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetExpression returns the value of Expression.
-func (s *PacketFilterCreateRequest) GetExpression() []PacketFilterExpression {
-	return s.Expression
-}
-
-// SetName sets the value of Name.
-func (s *PacketFilterCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *PacketFilterCreateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetExpression sets the value of Expression.
-func (s *PacketFilterCreateRequest) SetExpression(val []PacketFilterExpression) {
-	s.Expression = val
+// SetPacketFilter sets the value of PacketFilter.
+func (s *PacketFilterCreateRequestEnvelope) SetPacketFilter(val PacketFilter) {
+	s.PacketFilter = val
 }
 
 // Response envelope for packetFilterCreateResponseEnvelope.
@@ -18165,6 +18538,95 @@ func (s *PacketFilterExpression) SetDescription(val string) {
 	s.Description = val
 }
 
+// Request envelope for packetFilterFindRequestEnvelope.
+// Ref: #/components/schemas/PacketFilterFindRequestEnvelope
+type PacketFilterFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter PacketFilterFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *PacketFilterFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *PacketFilterFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *PacketFilterFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *PacketFilterFindRequestEnvelope) GetFilter() PacketFilterFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *PacketFilterFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *PacketFilterFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *PacketFilterFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *PacketFilterFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *PacketFilterFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *PacketFilterFindRequestEnvelope) SetFilter(val PacketFilterFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *PacketFilterFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *PacketFilterFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type PacketFilterFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *PacketFilterFindRequestEnvelopeFilter) init() PacketFilterFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for packetFilterFindResponseEnvelope.
 // Ref: #/components/schemas/PacketFilterFindResponseEnvelope
 type PacketFilterFindResponseEnvelope struct {
@@ -18218,61 +18680,8 @@ func (s *PacketFilterFindResponseEnvelope) SetPacketFilters(val []PacketFilter) 
 	s.PacketFilters = val
 }
 
-type PacketFilterOpCreateReq struct {
-	Param PacketFilterCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *PacketFilterOpCreateReq) GetParam() PacketFilterCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *PacketFilterOpCreateReq) SetParam(val PacketFilterCreateRequest) {
-	s.Param = val
-}
-
 // PacketFilterOpDeleteNoContent is response for PacketFilterOpDelete operation.
 type PacketFilterOpDeleteNoContent struct{}
-
-type PacketFilterOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *PacketFilterOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *PacketFilterOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type PacketFilterOpUpdateReq struct {
-	UpdateParam            PacketFilterUpdateRequest `json:"updateParam"`
-	OriginalExpressionHash string                    `json:"originalExpressionHash"`
-}
-
-// GetUpdateParam returns the value of UpdateParam.
-func (s *PacketFilterOpUpdateReq) GetUpdateParam() PacketFilterUpdateRequest {
-	return s.UpdateParam
-}
-
-// GetOriginalExpressionHash returns the value of OriginalExpressionHash.
-func (s *PacketFilterOpUpdateReq) GetOriginalExpressionHash() string {
-	return s.OriginalExpressionHash
-}
-
-// SetUpdateParam sets the value of UpdateParam.
-func (s *PacketFilterOpUpdateReq) SetUpdateParam(val PacketFilterUpdateRequest) {
-	s.UpdateParam = val
-}
-
-// SetOriginalExpressionHash sets the value of OriginalExpressionHash.
-func (s *PacketFilterOpUpdateReq) SetOriginalExpressionHash(val string) {
-	s.OriginalExpressionHash = val
-}
 
 // Response envelope for packetFilterReadResponseEnvelope.
 // Ref: #/components/schemas/PacketFilterReadResponseEnvelope
@@ -18315,41 +18724,33 @@ func (s *PacketFilterReadResponseEnvelope) SetPacketFilter(val PacketFilter) {
 	s.PacketFilter = val
 }
 
-// Ref: #/components/schemas/PacketFilterUpdateRequest
-type PacketFilterUpdateRequest struct {
-	Name        string                   `json:"Name"`
-	Description string                   `json:"Description"`
-	Expression  []PacketFilterExpression `json:"Expression"`
+// Request envelope for packetFilterUpdateRequestEnvelope.
+// Ref: #/components/schemas/PacketFilterUpdateRequestEnvelope
+type PacketFilterUpdateRequestEnvelope struct {
+	// PacketFilter.
+	PacketFilter PacketFilter `json:"PacketFilter"`
+	// OriginalExpressionHash.
+	OriginalExpressionHash string `json:"OriginalExpressionHash"`
 }
 
-// GetName returns the value of Name.
-func (s *PacketFilterUpdateRequest) GetName() string {
-	return s.Name
+// GetPacketFilter returns the value of PacketFilter.
+func (s *PacketFilterUpdateRequestEnvelope) GetPacketFilter() PacketFilter {
+	return s.PacketFilter
 }
 
-// GetDescription returns the value of Description.
-func (s *PacketFilterUpdateRequest) GetDescription() string {
-	return s.Description
+// GetOriginalExpressionHash returns the value of OriginalExpressionHash.
+func (s *PacketFilterUpdateRequestEnvelope) GetOriginalExpressionHash() string {
+	return s.OriginalExpressionHash
 }
 
-// GetExpression returns the value of Expression.
-func (s *PacketFilterUpdateRequest) GetExpression() []PacketFilterExpression {
-	return s.Expression
+// SetPacketFilter sets the value of PacketFilter.
+func (s *PacketFilterUpdateRequestEnvelope) SetPacketFilter(val PacketFilter) {
+	s.PacketFilter = val
 }
 
-// SetName sets the value of Name.
-func (s *PacketFilterUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *PacketFilterUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetExpression sets the value of Expression.
-func (s *PacketFilterUpdateRequest) SetExpression(val []PacketFilterExpression) {
-	s.Expression = val
+// SetOriginalExpressionHash sets the value of OriginalExpressionHash.
+func (s *PacketFilterUpdateRequestEnvelope) SetOriginalExpressionHash(val string) {
+	s.OriginalExpressionHash = val
 }
 
 // Response envelope for packetFilterUpdateResponseEnvelope.
@@ -18809,6 +19210,95 @@ func (s *PrivateHostCreateResponseEnvelope) SetPrivateHost(val PrivateHost) {
 	s.PrivateHost = val
 }
 
+// Request envelope for privateHostFindRequestEnvelope.
+// Ref: #/components/schemas/PrivateHostFindRequestEnvelope
+type PrivateHostFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter PrivateHostFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *PrivateHostFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *PrivateHostFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *PrivateHostFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *PrivateHostFindRequestEnvelope) GetFilter() PrivateHostFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *PrivateHostFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *PrivateHostFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *PrivateHostFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *PrivateHostFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *PrivateHostFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *PrivateHostFindRequestEnvelope) SetFilter(val PrivateHostFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *PrivateHostFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *PrivateHostFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type PrivateHostFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *PrivateHostFindRequestEnvelopeFilter) init() PrivateHostFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for privateHostFindResponseEnvelope.
 // Ref: #/components/schemas/PrivateHostFindResponseEnvelope
 type PrivateHostFindResponseEnvelope struct {
@@ -18900,34 +19390,6 @@ func (s *PrivateHostOpCreateReq) SetDedicatedStorageContractID(val OptID) {
 
 // PrivateHostOpDeleteNoContent is response for PrivateHostOpDelete operation.
 type PrivateHostOpDeleteNoContent struct{}
-
-type PrivateHostOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *PrivateHostOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *PrivateHostOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type PrivateHostOpUpdateReq struct {
-	Param PrivateHostUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *PrivateHostOpUpdateReq) GetParam() PrivateHostUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *PrivateHostOpUpdateReq) SetParam(val PrivateHostUpdateRequest) {
-	s.Param = val
-}
 
 // Ref: #/components/schemas/PrivateHostPlan
 type PrivateHostPlan struct {
@@ -19021,6 +19483,95 @@ func (s *PrivateHostPlan) SetAvailability(val EAvailability) {
 	s.Availability = val
 }
 
+// Request envelope for privateHostPlanFindRequestEnvelope.
+// Ref: #/components/schemas/PrivateHostPlanFindRequestEnvelope
+type PrivateHostPlanFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter PrivateHostPlanFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *PrivateHostPlanFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *PrivateHostPlanFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *PrivateHostPlanFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *PrivateHostPlanFindRequestEnvelope) GetFilter() PrivateHostPlanFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *PrivateHostPlanFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *PrivateHostPlanFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *PrivateHostPlanFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *PrivateHostPlanFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *PrivateHostPlanFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *PrivateHostPlanFindRequestEnvelope) SetFilter(val PrivateHostPlanFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *PrivateHostPlanFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *PrivateHostPlanFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type PrivateHostPlanFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *PrivateHostPlanFindRequestEnvelopeFilter) init() PrivateHostPlanFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for privateHostPlanFindResponseEnvelope.
 // Ref: #/components/schemas/PrivateHostPlanFindResponseEnvelope
 type PrivateHostPlanFindResponseEnvelope struct {
@@ -19072,20 +19623,6 @@ func (s *PrivateHostPlanFindResponseEnvelope) SetCount(val int32) {
 // SetPrivateHostPlans sets the value of PrivateHostPlans.
 func (s *PrivateHostPlanFindResponseEnvelope) SetPrivateHostPlans(val []PrivateHostPlan) {
 	s.PrivateHostPlans = val
-}
-
-type PrivateHostPlanOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *PrivateHostPlanOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *PrivateHostPlanOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Response envelope for privateHostPlanReadResponseEnvelope.
@@ -19170,52 +19707,21 @@ func (s *PrivateHostReadResponseEnvelope) SetPrivateHost(val PrivateHost) {
 	s.PrivateHost = val
 }
 
-// Ref: #/components/schemas/PrivateHostUpdateRequest
-type PrivateHostUpdateRequest struct {
-	Name        string   `json:"Name"`
-	Description string   `json:"Description"`
-	Tags        []string `json:"Tags"`
-	IconID      int64    `json:"IconID"`
+// Request envelope for privateHostUpdateRequestEnvelope.
+// Ref: #/components/schemas/PrivateHostUpdateRequestEnvelope
+type PrivateHostUpdateRequestEnvelope struct {
+	// PrivateHost.
+	PrivateHost PrivateHost `json:"PrivateHost"`
 }
 
-// GetName returns the value of Name.
-func (s *PrivateHostUpdateRequest) GetName() string {
-	return s.Name
+// GetPrivateHost returns the value of PrivateHost.
+func (s *PrivateHostUpdateRequestEnvelope) GetPrivateHost() PrivateHost {
+	return s.PrivateHost
 }
 
-// GetDescription returns the value of Description.
-func (s *PrivateHostUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *PrivateHostUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *PrivateHostUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetName sets the value of Name.
-func (s *PrivateHostUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *PrivateHostUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *PrivateHostUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *PrivateHostUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetPrivateHost sets the value of PrivateHost.
+func (s *PrivateHostUpdateRequestEnvelope) SetPrivateHost(val PrivateHost) {
+	s.PrivateHost = val
 }
 
 // Response envelope for privateHostUpdateResponseEnvelope.
@@ -20576,6 +21082,95 @@ func (s *Region) SetNameServers(val []string) {
 	s.NameServers = val
 }
 
+// Request envelope for regionFindRequestEnvelope.
+// Ref: #/components/schemas/RegionFindRequestEnvelope
+type RegionFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter RegionFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *RegionFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *RegionFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *RegionFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *RegionFindRequestEnvelope) GetFilter() RegionFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *RegionFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *RegionFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *RegionFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *RegionFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *RegionFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *RegionFindRequestEnvelope) SetFilter(val RegionFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *RegionFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *RegionFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type RegionFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *RegionFindRequestEnvelopeFilter) init() RegionFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for regionFindResponseEnvelope.
 // Ref: #/components/schemas/RegionFindResponseEnvelope
 type RegionFindResponseEnvelope struct {
@@ -20627,20 +21222,6 @@ func (s *RegionFindResponseEnvelope) SetCount(val int32) {
 // SetRegions sets the value of Regions.
 func (s *RegionFindResponseEnvelope) SetRegions(val []Region) {
 	s.Regions = val
-}
-
-type RegionOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *RegionOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *RegionOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Response envelope for regionReadResponseEnvelope.
@@ -21100,41 +21681,21 @@ func (s *SSHKey) SetFingerprint(val string) {
 	s.Fingerprint = val
 }
 
-// Ref: #/components/schemas/SSHKeyCreateRequest
-type SSHKeyCreateRequest struct {
-	Name        string `json:"Name"`
-	Description string `json:"Description"`
-	PublicKey   string `json:"PublicKey"`
+// Request envelope for sSHKeyCreateRequestEnvelope.
+// Ref: #/components/schemas/SSHKeyCreateRequestEnvelope
+type SSHKeyCreateRequestEnvelope struct {
+	// SSHKey.
+	SSHKey SSHKey `json:"SSHKey"`
 }
 
-// GetName returns the value of Name.
-func (s *SSHKeyCreateRequest) GetName() string {
-	return s.Name
+// GetSSHKey returns the value of SSHKey.
+func (s *SSHKeyCreateRequestEnvelope) GetSSHKey() SSHKey {
+	return s.SSHKey
 }
 
-// GetDescription returns the value of Description.
-func (s *SSHKeyCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetPublicKey returns the value of PublicKey.
-func (s *SSHKeyCreateRequest) GetPublicKey() string {
-	return s.PublicKey
-}
-
-// SetName sets the value of Name.
-func (s *SSHKeyCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *SSHKeyCreateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetPublicKey sets the value of PublicKey.
-func (s *SSHKeyCreateRequest) SetPublicKey(val string) {
-	s.PublicKey = val
+// SetSSHKey sets the value of SSHKey.
+func (s *SSHKeyCreateRequestEnvelope) SetSSHKey(val SSHKey) {
+	s.SSHKey = val
 }
 
 // Response envelope for sSHKeyCreateResponseEnvelope.
@@ -21176,6 +21737,95 @@ func (s *SSHKeyCreateResponseEnvelope) SetSuccess(val string) {
 // SetSSHKey sets the value of SSHKey.
 func (s *SSHKeyCreateResponseEnvelope) SetSSHKey(val SSHKey) {
 	s.SSHKey = val
+}
+
+// Request envelope for sSHKeyFindRequestEnvelope.
+// Ref: #/components/schemas/SSHKeyFindRequestEnvelope
+type SSHKeyFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter SSHKeyFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *SSHKeyFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *SSHKeyFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *SSHKeyFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *SSHKeyFindRequestEnvelope) GetFilter() SSHKeyFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *SSHKeyFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *SSHKeyFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *SSHKeyFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *SSHKeyFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *SSHKeyFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *SSHKeyFindRequestEnvelope) SetFilter(val SSHKeyFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *SSHKeyFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *SSHKeyFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type SSHKeyFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *SSHKeyFindRequestEnvelopeFilter) init() SSHKeyFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for sSHKeyFindResponseEnvelope.
@@ -21231,50 +21881,8 @@ func (s *SSHKeyFindResponseEnvelope) SetSSHKeys(val []SSHKey) {
 	s.SSHKeys = val
 }
 
-type SSHKeyOpCreateReq struct {
-	Param SSHKeyCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *SSHKeyOpCreateReq) GetParam() SSHKeyCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *SSHKeyOpCreateReq) SetParam(val SSHKeyCreateRequest) {
-	s.Param = val
-}
-
 // SSHKeyOpDeleteNoContent is response for SSHKeyOpDelete operation.
 type SSHKeyOpDeleteNoContent struct{}
-
-type SSHKeyOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *SSHKeyOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *SSHKeyOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type SSHKeyOpUpdateReq struct {
-	Param SSHKeyUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *SSHKeyOpUpdateReq) GetParam() SSHKeyUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *SSHKeyOpUpdateReq) SetParam(val SSHKeyUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for sSHKeyReadResponseEnvelope.
 // Ref: #/components/schemas/SSHKeyReadResponseEnvelope
@@ -21317,30 +21925,21 @@ func (s *SSHKeyReadResponseEnvelope) SetSSHKey(val SSHKey) {
 	s.SSHKey = val
 }
 
-// Ref: #/components/schemas/SSHKeyUpdateRequest
-type SSHKeyUpdateRequest struct {
-	Name        string `json:"Name"`
-	Description string `json:"Description"`
+// Request envelope for sSHKeyUpdateRequestEnvelope.
+// Ref: #/components/schemas/SSHKeyUpdateRequestEnvelope
+type SSHKeyUpdateRequestEnvelope struct {
+	// SSHKey.
+	SSHKey SSHKey `json:"SSHKey"`
 }
 
-// GetName returns the value of Name.
-func (s *SSHKeyUpdateRequest) GetName() string {
-	return s.Name
+// GetSSHKey returns the value of SSHKey.
+func (s *SSHKeyUpdateRequestEnvelope) GetSSHKey() SSHKey {
+	return s.SSHKey
 }
 
-// GetDescription returns the value of Description.
-func (s *SSHKeyUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// SetName sets the value of Name.
-func (s *SSHKeyUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *SSHKeyUpdateRequest) SetDescription(val string) {
-	s.Description = val
+// SetSSHKey sets the value of SSHKey.
+func (s *SSHKeyUpdateRequestEnvelope) SetSSHKey(val SSHKey) {
+	s.SSHKey = val
 }
 
 // Response envelope for sSHKeyUpdateResponseEnvelope.
@@ -21382,32 +21981,6 @@ func (s *SSHKeyUpdateResponseEnvelope) SetSuccess(val string) {
 // SetSSHKey sets the value of SSHKey.
 func (s *SSHKeyUpdateResponseEnvelope) SetSSHKey(val SSHKey) {
 	s.SSHKey = val
-}
-
-// Ref: #/components/schemas/SendKeyRequest
-type SendKeyRequest struct {
-	Key  string   `json:"Key"`
-	Keys []string `json:"Keys"`
-}
-
-// GetKey returns the value of Key.
-func (s *SendKeyRequest) GetKey() string {
-	return s.Key
-}
-
-// GetKeys returns the value of Keys.
-func (s *SendKeyRequest) GetKeys() []string {
-	return s.Keys
-}
-
-// SetKey sets the value of Key.
-func (s *SendKeyRequest) SetKey(val string) {
-	s.Key = val
-}
-
-// SetKeys sets the value of Keys.
-func (s *SendKeyRequest) SetKeys(val []string) {
-	s.Keys = val
 }
 
 // Ref: #/components/schemas/Server
@@ -21884,6 +22457,95 @@ func (s *ServerChangePlanRequest) SetCommitment(val ECommitment) {
 	s.Commitment = val
 }
 
+// Request envelope for serverChangePlanRequestEnvelope.
+// Ref: #/components/schemas/ServerChangePlanRequestEnvelope
+type ServerChangePlanRequestEnvelope struct {
+	// CPU.
+	CPU int32 `json:"CPU"`
+	// MemoryMB.
+	MemoryMB int32 `json:"MemoryMB"`
+	// GPU.
+	GPU int32 `json:"GPU"`
+	// GPUModel.
+	GPUModel string `json:"GPUModel"`
+	// CPUModel.
+	CPUModel string `json:"CPUModel"`
+	// Generation.
+	Generation EPlanGeneration `json:"Generation"`
+	// Commitment.
+	Commitment ECommitment `json:"Commitment"`
+}
+
+// GetCPU returns the value of CPU.
+func (s *ServerChangePlanRequestEnvelope) GetCPU() int32 {
+	return s.CPU
+}
+
+// GetMemoryMB returns the value of MemoryMB.
+func (s *ServerChangePlanRequestEnvelope) GetMemoryMB() int32 {
+	return s.MemoryMB
+}
+
+// GetGPU returns the value of GPU.
+func (s *ServerChangePlanRequestEnvelope) GetGPU() int32 {
+	return s.GPU
+}
+
+// GetGPUModel returns the value of GPUModel.
+func (s *ServerChangePlanRequestEnvelope) GetGPUModel() string {
+	return s.GPUModel
+}
+
+// GetCPUModel returns the value of CPUModel.
+func (s *ServerChangePlanRequestEnvelope) GetCPUModel() string {
+	return s.CPUModel
+}
+
+// GetGeneration returns the value of Generation.
+func (s *ServerChangePlanRequestEnvelope) GetGeneration() EPlanGeneration {
+	return s.Generation
+}
+
+// GetCommitment returns the value of Commitment.
+func (s *ServerChangePlanRequestEnvelope) GetCommitment() ECommitment {
+	return s.Commitment
+}
+
+// SetCPU sets the value of CPU.
+func (s *ServerChangePlanRequestEnvelope) SetCPU(val int32) {
+	s.CPU = val
+}
+
+// SetMemoryMB sets the value of MemoryMB.
+func (s *ServerChangePlanRequestEnvelope) SetMemoryMB(val int32) {
+	s.MemoryMB = val
+}
+
+// SetGPU sets the value of GPU.
+func (s *ServerChangePlanRequestEnvelope) SetGPU(val int32) {
+	s.GPU = val
+}
+
+// SetGPUModel sets the value of GPUModel.
+func (s *ServerChangePlanRequestEnvelope) SetGPUModel(val string) {
+	s.GPUModel = val
+}
+
+// SetCPUModel sets the value of CPUModel.
+func (s *ServerChangePlanRequestEnvelope) SetCPUModel(val string) {
+	s.CPUModel = val
+}
+
+// SetGeneration sets the value of Generation.
+func (s *ServerChangePlanRequestEnvelope) SetGeneration(val EPlanGeneration) {
+	s.Generation = val
+}
+
+// SetCommitment sets the value of Commitment.
+func (s *ServerChangePlanRequestEnvelope) SetCommitment(val ECommitment) {
+	s.Commitment = val
+}
+
 // Response envelope for serverChangePlanResponseEnvelope.
 // Ref: #/components/schemas/ServerChangePlanResponseEnvelope
 type ServerChangePlanResponseEnvelope struct {
@@ -22039,184 +22701,21 @@ func (s *ServerConnectedDisk) SetStorage(val Storage) {
 	s.Storage = val
 }
 
-// Ref: #/components/schemas/ServerCreateRequest
-type ServerCreateRequest struct {
-	CPU               int32             `json:"CPU"`
-	MemoryMB          int32             `json:"MemoryMB"`
-	GPU               int32             `json:"GPU"`
-	GPUModel          string            `json:"GPUModel"`
-	CPUModel          string            `json:"CPUModel"`
-	Commitment        ECommitment       `json:"Commitment"`
-	Generation        EPlanGeneration   `json:"Generation"`
-	ConfidentialVM    bool              `json:"ConfidentialVM"`
-	ConnectedSwitches []ConnectedSwitch `json:"ConnectedSwitches"`
-	InterfaceDriver   EInterfaceDriver  `json:"InterfaceDriver"`
-	Name              string            `json:"Name"`
-	Description       string            `json:"Description"`
-	Tags              []string          `json:"Tags"`
-	IconID            int64             `json:"IconID"`
-	WaitDiskMigration bool              `json:"WaitDiskMigration"`
-	PrivateHostID     int64             `json:"PrivateHostID"`
+// Request envelope for serverCreateRequestEnvelope.
+// Ref: #/components/schemas/ServerCreateRequestEnvelope
+type ServerCreateRequestEnvelope struct {
+	// Server.
+	Server Server `json:"Server"`
 }
 
-// GetCPU returns the value of CPU.
-func (s *ServerCreateRequest) GetCPU() int32 {
-	return s.CPU
+// GetServer returns the value of Server.
+func (s *ServerCreateRequestEnvelope) GetServer() Server {
+	return s.Server
 }
 
-// GetMemoryMB returns the value of MemoryMB.
-func (s *ServerCreateRequest) GetMemoryMB() int32 {
-	return s.MemoryMB
-}
-
-// GetGPU returns the value of GPU.
-func (s *ServerCreateRequest) GetGPU() int32 {
-	return s.GPU
-}
-
-// GetGPUModel returns the value of GPUModel.
-func (s *ServerCreateRequest) GetGPUModel() string {
-	return s.GPUModel
-}
-
-// GetCPUModel returns the value of CPUModel.
-func (s *ServerCreateRequest) GetCPUModel() string {
-	return s.CPUModel
-}
-
-// GetCommitment returns the value of Commitment.
-func (s *ServerCreateRequest) GetCommitment() ECommitment {
-	return s.Commitment
-}
-
-// GetGeneration returns the value of Generation.
-func (s *ServerCreateRequest) GetGeneration() EPlanGeneration {
-	return s.Generation
-}
-
-// GetConfidentialVM returns the value of ConfidentialVM.
-func (s *ServerCreateRequest) GetConfidentialVM() bool {
-	return s.ConfidentialVM
-}
-
-// GetConnectedSwitches returns the value of ConnectedSwitches.
-func (s *ServerCreateRequest) GetConnectedSwitches() []ConnectedSwitch {
-	return s.ConnectedSwitches
-}
-
-// GetInterfaceDriver returns the value of InterfaceDriver.
-func (s *ServerCreateRequest) GetInterfaceDriver() EInterfaceDriver {
-	return s.InterfaceDriver
-}
-
-// GetName returns the value of Name.
-func (s *ServerCreateRequest) GetName() string {
-	return s.Name
-}
-
-// GetDescription returns the value of Description.
-func (s *ServerCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *ServerCreateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *ServerCreateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// GetWaitDiskMigration returns the value of WaitDiskMigration.
-func (s *ServerCreateRequest) GetWaitDiskMigration() bool {
-	return s.WaitDiskMigration
-}
-
-// GetPrivateHostID returns the value of PrivateHostID.
-func (s *ServerCreateRequest) GetPrivateHostID() int64 {
-	return s.PrivateHostID
-}
-
-// SetCPU sets the value of CPU.
-func (s *ServerCreateRequest) SetCPU(val int32) {
-	s.CPU = val
-}
-
-// SetMemoryMB sets the value of MemoryMB.
-func (s *ServerCreateRequest) SetMemoryMB(val int32) {
-	s.MemoryMB = val
-}
-
-// SetGPU sets the value of GPU.
-func (s *ServerCreateRequest) SetGPU(val int32) {
-	s.GPU = val
-}
-
-// SetGPUModel sets the value of GPUModel.
-func (s *ServerCreateRequest) SetGPUModel(val string) {
-	s.GPUModel = val
-}
-
-// SetCPUModel sets the value of CPUModel.
-func (s *ServerCreateRequest) SetCPUModel(val string) {
-	s.CPUModel = val
-}
-
-// SetCommitment sets the value of Commitment.
-func (s *ServerCreateRequest) SetCommitment(val ECommitment) {
-	s.Commitment = val
-}
-
-// SetGeneration sets the value of Generation.
-func (s *ServerCreateRequest) SetGeneration(val EPlanGeneration) {
-	s.Generation = val
-}
-
-// SetConfidentialVM sets the value of ConfidentialVM.
-func (s *ServerCreateRequest) SetConfidentialVM(val bool) {
-	s.ConfidentialVM = val
-}
-
-// SetConnectedSwitches sets the value of ConnectedSwitches.
-func (s *ServerCreateRequest) SetConnectedSwitches(val []ConnectedSwitch) {
-	s.ConnectedSwitches = val
-}
-
-// SetInterfaceDriver sets the value of InterfaceDriver.
-func (s *ServerCreateRequest) SetInterfaceDriver(val EInterfaceDriver) {
-	s.InterfaceDriver = val
-}
-
-// SetName sets the value of Name.
-func (s *ServerCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *ServerCreateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *ServerCreateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *ServerCreateRequest) SetIconID(val int64) {
-	s.IconID = val
-}
-
-// SetWaitDiskMigration sets the value of WaitDiskMigration.
-func (s *ServerCreateRequest) SetWaitDiskMigration(val bool) {
-	s.WaitDiskMigration = val
-}
-
-// SetPrivateHostID sets the value of PrivateHostID.
-func (s *ServerCreateRequest) SetPrivateHostID(val int64) {
-	s.PrivateHostID = val
+// SetServer sets the value of Server.
+func (s *ServerCreateRequestEnvelope) SetServer(val Server) {
+	s.Server = val
 }
 
 // Response envelope for serverCreateResponseEnvelope.
@@ -22273,6 +22772,112 @@ func (s *ServerDeleteWithDisksRequest) GetIDs() []int64 {
 // SetIDs sets the value of IDs.
 func (s *ServerDeleteWithDisksRequest) SetIDs(val []int64) {
 	s.IDs = val
+}
+
+// Request envelope for serverEjectCDROMRequestEnvelope.
+// Ref: #/components/schemas/ServerEjectCDROMRequestEnvelope
+type ServerEjectCDROMRequestEnvelope struct {
+	// CDROM.
+	CDROM CDROM `json:"CDROM"`
+}
+
+// GetCDROM returns the value of CDROM.
+func (s *ServerEjectCDROMRequestEnvelope) GetCDROM() CDROM {
+	return s.CDROM
+}
+
+// SetCDROM sets the value of CDROM.
+func (s *ServerEjectCDROMRequestEnvelope) SetCDROM(val CDROM) {
+	s.CDROM = val
+}
+
+// Request envelope for serverFindRequestEnvelope.
+// Ref: #/components/schemas/ServerFindRequestEnvelope
+type ServerFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter ServerFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *ServerFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *ServerFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *ServerFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *ServerFindRequestEnvelope) GetFilter() ServerFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *ServerFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *ServerFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *ServerFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *ServerFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *ServerFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *ServerFindRequestEnvelope) SetFilter(val ServerFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *ServerFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *ServerFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type ServerFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *ServerFindRequestEnvelopeFilter) init() ServerFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for serverFindResponseEnvelope.
@@ -22369,6 +22974,23 @@ func (s *ServerGetVNCProxyResponseEnvelope) SetVNCProxyInfo(val VNCProxyInfo) {
 	s.VNCProxyInfo = val
 }
 
+// Request envelope for serverInsertCDROMRequestEnvelope.
+// Ref: #/components/schemas/ServerInsertCDROMRequestEnvelope
+type ServerInsertCDROMRequestEnvelope struct {
+	// CDROM.
+	CDROM CDROM `json:"CDROM"`
+}
+
+// GetCDROM returns the value of CDROM.
+func (s *ServerInsertCDROMRequestEnvelope) GetCDROM() CDROM {
+	return s.CDROM
+}
+
+// SetCDROM sets the value of CDROM.
+func (s *ServerInsertCDROMRequestEnvelope) SetCDROM(val CDROM) {
+	s.CDROM = val
+}
+
 // Response envelope for serverMonitorResponseEnvelope.
 // Ref: #/components/schemas/ServerMonitorResponseEnvelope
 type ServerMonitorResponseEnvelope struct {
@@ -22427,34 +23049,6 @@ func (s *ServerOpBootReq) SetParam(val OptServerBootVariables) {
 	s.Param = val
 }
 
-type ServerOpChangePlanReq struct {
-	Plan ServerChangePlanRequest `json:"plan"`
-}
-
-// GetPlan returns the value of Plan.
-func (s *ServerOpChangePlanReq) GetPlan() ServerChangePlanRequest {
-	return s.Plan
-}
-
-// SetPlan sets the value of Plan.
-func (s *ServerOpChangePlanReq) SetPlan(val ServerChangePlanRequest) {
-	s.Plan = val
-}
-
-type ServerOpCreateReq struct {
-	Param ServerCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *ServerOpCreateReq) GetParam() ServerCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *ServerOpCreateReq) SetParam(val ServerCreateRequest) {
-	s.Param = val
-}
-
 // ServerOpDeleteNoContent is response for ServerOpDelete operation.
 type ServerOpDeleteNoContent struct{}
 
@@ -22475,50 +23069,8 @@ func (s *ServerOpDeleteReq) SetDisks(val OptServerDeleteWithDisksRequest) {
 // ServerOpEjectCDROMNoContent is response for ServerOpEjectCDROM operation.
 type ServerOpEjectCDROMNoContent struct{}
 
-type ServerOpEjectCDROMReq struct {
-	EjectParam EjectCDROMRequest `json:"ejectParam"`
-}
-
-// GetEjectParam returns the value of EjectParam.
-func (s *ServerOpEjectCDROMReq) GetEjectParam() EjectCDROMRequest {
-	return s.EjectParam
-}
-
-// SetEjectParam sets the value of EjectParam.
-func (s *ServerOpEjectCDROMReq) SetEjectParam(val EjectCDROMRequest) {
-	s.EjectParam = val
-}
-
-type ServerOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *ServerOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *ServerOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
 // ServerOpInsertCDROMNoContent is response for ServerOpInsertCDROM operation.
 type ServerOpInsertCDROMNoContent struct{}
-
-type ServerOpInsertCDROMReq struct {
-	InsertParam InsertCDROMRequest `json:"insertParam"`
-}
-
-// GetInsertParam returns the value of InsertParam.
-func (s *ServerOpInsertCDROMReq) GetInsertParam() InsertCDROMRequest {
-	return s.InsertParam
-}
-
-// SetInsertParam sets the value of InsertParam.
-func (s *ServerOpInsertCDROMReq) SetInsertParam(val InsertCDROMRequest) {
-	s.InsertParam = val
-}
 
 type ServerOpMonitorReq struct {
 	Condition MonitorCondition `json:"condition"`
@@ -22540,52 +23092,99 @@ type ServerOpResetNoContent struct{}
 // ServerOpSendKeyNoContent is response for ServerOpSendKey operation.
 type ServerOpSendKeyNoContent struct{}
 
-type ServerOpSendKeyReq struct {
-	KeyboardParam SendKeyRequest `json:"keyboardParam"`
-}
-
-// GetKeyboardParam returns the value of KeyboardParam.
-func (s *ServerOpSendKeyReq) GetKeyboardParam() SendKeyRequest {
-	return s.KeyboardParam
-}
-
-// SetKeyboardParam sets the value of KeyboardParam.
-func (s *ServerOpSendKeyReq) SetKeyboardParam(val SendKeyRequest) {
-	s.KeyboardParam = val
-}
-
 // ServerOpSendNMINoContent is response for ServerOpSendNMI operation.
 type ServerOpSendNMINoContent struct{}
 
 // ServerOpShutdownNoContent is response for ServerOpShutdown operation.
 type ServerOpShutdownNoContent struct{}
 
-type ServerOpShutdownReq struct {
-	ShutdownOption ShutdownOption `json:"shutdownOption"`
+// Request envelope for serverPlanFindRequestEnvelope.
+// Ref: #/components/schemas/ServerPlanFindRequestEnvelope
+type ServerPlanFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter ServerPlanFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
 }
 
-// GetShutdownOption returns the value of ShutdownOption.
-func (s *ServerOpShutdownReq) GetShutdownOption() ShutdownOption {
-	return s.ShutdownOption
+// GetCount returns the value of Count.
+func (s *ServerPlanFindRequestEnvelope) GetCount() int32 {
+	return s.Count
 }
 
-// SetShutdownOption sets the value of ShutdownOption.
-func (s *ServerOpShutdownReq) SetShutdownOption(val ShutdownOption) {
-	s.ShutdownOption = val
+// GetFrom returns the value of From.
+func (s *ServerPlanFindRequestEnvelope) GetFrom() int32 {
+	return s.From
 }
 
-type ServerOpUpdateReq struct {
-	Param ServerUpdateRequest `json:"param"`
+// GetSort returns the value of Sort.
+func (s *ServerPlanFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
 }
 
-// GetParam returns the value of Param.
-func (s *ServerOpUpdateReq) GetParam() ServerUpdateRequest {
-	return s.Param
+// GetFilter returns the value of Filter.
+func (s *ServerPlanFindRequestEnvelope) GetFilter() ServerPlanFindRequestEnvelopeFilter {
+	return s.Filter
 }
 
-// SetParam sets the value of Param.
-func (s *ServerOpUpdateReq) SetParam(val ServerUpdateRequest) {
-	s.Param = val
+// GetInclude returns the value of Include.
+func (s *ServerPlanFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *ServerPlanFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *ServerPlanFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *ServerPlanFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *ServerPlanFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *ServerPlanFindRequestEnvelope) SetFilter(val ServerPlanFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *ServerPlanFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *ServerPlanFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type ServerPlanFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *ServerPlanFindRequestEnvelopeFilter) init() ServerPlanFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for serverPlanFindResponseEnvelope.
@@ -22639,20 +23238,6 @@ func (s *ServerPlanFindResponseEnvelope) SetCount(val int32) {
 // SetServerPlans sets the value of ServerPlans.
 func (s *ServerPlanFindResponseEnvelope) SetServerPlans(val []ServerChangePlanRequest) {
 	s.ServerPlans = val
-}
-
-type ServerPlanOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *ServerPlanOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *ServerPlanOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Response envelope for serverPlanReadResponseEnvelope.
@@ -22737,74 +23322,67 @@ func (s *ServerReadResponseEnvelope) SetServer(val Server) {
 	s.Server = val
 }
 
-// Ref: #/components/schemas/ServerUpdateRequest
-type ServerUpdateRequest struct {
-	Name            string           `json:"Name"`
-	Description     string           `json:"Description"`
-	Tags            []string         `json:"Tags"`
-	IconID          int64            `json:"IconID"`
-	PrivateHostID   int64            `json:"PrivateHostID"`
-	InterfaceDriver EInterfaceDriver `json:"InterfaceDriver"`
+// Request envelope for serverSendKeyRequestEnvelope.
+// Ref: #/components/schemas/ServerSendKeyRequestEnvelope
+type ServerSendKeyRequestEnvelope struct {
+	// Key.
+	Key string `json:"Key"`
+	// Keys.
+	Keys []string `json:"Keys"`
 }
 
-// GetName returns the value of Name.
-func (s *ServerUpdateRequest) GetName() string {
-	return s.Name
+// GetKey returns the value of Key.
+func (s *ServerSendKeyRequestEnvelope) GetKey() string {
+	return s.Key
 }
 
-// GetDescription returns the value of Description.
-func (s *ServerUpdateRequest) GetDescription() string {
-	return s.Description
+// GetKeys returns the value of Keys.
+func (s *ServerSendKeyRequestEnvelope) GetKeys() []string {
+	return s.Keys
 }
 
-// GetTags returns the value of Tags.
-func (s *ServerUpdateRequest) GetTags() []string {
-	return s.Tags
+// SetKey sets the value of Key.
+func (s *ServerSendKeyRequestEnvelope) SetKey(val string) {
+	s.Key = val
 }
 
-// GetIconID returns the value of IconID.
-func (s *ServerUpdateRequest) GetIconID() int64 {
-	return s.IconID
+// SetKeys sets the value of Keys.
+func (s *ServerSendKeyRequestEnvelope) SetKeys(val []string) {
+	s.Keys = val
 }
 
-// GetPrivateHostID returns the value of PrivateHostID.
-func (s *ServerUpdateRequest) GetPrivateHostID() int64 {
-	return s.PrivateHostID
+// Request envelope for serverShutdownRequestEnvelope.
+// Ref: #/components/schemas/ServerShutdownRequestEnvelope
+type ServerShutdownRequestEnvelope struct {
+	// Force.
+	Force bool `json:"Force"`
 }
 
-// GetInterfaceDriver returns the value of InterfaceDriver.
-func (s *ServerUpdateRequest) GetInterfaceDriver() EInterfaceDriver {
-	return s.InterfaceDriver
+// GetForce returns the value of Force.
+func (s *ServerShutdownRequestEnvelope) GetForce() bool {
+	return s.Force
 }
 
-// SetName sets the value of Name.
-func (s *ServerUpdateRequest) SetName(val string) {
-	s.Name = val
+// SetForce sets the value of Force.
+func (s *ServerShutdownRequestEnvelope) SetForce(val bool) {
+	s.Force = val
 }
 
-// SetDescription sets the value of Description.
-func (s *ServerUpdateRequest) SetDescription(val string) {
-	s.Description = val
+// Request envelope for serverUpdateRequestEnvelope.
+// Ref: #/components/schemas/ServerUpdateRequestEnvelope
+type ServerUpdateRequestEnvelope struct {
+	// Server.
+	Server Server `json:"Server"`
 }
 
-// SetTags sets the value of Tags.
-func (s *ServerUpdateRequest) SetTags(val []string) {
-	s.Tags = val
+// GetServer returns the value of Server.
+func (s *ServerUpdateRequestEnvelope) GetServer() Server {
+	return s.Server
 }
 
-// SetIconID sets the value of IconID.
-func (s *ServerUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
-}
-
-// SetPrivateHostID sets the value of PrivateHostID.
-func (s *ServerUpdateRequest) SetPrivateHostID(val int64) {
-	s.PrivateHostID = val
-}
-
-// SetInterfaceDriver sets the value of InterfaceDriver.
-func (s *ServerUpdateRequest) SetInterfaceDriver(val EInterfaceDriver) {
-	s.InterfaceDriver = val
+// SetServer sets the value of Server.
+func (s *ServerUpdateRequestEnvelope) SetServer(val Server) {
+	s.Server = val
 }
 
 // Response envelope for serverUpdateResponseEnvelope.
@@ -22918,6 +23496,95 @@ func (s *ServiceClass) SetPrice(val Price) {
 	s.Price = val
 }
 
+// Request envelope for serviceClassFindRequestEnvelope.
+// Ref: #/components/schemas/ServiceClassFindRequestEnvelope
+type ServiceClassFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter ServiceClassFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *ServiceClassFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *ServiceClassFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *ServiceClassFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *ServiceClassFindRequestEnvelope) GetFilter() ServiceClassFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *ServiceClassFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *ServiceClassFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *ServiceClassFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *ServiceClassFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *ServiceClassFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *ServiceClassFindRequestEnvelope) SetFilter(val ServiceClassFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *ServiceClassFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *ServiceClassFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type ServiceClassFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *ServiceClassFindRequestEnvelopeFilter) init() ServiceClassFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for serviceClassFindResponseEnvelope.
 // Ref: #/components/schemas/ServiceClassFindResponseEnvelope
 type ServiceClassFindResponseEnvelope struct {
@@ -22969,20 +23636,6 @@ func (s *ServiceClassFindResponseEnvelope) SetCount(val int32) {
 // SetServiceClasses sets the value of ServiceClasses.
 func (s *ServiceClassFindResponseEnvelope) SetServiceClasses(val []ServiceClass) {
 	s.ServiceClasses = val
-}
-
-type ServiceClassOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *ServiceClassOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *ServiceClassOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Ref: #/components/schemas/ShutdownOption
@@ -23714,6 +24367,95 @@ func (s *Storage) SetDedicatedStorageContractID(val int64) {
 	s.DedicatedStorageContractID = val
 }
 
+// Request envelope for subnetFindRequestEnvelope.
+// Ref: #/components/schemas/SubnetFindRequestEnvelope
+type SubnetFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter SubnetFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *SubnetFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *SubnetFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *SubnetFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *SubnetFindRequestEnvelope) GetFilter() SubnetFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *SubnetFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *SubnetFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *SubnetFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *SubnetFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *SubnetFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *SubnetFindRequestEnvelope) SetFilter(val SubnetFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *SubnetFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *SubnetFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type SubnetFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *SubnetFindRequestEnvelopeFilter) init() SubnetFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for subnetFindResponseEnvelope.
 // Ref: #/components/schemas/SubnetFindResponseEnvelope
 type SubnetFindResponseEnvelope struct {
@@ -23767,20 +24509,6 @@ func (s *SubnetFindResponseEnvelope) SetSubnets(val []InternetSubnet) {
 	s.Subnets = val
 }
 
-type SubnetOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *SubnetOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *SubnetOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
 // Response envelope for subnetReadResponseEnvelope.
 // Ref: #/components/schemas/SubnetReadResponseEnvelope
 type SubnetReadResponseEnvelope struct {
@@ -23822,74 +24550,21 @@ func (s *SubnetReadResponseEnvelope) SetSubnet(val InternetSubnet) {
 	s.Subnet = val
 }
 
-// Ref: #/components/schemas/SwitchCreateRequest
-type SwitchCreateRequest struct {
-	Name           string   `json:"Name"`
-	NetworkMaskLen int32    `json:"NetworkMaskLen"`
-	DefaultRoute   string   `json:"DefaultRoute"`
-	Description    string   `json:"Description"`
-	Tags           []string `json:"Tags"`
-	IconID         int64    `json:"IconID"`
+// Request envelope for switchCreateRequestEnvelope.
+// Ref: #/components/schemas/SwitchCreateRequestEnvelope
+type SwitchCreateRequestEnvelope struct {
+	// Switch.
+	Switch BridgeInfo `json:"Switch"`
 }
 
-// GetName returns the value of Name.
-func (s *SwitchCreateRequest) GetName() string {
-	return s.Name
+// GetSwitch returns the value of Switch.
+func (s *SwitchCreateRequestEnvelope) GetSwitch() BridgeInfo {
+	return s.Switch
 }
 
-// GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *SwitchCreateRequest) GetNetworkMaskLen() int32 {
-	return s.NetworkMaskLen
-}
-
-// GetDefaultRoute returns the value of DefaultRoute.
-func (s *SwitchCreateRequest) GetDefaultRoute() string {
-	return s.DefaultRoute
-}
-
-// GetDescription returns the value of Description.
-func (s *SwitchCreateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *SwitchCreateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *SwitchCreateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetName sets the value of Name.
-func (s *SwitchCreateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *SwitchCreateRequest) SetNetworkMaskLen(val int32) {
-	s.NetworkMaskLen = val
-}
-
-// SetDefaultRoute sets the value of DefaultRoute.
-func (s *SwitchCreateRequest) SetDefaultRoute(val string) {
-	s.DefaultRoute = val
-}
-
-// SetDescription sets the value of Description.
-func (s *SwitchCreateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *SwitchCreateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *SwitchCreateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetSwitch sets the value of Switch.
+func (s *SwitchCreateRequestEnvelope) SetSwitch(val BridgeInfo) {
+	s.Switch = val
 }
 
 // Response envelope for switchCreateResponseEnvelope.
@@ -23931,6 +24606,95 @@ func (s *SwitchCreateResponseEnvelope) SetSuccess(val string) {
 // SetSwitch sets the value of Switch.
 func (s *SwitchCreateResponseEnvelope) SetSwitch(val BridgeInfo) {
 	s.Switch = val
+}
+
+// Request envelope for switchFindRequestEnvelope.
+// Ref: #/components/schemas/SwitchFindRequestEnvelope
+type SwitchFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter SwitchFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *SwitchFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *SwitchFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *SwitchFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *SwitchFindRequestEnvelope) GetFilter() SwitchFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *SwitchFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *SwitchFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *SwitchFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *SwitchFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *SwitchFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *SwitchFindRequestEnvelope) SetFilter(val SwitchFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *SwitchFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *SwitchFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type SwitchFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *SwitchFindRequestEnvelopeFilter) init() SwitchFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
 }
 
 // Response envelope for switchFindResponseEnvelope.
@@ -24123,53 +24887,11 @@ func (s *SwitchInfo) SetIPv6Nets(val []IPv6NetInfo) {
 // SwitchOpConnectToBridgeNoContent is response for SwitchOpConnectToBridge operation.
 type SwitchOpConnectToBridgeNoContent struct{}
 
-type SwitchOpCreateReq struct {
-	Param SwitchCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *SwitchOpCreateReq) GetParam() SwitchCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *SwitchOpCreateReq) SetParam(val SwitchCreateRequest) {
-	s.Param = val
-}
-
 // SwitchOpDeleteNoContent is response for SwitchOpDelete operation.
 type SwitchOpDeleteNoContent struct{}
 
 // SwitchOpDisconnectFromBridgeNoContent is response for SwitchOpDisconnectFromBridge operation.
 type SwitchOpDisconnectFromBridgeNoContent struct{}
-
-type SwitchOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *SwitchOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *SwitchOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type SwitchOpUpdateReq struct {
-	Param SwitchUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *SwitchOpUpdateReq) GetParam() SwitchUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *SwitchOpUpdateReq) SetParam(val SwitchUpdateRequest) {
-	s.Param = val
-}
 
 // Response envelope for switchReadResponseEnvelope.
 // Ref: #/components/schemas/SwitchReadResponseEnvelope
@@ -24212,74 +24934,21 @@ func (s *SwitchReadResponseEnvelope) SetSwitch(val BridgeInfo) {
 	s.Switch = val
 }
 
-// Ref: #/components/schemas/SwitchUpdateRequest
-type SwitchUpdateRequest struct {
-	Name           string   `json:"Name"`
-	NetworkMaskLen int32    `json:"NetworkMaskLen"`
-	DefaultRoute   string   `json:"DefaultRoute"`
-	Description    string   `json:"Description"`
-	Tags           []string `json:"Tags"`
-	IconID         int64    `json:"IconID"`
+// Request envelope for switchUpdateRequestEnvelope.
+// Ref: #/components/schemas/SwitchUpdateRequestEnvelope
+type SwitchUpdateRequestEnvelope struct {
+	// Switch.
+	Switch BridgeInfo `json:"Switch"`
 }
 
-// GetName returns the value of Name.
-func (s *SwitchUpdateRequest) GetName() string {
-	return s.Name
+// GetSwitch returns the value of Switch.
+func (s *SwitchUpdateRequestEnvelope) GetSwitch() BridgeInfo {
+	return s.Switch
 }
 
-// GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *SwitchUpdateRequest) GetNetworkMaskLen() int32 {
-	return s.NetworkMaskLen
-}
-
-// GetDefaultRoute returns the value of DefaultRoute.
-func (s *SwitchUpdateRequest) GetDefaultRoute() string {
-	return s.DefaultRoute
-}
-
-// GetDescription returns the value of Description.
-func (s *SwitchUpdateRequest) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *SwitchUpdateRequest) GetTags() []string {
-	return s.Tags
-}
-
-// GetIconID returns the value of IconID.
-func (s *SwitchUpdateRequest) GetIconID() int64 {
-	return s.IconID
-}
-
-// SetName sets the value of Name.
-func (s *SwitchUpdateRequest) SetName(val string) {
-	s.Name = val
-}
-
-// SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *SwitchUpdateRequest) SetNetworkMaskLen(val int32) {
-	s.NetworkMaskLen = val
-}
-
-// SetDefaultRoute sets the value of DefaultRoute.
-func (s *SwitchUpdateRequest) SetDefaultRoute(val string) {
-	s.DefaultRoute = val
-}
-
-// SetDescription sets the value of Description.
-func (s *SwitchUpdateRequest) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *SwitchUpdateRequest) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIconID sets the value of IconID.
-func (s *SwitchUpdateRequest) SetIconID(val int64) {
-	s.IconID = val
+// SetSwitch sets the value of Switch.
+func (s *SwitchUpdateRequestEnvelope) SetSwitch(val BridgeInfo) {
+	s.Switch = val
 }
 
 // Response envelope for switchUpdateResponseEnvelope.
@@ -24537,6 +25206,95 @@ func (s *VPCRouterPingResults) SetResult(val []string) {
 	s.Result = val
 }
 
+// Request envelope for zoneFindRequestEnvelope.
+// Ref: #/components/schemas/ZoneFindRequestEnvelope
+type ZoneFindRequestEnvelope struct {
+	// Count.
+	Count int32 `json:"Count"`
+	// From.
+	From int32 `json:"From"`
+	// Sort.
+	Sort jx.Raw `json:"Sort"`
+	// Filter.
+	Filter ZoneFindRequestEnvelopeFilter `json:"Filter"`
+	// Include.
+	Include []string `json:"Include"`
+	// Exclude.
+	Exclude []string `json:"Exclude"`
+}
+
+// GetCount returns the value of Count.
+func (s *ZoneFindRequestEnvelope) GetCount() int32 {
+	return s.Count
+}
+
+// GetFrom returns the value of From.
+func (s *ZoneFindRequestEnvelope) GetFrom() int32 {
+	return s.From
+}
+
+// GetSort returns the value of Sort.
+func (s *ZoneFindRequestEnvelope) GetSort() jx.Raw {
+	return s.Sort
+}
+
+// GetFilter returns the value of Filter.
+func (s *ZoneFindRequestEnvelope) GetFilter() ZoneFindRequestEnvelopeFilter {
+	return s.Filter
+}
+
+// GetInclude returns the value of Include.
+func (s *ZoneFindRequestEnvelope) GetInclude() []string {
+	return s.Include
+}
+
+// GetExclude returns the value of Exclude.
+func (s *ZoneFindRequestEnvelope) GetExclude() []string {
+	return s.Exclude
+}
+
+// SetCount sets the value of Count.
+func (s *ZoneFindRequestEnvelope) SetCount(val int32) {
+	s.Count = val
+}
+
+// SetFrom sets the value of From.
+func (s *ZoneFindRequestEnvelope) SetFrom(val int32) {
+	s.From = val
+}
+
+// SetSort sets the value of Sort.
+func (s *ZoneFindRequestEnvelope) SetSort(val jx.Raw) {
+	s.Sort = val
+}
+
+// SetFilter sets the value of Filter.
+func (s *ZoneFindRequestEnvelope) SetFilter(val ZoneFindRequestEnvelopeFilter) {
+	s.Filter = val
+}
+
+// SetInclude sets the value of Include.
+func (s *ZoneFindRequestEnvelope) SetInclude(val []string) {
+	s.Include = val
+}
+
+// SetExclude sets the value of Exclude.
+func (s *ZoneFindRequestEnvelope) SetExclude(val []string) {
+	s.Exclude = val
+}
+
+// Filter.
+type ZoneFindRequestEnvelopeFilter map[string]jx.Raw
+
+func (s *ZoneFindRequestEnvelopeFilter) init() ZoneFindRequestEnvelopeFilter {
+	m := *s
+	if m == nil {
+		m = map[string]jx.Raw{}
+		*s = m
+	}
+	return m
+}
+
 // Response envelope for zoneFindResponseEnvelope.
 // Ref: #/components/schemas/ZoneFindResponseEnvelope
 type ZoneFindResponseEnvelope struct {
@@ -24669,20 +25427,6 @@ func (s *ZoneInfo) SetFTPServer(val FTPServerInfo) {
 // SetRegion sets the value of Region.
 func (s *ZoneInfo) SetRegion(val Region) {
 	s.Region = val
-}
-
-type ZoneOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *ZoneOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *ZoneOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
 }
 
 // Response envelope for zoneReadResponseEnvelope.

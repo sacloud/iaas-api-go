@@ -292,15 +292,24 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 		}
 
 		if len(g.ops) == 1 {
-			// 重複なし: そのままボディ引数を追加
-			for _, arg := range primary.Arguments {
-				if pathParamSet[arg.PathFormatName()] {
-					continue
-				}
+			// 重複なし: エンベロープがあれば @body でラップして使用
+			if primary.HasRequestEnvelope() {
+				// リクエストエンベロープを使用（例: IconCreateRequestEnvelope → {"Icon": {...}}）
 				params = append(params, opParam{
-					Name:   arg.ArgName(),
-					TSType: goArgTypeToTS(arg.TypeName()),
+					Decorator: "@body",
+					Name:      "body",
+					TSType:    upperFirst(primary.RequestEnvelopeStructName()),
 				})
+			} else {
+				for _, arg := range primary.Arguments {
+					if pathParamSet[arg.PathFormatName()] {
+						continue
+					}
+					params = append(params, opParam{
+						Name:   arg.ArgName(),
+						TSType: goArgTypeToTS(arg.TypeName()),
+					})
+				}
 			}
 		} else {
 			// 重複あり: 全オペレーションのボディ引数をマージ

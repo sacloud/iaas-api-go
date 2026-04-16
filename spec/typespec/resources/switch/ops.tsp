@@ -14,7 +14,7 @@ interface SwitchOp {
   @route("/{zone}/api/cloud/1.1/switch")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: SwitchFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): SwitchFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface SwitchOp {
   @route("/{zone}/api/cloud/1.1/switch")
   create(
     @path zone: string,
-    param: SwitchCreateRequest,
+    @body body: SwitchCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): SwitchCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface SwitchOp {
   update(
     @path zone: string,
     @path id: string,
-    param: SwitchUpdateRequest,
+    @body body: SwitchUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): SwitchUpdateResponseEnvelope | ApiError;
 

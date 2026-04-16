@@ -14,7 +14,7 @@ interface DiskPlanOp {
   @route("/{zone}/api/cloud/1.1/product/disk")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: DiskPlanFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): DiskPlanFindResponseEnvelope | ApiError;
 

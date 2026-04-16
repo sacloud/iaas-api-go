@@ -14,7 +14,7 @@ interface IPv6AddrOp {
   @route("/{zone}/api/cloud/1.1/ipv6addr")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: IPv6AddrFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): IPv6AddrFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface IPv6AddrOp {
   @route("/{zone}/api/cloud/1.1/ipv6addr")
   create(
     @path zone: string,
-    param: IPv6AddrCreateRequest,
+    @body body: IPv6AddrCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): IPv6AddrCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface IPv6AddrOp {
   update(
     @path zone: string,
     @path id: string,
-    param: IPv6AddrUpdateRequest,
+    @body body: IPv6AddrUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): IPv6AddrUpdateResponseEnvelope | ApiError;
 

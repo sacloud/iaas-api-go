@@ -14,7 +14,7 @@ interface LicenseOp {
   @route("/{zone}/api/cloud/1.1/license")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: LicenseFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): LicenseFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface LicenseOp {
   @route("/{zone}/api/cloud/1.1/license")
   create(
     @path zone: string,
-    param: LicenseCreateRequest,
+    @body body: LicenseCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): LicenseCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface LicenseOp {
   update(
     @path zone: string,
     @path id: string,
-    param: LicenseUpdateRequest,
+    @body body: LicenseUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): LicenseUpdateResponseEnvelope | ApiError;
 

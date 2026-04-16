@@ -14,7 +14,7 @@ interface InterfaceOp {
   @route("/{zone}/api/cloud/1.1/interface")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: InterfaceFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): InterfaceFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface InterfaceOp {
   @route("/{zone}/api/cloud/1.1/interface")
   create(
     @path zone: string,
-    param: InterfaceCreateRequest,
+    @body body: InterfaceCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): InterfaceCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface InterfaceOp {
   update(
     @path zone: string,
     @path id: string,
-    param: InterfaceUpdateRequest,
+    @body body: InterfaceUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): InterfaceUpdateResponseEnvelope | ApiError;
 
@@ -56,7 +56,7 @@ interface InterfaceOp {
   monitor(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: InterfaceMonitorRequestEnvelope,
     ...CommonRequestHeaders,
   ): InterfaceMonitorResponseEnvelope | ApiError;
 

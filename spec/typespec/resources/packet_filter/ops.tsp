@@ -14,7 +14,7 @@ interface PacketFilterOp {
   @route("/{zone}/api/cloud/1.1/packetfilter")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: PacketFilterFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): PacketFilterFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface PacketFilterOp {
   @route("/{zone}/api/cloud/1.1/packetfilter")
   create(
     @path zone: string,
-    param: PacketFilterCreateRequest,
+    @body body: PacketFilterCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): PacketFilterCreateResponseEnvelope | ApiError;
 
@@ -39,8 +39,7 @@ interface PacketFilterOp {
   update(
     @path zone: string,
     @path id: string,
-    updateParam: PacketFilterUpdateRequest,
-    originalExpressionHash: string,
+    @body body: PacketFilterUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): PacketFilterUpdateResponseEnvelope | ApiError;
 

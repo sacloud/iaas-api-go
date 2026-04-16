@@ -14,7 +14,7 @@ interface ArchiveOp {
   @route("/{zone}/api/cloud/1.1/archive")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: ArchiveFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): ArchiveFindResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface ArchiveOp {
   update(
     @path zone: string,
     @path id: string,
-    param: ArchiveUpdateRequest,
+    @body body: ArchiveUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): ArchiveUpdateResponseEnvelope | ApiError;
 

@@ -16,11 +16,18 @@ package integration
 
 import (
 	"context"
+	"fmt"
+	"net/http"
+	"net/http/httputil"
 	"os"
+	"runtime"
 	"testing"
 
 	"github.com/sacloud/iaas-api-go/v2/client"
 )
+
+// testUserAgent is the default User-Agent for integration tests.
+var testUserAgent = "iaas-api-go-acc (Go " + runtime.Version() + ")"
 
 // getZone returns the zone to use for testing.
 func getZone() string {
@@ -51,6 +58,30 @@ func (s *securitySource) BasicAuth(ctx context.Context, operationName client.Ope
 	}, nil
 }
 
+// dumpTransport logs HTTP requests and responses for debugging.
+type dumpTransport struct {
+	base http.RoundTripper
+}
+
+func (d *dumpTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	if req.Header.Get("User-Agent") == "" {
+		req.Header.Set("User-Agent", testUserAgent)
+	}
+
+	reqDump, _ := httputil.DumpRequestOut(req, true)
+	fmt.Fprintf(os.Stderr, "---> REQUEST\n%s\n", reqDump)
+
+	resp, err := d.base.RoundTrip(req)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "---> ERROR: %v\n", err)
+		return nil, err
+	}
+
+	respDump, _ := httputil.DumpResponse(resp, true)
+	fmt.Fprintf(os.Stderr, "<--- RESPONSE\n%s\n", respDump)
+	return resp, nil
+}
+
 // newClient creates an ogen client for integration tests.
 func newClient(t *testing.T) *client.Client {
 	t.Helper()
@@ -67,7 +98,14 @@ func newClient(t *testing.T) *client.Client {
 		password: accessTokenSecret,
 	}
 
-	c, err := client.NewClient(serverURL, sec)
+	opts := []client.ClientOption{}
+	if os.Getenv("SAKURA_TRACE") == "1" {
+		opts = append(opts, client.WithClient(&http.Client{
+			Transport: &dumpTransport{base: http.DefaultTransport},
+		}))
+	}
+
+	c, err := client.NewClient(serverURL, sec, opts...)
 	if err != nil {
 		t.Fatalf("failed to create client: %v", err)
 	}

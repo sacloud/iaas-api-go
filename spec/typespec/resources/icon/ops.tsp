@@ -14,7 +14,7 @@ interface IconOp {
   @route("/{zone}/api/cloud/1.1/icon")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: IconFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): IconFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface IconOp {
   @route("/{zone}/api/cloud/1.1/icon")
   create(
     @path zone: string,
-    param: IconCreateRequest,
+    @body body: IconCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): IconCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface IconOp {
   update(
     @path zone: string,
     @path id: string,
-    param: IconUpdateRequest,
+    @body body: IconUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): IconUpdateResponseEnvelope | ApiError;
 

@@ -14,7 +14,7 @@ interface NoteOp {
   @route("/{zone}/api/cloud/1.1/note")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: NoteFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): NoteFindResponseEnvelope | ApiError;
 
@@ -22,7 +22,7 @@ interface NoteOp {
   @route("/{zone}/api/cloud/1.1/note")
   create(
     @path zone: string,
-    param: NoteCreateRequest,
+    @body body: NoteCreateRequestEnvelope,
     ...CommonRequestHeaders,
   ): NoteCreateResponseEnvelope | ApiError;
 
@@ -39,7 +39,7 @@ interface NoteOp {
   update(
     @path zone: string,
     @path id: string,
-    param: NoteUpdateRequest,
+    @body body: NoteUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): NoteUpdateResponseEnvelope | ApiError;
 

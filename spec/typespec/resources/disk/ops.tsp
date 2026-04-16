@@ -14,7 +14,7 @@ interface DiskOp {
   @route("/{zone}/api/cloud/1.1/disk")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: DiskFindRequestEnvelope,
     ...CommonRequestHeaders,
   ): DiskFindResponseEnvelope | ApiError;
 
@@ -36,7 +36,7 @@ interface DiskOp {
   config(
     @path zone: string,
     @path id: string,
-    edit: DiskEditRequest,
+    @body body: DiskConfigRequestEnvelope,
     ...CommonRequestHeaders,
   ): void | ApiError;
 
@@ -45,7 +45,7 @@ interface DiskOp {
   resizePartition(
     @path zone: string,
     @path id: string,
-    param: DiskResizePartitionRequest,
+    @body body: DiskResizePartitionRequestEnvelope,
     ...CommonRequestHeaders,
   ): void | ApiError;
 
@@ -79,7 +79,7 @@ interface DiskOp {
   update(
     @path zone: string,
     @path id: string,
-    param: DiskUpdateRequest,
+    @body body: DiskUpdateRequestEnvelope,
     ...CommonRequestHeaders,
   ): DiskUpdateResponseEnvelope | ApiError;
 
