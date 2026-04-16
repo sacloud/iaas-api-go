@@ -6,11 +6,11 @@
   "scripts": {
     "build": "pnpm run generate && pnpm run format && pnpm run lint && pnpm run generate:client",
     "generate": "(cd .. && go run ./internal/tools/gen-typespec/) && pnpm run copy:main",
-    "generate:client": "find ../iaas/client -name '*.go' -delete; ogen --target ../iaas/client --package client --config ogen.yml tsp-output/@typespec/openapi3/openapi.yaml",
+    "generate:client": "mkdir -p ../v2/client && find ../v2/client -name '*.go' -delete; ogen --target ../v2/client --package client --config ogen.yml tsp-output/v2/@typespec/openapi3/openapi.yaml",
     "copy:main": "cp src/main.tsp typespec/main.tsp",
     "format": "tsp format typespec/",
-    "lint": "tsp compile typespec/main.tsp",
-    "redocly": "redocly build-docs tsp-output/@typespec/openapi3/openapi.yaml -o redoc-static.html && open redoc-static.html"
+    "lint": "tsp compile typespec/main.tsp --output-dir tsp-output/v2",
+    "redocly": "redocly build-docs tsp-output/v2/@typespec/openapi3/openapi.yaml -o redoc-static.v2.html && open redoc-static.v2.html"
   },
   "devDependencies": {
     "@redocly/cli": "^2.26.0"
