@@ -20,7 +20,7 @@ scalar StringFlag extends string;
 
 // API共通ヘッダー
 model CommonRequestHeaders {
-  @header("X-Sakura-BigInt-As-Int")
+  @header("X-Sakura-Bigint-As-Int")
   bigIntAsInt: "1";
 }
 

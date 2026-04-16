@@ -1046,11 +1046,11 @@ func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBoot
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1132,11 +1132,11 @@ func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpCo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1211,11 +1211,11 @@ func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1296,11 +1296,11 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1375,11 +1375,11 @@ func (c *Client) sendApplianceOpFind(ctx context.Context, request *ApplianceOpFi
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1464,11 +1464,11 @@ func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *Applian
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1553,11 +1553,11 @@ func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *Ap
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1642,11 +1642,11 @@ func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *A
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1747,11 +1747,11 @@ func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, par
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1832,11 +1832,11 @@ func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpRead
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -1918,11 +1918,11 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2007,11 +2007,11 @@ func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *Appliance
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2093,11 +2093,11 @@ func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpSt
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2190,11 +2190,11 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2276,11 +2276,11 @@ func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpClos
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2355,11 +2355,11 @@ func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveOpCrea
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2440,11 +2440,11 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2519,11 +2519,11 @@ func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveOpFindRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2604,11 +2604,11 @@ func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadPara
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2693,11 +2693,11 @@ func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveOpShare
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2809,11 +2809,11 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveOpTr
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2906,11 +2906,11 @@ func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveOpUpda
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -2973,11 +2973,11 @@ func (c *Client) sendAuthStatusOpRead(ctx context.Context, params AuthStatusOpRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3277,11 +3277,11 @@ func (c *Client) sendBillOpByContract(ctx context.Context, params BillOpByContra
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3381,11 +3381,11 @@ func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByCo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3504,11 +3504,11 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3608,11 +3608,11 @@ func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsPara
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3713,11 +3713,11 @@ func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsC
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3798,11 +3798,11 @@ func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (r
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3868,11 +3868,11 @@ func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeOpCreate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -3953,11 +3953,11 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4032,11 +4032,11 @@ func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeOpFindReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4117,11 +4117,11 @@ func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4205,11 +4205,11 @@ func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeOpUpdate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4291,11 +4291,11 @@ func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTP
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4370,11 +4370,11 @@ func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMOpCreateRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4455,11 +4455,11 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4534,11 +4534,11 @@ func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMOpFindReq, p
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4623,11 +4623,11 @@ func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpOpenFTP
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4708,11 +4708,11 @@ func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) 
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -4805,11 +4805,11 @@ func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMOpUpdateRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6099,11 +6099,11 @@ func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *Com
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6184,11 +6184,11 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6263,11 +6263,11 @@ func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, request *Commo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6349,11 +6349,11 @@ func (c *Client) sendCommonServiceItemOpHealthStatus(ctx context.Context, params
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6434,11 +6434,11 @@ func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonS
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6531,11 +6531,11 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -6968,11 +6968,11 @@ func (c *Client) sendCouponOpFind(ctx context.Context, params CouponOpFindParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7291,11 +7291,11 @@ func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskOpConfigReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7395,11 +7395,11 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7474,11 +7474,11 @@ func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskOpCreateReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7559,11 +7559,11 @@ func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7645,11 +7645,11 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7724,11 +7724,11 @@ func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskOpFindReq, par
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7813,11 +7813,11 @@ func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskOpMonitorRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7898,11 +7898,11 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -7987,11 +7987,11 @@ func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskOpR
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -8084,11 +8084,11 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskOpUpdateReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -8163,11 +8163,11 @@ func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanOpFind
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -8248,11 +8248,11 @@ func (c *Client) sendDiskPlanOpRead(ctx context.Context, params DiskPlanOpReadPa
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -8774,11 +8774,11 @@ func (c *Client) sendIPAddressOpList(ctx context.Context, params IPAddressOpList
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -8859,11 +8859,11 @@ func (c *Client) sendIPAddressOpRead(ctx context.Context, params IPAddressOpRead
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -8947,11 +8947,11 @@ func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPA
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9017,11 +9017,11 @@ func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrOpCr
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9102,11 +9102,11 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9181,11 +9181,11 @@ func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrOpFind
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9266,11 +9266,11 @@ func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadPa
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9354,11 +9354,11 @@ func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrOpUp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9433,11 +9433,11 @@ func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetOpListRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9518,11 +9518,11 @@ func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadPara
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9597,11 +9597,11 @@ func (c *Client) sendIconOpCreate(ctx context.Context, request *IconOpCreateReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9682,11 +9682,11 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9761,11 +9761,11 @@ func (c *Client) sendIconOpFind(ctx context.Context, request *IconOpFindReq, par
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9846,11 +9846,11 @@ func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (r
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -9943,11 +9943,11 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconOpUpdateReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10047,11 +10047,11 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10133,11 +10133,11 @@ func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, para
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10237,11 +10237,11 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10307,11 +10307,11 @@ func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10392,11 +10392,11 @@ func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10478,11 +10478,11 @@ func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, 
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10564,11 +10564,11 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10643,11 +10643,11 @@ func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceOpFi
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10732,11 +10732,11 @@ func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceO
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10817,11 +10817,11 @@ func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpRead
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10905,11 +10905,11 @@ func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -10994,11 +10994,11 @@ func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetO
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11073,11 +11073,11 @@ func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetOpCr
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11158,11 +11158,11 @@ func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDele
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11262,11 +11262,11 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11366,11 +11366,11 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11452,11 +11452,11 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11531,11 +11531,11 @@ func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetOpFind
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11620,11 +11620,11 @@ func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetOpM
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11705,11 +11705,11 @@ func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadPa
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11802,11 +11802,11 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetOpUp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11891,11 +11891,11 @@ func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *Int
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -11998,11 +11998,11 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12077,11 +12077,11 @@ func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPl
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12162,11 +12162,11 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12241,11 +12241,11 @@ func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12326,11 +12326,11 @@ func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12396,11 +12396,11 @@ func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseOpCrea
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12481,11 +12481,11 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12560,11 +12560,11 @@ func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseOpFindRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12645,11 +12645,11 @@ func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadPara
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -12733,11 +12733,11 @@ func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseOpUpda
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -13967,11 +13967,11 @@ func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteOpCreateReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14052,11 +14052,11 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14131,11 +14131,11 @@ func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteOpFindReq, par
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14216,11 +14216,11 @@ func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (r
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14313,11 +14313,11 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteOpUpdateReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14392,11 +14392,11 @@ func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFi
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14477,11 +14477,11 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14556,11 +14556,11 @@ func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilt
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14641,11 +14641,11 @@ func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilter
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14738,11 +14738,11 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14817,11 +14817,11 @@ func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14902,11 +14902,11 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -14981,11 +14981,11 @@ func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHost
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -15066,11 +15066,11 @@ func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -15163,11 +15163,11 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -15242,11 +15242,11 @@ func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *Private
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -15327,11 +15327,11 @@ func (c *Client) sendPrivateHostPlanOpRead(ctx context.Context, params PrivateHo
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -15862,11 +15862,11 @@ func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionOpFindReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -15947,11 +15947,11 @@ func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -16841,11 +16841,11 @@ func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyOpCreate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -16926,11 +16926,11 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17005,11 +17005,11 @@ func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyOpFindReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17090,11 +17090,11 @@ func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17178,11 +17178,11 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyOpUpdate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17267,11 +17267,11 @@ func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerOpBootReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17365,11 +17365,11 @@ func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerOpCh
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17444,11 +17444,11 @@ func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerOpCreate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17541,11 +17541,11 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerOpDelete
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17630,11 +17630,11 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerOpEj
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17709,11 +17709,11 @@ func (c *Client) sendServerOpFind(ctx context.Context, request *ServerOpFindReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17795,11 +17795,11 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17884,11 +17884,11 @@ func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerOpI
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -17973,11 +17973,11 @@ func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerOpMonit
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18058,11 +18058,11 @@ func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18144,11 +18144,11 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18242,11 +18242,11 @@ func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerOpSendK
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18328,11 +18328,11 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18417,11 +18417,11 @@ func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerOpShut
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18514,11 +18514,11 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerOpUpdate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18593,11 +18593,11 @@ func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanOp
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18678,11 +18678,11 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -18757,11 +18757,11 @@ func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceCla
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19115,11 +19115,11 @@ func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetOpFindReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19200,11 +19200,11 @@ func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19304,11 +19304,11 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19383,11 +19383,11 @@ func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchOpCreate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19468,11 +19468,11 @@ func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeletePa
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19554,11 +19554,11 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19633,11 +19633,11 @@ func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchOpFindReq,
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19719,11 +19719,11 @@ func (c *Client) sendSwitchOpGetServers(ctx context.Context, params SwitchOpGetS
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19804,11 +19804,11 @@ func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -19901,11 +19901,11 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchOpUpdate
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -20346,11 +20346,11 @@ func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneOpFindReq, par
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}
@@ -20431,11 +20431,11 @@ func (c *Client) sendZoneOpRead(ctx context.Context, params ZoneOpReadParams) (r
 	h := uri.NewHeaderEncoder(r.Header)
 	{
 		cfg := uri.HeaderParameterEncodingConfig{
-			Name:    "X-Sakura-BigInt-As-Int",
+			Name:    "X-Sakura-Bigint-As-Int",
 			Explode: false,
 		}
 		if err := h.EncodeParam(cfg, func(e uri.Encoder) error {
-			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigIntAsInt)))
+			return e.EncodeValue(conv.StringToString(string(params.XSakuraBigintAsInt)))
 		}); err != nil {
 			return res, errors.Wrap(err, "encode header")
 		}

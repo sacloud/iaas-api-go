@@ -9,6 +9,7 @@ import "./types.tsp";
 @service(#{
   title: "Sakura Cloud IaaS API",
 })
+@useAuth(BasicAuth)
 // @route("/api/cloud/1.1")
 namespace Sacloud.IaaS;
 
