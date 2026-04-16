@@ -8,6 +8,7 @@ import "./resources.tsp";
 import "./types.tsp";
 
 @service(#{ title: "Sakura Cloud IaaS API" })
+@useAuth(BasicAuth)
 namespace Sacloud.IaaS;
 
 using TypeSpec.Http;

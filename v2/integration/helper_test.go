@@ -15,7 +15,7 @@
 package integration
 
 import (
-	"net/http"
+	"context"
 	"os"
 	"testing"
 
@@ -38,6 +38,19 @@ func getConfig() (accessToken, accessTokenSecret, zone string) {
 		getZone()
 }
 
+// securitySource implements client.SecuritySource for BasicAuth.
+type securitySource struct {
+	username string
+	password string
+}
+
+func (s *securitySource) BasicAuth(ctx context.Context, operationName client.OperationName) (client.BasicAuth, error) {
+	return client.BasicAuth{
+		Username: s.username,
+		Password: s.password,
+	}, nil
+}
+
 // newClient creates an ogen client for integration tests.
 func newClient(t *testing.T) *client.Client {
 	t.Helper()
@@ -49,31 +62,15 @@ func newClient(t *testing.T) *client.Client {
 
 	serverURL := "https://secure.sakura.ad.jp/cloud/zone/" + zone + "/api/cloud/1.1"
 
-	httpClient := &http.Client{
-		Transport: &authTransport{
-			AccessToken:       accessToken,
-			AccessTokenSecret: accessTokenSecret,
-			Base:              http.DefaultTransport,
-		},
+	sec := &securitySource{
+		username: accessToken,
+		password: accessTokenSecret,
 	}
 
-	c, err := client.NewClient(serverURL, client.WithClient(httpClient))
+	c, err := client.NewClient(serverURL, sec)
 	if err != nil {
 		t.Fatalf("failed to create client: %v", err)
 	}
 
 	return c
-}
-
-// authTransport adds authentication headers to requests.
-type authTransport struct {
-	AccessToken       string
-	AccessTokenSecret string
-	Base              http.RoundTripper
-}
-
-func (t *authTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	req.SetBasicAuth(t.AccessToken, t.AccessTokenSecret)
-	req.Header.Set("X-Sakura-Bigint-As-Int", "1")
-	return t.Base.RoundTrip(req)
 }

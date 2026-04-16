@@ -2140,6 +2140,42 @@ func (s *AutoScaleStatusResponseEnvelope) SetAutoScale(val AutoScaleStatus) {
 	s.AutoScale = val
 }
 
+type BasicAuth struct {
+	Username string
+	Password string
+	Roles    []string
+}
+
+// GetUsername returns the value of Username.
+func (s *BasicAuth) GetUsername() string {
+	return s.Username
+}
+
+// GetPassword returns the value of Password.
+func (s *BasicAuth) GetPassword() string {
+	return s.Password
+}
+
+// GetRoles returns the value of Roles.
+func (s *BasicAuth) GetRoles() []string {
+	return s.Roles
+}
+
+// SetUsername sets the value of Username.
+func (s *BasicAuth) SetUsername(val string) {
+	s.Username = val
+}
+
+// SetPassword sets the value of Password.
+func (s *BasicAuth) SetPassword(val string) {
+	s.Password = val
+}
+
+// SetRoles sets the value of Roles.
+func (s *BasicAuth) SetRoles(val []string) {
+	s.Roles = val
+}
+
 // Ref: #/components/schemas/Bill
 type Bill struct {
 	ID             int64     `json:"ID"`
