@@ -284,7 +284,8 @@ func modelFieldTypeToTS(goType string) string {
 // DSL 定義には存在するが OpenAPI ドキュメントに含めないフィールドを指定する。
 var modelFieldExclusions = map[string]map[string]bool{
 	// Sort/Filter は型が未定義（unknown/Record<unknown>）になるためドキュメントから除外する
-	"FindCondition": {"Sort": true, "Filter": true},
+	// Include/Exclude は今後非推奨・廃止予定のためドキュメントから除外する
+	"FindCondition": {"Sort": true, "Filter": true, "Include": true, "Exclude": true},
 }
 
 // resourceModels は1リソース分の全モデルを1ファイルに出力するためのテンプレートパラメータ。

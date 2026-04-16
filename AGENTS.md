@@ -160,7 +160,13 @@ spec/typespec/
 `Record<unknown>` の値型が未定義のため警告が出るが、DSL 定義通り動的マップであり `unknown` が正しい。
 
 
-## その他の仕様
+## openapi 定義規約
 
  * 全ての API 呼び出しには `X-Sakura-Bigint-As-Int: 1` をつける。
+ * GET の sort/include/exclude は定義しない。ページングとフィルタは定義する。
+   * ページングはサーバー側で行った方が良いため。
+   * include/exclude は複雑性が高すぎる。
+ * oneOf は使用しない
+ * 将来増えうる値は enum ではなく string にする
+ * リソース単位で tag をつける。
 

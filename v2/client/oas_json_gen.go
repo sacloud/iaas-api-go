@@ -31601,29 +31601,11 @@ func (s *FindCondition) encodeFields(e *jx.Encoder) {
 		e.FieldStart("From")
 		e.Int32(s.From)
 	}
-	{
-		e.FieldStart("Include")
-		e.ArrStart()
-		for _, elem := range s.Include {
-			e.Str(elem)
-		}
-		e.ArrEnd()
-	}
-	{
-		e.FieldStart("Exclude")
-		e.ArrStart()
-		for _, elem := range s.Exclude {
-			e.Str(elem)
-		}
-		e.ArrEnd()
-	}
 }
 
-var jsonFieldsNameOfFindCondition = [4]string{
+var jsonFieldsNameOfFindCondition = [2]string{
 	0: "Count",
 	1: "From",
-	2: "Include",
-	3: "Exclude",
 }
 
 // Decode decodes FindCondition from json.
@@ -31659,46 +31641,6 @@ func (s *FindCondition) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"From\"")
 			}
-		case "Include":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				s.Include = make([]string, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem string
-					v, err := d.Str()
-					elem = string(v)
-					if err != nil {
-						return err
-					}
-					s.Include = append(s.Include, elem)
-					return nil
-				}); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Include\"")
-			}
-		case "Exclude":
-			requiredBitSet[0] |= 1 << 3
-			if err := func() error {
-				s.Exclude = make([]string, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem string
-					v, err := d.Str()
-					elem = string(v)
-					if err != nil {
-						return err
-					}
-					s.Exclude = append(s.Exclude, elem)
-					return nil
-				}); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Exclude\"")
-			}
 		default:
 			return d.Skip()
 		}
@@ -31709,7 +31651,7 @@ func (s *FindCondition) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00001111,
+		0b00000011,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.

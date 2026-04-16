@@ -113,15 +113,7 @@ model FindCondition {
   // Go tags: `mapconv:",omitempty"`
 
   From: int32;
-
   // Go tags: `mapconv:",omitempty"`
-
-  Include: string[];
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  Exclude: string[];
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
 }
 
 model ArchiveCreateRequest {

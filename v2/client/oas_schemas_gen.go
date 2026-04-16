@@ -11857,10 +11857,8 @@ func (s *FTPServerInfo) SetIPAddress(val string) {
 
 // Ref: #/components/schemas/FindCondition
 type FindCondition struct {
-	Count   int32    `json:"Count"`
-	From    int32    `json:"From"`
-	Include []string `json:"Include"`
-	Exclude []string `json:"Exclude"`
+	Count int32 `json:"Count"`
+	From  int32 `json:"From"`
 }
 
 // GetCount returns the value of Count.
@@ -11873,16 +11871,6 @@ func (s *FindCondition) GetFrom() int32 {
 	return s.From
 }
 
-// GetInclude returns the value of Include.
-func (s *FindCondition) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *FindCondition) GetExclude() []string {
-	return s.Exclude
-}
-
 // SetCount sets the value of Count.
 func (s *FindCondition) SetCount(val int32) {
 	s.Count = val
@@ -11891,16 +11879,6 @@ func (s *FindCondition) SetCount(val int32) {
 // SetFrom sets the value of From.
 func (s *FindCondition) SetFrom(val int32) {
 	s.From = val
-}
-
-// SetInclude sets the value of Include.
-func (s *FindCondition) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *FindCondition) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Ref: #/components/schemas/GSLBHealthCheck

@@ -1330,15 +1330,6 @@ func (c *Client) ApplianceOpFind(ctx context.Context, request *ApplianceOpFindRe
 }
 
 func (c *Client) sendApplianceOpFind(ctx context.Context, request *ApplianceOpFindReq, params ApplianceOpFindParams) (res *DatabaseFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -2474,15 +2465,6 @@ func (c *Client) ArchiveOpFind(ctx context.Context, request *ArchiveOpFindReq, p
 }
 
 func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveOpFindReq, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -3987,15 +3969,6 @@ func (c *Client) BridgeOpFind(ctx context.Context, request *BridgeOpFindReq, par
 }
 
 func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeOpFindReq, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -4489,15 +4462,6 @@ func (c *Client) CDROMOpFind(ctx context.Context, request *CDROMOpFindReq, param
 }
 
 func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMOpFindReq, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -6218,15 +6182,6 @@ func (c *Client) CommonServiceItemOpFind(ctx context.Context, request *CommonSer
 }
 
 func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, request *CommonServiceItemOpFindReq, params CommonServiceItemOpFindParams) (res *AutoBackupFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -7679,15 +7634,6 @@ func (c *Client) DiskOpFind(ctx context.Context, request *DiskOpFindReq, params 
 }
 
 func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskOpFindReq, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -8118,15 +8064,6 @@ func (c *Client) DiskPlanOpFind(ctx context.Context, request *DiskPlanOpFindReq,
 }
 
 func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanOpFindReq, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -9136,15 +9073,6 @@ func (c *Client) IPv6AddrOpFind(ctx context.Context, request *IPv6AddrOpFindReq,
 }
 
 func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrOpFindReq, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -9388,15 +9316,6 @@ func (c *Client) IPv6NetOpList(ctx context.Context, request *IPv6NetOpListReq, p
 }
 
 func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetOpListReq, params IPv6NetOpListParams) (res *IPv6NetListResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -9716,15 +9635,6 @@ func (c *Client) IconOpFind(ctx context.Context, request *IconOpFindReq, params 
 }
 
 func (c *Client) sendIconOpFind(ctx context.Context, request *IconOpFindReq, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -10598,15 +10508,6 @@ func (c *Client) InterfaceOpFind(ctx context.Context, request *InterfaceOpFindRe
 }
 
 func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceOpFindReq, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -11486,15 +11387,6 @@ func (c *Client) InternetOpFind(ctx context.Context, request *InternetOpFindReq,
 }
 
 func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetOpFindReq, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12032,15 +11924,6 @@ func (c *Client) InternetPlanOpFind(ctx context.Context, request *InternetPlanOp
 }
 
 func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPlanOpFindReq, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12196,15 +12079,6 @@ func (c *Client) LicenseInfoOpFind(ctx context.Context, request *LicenseInfoOpFi
 }
 
 func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfoOpFindReq, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12515,15 +12389,6 @@ func (c *Client) LicenseOpFind(ctx context.Context, request *LicenseOpFindReq, p
 }
 
 func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseOpFindReq, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14086,15 +13951,6 @@ func (c *Client) NoteOpFind(ctx context.Context, request *NoteOpFindReq, params 
 }
 
 func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteOpFindReq, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14511,15 +14367,6 @@ func (c *Client) PacketFilterOpFind(ctx context.Context, request *PacketFilterOp
 }
 
 func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilterOpFindReq, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14936,15 +14783,6 @@ func (c *Client) PrivateHostOpFind(ctx context.Context, request *PrivateHostOpFi
 }
 
 func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHostOpFindReq, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15197,15 +15035,6 @@ func (c *Client) PrivateHostPlanOpFind(ctx context.Context, request *PrivateHost
 }
 
 func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanOpFindReq, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15817,15 +15646,6 @@ func (c *Client) RegionOpFind(ctx context.Context, request *RegionOpFindReq, par
 }
 
 func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionOpFindReq, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -16960,15 +16780,6 @@ func (c *Client) SSHKeyOpFind(ctx context.Context, request *SSHKeyOpFindReq, par
 }
 
 func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyOpFindReq, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -17664,15 +17475,6 @@ func (c *Client) ServerOpFind(ctx context.Context, request *ServerOpFindReq, par
 }
 
 func (c *Client) sendServerOpFind(ctx context.Context, request *ServerOpFindReq, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18548,15 +18350,6 @@ func (c *Client) ServerPlanOpFind(ctx context.Context, request *ServerPlanOpFind
 }
 
 func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanOpFindReq, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18712,15 +18505,6 @@ func (c *Client) ServiceClassOpFind(ctx context.Context, request *ServiceClassOp
 }
 
 func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceClassOpFindReq, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19070,15 +18854,6 @@ func (c *Client) SubnetOpFind(ctx context.Context, request *SubnetOpFindReq, par
 }
 
 func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetOpFindReq, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19588,15 +19363,6 @@ func (c *Client) SwitchOpFind(ctx context.Context, request *SwitchOpFindReq, par
 }
 
 func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchOpFindReq, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -20301,15 +20067,6 @@ func (c *Client) ZoneOpFind(ctx context.Context, request *ZoneOpFindReq, params 
 }
 
 func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneOpFindReq, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string

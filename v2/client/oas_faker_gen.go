@@ -5671,30 +5671,6 @@ func (s *FindCondition) SetFake() {
 			s.From = int32(0)
 		}
 	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
-		}
-	}
 }
 
 // SetFake set fake values.
