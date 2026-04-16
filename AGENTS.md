@@ -22,6 +22,19 @@ Go DSL 定義
 
 `cd spec && pnpm run build` で全工程が実行される。
 
+## バージョン運用方針（v1 / v2）
+
+当面は **同一 main branch で v1 と v2 を併存**させて開発する。
+
+- v1: 従来の Go DSL 直生成系（既存利用者向けの互換維持）
+- v2: TypeSpec/OpenAPI/ogen 経由の新系統（非互換変更の受け皿）
+- 生成物の出力先、ビルドスクリプト、CI ジョブは v1/v2 で分離して管理する
+
+将来、保守負荷やリリース運用の都合で必要になれば、v1 maintenance ブランチを切って分離する。
+ただし、Go の import path / module path は途中で揺らさず、メジャーバージョンごとの規約を維持する。
+
+[Go Modules: v2 and Beyond](https://go.dev/blog/v2-go-modules) を参考にすること。
+
 ## 生成フロー
 
 Go の DSL 定義から TypeSpec を生成し、OpenAPI 経由で Go クライアントを生成する。
@@ -137,3 +150,5 @@ spec/typespec/
 - `DiskEditNoteVariablesItem`: `DiskEditNote.Variables` が `map[string]interface{}` → `Record<unknown>`
 
 `Record<unknown>` の値型が未定義のため警告が出るが、DSL 定義通り動的マップであり `unknown` が正しい。
+
+
