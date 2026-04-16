@@ -170,3 +170,27 @@ spec/typespec/
  * 将来増えうる値は enum ではなく string にする
  * リソース単位で tag をつける。
 
+## v2 テスト方針
+
+v2 のテストは **実 API を使用した統合テストのみ** を実施する。
+
+- ogen 生成されるクライアントコードの品質は ogen に担保してもらう（単体テスト不要）
+- fake モックは作成しない（メンテナンス不可が増加するため）
+- テストディレクトリ: `v2/integration/`
+- 全リソースの CRUD 操作をテストする
+- 最初のテスト対象は Icon（軽量・安全なリソース）から開始
+
+### 環境設定
+
+テスト実行には以下の環境変数が必要：
+- `SAKURA_ACCESS_TOKEN`
+- `SAKURA_ACCESS_TOKEN_SECRET`
+- `SAKURA_ZONE`（デフォルト: tk1v）
+
+### テスト実行
+
+```bash
+cd v2
+TEST_ACC=1 go test -v ./integration/...
+```
+

@@ -1,0 +1,131 @@
+// Copyright 2022-2025 The sacloud/iaas-api-go Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package integration
+
+import (
+	"context"
+	"encoding/base64"
+	"fmt"
+	"os"
+	"testing"
+
+	"github.com/sacloud/iaas-api-go/v2/client"
+	"github.com/stretchr/testify/require"
+)
+
+func TestIconCRUD(t *testing.T) {
+	if os.Getenv("TEST_ACC") == "" {
+		t.Skip("TEST_ACC=1 env var required")
+	}
+
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	// 1. Create - アイコン作成
+	// 1x1 pixel transparent PNG in base64
+	base64Image := base64.StdEncoding.EncodeToString([]byte("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="))
+
+	createReq := &client.IconOpCreateReq{
+		Param: client.IconCreateRequest{
+			Name:  "test-icon",
+			Tags:  []string{"test", "integration"},
+			Image: base64Image,
+		},
+	}
+
+	createParams := client.IconOpCreateParams{
+		Zone:               zone,
+		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+	}
+
+	createResp, err := c.IconOpCreate(ctx, createReq, createParams)
+	require.NoError(t, err)
+	require.NotNil(t, createResp)
+	iconID := createResp.Icon.ID
+	t.Logf("Created icon ID: %d", iconID)
+	require.Equal(t, "test-icon", createResp.Icon.Name)
+
+	// 2. Read - アイコン取得
+	readParams := client.IconOpReadParams{
+		Zone:               zone,
+		ID:                 fmt.Sprintf("%d", iconID),
+		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+	}
+
+	readResp, err := c.IconOpRead(ctx, readParams)
+	require.NoError(t, err)
+	require.NotNil(t, readResp)
+	require.Equal(t, "test-icon", readResp.Icon.Name)
+	require.Equal(t, iconID, readResp.Icon.ID)
+
+	// 3. Update - アイコン更新
+	updateReq := &client.IconOpUpdateReq{
+		Param: client.IconUpdateRequest{
+			Name: "test-icon-updated",
+			Tags: []string{"test", "integration", "updated"},
+		},
+	}
+	updateParams := client.IconOpUpdateParams{
+		Zone:               zone,
+		ID:                 fmt.Sprintf("%d", iconID),
+		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+	}
+
+	updateResp, err := c.IconOpUpdate(ctx, updateReq, updateParams)
+	require.NoError(t, err)
+	require.NotNil(t, updateResp)
+	require.Equal(t, "test-icon-updated", updateResp.Icon.Name)
+
+	// 4. Find - アイコン検索
+	findReq := &client.IconOpFindReq{
+		Conditions: client.FindCondition{}, // 空の検索条件
+	}
+	findParams := client.IconOpFindParams{
+		Zone:               zone,
+		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+	}
+
+	findResp, err := c.IconOpFind(ctx, findReq, findParams)
+	require.NoError(t, err)
+	require.NotNil(t, findResp)
+	require.Greater(t, len(findResp.Icons), 0)
+
+	// 作成したアイコンが含まれていることを確認
+	var found bool
+	for _, icon := range findResp.Icons {
+		if icon.ID == iconID {
+			found = true
+			break
+		}
+	}
+	require.True(t, found, "Created icon should be found in list")
+
+	// 5. Delete - アイコン削除
+	deleteParams := client.IconOpDeleteParams{
+		Zone:               zone,
+		ID:                 fmt.Sprintf("%d", iconID),
+		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+	}
+
+	err = c.IconOpDelete(ctx, deleteParams)
+	require.NoError(t, err)
+
+	// 削除後の取得でエラーになることを確認（404 Not Found）
+	_, err = c.IconOpRead(ctx, readParams)
+	// IconOpRead は成功レスポンスのみなので、エラーが発生することを確認
+	// 実際には API エラーが返る
+	require.Error(t, err)
+}
