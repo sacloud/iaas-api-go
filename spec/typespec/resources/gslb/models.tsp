@@ -29,7 +29,7 @@ model GSLB {
 
   // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
 
-  Weighted: StringFlag;
+  Weighted: string;
 
   // Go tags: `mapconv:"Settings.GSLB.Weighted"`
 
@@ -69,7 +69,7 @@ model GSLBHealthCheck {
 
 model GSLBServer {
   IPAddress: string;
-  Enabled: StringFlag;
+  Enabled: string;
   Weight: int32;
 }
 
@@ -82,7 +82,7 @@ model GSLBCreateRequest {
 
   // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
 
-  Weighted: StringFlag;
+  Weighted: string;
 
   // Go tags: `mapconv:"Settings.GSLB.Weighted"`
 
@@ -122,7 +122,7 @@ model GSLBUpdateRequest {
 
   // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
 
-  Weighted: StringFlag;
+  Weighted: string;
 
   // Go tags: `mapconv:"Settings.GSLB.Weighted"`
 
@@ -151,7 +151,7 @@ model GSLBUpdateSettingsRequest {
 
   // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
 
-  Weighted: StringFlag;
+  Weighted: string;
 
   // Go tags: `mapconv:"Settings.GSLB.Weighted"`
 

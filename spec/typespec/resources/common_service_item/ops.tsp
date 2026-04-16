@@ -78,7 +78,7 @@ model CommonServiceItemCreateRequestSettingsDNS {
 model CommonServiceItemCreateRequestSettingsGSLB {
   HealthCheck?: GSLBHealthCheck;
   DelayLoop?: int32;
-  Weighted?: StringFlag;
+  Weighted?: string;
   SorryServer?: string;
   MonitoringSuiteLog?: MonitoringSuiteLog;
   Servers?: GSLBServer[];
@@ -104,7 +104,7 @@ model CommonServiceItemCreateRequestSettingsSimpleMonitor {
   MaxCheckAttempts?: int32;
   RetryInterval?: int32;
   DelayLoop?: int32;
-  Enabled?: StringFlag;
+  Enabled?: string;
   HealthCheck?: SimpleMonitorHealthCheck;
   NotifyEmail?: CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail;
   NotifySlack?: CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack;
@@ -114,12 +114,12 @@ model CommonServiceItemCreateRequestSettingsSimpleMonitor {
 }
 
 model CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail {
-  Enabled?: StringFlag;
-  HTML?: StringFlag;
+  Enabled?: string;
+  HTML?: string;
 }
 
 model CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack {
-  Enabled?: StringFlag;
+  Enabled?: string;
   IncomingWebhooksURL?: string;
 }
 
@@ -181,7 +181,7 @@ model CommonServiceItemUpdateRequestSettingsDNS {
 model CommonServiceItemUpdateRequestSettingsGSLB {
   HealthCheck?: GSLBHealthCheck;
   DelayLoop?: int32;
-  Weighted?: StringFlag;
+  Weighted?: string;
   SorryServer?: string;
   MonitoringSuiteLog?: MonitoringSuiteLog;
   Servers?: GSLBServer[];
@@ -214,7 +214,7 @@ model CommonServiceItemUpdateRequestSettingsSimpleMonitor {
   MaxCheckAttempts?: int32;
   RetryInterval?: int32;
   DelayLoop?: int32;
-  Enabled?: StringFlag;
+  Enabled?: string;
   HealthCheck?: SimpleMonitorHealthCheck;
   NotifyEmail?: CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail;
   NotifySlack?: CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack;
@@ -224,12 +224,12 @@ model CommonServiceItemUpdateRequestSettingsSimpleMonitor {
 }
 
 model CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail {
-  Enabled?: StringFlag;
-  HTML?: StringFlag;
+  Enabled?: string;
+  HTML?: string;
 }
 
 model CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack {
-  Enabled?: StringFlag;
+  Enabled?: string;
   IncomingWebhooksURL?: string;
 }
 

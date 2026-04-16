@@ -253,6 +253,8 @@ func modelFieldTypeToTS(goType string) string {
 			return "int64"
 		case pkg == "types" && typeName == "Tags":
 			return "string[]" // Tags は []string
+		case pkg == "types" && typeName == "StringFlag":
+			return "string" // StringFlag は "True"/"False" を表す真偽値のラッパー型（v2ではstringで表現）
 		default:
 			goType = typeName // パッケージ名を除去して TypeSpec 型名として使用
 		}

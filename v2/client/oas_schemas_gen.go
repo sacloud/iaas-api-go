@@ -4989,7 +4989,7 @@ func (s *CommonServiceItemCreateRequestSettingsDNS) SetMonitoringSuiteLog(val Op
 type CommonServiceItemCreateRequestSettingsGSLB struct {
 	HealthCheck        OptGSLBHealthCheck    `json:"HealthCheck"`
 	DelayLoop          OptInt32              `json:"DelayLoop"`
-	Weighted           OptStringFlag         `json:"Weighted"`
+	Weighted           OptString             `json:"Weighted"`
 	SorryServer        OptString             `json:"SorryServer"`
 	MonitoringSuiteLog OptMonitoringSuiteLog `json:"MonitoringSuiteLog"`
 	Servers            []GSLBServer          `json:"Servers"`
@@ -5006,7 +5006,7 @@ func (s *CommonServiceItemCreateRequestSettingsGSLB) GetDelayLoop() OptInt32 {
 }
 
 // GetWeighted returns the value of Weighted.
-func (s *CommonServiceItemCreateRequestSettingsGSLB) GetWeighted() OptStringFlag {
+func (s *CommonServiceItemCreateRequestSettingsGSLB) GetWeighted() OptString {
 	return s.Weighted
 }
 
@@ -5036,7 +5036,7 @@ func (s *CommonServiceItemCreateRequestSettingsGSLB) SetDelayLoop(val OptInt32) 
 }
 
 // SetWeighted sets the value of Weighted.
-func (s *CommonServiceItemCreateRequestSettingsGSLB) SetWeighted(val OptStringFlag) {
+func (s *CommonServiceItemCreateRequestSettingsGSLB) SetWeighted(val OptString) {
 	s.Weighted = val
 }
 
@@ -5207,7 +5207,7 @@ type CommonServiceItemCreateRequestSettingsSimpleMonitor struct {
 	MaxCheckAttempts   OptInt32                                                          `json:"MaxCheckAttempts"`
 	RetryInterval      OptInt32                                                          `json:"RetryInterval"`
 	DelayLoop          OptInt32                                                          `json:"DelayLoop"`
-	Enabled            OptStringFlag                                                     `json:"Enabled"`
+	Enabled            OptString                                                         `json:"Enabled"`
 	HealthCheck        OptSimpleMonitorHealthCheck                                       `json:"HealthCheck"`
 	NotifyEmail        OptCommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail `json:"NotifyEmail"`
 	NotifySlack        OptCommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack `json:"NotifySlack"`
@@ -5232,7 +5232,7 @@ func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) GetDelayLoop() Opt
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) GetEnabled() OptStringFlag {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) GetEnabled() OptString {
 	return s.Enabled
 }
 
@@ -5282,7 +5282,7 @@ func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetDelayLoop(val O
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetEnabled(val OptStringFlag) {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetEnabled(val OptString) {
 	s.Enabled = val
 }
 
@@ -5318,38 +5318,38 @@ func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetMonitoringSuite
 
 // Ref: #/components/schemas/CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail
 type CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail struct {
-	Enabled OptStringFlag `json:"Enabled"`
-	HTML    OptStringFlag `json:"HTML"`
+	Enabled OptString `json:"Enabled"`
+	HTML    OptString `json:"HTML"`
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) GetEnabled() OptStringFlag {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) GetEnabled() OptString {
 	return s.Enabled
 }
 
 // GetHTML returns the value of HTML.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) GetHTML() OptStringFlag {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) GetHTML() OptString {
 	return s.HTML
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) SetEnabled(val OptStringFlag) {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) SetEnabled(val OptString) {
 	s.Enabled = val
 }
 
 // SetHTML sets the value of HTML.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) SetHTML(val OptStringFlag) {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail) SetHTML(val OptString) {
 	s.HTML = val
 }
 
 // Ref: #/components/schemas/CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack
 type CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack struct {
-	Enabled             OptStringFlag `json:"Enabled"`
-	IncomingWebhooksURL OptString     `json:"IncomingWebhooksURL"`
+	Enabled             OptString `json:"Enabled"`
+	IncomingWebhooksURL OptString `json:"IncomingWebhooksURL"`
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack) GetEnabled() OptStringFlag {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack) GetEnabled() OptString {
 	return s.Enabled
 }
 
@@ -5359,7 +5359,7 @@ func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack) GetInco
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack) SetEnabled(val OptStringFlag) {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack) SetEnabled(val OptString) {
 	s.Enabled = val
 }
 
@@ -5922,7 +5922,7 @@ func (s *CommonServiceItemUpdateRequestSettingsDNS) SetMonitoringSuiteLog(val Op
 type CommonServiceItemUpdateRequestSettingsGSLB struct {
 	HealthCheck        OptGSLBHealthCheck    `json:"HealthCheck"`
 	DelayLoop          OptInt32              `json:"DelayLoop"`
-	Weighted           OptStringFlag         `json:"Weighted"`
+	Weighted           OptString             `json:"Weighted"`
 	SorryServer        OptString             `json:"SorryServer"`
 	MonitoringSuiteLog OptMonitoringSuiteLog `json:"MonitoringSuiteLog"`
 	Servers            []GSLBServer          `json:"Servers"`
@@ -5939,7 +5939,7 @@ func (s *CommonServiceItemUpdateRequestSettingsGSLB) GetDelayLoop() OptInt32 {
 }
 
 // GetWeighted returns the value of Weighted.
-func (s *CommonServiceItemUpdateRequestSettingsGSLB) GetWeighted() OptStringFlag {
+func (s *CommonServiceItemUpdateRequestSettingsGSLB) GetWeighted() OptString {
 	return s.Weighted
 }
 
@@ -5969,7 +5969,7 @@ func (s *CommonServiceItemUpdateRequestSettingsGSLB) SetDelayLoop(val OptInt32) 
 }
 
 // SetWeighted sets the value of Weighted.
-func (s *CommonServiceItemUpdateRequestSettingsGSLB) SetWeighted(val OptStringFlag) {
+func (s *CommonServiceItemUpdateRequestSettingsGSLB) SetWeighted(val OptString) {
 	s.Weighted = val
 }
 
@@ -6188,7 +6188,7 @@ type CommonServiceItemUpdateRequestSettingsSimpleMonitor struct {
 	MaxCheckAttempts   OptInt32                                                          `json:"MaxCheckAttempts"`
 	RetryInterval      OptInt32                                                          `json:"RetryInterval"`
 	DelayLoop          OptInt32                                                          `json:"DelayLoop"`
-	Enabled            OptStringFlag                                                     `json:"Enabled"`
+	Enabled            OptString                                                         `json:"Enabled"`
 	HealthCheck        OptSimpleMonitorHealthCheck                                       `json:"HealthCheck"`
 	NotifyEmail        OptCommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail `json:"NotifyEmail"`
 	NotifySlack        OptCommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack `json:"NotifySlack"`
@@ -6213,7 +6213,7 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) GetDelayLoop() Opt
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) GetEnabled() OptStringFlag {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) GetEnabled() OptString {
 	return s.Enabled
 }
 
@@ -6263,7 +6263,7 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetDelayLoop(val O
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetEnabled(val OptStringFlag) {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetEnabled(val OptString) {
 	s.Enabled = val
 }
 
@@ -6299,38 +6299,38 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetMonitoringSuite
 
 // Ref: #/components/schemas/CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail
 type CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail struct {
-	Enabled OptStringFlag `json:"Enabled"`
-	HTML    OptStringFlag `json:"HTML"`
+	Enabled OptString `json:"Enabled"`
+	HTML    OptString `json:"HTML"`
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) GetEnabled() OptStringFlag {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) GetEnabled() OptString {
 	return s.Enabled
 }
 
 // GetHTML returns the value of HTML.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) GetHTML() OptStringFlag {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) GetHTML() OptString {
 	return s.HTML
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) SetEnabled(val OptStringFlag) {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) SetEnabled(val OptString) {
 	s.Enabled = val
 }
 
 // SetHTML sets the value of HTML.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) SetHTML(val OptStringFlag) {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail) SetHTML(val OptString) {
 	s.HTML = val
 }
 
 // Ref: #/components/schemas/CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack
 type CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack struct {
-	Enabled             OptStringFlag `json:"Enabled"`
-	IncomingWebhooksURL OptString     `json:"IncomingWebhooksURL"`
+	Enabled             OptString `json:"Enabled"`
+	IncomingWebhooksURL OptString `json:"IncomingWebhooksURL"`
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) GetEnabled() OptStringFlag {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) GetEnabled() OptString {
 	return s.Enabled
 }
 
@@ -6340,7 +6340,7 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) GetInco
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetEnabled(val OptStringFlag) {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetEnabled(val OptString) {
 	s.Enabled = val
 }
 
@@ -10371,9 +10371,9 @@ func (s *GSLBHealthCheck) SetPort(val int32) {
 
 // Ref: #/components/schemas/GSLBServer
 type GSLBServer struct {
-	IPAddress string     `json:"IPAddress"`
-	Enabled   StringFlag `json:"Enabled"`
-	Weight    int32      `json:"Weight"`
+	IPAddress string `json:"IPAddress"`
+	Enabled   string `json:"Enabled"`
+	Weight    int32  `json:"Weight"`
 }
 
 // GetIPAddress returns the value of IPAddress.
@@ -10382,7 +10382,7 @@ func (s *GSLBServer) GetIPAddress() string {
 }
 
 // GetEnabled returns the value of Enabled.
-func (s *GSLBServer) GetEnabled() StringFlag {
+func (s *GSLBServer) GetEnabled() string {
 	return s.Enabled
 }
 
@@ -10397,7 +10397,7 @@ func (s *GSLBServer) SetIPAddress(val string) {
 }
 
 // SetEnabled sets the value of Enabled.
-func (s *GSLBServer) SetEnabled(val StringFlag) {
+func (s *GSLBServer) SetEnabled(val string) {
 	s.Enabled = val
 }
 
@@ -17900,52 +17900,6 @@ func (o OptString) Or(d string) string {
 	return d
 }
 
-// NewOptStringFlag returns new OptStringFlag with value set to v.
-func NewOptStringFlag(v StringFlag) OptStringFlag {
-	return OptStringFlag{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptStringFlag is optional StringFlag.
-type OptStringFlag struct {
-	Value StringFlag
-	Set   bool
-}
-
-// IsSet returns true if OptStringFlag was set.
-func (o OptStringFlag) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptStringFlag) Reset() {
-	var v StringFlag
-	o.Value = v
-	o.Set = false
-}
-
-// SetTo sets value to v.
-func (o *OptStringFlag) SetTo(v StringFlag) {
-	o.Set = true
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptStringFlag) Get() (v StringFlag, ok bool) {
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptStringFlag) Or(d StringFlag) StringFlag {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // Ref: #/components/schemas/PacketFilter
 type PacketFilter struct {
 	ID                  int64                    `json:"ID"`
@@ -23016,7 +22970,7 @@ type SimpleMonitorHealthCheck struct {
 	Port              int32                  `json:"Port"`
 	Path              string                 `json:"Path"`
 	Status            int32                  `json:"Status"`
-	SNI               StringFlag             `json:"SNI"`
+	SNI               string                 `json:"SNI"`
 	Host              string                 `json:"Host"`
 	BasicAuthUsername string                 `json:"BasicAuthUsername"`
 	BasicAuthPassword string                 `json:"BasicAuthPassword"`
@@ -23027,9 +22981,9 @@ type SimpleMonitorHealthCheck struct {
 	SNMPVersion       string                 `json:"SNMPVersion"`
 	OID               string                 `json:"OID"`
 	RemainingDays     int32                  `json:"RemainingDays"`
-	HTTP2             StringFlag             `json:"HTTP2"`
+	HTTP2             string                 `json:"HTTP2"`
 	FTPS              ESimpleMonitorFTPS     `json:"FTPS"`
-	VerifySNI         StringFlag             `json:"VerifySNI"`
+	VerifySNI         string                 `json:"VerifySNI"`
 }
 
 // GetProtocol returns the value of Protocol.
@@ -23053,7 +23007,7 @@ func (s *SimpleMonitorHealthCheck) GetStatus() int32 {
 }
 
 // GetSNI returns the value of SNI.
-func (s *SimpleMonitorHealthCheck) GetSNI() StringFlag {
+func (s *SimpleMonitorHealthCheck) GetSNI() string {
 	return s.SNI
 }
 
@@ -23108,7 +23062,7 @@ func (s *SimpleMonitorHealthCheck) GetRemainingDays() int32 {
 }
 
 // GetHTTP2 returns the value of HTTP2.
-func (s *SimpleMonitorHealthCheck) GetHTTP2() StringFlag {
+func (s *SimpleMonitorHealthCheck) GetHTTP2() string {
 	return s.HTTP2
 }
 
@@ -23118,7 +23072,7 @@ func (s *SimpleMonitorHealthCheck) GetFTPS() ESimpleMonitorFTPS {
 }
 
 // GetVerifySNI returns the value of VerifySNI.
-func (s *SimpleMonitorHealthCheck) GetVerifySNI() StringFlag {
+func (s *SimpleMonitorHealthCheck) GetVerifySNI() string {
 	return s.VerifySNI
 }
 
@@ -23143,7 +23097,7 @@ func (s *SimpleMonitorHealthCheck) SetStatus(val int32) {
 }
 
 // SetSNI sets the value of SNI.
-func (s *SimpleMonitorHealthCheck) SetSNI(val StringFlag) {
+func (s *SimpleMonitorHealthCheck) SetSNI(val string) {
 	s.SNI = val
 }
 
@@ -23198,7 +23152,7 @@ func (s *SimpleMonitorHealthCheck) SetRemainingDays(val int32) {
 }
 
 // SetHTTP2 sets the value of HTTP2.
-func (s *SimpleMonitorHealthCheck) SetHTTP2(val StringFlag) {
+func (s *SimpleMonitorHealthCheck) SetHTTP2(val string) {
 	s.HTTP2 = val
 }
 
@@ -23208,7 +23162,7 @@ func (s *SimpleMonitorHealthCheck) SetFTPS(val ESimpleMonitorFTPS) {
 }
 
 // SetVerifySNI sets the value of VerifySNI.
-func (s *SimpleMonitorHealthCheck) SetVerifySNI(val StringFlag) {
+func (s *SimpleMonitorHealthCheck) SetVerifySNI(val string) {
 	s.VerifySNI = val
 }
 
@@ -23723,8 +23677,6 @@ func (s *Storage) SetGeneration(val int32) {
 func (s *Storage) SetDedicatedStorageContractID(val int64) {
 	s.DedicatedStorageContractID = val
 }
-
-type StringFlag string
 
 // Response envelope for subnetFindResponseEnvelope.
 // Ref: #/components/schemas/SubnetFindResponseEnvelope

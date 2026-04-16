@@ -5839,7 +5839,7 @@ func (s *GSLBServer) SetFake() {
 	}
 	{
 		{
-			s.Enabled.SetFake()
+			s.Enabled = "string"
 		}
 	}
 	{
@@ -8922,15 +8922,6 @@ func (s *OptString) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptStringFlag) SetFake() {
-	var elem StringFlag
-	{
-		elem.SetFake()
-	}
-	s.SetTo(elem)
-}
-
-// SetFake set fake values.
 func (s *PacketFilter) SetFake() {
 	{
 		{
@@ -11672,7 +11663,7 @@ func (s *SimpleMonitorHealthCheck) SetFake() {
 	}
 	{
 		{
-			s.SNI.SetFake()
+			s.SNI = "string"
 		}
 	}
 	{
@@ -11727,7 +11718,7 @@ func (s *SimpleMonitorHealthCheck) SetFake() {
 	}
 	{
 		{
-			s.HTTP2.SetFake()
+			s.HTTP2 = "string"
 		}
 	}
 	{
@@ -11737,7 +11728,7 @@ func (s *SimpleMonitorHealthCheck) SetFake() {
 	}
 	{
 		{
-			s.VerifySNI.SetFake()
+			s.VerifySNI = "string"
 		}
 	}
 }
@@ -12007,15 +11998,6 @@ func (s *Storage) SetFake() {
 			s.DedicatedStorageContractID = int64(0)
 		}
 	}
-}
-
-// SetFake set fake values.
-func (s *StringFlag) SetFake() {
-	var unwrapped string
-	{
-		unwrapped = "string"
-	}
-	*s = StringFlag(unwrapped)
 }
 
 // SetFake set fake values.

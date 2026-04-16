@@ -53,11 +53,11 @@ model MobileGateway {
 
   // Go tags: `mapconv:"Settings.MobileGateway.[]StaticRoutes,recursive"`
 
-  InternetConnectionEnabled: StringFlag;
+  InternetConnectionEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 
-  InterDeviceCommunicationEnabled: StringFlag;
+  InterDeviceCommunicationEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 
@@ -148,11 +148,11 @@ model MobileGatewayCreateRequest {
 
   // Go tags: `json:",omitempty" mapconv:"Settings.MobileGateway.[]StaticRoutes,omitempty,recursive"`
 
-  InternetConnectionEnabled: StringFlag;
+  InternetConnectionEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 
-  InterDeviceCommunicationEnabled: StringFlag;
+  InterDeviceCommunicationEnabled: string;
   // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 }
 
@@ -172,11 +172,11 @@ model MobileGatewayUpdateRequest {
 
   // Go tags: `mapconv:"Settings.MobileGateway.[]StaticRoutes,recursive"`
 
-  InternetConnectionEnabled: StringFlag;
+  InternetConnectionEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 
-  InterDeviceCommunicationEnabled: StringFlag;
+  InterDeviceCommunicationEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 
@@ -193,11 +193,11 @@ model MobileGatewayUpdateSettingsRequest {
 
   // Go tags: `mapconv:"Settings.MobileGateway.[]StaticRoutes,recursive"`
 
-  InternetConnectionEnabled: StringFlag;
+  InternetConnectionEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
 
-  InterDeviceCommunicationEnabled: StringFlag;
+  InterDeviceCommunicationEnabled: string;
 
   // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 

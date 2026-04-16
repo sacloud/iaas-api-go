@@ -62,7 +62,7 @@ model VPCRouterSetting {
 
   // Go tags: `json:",omitempty" mapconv:"Router.VRID"`
 
-  InternetConnectionEnabled: StringFlag;
+  InternetConnectionEnabled: string;
 
   // Go tags: `mapconv:"Router.InternetConnection.Enabled"`
 
@@ -98,7 +98,7 @@ model VPCRouterSetting {
 
   // Go tags: `mapconv:"Router.PPTPServer.Config,omitempty,recursive"`
 
-  PPTPServerEnabled: StringFlag;
+  PPTPServerEnabled: string;
 
   // Go tags: `mapconv:"Router.PPTPServer.Enabled"`
 
@@ -106,7 +106,7 @@ model VPCRouterSetting {
 
   // Go tags: `mapconv:"Router.L2TPIPsecServer.Config,omitempty,recursive"`
 
-  L2TPIPsecServerEnabled: StringFlag;
+  L2TPIPsecServerEnabled: string;
 
   // Go tags: `mapconv:"Router.L2TPIPsecServer.Enabled"`
 
@@ -114,7 +114,7 @@ model VPCRouterSetting {
 
   // Go tags: `mapconv:"Router.WireGuard.Config,omitempty,recursive"`
 
-  WireGuardEnabled: StringFlag;
+  WireGuardEnabled: string;
 
   // Go tags: `mapconv:"Router.WireGuard.Enabled"`
 
@@ -187,7 +187,7 @@ model VPCRouterFirewallRule {
   DestinationNetwork: string;
   DestinationPort: string;
   Action: Action;
-  Logging: StringFlag;
+  Logging: string;
   Description: string;
 }
 

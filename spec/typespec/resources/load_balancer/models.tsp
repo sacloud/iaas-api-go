@@ -91,7 +91,7 @@ model LoadBalancerVirtualIPAddress {
 model LoadBalancerServer {
   IPAddress: string;
   Port: int32;
-  Enabled: StringFlag;
+  Enabled: string;
   HealthCheck: LoadBalancerServerHealthCheck;
   // Go tags: `mapconv:"HealthCheck,recursive"`
 }

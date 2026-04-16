@@ -34,7 +34,7 @@ model SimpleMonitor {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.RetryInterval"`
 
-  Enabled: StringFlag;
+  Enabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
 
@@ -42,15 +42,15 @@ model SimpleMonitor {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
 
-  NotifyEmailEnabled: StringFlag;
+  NotifyEmailEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
 
-  NotifyEmailHTML: StringFlag;
+  NotifyEmailHTML: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
 
-  NotifySlackEnabled: StringFlag;
+  NotifySlackEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
 
@@ -79,7 +79,7 @@ model SimpleMonitorHealthCheck {
   Port: int32;
   Path: string;
   Status: int32;
-  SNI: StringFlag;
+  SNI: string;
   Host: string;
   BasicAuthUsername: string;
   BasicAuthPassword: string;
@@ -90,9 +90,9 @@ model SimpleMonitorHealthCheck {
   SNMPVersion: string;
   OID: string;
   RemainingDays: int32;
-  HTTP2: StringFlag;
+  HTTP2: string;
   FTPS: ESimpleMonitorFTPS;
-  VerifySNI: StringFlag;
+  VerifySNI: string;
 }
 
 model SimpleMonitorCreateRequest {
@@ -112,7 +112,7 @@ model SimpleMonitorCreateRequest {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
 
-  Enabled: StringFlag;
+  Enabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
 
@@ -120,15 +120,15 @@ model SimpleMonitorCreateRequest {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
 
-  NotifyEmailEnabled: StringFlag;
+  NotifyEmailEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
 
-  NotifyEmailHTML: StringFlag;
+  NotifyEmailHTML: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
 
-  NotifySlackEnabled: StringFlag;
+  NotifySlackEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
 
@@ -174,7 +174,7 @@ model SimpleMonitorUpdateRequest {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
 
-  Enabled: StringFlag;
+  Enabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
 
@@ -182,15 +182,15 @@ model SimpleMonitorUpdateRequest {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
 
-  NotifyEmailEnabled: StringFlag;
+  NotifyEmailEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
 
-  NotifyEmailHTML: StringFlag;
+  NotifyEmailHTML: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
 
-  NotifySlackEnabled: StringFlag;
+  NotifySlackEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
 
@@ -227,7 +227,7 @@ model SimpleMonitorUpdateSettingsRequest {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
 
-  Enabled: StringFlag;
+  Enabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
 
@@ -235,15 +235,15 @@ model SimpleMonitorUpdateSettingsRequest {
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
 
-  NotifyEmailEnabled: StringFlag;
+  NotifyEmailEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
 
-  NotifyEmailHTML: StringFlag;
+  NotifyEmailHTML: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
 
-  NotifySlackEnabled: StringFlag;
+  NotifySlackEnabled: string;
 
   // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
 

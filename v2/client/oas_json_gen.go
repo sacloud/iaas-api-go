@@ -31796,7 +31796,7 @@ func (s *GSLBServer) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("Enabled")
-		s.Enabled.Encode(e)
+		e.Str(s.Enabled)
 	}
 	{
 		e.FieldStart("Weight")
@@ -31834,7 +31834,9 @@ func (s *GSLBServer) Decode(d *jx.Decoder) error {
 		case "Enabled":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				if err := s.Enabled.Decode(d); err != nil {
+				v, err := d.Str()
+				s.Enabled = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -50310,39 +50312,6 @@ func (s *OptString) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes StringFlag as json.
-func (o OptStringFlag) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes StringFlag from json.
-func (o *OptStringFlag) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptStringFlag to nil")
-	}
-	o.Set = true
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptStringFlag) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptStringFlag) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode implements json.Marshaler.
 func (s *PacketFilter) Encode(e *jx.Encoder) {
 	e.ObjStart()
@@ -66162,7 +66131,7 @@ func (s *SimpleMonitorHealthCheck) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("SNI")
-		s.SNI.Encode(e)
+		e.Str(s.SNI)
 	}
 	{
 		e.FieldStart("Host")
@@ -66206,7 +66175,7 @@ func (s *SimpleMonitorHealthCheck) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("HTTP2")
-		s.HTTP2.Encode(e)
+		e.Str(s.HTTP2)
 	}
 	{
 		e.FieldStart("FTPS")
@@ -66214,7 +66183,7 @@ func (s *SimpleMonitorHealthCheck) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("VerifySNI")
-		s.VerifySNI.Encode(e)
+		e.Str(s.VerifySNI)
 	}
 }
 
@@ -66297,7 +66266,9 @@ func (s *SimpleMonitorHealthCheck) Decode(d *jx.Decoder) error {
 		case "SNI":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				if err := s.SNI.Decode(d); err != nil {
+				v, err := d.Str()
+				s.SNI = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -66427,7 +66398,9 @@ func (s *SimpleMonitorHealthCheck) Decode(d *jx.Decoder) error {
 		case "HTTP2":
 			requiredBitSet[1] |= 1 << 7
 			if err := func() error {
-				if err := s.HTTP2.Decode(d); err != nil {
+				v, err := d.Str()
+				s.HTTP2 = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -66447,7 +66420,9 @@ func (s *SimpleMonitorHealthCheck) Decode(d *jx.Decoder) error {
 		case "VerifySNI":
 			requiredBitSet[2] |= 1 << 1
 			if err := func() error {
-				if err := s.VerifySNI.Decode(d); err != nil {
+				v, err := d.Str()
+				s.VerifySNI = string(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -68167,46 +68142,6 @@ func (s *Storage) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *Storage) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes StringFlag as json.
-func (s StringFlag) Encode(e *jx.Encoder) {
-	unwrapped := string(s)
-
-	e.Str(unwrapped)
-}
-
-// Decode decodes StringFlag from json.
-func (s *StringFlag) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode StringFlag to nil")
-	}
-	var unwrapped string
-	if err := func() error {
-		v, err := d.Str()
-		unwrapped = string(v)
-		if err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return errors.Wrap(err, "alias")
-	}
-	*s = StringFlag(unwrapped)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s StringFlag) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *StringFlag) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }

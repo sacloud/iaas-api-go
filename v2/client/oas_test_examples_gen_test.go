@@ -6005,18 +6005,6 @@ func TestStorage_EncodeDecode(t *testing.T) {
 	var typ2 Storage
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestStringFlag_EncodeDecode(t *testing.T) {
-	var typ StringFlag
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 StringFlag
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSubnetFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SubnetFindResponseEnvelope
 	typ.SetFake()
