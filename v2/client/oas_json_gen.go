@@ -15,7 +15,9 @@ import (
 
 // Encode encodes Action as json.
 func (s Action) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes Action from json.
@@ -23,20 +25,18 @@ func (s *Action) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode Action to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch Action(v) {
-	case ActionAllow:
-		*s = ActionAllow
-	case ActionDeny:
-		*s = ActionDeny
-	default:
-		*s = Action(v)
-	}
-
+	*s = Action(unwrapped)
 	return nil
 }
 
@@ -28040,7 +28040,9 @@ func (s *DiskUpdateResponseEnvelope) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EAuthClass as json.
 func (s EAuthClass) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EAuthClass from json.
@@ -28048,20 +28050,18 @@ func (s *EAuthClass) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EAuthClass to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EAuthClass(v) {
-	case EAuthClassEmpty:
-		*s = EAuthClassEmpty
-	case EAuthClassAccount:
-		*s = EAuthClassAccount
-	default:
-		*s = EAuthClass(v)
-	}
-
+	*s = EAuthClass(unwrapped)
 	return nil
 }
 
@@ -28080,7 +28080,9 @@ func (s *EAuthClass) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EAuthMethod as json.
 func (s EAuthMethod) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EAuthMethod from json.
@@ -28088,20 +28090,18 @@ func (s *EAuthMethod) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EAuthMethod to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EAuthMethod(v) {
-	case EAuthMethodEmpty:
-		*s = EAuthMethodEmpty
-	case EAuthMethodApikey:
-		*s = EAuthMethodApikey
-	default:
-		*s = EAuthMethod(v)
-	}
-
+	*s = EAuthMethod(unwrapped)
 	return nil
 }
 
@@ -28120,7 +28120,9 @@ func (s *EAuthMethod) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EAutoScaleAction as json.
 func (s EAutoScaleAction) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EAutoScaleAction from json.
@@ -28128,20 +28130,18 @@ func (s *EAutoScaleAction) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EAutoScaleAction to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EAutoScaleAction(v) {
-	case EAutoScaleActionUp:
-		*s = EAutoScaleActionUp
-	case EAutoScaleActionDown:
-		*s = EAutoScaleActionDown
-	default:
-		*s = EAutoScaleAction(v)
-	}
-
+	*s = EAutoScaleAction(unwrapped)
 	return nil
 }
 
@@ -28160,7 +28160,9 @@ func (s *EAutoScaleAction) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EAutoScaleTriggerType as json.
 func (s EAutoScaleTriggerType) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EAutoScaleTriggerType from json.
@@ -28168,24 +28170,18 @@ func (s *EAutoScaleTriggerType) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EAutoScaleTriggerType to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EAutoScaleTriggerType(v) {
-	case EAutoScaleTriggerTypeEmpty:
-		*s = EAutoScaleTriggerTypeEmpty
-	case EAutoScaleTriggerTypeCPU:
-		*s = EAutoScaleTriggerTypeCPU
-	case EAutoScaleTriggerTypeRouter:
-		*s = EAutoScaleTriggerTypeRouter
-	case EAutoScaleTriggerTypeSchedule:
-		*s = EAutoScaleTriggerTypeSchedule
-	default:
-		*s = EAutoScaleTriggerType(v)
-	}
-
+	*s = EAutoScaleTriggerType(unwrapped)
 	return nil
 }
 
@@ -28204,7 +28200,9 @@ func (s *EAutoScaleTriggerType) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EAvailability as json.
 func (s EAvailability) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EAvailability from json.
@@ -28212,30 +28210,18 @@ func (s *EAvailability) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EAvailability to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EAvailability(v) {
-	case EAvailabilityEmpty:
-		*s = EAvailabilityEmpty
-	case EAvailabilityAvailable:
-		*s = EAvailabilityAvailable
-	case EAvailabilityUploading:
-		*s = EAvailabilityUploading
-	case EAvailabilityFailed:
-		*s = EAvailabilityFailed
-	case EAvailabilityMigrating:
-		*s = EAvailabilityMigrating
-	case EAvailabilityTransfering:
-		*s = EAvailabilityTransfering
-	case EAvailabilityDiscontinued:
-		*s = EAvailabilityDiscontinued
-	default:
-		*s = EAvailability(v)
-	}
-
+	*s = EAvailability(unwrapped)
 	return nil
 }
 
@@ -28254,7 +28240,9 @@ func (s *EAvailability) UnmarshalJSON(data []byte) error {
 
 // Encode encodes ECertificateAuthorityIssuanceMethod as json.
 func (s ECertificateAuthorityIssuanceMethod) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes ECertificateAuthorityIssuanceMethod from json.
@@ -28262,24 +28250,18 @@ func (s *ECertificateAuthorityIssuanceMethod) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ECertificateAuthorityIssuanceMethod to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch ECertificateAuthorityIssuanceMethod(v) {
-	case ECertificateAuthorityIssuanceMethodURL:
-		*s = ECertificateAuthorityIssuanceMethodURL
-	case ECertificateAuthorityIssuanceMethodEmail:
-		*s = ECertificateAuthorityIssuanceMethodEmail
-	case ECertificateAuthorityIssuanceMethodPublicKey:
-		*s = ECertificateAuthorityIssuanceMethodPublicKey
-	case ECertificateAuthorityIssuanceMethodCsr:
-		*s = ECertificateAuthorityIssuanceMethodCsr
-	default:
-		*s = ECertificateAuthorityIssuanceMethod(v)
-	}
-
+	*s = ECertificateAuthorityIssuanceMethod(unwrapped)
 	return nil
 }
 
@@ -28298,7 +28280,9 @@ func (s *ECertificateAuthorityIssuanceMethod) UnmarshalJSON(data []byte) error {
 
 // Encode encodes ECommitment as json.
 func (s ECommitment) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes ECommitment from json.
@@ -28306,22 +28290,18 @@ func (s *ECommitment) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ECommitment to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch ECommitment(v) {
-	case ECommitmentEmpty:
-		*s = ECommitmentEmpty
-	case ECommitmentStandard:
-		*s = ECommitmentStandard
-	case ECommitmentDedicatedcpu:
-		*s = ECommitmentDedicatedcpu
-	default:
-		*s = ECommitment(v)
-	}
-
+	*s = ECommitment(unwrapped)
 	return nil
 }
 
@@ -28340,7 +28320,9 @@ func (s *ECommitment) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EContainerRegistryAccessLevel as json.
 func (s EContainerRegistryAccessLevel) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EContainerRegistryAccessLevel from json.
@@ -28348,22 +28330,18 @@ func (s *EContainerRegistryAccessLevel) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EContainerRegistryAccessLevel to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EContainerRegistryAccessLevel(v) {
-	case EContainerRegistryAccessLevelReadwrite:
-		*s = EContainerRegistryAccessLevelReadwrite
-	case EContainerRegistryAccessLevelReadonly:
-		*s = EContainerRegistryAccessLevelReadonly
-	case EContainerRegistryAccessLevelNone:
-		*s = EContainerRegistryAccessLevelNone
-	default:
-		*s = EContainerRegistryAccessLevel(v)
-	}
-
+	*s = EContainerRegistryAccessLevel(unwrapped)
 	return nil
 }
 
@@ -28382,7 +28360,9 @@ func (s *EContainerRegistryAccessLevel) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EContainerRegistryPermission as json.
 func (s EContainerRegistryPermission) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EContainerRegistryPermission from json.
@@ -28390,22 +28370,18 @@ func (s *EContainerRegistryPermission) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EContainerRegistryPermission to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EContainerRegistryPermission(v) {
-	case EContainerRegistryPermissionAll:
-		*s = EContainerRegistryPermissionAll
-	case EContainerRegistryPermissionReadwrite:
-		*s = EContainerRegistryPermissionReadwrite
-	case EContainerRegistryPermissionReadonly:
-		*s = EContainerRegistryPermissionReadonly
-	default:
-		*s = EContainerRegistryPermission(v)
-	}
-
+	*s = EContainerRegistryPermission(unwrapped)
 	return nil
 }
 
@@ -28424,7 +28400,9 @@ func (s *EContainerRegistryPermission) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EDNSRecordType as json.
 func (s EDNSRecordType) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EDNSRecordType from json.
@@ -28432,40 +28410,18 @@ func (s *EDNSRecordType) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EDNSRecordType to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EDNSRecordType(v) {
-	case EDNSRecordTypeA:
-		*s = EDNSRecordTypeA
-	case EDNSRecordTypeAAAA:
-		*s = EDNSRecordTypeAAAA
-	case EDNSRecordTypeALIAS:
-		*s = EDNSRecordTypeALIAS
-	case EDNSRecordTypeCNAME:
-		*s = EDNSRecordTypeCNAME
-	case EDNSRecordTypeNS:
-		*s = EDNSRecordTypeNS
-	case EDNSRecordTypeMX:
-		*s = EDNSRecordTypeMX
-	case EDNSRecordTypeTXT:
-		*s = EDNSRecordTypeTXT
-	case EDNSRecordTypeSRV:
-		*s = EDNSRecordTypeSRV
-	case EDNSRecordTypeCAA:
-		*s = EDNSRecordTypeCAA
-	case EDNSRecordTypeHTTPS:
-		*s = EDNSRecordTypeHTTPS
-	case EDNSRecordTypeSVCB:
-		*s = EDNSRecordTypeSVCB
-	case EDNSRecordTypePTR:
-		*s = EDNSRecordTypePTR
-	default:
-		*s = EDNSRecordType(v)
-	}
-
+	*s = EDNSRecordType(unwrapped)
 	return nil
 }
 
@@ -28484,7 +28440,9 @@ func (s *EDNSRecordType) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EDatabaseReplicationModel as json.
 func (s EDatabaseReplicationModel) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EDatabaseReplicationModel from json.
@@ -28492,20 +28450,18 @@ func (s *EDatabaseReplicationModel) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EDatabaseReplicationModel to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EDatabaseReplicationModel(v) {
-	case EDatabaseReplicationModelMasterSlave:
-		*s = EDatabaseReplicationModelMasterSlave
-	case EDatabaseReplicationModelAsyncReplica:
-		*s = EDatabaseReplicationModelAsyncReplica
-	default:
-		*s = EDatabaseReplicationModel(v)
-	}
-
+	*s = EDatabaseReplicationModel(unwrapped)
 	return nil
 }
 
@@ -28574,7 +28530,9 @@ func (s *EDayOfTheWeek) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EDiskConnection as json.
 func (s EDiskConnection) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EDiskConnection from json.
@@ -28582,20 +28540,18 @@ func (s *EDiskConnection) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EDiskConnection to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EDiskConnection(v) {
-	case EDiskConnectionVirtio:
-		*s = EDiskConnectionVirtio
-	case EDiskConnectionIde:
-		*s = EDiskConnectionIde
-	default:
-		*s = EDiskConnection(v)
-	}
-
+	*s = EDiskConnection(unwrapped)
 	return nil
 }
 
@@ -28614,7 +28570,9 @@ func (s *EDiskConnection) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EDiskEncryptionAlgorithm as json.
 func (s EDiskEncryptionAlgorithm) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EDiskEncryptionAlgorithm from json.
@@ -28622,20 +28580,18 @@ func (s *EDiskEncryptionAlgorithm) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EDiskEncryptionAlgorithm to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EDiskEncryptionAlgorithm(v) {
-	case EDiskEncryptionAlgorithmNone:
-		*s = EDiskEncryptionAlgorithmNone
-	case EDiskEncryptionAlgorithmAes256Xts:
-		*s = EDiskEncryptionAlgorithmAes256Xts
-	default:
-		*s = EDiskEncryptionAlgorithm(v)
-	}
-
+	*s = EDiskEncryptionAlgorithm(unwrapped)
 	return nil
 }
 
@@ -28654,7 +28610,9 @@ func (s *EDiskEncryptionAlgorithm) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EGSLBHealthCheckProtocol as json.
 func (s EGSLBHealthCheckProtocol) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EGSLBHealthCheckProtocol from json.
@@ -28662,24 +28620,18 @@ func (s *EGSLBHealthCheckProtocol) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EGSLBHealthCheckProtocol to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EGSLBHealthCheckProtocol(v) {
-	case EGSLBHealthCheckProtocolHTTP:
-		*s = EGSLBHealthCheckProtocolHTTP
-	case EGSLBHealthCheckProtocolHTTPS:
-		*s = EGSLBHealthCheckProtocolHTTPS
-	case EGSLBHealthCheckProtocolTCP:
-		*s = EGSLBHealthCheckProtocolTCP
-	case EGSLBHealthCheckProtocolPing:
-		*s = EGSLBHealthCheckProtocolPing
-	default:
-		*s = EGSLBHealthCheckProtocol(v)
-	}
-
+	*s = EGSLBHealthCheckProtocol(unwrapped)
 	return nil
 }
 
@@ -28698,7 +28650,9 @@ func (s *EGSLBHealthCheckProtocol) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EInterfaceDriver as json.
 func (s EInterfaceDriver) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EInterfaceDriver from json.
@@ -28706,20 +28660,18 @@ func (s *EInterfaceDriver) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EInterfaceDriver to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EInterfaceDriver(v) {
-	case EInterfaceDriverVirtio:
-		*s = EInterfaceDriverVirtio
-	case EInterfaceDriverE1000:
-		*s = EInterfaceDriverE1000
-	default:
-		*s = EInterfaceDriver(v)
-	}
-
+	*s = EInterfaceDriver(unwrapped)
 	return nil
 }
 
@@ -28738,7 +28690,9 @@ func (s *EInterfaceDriver) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EOperationPenalty as json.
 func (s EOperationPenalty) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EOperationPenalty from json.
@@ -28746,20 +28700,18 @@ func (s *EOperationPenalty) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EOperationPenalty to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EOperationPenalty(v) {
-	case EOperationPenaltyEmpty:
-		*s = EOperationPenaltyEmpty
-	case EOperationPenaltyNone:
-		*s = EOperationPenaltyNone
-	default:
-		*s = EOperationPenalty(v)
-	}
-
+	*s = EOperationPenalty(unwrapped)
 	return nil
 }
 
@@ -28778,7 +28730,9 @@ func (s *EOperationPenalty) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EPermission as json.
 func (s EPermission) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EPermission from json.
@@ -28786,26 +28740,18 @@ func (s *EPermission) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EPermission to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EPermission(v) {
-	case EPermissionEmpty:
-		*s = EPermissionEmpty
-	case EPermissionCreate:
-		*s = EPermissionCreate
-	case EPermissionArrange:
-		*s = EPermissionArrange
-	case EPermissionPower:
-		*s = EPermissionPower
-	case EPermissionView:
-		*s = EPermissionView
-	default:
-		*s = EPermission(v)
-	}
-
+	*s = EPermission(unwrapped)
 	return nil
 }
 
@@ -28824,7 +28770,9 @@ func (s *EPermission) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EPlanGeneration as json.
 func (s EPlanGeneration) Encode(e *jx.Encoder) {
-	e.Float64(float64(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EPlanGeneration from json.
@@ -28832,12 +28780,18 @@ func (s *EPlanGeneration) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EPlanGeneration to nil")
 	}
-	v, err := d.Float64()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	*s = EPlanGeneration(v)
-
+	*s = EPlanGeneration(unwrapped)
 	return nil
 }
 
@@ -28856,7 +28810,9 @@ func (s *EPlanGeneration) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBBackendHttpKeepAlive as json.
 func (s EProxyLBBackendHttpKeepAlive) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBBackendHttpKeepAlive from json.
@@ -28864,20 +28820,18 @@ func (s *EProxyLBBackendHttpKeepAlive) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBBackendHttpKeepAlive to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EProxyLBBackendHttpKeepAlive(v) {
-	case EProxyLBBackendHttpKeepAliveSafe:
-		*s = EProxyLBBackendHttpKeepAliveSafe
-	case EProxyLBBackendHttpKeepAliveAggressive:
-		*s = EProxyLBBackendHttpKeepAliveAggressive
-	default:
-		*s = EProxyLBBackendHttpKeepAlive(v)
-	}
-
+	*s = EProxyLBBackendHttpKeepAlive(unwrapped)
 	return nil
 }
 
@@ -28896,7 +28850,9 @@ func (s *EProxyLBBackendHttpKeepAlive) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBFixedContentType as json.
 func (s EProxyLBFixedContentType) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBFixedContentType from json.
@@ -28904,24 +28860,18 @@ func (s *EProxyLBFixedContentType) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBFixedContentType to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EProxyLBFixedContentType(v) {
-	case EProxyLBFixedContentTypeTextPlain:
-		*s = EProxyLBFixedContentTypeTextPlain
-	case EProxyLBFixedContentTypeTextHTML:
-		*s = EProxyLBFixedContentTypeTextHTML
-	case EProxyLBFixedContentTypeApplicationJavascript:
-		*s = EProxyLBFixedContentTypeApplicationJavascript
-	case EProxyLBFixedContentTypeApplicationJSON:
-		*s = EProxyLBFixedContentTypeApplicationJSON
-	default:
-		*s = EProxyLBFixedContentType(v)
-	}
-
+	*s = EProxyLBFixedContentType(unwrapped)
 	return nil
 }
 
@@ -28940,7 +28890,9 @@ func (s *EProxyLBFixedContentType) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBHealthCheckProtocol as json.
 func (s EProxyLBHealthCheckProtocol) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBHealthCheckProtocol from json.
@@ -28948,20 +28900,18 @@ func (s *EProxyLBHealthCheckProtocol) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBHealthCheckProtocol to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EProxyLBHealthCheckProtocol(v) {
-	case EProxyLBHealthCheckProtocolHTTP:
-		*s = EProxyLBHealthCheckProtocolHTTP
-	case EProxyLBHealthCheckProtocolTCP:
-		*s = EProxyLBHealthCheckProtocolTCP
-	default:
-		*s = EProxyLBHealthCheckProtocol(v)
-	}
-
+	*s = EProxyLBHealthCheckProtocol(unwrapped)
 	return nil
 }
 
@@ -28980,7 +28930,9 @@ func (s *EProxyLBHealthCheckProtocol) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBPlan as json.
 func (s EProxyLBPlan) Encode(e *jx.Encoder) {
-	e.Float64(float64(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBPlan from json.
@@ -28988,12 +28940,18 @@ func (s *EProxyLBPlan) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBPlan to nil")
 	}
-	v, err := d.Float64()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	*s = EProxyLBPlan(v)
-
+	*s = EProxyLBPlan(unwrapped)
 	return nil
 }
 
@@ -29012,7 +28970,9 @@ func (s *EProxyLBPlan) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBProxyMode as json.
 func (s EProxyLBProxyMode) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBProxyMode from json.
@@ -29020,22 +28980,18 @@ func (s *EProxyLBProxyMode) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBProxyMode to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EProxyLBProxyMode(v) {
-	case EProxyLBProxyModeHTTP:
-		*s = EProxyLBProxyModeHTTP
-	case EProxyLBProxyModeHTTPS:
-		*s = EProxyLBProxyModeHTTPS
-	case EProxyLBProxyModeTCP:
-		*s = EProxyLBProxyModeTCP
-	default:
-		*s = EProxyLBProxyMode(v)
-	}
-
+	*s = EProxyLBProxyMode(unwrapped)
 	return nil
 }
 
@@ -29054,7 +29010,9 @@ func (s *EProxyLBProxyMode) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBRegion as json.
 func (s EProxyLBRegion) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBRegion from json.
@@ -29062,22 +29020,18 @@ func (s *EProxyLBRegion) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBRegion to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EProxyLBRegion(v) {
-	case EProxyLBRegionTk1:
-		*s = EProxyLBRegionTk1
-	case EProxyLBRegionIs1:
-		*s = EProxyLBRegionIs1
-	case EProxyLBRegionAnycast:
-		*s = EProxyLBRegionAnycast
-	default:
-		*s = EProxyLBRegion(v)
-	}
-
+	*s = EProxyLBRegion(unwrapped)
 	return nil
 }
 
@@ -29096,7 +29050,9 @@ func (s *EProxyLBRegion) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EProxyLBRuleAction as json.
 func (s EProxyLBRuleAction) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EProxyLBRuleAction from json.
@@ -29104,22 +29060,18 @@ func (s *EProxyLBRuleAction) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EProxyLBRuleAction to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EProxyLBRuleAction(v) {
-	case EProxyLBRuleActionForward:
-		*s = EProxyLBRuleActionForward
-	case EProxyLBRuleActionRedirect:
-		*s = EProxyLBRuleActionRedirect
-	case EProxyLBRuleActionFixed:
-		*s = EProxyLBRuleActionFixed
-	default:
-		*s = EProxyLBRuleAction(v)
-	}
-
+	*s = EProxyLBRuleAction(unwrapped)
 	return nil
 }
 
@@ -30315,7 +30267,9 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) UnmarshalJSON(data []by
 
 // Encode encodes EScope as json.
 func (s EScope) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EScope from json.
@@ -30323,20 +30277,18 @@ func (s *EScope) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EScope to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EScope(v) {
-	case EScopeShared:
-		*s = EScopeShared
-	case EScopeUser:
-		*s = EScopeUser
-	default:
-		*s = EScope(v)
-	}
-
+	*s = EScope(unwrapped)
 	return nil
 }
 
@@ -30355,7 +30307,9 @@ func (s *EScope) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EServerInstanceStatus as json.
 func (s EServerInstanceStatus) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EServerInstanceStatus from json.
@@ -30363,24 +30317,18 @@ func (s *EServerInstanceStatus) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EServerInstanceStatus to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EServerInstanceStatus(v) {
-	case EServerInstanceStatusEmpty:
-		*s = EServerInstanceStatusEmpty
-	case EServerInstanceStatusUp:
-		*s = EServerInstanceStatusUp
-	case EServerInstanceStatusCleaning:
-		*s = EServerInstanceStatusCleaning
-	case EServerInstanceStatusDown:
-		*s = EServerInstanceStatusDown
-	default:
-		*s = EServerInstanceStatus(v)
-	}
-
+	*s = EServerInstanceStatus(unwrapped)
 	return nil
 }
 
@@ -30399,7 +30347,9 @@ func (s *EServerInstanceStatus) UnmarshalJSON(data []byte) error {
 
 // Encode encodes ESimpleMonitorFTPS as json.
 func (s ESimpleMonitorFTPS) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes ESimpleMonitorFTPS from json.
@@ -30407,22 +30357,18 @@ func (s *ESimpleMonitorFTPS) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ESimpleMonitorFTPS to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch ESimpleMonitorFTPS(v) {
-	case ESimpleMonitorFTPSEmpty:
-		*s = ESimpleMonitorFTPSEmpty
-	case ESimpleMonitorFTPSImplicit:
-		*s = ESimpleMonitorFTPSImplicit
-	case ESimpleMonitorFTPSExplicit:
-		*s = ESimpleMonitorFTPSExplicit
-	default:
-		*s = ESimpleMonitorFTPS(v)
-	}
-
+	*s = ESimpleMonitorFTPS(unwrapped)
 	return nil
 }
 
@@ -30441,7 +30387,9 @@ func (s *ESimpleMonitorFTPS) UnmarshalJSON(data []byte) error {
 
 // Encode encodes ESimpleMonitorProtocol as json.
 func (s ESimpleMonitorProtocol) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes ESimpleMonitorProtocol from json.
@@ -30449,38 +30397,18 @@ func (s *ESimpleMonitorProtocol) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ESimpleMonitorProtocol to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch ESimpleMonitorProtocol(v) {
-	case ESimpleMonitorProtocolHTTP:
-		*s = ESimpleMonitorProtocolHTTP
-	case ESimpleMonitorProtocolHTTPS:
-		*s = ESimpleMonitorProtocolHTTPS
-	case ESimpleMonitorProtocolPing:
-		*s = ESimpleMonitorProtocolPing
-	case ESimpleMonitorProtocolTCP:
-		*s = ESimpleMonitorProtocolTCP
-	case ESimpleMonitorProtocolDNS:
-		*s = ESimpleMonitorProtocolDNS
-	case ESimpleMonitorProtocolSSH:
-		*s = ESimpleMonitorProtocolSSH
-	case ESimpleMonitorProtocolSMTP:
-		*s = ESimpleMonitorProtocolSMTP
-	case ESimpleMonitorProtocolPop3:
-		*s = ESimpleMonitorProtocolPop3
-	case ESimpleMonitorProtocolSnmp:
-		*s = ESimpleMonitorProtocolSnmp
-	case ESimpleMonitorProtocolSslcertificate:
-		*s = ESimpleMonitorProtocolSslcertificate
-	case ESimpleMonitorProtocolFtp:
-		*s = ESimpleMonitorProtocolFtp
-	default:
-		*s = ESimpleMonitorProtocol(v)
-	}
-
+	*s = ESimpleMonitorProtocol(unwrapped)
 	return nil
 }
 
@@ -30499,7 +30427,9 @@ func (s *ESimpleMonitorProtocol) UnmarshalJSON(data []byte) error {
 
 // Encode encodes ESimpleNotificationDestinationTypes as json.
 func (s ESimpleNotificationDestinationTypes) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes ESimpleNotificationDestinationTypes from json.
@@ -30507,20 +30437,18 @@ func (s *ESimpleNotificationDestinationTypes) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ESimpleNotificationDestinationTypes to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch ESimpleNotificationDestinationTypes(v) {
-	case ESimpleNotificationDestinationTypesEmail:
-		*s = ESimpleNotificationDestinationTypesEmail
-	case ESimpleNotificationDestinationTypesWebhook:
-		*s = ESimpleNotificationDestinationTypesWebhook
-	default:
-		*s = ESimpleNotificationDestinationTypes(v)
-	}
-
+	*s = ESimpleNotificationDestinationTypes(unwrapped)
 	return nil
 }
 
@@ -30539,7 +30467,9 @@ func (s *ESimpleNotificationDestinationTypes) UnmarshalJSON(data []byte) error {
 
 // Encode encodes EUpstreamNetworkType as json.
 func (s EUpstreamNetworkType) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes EUpstreamNetworkType from json.
@@ -30547,26 +30477,18 @@ func (s *EUpstreamNetworkType) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode EUpstreamNetworkType to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch EUpstreamNetworkType(v) {
-	case EUpstreamNetworkTypeUnknown:
-		*s = EUpstreamNetworkTypeUnknown
-	case EUpstreamNetworkTypeShared:
-		*s = EUpstreamNetworkTypeShared
-	case EUpstreamNetworkTypeSwitch:
-		*s = EUpstreamNetworkTypeSwitch
-	case EUpstreamNetworkTypeRouter:
-		*s = EUpstreamNetworkTypeRouter
-	case EUpstreamNetworkTypeNone:
-		*s = EUpstreamNetworkTypeNone
-	default:
-		*s = EUpstreamNetworkType(v)
-	}
-
+	*s = EUpstreamNetworkType(unwrapped)
 	return nil
 }
 
@@ -49496,7 +49418,7 @@ func (o OptEAutoScaleTriggerType) Encode(e *jx.Encoder) {
 	if !o.Set {
 		return
 	}
-	e.Str(string(o.Value))
+	o.Value.Encode(e)
 }
 
 // Decode decodes EAutoScaleTriggerType from json.
@@ -49529,7 +49451,7 @@ func (o OptEContainerRegistryAccessLevel) Encode(e *jx.Encoder) {
 	if !o.Set {
 		return
 	}
-	e.Str(string(o.Value))
+	o.Value.Encode(e)
 }
 
 // Decode decodes EContainerRegistryAccessLevel from json.
@@ -49562,7 +49484,7 @@ func (o OptEProxyLBPlan) Encode(e *jx.Encoder) {
 	if !o.Set {
 		return
 	}
-	e.Float64(float64(o.Value))
+	o.Value.Encode(e)
 }
 
 // Decode decodes EProxyLBPlan from json.
@@ -49595,7 +49517,7 @@ func (o OptESimpleNotificationDestinationTypes) Encode(e *jx.Encoder) {
 	if !o.Set {
 		return
 	}
-	e.Str(string(o.Value))
+	o.Value.Encode(e)
 }
 
 // Decode decodes ESimpleNotificationDestinationTypes from json.
@@ -54329,7 +54251,9 @@ func (s *PrivateHostUpdateResponseEnvelope) UnmarshalJSON(data []byte) error {
 
 // Encode encodes Protocol as json.
 func (s Protocol) Encode(e *jx.Encoder) {
-	e.Str(string(s))
+	unwrapped := string(s)
+
+	e.Str(unwrapped)
 }
 
 // Decode decodes Protocol from json.
@@ -54337,30 +54261,18 @@ func (s *Protocol) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode Protocol to nil")
 	}
-	v, err := d.StrBytes()
-	if err != nil {
-		return err
+	var unwrapped string
+	if err := func() error {
+		v, err := d.Str()
+		unwrapped = string(v)
+		if err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return errors.Wrap(err, "alias")
 	}
-	// Try to use constant string.
-	switch Protocol(v) {
-	case ProtocolHTTP:
-		*s = ProtocolHTTP
-	case ProtocolHTTPS:
-		*s = ProtocolHTTPS
-	case ProtocolTCP:
-		*s = ProtocolTCP
-	case ProtocolUDP:
-		*s = ProtocolUDP
-	case ProtocolIcmp:
-		*s = ProtocolIcmp
-	case ProtocolFragment:
-		*s = ProtocolFragment
-	case ProtocolIP:
-		*s = ProtocolIP
-	default:
-		*s = Protocol(v)
-	}
-
+	*s = Protocol(unwrapped)
 	return nil
 }
 

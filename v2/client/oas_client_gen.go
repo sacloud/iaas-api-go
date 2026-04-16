@@ -6520,15 +6520,6 @@ func (c *Client) ContainerRegistryOpAddUser(ctx context.Context, request *Contai
 }
 
 func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (res *ContainerRegistryOpAddUserNoContent, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -6769,15 +6760,6 @@ func (c *Client) ContainerRegistryOpUpdateUser(ctx context.Context, request *Con
 }
 
 func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (res *ContainerRegistryOpUpdateUserNoContent, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -17112,15 +17094,6 @@ func (c *Client) ServerOpChangePlan(ctx context.Context, request *ServerOpChange
 }
 
 func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerOpChangePlanReq, params ServerOpChangePlanParams) (res *ServerChangePlanResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string

@@ -2,91 +2,44 @@
 
 namespace Sacloud.IaaS;
 
-enum Action {
-  allow: "allow",
-  deny: "deny",
-}
+/** Action: known values are "allow", "deny" */
+scalar Action extends string;
 
-enum EAuthClass {
-  `unknown`: "",
-  account: "account",
-}
+/** EAuthClass: known values are "", "account" */
+scalar EAuthClass extends string;
 
-enum EAuthMethod {
-  `unknown`: "",
-  apikey: "apikey",
-}
+/** EAuthMethod: known values are "", "apikey" */
+scalar EAuthMethod extends string;
 
-enum EAutoScaleAction {
-  up: "up",
-  down: "down",
-}
+/** EAutoScaleAction: known values are "up", "down" */
+scalar EAutoScaleAction extends string;
 
-enum EAutoScaleTriggerType {
-  default: "",
-  cpu: "cpu",
-  router: "router",
-  schedule: "schedule",
-}
+/** EAutoScaleTriggerType: known values are "", "cpu", "router", "schedule" */
+scalar EAutoScaleTriggerType extends string;
 
-enum EAvailability {
-  `unknown`: "",
-  available: "available",
-  uploading: "uploading",
-  failed: "failed",
-  migrating: "migrating",
-  transferring: "transfering",
-  discontinued: "discontinued",
-}
+/** EAvailability: known values are "", "available", "uploading", "failed", "migrating", "transfering", "discontinued" */
+scalar EAvailability extends string;
 
-enum EBackupSpanType {
-  weekdays: "weekdays",
-}
+/** EBackupSpanType: known values are "weekdays" */
+scalar EBackupSpanType extends string;
 
-enum ECertificateAuthorityIssuanceMethod {
-  url: "url",
-  email: "email",
-  publickey: "public_key",
-  csr: "csr",
-}
+/** ECertificateAuthorityIssuanceMethod: known values are "url", "email", "public_key", "csr" */
+scalar ECertificateAuthorityIssuanceMethod extends string;
 
-enum ECommitment {
-  `unknown`: "",
-  standard: "standard",
-  dedicatedcpu: "dedicatedcpu",
-}
+/** ECommitment: known values are "", "standard", "dedicatedcpu" */
+scalar ECommitment extends string;
 
-enum EContainerRegistryAccessLevel {
-  readwrite: "readwrite",
-  readonly: "readonly",
-  none: "none",
-}
+/** EContainerRegistryAccessLevel: known values are "readwrite", "readonly", "none" */
+scalar EContainerRegistryAccessLevel extends string;
 
-enum EContainerRegistryPermission {
-  all: "all",
-  readwrite: "readwrite",
-  readonly: "readonly",
-}
+/** EContainerRegistryPermission: known values are "all", "readwrite", "readonly" */
+scalar EContainerRegistryPermission extends string;
 
-enum EDNSRecordType {
-  a: "A",
-  aaaa: "AAAA",
-  `alias`: "ALIAS",
-  cname: "CNAME",
-  ns: "NS",
-  mx: "MX",
-  txt: "TXT",
-  srv: "SRV",
-  caa: "CAA",
-  https: "HTTPS",
-  svcb: "SVCB",
-  ptr: "PTR",
-}
+/** EDNSRecordType: known values are "A", "AAAA", "ALIAS", "CNAME", "NS", "MX", "TXT", "SRV", "CAA", "HTTPS", "SVCB", "PTR" */
+scalar EDNSRecordType extends string;
 
-enum EDatabaseReplicationModel {
-  masterslave: "Master-Slave",
-  asyncreplica: "Async-Replica",
-}
+/** EDatabaseReplicationModel: known values are "Master-Slave", "Async-Replica" */
+scalar EDatabaseReplicationModel extends string;
 
 enum EDayOfTheWeek {
   sunday: "sun",
@@ -98,207 +51,95 @@ enum EDayOfTheWeek {
   saturday: "sat",
 }
 
-enum EDiskConnection {
-  virtio: "virtio",
-  ide: "ide",
-}
+/** EDiskConnection: known values are "virtio", "ide" */
+scalar EDiskConnection extends string;
 
-enum EDiskEncryptionAlgorithm {
-  none: "none",
-  aes256xts: "aes256_xts",
-}
+/** EDiskEncryptionAlgorithm: known values are "none", "aes256_xts" */
+scalar EDiskEncryptionAlgorithm extends string;
 
-enum EGSLBHealthCheckProtocol {
-  http: "http",
-  https: "https",
-  tcp: "tcp",
-  ping: "ping",
-}
+/** EGSLBHealthCheckProtocol: known values are "http", "https", "tcp", "ping" */
+scalar EGSLBHealthCheckProtocol extends string;
 
-enum EInterfaceDriver {
-  virtio: "virtio",
-  e1000: "e1000",
-}
+/** EInterfaceDriver: known values are "virtio", "e1000" */
+scalar EInterfaceDriver extends string;
 
-enum ELoadBalancerHealthCheckProtocol {
-  http: "http",
-  https: "https",
-  tcp: "tcp",
-  ping: "ping",
-}
+/** ELoadBalancerHealthCheckProtocol: known values are "http", "https", "tcp", "ping" */
+scalar ELoadBalancerHealthCheckProtocol extends string;
 
-enum ENFSSize {
-  size20gb: 20,
-  size100gb: 100,
-  size500gb: 500,
-}
+/** ENFSSize: known values are 20, 100, 500 */
+scalar ENFSSize extends string;
 
-enum EOTPOperation {
-  `unknown`: "",
-  input: "input",
-  generate: "generate",
-}
+/** EOTPOperation: known values are "", "input", "generate" */
+scalar EOTPOperation extends string;
 
-enum EOperationPenalty {
-  `unknown`: "",
-  none: "none",
-}
+/** EOperationPenalty: known values are "", "none" */
+scalar EOperationPenalty extends string;
 
-enum EPermission {
-  `unknown`: "",
-  create: "create",
-  arrange: "arrange",
-  power: "power",
-  view: "view",
-}
+/** EPermission: known values are "", "create", "arrange", "power", "view" */
+scalar EPermission extends string;
 
-enum EPlanGeneration {
-  default: 0,
-  g100: 100,
-  g200: 200,
-}
+/** EPlanGeneration: known values are 0, 100, 200 */
+scalar EPlanGeneration extends string;
 
-enum EProxyLBBackendHttpKeepAlive {
-  safe: "safe",
-  aggressive: "aggressive",
-}
+/** EProxyLBBackendHttpKeepAlive: known values are "safe", "aggressive" */
+scalar EProxyLBBackendHttpKeepAlive extends string;
 
-enum EProxyLBFixedContentType {
-  plain: "text/plain",
-  html: "text/html",
-  javascript: "application/javascript",
-  json: "application/json",
-}
+/** EProxyLBFixedContentType: known values are "text/plain", "text/html", "application/javascript", "application/json" */
+scalar EProxyLBFixedContentType extends string;
 
-enum EProxyLBHealthCheckProtocol {
-  http: "http",
-  tcp: "tcp",
-}
+/** EProxyLBHealthCheckProtocol: known values are "http", "tcp" */
+scalar EProxyLBHealthCheckProtocol extends string;
 
-enum EProxyLBPlan {
-  cps100: 100,
-  cps500: 500,
-  cps1000: 1000,
-  cps5000: 5000,
-  cps10000: 10000,
-  cps50000: 50000,
-  cps100000: 100000,
-  cps400000: 400000,
-}
+/** EProxyLBPlan: known values are 100, 500, 1000, 5000, 10000, 50000, 100000, 400000 */
+scalar EProxyLBPlan extends string;
 
-enum EProxyLBProxyMode {
-  http: "http",
-  https: "https",
-  tcp: "tcp",
-}
+/** EProxyLBProxyMode: known values are "http", "https", "tcp" */
+scalar EProxyLBProxyMode extends string;
 
-enum EProxyLBRegion {
-  tk1: "tk1",
-  is1: "is1",
-  anycast: "anycast",
-}
+/** EProxyLBRegion: known values are "tk1", "is1", "anycast" */
+scalar EProxyLBRegion extends string;
 
-enum EProxyLBRuleAction {
-  forward: "forward",
-  redirect: "redirect",
-  fixed: "fixed",
-}
+/** EProxyLBRuleAction: known values are "forward", "redirect", "fixed" */
+scalar EProxyLBRuleAction extends string;
 
-enum ESIMOperatorName {
-  kddi: "KDDI",
-  softbank: "SoftBank",
-}
+/** ESIMOperatorName: known values are "KDDI", "SoftBank" */
+scalar ESIMOperatorName extends string;
 
-enum EScope {
-  shared: "shared",
-  user: "user",
-}
+/** EScope: known values are "shared", "user" */
+scalar EScope extends string;
 
-enum EServerInstanceStatus {
-  `unknown`: "",
-  up: "up",
-  cleaning: "cleaning",
-  down: "down",
-}
+/** EServerInstanceStatus: known values are "", "up", "cleaning", "down" */
+scalar EServerInstanceStatus extends string;
 
-enum ESimpleMonitorFTPS {
-  default: "",
-  implicit: "implicit",
-  explicit: "explicit",
-}
+/** ESimpleMonitorFTPS: known values are "", "implicit", "explicit" */
+scalar ESimpleMonitorFTPS extends string;
 
-enum ESimpleMonitorHealth {
-  up: "UP",
-  down: "DOWN",
-}
+/** ESimpleMonitorHealth: known values are "UP", "DOWN" */
+scalar ESimpleMonitorHealth extends string;
 
-enum ESimpleMonitorProtocol {
-  http: "http",
-  https: "https",
-  ping: "ping",
-  tcp: "tcp",
-  dns: "dns",
-  ssh: "ssh",
-  smtp: "smtp",
-  pop3: "pop3",
-  snmp: "snmp",
-  sslcertificate: "sslcertificate",
-  ftp: "ftp",
-}
+/** ESimpleMonitorProtocol: known values are "http", "https", "ping", "tcp", "dns", "ssh", "smtp", "pop3", "snmp", "sslcertificate", "ftp" */
+scalar ESimpleMonitorProtocol extends string;
 
-enum ESimpleNotificationDestinationTypes {
-  email: "email",
-  webhook: "webhook",
-}
+/** ESimpleNotificationDestinationTypes: known values are "email", "webhook" */
+scalar ESimpleNotificationDestinationTypes extends string;
 
-enum EUpstreamNetworkType {
-  `unknown`: "unknown",
-  shared: "shared",
-  switch: "switch",
-  router: "router",
-  none: "none",
-}
+/** EUpstreamNetworkType: known values are "unknown", "shared", "switch", "router", "none" */
+scalar EUpstreamNetworkType extends string;
 
-enum EVPCRouterFirewallProtocol {
-  tcp: "tcp",
-  udp: "udp",
-  icmp: "icmp",
-  ip: "ip",
-}
+/** EVPCRouterFirewallProtocol: known values are "tcp", "udp", "icmp", "ip" */
+scalar EVPCRouterFirewallProtocol extends string;
 
-enum EVPCRouterPortForwardingProtocol {
-  tcp: "tcp",
-  udp: "udp",
-}
+/** EVPCRouterPortForwardingProtocol: known values are "tcp", "udp" */
+scalar EVPCRouterPortForwardingProtocol extends string;
 
-enum EWebAccelDomainType {
-  own: "own_domain",
-  subdomain: "subdomain",
-}
+/** EWebAccelDomainType: known values are "own_domain", "subdomain" */
+scalar EWebAccelDomainType extends string;
 
-enum EWebAccelStatus {
-  enabled: "enabled",
-  disabled: "disabled",
-}
+/** EWebAccelStatus: known values are "enabled", "disabled" */
+scalar EWebAccelStatus extends string;
 
-enum Protocol {
-  http: "http",
-  https: "https",
-  tcp: "tcp",
-  udp: "udp",
-  icmp: "icmp",
-  fragment: "fragment",
-  ip: "ip",
-}
+/** Protocol: known values are "http", "https", "tcp", "udp", "icmp", "fragment", "ip" */
+scalar Protocol extends string;
 
-enum SpecialTag {
-  groupa: "@group=a",
-  groupb: "@group=b",
-  groupc: "@group=c",
-  groupd: "@group=d",
-  autoreboot: "@auto-reboot",
-  keyboardus: "@keyboard-us",
-  bootcdrom: "@boot-cdrom",
-  bootnetwork: "@boot-network",
-  cputopology: "@cpu-topology",
-}
+/** SpecialTag: known values are "@group=a", "@group=b", "@group=c", "@group=d", "@auto-reboot", "@keyboard-us", "@boot-cdrom", "@boot-network", "@cpu-topology" */
+scalar SpecialTag extends string;

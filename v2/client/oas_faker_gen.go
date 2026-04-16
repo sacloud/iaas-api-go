@@ -11,7 +11,11 @@ import (
 
 // SetFake set fake values.
 func (s *Action) SetFake() {
-	*s = ActionAllow
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = Action(unwrapped)
 }
 
 // SetFake set fake values.
@@ -5195,57 +5199,101 @@ func (s *DiskUpdateResponseEnvelope) SetFake() {
 
 // SetFake set fake values.
 func (s *EAuthClass) SetFake() {
-	*s = EAuthClassEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EAuthClass(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EAuthMethod) SetFake() {
-	*s = EAuthMethodEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EAuthMethod(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EAutoScaleAction) SetFake() {
-	*s = EAutoScaleActionUp
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EAutoScaleAction(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EAutoScaleTriggerType) SetFake() {
-	*s = EAutoScaleTriggerTypeEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EAutoScaleTriggerType(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EAvailability) SetFake() {
-	*s = EAvailabilityEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EAvailability(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *ECertificateAuthorityIssuanceMethod) SetFake() {
-	*s = ECertificateAuthorityIssuanceMethodURL
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = ECertificateAuthorityIssuanceMethod(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *ECommitment) SetFake() {
-	*s = ECommitmentEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = ECommitment(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EContainerRegistryAccessLevel) SetFake() {
-	*s = EContainerRegistryAccessLevelReadwrite
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EContainerRegistryAccessLevel(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EContainerRegistryPermission) SetFake() {
-	*s = EContainerRegistryPermissionAll
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EContainerRegistryPermission(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EDNSRecordType) SetFake() {
-	*s = EDNSRecordTypeA
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EDNSRecordType(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EDatabaseReplicationModel) SetFake() {
-	*s = EDatabaseReplicationModelMasterSlave
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EDatabaseReplicationModel(unwrapped)
 }
 
 // SetFake set fake values.
@@ -5255,72 +5303,128 @@ func (s *EDayOfTheWeek) SetFake() {
 
 // SetFake set fake values.
 func (s *EDiskConnection) SetFake() {
-	*s = EDiskConnectionVirtio
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EDiskConnection(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EDiskEncryptionAlgorithm) SetFake() {
-	*s = EDiskEncryptionAlgorithmNone
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EDiskEncryptionAlgorithm(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EGSLBHealthCheckProtocol) SetFake() {
-	*s = EGSLBHealthCheckProtocolHTTP
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EGSLBHealthCheckProtocol(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EInterfaceDriver) SetFake() {
-	*s = EInterfaceDriverVirtio
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EInterfaceDriver(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EOperationPenalty) SetFake() {
-	*s = EOperationPenaltyEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EOperationPenalty(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EPermission) SetFake() {
-	*s = EPermissionEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EPermission(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EPlanGeneration) SetFake() {
-	*s = EPlanGeneration0
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EPlanGeneration(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBBackendHttpKeepAlive) SetFake() {
-	*s = EProxyLBBackendHttpKeepAliveSafe
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBBackendHttpKeepAlive(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBFixedContentType) SetFake() {
-	*s = EProxyLBFixedContentTypeTextPlain
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBFixedContentType(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBHealthCheckProtocol) SetFake() {
-	*s = EProxyLBHealthCheckProtocolHTTP
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBHealthCheckProtocol(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBPlan) SetFake() {
-	*s = EProxyLBPlan100
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBPlan(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBProxyMode) SetFake() {
-	*s = EProxyLBProxyModeHTTP
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBProxyMode(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBRegion) SetFake() {
-	*s = EProxyLBRegionTk1
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBRegion(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EProxyLBRuleAction) SetFake() {
-	*s = EProxyLBRuleActionForward
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EProxyLBRuleAction(unwrapped)
 }
 
 // SetFake set fake values.
@@ -5501,32 +5605,56 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetFake() {
 
 // SetFake set fake values.
 func (s *EScope) SetFake() {
-	*s = EScopeShared
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EScope(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EServerInstanceStatus) SetFake() {
-	*s = EServerInstanceStatusEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EServerInstanceStatus(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *ESimpleMonitorFTPS) SetFake() {
-	*s = ESimpleMonitorFTPSEmpty
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = ESimpleMonitorFTPS(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *ESimpleMonitorProtocol) SetFake() {
-	*s = ESimpleMonitorProtocolHTTP
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = ESimpleMonitorProtocol(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *ESimpleNotificationDestinationTypes) SetFake() {
-	*s = ESimpleNotificationDestinationTypesEmail
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = ESimpleNotificationDestinationTypes(unwrapped)
 }
 
 // SetFake set fake values.
 func (s *EUpstreamNetworkType) SetFake() {
-	*s = EUpstreamNetworkTypeUnknown
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = EUpstreamNetworkType(unwrapped)
 }
 
 // SetFake set fake values.
@@ -9506,7 +9634,11 @@ func (s *PrivateHostUpdateResponseEnvelope) SetFake() {
 
 // SetFake set fake values.
 func (s *Protocol) SetFake() {
-	*s = ProtocolHTTP
+	var unwrapped string
+	{
+		unwrapped = "string"
+	}
+	*s = Protocol(unwrapped)
 }
 
 // SetFake set fake values.
