@@ -1,5 +1,9 @@
+# sets generator options.
 generator:
+  # sets generator features.
   features:
-    disable:
-      - "paths/server"
-      - "webhooks/server"
+    enable:
+      - 'paths/client'
+      - 'client/request/validation'
+      - 'debug/example_tests'
+    disable_all: true
