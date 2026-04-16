@@ -1804,6 +1804,15 @@ func (s *CertificateAuthorityServer) Validate() error {
 	return nil
 }
 
+func (s CommonRequestHeaders) Validate() error {
+	switch s {
+	case "1":
+		return nil
+	default:
+		return errors.Errorf("invalid value: %v", s)
+	}
+}
+
 func (s *CommonServiceItemCreateRequest) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer

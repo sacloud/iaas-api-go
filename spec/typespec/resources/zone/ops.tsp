@@ -15,6 +15,7 @@ interface ZoneOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): ZoneFindResponseEnvelope | ApiError;
 
   @get
@@ -22,5 +23,6 @@ interface ZoneOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): ZoneReadResponseEnvelope | ApiError;
 }

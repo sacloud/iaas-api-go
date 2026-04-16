@@ -15,5 +15,6 @@ interface CouponOp {
   find(
     @path zone: string,
     @path accountID: string,
+    ...CommonRequestHeaders,
   ): CouponFindResponseEnvelope | ApiError;
 }

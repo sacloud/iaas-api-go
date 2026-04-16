@@ -15,6 +15,7 @@ interface PrivateHostPlanOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): PrivateHostPlanFindResponseEnvelope | ApiError;
 
   @get
@@ -22,5 +23,6 @@ interface PrivateHostPlanOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): PrivateHostPlanReadResponseEnvelope | ApiError;
 }

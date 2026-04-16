@@ -15,5 +15,6 @@ interface ServiceClassOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): ServiceClassFindResponseEnvelope | ApiError;
 }

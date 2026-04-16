@@ -160,3 +160,7 @@ spec/typespec/
 `Record<unknown>` の値型が未定義のため警告が出るが、DSL 定義通り動的マップであり `unknown` が正しい。
 
 
+## その他の仕様
+
+ * 全ての API 呼び出しには `X-Sakura-Bigint-As-Int: 1` をつける。
+

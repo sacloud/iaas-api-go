@@ -12,13 +12,17 @@ namespace Sacloud.IaaS;
 interface IPAddressOp {
   @get
   @route("/{zone}/api/cloud/1.1/ipaddress")
-  list(@path zone: string): IPAddressListResponseEnvelope | ApiError;
+  list(
+    @path zone: string,
+    ...CommonRequestHeaders,
+  ): IPAddressListResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
   read(
     @path zone: string,
     @path ipAddress: string,
+    ...CommonRequestHeaders,
   ): IPAddressReadResponseEnvelope | ApiError;
 
   @put
@@ -27,5 +31,6 @@ interface IPAddressOp {
     @path zone: string,
     @path ipAddress: string,
     hostName: string,
+    ...CommonRequestHeaders,
   ): IPAddressUpdateHostNameResponseEnvelope | ApiError;
 }

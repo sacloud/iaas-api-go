@@ -15,6 +15,7 @@ interface ServerOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): ServerFindResponseEnvelope | ApiError;
 
   @post
@@ -22,6 +23,7 @@ interface ServerOp {
   create(
     @path zone: string,
     param: ServerCreateRequest,
+    ...CommonRequestHeaders,
   ): ServerCreateResponseEnvelope | ApiError;
 
   @get
@@ -29,6 +31,7 @@ interface ServerOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): ServerReadResponseEnvelope | ApiError;
 
   @put
@@ -37,6 +40,7 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     param: ServerUpdateRequest,
+    ...CommonRequestHeaders,
   ): ServerUpdateResponseEnvelope | ApiError;
 
   @delete
@@ -45,6 +49,7 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     disks?: ServerDeleteWithDisksRequest,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
@@ -53,6 +58,7 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     plan: ServerChangePlanRequest,
+    ...CommonRequestHeaders,
   ): ServerChangePlanResponseEnvelope | ApiError;
 
   @put
@@ -61,6 +67,7 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     insertParam: InsertCDROMRequest,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @delete
@@ -69,6 +76,7 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     ejectParam: EjectCDROMRequest,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
@@ -77,6 +85,7 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     param?: ServerBootVariables,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @delete
@@ -85,11 +94,16 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     shutdownOption: ShutdownOption,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/reset")
-  reset(@path zone: string, @path id: string): void | ApiError;
+  reset(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/keyboard")
@@ -97,17 +111,23 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     keyboardParam: SendKeyRequest,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/qemu/nmi")
-  sendNMI(@path zone: string, @path id: string): void | ApiError;
+  sendNMI(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/vnc/proxy")
   getVNCProxy(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): ServerGetVNCProxyResponseEnvelope | ApiError;
 
   @get
@@ -116,5 +136,6 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
+    ...CommonRequestHeaders,
   ): ServerMonitorResponseEnvelope | ApiError;
 }

@@ -86,7 +86,7 @@ type fatField struct {
 // union → anyOf の代わりに、全バリアントのフィールドを1つのモデルに統合する。
 type fatModelDef struct {
 	Name     string
-	AddClass bool      // true のとき Class: string フィールドを先頭に出力する（create 系）
+	AddClass bool // true のとき Class: string フィールドを先頭に出力する（create 系）
 	Fields   []fatField
 }
 
@@ -691,7 +691,10 @@ interface {{ .TypeName }}Op {
 {{ range .Operations }}
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
-  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ .ReturnType }} | ApiError;
+  op {{ .MethodNameLower }}(
+    {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
+    {{ end }}...CommonRequestHeaders
+  ): {{ .ReturnType }} | ApiError;
 {{ end }}
 }
 `
@@ -722,7 +725,10 @@ interface {{ .GroupName }}Op {
 {{ range .SharedOps }}
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
-  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ .ReturnType }} | ApiError;
+  op {{ .MethodNameLower }}(
+    {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
+    {{ end }}...CommonRequestHeaders
+  ): {{ .ReturnType }} | ApiError;
 {{ end }}
 }
 {{ range .ResourceInterfaces }}

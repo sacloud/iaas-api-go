@@ -15,6 +15,7 @@ interface DiskOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): DiskFindResponseEnvelope | ApiError;
 
   @post
@@ -27,6 +28,7 @@ interface DiskOp {
     dedicatedStorageContractID?: ID,
     editParam?: DiskEditRequest,
     bootAtAvailable?: boolean,
+    ...CommonRequestHeaders,
   ): DiskCreateResponseEnvelope | ApiError;
 
   @put
@@ -35,6 +37,7 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     edit: DiskEditRequest,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
@@ -43,6 +46,7 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     param: DiskResizePartitionRequest,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
@@ -51,17 +55,23 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     @path serverID: string,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server")
-  disconnectFromServer(@path zone: string, @path id: string): void | ApiError;
+  disconnectFromServer(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}")
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): DiskReadResponseEnvelope | ApiError;
 
   @put
@@ -70,11 +80,16 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     param: DiskUpdateRequest,
+    ...CommonRequestHeaders,
   ): DiskUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}/monitor")
@@ -82,5 +97,6 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
+    ...CommonRequestHeaders,
   ): DiskMonitorResponseEnvelope | ApiError;
 }

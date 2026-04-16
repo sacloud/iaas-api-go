@@ -15,6 +15,7 @@ interface PrivateHostOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): PrivateHostFindResponseEnvelope | ApiError;
 
   @post
@@ -24,6 +25,7 @@ interface PrivateHostOp {
     param?: PrivateHostCreateRequest,
     createParam?: PrivateHostCreateRequest,
     dedicatedStorageContractID?: ID,
+    ...CommonRequestHeaders,
   ): PrivateHostCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,6 +33,7 @@ interface PrivateHostOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): PrivateHostReadResponseEnvelope | ApiError;
 
   @put
@@ -39,9 +42,14 @@ interface PrivateHostOp {
     @path zone: string,
     @path id: string,
     param: PrivateHostUpdateRequest,
+    ...CommonRequestHeaders,
   ): PrivateHostUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/privatehost/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 }

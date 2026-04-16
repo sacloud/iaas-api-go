@@ -15,6 +15,7 @@ interface InterfaceOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): InterfaceFindResponseEnvelope | ApiError;
 
   @post
@@ -22,6 +23,7 @@ interface InterfaceOp {
   create(
     @path zone: string,
     param: InterfaceCreateRequest,
+    ...CommonRequestHeaders,
   ): InterfaceCreateResponseEnvelope | ApiError;
 
   @get
@@ -29,6 +31,7 @@ interface InterfaceOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): InterfaceReadResponseEnvelope | ApiError;
 
   @put
@@ -37,11 +40,16 @@ interface InterfaceOp {
     @path zone: string,
     @path id: string,
     param: InterfaceUpdateRequest,
+    ...CommonRequestHeaders,
   ): InterfaceUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}/monitor")
@@ -49,11 +57,16 @@ interface InterfaceOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
+    ...CommonRequestHeaders,
   ): InterfaceMonitorResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/shared")
-  connectToSharedSegment(@path zone: string, @path id: string): void | ApiError;
+  connectToSharedSegment(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}")
@@ -61,11 +74,16 @@ interface InterfaceOp {
     @path zone: string,
     @path id: string,
     @path switchID: string,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
-  disconnectFromSwitch(@path zone: string, @path id: string): void | ApiError;
+  disconnectFromSwitch(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}")
@@ -73,6 +91,7 @@ interface InterfaceOp {
     @path zone: string,
     @path id: string,
     @path packetFilterID: string,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @delete
@@ -80,5 +99,6 @@ interface InterfaceOp {
   disconnectFromPacketFilter(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): void | ApiError;
 }

@@ -15,6 +15,7 @@ interface DiskPlanOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): DiskPlanFindResponseEnvelope | ApiError;
 
   @get
@@ -22,5 +23,6 @@ interface DiskPlanOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): DiskPlanReadResponseEnvelope | ApiError;
 }

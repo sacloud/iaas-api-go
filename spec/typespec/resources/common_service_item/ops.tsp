@@ -240,6 +240,7 @@ interface CommonServiceItemOp {
   find(
     @path zone: string,
     conditions: FindCondition,
+    ...CommonRequestHeaders,
   ): AutoBackupFindResponseEnvelope | ApiError;
 
   @post
@@ -247,6 +248,7 @@ interface CommonServiceItemOp {
   create(
     @path zone: string,
     param: CommonServiceItemCreateRequest,
+    ...CommonRequestHeaders,
   ): AutoBackupCreateResponseEnvelope | ApiError;
 
   @get
@@ -254,6 +256,7 @@ interface CommonServiceItemOp {
   read(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): AutoBackupReadResponseEnvelope | ApiError;
 
   @put
@@ -262,17 +265,23 @@ interface CommonServiceItemOp {
     @path zone: string,
     @path id: string,
     param: CommonServiceItemUpdateRequest,
+    ...CommonRequestHeaders,
   ): AutoBackupUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(
+    @path zone: string,
+    @path id: string,
+    ...CommonRequestHeaders,
+  ): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/health")
   healthStatus(
     @path zone: string,
     @path id: string,
+    ...CommonRequestHeaders,
   ): LocalRouterHealthStatusResponseEnvelope | ApiError;
 }
 

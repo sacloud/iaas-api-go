@@ -18,6 +18,12 @@ scalar Tags;
 scalar StringNumber extends string;
 scalar StringFlag extends string;
 
+// API共通ヘッダー
+model CommonRequestHeaders {
+  @header("X-Sakura-BigInt-As-Int")
+  bigIntAsInt: "1";
+}
+
 // API エラーレスポンス
 @error
 model ApiError {
