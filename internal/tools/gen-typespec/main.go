@@ -265,6 +265,12 @@ import "./types.tsp";
 @service(#{
   title: "Sakura Cloud IaaS API",
 })
+@doc("""
+この API を呼び出す際は、すべてのリクエストに以下のヘッダーを付与してください:
+- X-Sakura-Bigint-As-Int: 1
+
+このヘッダーにより、bigint 型の値が JSON 数値ではなく整数として返却されます。
+""")
 @useAuth(BasicAuth)
 namespace Sacloud.IaaS;
 
@@ -275,12 +281,6 @@ scalar ID extends string;
 scalar Tags;
 scalar StringNumber extends string;
 scalar StringFlag extends string;
-
-// API共通ヘッダー
-model CommonRequestHeaders {
-  @header("X-Sakura-Bigint-As-Int")
-  bigIntAsInt: "1";
-}
 
 // API エラーレスポンス
 @error

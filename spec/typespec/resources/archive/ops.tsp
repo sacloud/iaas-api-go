@@ -15,7 +15,6 @@ interface ArchiveOp {
   find(
     @path zone: string,
     @body body: ArchiveFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): ArchiveFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface ArchiveOp {
   create(
     @path zone: string,
     param: ArchiveCreateRequest,
-    ...CommonRequestHeaders,
   ): ArchiveCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface ArchiveOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): ArchiveReadResponseEnvelope | ApiError;
 
   @put
@@ -40,16 +37,11 @@ interface ArchiveOp {
     @path zone: string,
     @path id: string,
     @body body: ArchiveUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): ArchiveUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
@@ -57,16 +49,11 @@ interface ArchiveOp {
     @path zone: string,
     @path id: string,
     openOption?: OpenFTPRequest,
-    ...CommonRequestHeaders,
   ): ArchiveShareResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  closeFTP(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  closeFTP(@path zone: string, @path id: string): void | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}")
@@ -75,6 +62,5 @@ interface ArchiveOp {
     @path sourceArchiveID: string,
     @path destZoneID: string,
     param: ArchiveCreateRequestFromShared,
-    ...CommonRequestHeaders,
   ): ArchiveTransferResponseEnvelope | ApiError;
 }

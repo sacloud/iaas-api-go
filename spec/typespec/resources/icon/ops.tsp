@@ -15,7 +15,6 @@ interface IconOp {
   find(
     @path zone: string,
     @body body: IconFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): IconFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface IconOp {
   create(
     @path zone: string,
     @body body: IconCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): IconCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface IconOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): IconReadResponseEnvelope | ApiError;
 
   @put
@@ -40,14 +37,9 @@ interface IconOp {
     @path zone: string,
     @path id: string,
     @body body: IconUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): IconUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/icon/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 }

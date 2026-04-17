@@ -88,7 +88,6 @@ interface ApplianceOp {
   find(
     @path zone: string,
     conditions: FindCondition,
-    ...CommonRequestHeaders,
   ): DatabaseFindResponseEnvelope | ApiError;
 
   @post
@@ -96,7 +95,6 @@ interface ApplianceOp {
   create(
     @path zone: string,
     param: ApplianceCreateRequest,
-    ...CommonRequestHeaders,
   ): DatabaseCreateResponseEnvelope | ApiError;
 
   @get
@@ -104,7 +102,6 @@ interface ApplianceOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): DatabaseReadResponseEnvelope | ApiError;
 
   @put
@@ -113,32 +110,19 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     param: ApplianceUpdateRequest,
-    ...CommonRequestHeaders,
   ): DatabaseUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/config")
-  config(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  config(@path zone: string, @path id: string): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  boot(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  boot(@path zone: string, @path id: string): void | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
@@ -146,16 +130,11 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     shutdownOption: ShutdownOption,
-    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/reset")
-  reset(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  reset(@path zone: string, @path id: string): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor")
@@ -163,7 +142,6 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
-    ...CommonRequestHeaders,
   ): DatabaseMonitorCPUResponseEnvelope | ApiError;
 
   @get
@@ -172,7 +150,6 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
-    ...CommonRequestHeaders,
   ): DatabaseMonitorInterfaceResponseEnvelope | ApiError;
 
   @get
@@ -181,7 +158,6 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
-    ...CommonRequestHeaders,
   ): DatabaseMonitorDatabaseResponseEnvelope | ApiError;
 
   @get
@@ -189,7 +165,6 @@ interface ApplianceOp {
   status(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): DatabaseStatusResponseEnvelope | ApiError;
 
   @get
@@ -198,7 +173,6 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     @path index: string,
-    ...CommonRequestHeaders,
   ): MobileGatewayMonitorInterfaceResponseEnvelope | ApiError;
 }
 

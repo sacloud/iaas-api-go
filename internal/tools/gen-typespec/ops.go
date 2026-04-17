@@ -702,7 +702,7 @@ interface {{ .TypeName }}Op {
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
-    {{ end }}...CommonRequestHeaders
+    {{ end }}
   ): {{ .ReturnType }} | ApiError;
 {{ end }}
 }
@@ -736,7 +736,7 @@ interface {{ .GroupName }}Op {
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
-    {{ end }}...CommonRequestHeaders
+    {{ end }}
   ): {{ .ReturnType }} | ApiError;
 {{ end }}
 }

@@ -15,7 +15,6 @@ interface PacketFilterOp {
   find(
     @path zone: string,
     @body body: PacketFilterFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): PacketFilterFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface PacketFilterOp {
   create(
     @path zone: string,
     @body body: PacketFilterCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): PacketFilterCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface PacketFilterOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): PacketFilterReadResponseEnvelope | ApiError;
 
   @put
@@ -40,14 +37,9 @@ interface PacketFilterOp {
     @path zone: string,
     @path id: string,
     @body body: PacketFilterUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): PacketFilterUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 }

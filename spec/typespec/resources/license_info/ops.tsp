@@ -15,7 +15,6 @@ interface LicenseInfoOp {
   find(
     @path zone: string,
     @body body: LicenseInfoFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): LicenseInfoFindResponseEnvelope | ApiError;
 
   @get
@@ -23,6 +22,5 @@ interface LicenseInfoOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): LicenseInfoReadResponseEnvelope | ApiError;
 }

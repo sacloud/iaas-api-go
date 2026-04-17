@@ -15,7 +15,6 @@ interface InternetOp {
   find(
     @path zone: string,
     @body body: InternetFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): InternetFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface InternetOp {
   create(
     @path zone: string,
     @body body: InternetCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): InternetCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface InternetOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): InternetReadResponseEnvelope | ApiError;
 
   @put
@@ -40,16 +37,11 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @body body: InternetUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): InternetUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/bandwidth")
@@ -57,7 +49,6 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @body body: InternetUpdateBandWidthRequestEnvelope,
-    ...CommonRequestHeaders,
   ): InternetUpdateBandWidthResponseEnvelope | ApiError;
 
   @post
@@ -66,7 +57,6 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @body body: InternetAddSubnetRequestEnvelope,
-    ...CommonRequestHeaders,
   ): InternetAddSubnetResponseEnvelope | ApiError;
 
   @put
@@ -76,7 +66,6 @@ interface InternetOp {
     @path id: string,
     @path subnetID: string,
     @body body: InternetUpdateSubnetRequestEnvelope,
-    ...CommonRequestHeaders,
   ): InternetUpdateSubnetResponseEnvelope | ApiError;
 
   @delete
@@ -85,7 +74,6 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @path subnetID: string,
-    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @get
@@ -94,7 +82,6 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     condition: MonitorCondition,
-    ...CommonRequestHeaders,
   ): InternetMonitorResponseEnvelope | ApiError;
 
   @post
@@ -102,7 +89,6 @@ interface InternetOp {
   enableIPv6(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): InternetEnableIPv6ResponseEnvelope | ApiError;
 
   @delete
@@ -111,6 +97,5 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @path ipv6netID: string,
-    ...CommonRequestHeaders,
   ): void | ApiError;
 }

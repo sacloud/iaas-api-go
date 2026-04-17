@@ -15,7 +15,6 @@ interface IPv6NetOp {
   list(
     @path zone: string,
     conditions?: FindCondition,
-    ...CommonRequestHeaders,
   ): IPv6NetListResponseEnvelope | ApiError;
 
   @get
@@ -23,6 +22,5 @@ interface IPv6NetOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): IPv6NetReadResponseEnvelope | ApiError;
 }

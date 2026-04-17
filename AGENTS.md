@@ -163,6 +163,8 @@ spec/typespec/
 ## openapi 定義規約
 
  * 全ての API 呼び出しには `X-Sakura-Bigint-As-Int: 1` をつける。
+   * ただし、全ての op に個別で定義すると煩雑なため、Transport の RoundTrip で定義する。
+   * そのようにする必要があることを main.tsp の `@doc` で宣言する。
  * GET の sort/include/exclude は定義しない。ページングとフィルタは定義する。
    * ページングはサーバー側で行った方が良いため。
    * include/exclude は複雑性が高すぎる。

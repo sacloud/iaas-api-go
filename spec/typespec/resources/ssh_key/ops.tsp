@@ -15,7 +15,6 @@ interface SSHKeyOp {
   find(
     @path zone: string,
     @body body: SSHKeyFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SSHKeyFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface SSHKeyOp {
   create(
     @path zone: string,
     @body body: SSHKeyCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SSHKeyCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface SSHKeyOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): SSHKeyReadResponseEnvelope | ApiError;
 
   @put
@@ -40,14 +37,9 @@ interface SSHKeyOp {
     @path zone: string,
     @path id: string,
     @body body: SSHKeyUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SSHKeyUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 }

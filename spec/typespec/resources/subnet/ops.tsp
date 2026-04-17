@@ -15,7 +15,6 @@ interface SubnetOp {
   find(
     @path zone: string,
     @body body: SubnetFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SubnetFindResponseEnvelope | ApiError;
 
   @get
@@ -23,6 +22,5 @@ interface SubnetOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): SubnetReadResponseEnvelope | ApiError;
 }

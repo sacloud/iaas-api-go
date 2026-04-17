@@ -4621,40 +4621,6 @@ func (s *CertificateData) SetNotAfter(val time.Time) {
 	s.NotAfter = val
 }
 
-type CommonRequestHeaders string
-
-const (
-	CommonRequestHeaders1 CommonRequestHeaders = "1"
-)
-
-// AllValues returns all CommonRequestHeaders values.
-func (CommonRequestHeaders) AllValues() []CommonRequestHeaders {
-	return []CommonRequestHeaders{
-		CommonRequestHeaders1,
-	}
-}
-
-// MarshalText implements encoding.TextMarshaler.
-func (s CommonRequestHeaders) MarshalText() ([]byte, error) {
-	switch s {
-	case CommonRequestHeaders1:
-		return []byte(s), nil
-	default:
-		return nil, errors.Errorf("invalid value: %q", s)
-	}
-}
-
-// UnmarshalText implements encoding.TextUnmarshaler.
-func (s *CommonRequestHeaders) UnmarshalText(data []byte) error {
-	switch CommonRequestHeaders(data) {
-	case CommonRequestHeaders1:
-		*s = CommonRequestHeaders1
-		return nil
-	default:
-		return errors.Errorf("invalid value: %q", data)
-	}
-}
-
 // Ref: #/components/schemas/CommonServiceItemCreateRequest
 type CommonServiceItemCreateRequest struct {
 	Class       string                                  `json:"Class"`

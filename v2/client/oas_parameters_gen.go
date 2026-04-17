@@ -4,160 +4,137 @@ package client
 
 // ApplianceOpBootParams is parameters of ApplianceOp_boot operation.
 type ApplianceOpBootParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpConfigParams is parameters of ApplianceOp_config operation.
 type ApplianceOpConfigParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpCreateParams is parameters of ApplianceOp_create operation.
 type ApplianceOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ApplianceOpDeleteParams is parameters of ApplianceOp_delete operation.
 type ApplianceOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpFindParams is parameters of ApplianceOp_find operation.
 type ApplianceOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ApplianceOpMonitorCPUParams is parameters of ApplianceOp_monitorCPU operation.
 type ApplianceOpMonitorCPUParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpMonitorDatabaseParams is parameters of ApplianceOp_monitorDatabase operation.
 type ApplianceOpMonitorDatabaseParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpMonitorInterfaceParams is parameters of ApplianceOp_monitorInterface operation.
 type ApplianceOpMonitorInterfaceParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpMonitorInterfaceByIndexParams is parameters of ApplianceOp_monitorInterfaceByIndex operation.
 type ApplianceOpMonitorInterfaceByIndexParams struct {
-	Zone               string
-	ID                 string
-	Index              string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone  string
+	ID    string
+	Index string
 }
 
 // ApplianceOpReadParams is parameters of ApplianceOp_read operation.
 type ApplianceOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpResetParams is parameters of ApplianceOp_reset operation.
 type ApplianceOpResetParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpShutdownParams is parameters of ApplianceOp_shutdown operation.
 type ApplianceOpShutdownParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpStatusParams is parameters of ApplianceOp_status operation.
 type ApplianceOpStatusParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ApplianceOpUpdateParams is parameters of ApplianceOp_update operation.
 type ApplianceOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ArchiveOpCloseFTPParams is parameters of ArchiveOp_closeFTP operation.
 type ArchiveOpCloseFTPParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ArchiveOpCreateParams is parameters of ArchiveOp_create operation.
 type ArchiveOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ArchiveOpDeleteParams is parameters of ArchiveOp_delete operation.
 type ArchiveOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ArchiveOpFindParams is parameters of ArchiveOp_find operation.
 type ArchiveOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ArchiveOpReadParams is parameters of ArchiveOp_read operation.
 type ArchiveOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ArchiveOpShareParams is parameters of ArchiveOp_share operation.
 type ArchiveOpShareParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ArchiveOpTransferParams is parameters of ArchiveOp_transfer operation.
 type ArchiveOpTransferParams struct {
-	Zone               string
-	SourceArchiveID    string
-	DestZoneID         string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone            string
+	SourceArchiveID string
+	DestZoneID      string
 }
 
 // ArchiveOpUpdateParams is parameters of ArchiveOp_update operation.
 type ArchiveOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // AuthStatusOpReadParams is parameters of AuthStatusOp_read operation.
 type AuthStatusOpReadParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // AutoScaleOpScaleDownParams is parameters of AutoScaleOp_scaleDown operation.
@@ -180,129 +157,111 @@ type AutoScaleOpStatusParams struct {
 
 // BillOpByContractParams is parameters of BillOp_byContract operation.
 type BillOpByContractParams struct {
-	Zone               string
-	AccountID          string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	AccountID string
 }
 
 // BillOpByContractYearParams is parameters of BillOp_byContractYear operation.
 type BillOpByContractYearParams struct {
-	Zone               string
-	AccountID          string
-	Year               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	AccountID string
+	Year      string
 }
 
 // BillOpByContractYearMonthParams is parameters of BillOp_byContractYearMonth operation.
 type BillOpByContractYearMonthParams struct {
-	Zone               string
-	AccountID          string
-	Year               string
-	Month              string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	AccountID string
+	Year      string
+	Month     string
 }
 
 // BillOpDetailsParams is parameters of BillOp_details operation.
 type BillOpDetailsParams struct {
-	Zone               string
-	MemberCode         string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone       string
+	MemberCode string
+	ID         string
 }
 
 // BillOpDetailsCSVParams is parameters of BillOp_detailsCSV operation.
 type BillOpDetailsCSVParams struct {
-	Zone               string
-	MemberCode         string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone       string
+	MemberCode string
+	ID         string
 }
 
 // BillOpReadParams is parameters of BillOp_read operation.
 type BillOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // BridgeOpCreateParams is parameters of BridgeOp_create operation.
 type BridgeOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // BridgeOpDeleteParams is parameters of BridgeOp_delete operation.
 type BridgeOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // BridgeOpFindParams is parameters of BridgeOp_find operation.
 type BridgeOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // BridgeOpReadParams is parameters of BridgeOp_read operation.
 type BridgeOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // BridgeOpUpdateParams is parameters of BridgeOp_update operation.
 type BridgeOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CDROMOpCloseFTPParams is parameters of CDROMOp_closeFTP operation.
 type CDROMOpCloseFTPParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CDROMOpCreateParams is parameters of CDROMOp_create operation.
 type CDROMOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // CDROMOpDeleteParams is parameters of CDROMOp_delete operation.
 type CDROMOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CDROMOpFindParams is parameters of CDROMOp_find operation.
 type CDROMOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // CDROMOpOpenFTPParams is parameters of CDROMOp_openFTP operation.
 type CDROMOpOpenFTPParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CDROMOpReadParams is parameters of CDROMOp_read operation.
 type CDROMOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CDROMOpUpdateParams is parameters of CDROMOp_update operation.
 type CDROMOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CertificateAuthorityOpAddClientParams is parameters of CertificateAuthorityOp_addClient operation.
@@ -400,42 +359,36 @@ type CertificateAuthorityOpRevokeServerParams struct {
 
 // CommonServiceItemOpCreateParams is parameters of CommonServiceItemOp_create operation.
 type CommonServiceItemOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // CommonServiceItemOpDeleteParams is parameters of CommonServiceItemOp_delete operation.
 type CommonServiceItemOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CommonServiceItemOpFindParams is parameters of CommonServiceItemOp_find operation.
 type CommonServiceItemOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // CommonServiceItemOpHealthStatusParams is parameters of CommonServiceItemOp_healthStatus operation.
 type CommonServiceItemOpHealthStatusParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CommonServiceItemOpReadParams is parameters of CommonServiceItemOp_read operation.
 type CommonServiceItemOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // CommonServiceItemOpUpdateParams is parameters of CommonServiceItemOp_update operation.
 type CommonServiceItemOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ContainerRegistryOpAddUserParams is parameters of ContainerRegistryOp_addUser operation.
@@ -466,9 +419,8 @@ type ContainerRegistryOpUpdateUserParams struct {
 
 // CouponOpFindParams is parameters of CouponOp_find operation.
 type CouponOpFindParams struct {
-	Zone               string
-	AccountID          string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	AccountID string
 }
 
 // DatabaseOpGetParameterParams is parameters of DatabaseOp_getParameter operation.
@@ -491,84 +443,72 @@ type DatabaseOpSetParameterParams struct {
 
 // DiskOpConfigParams is parameters of DiskOp_config operation.
 type DiskOpConfigParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskOpConnectToServerParams is parameters of DiskOp_connectToServer operation.
 type DiskOpConnectToServerParams struct {
-	Zone               string
-	ID                 string
-	ServerID           string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone     string
+	ID       string
+	ServerID string
 }
 
 // DiskOpCreateParams is parameters of DiskOp_create operation.
 type DiskOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // DiskOpDeleteParams is parameters of DiskOp_delete operation.
 type DiskOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskOpDisconnectFromServerParams is parameters of DiskOp_disconnectFromServer operation.
 type DiskOpDisconnectFromServerParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskOpFindParams is parameters of DiskOp_find operation.
 type DiskOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // DiskOpMonitorParams is parameters of DiskOp_monitor operation.
 type DiskOpMonitorParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskOpReadParams is parameters of DiskOp_read operation.
 type DiskOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskOpResizePartitionParams is parameters of DiskOp_resizePartition operation.
 type DiskOpResizePartitionParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskOpUpdateParams is parameters of DiskOp_update operation.
 type DiskOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // DiskPlanOpFindParams is parameters of DiskPlanOp_find operation.
 type DiskPlanOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // DiskPlanOpReadParams is parameters of DiskPlanOp_read operation.
 type DiskPlanOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ESMEOpLogsParams is parameters of ESMEOp_logs operation.
@@ -609,322 +549,275 @@ type EnhancedDBOpSetPasswordParams struct {
 
 // IPAddressOpListParams is parameters of IPAddressOp_list operation.
 type IPAddressOpListParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // IPAddressOpReadParams is parameters of IPAddressOp_read operation.
 type IPAddressOpReadParams struct {
-	Zone               string
-	IpAddress          string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	IpAddress string
 }
 
 // IPAddressOpUpdateHostNameParams is parameters of IPAddressOp_updateHostName operation.
 type IPAddressOpUpdateHostNameParams struct {
-	Zone               string
-	IpAddress          string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	IpAddress string
 }
 
 // IPv6AddrOpCreateParams is parameters of IPv6AddrOp_create operation.
 type IPv6AddrOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // IPv6AddrOpDeleteParams is parameters of IPv6AddrOp_delete operation.
 type IPv6AddrOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // IPv6AddrOpFindParams is parameters of IPv6AddrOp_find operation.
 type IPv6AddrOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // IPv6AddrOpReadParams is parameters of IPv6AddrOp_read operation.
 type IPv6AddrOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // IPv6AddrOpUpdateParams is parameters of IPv6AddrOp_update operation.
 type IPv6AddrOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // IPv6NetOpListParams is parameters of IPv6NetOp_list operation.
 type IPv6NetOpListParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // IPv6NetOpReadParams is parameters of IPv6NetOp_read operation.
 type IPv6NetOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // IconOpCreateParams is parameters of IconOp_create operation.
 type IconOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // IconOpDeleteParams is parameters of IconOp_delete operation.
 type IconOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // IconOpFindParams is parameters of IconOp_find operation.
 type IconOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // IconOpReadParams is parameters of IconOp_read operation.
 type IconOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // IconOpUpdateParams is parameters of IconOp_update operation.
 type IconOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpConnectToPacketFilterParams is parameters of InterfaceOp_connectToPacketFilter operation.
 type InterfaceOpConnectToPacketFilterParams struct {
-	Zone               string
-	ID                 string
-	PacketFilterID     string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone           string
+	ID             string
+	PacketFilterID string
 }
 
 // InterfaceOpConnectToSharedSegmentParams is parameters of InterfaceOp_connectToSharedSegment operation.
 type InterfaceOpConnectToSharedSegmentParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpConnectToSwitchParams is parameters of InterfaceOp_connectToSwitch operation.
 type InterfaceOpConnectToSwitchParams struct {
-	Zone               string
-	ID                 string
-	SwitchID           string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone     string
+	ID       string
+	SwitchID string
 }
 
 // InterfaceOpCreateParams is parameters of InterfaceOp_create operation.
 type InterfaceOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // InterfaceOpDeleteParams is parameters of InterfaceOp_delete operation.
 type InterfaceOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpDisconnectFromPacketFilterParams is parameters of InterfaceOp_disconnectFromPacketFilter operation.
 type InterfaceOpDisconnectFromPacketFilterParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpDisconnectFromSwitchParams is parameters of InterfaceOp_disconnectFromSwitch operation.
 type InterfaceOpDisconnectFromSwitchParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpFindParams is parameters of InterfaceOp_find operation.
 type InterfaceOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // InterfaceOpMonitorParams is parameters of InterfaceOp_monitor operation.
 type InterfaceOpMonitorParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpReadParams is parameters of InterfaceOp_read operation.
 type InterfaceOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InterfaceOpUpdateParams is parameters of InterfaceOp_update operation.
 type InterfaceOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpAddSubnetParams is parameters of InternetOp_addSubnet operation.
 type InternetOpAddSubnetParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpCreateParams is parameters of InternetOp_create operation.
 type InternetOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // InternetOpDeleteParams is parameters of InternetOp_delete operation.
 type InternetOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpDeleteSubnetParams is parameters of InternetOp_deleteSubnet operation.
 type InternetOpDeleteSubnetParams struct {
-	Zone               string
-	ID                 string
-	SubnetID           string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone     string
+	ID       string
+	SubnetID string
 }
 
 // InternetOpDisableIPv6Params is parameters of InternetOp_disableIPv6 operation.
 type InternetOpDisableIPv6Params struct {
-	Zone               string
-	ID                 string
-	Ipv6netID          string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone      string
+	ID        string
+	Ipv6netID string
 }
 
 // InternetOpEnableIPv6Params is parameters of InternetOp_enableIPv6 operation.
 type InternetOpEnableIPv6Params struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpFindParams is parameters of InternetOp_find operation.
 type InternetOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // InternetOpMonitorParams is parameters of InternetOp_monitor operation.
 type InternetOpMonitorParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpReadParams is parameters of InternetOp_read operation.
 type InternetOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpUpdateParams is parameters of InternetOp_update operation.
 type InternetOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpUpdateBandWidthParams is parameters of InternetOp_updateBandWidth operation.
 type InternetOpUpdateBandWidthParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // InternetOpUpdateSubnetParams is parameters of InternetOp_updateSubnet operation.
 type InternetOpUpdateSubnetParams struct {
-	Zone               string
-	ID                 string
-	SubnetID           string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone     string
+	ID       string
+	SubnetID string
 }
 
 // InternetPlanOpFindParams is parameters of InternetPlanOp_find operation.
 type InternetPlanOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // InternetPlanOpReadParams is parameters of InternetPlanOp_read operation.
 type InternetPlanOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // LicenseInfoOpFindParams is parameters of LicenseInfoOp_find operation.
 type LicenseInfoOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // LicenseInfoOpReadParams is parameters of LicenseInfoOp_read operation.
 type LicenseInfoOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // LicenseOpCreateParams is parameters of LicenseOp_create operation.
 type LicenseOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // LicenseOpDeleteParams is parameters of LicenseOp_delete operation.
 type LicenseOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // LicenseOpFindParams is parameters of LicenseOp_find operation.
 type LicenseOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // LicenseOpReadParams is parameters of LicenseOp_read operation.
 type LicenseOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // LicenseOpUpdateParams is parameters of LicenseOp_update operation.
 type LicenseOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // LocalRouterOpMonitorLocalRouterParams is parameters of LocalRouterOp_monitorLocalRouter operation.
@@ -1021,114 +914,97 @@ type MobileGatewayOpTrafficStatusParams struct {
 
 // NoteOpCreateParams is parameters of NoteOp_create operation.
 type NoteOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // NoteOpDeleteParams is parameters of NoteOp_delete operation.
 type NoteOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // NoteOpFindParams is parameters of NoteOp_find operation.
 type NoteOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // NoteOpReadParams is parameters of NoteOp_read operation.
 type NoteOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // NoteOpUpdateParams is parameters of NoteOp_update operation.
 type NoteOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PacketFilterOpCreateParams is parameters of PacketFilterOp_create operation.
 type PacketFilterOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // PacketFilterOpDeleteParams is parameters of PacketFilterOp_delete operation.
 type PacketFilterOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PacketFilterOpFindParams is parameters of PacketFilterOp_find operation.
 type PacketFilterOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // PacketFilterOpReadParams is parameters of PacketFilterOp_read operation.
 type PacketFilterOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PacketFilterOpUpdateParams is parameters of PacketFilterOp_update operation.
 type PacketFilterOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PrivateHostOpCreateParams is parameters of PrivateHostOp_create operation.
 type PrivateHostOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // PrivateHostOpDeleteParams is parameters of PrivateHostOp_delete operation.
 type PrivateHostOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PrivateHostOpFindParams is parameters of PrivateHostOp_find operation.
 type PrivateHostOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // PrivateHostOpReadParams is parameters of PrivateHostOp_read operation.
 type PrivateHostOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PrivateHostOpUpdateParams is parameters of PrivateHostOp_update operation.
 type PrivateHostOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // PrivateHostPlanOpFindParams is parameters of PrivateHostPlanOp_find operation.
 type PrivateHostPlanOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // PrivateHostPlanOpReadParams is parameters of PrivateHostPlanOp_read operation.
 type PrivateHostPlanOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ProxyLBOpChangePlanParams is parameters of ProxyLBOp_changePlan operation.
@@ -1169,15 +1045,13 @@ type ProxyLBOpSetCertificatesParams struct {
 
 // RegionOpFindParams is parameters of RegionOp_find operation.
 type RegionOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // RegionOpReadParams is parameters of RegionOp_read operation.
 type RegionOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SIMOpActivateParams is parameters of SIMOp_activate operation.
@@ -1248,157 +1122,134 @@ type SIMOpStatusParams struct {
 
 // SSHKeyOpCreateParams is parameters of SSHKeyOp_create operation.
 type SSHKeyOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // SSHKeyOpDeleteParams is parameters of SSHKeyOp_delete operation.
 type SSHKeyOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SSHKeyOpFindParams is parameters of SSHKeyOp_find operation.
 type SSHKeyOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // SSHKeyOpReadParams is parameters of SSHKeyOp_read operation.
 type SSHKeyOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SSHKeyOpUpdateParams is parameters of SSHKeyOp_update operation.
 type SSHKeyOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpBootParams is parameters of ServerOp_boot operation.
 type ServerOpBootParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpChangePlanParams is parameters of ServerOp_changePlan operation.
 type ServerOpChangePlanParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpCreateParams is parameters of ServerOp_create operation.
 type ServerOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ServerOpDeleteParams is parameters of ServerOp_delete operation.
 type ServerOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpEjectCDROMParams is parameters of ServerOp_ejectCDROM operation.
 type ServerOpEjectCDROMParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpFindParams is parameters of ServerOp_find operation.
 type ServerOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ServerOpGetVNCProxyParams is parameters of ServerOp_getVNCProxy operation.
 type ServerOpGetVNCProxyParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpInsertCDROMParams is parameters of ServerOp_insertCDROM operation.
 type ServerOpInsertCDROMParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpMonitorParams is parameters of ServerOp_monitor operation.
 type ServerOpMonitorParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpReadParams is parameters of ServerOp_read operation.
 type ServerOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpResetParams is parameters of ServerOp_reset operation.
 type ServerOpResetParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpSendKeyParams is parameters of ServerOp_sendKey operation.
 type ServerOpSendKeyParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpSendNMIParams is parameters of ServerOp_sendNMI operation.
 type ServerOpSendNMIParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpShutdownParams is parameters of ServerOp_shutdown operation.
 type ServerOpShutdownParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerOpUpdateParams is parameters of ServerOp_update operation.
 type ServerOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServerPlanOpFindParams is parameters of ServerPlanOp_find operation.
 type ServerPlanOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ServerPlanOpReadParams is parameters of ServerPlanOp_read operation.
 type ServerPlanOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // ServiceClassOpFindParams is parameters of ServiceClassOp_find operation.
 type ServiceClassOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // SimpleMonitorOpMonitorResponseTimeParams is parameters of SimpleMonitorOp_monitorResponseTime operation.
@@ -1426,70 +1277,60 @@ type SimpleNotificationGroupOpPostMessageParams struct {
 
 // SubnetOpFindParams is parameters of SubnetOp_find operation.
 type SubnetOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // SubnetOpReadParams is parameters of SubnetOp_read operation.
 type SubnetOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SwitchOpConnectToBridgeParams is parameters of SwitchOp_connectToBridge operation.
 type SwitchOpConnectToBridgeParams struct {
-	Zone               string
-	ID                 string
-	BridgeID           string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone     string
+	ID       string
+	BridgeID string
 }
 
 // SwitchOpCreateParams is parameters of SwitchOp_create operation.
 type SwitchOpCreateParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // SwitchOpDeleteParams is parameters of SwitchOp_delete operation.
 type SwitchOpDeleteParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SwitchOpDisconnectFromBridgeParams is parameters of SwitchOp_disconnectFromBridge operation.
 type SwitchOpDisconnectFromBridgeParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SwitchOpFindParams is parameters of SwitchOp_find operation.
 type SwitchOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // SwitchOpGetServersParams is parameters of SwitchOp_getServers operation.
 type SwitchOpGetServersParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SwitchOpReadParams is parameters of SwitchOp_read operation.
 type SwitchOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // SwitchOpUpdateParams is parameters of SwitchOp_update operation.
 type SwitchOpUpdateParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }
 
 // VPCRouterOpConnectToSwitchParams is parameters of VPCRouterOp_connectToSwitch operation.
@@ -1522,13 +1363,11 @@ type VPCRouterOpPingParams struct {
 
 // ZoneOpFindParams is parameters of ZoneOp_find operation.
 type ZoneOpFindParams struct {
-	Zone               string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
 }
 
 // ZoneOpReadParams is parameters of ZoneOp_read operation.
 type ZoneOpReadParams struct {
-	Zone               string
-	ID                 string
-	XSakuraBigintAsInt CommonRequestHeaders
+	Zone string
+	ID   string
 }

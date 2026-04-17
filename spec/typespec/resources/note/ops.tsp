@@ -15,7 +15,6 @@ interface NoteOp {
   find(
     @path zone: string,
     @body body: NoteFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): NoteFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface NoteOp {
   create(
     @path zone: string,
     @body body: NoteCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): NoteCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface NoteOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): NoteReadResponseEnvelope | ApiError;
 
   @put
@@ -40,14 +37,9 @@ interface NoteOp {
     @path zone: string,
     @path id: string,
     @body body: NoteUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): NoteUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/note/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 }

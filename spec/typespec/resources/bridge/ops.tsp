@@ -15,7 +15,6 @@ interface BridgeOp {
   find(
     @path zone: string,
     @body body: BridgeFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): BridgeFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface BridgeOp {
   create(
     @path zone: string,
     @body body: BridgeCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): BridgeCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface BridgeOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): BridgeReadResponseEnvelope | ApiError;
 
   @put
@@ -40,14 +37,9 @@ interface BridgeOp {
     @path zone: string,
     @path id: string,
     @body body: BridgeUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): BridgeUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/bridge/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 }

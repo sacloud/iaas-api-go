@@ -15,7 +15,6 @@ interface RegionOp {
   find(
     @path zone: string,
     @body body: RegionFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): RegionFindResponseEnvelope | ApiError;
 
   @get
@@ -23,6 +22,5 @@ interface RegionOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): RegionReadResponseEnvelope | ApiError;
 }

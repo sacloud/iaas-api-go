@@ -15,7 +15,6 @@ interface SwitchOp {
   find(
     @path zone: string,
     @body body: SwitchFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SwitchFindResponseEnvelope | ApiError;
 
   @post
@@ -23,7 +22,6 @@ interface SwitchOp {
   create(
     @path zone: string,
     @body body: SwitchCreateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SwitchCreateResponseEnvelope | ApiError;
 
   @get
@@ -31,7 +29,6 @@ interface SwitchOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): SwitchReadResponseEnvelope | ApiError;
 
   @put
@@ -40,16 +37,11 @@ interface SwitchOp {
     @path zone: string,
     @path id: string,
     @body body: SwitchUpdateRequestEnvelope,
-    ...CommonRequestHeaders,
   ): SwitchUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  delete(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  delete(@path zone: string, @path id: string): void | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}")
@@ -57,22 +49,16 @@ interface SwitchOp {
     @path zone: string,
     @path id: string,
     @path bridgeID: string,
-    ...CommonRequestHeaders,
   ): void | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge")
-  disconnectFromBridge(
-    @path zone: string,
-    @path id: string,
-    ...CommonRequestHeaders,
-  ): void | ApiError;
+  disconnectFromBridge(@path zone: string, @path id: string): void | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}/server")
   getServers(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): SwitchGetServersResponseEnvelope | ApiError;
 }

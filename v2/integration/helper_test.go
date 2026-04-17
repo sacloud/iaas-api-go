@@ -58,14 +58,30 @@ func (s *securitySource) BasicAuth(ctx context.Context, operationName client.Ope
 	}, nil
 }
 
+// baseTransport wraps http.DefaultTransport and adds required headers.
+type baseTransport struct {
+	base http.RoundTripper
+}
+
+func (b *baseTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	if b.base == nil {
+		b.base = http.DefaultTransport
+	}
+	if req.Header.Get("User-Agent") == "" {
+		req.Header.Set("User-Agent", testUserAgent)
+	}
+	req.Header.Set("X-Sakura-Bigint-As-Int", "1")
+	return b.base.RoundTrip(req)
+}
+
 // dumpTransport logs HTTP requests and responses for debugging.
 type dumpTransport struct {
 	base http.RoundTripper
 }
 
 func (d *dumpTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	if req.Header.Get("User-Agent") == "" {
-		req.Header.Set("User-Agent", testUserAgent)
+	if d.base == nil {
+		d.base = &baseTransport{base: http.DefaultTransport}
 	}
 
 	reqDump, _ := httputil.DumpRequestOut(req, true)

@@ -15,7 +15,6 @@ interface ServerPlanOp {
   find(
     @path zone: string,
     @body body: ServerPlanFindRequestEnvelope,
-    ...CommonRequestHeaders,
   ): ServerPlanFindResponseEnvelope | ApiError;
 
   @get
@@ -23,6 +22,5 @@ interface ServerPlanOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): ServerPlanReadResponseEnvelope | ApiError;
 }

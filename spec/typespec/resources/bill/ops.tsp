@@ -15,7 +15,6 @@ interface BillOp {
   byContract(
     @path zone: string,
     @path accountID: string,
-    ...CommonRequestHeaders,
   ): BillByContractResponseEnvelope | ApiError;
 
   @get
@@ -24,7 +23,6 @@ interface BillOp {
     @path zone: string,
     @path accountID: string,
     @path year: string,
-    ...CommonRequestHeaders,
   ): BillByContractYearResponseEnvelope | ApiError;
 
   @get
@@ -34,7 +32,6 @@ interface BillOp {
     @path accountID: string,
     @path year: string,
     @path month: string,
-    ...CommonRequestHeaders,
   ): BillByContractYearMonthResponseEnvelope | ApiError;
 
   @get
@@ -42,7 +39,6 @@ interface BillOp {
   read(
     @path zone: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): BillReadResponseEnvelope | ApiError;
 
   @get
@@ -51,7 +47,6 @@ interface BillOp {
     @path zone: string,
     @path MemberCode: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): BillDetailsResponseEnvelope | ApiError;
 
   @get
@@ -60,6 +55,5 @@ interface BillOp {
     @path zone: string,
     @path MemberCode: string,
     @path id: string,
-    ...CommonRequestHeaders,
   ): BillDetailsCSVResponseEnvelope | ApiError;
 }
