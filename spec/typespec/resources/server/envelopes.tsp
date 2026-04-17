@@ -19,24 +19,9 @@ model ServerFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for serverFindResponseEnvelope
@@ -64,7 +49,7 @@ model ServerCreateRequestEnvelope {
   /**
    * Server
    */
-  Server: Server;
+  Server: ServerCreateRequest;
 }
 /**
  * Response envelope for serverCreateResponseEnvelope
@@ -74,7 +59,7 @@ model ServerCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Server
@@ -90,7 +75,7 @@ model ServerReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Server
@@ -105,7 +90,7 @@ model ServerUpdateRequestEnvelope {
   /**
    * Server
    */
-  Server: Server;
+  Server: ServerUpdateRequest;
 }
 /**
  * Response envelope for serverUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model ServerUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Server
@@ -180,7 +165,7 @@ model ServerChangePlanResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Server
@@ -195,7 +180,7 @@ model ServerInsertCDROMRequestEnvelope {
   /**
    * CDROM
    */
-  CDROM: CDROM;
+  CDROM: InsertCDROMRequest;
 }
 
 /**
@@ -205,7 +190,7 @@ model ServerEjectCDROMRequestEnvelope {
   /**
    * CDROM
    */
-  CDROM: CDROM;
+  CDROM: EjectCDROMRequest;
 }
 
 /**
@@ -251,7 +236,7 @@ model ServerGetVNCProxyResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * VNCProxyInfo
@@ -281,7 +266,7 @@ model ServerMonitorResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -311,7 +296,7 @@ model ServerMonitorCPUResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

@@ -19,10 +19,10 @@ interface InternetOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/internet")
-  create(
-    @path zone: string,
-    @body body: InternetCreateRequestEnvelope,
-  ): InternetCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: InternetCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...InternetCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}")
@@ -41,7 +41,10 @@ interface InternetOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/bandwidth")
@@ -57,7 +60,10 @@ interface InternetOp {
     @path zone: string,
     @path id: string,
     @body body: InternetAddSubnetRequestEnvelope,
-  ): InternetAddSubnetResponseEnvelope | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...InternetAddSubnetResponseEnvelope;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
@@ -70,11 +76,10 @@ interface InternetOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
-  deleteSubnet(
-    @path zone: string,
-    @path id: string,
-    @path subnetID: string,
-  ): void | ApiError;
+  deleteSubnet(@path zone: string, @path id: string, @path subnetID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}/monitor")
@@ -86,16 +91,15 @@ interface InternetOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net")
-  enableIPv6(
-    @path zone: string,
-    @path id: string,
-  ): InternetEnableIPv6ResponseEnvelope | ApiError;
+  enableIPv6(@path zone: string, @path id: string): {
+    @statusCode _: 201;
+    ...InternetEnableIPv6ResponseEnvelope;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}")
-  disableIPv6(
-    @path zone: string,
-    @path id: string,
-    @path ipv6netID: string,
-  ): void | ApiError;
+  disableIPv6(@path zone: string, @path id: string, @path ipv6netID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

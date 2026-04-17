@@ -19,24 +19,9 @@ model CDROMFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for cDROMFindResponseEnvelope
@@ -64,7 +49,7 @@ model CDROMCreateRequestEnvelope {
   /**
    * CDROM
    */
-  CDROM: CDROM;
+  CDROM: CDROMCreateRequest;
 }
 /**
  * Response envelope for cDROMCreateResponseEnvelope
@@ -74,7 +59,7 @@ model CDROMCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CDROM
@@ -95,7 +80,7 @@ model CDROMReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CDROM
@@ -110,7 +95,7 @@ model CDROMUpdateRequestEnvelope {
   /**
    * CDROM
    */
-  CDROM: CDROM;
+  CDROM: CDROMUpdateRequest;
 }
 /**
  * Response envelope for cDROMUpdateResponseEnvelope
@@ -120,7 +105,7 @@ model CDROMUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CDROM
@@ -145,7 +130,7 @@ model CDROMOpenFTPResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * FTPServer

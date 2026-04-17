@@ -703,7 +703,7 @@ interface {{ .TypeName }}Op {
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
-  ): {{ .ReturnType }} | ApiError;
+  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: 201; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 `
@@ -737,7 +737,7 @@ interface {{ .GroupName }}Op {
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
-  ): {{ .ReturnType }} | ApiError;
+  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: 201; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ range .ResourceInterfaces }}
@@ -746,7 +746,7 @@ interface {{ .TypeName }}Op {
 {{ range .Operations }}
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
-  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ .ReturnType }} | ApiError;
+  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: 201; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ end }}`

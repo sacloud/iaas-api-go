@@ -19,24 +19,9 @@ model IPv6AddrFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for iPv6AddrFindResponseEnvelope
@@ -64,7 +49,7 @@ model IPv6AddrCreateRequestEnvelope {
   /**
    * IPv6Addr
    */
-  IPv6Addr: IPv6Addr;
+  IPv6Addr: IPv6AddrCreateRequest;
 }
 /**
  * Response envelope for iPv6AddrCreateResponseEnvelope
@@ -74,7 +59,7 @@ model IPv6AddrCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * IPv6Addr
@@ -90,7 +75,7 @@ model IPv6AddrReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * IPv6Addr
@@ -105,7 +90,7 @@ model IPv6AddrUpdateRequestEnvelope {
   /**
    * IPv6Addr
    */
-  IPv6Addr: IPv6Addr;
+  IPv6Addr: IPv6AddrUpdateRequest;
 }
 /**
  * Response envelope for iPv6AddrUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model IPv6AddrUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * IPv6Addr

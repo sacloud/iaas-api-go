@@ -19,24 +19,9 @@ model SimpleNotificationGroupFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for simpleNotificationGroupFindResponseEnvelope
@@ -64,7 +49,7 @@ model SimpleNotificationGroupCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationGroup;
+  CommonServiceItem: SimpleNotificationGroupCreateRequest;
 }
 /**
  * Response envelope for simpleNotificationGroupCreateResponseEnvelope
@@ -74,7 +59,7 @@ model SimpleNotificationGroupCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model SimpleNotificationGroupReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model SimpleNotificationGroupUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationGroup;
+  CommonServiceItem: SimpleNotificationGroupUpdateRequest;
 }
 /**
  * Response envelope for simpleNotificationGroupUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model SimpleNotificationGroupUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model SimpleNotificationGroupUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -166,7 +151,7 @@ model SimpleNotificationGroupHistoryResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * NotificationHistories

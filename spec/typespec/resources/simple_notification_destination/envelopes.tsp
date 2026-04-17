@@ -19,24 +19,9 @@ model SimpleNotificationDestinationFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for simpleNotificationDestinationFindResponseEnvelope
@@ -64,7 +49,7 @@ model SimpleNotificationDestinationCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationDestination;
+  CommonServiceItem: SimpleNotificationDestinationCreateRequest;
 }
 /**
  * Response envelope for simpleNotificationDestinationCreateResponseEnvelope
@@ -74,7 +59,7 @@ model SimpleNotificationDestinationCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model SimpleNotificationDestinationReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model SimpleNotificationDestinationUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationDestination;
+  CommonServiceItem: SimpleNotificationDestinationUpdateRequest;
 }
 /**
  * Response envelope for simpleNotificationDestinationUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model SimpleNotificationDestinationUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model SimpleNotificationDestinationUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -156,7 +141,7 @@ model SimpleNotificationDestinationStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SimpleNotificationDestination

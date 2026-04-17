@@ -19,24 +19,9 @@ model ESMEFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for eSMEFindResponseEnvelope
@@ -64,7 +49,7 @@ model ESMECreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ESME;
+  CommonServiceItem: ESMECreateRequest;
 }
 /**
  * Response envelope for eSMECreateResponseEnvelope
@@ -74,7 +59,7 @@ model ESMECreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model ESMEReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model ESMEUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ESME;
+  CommonServiceItem: ESMEUpdateRequest;
 }
 /**
  * Response envelope for eSMEUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model ESMEUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -130,7 +115,7 @@ model ESMESendMessageWithGeneratedOTPRequestEnvelope {
   /**
    * ESME
    */
-  ESME: ESMESendMessageWithInputtedOTPRequest;
+  ESME: ESMESendMessageWithGeneratedOTPRequest;
 }
 /**
  * Response envelope for eSMESendMessageWithGeneratedOTPResponseEnvelope
@@ -140,7 +125,7 @@ model ESMESendMessageWithGeneratedOTPResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ESME
@@ -165,7 +150,7 @@ model ESMESendMessageWithInputtedOTPResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ESME
@@ -181,7 +166,7 @@ model ESMELogsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ESME

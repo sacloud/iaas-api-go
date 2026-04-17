@@ -19,24 +19,9 @@ model CertificateAuthorityFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for certificateAuthorityFindResponseEnvelope
@@ -64,7 +49,7 @@ model CertificateAuthorityCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: CertificateAuthority;
+  CommonServiceItem: CertificateAuthorityCreateRequest;
 }
 /**
  * Response envelope for certificateAuthorityCreateResponseEnvelope
@@ -74,7 +59,7 @@ model CertificateAuthorityCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model CertificateAuthorityReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model CertificateAuthorityUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: CertificateAuthority;
+  CommonServiceItem: CertificateAuthorityUpdateRequest;
 }
 /**
  * Response envelope for certificateAuthorityUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model CertificateAuthorityUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -131,7 +116,7 @@ model CertificateAuthorityDetailResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CertificateAuthority
@@ -156,7 +141,7 @@ model CertificateAuthorityAddClientResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CertificateAuthority
@@ -191,7 +176,7 @@ model CertificateAuthorityReadClientResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CertificateAuthority
@@ -216,7 +201,7 @@ model CertificateAuthorityAddServerResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CertificateAuthority
@@ -251,7 +236,7 @@ model CertificateAuthorityReadServerResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CertificateAuthority

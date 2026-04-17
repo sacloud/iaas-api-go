@@ -24,7 +24,10 @@ interface PrivateHostOp {
     param?: PrivateHostCreateRequest,
     createParam?: PrivateHostCreateRequest,
     dedicatedStorageContractID?: ID,
-  ): PrivateHostCreateResponseEnvelope | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...PrivateHostCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/privatehost/{id}")
@@ -43,5 +46,8 @@ interface PrivateHostOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/privatehost/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

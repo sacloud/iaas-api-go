@@ -39,10 +39,9 @@ func getZone() string {
 }
 
 // getConfig returns the client configuration.
-func getConfig() (accessToken, accessTokenSecret, zone string) {
+func getConfig() (accessToken, accessTokenSecret string) {
 	return os.Getenv("SAKURA_ACCESS_TOKEN"),
-		os.Getenv("SAKURA_ACCESS_TOKEN_SECRET"),
-		getZone()
+		os.Getenv("SAKURA_ACCESS_TOKEN_SECRET")
 }
 
 // securitySource implements client.SecuritySource for BasicAuth.
@@ -101,24 +100,25 @@ func (d *dumpTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 // newClient creates an ogen client for integration tests.
 func newClient(t *testing.T) *client.Client {
 	t.Helper()
-	accessToken, accessTokenSecret, zone := getConfig()
+	accessToken, accessTokenSecret := getConfig()
 
 	if accessToken == "" || accessTokenSecret == "" {
 		t.Skip("SAKURA_ACCESS_TOKEN and SAKURA_ACCESS_TOKEN_SECRET must be set")
 	}
 
-	serverURL := "https://secure.sakura.ad.jp/cloud/zone/" + zone + "/api/cloud/1.1"
+	serverURL := "https://secure.sakura.ad.jp/cloud/zone"
 
 	sec := &securitySource{
 		username: accessToken,
 		password: accessTokenSecret,
 	}
 
-	opts := []client.ClientOption{}
+	transport := http.RoundTripper(&baseTransport{base: http.DefaultTransport})
 	if os.Getenv("SAKURA_TRACE") == "1" {
-		opts = append(opts, client.WithClient(&http.Client{
-			Transport: &dumpTransport{base: http.DefaultTransport},
-		}))
+		transport = &dumpTransport{base: transport}
+	}
+	opts := []client.ClientOption{
+		client.WithClient(&http.Client{Transport: transport}),
 	}
 
 	c, err := client.NewClient(serverURL, sec, opts...)

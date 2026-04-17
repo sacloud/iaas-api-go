@@ -19,24 +19,9 @@ model NoteFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for noteFindResponseEnvelope
@@ -64,7 +49,7 @@ model NoteCreateRequestEnvelope {
   /**
    * Note
    */
-  Note: Note;
+  Note: NoteCreateRequest;
 }
 /**
  * Response envelope for noteCreateResponseEnvelope
@@ -74,7 +59,7 @@ model NoteCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Note
@@ -90,7 +75,7 @@ model NoteReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Note
@@ -105,7 +90,7 @@ model NoteUpdateRequestEnvelope {
   /**
    * Note
    */
-  Note: Note;
+  Note: NoteUpdateRequest;
 }
 /**
  * Response envelope for noteUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model NoteUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Note

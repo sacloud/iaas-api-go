@@ -19,24 +19,9 @@ model SimpleMonitorFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for simpleMonitorFindResponseEnvelope
@@ -64,7 +49,7 @@ model SimpleMonitorCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleMonitor;
+  CommonServiceItem: SimpleMonitorCreateRequest;
 }
 /**
  * Response envelope for simpleMonitorCreateResponseEnvelope
@@ -74,7 +59,7 @@ model SimpleMonitorCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model SimpleMonitorReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model SimpleMonitorUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleMonitor;
+  CommonServiceItem: SimpleMonitorUpdateRequest;
 }
 /**
  * Response envelope for simpleMonitorUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model SimpleMonitorUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model SimpleMonitorUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -170,7 +155,7 @@ model SimpleMonitorMonitorResponseTimeResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -186,7 +171,7 @@ model SimpleMonitorHealthStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SimpleMonitor

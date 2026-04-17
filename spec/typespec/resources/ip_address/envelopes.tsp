@@ -31,7 +31,7 @@ model IPAddressReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * IPAddress
@@ -56,7 +56,7 @@ model IPAddressUpdateHostNameResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * IPAddress

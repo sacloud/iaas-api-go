@@ -19,24 +19,9 @@ model ProxyLBFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for proxyLBFindResponseEnvelope
@@ -64,7 +49,7 @@ model ProxyLBCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ProxyLB;
+  CommonServiceItem: ProxyLBCreateRequest;
 }
 /**
  * Response envelope for proxyLBCreateResponseEnvelope
@@ -74,7 +59,7 @@ model ProxyLBCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model ProxyLBReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model ProxyLBUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ProxyLB;
+  CommonServiceItem: ProxyLBUpdateRequest;
 }
 /**
  * Response envelope for proxyLBUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model ProxyLBUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model ProxyLBUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -165,7 +150,7 @@ model ProxyLBChangePlanResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -181,7 +166,7 @@ model ProxyLBGetCertificatesResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ProxyLB
@@ -196,7 +181,7 @@ model ProxyLBSetCertificatesRequestEnvelope {
   /**
    * ProxyLB
    */
-  ProxyLB: ProxyLBCertificates;
+  ProxyLB: ProxyLBSetCertificatesRequest;
 }
 /**
  * Response envelope for proxyLBSetCertificatesResponseEnvelope
@@ -206,7 +191,7 @@ model ProxyLBSetCertificatesResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ProxyLB
@@ -222,7 +207,7 @@ model ProxyLBHealthStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ProxyLB
@@ -252,7 +237,7 @@ model ProxyLBMonitorConnectionResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

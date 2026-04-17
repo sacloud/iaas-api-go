@@ -244,10 +244,10 @@ interface CommonServiceItemOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem")
-  create(
-    @path zone: string,
-    param: CommonServiceItemCreateRequest,
-  ): AutoBackupCreateResponseEnvelope | ApiError;
+  create(@path zone: string, param: CommonServiceItemCreateRequest): {
+    @statusCode _: 201;
+    ...AutoBackupCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
@@ -266,7 +266,10 @@ interface CommonServiceItemOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/health")
@@ -309,7 +312,10 @@ interface CertificateAuthorityOp {
     @path zone: string,
     @path id: string,
     param: CertificateAuthorityAddClientParam,
-  ): CertificateAuthorityAddClientResponseEnvelope | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...CertificateAuthorityAddClientResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients")
@@ -364,7 +370,10 @@ interface CertificateAuthorityOp {
     @path zone: string,
     @path id: string,
     param: CertificateAuthorityAddServerParam,
-  ): CertificateAuthorityAddServerResponseEnvelope | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...CertificateAuthorityAddServerResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers")
@@ -434,11 +443,10 @@ interface ContainerRegistryOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
-  deleteUser(
-    @path zone: string,
-    @path id: string,
-    @path username: string,
-  ): void | ApiError;
+  deleteUser(@path zone: string, @path id: string, @path username: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }
 
 @tag("ESME")
@@ -531,7 +539,10 @@ interface ProxyLBOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
-  deleteCertificates(@path zone: string, @path id: string): void | ApiError;
+  deleteCertificates(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew")
@@ -566,7 +577,10 @@ interface SIMOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
-  clearIP(@path zone: string, @path id: string): void | ApiError;
+  clearIP(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
@@ -578,7 +592,10 @@ interface SIMOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
-  imeiUnlock(@path zone: string, @path id: string): void | ApiError;
+  imeiUnlock(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog")

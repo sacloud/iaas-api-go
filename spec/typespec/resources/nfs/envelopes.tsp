@@ -19,24 +19,9 @@ model NFSFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for nFSFindResponseEnvelope
@@ -64,7 +49,7 @@ model NFSCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: NFS;
+  Appliance: NFSCreateRequest;
 }
 /**
  * Response envelope for nFSCreateResponseEnvelope
@@ -74,7 +59,7 @@ model NFSCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -90,7 +75,7 @@ model NFSReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -105,7 +90,7 @@ model NFSUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: NFS;
+  Appliance: NFSUpdateRequest;
 }
 /**
  * Response envelope for nFSUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model NFSUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -155,7 +140,7 @@ model NFSMonitorCPUResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -185,7 +170,7 @@ model NFSMonitorFreeDiskSizeResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -215,7 +200,7 @@ model NFSMonitorInterfaceResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

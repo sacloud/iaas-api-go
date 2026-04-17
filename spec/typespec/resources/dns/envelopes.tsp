@@ -19,24 +19,9 @@ model DNSFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for dNSFindResponseEnvelope
@@ -64,7 +49,7 @@ model DNSCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: DNS;
+  CommonServiceItem: DNSCreateRequest;
 }
 /**
  * Response envelope for dNSCreateResponseEnvelope
@@ -74,7 +59,7 @@ model DNSCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model DNSReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model DNSUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: DNS;
+  CommonServiceItem: DNSUpdateRequest;
 }
 /**
  * Response envelope for dNSUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model DNSUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model DNSUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem

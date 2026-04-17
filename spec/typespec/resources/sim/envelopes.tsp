@@ -19,24 +19,9 @@ model SIMFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for sIMFindResponseEnvelope
@@ -64,7 +49,7 @@ model SIMCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SIM;
+  CommonServiceItem: SIMCreateRequest;
 }
 /**
  * Response envelope for sIMCreateResponseEnvelope
@@ -74,7 +59,7 @@ model SIMCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model SIMReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model SIMUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SIM;
+  CommonServiceItem: SIMUpdateRequest;
 }
 /**
  * Response envelope for sIMUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model SIMUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -170,7 +155,7 @@ model SIMGetNetworkOperatorResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * NetworkOperationConfigs
@@ -210,7 +195,7 @@ model SIMMonitorSIMResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -226,7 +211,7 @@ model SIMStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SIM

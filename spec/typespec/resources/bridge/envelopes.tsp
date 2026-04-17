@@ -19,24 +19,9 @@ model BridgeFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for bridgeFindResponseEnvelope
@@ -64,7 +49,7 @@ model BridgeCreateRequestEnvelope {
   /**
    * Bridge
    */
-  Bridge: Bridge;
+  Bridge: BridgeCreateRequest;
 }
 /**
  * Response envelope for bridgeCreateResponseEnvelope
@@ -74,7 +59,7 @@ model BridgeCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Bridge
@@ -90,7 +75,7 @@ model BridgeReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Bridge
@@ -105,7 +90,7 @@ model BridgeUpdateRequestEnvelope {
   /**
    * Bridge
    */
-  Bridge: Bridge;
+  Bridge: BridgeUpdateRequest;
 }
 /**
  * Response envelope for bridgeUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model BridgeUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Bridge

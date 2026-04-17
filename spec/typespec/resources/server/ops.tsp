@@ -19,10 +19,10 @@ interface ServerOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/server")
-  create(
-    @path zone: string,
-    @body body: ServerCreateRequestEnvelope,
-  ): ServerCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: ServerCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...ServerCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}")
@@ -45,7 +45,10 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     disks?: ServerDeleteWithDisksRequest,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/plan")
@@ -69,7 +72,10 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     @body body: ServerEjectCDROMRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
@@ -85,7 +91,10 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     @body body: ServerShutdownRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/reset")

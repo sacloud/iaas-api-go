@@ -19,10 +19,10 @@ interface SwitchOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/switch")
-  create(
-    @path zone: string,
-    @body body: SwitchCreateRequestEnvelope,
-  ): SwitchCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: SwitchCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...SwitchCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}")
@@ -41,7 +41,10 @@ interface SwitchOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}")
@@ -53,7 +56,10 @@ interface SwitchOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge")
-  disconnectFromBridge(@path zone: string, @path id: string): void | ApiError;
+  disconnectFromBridge(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}/server")

@@ -19,24 +19,9 @@ model AutoScaleFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for autoScaleFindResponseEnvelope
@@ -64,7 +49,7 @@ model AutoScaleCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoScale;
+  CommonServiceItem: AutoScaleCreateRequest;
 }
 /**
  * Response envelope for autoScaleCreateResponseEnvelope
@@ -74,7 +59,7 @@ model AutoScaleCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model AutoScaleReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model AutoScaleUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoScale;
+  CommonServiceItem: AutoScaleUpdateRequest;
 }
 /**
  * Response envelope for autoScaleUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model AutoScaleUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model AutoScaleUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -156,7 +141,7 @@ model AutoScaleStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * AutoScale

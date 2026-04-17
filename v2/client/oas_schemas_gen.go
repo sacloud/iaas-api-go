@@ -462,8 +462,19 @@ func (s *ApplianceOpCreateReq) SetParam(val ApplianceCreateRequest) {
 	s.Param = val
 }
 
-// ApplianceOpDeleteNoContent is response for ApplianceOpDelete operation.
-type ApplianceOpDeleteNoContent struct{}
+type ApplianceOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ApplianceOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ApplianceOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ApplianceOpFindReq struct {
 	Conditions FindCondition `json:"conditions"`
@@ -524,8 +535,19 @@ func (s *ApplianceOpMonitorInterfaceReq) SetCondition(val MonitorCondition) {
 // ApplianceOpResetNoContent is response for ApplianceOpReset operation.
 type ApplianceOpResetNoContent struct{}
 
-// ApplianceOpShutdownNoContent is response for ApplianceOpShutdown operation.
-type ApplianceOpShutdownNoContent struct{}
+type ApplianceOpShutdownOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ApplianceOpShutdownOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ApplianceOpShutdownOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ApplianceOpShutdownReq struct {
 	ShutdownOption ShutdownOption `json:"shutdownOption"`
@@ -1032,7 +1054,7 @@ type ArchiveCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1043,7 +1065,7 @@ func (s *ArchiveCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ArchiveCreateResponseEnvelope) GetSuccess() string {
+func (s *ArchiveCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1058,7 +1080,7 @@ func (s *ArchiveCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ArchiveCreateResponseEnvelope) SetSuccess(val string) {
+func (s *ArchiveCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1074,14 +1096,8 @@ type ArchiveFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter ArchiveFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -1094,24 +1110,9 @@ func (s *ArchiveFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *ArchiveFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *ArchiveFindRequestEnvelope) GetFilter() ArchiveFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *ArchiveFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *ArchiveFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -1124,24 +1125,9 @@ func (s *ArchiveFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *ArchiveFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *ArchiveFindRequestEnvelope) SetFilter(val ArchiveFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *ArchiveFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *ArchiveFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -1209,8 +1195,19 @@ func (s *ArchiveFindResponseEnvelope) SetArchives(val []Archive) {
 	s.Archives = val
 }
 
-// ArchiveOpCloseFTPNoContent is response for ArchiveOpCloseFTP operation.
-type ArchiveOpCloseFTPNoContent struct{}
+type ArchiveOpCloseFTPOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ArchiveOpCloseFTPOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ArchiveOpCloseFTPOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ArchiveOpCreateReq struct {
 	Param ArchiveCreateRequest `json:"param"`
@@ -1226,8 +1223,19 @@ func (s *ArchiveOpCreateReq) SetParam(val ArchiveCreateRequest) {
 	s.Param = val
 }
 
-// ArchiveOpDeleteNoContent is response for ArchiveOpDelete operation.
-type ArchiveOpDeleteNoContent struct{}
+type ArchiveOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ArchiveOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ArchiveOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ArchiveOpShareReq struct {
 	OpenOption OptOpenFTPRequest `json:"openOption"`
@@ -1263,7 +1271,7 @@ type ArchiveReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1274,7 +1282,7 @@ func (s *ArchiveReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ArchiveReadResponseEnvelope) GetSuccess() string {
+func (s *ArchiveReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1289,7 +1297,7 @@ func (s *ArchiveReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ArchiveReadResponseEnvelope) SetSuccess(val string) {
+func (s *ArchiveReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1319,7 +1327,7 @@ type ArchiveShareResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ArchiveShareInfo.
 	ArchiveShareInfo ArchiveShareInfo `json:"ArchiveShareInfo"`
 }
@@ -1330,7 +1338,7 @@ func (s *ArchiveShareResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ArchiveShareResponseEnvelope) GetSuccess() string {
+func (s *ArchiveShareResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1345,7 +1353,7 @@ func (s *ArchiveShareResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ArchiveShareResponseEnvelope) SetSuccess(val string) {
+func (s *ArchiveShareResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1360,7 +1368,7 @@ type ArchiveTransferResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1371,7 +1379,7 @@ func (s *ArchiveTransferResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ArchiveTransferResponseEnvelope) GetSuccess() string {
+func (s *ArchiveTransferResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1386,7 +1394,7 @@ func (s *ArchiveTransferResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ArchiveTransferResponseEnvelope) SetSuccess(val string) {
+func (s *ArchiveTransferResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1395,20 +1403,68 @@ func (s *ArchiveTransferResponseEnvelope) SetArchive(val Archive) {
 	s.Archive = val
 }
 
+// Ref: #/components/schemas/ArchiveUpdateRequest
+type ArchiveUpdateRequest struct {
+	Name        string   `json:"Name"`
+	Description string   `json:"Description"`
+	Tags        []string `json:"Tags"`
+	IconID      int64    `json:"IconID"`
+}
+
+// GetName returns the value of Name.
+func (s *ArchiveUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *ArchiveUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *ArchiveUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *ArchiveUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetName sets the value of Name.
+func (s *ArchiveUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *ArchiveUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *ArchiveUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *ArchiveUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for archiveUpdateRequestEnvelope.
 // Ref: #/components/schemas/ArchiveUpdateRequestEnvelope
 type ArchiveUpdateRequestEnvelope struct {
 	// Archive.
-	Archive Archive `json:"Archive"`
+	Archive ArchiveUpdateRequest `json:"Archive"`
 }
 
 // GetArchive returns the value of Archive.
-func (s *ArchiveUpdateRequestEnvelope) GetArchive() Archive {
+func (s *ArchiveUpdateRequestEnvelope) GetArchive() ArchiveUpdateRequest {
 	return s.Archive
 }
 
 // SetArchive sets the value of Archive.
-func (s *ArchiveUpdateRequestEnvelope) SetArchive(val Archive) {
+func (s *ArchiveUpdateRequestEnvelope) SetArchive(val ArchiveUpdateRequest) {
 	s.Archive = val
 }
 
@@ -1418,7 +1474,7 @@ type ArchiveUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1429,7 +1485,7 @@ func (s *ArchiveUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ArchiveUpdateResponseEnvelope) GetSuccess() string {
+func (s *ArchiveUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1444,7 +1500,7 @@ func (s *ArchiveUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ArchiveUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *ArchiveUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1595,7 +1651,7 @@ type AuthStatusReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// AuthStatus.
 	AuthStatus AuthStatus `json:"AuthStatus"`
 }
@@ -1606,7 +1662,7 @@ func (s *AuthStatusReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *AuthStatusReadResponseEnvelope) GetSuccess() string {
+func (s *AuthStatusReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1621,7 +1677,7 @@ func (s *AuthStatusReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *AuthStatusReadResponseEnvelope) SetSuccess(val string) {
+func (s *AuthStatusReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1805,7 +1861,7 @@ type AutoBackupCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
@@ -1816,7 +1872,7 @@ func (s *AutoBackupCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *AutoBackupCreateResponseEnvelope) GetSuccess() string {
+func (s *AutoBackupCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1831,7 +1887,7 @@ func (s *AutoBackupCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *AutoBackupCreateResponseEnvelope) SetSuccess(val string) {
+func (s *AutoBackupCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1899,7 +1955,7 @@ type AutoBackupReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
@@ -1910,7 +1966,7 @@ func (s *AutoBackupReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *AutoBackupReadResponseEnvelope) GetSuccess() string {
+func (s *AutoBackupReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1925,7 +1981,7 @@ func (s *AutoBackupReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *AutoBackupReadResponseEnvelope) SetSuccess(val string) {
+func (s *AutoBackupReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -1940,7 +1996,7 @@ type AutoBackupUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
@@ -1951,7 +2007,7 @@ func (s *AutoBackupUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *AutoBackupUpdateResponseEnvelope) GetSuccess() string {
+func (s *AutoBackupUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -1966,7 +2022,7 @@ func (s *AutoBackupUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *AutoBackupUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *AutoBackupUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -2135,7 +2191,7 @@ type AutoScaleStatusResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// AutoScale.
 	AutoScale AutoScaleStatus `json:"AutoScale"`
 }
@@ -2146,7 +2202,7 @@ func (s *AutoScaleStatusResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *AutoScaleStatusResponseEnvelope) GetSuccess() string {
+func (s *AutoScaleStatusResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -2161,7 +2217,7 @@ func (s *AutoScaleStatusResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *AutoScaleStatusResponseEnvelope) SetSuccess(val string) {
+func (s *AutoScaleStatusResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -2636,7 +2692,7 @@ type BillDetailsCSVResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CSV.
 	CSV BillDetailCSV `json:"CSV"`
 }
@@ -2647,7 +2703,7 @@ func (s *BillDetailsCSVResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *BillDetailsCSVResponseEnvelope) GetSuccess() string {
+func (s *BillDetailsCSVResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -2662,7 +2718,7 @@ func (s *BillDetailsCSVResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *BillDetailsCSVResponseEnvelope) SetSuccess(val string) {
+func (s *BillDetailsCSVResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -2858,20 +2914,46 @@ func (s *Bridge) SetSwitchInZone(val BridgeSwitchInfo) {
 	s.SwitchInZone = val
 }
 
+// Ref: #/components/schemas/BridgeCreateRequest
+type BridgeCreateRequest struct {
+	Name        string `json:"Name"`
+	Description string `json:"Description"`
+}
+
+// GetName returns the value of Name.
+func (s *BridgeCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *BridgeCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// SetName sets the value of Name.
+func (s *BridgeCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *BridgeCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
 // Request envelope for bridgeCreateRequestEnvelope.
 // Ref: #/components/schemas/BridgeCreateRequestEnvelope
 type BridgeCreateRequestEnvelope struct {
 	// Bridge.
-	Bridge Bridge `json:"Bridge"`
+	Bridge BridgeCreateRequest `json:"Bridge"`
 }
 
 // GetBridge returns the value of Bridge.
-func (s *BridgeCreateRequestEnvelope) GetBridge() Bridge {
+func (s *BridgeCreateRequestEnvelope) GetBridge() BridgeCreateRequest {
 	return s.Bridge
 }
 
 // SetBridge sets the value of Bridge.
-func (s *BridgeCreateRequestEnvelope) SetBridge(val Bridge) {
+func (s *BridgeCreateRequestEnvelope) SetBridge(val BridgeCreateRequest) {
 	s.Bridge = val
 }
 
@@ -2881,7 +2963,7 @@ type BridgeCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Bridge.
 	Bridge Bridge `json:"Bridge"`
 }
@@ -2892,7 +2974,7 @@ func (s *BridgeCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *BridgeCreateResponseEnvelope) GetSuccess() string {
+func (s *BridgeCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -2907,7 +2989,7 @@ func (s *BridgeCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *BridgeCreateResponseEnvelope) SetSuccess(val string) {
+func (s *BridgeCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -2923,14 +3005,8 @@ type BridgeFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter BridgeFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -2943,24 +3019,9 @@ func (s *BridgeFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *BridgeFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *BridgeFindRequestEnvelope) GetFilter() BridgeFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *BridgeFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *BridgeFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -2973,24 +3034,9 @@ func (s *BridgeFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *BridgeFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *BridgeFindRequestEnvelope) SetFilter(val BridgeFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *BridgeFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *BridgeFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -3106,8 +3152,19 @@ func (s *BridgeInfo) SetZoneName(val string) {
 	s.ZoneName = val
 }
 
-// BridgeOpDeleteNoContent is response for BridgeOpDelete operation.
-type BridgeOpDeleteNoContent struct{}
+type BridgeOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *BridgeOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *BridgeOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for bridgeReadResponseEnvelope.
 // Ref: #/components/schemas/BridgeReadResponseEnvelope
@@ -3115,7 +3172,7 @@ type BridgeReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Bridge.
 	Bridge Bridge `json:"Bridge"`
 }
@@ -3126,7 +3183,7 @@ func (s *BridgeReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *BridgeReadResponseEnvelope) GetSuccess() string {
+func (s *BridgeReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3141,7 +3198,7 @@ func (s *BridgeReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *BridgeReadResponseEnvelope) SetSuccess(val string) {
+func (s *BridgeReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -3209,20 +3266,46 @@ func (s *BridgeSwitchInfo) SetApplianceCount(val int32) {
 	s.ApplianceCount = val
 }
 
+// Ref: #/components/schemas/BridgeUpdateRequest
+type BridgeUpdateRequest struct {
+	Name        string `json:"Name"`
+	Description string `json:"Description"`
+}
+
+// GetName returns the value of Name.
+func (s *BridgeUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *BridgeUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// SetName sets the value of Name.
+func (s *BridgeUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *BridgeUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
 // Request envelope for bridgeUpdateRequestEnvelope.
 // Ref: #/components/schemas/BridgeUpdateRequestEnvelope
 type BridgeUpdateRequestEnvelope struct {
 	// Bridge.
-	Bridge Bridge `json:"Bridge"`
+	Bridge BridgeUpdateRequest `json:"Bridge"`
 }
 
 // GetBridge returns the value of Bridge.
-func (s *BridgeUpdateRequestEnvelope) GetBridge() Bridge {
+func (s *BridgeUpdateRequestEnvelope) GetBridge() BridgeUpdateRequest {
 	return s.Bridge
 }
 
 // SetBridge sets the value of Bridge.
-func (s *BridgeUpdateRequestEnvelope) SetBridge(val Bridge) {
+func (s *BridgeUpdateRequestEnvelope) SetBridge(val BridgeUpdateRequest) {
 	s.Bridge = val
 }
 
@@ -3232,7 +3315,7 @@ type BridgeUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Bridge.
 	Bridge Bridge `json:"Bridge"`
 }
@@ -3243,7 +3326,7 @@ func (s *BridgeUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *BridgeUpdateResponseEnvelope) GetSuccess() string {
+func (s *BridgeUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3258,7 +3341,7 @@ func (s *BridgeUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *BridgeUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *BridgeUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -3440,20 +3523,79 @@ func (s *CDROM) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
+// Ref: #/components/schemas/CDROMCreateRequest
+type CDROMCreateRequest struct {
+	SizeMB      int32    `json:"SizeMB"`
+	Name        string   `json:"Name"`
+	Description string   `json:"Description"`
+	Tags        []string `json:"Tags"`
+	IconID      int64    `json:"IconID"`
+}
+
+// GetSizeMB returns the value of SizeMB.
+func (s *CDROMCreateRequest) GetSizeMB() int32 {
+	return s.SizeMB
+}
+
+// GetName returns the value of Name.
+func (s *CDROMCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *CDROMCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *CDROMCreateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *CDROMCreateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetSizeMB sets the value of SizeMB.
+func (s *CDROMCreateRequest) SetSizeMB(val int32) {
+	s.SizeMB = val
+}
+
+// SetName sets the value of Name.
+func (s *CDROMCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *CDROMCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *CDROMCreateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *CDROMCreateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for cDROMCreateRequestEnvelope.
 // Ref: #/components/schemas/CDROMCreateRequestEnvelope
 type CDROMCreateRequestEnvelope struct {
 	// CDROM.
-	CDROM CDROM `json:"CDROM"`
+	CDROM CDROMCreateRequest `json:"CDROM"`
 }
 
 // GetCDROM returns the value of CDROM.
-func (s *CDROMCreateRequestEnvelope) GetCDROM() CDROM {
+func (s *CDROMCreateRequestEnvelope) GetCDROM() CDROMCreateRequest {
 	return s.CDROM
 }
 
 // SetCDROM sets the value of CDROM.
-func (s *CDROMCreateRequestEnvelope) SetCDROM(val CDROM) {
+func (s *CDROMCreateRequestEnvelope) SetCDROM(val CDROMCreateRequest) {
 	s.CDROM = val
 }
 
@@ -3463,7 +3605,7 @@ type CDROMCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CDROM.
 	CDROM CDROM `json:"CDROM"`
 	// FTPServer.
@@ -3476,7 +3618,7 @@ func (s *CDROMCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CDROMCreateResponseEnvelope) GetSuccess() string {
+func (s *CDROMCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3496,7 +3638,7 @@ func (s *CDROMCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CDROMCreateResponseEnvelope) SetSuccess(val string) {
+func (s *CDROMCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -3517,14 +3659,8 @@ type CDROMFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter CDROMFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -3537,24 +3673,9 @@ func (s *CDROMFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *CDROMFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *CDROMFindRequestEnvelope) GetFilter() CDROMFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *CDROMFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *CDROMFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -3567,24 +3688,9 @@ func (s *CDROMFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *CDROMFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *CDROMFindRequestEnvelope) SetFilter(val CDROMFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *CDROMFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *CDROMFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -3652,11 +3758,33 @@ func (s *CDROMFindResponseEnvelope) SetCDROMs(val []CDROM) {
 	s.CDROMs = val
 }
 
-// CDROMOpCloseFTPNoContent is response for CDROMOpCloseFTP operation.
-type CDROMOpCloseFTPNoContent struct{}
+type CDROMOpCloseFTPOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// CDROMOpDeleteNoContent is response for CDROMOpDelete operation.
-type CDROMOpDeleteNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *CDROMOpCloseFTPOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CDROMOpCloseFTPOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type CDROMOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CDROMOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CDROMOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Request envelope for cDROMOpenFTPRequestEnvelope.
 // Ref: #/components/schemas/CDROMOpenFTPRequestEnvelope
@@ -3681,7 +3809,7 @@ type CDROMOpenFTPResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// FTPServer.
 	FTPServer FTPServer `json:"FTPServer"`
 }
@@ -3692,7 +3820,7 @@ func (s *CDROMOpenFTPResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CDROMOpenFTPResponseEnvelope) GetSuccess() string {
+func (s *CDROMOpenFTPResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3707,7 +3835,7 @@ func (s *CDROMOpenFTPResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CDROMOpenFTPResponseEnvelope) SetSuccess(val string) {
+func (s *CDROMOpenFTPResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -3722,7 +3850,7 @@ type CDROMReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CDROM.
 	CDROM CDROM `json:"CDROM"`
 }
@@ -3733,7 +3861,7 @@ func (s *CDROMReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CDROMReadResponseEnvelope) GetSuccess() string {
+func (s *CDROMReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3748,7 +3876,7 @@ func (s *CDROMReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CDROMReadResponseEnvelope) SetSuccess(val string) {
+func (s *CDROMReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -3757,20 +3885,68 @@ func (s *CDROMReadResponseEnvelope) SetCDROM(val CDROM) {
 	s.CDROM = val
 }
 
+// Ref: #/components/schemas/CDROMUpdateRequest
+type CDROMUpdateRequest struct {
+	Name        string   `json:"Name"`
+	Description string   `json:"Description"`
+	Tags        []string `json:"Tags"`
+	IconID      int64    `json:"IconID"`
+}
+
+// GetName returns the value of Name.
+func (s *CDROMUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *CDROMUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *CDROMUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *CDROMUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetName sets the value of Name.
+func (s *CDROMUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *CDROMUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *CDROMUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *CDROMUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for cDROMUpdateRequestEnvelope.
 // Ref: #/components/schemas/CDROMUpdateRequestEnvelope
 type CDROMUpdateRequestEnvelope struct {
 	// CDROM.
-	CDROM CDROM `json:"CDROM"`
+	CDROM CDROMUpdateRequest `json:"CDROM"`
 }
 
 // GetCDROM returns the value of CDROM.
-func (s *CDROMUpdateRequestEnvelope) GetCDROM() CDROM {
+func (s *CDROMUpdateRequestEnvelope) GetCDROM() CDROMUpdateRequest {
 	return s.CDROM
 }
 
 // SetCDROM sets the value of CDROM.
-func (s *CDROMUpdateRequestEnvelope) SetCDROM(val CDROM) {
+func (s *CDROMUpdateRequestEnvelope) SetCDROM(val CDROMUpdateRequest) {
 	s.CDROM = val
 }
 
@@ -3780,7 +3956,7 @@ type CDROMUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CDROM.
 	CDROM CDROM `json:"CDROM"`
 }
@@ -3791,7 +3967,7 @@ func (s *CDROMUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CDROMUpdateResponseEnvelope) GetSuccess() string {
+func (s *CDROMUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3806,7 +3982,7 @@ func (s *CDROMUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CDROMUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *CDROMUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -3939,7 +4115,7 @@ type CertificateAuthorityAddClientResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityAddClientOrServerResult `json:"CertificateAuthority"`
 }
@@ -3950,7 +4126,7 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CertificateAuthorityAddClientResponseEnvelope) GetSuccess() string {
+func (s *CertificateAuthorityAddClientResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -3965,7 +4141,7 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CertificateAuthorityAddClientResponseEnvelope) SetSuccess(val string) {
+func (s *CertificateAuthorityAddClientResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -4072,7 +4248,7 @@ type CertificateAuthorityAddServerResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityAddClientOrServerResult `json:"CertificateAuthority"`
 }
@@ -4083,7 +4259,7 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CertificateAuthorityAddServerResponseEnvelope) GetSuccess() string {
+func (s *CertificateAuthorityAddServerResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -4098,7 +4274,7 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CertificateAuthorityAddServerResponseEnvelope) SetSuccess(val string) {
+func (s *CertificateAuthorityAddServerResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -4220,7 +4396,7 @@ type CertificateAuthorityDetailResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityDetail `json:"CertificateAuthority"`
 }
@@ -4231,7 +4407,7 @@ func (s *CertificateAuthorityDetailResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CertificateAuthorityDetailResponseEnvelope) GetSuccess() string {
+func (s *CertificateAuthorityDetailResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -4246,7 +4422,7 @@ func (s *CertificateAuthorityDetailResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CertificateAuthorityDetailResponseEnvelope) SetSuccess(val string) {
+func (s *CertificateAuthorityDetailResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -4416,7 +4592,7 @@ type CertificateAuthorityReadClientResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityClient `json:"CertificateAuthority"`
 }
@@ -4427,7 +4603,7 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CertificateAuthorityReadClientResponseEnvelope) GetSuccess() string {
+func (s *CertificateAuthorityReadClientResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -4442,7 +4618,7 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CertificateAuthorityReadClientResponseEnvelope) SetSuccess(val string) {
+func (s *CertificateAuthorityReadClientResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -4457,7 +4633,7 @@ type CertificateAuthorityReadServerResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityServer `json:"CertificateAuthority"`
 }
@@ -4468,7 +4644,7 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *CertificateAuthorityReadServerResponseEnvelope) GetSuccess() string {
+func (s *CertificateAuthorityReadServerResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -4483,7 +4659,7 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *CertificateAuthorityReadServerResponseEnvelope) SetSuccess(val string) {
+func (s *CertificateAuthorityReadServerResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -5582,8 +5758,19 @@ func (s *CommonServiceItemOpCreateReq) SetParam(val CommonServiceItemCreateReque
 	s.Param = val
 }
 
-// CommonServiceItemOpDeleteNoContent is response for CommonServiceItemOpDelete operation.
-type CommonServiceItemOpDeleteNoContent struct{}
+type CommonServiceItemOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CommonServiceItemOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CommonServiceItemOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type CommonServiceItemOpFindReq struct {
 	Conditions FindCondition `json:"conditions"`
@@ -6387,13 +6574,39 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetInco
 	s.IncomingWebhooksURL = val
 }
 
+// Ref: #/components/schemas/ConnectedSwitch
+type ConnectedSwitch struct {
+	ID    int64  `json:"ID"`
+	Scope EScope `json:"Scope"`
+}
+
+// GetID returns the value of ID.
+func (s *ConnectedSwitch) GetID() int64 {
+	return s.ID
+}
+
+// GetScope returns the value of Scope.
+func (s *ConnectedSwitch) GetScope() EScope {
+	return s.Scope
+}
+
+// SetID sets the value of ID.
+func (s *ConnectedSwitch) SetID(val int64) {
+	s.ID = val
+}
+
+// SetScope sets the value of Scope.
+func (s *ConnectedSwitch) SetScope(val EScope) {
+	s.Scope = val
+}
+
 // Response envelope for containerRegistryListUsersResponseEnvelope.
 // Ref: #/components/schemas/ContainerRegistryListUsersResponseEnvelope
 type ContainerRegistryListUsersResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ContainerRegistry.
 	ContainerRegistry ContainerRegistryUsers `json:"ContainerRegistry"`
 }
@@ -6404,7 +6617,7 @@ func (s *ContainerRegistryListUsersResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ContainerRegistryListUsersResponseEnvelope) GetSuccess() string {
+func (s *ContainerRegistryListUsersResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -6419,7 +6632,7 @@ func (s *ContainerRegistryListUsersResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ContainerRegistryListUsersResponseEnvelope) SetSuccess(val string) {
+func (s *ContainerRegistryListUsersResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -6445,8 +6658,19 @@ func (s *ContainerRegistryOpAddUserReq) SetParam(val ContainerRegistryUserCreate
 	s.Param = val
 }
 
-// ContainerRegistryOpDeleteUserNoContent is response for ContainerRegistryOpDeleteUser operation.
-type ContainerRegistryOpDeleteUserNoContent struct{}
+type ContainerRegistryOpDeleteUserOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ContainerRegistryOpDeleteUserOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ContainerRegistryOpDeleteUserOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // ContainerRegistryOpUpdateUserNoContent is response for ContainerRegistryOpUpdateUser operation.
 type ContainerRegistryOpUpdateUserNoContent struct{}
@@ -7128,7 +7352,7 @@ type DatabaseCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Appliance.
 	Appliance Database `json:"Appliance"`
 }
@@ -7139,7 +7363,7 @@ func (s *DatabaseCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseCreateResponseEnvelope) GetSuccess() string {
+func (s *DatabaseCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7154,7 +7378,7 @@ func (s *DatabaseCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseCreateResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -7248,7 +7472,7 @@ type DatabaseGetParameterResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Database.
 	Database DatabaseParameter `json:"Database"`
 }
@@ -7259,7 +7483,7 @@ func (s *DatabaseGetParameterResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseGetParameterResponseEnvelope) GetSuccess() string {
+func (s *DatabaseGetParameterResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7274,7 +7498,7 @@ func (s *DatabaseGetParameterResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseGetParameterResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseGetParameterResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -7326,7 +7550,7 @@ type DatabaseMonitorCPUResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7337,7 +7561,7 @@ func (s *DatabaseMonitorCPUResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseMonitorCPUResponseEnvelope) GetSuccess() string {
+func (s *DatabaseMonitorCPUResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7352,7 +7576,7 @@ func (s *DatabaseMonitorCPUResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseMonitorCPUResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseMonitorCPUResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -7367,7 +7591,7 @@ type DatabaseMonitorDatabaseResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7378,7 +7602,7 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseMonitorDatabaseResponseEnvelope) GetSuccess() string {
+func (s *DatabaseMonitorDatabaseResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7393,7 +7617,7 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseMonitorDatabaseResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseMonitorDatabaseResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -7408,7 +7632,7 @@ type DatabaseMonitorDiskResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7419,7 +7643,7 @@ func (s *DatabaseMonitorDiskResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseMonitorDiskResponseEnvelope) GetSuccess() string {
+func (s *DatabaseMonitorDiskResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7434,7 +7658,7 @@ func (s *DatabaseMonitorDiskResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseMonitorDiskResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseMonitorDiskResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -7449,7 +7673,7 @@ type DatabaseMonitorInterfaceResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7460,7 +7684,7 @@ func (s *DatabaseMonitorInterfaceResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseMonitorInterfaceResponseEnvelope) GetSuccess() string {
+func (s *DatabaseMonitorInterfaceResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7475,7 +7699,7 @@ func (s *DatabaseMonitorInterfaceResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseMonitorInterfaceResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseMonitorInterfaceResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -7672,7 +7896,7 @@ type DatabaseReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Appliance.
 	Appliance Database `json:"Appliance"`
 }
@@ -7683,7 +7907,7 @@ func (s *DatabaseReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseReadResponseEnvelope) GetSuccess() string {
+func (s *DatabaseReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -7698,7 +7922,7 @@ func (s *DatabaseReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseReadResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -8137,7 +8361,7 @@ type DatabaseStatusResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Appliance.
 	Appliance DatabaseStatus `json:"Appliance"`
 }
@@ -8148,7 +8372,7 @@ func (s *DatabaseStatusResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseStatusResponseEnvelope) GetSuccess() string {
+func (s *DatabaseStatusResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -8163,7 +8387,7 @@ func (s *DatabaseStatusResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseStatusResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseStatusResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -8178,7 +8402,7 @@ type DatabaseUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Appliance.
 	Appliance Database `json:"Appliance"`
 }
@@ -8189,7 +8413,7 @@ func (s *DatabaseUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DatabaseUpdateResponseEnvelope) GetSuccess() string {
+func (s *DatabaseUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -8204,7 +8428,7 @@ func (s *DatabaseUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DatabaseUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *DatabaseUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -8841,7 +9065,7 @@ type DiskCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Disk.
 	Disk Disk `json:"Disk"`
 }
@@ -8852,7 +9076,7 @@ func (s *DiskCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DiskCreateResponseEnvelope) GetSuccess() string {
+func (s *DiskCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -8867,7 +9091,7 @@ func (s *DiskCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DiskCreateResponseEnvelope) SetSuccess(val string) {
+func (s *DiskCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -9108,14 +9332,8 @@ type DiskFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter DiskFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -9128,24 +9346,9 @@ func (s *DiskFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *DiskFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *DiskFindRequestEnvelope) GetFilter() DiskFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *DiskFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *DiskFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -9158,24 +9361,9 @@ func (s *DiskFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *DiskFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *DiskFindRequestEnvelope) SetFilter(val DiskFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *DiskFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *DiskFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -9249,7 +9437,7 @@ type DiskMonitorResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -9260,7 +9448,7 @@ func (s *DiskMonitorResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DiskMonitorResponseEnvelope) GetSuccess() string {
+func (s *DiskMonitorResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -9275,7 +9463,7 @@ func (s *DiskMonitorResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DiskMonitorResponseEnvelope) SetSuccess(val string) {
+func (s *DiskMonitorResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -9359,11 +9547,33 @@ func (s *DiskOpCreateReq) SetBootAtAvailable(val OptBool) {
 	s.BootAtAvailable = val
 }
 
-// DiskOpDeleteNoContent is response for DiskOpDelete operation.
-type DiskOpDeleteNoContent struct{}
+type DiskOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// DiskOpDisconnectFromServerNoContent is response for DiskOpDisconnectFromServer operation.
-type DiskOpDisconnectFromServerNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *DiskOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *DiskOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type DiskOpDisconnectFromServerOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *DiskOpDisconnectFromServerOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *DiskOpDisconnectFromServerOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type DiskOpMonitorReq struct {
 	Condition MonitorCondition `json:"condition"`
@@ -9448,14 +9658,8 @@ type DiskPlanFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter DiskPlanFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -9468,24 +9672,9 @@ func (s *DiskPlanFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *DiskPlanFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *DiskPlanFindRequestEnvelope) GetFilter() DiskPlanFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *DiskPlanFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *DiskPlanFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -9498,24 +9687,9 @@ func (s *DiskPlanFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *DiskPlanFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *DiskPlanFindRequestEnvelope) SetFilter(val DiskPlanFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *DiskPlanFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *DiskPlanFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -9589,7 +9763,7 @@ type DiskPlanReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// DiskPlan.
 	DiskPlan DiskPlan `json:"DiskPlan"`
 }
@@ -9600,7 +9774,7 @@ func (s *DiskPlanReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DiskPlanReadResponseEnvelope) GetSuccess() string {
+func (s *DiskPlanReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -9615,7 +9789,7 @@ func (s *DiskPlanReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DiskPlanReadResponseEnvelope) SetSuccess(val string) {
+func (s *DiskPlanReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -9678,7 +9852,7 @@ type DiskReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Disk.
 	Disk Disk `json:"Disk"`
 }
@@ -9689,7 +9863,7 @@ func (s *DiskReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DiskReadResponseEnvelope) GetSuccess() string {
+func (s *DiskReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -9704,7 +9878,7 @@ func (s *DiskReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DiskReadResponseEnvelope) SetSuccess(val string) {
+func (s *DiskReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -9730,20 +9904,79 @@ func (s *DiskResizePartitionRequestEnvelope) SetBackground(val bool) {
 	s.Background = val
 }
 
+// Ref: #/components/schemas/DiskUpdateRequest
+type DiskUpdateRequest struct {
+	Name        string          `json:"Name"`
+	Description string          `json:"Description"`
+	Tags        []string        `json:"Tags"`
+	IconID      int64           `json:"IconID"`
+	Connection  EDiskConnection `json:"Connection"`
+}
+
+// GetName returns the value of Name.
+func (s *DiskUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *DiskUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *DiskUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *DiskUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// GetConnection returns the value of Connection.
+func (s *DiskUpdateRequest) GetConnection() EDiskConnection {
+	return s.Connection
+}
+
+// SetName sets the value of Name.
+func (s *DiskUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *DiskUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *DiskUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *DiskUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
+// SetConnection sets the value of Connection.
+func (s *DiskUpdateRequest) SetConnection(val EDiskConnection) {
+	s.Connection = val
+}
+
 // Request envelope for diskUpdateRequestEnvelope.
 // Ref: #/components/schemas/DiskUpdateRequestEnvelope
 type DiskUpdateRequestEnvelope struct {
 	// Disk.
-	Disk Disk `json:"Disk"`
+	Disk DiskUpdateRequest `json:"Disk"`
 }
 
 // GetDisk returns the value of Disk.
-func (s *DiskUpdateRequestEnvelope) GetDisk() Disk {
+func (s *DiskUpdateRequestEnvelope) GetDisk() DiskUpdateRequest {
 	return s.Disk
 }
 
 // SetDisk sets the value of Disk.
-func (s *DiskUpdateRequestEnvelope) SetDisk(val Disk) {
+func (s *DiskUpdateRequestEnvelope) SetDisk(val DiskUpdateRequest) {
 	s.Disk = val
 }
 
@@ -9753,7 +9986,7 @@ type DiskUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Disk.
 	Disk Disk `json:"Disk"`
 }
@@ -9764,7 +9997,7 @@ func (s *DiskUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *DiskUpdateResponseEnvelope) GetSuccess() string {
+func (s *DiskUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -9779,7 +10012,7 @@ func (s *DiskUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *DiskUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *DiskUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10002,7 +10235,7 @@ type ESMELogsResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ESME.
 	ESME ESMELogs `json:"ESME"`
 }
@@ -10013,7 +10246,7 @@ func (s *ESMELogsResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ESMELogsResponseEnvelope) GetSuccess() string {
+func (s *ESMELogsResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10028,7 +10261,7 @@ func (s *ESMELogsResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ESMELogsResponseEnvelope) SetSuccess(val string) {
+func (s *ESMELogsResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10145,7 +10378,7 @@ type ESMESendMessageWithGeneratedOTPResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ESME.
 	ESME ESMESendMessageResult `json:"ESME"`
 }
@@ -10156,7 +10389,7 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) GetSuccess() string {
+func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10171,7 +10404,7 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetSuccess(val string) {
+func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10234,7 +10467,7 @@ type ESMESendMessageWithInputtedOTPResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ESME.
 	ESME ESMESendMessageResult `json:"ESME"`
 }
@@ -10245,7 +10478,7 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) GetSuccess() string {
+func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10260,7 +10493,7 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetSuccess(val string) {
+func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10280,6 +10513,21 @@ type ESimpleMonitorProtocol string
 type ESimpleNotificationDestinationTypes string
 
 type EUpstreamNetworkType string
+
+// Ref: #/components/schemas/EjectCDROMRequest
+type EjectCDROMRequest struct {
+	ID int64 `json:"ID"`
+}
+
+// GetID returns the value of ID.
+func (s *EjectCDROMRequest) GetID() int64 {
+	return s.ID
+}
+
+// SetID sets the value of ID.
+func (s *EjectCDROMRequest) SetID(val int64) {
+	s.ID = val
+}
 
 // Ref: #/components/schemas/EnhancedDBConfig
 type EnhancedDBConfig struct {
@@ -10313,7 +10561,7 @@ type EnhancedDBGetConfigResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// EnhancedDB.
 	EnhancedDB EnhancedDBConfig `json:"EnhancedDB"`
 }
@@ -10324,7 +10572,7 @@ func (s *EnhancedDBGetConfigResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *EnhancedDBGetConfigResponseEnvelope) GetSuccess() string {
+func (s *EnhancedDBGetConfigResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10339,7 +10587,7 @@ func (s *EnhancedDBGetConfigResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *EnhancedDBGetConfigResponseEnvelope) SetSuccess(val string) {
+func (s *EnhancedDBGetConfigResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10717,7 +10965,7 @@ type IPAddressReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPAddress.
 	IPAddress IPAddress `json:"IPAddress"`
 }
@@ -10728,7 +10976,7 @@ func (s *IPAddressReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IPAddressReadResponseEnvelope) GetSuccess() string {
+func (s *IPAddressReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10743,7 +10991,7 @@ func (s *IPAddressReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IPAddressReadResponseEnvelope) SetSuccess(val string) {
+func (s *IPAddressReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10775,7 +11023,7 @@ type IPAddressUpdateHostNameResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPAddress.
 	IPAddress IPAddress `json:"IPAddress"`
 }
@@ -10786,7 +11034,7 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IPAddressUpdateHostNameResponseEnvelope) GetSuccess() string {
+func (s *IPAddressUpdateHostNameResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10801,7 +11049,7 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IPAddressUpdateHostNameResponseEnvelope) SetSuccess(val string) {
+func (s *IPAddressUpdateHostNameResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10869,20 +11117,46 @@ func (s *IPv6Addr) SetInterfaceID(val int64) {
 	s.InterfaceID = val
 }
 
+// Ref: #/components/schemas/IPv6AddrCreateRequest
+type IPv6AddrCreateRequest struct {
+	IPv6Addr string `json:"IPv6Addr"`
+	HostName string `json:"HostName"`
+}
+
+// GetIPv6Addr returns the value of IPv6Addr.
+func (s *IPv6AddrCreateRequest) GetIPv6Addr() string {
+	return s.IPv6Addr
+}
+
+// GetHostName returns the value of HostName.
+func (s *IPv6AddrCreateRequest) GetHostName() string {
+	return s.HostName
+}
+
+// SetIPv6Addr sets the value of IPv6Addr.
+func (s *IPv6AddrCreateRequest) SetIPv6Addr(val string) {
+	s.IPv6Addr = val
+}
+
+// SetHostName sets the value of HostName.
+func (s *IPv6AddrCreateRequest) SetHostName(val string) {
+	s.HostName = val
+}
+
 // Request envelope for iPv6AddrCreateRequestEnvelope.
 // Ref: #/components/schemas/IPv6AddrCreateRequestEnvelope
 type IPv6AddrCreateRequestEnvelope struct {
 	// IPv6Addr.
-	IPv6Addr IPv6Addr `json:"IPv6Addr"`
+	IPv6Addr IPv6AddrCreateRequest `json:"IPv6Addr"`
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
-func (s *IPv6AddrCreateRequestEnvelope) GetIPv6Addr() IPv6Addr {
+func (s *IPv6AddrCreateRequestEnvelope) GetIPv6Addr() IPv6AddrCreateRequest {
 	return s.IPv6Addr
 }
 
 // SetIPv6Addr sets the value of IPv6Addr.
-func (s *IPv6AddrCreateRequestEnvelope) SetIPv6Addr(val IPv6Addr) {
+func (s *IPv6AddrCreateRequestEnvelope) SetIPv6Addr(val IPv6AddrCreateRequest) {
 	s.IPv6Addr = val
 }
 
@@ -10892,7 +11166,7 @@ type IPv6AddrCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPv6Addr.
 	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
@@ -10903,7 +11177,7 @@ func (s *IPv6AddrCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IPv6AddrCreateResponseEnvelope) GetSuccess() string {
+func (s *IPv6AddrCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -10918,7 +11192,7 @@ func (s *IPv6AddrCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IPv6AddrCreateResponseEnvelope) SetSuccess(val string) {
+func (s *IPv6AddrCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -10934,14 +11208,8 @@ type IPv6AddrFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter IPv6AddrFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -10954,24 +11222,9 @@ func (s *IPv6AddrFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *IPv6AddrFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *IPv6AddrFindRequestEnvelope) GetFilter() IPv6AddrFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *IPv6AddrFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *IPv6AddrFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -10984,24 +11237,9 @@ func (s *IPv6AddrFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *IPv6AddrFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *IPv6AddrFindRequestEnvelope) SetFilter(val IPv6AddrFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *IPv6AddrFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *IPv6AddrFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -11069,8 +11307,19 @@ func (s *IPv6AddrFindResponseEnvelope) SetIPv6Addrs(val []IPv6Addr) {
 	s.IPv6Addrs = val
 }
 
-// IPv6AddrOpDeleteNoContent is response for IPv6AddrOpDelete operation.
-type IPv6AddrOpDeleteNoContent struct{}
+type IPv6AddrOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *IPv6AddrOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *IPv6AddrOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for iPv6AddrReadResponseEnvelope.
 // Ref: #/components/schemas/IPv6AddrReadResponseEnvelope
@@ -11078,7 +11327,7 @@ type IPv6AddrReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPv6Addr.
 	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
@@ -11089,7 +11338,7 @@ func (s *IPv6AddrReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IPv6AddrReadResponseEnvelope) GetSuccess() string {
+func (s *IPv6AddrReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11104,7 +11353,7 @@ func (s *IPv6AddrReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IPv6AddrReadResponseEnvelope) SetSuccess(val string) {
+func (s *IPv6AddrReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11113,20 +11362,35 @@ func (s *IPv6AddrReadResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 	s.IPv6Addr = val
 }
 
+// Ref: #/components/schemas/IPv6AddrUpdateRequest
+type IPv6AddrUpdateRequest struct {
+	HostName string `json:"HostName"`
+}
+
+// GetHostName returns the value of HostName.
+func (s *IPv6AddrUpdateRequest) GetHostName() string {
+	return s.HostName
+}
+
+// SetHostName sets the value of HostName.
+func (s *IPv6AddrUpdateRequest) SetHostName(val string) {
+	s.HostName = val
+}
+
 // Request envelope for iPv6AddrUpdateRequestEnvelope.
 // Ref: #/components/schemas/IPv6AddrUpdateRequestEnvelope
 type IPv6AddrUpdateRequestEnvelope struct {
 	// IPv6Addr.
-	IPv6Addr IPv6Addr `json:"IPv6Addr"`
+	IPv6Addr IPv6AddrUpdateRequest `json:"IPv6Addr"`
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
-func (s *IPv6AddrUpdateRequestEnvelope) GetIPv6Addr() IPv6Addr {
+func (s *IPv6AddrUpdateRequestEnvelope) GetIPv6Addr() IPv6AddrUpdateRequest {
 	return s.IPv6Addr
 }
 
 // SetIPv6Addr sets the value of IPv6Addr.
-func (s *IPv6AddrUpdateRequestEnvelope) SetIPv6Addr(val IPv6Addr) {
+func (s *IPv6AddrUpdateRequestEnvelope) SetIPv6Addr(val IPv6AddrUpdateRequest) {
 	s.IPv6Addr = val
 }
 
@@ -11136,7 +11400,7 @@ type IPv6AddrUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPv6Addr.
 	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
@@ -11147,7 +11411,7 @@ func (s *IPv6AddrUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IPv6AddrUpdateResponseEnvelope) GetSuccess() string {
+func (s *IPv6AddrUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11162,7 +11426,7 @@ func (s *IPv6AddrUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IPv6AddrUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *IPv6AddrUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11281,7 +11545,7 @@ type IPv6NetReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPv6Net.
 	IPv6Net IPv6NetInfo `json:"IPv6Net"`
 }
@@ -11292,7 +11556,7 @@ func (s *IPv6NetReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IPv6NetReadResponseEnvelope) GetSuccess() string {
+func (s *IPv6NetReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11307,7 +11571,7 @@ func (s *IPv6NetReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IPv6NetReadResponseEnvelope) SetSuccess(val string) {
+func (s *IPv6NetReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11408,20 +11672,57 @@ func (s *Icon) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
+// Ref: #/components/schemas/IconCreateRequest
+type IconCreateRequest struct {
+	Name  string   `json:"Name"`
+	Tags  []string `json:"Tags"`
+	Image string   `json:"Image"`
+}
+
+// GetName returns the value of Name.
+func (s *IconCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetTags returns the value of Tags.
+func (s *IconCreateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetImage returns the value of Image.
+func (s *IconCreateRequest) GetImage() string {
+	return s.Image
+}
+
+// SetName sets the value of Name.
+func (s *IconCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetTags sets the value of Tags.
+func (s *IconCreateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetImage sets the value of Image.
+func (s *IconCreateRequest) SetImage(val string) {
+	s.Image = val
+}
+
 // Request envelope for iconCreateRequestEnvelope.
 // Ref: #/components/schemas/IconCreateRequestEnvelope
 type IconCreateRequestEnvelope struct {
 	// Icon.
-	Icon Icon `json:"Icon"`
+	Icon IconCreateRequest `json:"Icon"`
 }
 
 // GetIcon returns the value of Icon.
-func (s *IconCreateRequestEnvelope) GetIcon() Icon {
+func (s *IconCreateRequestEnvelope) GetIcon() IconCreateRequest {
 	return s.Icon
 }
 
 // SetIcon sets the value of Icon.
-func (s *IconCreateRequestEnvelope) SetIcon(val Icon) {
+func (s *IconCreateRequestEnvelope) SetIcon(val IconCreateRequest) {
 	s.Icon = val
 }
 
@@ -11431,7 +11732,7 @@ type IconCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Icon.
 	Icon Icon `json:"Icon"`
 }
@@ -11442,7 +11743,7 @@ func (s *IconCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IconCreateResponseEnvelope) GetSuccess() string {
+func (s *IconCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11457,7 +11758,7 @@ func (s *IconCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IconCreateResponseEnvelope) SetSuccess(val string) {
+func (s *IconCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11473,14 +11774,8 @@ type IconFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter IconFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -11493,24 +11788,9 @@ func (s *IconFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *IconFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *IconFindRequestEnvelope) GetFilter() IconFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *IconFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *IconFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -11523,24 +11803,9 @@ func (s *IconFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *IconFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *IconFindRequestEnvelope) SetFilter(val IconFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *IconFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *IconFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -11608,8 +11873,19 @@ func (s *IconFindResponseEnvelope) SetIcons(val []Icon) {
 	s.Icons = val
 }
 
-// IconOpDeleteNoContent is response for IconOpDelete operation.
-type IconOpDeleteNoContent struct{}
+type IconOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *IconOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *IconOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for iconReadResponseEnvelope.
 // Ref: #/components/schemas/IconReadResponseEnvelope
@@ -11617,7 +11893,7 @@ type IconReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Icon.
 	Icon Icon `json:"Icon"`
 }
@@ -11628,7 +11904,7 @@ func (s *IconReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IconReadResponseEnvelope) GetSuccess() string {
+func (s *IconReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11643,7 +11919,7 @@ func (s *IconReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IconReadResponseEnvelope) SetSuccess(val string) {
+func (s *IconReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11652,20 +11928,46 @@ func (s *IconReadResponseEnvelope) SetIcon(val Icon) {
 	s.Icon = val
 }
 
+// Ref: #/components/schemas/IconUpdateRequest
+type IconUpdateRequest struct {
+	Name string   `json:"Name"`
+	Tags []string `json:"Tags"`
+}
+
+// GetName returns the value of Name.
+func (s *IconUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetTags returns the value of Tags.
+func (s *IconUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// SetName sets the value of Name.
+func (s *IconUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetTags sets the value of Tags.
+func (s *IconUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
 // Request envelope for iconUpdateRequestEnvelope.
 // Ref: #/components/schemas/IconUpdateRequestEnvelope
 type IconUpdateRequestEnvelope struct {
 	// Icon.
-	Icon Icon `json:"Icon"`
+	Icon IconUpdateRequest `json:"Icon"`
 }
 
 // GetIcon returns the value of Icon.
-func (s *IconUpdateRequestEnvelope) GetIcon() Icon {
+func (s *IconUpdateRequestEnvelope) GetIcon() IconUpdateRequest {
 	return s.Icon
 }
 
 // SetIcon sets the value of Icon.
-func (s *IconUpdateRequestEnvelope) SetIcon(val Icon) {
+func (s *IconUpdateRequestEnvelope) SetIcon(val IconUpdateRequest) {
 	s.Icon = val
 }
 
@@ -11675,7 +11977,7 @@ type IconUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Icon.
 	Icon Icon `json:"Icon"`
 }
@@ -11686,7 +11988,7 @@ func (s *IconUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *IconUpdateResponseEnvelope) GetSuccess() string {
+func (s *IconUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11701,7 +12003,7 @@ func (s *IconUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *IconUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *IconUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11710,20 +12012,50 @@ func (s *IconUpdateResponseEnvelope) SetIcon(val Icon) {
 	s.Icon = val
 }
 
+// Ref: #/components/schemas/InsertCDROMRequest
+type InsertCDROMRequest struct {
+	ID int64 `json:"ID"`
+}
+
+// GetID returns the value of ID.
+func (s *InsertCDROMRequest) GetID() int64 {
+	return s.ID
+}
+
+// SetID sets the value of ID.
+func (s *InsertCDROMRequest) SetID(val int64) {
+	s.ID = val
+}
+
+// Ref: #/components/schemas/InterfaceCreateRequest
+type InterfaceCreateRequest struct {
+	ServerID int64 `json:"ServerID"`
+}
+
+// GetServerID returns the value of ServerID.
+func (s *InterfaceCreateRequest) GetServerID() int64 {
+	return s.ServerID
+}
+
+// SetServerID sets the value of ServerID.
+func (s *InterfaceCreateRequest) SetServerID(val int64) {
+	s.ServerID = val
+}
+
 // Request envelope for interfaceCreateRequestEnvelope.
 // Ref: #/components/schemas/InterfaceCreateRequestEnvelope
 type InterfaceCreateRequestEnvelope struct {
 	// Interface.
-	Interface InterfaceView `json:"Interface"`
+	Interface InterfaceCreateRequest `json:"Interface"`
 }
 
 // GetInterface returns the value of Interface.
-func (s *InterfaceCreateRequestEnvelope) GetInterface() InterfaceView {
+func (s *InterfaceCreateRequestEnvelope) GetInterface() InterfaceCreateRequest {
 	return s.Interface
 }
 
 // SetInterface sets the value of Interface.
-func (s *InterfaceCreateRequestEnvelope) SetInterface(val InterfaceView) {
+func (s *InterfaceCreateRequestEnvelope) SetInterface(val InterfaceCreateRequest) {
 	s.Interface = val
 }
 
@@ -11733,7 +12065,7 @@ type InterfaceCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Interface.
 	Interface InterfaceView `json:"Interface"`
 }
@@ -11744,7 +12076,7 @@ func (s *InterfaceCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InterfaceCreateResponseEnvelope) GetSuccess() string {
+func (s *InterfaceCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11759,7 +12091,7 @@ func (s *InterfaceCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InterfaceCreateResponseEnvelope) SetSuccess(val string) {
+func (s *InterfaceCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11775,14 +12107,8 @@ type InterfaceFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter InterfaceFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -11795,24 +12121,9 @@ func (s *InterfaceFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *InterfaceFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *InterfaceFindRequestEnvelope) GetFilter() InterfaceFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *InterfaceFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *InterfaceFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -11825,24 +12136,9 @@ func (s *InterfaceFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *InterfaceFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *InterfaceFindRequestEnvelope) SetFilter(val InterfaceFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *InterfaceFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *InterfaceFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -11945,7 +12241,7 @@ type InterfaceMonitorResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -11956,7 +12252,7 @@ func (s *InterfaceMonitorResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InterfaceMonitorResponseEnvelope) GetSuccess() string {
+func (s *InterfaceMonitorResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -11971,7 +12267,7 @@ func (s *InterfaceMonitorResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InterfaceMonitorResponseEnvelope) SetSuccess(val string) {
+func (s *InterfaceMonitorResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -11989,14 +12285,47 @@ type InterfaceOpConnectToSharedSegmentNoContent struct{}
 // InterfaceOpConnectToSwitchNoContent is response for InterfaceOpConnectToSwitch operation.
 type InterfaceOpConnectToSwitchNoContent struct{}
 
-// InterfaceOpDeleteNoContent is response for InterfaceOpDelete operation.
-type InterfaceOpDeleteNoContent struct{}
+type InterfaceOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// InterfaceOpDisconnectFromPacketFilterNoContent is response for InterfaceOpDisconnectFromPacketFilter operation.
-type InterfaceOpDisconnectFromPacketFilterNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *InterfaceOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// InterfaceOpDisconnectFromSwitchNoContent is response for InterfaceOpDisconnectFromSwitch operation.
-type InterfaceOpDisconnectFromSwitchNoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *InterfaceOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type InterfaceOpDisconnectFromPacketFilterOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *InterfaceOpDisconnectFromPacketFilterOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *InterfaceOpDisconnectFromPacketFilterOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type InterfaceOpDisconnectFromSwitchOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *InterfaceOpDisconnectFromSwitchOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *InterfaceOpDisconnectFromSwitchOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for interfaceReadResponseEnvelope.
 // Ref: #/components/schemas/InterfaceReadResponseEnvelope
@@ -12004,7 +12333,7 @@ type InterfaceReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Interface.
 	Interface InterfaceView `json:"Interface"`
 }
@@ -12015,7 +12344,7 @@ func (s *InterfaceReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InterfaceReadResponseEnvelope) GetSuccess() string {
+func (s *InterfaceReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12030,7 +12359,7 @@ func (s *InterfaceReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InterfaceReadResponseEnvelope) SetSuccess(val string) {
+func (s *InterfaceReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -12039,20 +12368,35 @@ func (s *InterfaceReadResponseEnvelope) SetInterface(val InterfaceView) {
 	s.Interface = val
 }
 
+// Ref: #/components/schemas/InterfaceUpdateRequest
+type InterfaceUpdateRequest struct {
+	UserIPAddress string `json:"UserIPAddress"`
+}
+
+// GetUserIPAddress returns the value of UserIPAddress.
+func (s *InterfaceUpdateRequest) GetUserIPAddress() string {
+	return s.UserIPAddress
+}
+
+// SetUserIPAddress sets the value of UserIPAddress.
+func (s *InterfaceUpdateRequest) SetUserIPAddress(val string) {
+	s.UserIPAddress = val
+}
+
 // Request envelope for interfaceUpdateRequestEnvelope.
 // Ref: #/components/schemas/InterfaceUpdateRequestEnvelope
 type InterfaceUpdateRequestEnvelope struct {
 	// Interface.
-	Interface InterfaceView `json:"Interface"`
+	Interface InterfaceUpdateRequest `json:"Interface"`
 }
 
 // GetInterface returns the value of Interface.
-func (s *InterfaceUpdateRequestEnvelope) GetInterface() InterfaceView {
+func (s *InterfaceUpdateRequestEnvelope) GetInterface() InterfaceUpdateRequest {
 	return s.Interface
 }
 
 // SetInterface sets the value of Interface.
-func (s *InterfaceUpdateRequestEnvelope) SetInterface(val InterfaceView) {
+func (s *InterfaceUpdateRequestEnvelope) SetInterface(val InterfaceUpdateRequest) {
 	s.Interface = val
 }
 
@@ -12062,7 +12406,7 @@ type InterfaceUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Interface.
 	Interface InterfaceView `json:"Interface"`
 }
@@ -12073,7 +12417,7 @@ func (s *InterfaceUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InterfaceUpdateResponseEnvelope) GetSuccess() string {
+func (s *InterfaceUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12088,7 +12432,7 @@ func (s *InterfaceUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InterfaceUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *InterfaceUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -12437,7 +12781,7 @@ type InternetAddSubnetResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Subnet.
 	Subnet InternetSubnet `json:"Subnet"`
 }
@@ -12448,7 +12792,7 @@ func (s *InternetAddSubnetResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetAddSubnetResponseEnvelope) GetSuccess() string {
+func (s *InternetAddSubnetResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12463,7 +12807,7 @@ func (s *InternetAddSubnetResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetAddSubnetResponseEnvelope) SetSuccess(val string) {
+func (s *InternetAddSubnetResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -12472,20 +12816,90 @@ func (s *InternetAddSubnetResponseEnvelope) SetSubnet(val InternetSubnet) {
 	s.Subnet = val
 }
 
+// Ref: #/components/schemas/InternetCreateRequest
+type InternetCreateRequest struct {
+	Name           string   `json:"Name"`
+	Description    string   `json:"Description"`
+	Tags           []string `json:"Tags"`
+	IconID         int64    `json:"IconID"`
+	NetworkMaskLen int32    `json:"NetworkMaskLen"`
+	BandWidthMbps  int32    `json:"BandWidthMbps"`
+}
+
+// GetName returns the value of Name.
+func (s *InternetCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *InternetCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *InternetCreateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *InternetCreateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// GetNetworkMaskLen returns the value of NetworkMaskLen.
+func (s *InternetCreateRequest) GetNetworkMaskLen() int32 {
+	return s.NetworkMaskLen
+}
+
+// GetBandWidthMbps returns the value of BandWidthMbps.
+func (s *InternetCreateRequest) GetBandWidthMbps() int32 {
+	return s.BandWidthMbps
+}
+
+// SetName sets the value of Name.
+func (s *InternetCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *InternetCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *InternetCreateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *InternetCreateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
+// SetNetworkMaskLen sets the value of NetworkMaskLen.
+func (s *InternetCreateRequest) SetNetworkMaskLen(val int32) {
+	s.NetworkMaskLen = val
+}
+
+// SetBandWidthMbps sets the value of BandWidthMbps.
+func (s *InternetCreateRequest) SetBandWidthMbps(val int32) {
+	s.BandWidthMbps = val
+}
+
 // Request envelope for internetCreateRequestEnvelope.
 // Ref: #/components/schemas/InternetCreateRequestEnvelope
 type InternetCreateRequestEnvelope struct {
 	// Internet.
-	Internet Internet `json:"Internet"`
+	Internet InternetCreateRequest `json:"Internet"`
 }
 
 // GetInternet returns the value of Internet.
-func (s *InternetCreateRequestEnvelope) GetInternet() Internet {
+func (s *InternetCreateRequestEnvelope) GetInternet() InternetCreateRequest {
 	return s.Internet
 }
 
 // SetInternet sets the value of Internet.
-func (s *InternetCreateRequestEnvelope) SetInternet(val Internet) {
+func (s *InternetCreateRequestEnvelope) SetInternet(val InternetCreateRequest) {
 	s.Internet = val
 }
 
@@ -12495,7 +12909,7 @@ type InternetCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -12506,7 +12920,7 @@ func (s *InternetCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetCreateResponseEnvelope) GetSuccess() string {
+func (s *InternetCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12521,7 +12935,7 @@ func (s *InternetCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetCreateResponseEnvelope) SetSuccess(val string) {
+func (s *InternetCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -12536,7 +12950,7 @@ type InternetEnableIPv6ResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// IPv6Net.
 	IPv6Net IPv6NetInfo `json:"IPv6Net"`
 }
@@ -12547,7 +12961,7 @@ func (s *InternetEnableIPv6ResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetEnableIPv6ResponseEnvelope) GetSuccess() string {
+func (s *InternetEnableIPv6ResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12562,7 +12976,7 @@ func (s *InternetEnableIPv6ResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetEnableIPv6ResponseEnvelope) SetSuccess(val string) {
+func (s *InternetEnableIPv6ResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -12578,14 +12992,8 @@ type InternetFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter InternetFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -12598,24 +13006,9 @@ func (s *InternetFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *InternetFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *InternetFindRequestEnvelope) GetFilter() InternetFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *InternetFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *InternetFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -12628,24 +13021,9 @@ func (s *InternetFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *InternetFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *InternetFindRequestEnvelope) SetFilter(val InternetFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *InternetFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *InternetFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -12719,7 +13097,7 @@ type InternetMonitorResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -12730,7 +13108,7 @@ func (s *InternetMonitorResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetMonitorResponseEnvelope) GetSuccess() string {
+func (s *InternetMonitorResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12745,7 +13123,7 @@ func (s *InternetMonitorResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetMonitorResponseEnvelope) SetSuccess(val string) {
+func (s *InternetMonitorResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -12754,14 +13132,47 @@ func (s *InternetMonitorResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
 }
 
-// InternetOpDeleteNoContent is response for InternetOpDelete operation.
-type InternetOpDeleteNoContent struct{}
+type InternetOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// InternetOpDeleteSubnetNoContent is response for InternetOpDeleteSubnet operation.
-type InternetOpDeleteSubnetNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *InternetOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// InternetOpDisableIPv6NoContent is response for InternetOpDisableIPv6 operation.
-type InternetOpDisableIPv6NoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *InternetOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type InternetOpDeleteSubnetOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *InternetOpDeleteSubnetOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *InternetOpDeleteSubnetOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type InternetOpDisableIPv6OK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *InternetOpDisableIPv6OK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *InternetOpDisableIPv6OK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type InternetOpMonitorReq struct {
 	Condition MonitorCondition `json:"condition"`
@@ -12832,14 +13243,8 @@ type InternetPlanFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter InternetPlanFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -12852,24 +13257,9 @@ func (s *InternetPlanFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *InternetPlanFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *InternetPlanFindRequestEnvelope) GetFilter() InternetPlanFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *InternetPlanFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *InternetPlanFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -12882,24 +13272,9 @@ func (s *InternetPlanFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *InternetPlanFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *InternetPlanFindRequestEnvelope) SetFilter(val InternetPlanFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *InternetPlanFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *InternetPlanFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -12973,7 +13348,7 @@ type InternetPlanReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// InternetPlan.
 	InternetPlan InternetPlan `json:"InternetPlan"`
 }
@@ -12984,7 +13359,7 @@ func (s *InternetPlanReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetPlanReadResponseEnvelope) GetSuccess() string {
+func (s *InternetPlanReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -12999,7 +13374,7 @@ func (s *InternetPlanReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetPlanReadResponseEnvelope) SetSuccess(val string) {
+func (s *InternetPlanReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13014,7 +13389,7 @@ type InternetReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -13025,7 +13400,7 @@ func (s *InternetReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetReadResponseEnvelope) GetSuccess() string {
+func (s *InternetReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13040,7 +13415,7 @@ func (s *InternetReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetReadResponseEnvelope) SetSuccess(val string) {
+func (s *InternetReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13119,20 +13494,35 @@ func (s *InternetSubnet) SetNetworkMaskLen(val int32) {
 	s.NetworkMaskLen = val
 }
 
+// Ref: #/components/schemas/InternetUpdateBandWidthRequest
+type InternetUpdateBandWidthRequest struct {
+	BandWidthMbps int32 `json:"BandWidthMbps"`
+}
+
+// GetBandWidthMbps returns the value of BandWidthMbps.
+func (s *InternetUpdateBandWidthRequest) GetBandWidthMbps() int32 {
+	return s.BandWidthMbps
+}
+
+// SetBandWidthMbps sets the value of BandWidthMbps.
+func (s *InternetUpdateBandWidthRequest) SetBandWidthMbps(val int32) {
+	s.BandWidthMbps = val
+}
+
 // Request envelope for internetUpdateBandWidthRequestEnvelope.
 // Ref: #/components/schemas/InternetUpdateBandWidthRequestEnvelope
 type InternetUpdateBandWidthRequestEnvelope struct {
 	// Internet.
-	Internet Internet `json:"Internet"`
+	Internet InternetUpdateBandWidthRequest `json:"Internet"`
 }
 
 // GetInternet returns the value of Internet.
-func (s *InternetUpdateBandWidthRequestEnvelope) GetInternet() Internet {
+func (s *InternetUpdateBandWidthRequestEnvelope) GetInternet() InternetUpdateBandWidthRequest {
 	return s.Internet
 }
 
 // SetInternet sets the value of Internet.
-func (s *InternetUpdateBandWidthRequestEnvelope) SetInternet(val Internet) {
+func (s *InternetUpdateBandWidthRequestEnvelope) SetInternet(val InternetUpdateBandWidthRequest) {
 	s.Internet = val
 }
 
@@ -13142,7 +13532,7 @@ type InternetUpdateBandWidthResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -13153,7 +13543,7 @@ func (s *InternetUpdateBandWidthResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetUpdateBandWidthResponseEnvelope) GetSuccess() string {
+func (s *InternetUpdateBandWidthResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13168,7 +13558,7 @@ func (s *InternetUpdateBandWidthResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetUpdateBandWidthResponseEnvelope) SetSuccess(val string) {
+func (s *InternetUpdateBandWidthResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13177,20 +13567,68 @@ func (s *InternetUpdateBandWidthResponseEnvelope) SetInternet(val Internet) {
 	s.Internet = val
 }
 
+// Ref: #/components/schemas/InternetUpdateRequest
+type InternetUpdateRequest struct {
+	Name        string   `json:"Name"`
+	Description string   `json:"Description"`
+	Tags        []string `json:"Tags"`
+	IconID      int64    `json:"IconID"`
+}
+
+// GetName returns the value of Name.
+func (s *InternetUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *InternetUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *InternetUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *InternetUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetName sets the value of Name.
+func (s *InternetUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *InternetUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *InternetUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *InternetUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for internetUpdateRequestEnvelope.
 // Ref: #/components/schemas/InternetUpdateRequestEnvelope
 type InternetUpdateRequestEnvelope struct {
 	// Internet.
-	Internet Internet `json:"Internet"`
+	Internet InternetUpdateRequest `json:"Internet"`
 }
 
 // GetInternet returns the value of Internet.
-func (s *InternetUpdateRequestEnvelope) GetInternet() Internet {
+func (s *InternetUpdateRequestEnvelope) GetInternet() InternetUpdateRequest {
 	return s.Internet
 }
 
 // SetInternet sets the value of Internet.
-func (s *InternetUpdateRequestEnvelope) SetInternet(val Internet) {
+func (s *InternetUpdateRequestEnvelope) SetInternet(val InternetUpdateRequest) {
 	s.Internet = val
 }
 
@@ -13200,7 +13638,7 @@ type InternetUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -13211,7 +13649,7 @@ func (s *InternetUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetUpdateResponseEnvelope) GetSuccess() string {
+func (s *InternetUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13226,7 +13664,7 @@ func (s *InternetUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *InternetUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13258,7 +13696,7 @@ type InternetUpdateSubnetResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Subnet.
 	Subnet InternetSubnet `json:"Subnet"`
 }
@@ -13269,7 +13707,7 @@ func (s *InternetUpdateSubnetResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *InternetUpdateSubnetResponseEnvelope) GetSuccess() string {
+func (s *InternetUpdateSubnetResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13284,7 +13722,7 @@ func (s *InternetUpdateSubnetResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *InternetUpdateSubnetResponseEnvelope) SetSuccess(val string) {
+func (s *InternetUpdateSubnetResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13426,20 +13864,46 @@ func (s *License) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
+// Ref: #/components/schemas/LicenseCreateRequest
+type LicenseCreateRequest struct {
+	Name          string `json:"Name"`
+	LicenseInfoID int64  `json:"LicenseInfoID"`
+}
+
+// GetName returns the value of Name.
+func (s *LicenseCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetLicenseInfoID returns the value of LicenseInfoID.
+func (s *LicenseCreateRequest) GetLicenseInfoID() int64 {
+	return s.LicenseInfoID
+}
+
+// SetName sets the value of Name.
+func (s *LicenseCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetLicenseInfoID sets the value of LicenseInfoID.
+func (s *LicenseCreateRequest) SetLicenseInfoID(val int64) {
+	s.LicenseInfoID = val
+}
+
 // Request envelope for licenseCreateRequestEnvelope.
 // Ref: #/components/schemas/LicenseCreateRequestEnvelope
 type LicenseCreateRequestEnvelope struct {
 	// License.
-	License License `json:"License"`
+	License LicenseCreateRequest `json:"License"`
 }
 
 // GetLicense returns the value of License.
-func (s *LicenseCreateRequestEnvelope) GetLicense() License {
+func (s *LicenseCreateRequestEnvelope) GetLicense() LicenseCreateRequest {
 	return s.License
 }
 
 // SetLicense sets the value of License.
-func (s *LicenseCreateRequestEnvelope) SetLicense(val License) {
+func (s *LicenseCreateRequestEnvelope) SetLicense(val LicenseCreateRequest) {
 	s.License = val
 }
 
@@ -13449,7 +13913,7 @@ type LicenseCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// License.
 	License License `json:"License"`
 }
@@ -13460,7 +13924,7 @@ func (s *LicenseCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *LicenseCreateResponseEnvelope) GetSuccess() string {
+func (s *LicenseCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13475,7 +13939,7 @@ func (s *LicenseCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *LicenseCreateResponseEnvelope) SetSuccess(val string) {
+func (s *LicenseCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13491,14 +13955,8 @@ type LicenseFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter LicenseFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -13511,24 +13969,9 @@ func (s *LicenseFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *LicenseFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *LicenseFindRequestEnvelope) GetFilter() LicenseFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *LicenseFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *LicenseFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -13541,24 +13984,9 @@ func (s *LicenseFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *LicenseFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *LicenseFindRequestEnvelope) SetFilter(val LicenseFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *LicenseFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *LicenseFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -13692,14 +14120,8 @@ type LicenseInfoFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter LicenseInfoFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -13712,24 +14134,9 @@ func (s *LicenseInfoFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *LicenseInfoFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *LicenseInfoFindRequestEnvelope) GetFilter() LicenseInfoFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *LicenseInfoFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *LicenseInfoFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -13742,24 +14149,9 @@ func (s *LicenseInfoFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *LicenseInfoFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *LicenseInfoFindRequestEnvelope) SetFilter(val LicenseInfoFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *LicenseInfoFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *LicenseInfoFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -13833,7 +14225,7 @@ type LicenseInfoReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// LicenseInfo.
 	LicenseInfo LicenseInfo `json:"LicenseInfo"`
 }
@@ -13844,7 +14236,7 @@ func (s *LicenseInfoReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *LicenseInfoReadResponseEnvelope) GetSuccess() string {
+func (s *LicenseInfoReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13859,7 +14251,7 @@ func (s *LicenseInfoReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *LicenseInfoReadResponseEnvelope) SetSuccess(val string) {
+func (s *LicenseInfoReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13868,8 +14260,19 @@ func (s *LicenseInfoReadResponseEnvelope) SetLicenseInfo(val LicenseInfo) {
 	s.LicenseInfo = val
 }
 
-// LicenseOpDeleteNoContent is response for LicenseOpDelete operation.
-type LicenseOpDeleteNoContent struct{}
+type LicenseOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *LicenseOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *LicenseOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for licenseReadResponseEnvelope.
 // Ref: #/components/schemas/LicenseReadResponseEnvelope
@@ -13877,7 +14280,7 @@ type LicenseReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// License.
 	License License `json:"License"`
 }
@@ -13888,7 +14291,7 @@ func (s *LicenseReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *LicenseReadResponseEnvelope) GetSuccess() string {
+func (s *LicenseReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13903,7 +14306,7 @@ func (s *LicenseReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *LicenseReadResponseEnvelope) SetSuccess(val string) {
+func (s *LicenseReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -13912,20 +14315,35 @@ func (s *LicenseReadResponseEnvelope) SetLicense(val License) {
 	s.License = val
 }
 
+// Ref: #/components/schemas/LicenseUpdateRequest
+type LicenseUpdateRequest struct {
+	Name string `json:"Name"`
+}
+
+// GetName returns the value of Name.
+func (s *LicenseUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// SetName sets the value of Name.
+func (s *LicenseUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
 // Request envelope for licenseUpdateRequestEnvelope.
 // Ref: #/components/schemas/LicenseUpdateRequestEnvelope
 type LicenseUpdateRequestEnvelope struct {
 	// License.
-	License License `json:"License"`
+	License LicenseUpdateRequest `json:"License"`
 }
 
 // GetLicense returns the value of License.
-func (s *LicenseUpdateRequestEnvelope) GetLicense() License {
+func (s *LicenseUpdateRequestEnvelope) GetLicense() LicenseUpdateRequest {
 	return s.License
 }
 
 // SetLicense sets the value of License.
-func (s *LicenseUpdateRequestEnvelope) SetLicense(val License) {
+func (s *LicenseUpdateRequestEnvelope) SetLicense(val LicenseUpdateRequest) {
 	s.License = val
 }
 
@@ -13935,7 +14353,7 @@ type LicenseUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// License.
 	License License `json:"License"`
 }
@@ -13946,7 +14364,7 @@ func (s *LicenseUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *LicenseUpdateResponseEnvelope) GetSuccess() string {
+func (s *LicenseUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -13961,7 +14379,7 @@ func (s *LicenseUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *LicenseUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *LicenseUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14028,7 +14446,7 @@ type LocalRouterHealthStatusResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// LocalRouter.
 	LocalRouter LocalRouterHealth `json:"LocalRouter"`
 }
@@ -14039,7 +14457,7 @@ func (s *LocalRouterHealthStatusResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *LocalRouterHealthStatusResponseEnvelope) GetSuccess() string {
+func (s *LocalRouterHealthStatusResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14054,7 +14472,7 @@ func (s *LocalRouterHealthStatusResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *LocalRouterHealthStatusResponseEnvelope) SetSuccess(val string) {
+func (s *LocalRouterHealthStatusResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14117,7 +14535,7 @@ type LocalRouterMonitorLocalRouterResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -14128,7 +14546,7 @@ func (s *LocalRouterMonitorLocalRouterResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *LocalRouterMonitorLocalRouterResponseEnvelope) GetSuccess() string {
+func (s *LocalRouterMonitorLocalRouterResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14143,7 +14561,7 @@ func (s *LocalRouterMonitorLocalRouterResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *LocalRouterMonitorLocalRouterResponseEnvelope) SetSuccess(val string) {
+func (s *LocalRouterMonitorLocalRouterResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14324,7 +14742,7 @@ type MobileGatewayGetDNSResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SIMGroup.
 	SIMGroup MobileGatewayDNSSetting `json:"SIMGroup"`
 }
@@ -14335,7 +14753,7 @@ func (s *MobileGatewayGetDNSResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayGetDNSResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayGetDNSResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14350,7 +14768,7 @@ func (s *MobileGatewayGetDNSResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayGetDNSResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayGetDNSResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14365,7 +14783,7 @@ type MobileGatewayGetSIMRoutesResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SIMRoutes.
 	SIMRoutes []MobileGatewaySIMRoute `json:"SIMRoutes"`
 }
@@ -14376,7 +14794,7 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayGetSIMRoutesResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayGetSIMRoutesResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14391,7 +14809,7 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14406,7 +14824,7 @@ type MobileGatewayGetTrafficConfigResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// TrafficMonitoring.
 	TrafficMonitoring MobileGatewayTrafficControl `json:"TrafficMonitoring"`
 }
@@ -14417,7 +14835,7 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayGetTrafficConfigResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayGetTrafficConfigResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14432,7 +14850,7 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14447,7 +14865,7 @@ type MobileGatewayListSIMResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SIM.
 	SIM []MobileGatewaySIMInfo `json:"SIM"`
 }
@@ -14458,7 +14876,7 @@ func (s *MobileGatewayListSIMResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayListSIMResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayListSIMResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14473,7 +14891,7 @@ func (s *MobileGatewayListSIMResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayListSIMResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayListSIMResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14488,7 +14906,7 @@ type MobileGatewayLogsResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Logs.
 	Logs []MobileGatewaySIMLogs `json:"Logs"`
 }
@@ -14499,7 +14917,7 @@ func (s *MobileGatewayLogsResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayLogsResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayLogsResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14514,7 +14932,7 @@ func (s *MobileGatewayLogsResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayLogsResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayLogsResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14529,7 +14947,7 @@ type MobileGatewayMonitorInterfaceResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -14540,7 +14958,7 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayMonitorInterfaceResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayMonitorInterfaceResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -14555,7 +14973,7 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -14584,14 +15002,47 @@ func (s *MobileGatewayOpAddSIMReq) SetParam(val MobileGatewayAddSIMRequest) {
 // MobileGatewayOpConnectToSwitchNoContent is response for MobileGatewayOpConnectToSwitch operation.
 type MobileGatewayOpConnectToSwitchNoContent struct{}
 
-// MobileGatewayOpDeleteSIMNoContent is response for MobileGatewayOpDeleteSIM operation.
-type MobileGatewayOpDeleteSIMNoContent struct{}
+type MobileGatewayOpDeleteSIMOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// MobileGatewayOpDeleteTrafficConfigNoContent is response for MobileGatewayOpDeleteTrafficConfig operation.
-type MobileGatewayOpDeleteTrafficConfigNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpDeleteSIMOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// MobileGatewayOpDisconnectFromSwitchNoContent is response for MobileGatewayOpDisconnectFromSwitch operation.
-type MobileGatewayOpDisconnectFromSwitchNoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpDeleteSIMOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type MobileGatewayOpDeleteTrafficConfigOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpDeleteTrafficConfigOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpDeleteTrafficConfigOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type MobileGatewayOpDisconnectFromSwitchOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpDisconnectFromSwitchOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpDisconnectFromSwitchOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // MobileGatewayOpSetDNSNoContent is response for MobileGatewayOpSetDNS operation.
 type MobileGatewayOpSetDNSNoContent struct{}
@@ -15048,7 +15499,7 @@ type MobileGatewayTrafficStatusResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// TrafficStatus.
 	TrafficStatus MobileGatewayTrafficStatus `json:"TrafficStatus"`
 }
@@ -15059,7 +15510,7 @@ func (s *MobileGatewayTrafficStatusResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *MobileGatewayTrafficStatusResponseEnvelope) GetSuccess() string {
+func (s *MobileGatewayTrafficStatusResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -15074,7 +15525,7 @@ func (s *MobileGatewayTrafficStatusResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *MobileGatewayTrafficStatusResponseEnvelope) SetSuccess(val string) {
+func (s *MobileGatewayTrafficStatusResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -15264,20 +15715,79 @@ func (s *Note) SetModifiedAt(val time.Time) {
 	s.ModifiedAt = val
 }
 
+// Ref: #/components/schemas/NoteCreateRequest
+type NoteCreateRequest struct {
+	Name    string   `json:"Name"`
+	Tags    []string `json:"Tags"`
+	IconID  int64    `json:"IconID"`
+	Class   string   `json:"Class"`
+	Content string   `json:"Content"`
+}
+
+// GetName returns the value of Name.
+func (s *NoteCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetTags returns the value of Tags.
+func (s *NoteCreateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *NoteCreateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// GetClass returns the value of Class.
+func (s *NoteCreateRequest) GetClass() string {
+	return s.Class
+}
+
+// GetContent returns the value of Content.
+func (s *NoteCreateRequest) GetContent() string {
+	return s.Content
+}
+
+// SetName sets the value of Name.
+func (s *NoteCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetTags sets the value of Tags.
+func (s *NoteCreateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *NoteCreateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
+// SetClass sets the value of Class.
+func (s *NoteCreateRequest) SetClass(val string) {
+	s.Class = val
+}
+
+// SetContent sets the value of Content.
+func (s *NoteCreateRequest) SetContent(val string) {
+	s.Content = val
+}
+
 // Request envelope for noteCreateRequestEnvelope.
 // Ref: #/components/schemas/NoteCreateRequestEnvelope
 type NoteCreateRequestEnvelope struct {
 	// Note.
-	Note Note `json:"Note"`
+	Note NoteCreateRequest `json:"Note"`
 }
 
 // GetNote returns the value of Note.
-func (s *NoteCreateRequestEnvelope) GetNote() Note {
+func (s *NoteCreateRequestEnvelope) GetNote() NoteCreateRequest {
 	return s.Note
 }
 
 // SetNote sets the value of Note.
-func (s *NoteCreateRequestEnvelope) SetNote(val Note) {
+func (s *NoteCreateRequestEnvelope) SetNote(val NoteCreateRequest) {
 	s.Note = val
 }
 
@@ -15287,7 +15797,7 @@ type NoteCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Note.
 	Note Note `json:"Note"`
 }
@@ -15298,7 +15808,7 @@ func (s *NoteCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *NoteCreateResponseEnvelope) GetSuccess() string {
+func (s *NoteCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -15313,7 +15823,7 @@ func (s *NoteCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *NoteCreateResponseEnvelope) SetSuccess(val string) {
+func (s *NoteCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -15329,14 +15839,8 @@ type NoteFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter NoteFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -15349,24 +15853,9 @@ func (s *NoteFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *NoteFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *NoteFindRequestEnvelope) GetFilter() NoteFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *NoteFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *NoteFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -15379,24 +15868,9 @@ func (s *NoteFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *NoteFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *NoteFindRequestEnvelope) SetFilter(val NoteFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *NoteFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *NoteFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -15464,8 +15938,19 @@ func (s *NoteFindResponseEnvelope) SetNotes(val []Note) {
 	s.Notes = val
 }
 
-// NoteOpDeleteNoContent is response for NoteOpDelete operation.
-type NoteOpDeleteNoContent struct{}
+type NoteOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *NoteOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *NoteOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for noteReadResponseEnvelope.
 // Ref: #/components/schemas/NoteReadResponseEnvelope
@@ -15473,7 +15958,7 @@ type NoteReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Note.
 	Note Note `json:"Note"`
 }
@@ -15484,7 +15969,7 @@ func (s *NoteReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *NoteReadResponseEnvelope) GetSuccess() string {
+func (s *NoteReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -15499,7 +15984,7 @@ func (s *NoteReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *NoteReadResponseEnvelope) SetSuccess(val string) {
+func (s *NoteReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -15508,20 +15993,79 @@ func (s *NoteReadResponseEnvelope) SetNote(val Note) {
 	s.Note = val
 }
 
+// Ref: #/components/schemas/NoteUpdateRequest
+type NoteUpdateRequest struct {
+	Name    string   `json:"Name"`
+	Tags    []string `json:"Tags"`
+	IconID  int64    `json:"IconID"`
+	Class   string   `json:"Class"`
+	Content string   `json:"Content"`
+}
+
+// GetName returns the value of Name.
+func (s *NoteUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetTags returns the value of Tags.
+func (s *NoteUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *NoteUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// GetClass returns the value of Class.
+func (s *NoteUpdateRequest) GetClass() string {
+	return s.Class
+}
+
+// GetContent returns the value of Content.
+func (s *NoteUpdateRequest) GetContent() string {
+	return s.Content
+}
+
+// SetName sets the value of Name.
+func (s *NoteUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetTags sets the value of Tags.
+func (s *NoteUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *NoteUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
+// SetClass sets the value of Class.
+func (s *NoteUpdateRequest) SetClass(val string) {
+	s.Class = val
+}
+
+// SetContent sets the value of Content.
+func (s *NoteUpdateRequest) SetContent(val string) {
+	s.Content = val
+}
+
 // Request envelope for noteUpdateRequestEnvelope.
 // Ref: #/components/schemas/NoteUpdateRequestEnvelope
 type NoteUpdateRequestEnvelope struct {
 	// Note.
-	Note Note `json:"Note"`
+	Note NoteUpdateRequest `json:"Note"`
 }
 
 // GetNote returns the value of Note.
-func (s *NoteUpdateRequestEnvelope) GetNote() Note {
+func (s *NoteUpdateRequestEnvelope) GetNote() NoteUpdateRequest {
 	return s.Note
 }
 
 // SetNote sets the value of Note.
-func (s *NoteUpdateRequestEnvelope) SetNote(val Note) {
+func (s *NoteUpdateRequestEnvelope) SetNote(val NoteUpdateRequest) {
 	s.Note = val
 }
 
@@ -15531,7 +16075,7 @@ type NoteUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Note.
 	Note Note `json:"Note"`
 }
@@ -15542,7 +16086,7 @@ func (s *NoteUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *NoteUpdateResponseEnvelope) GetSuccess() string {
+func (s *NoteUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -15557,7 +16101,7 @@ func (s *NoteUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *NoteUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *NoteUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -18376,20 +18920,57 @@ func (s *PacketFilter) SetCreatedAt(val time.Time) {
 	s.CreatedAt = val
 }
 
+// Ref: #/components/schemas/PacketFilterCreateRequest
+type PacketFilterCreateRequest struct {
+	Name        string                   `json:"Name"`
+	Description string                   `json:"Description"`
+	Expression  []PacketFilterExpression `json:"Expression"`
+}
+
+// GetName returns the value of Name.
+func (s *PacketFilterCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *PacketFilterCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetExpression returns the value of Expression.
+func (s *PacketFilterCreateRequest) GetExpression() []PacketFilterExpression {
+	return s.Expression
+}
+
+// SetName sets the value of Name.
+func (s *PacketFilterCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *PacketFilterCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetExpression sets the value of Expression.
+func (s *PacketFilterCreateRequest) SetExpression(val []PacketFilterExpression) {
+	s.Expression = val
+}
+
 // Request envelope for packetFilterCreateRequestEnvelope.
 // Ref: #/components/schemas/PacketFilterCreateRequestEnvelope
 type PacketFilterCreateRequestEnvelope struct {
 	// PacketFilter.
-	PacketFilter PacketFilter `json:"PacketFilter"`
+	PacketFilter PacketFilterCreateRequest `json:"PacketFilter"`
 }
 
 // GetPacketFilter returns the value of PacketFilter.
-func (s *PacketFilterCreateRequestEnvelope) GetPacketFilter() PacketFilter {
+func (s *PacketFilterCreateRequestEnvelope) GetPacketFilter() PacketFilterCreateRequest {
 	return s.PacketFilter
 }
 
 // SetPacketFilter sets the value of PacketFilter.
-func (s *PacketFilterCreateRequestEnvelope) SetPacketFilter(val PacketFilter) {
+func (s *PacketFilterCreateRequestEnvelope) SetPacketFilter(val PacketFilterCreateRequest) {
 	s.PacketFilter = val
 }
 
@@ -18399,7 +18980,7 @@ type PacketFilterCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PacketFilter.
 	PacketFilter PacketFilter `json:"PacketFilter"`
 }
@@ -18410,7 +18991,7 @@ func (s *PacketFilterCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PacketFilterCreateResponseEnvelope) GetSuccess() string {
+func (s *PacketFilterCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -18425,7 +19006,7 @@ func (s *PacketFilterCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PacketFilterCreateResponseEnvelope) SetSuccess(val string) {
+func (s *PacketFilterCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -18511,14 +19092,8 @@ type PacketFilterFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter PacketFilterFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -18531,24 +19106,9 @@ func (s *PacketFilterFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *PacketFilterFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *PacketFilterFindRequestEnvelope) GetFilter() PacketFilterFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *PacketFilterFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *PacketFilterFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -18561,24 +19121,9 @@ func (s *PacketFilterFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *PacketFilterFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *PacketFilterFindRequestEnvelope) SetFilter(val PacketFilterFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *PacketFilterFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *PacketFilterFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -18646,8 +19191,19 @@ func (s *PacketFilterFindResponseEnvelope) SetPacketFilters(val []PacketFilter) 
 	s.PacketFilters = val
 }
 
-// PacketFilterOpDeleteNoContent is response for PacketFilterOpDelete operation.
-type PacketFilterOpDeleteNoContent struct{}
+type PacketFilterOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *PacketFilterOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *PacketFilterOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for packetFilterReadResponseEnvelope.
 // Ref: #/components/schemas/PacketFilterReadResponseEnvelope
@@ -18655,7 +19211,7 @@ type PacketFilterReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PacketFilter.
 	PacketFilter PacketFilter `json:"PacketFilter"`
 }
@@ -18666,7 +19222,7 @@ func (s *PacketFilterReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PacketFilterReadResponseEnvelope) GetSuccess() string {
+func (s *PacketFilterReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -18681,7 +19237,7 @@ func (s *PacketFilterReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PacketFilterReadResponseEnvelope) SetSuccess(val string) {
+func (s *PacketFilterReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -18690,17 +19246,54 @@ func (s *PacketFilterReadResponseEnvelope) SetPacketFilter(val PacketFilter) {
 	s.PacketFilter = val
 }
 
+// Ref: #/components/schemas/PacketFilterUpdateRequest
+type PacketFilterUpdateRequest struct {
+	Name        string                   `json:"Name"`
+	Description string                   `json:"Description"`
+	Expression  []PacketFilterExpression `json:"Expression"`
+}
+
+// GetName returns the value of Name.
+func (s *PacketFilterUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *PacketFilterUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetExpression returns the value of Expression.
+func (s *PacketFilterUpdateRequest) GetExpression() []PacketFilterExpression {
+	return s.Expression
+}
+
+// SetName sets the value of Name.
+func (s *PacketFilterUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *PacketFilterUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetExpression sets the value of Expression.
+func (s *PacketFilterUpdateRequest) SetExpression(val []PacketFilterExpression) {
+	s.Expression = val
+}
+
 // Request envelope for packetFilterUpdateRequestEnvelope.
 // Ref: #/components/schemas/PacketFilterUpdateRequestEnvelope
 type PacketFilterUpdateRequestEnvelope struct {
 	// PacketFilter.
-	PacketFilter PacketFilter `json:"PacketFilter"`
+	PacketFilter PacketFilterUpdateRequest `json:"PacketFilter"`
 	// OriginalExpressionHash.
 	OriginalExpressionHash string `json:"OriginalExpressionHash"`
 }
 
 // GetPacketFilter returns the value of PacketFilter.
-func (s *PacketFilterUpdateRequestEnvelope) GetPacketFilter() PacketFilter {
+func (s *PacketFilterUpdateRequestEnvelope) GetPacketFilter() PacketFilterUpdateRequest {
 	return s.PacketFilter
 }
 
@@ -18710,7 +19303,7 @@ func (s *PacketFilterUpdateRequestEnvelope) GetOriginalExpressionHash() string {
 }
 
 // SetPacketFilter sets the value of PacketFilter.
-func (s *PacketFilterUpdateRequestEnvelope) SetPacketFilter(val PacketFilter) {
+func (s *PacketFilterUpdateRequestEnvelope) SetPacketFilter(val PacketFilterUpdateRequest) {
 	s.PacketFilter = val
 }
 
@@ -18725,7 +19318,7 @@ type PacketFilterUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PacketFilter.
 	PacketFilter PacketFilter `json:"PacketFilter"`
 }
@@ -18736,7 +19329,7 @@ func (s *PacketFilterUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PacketFilterUpdateResponseEnvelope) GetSuccess() string {
+func (s *PacketFilterUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -18751,7 +19344,7 @@ func (s *PacketFilterUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PacketFilterUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *PacketFilterUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -19141,7 +19734,7 @@ type PrivateHostCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PrivateHost.
 	PrivateHost PrivateHost `json:"PrivateHost"`
 }
@@ -19152,7 +19745,7 @@ func (s *PrivateHostCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PrivateHostCreateResponseEnvelope) GetSuccess() string {
+func (s *PrivateHostCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -19167,7 +19760,7 @@ func (s *PrivateHostCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PrivateHostCreateResponseEnvelope) SetSuccess(val string) {
+func (s *PrivateHostCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -19183,14 +19776,8 @@ type PrivateHostFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter PrivateHostFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -19203,24 +19790,9 @@ func (s *PrivateHostFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *PrivateHostFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *PrivateHostFindRequestEnvelope) GetFilter() PrivateHostFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *PrivateHostFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *PrivateHostFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -19233,24 +19805,9 @@ func (s *PrivateHostFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *PrivateHostFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *PrivateHostFindRequestEnvelope) SetFilter(val PrivateHostFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *PrivateHostFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *PrivateHostFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -19354,8 +19911,19 @@ func (s *PrivateHostOpCreateReq) SetDedicatedStorageContractID(val OptID) {
 	s.DedicatedStorageContractID = val
 }
 
-// PrivateHostOpDeleteNoContent is response for PrivateHostOpDelete operation.
-type PrivateHostOpDeleteNoContent struct{}
+type PrivateHostOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *PrivateHostOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *PrivateHostOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Ref: #/components/schemas/PrivateHostPlan
 type PrivateHostPlan struct {
@@ -19456,14 +20024,8 @@ type PrivateHostPlanFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter PrivateHostPlanFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -19476,24 +20038,9 @@ func (s *PrivateHostPlanFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *PrivateHostPlanFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *PrivateHostPlanFindRequestEnvelope) GetFilter() PrivateHostPlanFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *PrivateHostPlanFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *PrivateHostPlanFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -19506,24 +20053,9 @@ func (s *PrivateHostPlanFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *PrivateHostPlanFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *PrivateHostPlanFindRequestEnvelope) SetFilter(val PrivateHostPlanFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *PrivateHostPlanFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *PrivateHostPlanFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -19597,7 +20129,7 @@ type PrivateHostPlanReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PrivateHostPlan.
 	PrivateHostPlan PrivateHostPlan `json:"PrivateHostPlan"`
 }
@@ -19608,7 +20140,7 @@ func (s *PrivateHostPlanReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PrivateHostPlanReadResponseEnvelope) GetSuccess() string {
+func (s *PrivateHostPlanReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -19623,7 +20155,7 @@ func (s *PrivateHostPlanReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PrivateHostPlanReadResponseEnvelope) SetSuccess(val string) {
+func (s *PrivateHostPlanReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -19638,7 +20170,7 @@ type PrivateHostReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PrivateHost.
 	PrivateHost PrivateHost `json:"PrivateHost"`
 }
@@ -19649,7 +20181,7 @@ func (s *PrivateHostReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PrivateHostReadResponseEnvelope) GetSuccess() string {
+func (s *PrivateHostReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -19664,7 +20196,7 @@ func (s *PrivateHostReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PrivateHostReadResponseEnvelope) SetSuccess(val string) {
+func (s *PrivateHostReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -19673,20 +20205,68 @@ func (s *PrivateHostReadResponseEnvelope) SetPrivateHost(val PrivateHost) {
 	s.PrivateHost = val
 }
 
+// Ref: #/components/schemas/PrivateHostUpdateRequest
+type PrivateHostUpdateRequest struct {
+	Name        string   `json:"Name"`
+	Description string   `json:"Description"`
+	Tags        []string `json:"Tags"`
+	IconID      int64    `json:"IconID"`
+}
+
+// GetName returns the value of Name.
+func (s *PrivateHostUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *PrivateHostUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *PrivateHostUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *PrivateHostUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetName sets the value of Name.
+func (s *PrivateHostUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *PrivateHostUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *PrivateHostUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *PrivateHostUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for privateHostUpdateRequestEnvelope.
 // Ref: #/components/schemas/PrivateHostUpdateRequestEnvelope
 type PrivateHostUpdateRequestEnvelope struct {
 	// PrivateHost.
-	PrivateHost PrivateHost `json:"PrivateHost"`
+	PrivateHost PrivateHostUpdateRequest `json:"PrivateHost"`
 }
 
 // GetPrivateHost returns the value of PrivateHost.
-func (s *PrivateHostUpdateRequestEnvelope) GetPrivateHost() PrivateHost {
+func (s *PrivateHostUpdateRequestEnvelope) GetPrivateHost() PrivateHostUpdateRequest {
 	return s.PrivateHost
 }
 
 // SetPrivateHost sets the value of PrivateHost.
-func (s *PrivateHostUpdateRequestEnvelope) SetPrivateHost(val PrivateHost) {
+func (s *PrivateHostUpdateRequestEnvelope) SetPrivateHost(val PrivateHostUpdateRequest) {
 	s.PrivateHost = val
 }
 
@@ -19696,7 +20276,7 @@ type PrivateHostUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// PrivateHost.
 	PrivateHost PrivateHost `json:"PrivateHost"`
 }
@@ -19707,7 +20287,7 @@ func (s *PrivateHostUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *PrivateHostUpdateResponseEnvelope) GetSuccess() string {
+func (s *PrivateHostUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -19722,7 +20302,7 @@ func (s *PrivateHostUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *PrivateHostUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *PrivateHostUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -20284,7 +20864,7 @@ type ProxyLBChangePlanResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem ProxyLB `json:"CommonServiceItem"`
 }
@@ -20295,7 +20875,7 @@ func (s *ProxyLBChangePlanResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ProxyLBChangePlanResponseEnvelope) GetSuccess() string {
+func (s *ProxyLBChangePlanResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -20310,7 +20890,7 @@ func (s *ProxyLBChangePlanResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ProxyLBChangePlanResponseEnvelope) SetSuccess(val string) {
+func (s *ProxyLBChangePlanResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -20325,7 +20905,7 @@ type ProxyLBGetCertificatesResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ProxyLB.
 	ProxyLB ProxyLBCertificates `json:"ProxyLB"`
 }
@@ -20336,7 +20916,7 @@ func (s *ProxyLBGetCertificatesResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ProxyLBGetCertificatesResponseEnvelope) GetSuccess() string {
+func (s *ProxyLBGetCertificatesResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -20351,7 +20931,7 @@ func (s *ProxyLBGetCertificatesResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ProxyLBGetCertificatesResponseEnvelope) SetSuccess(val string) {
+func (s *ProxyLBGetCertificatesResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -20429,7 +21009,7 @@ type ProxyLBMonitorConnectionResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -20440,7 +21020,7 @@ func (s *ProxyLBMonitorConnectionResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ProxyLBMonitorConnectionResponseEnvelope) GetSuccess() string {
+func (s *ProxyLBMonitorConnectionResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -20455,7 +21035,7 @@ func (s *ProxyLBMonitorConnectionResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ProxyLBMonitorConnectionResponseEnvelope) SetSuccess(val string) {
+func (s *ProxyLBMonitorConnectionResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -20478,8 +21058,19 @@ func (s *ProxyLBOpChangePlanReq) SetParam(val ProxyLBChangePlanRequest) {
 	s.Param = val
 }
 
-// ProxyLBOpDeleteCertificatesNoContent is response for ProxyLBOpDeleteCertificates operation.
-type ProxyLBOpDeleteCertificatesNoContent struct{}
+type ProxyLBOpDeleteCertificatesOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ProxyLBOpDeleteCertificatesOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ProxyLBOpDeleteCertificatesOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ProxyLBOpMonitorConnectionReq struct {
 	Condition MonitorCondition `json:"condition"`
@@ -20872,7 +21463,7 @@ type ProxyLBSetCertificatesResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ProxyLB.
 	ProxyLB ProxyLBCertificates `json:"ProxyLB"`
 }
@@ -20883,7 +21474,7 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ProxyLBSetCertificatesResponseEnvelope) GetSuccess() string {
+func (s *ProxyLBSetCertificatesResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -20898,7 +21489,7 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ProxyLBSetCertificatesResponseEnvelope) SetSuccess(val string) {
+func (s *ProxyLBSetCertificatesResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21055,14 +21646,8 @@ type RegionFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter RegionFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -21075,24 +21660,9 @@ func (s *RegionFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *RegionFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *RegionFindRequestEnvelope) GetFilter() RegionFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *RegionFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *RegionFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -21105,24 +21675,9 @@ func (s *RegionFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *RegionFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *RegionFindRequestEnvelope) SetFilter(val RegionFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *RegionFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *RegionFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -21196,7 +21751,7 @@ type RegionReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Region.
 	Region Region `json:"Region"`
 }
@@ -21207,7 +21762,7 @@ func (s *RegionReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *RegionReadResponseEnvelope) GetSuccess() string {
+func (s *RegionReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21222,7 +21777,7 @@ func (s *RegionReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *RegionReadResponseEnvelope) SetSuccess(val string) {
+func (s *RegionReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21252,7 +21807,7 @@ type SIMGetNetworkOperatorResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// NetworkOperationConfigs.
 	NetworkOperationConfigs []SIMNetworkOperatorConfig `json:"NetworkOperationConfigs"`
 }
@@ -21263,7 +21818,7 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SIMGetNetworkOperatorResponseEnvelope) GetSuccess() string {
+func (s *SIMGetNetworkOperatorResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21278,7 +21833,7 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SIMGetNetworkOperatorResponseEnvelope) SetSuccess(val string) {
+func (s *SIMGetNetworkOperatorResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21361,7 +21916,7 @@ type SIMMonitorSIMResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -21372,7 +21927,7 @@ func (s *SIMMonitorSIMResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SIMMonitorSIMResponseEnvelope) GetSuccess() string {
+func (s *SIMMonitorSIMResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21387,7 +21942,7 @@ func (s *SIMMonitorSIMResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SIMMonitorSIMResponseEnvelope) SetSuccess(val string) {
+func (s *SIMMonitorSIMResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21453,8 +22008,19 @@ func (s *SIMOpAssignIPReq) SetParam(val SIMAssignIPRequest) {
 	s.Param = val
 }
 
-// SIMOpClearIPNoContent is response for SIMOpClearIP operation.
-type SIMOpClearIPNoContent struct{}
+type SIMOpClearIPOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpClearIPOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpClearIPOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // SIMOpDeactivateNoContent is response for SIMOpDeactivate operation.
 type SIMOpDeactivateNoContent struct{}
@@ -21476,8 +22042,19 @@ func (s *SIMOpImeiLockReq) SetParam(val SIMIMEILockRequest) {
 	s.Param = val
 }
 
-// SIMOpImeiUnlockNoContent is response for SIMOpImeiUnlock operation.
-type SIMOpImeiUnlockNoContent struct{}
+type SIMOpImeiUnlockOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpImeiUnlockOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpImeiUnlockOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type SIMOpMonitorSIMReq struct {
 	Condition MonitorCondition `json:"condition"`
@@ -21516,7 +22093,7 @@ type SIMStatusResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SIM.
 	SIM MobileGatewaySIMInfo `json:"SIM"`
 }
@@ -21527,7 +22104,7 @@ func (s *SIMStatusResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SIMStatusResponseEnvelope) GetSuccess() string {
+func (s *SIMStatusResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21542,7 +22119,7 @@ func (s *SIMStatusResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SIMStatusResponseEnvelope) SetSuccess(val string) {
+func (s *SIMStatusResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21647,20 +22224,57 @@ func (s *SSHKey) SetFingerprint(val string) {
 	s.Fingerprint = val
 }
 
+// Ref: #/components/schemas/SSHKeyCreateRequest
+type SSHKeyCreateRequest struct {
+	Name        string `json:"Name"`
+	Description string `json:"Description"`
+	PublicKey   string `json:"PublicKey"`
+}
+
+// GetName returns the value of Name.
+func (s *SSHKeyCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *SSHKeyCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetPublicKey returns the value of PublicKey.
+func (s *SSHKeyCreateRequest) GetPublicKey() string {
+	return s.PublicKey
+}
+
+// SetName sets the value of Name.
+func (s *SSHKeyCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *SSHKeyCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetPublicKey sets the value of PublicKey.
+func (s *SSHKeyCreateRequest) SetPublicKey(val string) {
+	s.PublicKey = val
+}
+
 // Request envelope for sSHKeyCreateRequestEnvelope.
 // Ref: #/components/schemas/SSHKeyCreateRequestEnvelope
 type SSHKeyCreateRequestEnvelope struct {
 	// SSHKey.
-	SSHKey SSHKey `json:"SSHKey"`
+	SSHKey SSHKeyCreateRequest `json:"SSHKey"`
 }
 
 // GetSSHKey returns the value of SSHKey.
-func (s *SSHKeyCreateRequestEnvelope) GetSSHKey() SSHKey {
+func (s *SSHKeyCreateRequestEnvelope) GetSSHKey() SSHKeyCreateRequest {
 	return s.SSHKey
 }
 
 // SetSSHKey sets the value of SSHKey.
-func (s *SSHKeyCreateRequestEnvelope) SetSSHKey(val SSHKey) {
+func (s *SSHKeyCreateRequestEnvelope) SetSSHKey(val SSHKeyCreateRequest) {
 	s.SSHKey = val
 }
 
@@ -21670,7 +22284,7 @@ type SSHKeyCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SSHKey.
 	SSHKey SSHKey `json:"SSHKey"`
 }
@@ -21681,7 +22295,7 @@ func (s *SSHKeyCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SSHKeyCreateResponseEnvelope) GetSuccess() string {
+func (s *SSHKeyCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21696,7 +22310,7 @@ func (s *SSHKeyCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SSHKeyCreateResponseEnvelope) SetSuccess(val string) {
+func (s *SSHKeyCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21712,14 +22326,8 @@ type SSHKeyFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter SSHKeyFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -21732,24 +22340,9 @@ func (s *SSHKeyFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *SSHKeyFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *SSHKeyFindRequestEnvelope) GetFilter() SSHKeyFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *SSHKeyFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *SSHKeyFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -21762,24 +22355,9 @@ func (s *SSHKeyFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *SSHKeyFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *SSHKeyFindRequestEnvelope) SetFilter(val SSHKeyFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *SSHKeyFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *SSHKeyFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -21847,8 +22425,19 @@ func (s *SSHKeyFindResponseEnvelope) SetSSHKeys(val []SSHKey) {
 	s.SSHKeys = val
 }
 
-// SSHKeyOpDeleteNoContent is response for SSHKeyOpDelete operation.
-type SSHKeyOpDeleteNoContent struct{}
+type SSHKeyOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SSHKeyOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SSHKeyOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for sSHKeyReadResponseEnvelope.
 // Ref: #/components/schemas/SSHKeyReadResponseEnvelope
@@ -21856,7 +22445,7 @@ type SSHKeyReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SSHKey.
 	SSHKey SSHKey `json:"SSHKey"`
 }
@@ -21867,7 +22456,7 @@ func (s *SSHKeyReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SSHKeyReadResponseEnvelope) GetSuccess() string {
+func (s *SSHKeyReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21882,7 +22471,7 @@ func (s *SSHKeyReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SSHKeyReadResponseEnvelope) SetSuccess(val string) {
+func (s *SSHKeyReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -21891,20 +22480,46 @@ func (s *SSHKeyReadResponseEnvelope) SetSSHKey(val SSHKey) {
 	s.SSHKey = val
 }
 
+// Ref: #/components/schemas/SSHKeyUpdateRequest
+type SSHKeyUpdateRequest struct {
+	Name        string `json:"Name"`
+	Description string `json:"Description"`
+}
+
+// GetName returns the value of Name.
+func (s *SSHKeyUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *SSHKeyUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// SetName sets the value of Name.
+func (s *SSHKeyUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *SSHKeyUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
 // Request envelope for sSHKeyUpdateRequestEnvelope.
 // Ref: #/components/schemas/SSHKeyUpdateRequestEnvelope
 type SSHKeyUpdateRequestEnvelope struct {
 	// SSHKey.
-	SSHKey SSHKey `json:"SSHKey"`
+	SSHKey SSHKeyUpdateRequest `json:"SSHKey"`
 }
 
 // GetSSHKey returns the value of SSHKey.
-func (s *SSHKeyUpdateRequestEnvelope) GetSSHKey() SSHKey {
+func (s *SSHKeyUpdateRequestEnvelope) GetSSHKey() SSHKeyUpdateRequest {
 	return s.SSHKey
 }
 
 // SetSSHKey sets the value of SSHKey.
-func (s *SSHKeyUpdateRequestEnvelope) SetSSHKey(val SSHKey) {
+func (s *SSHKeyUpdateRequestEnvelope) SetSSHKey(val SSHKeyUpdateRequest) {
 	s.SSHKey = val
 }
 
@@ -21914,7 +22529,7 @@ type SSHKeyUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SSHKey.
 	SSHKey SSHKey `json:"SSHKey"`
 }
@@ -21925,7 +22540,7 @@ func (s *SSHKeyUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SSHKeyUpdateResponseEnvelope) GetSuccess() string {
+func (s *SSHKeyUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -21940,7 +22555,7 @@ func (s *SSHKeyUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SSHKeyUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *SSHKeyUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -22518,7 +23133,7 @@ type ServerChangePlanResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -22529,7 +23144,7 @@ func (s *ServerChangePlanResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerChangePlanResponseEnvelope) GetSuccess() string {
+func (s *ServerChangePlanResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -22544,7 +23159,7 @@ func (s *ServerChangePlanResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerChangePlanResponseEnvelope) SetSuccess(val string) {
+func (s *ServerChangePlanResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -22667,20 +23282,200 @@ func (s *ServerConnectedDisk) SetStorage(val Storage) {
 	s.Storage = val
 }
 
+// Ref: #/components/schemas/ServerCreateRequest
+type ServerCreateRequest struct {
+	CPU               int32             `json:"CPU"`
+	MemoryMB          int32             `json:"MemoryMB"`
+	GPU               int32             `json:"GPU"`
+	GPUModel          string            `json:"GPUModel"`
+	CPUModel          string            `json:"CPUModel"`
+	Commitment        ECommitment       `json:"Commitment"`
+	Generation        EPlanGeneration   `json:"Generation"`
+	ConfidentialVM    bool              `json:"ConfidentialVM"`
+	ConnectedSwitches []ConnectedSwitch `json:"ConnectedSwitches"`
+	InterfaceDriver   EInterfaceDriver  `json:"InterfaceDriver"`
+	Name              string            `json:"Name"`
+	Description       string            `json:"Description"`
+	Tags              []string          `json:"Tags"`
+	IconID            int64             `json:"IconID"`
+	WaitDiskMigration bool              `json:"WaitDiskMigration"`
+	PrivateHostID     int64             `json:"PrivateHostID"`
+}
+
+// GetCPU returns the value of CPU.
+func (s *ServerCreateRequest) GetCPU() int32 {
+	return s.CPU
+}
+
+// GetMemoryMB returns the value of MemoryMB.
+func (s *ServerCreateRequest) GetMemoryMB() int32 {
+	return s.MemoryMB
+}
+
+// GetGPU returns the value of GPU.
+func (s *ServerCreateRequest) GetGPU() int32 {
+	return s.GPU
+}
+
+// GetGPUModel returns the value of GPUModel.
+func (s *ServerCreateRequest) GetGPUModel() string {
+	return s.GPUModel
+}
+
+// GetCPUModel returns the value of CPUModel.
+func (s *ServerCreateRequest) GetCPUModel() string {
+	return s.CPUModel
+}
+
+// GetCommitment returns the value of Commitment.
+func (s *ServerCreateRequest) GetCommitment() ECommitment {
+	return s.Commitment
+}
+
+// GetGeneration returns the value of Generation.
+func (s *ServerCreateRequest) GetGeneration() EPlanGeneration {
+	return s.Generation
+}
+
+// GetConfidentialVM returns the value of ConfidentialVM.
+func (s *ServerCreateRequest) GetConfidentialVM() bool {
+	return s.ConfidentialVM
+}
+
+// GetConnectedSwitches returns the value of ConnectedSwitches.
+func (s *ServerCreateRequest) GetConnectedSwitches() []ConnectedSwitch {
+	return s.ConnectedSwitches
+}
+
+// GetInterfaceDriver returns the value of InterfaceDriver.
+func (s *ServerCreateRequest) GetInterfaceDriver() EInterfaceDriver {
+	return s.InterfaceDriver
+}
+
+// GetName returns the value of Name.
+func (s *ServerCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *ServerCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *ServerCreateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *ServerCreateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// GetWaitDiskMigration returns the value of WaitDiskMigration.
+func (s *ServerCreateRequest) GetWaitDiskMigration() bool {
+	return s.WaitDiskMigration
+}
+
+// GetPrivateHostID returns the value of PrivateHostID.
+func (s *ServerCreateRequest) GetPrivateHostID() int64 {
+	return s.PrivateHostID
+}
+
+// SetCPU sets the value of CPU.
+func (s *ServerCreateRequest) SetCPU(val int32) {
+	s.CPU = val
+}
+
+// SetMemoryMB sets the value of MemoryMB.
+func (s *ServerCreateRequest) SetMemoryMB(val int32) {
+	s.MemoryMB = val
+}
+
+// SetGPU sets the value of GPU.
+func (s *ServerCreateRequest) SetGPU(val int32) {
+	s.GPU = val
+}
+
+// SetGPUModel sets the value of GPUModel.
+func (s *ServerCreateRequest) SetGPUModel(val string) {
+	s.GPUModel = val
+}
+
+// SetCPUModel sets the value of CPUModel.
+func (s *ServerCreateRequest) SetCPUModel(val string) {
+	s.CPUModel = val
+}
+
+// SetCommitment sets the value of Commitment.
+func (s *ServerCreateRequest) SetCommitment(val ECommitment) {
+	s.Commitment = val
+}
+
+// SetGeneration sets the value of Generation.
+func (s *ServerCreateRequest) SetGeneration(val EPlanGeneration) {
+	s.Generation = val
+}
+
+// SetConfidentialVM sets the value of ConfidentialVM.
+func (s *ServerCreateRequest) SetConfidentialVM(val bool) {
+	s.ConfidentialVM = val
+}
+
+// SetConnectedSwitches sets the value of ConnectedSwitches.
+func (s *ServerCreateRequest) SetConnectedSwitches(val []ConnectedSwitch) {
+	s.ConnectedSwitches = val
+}
+
+// SetInterfaceDriver sets the value of InterfaceDriver.
+func (s *ServerCreateRequest) SetInterfaceDriver(val EInterfaceDriver) {
+	s.InterfaceDriver = val
+}
+
+// SetName sets the value of Name.
+func (s *ServerCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *ServerCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *ServerCreateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *ServerCreateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
+// SetWaitDiskMigration sets the value of WaitDiskMigration.
+func (s *ServerCreateRequest) SetWaitDiskMigration(val bool) {
+	s.WaitDiskMigration = val
+}
+
+// SetPrivateHostID sets the value of PrivateHostID.
+func (s *ServerCreateRequest) SetPrivateHostID(val int64) {
+	s.PrivateHostID = val
+}
+
 // Request envelope for serverCreateRequestEnvelope.
 // Ref: #/components/schemas/ServerCreateRequestEnvelope
 type ServerCreateRequestEnvelope struct {
 	// Server.
-	Server Server `json:"Server"`
+	Server ServerCreateRequest `json:"Server"`
 }
 
 // GetServer returns the value of Server.
-func (s *ServerCreateRequestEnvelope) GetServer() Server {
+func (s *ServerCreateRequestEnvelope) GetServer() ServerCreateRequest {
 	return s.Server
 }
 
 // SetServer sets the value of Server.
-func (s *ServerCreateRequestEnvelope) SetServer(val Server) {
+func (s *ServerCreateRequestEnvelope) SetServer(val ServerCreateRequest) {
 	s.Server = val
 }
 
@@ -22690,7 +23485,7 @@ type ServerCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -22701,7 +23496,7 @@ func (s *ServerCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerCreateResponseEnvelope) GetSuccess() string {
+func (s *ServerCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -22716,7 +23511,7 @@ func (s *ServerCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerCreateResponseEnvelope) SetSuccess(val string) {
+func (s *ServerCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -22744,16 +23539,16 @@ func (s *ServerDeleteWithDisksRequest) SetIDs(val []int64) {
 // Ref: #/components/schemas/ServerEjectCDROMRequestEnvelope
 type ServerEjectCDROMRequestEnvelope struct {
 	// CDROM.
-	CDROM CDROM `json:"CDROM"`
+	CDROM EjectCDROMRequest `json:"CDROM"`
 }
 
 // GetCDROM returns the value of CDROM.
-func (s *ServerEjectCDROMRequestEnvelope) GetCDROM() CDROM {
+func (s *ServerEjectCDROMRequestEnvelope) GetCDROM() EjectCDROMRequest {
 	return s.CDROM
 }
 
 // SetCDROM sets the value of CDROM.
-func (s *ServerEjectCDROMRequestEnvelope) SetCDROM(val CDROM) {
+func (s *ServerEjectCDROMRequestEnvelope) SetCDROM(val EjectCDROMRequest) {
 	s.CDROM = val
 }
 
@@ -22764,14 +23559,8 @@ type ServerFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter ServerFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -22784,24 +23573,9 @@ func (s *ServerFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *ServerFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *ServerFindRequestEnvelope) GetFilter() ServerFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *ServerFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *ServerFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -22814,24 +23588,9 @@ func (s *ServerFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *ServerFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *ServerFindRequestEnvelope) SetFilter(val ServerFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *ServerFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *ServerFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -22905,7 +23664,7 @@ type ServerGetVNCProxyResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// VNCProxyInfo.
 	VNCProxyInfo VNCProxyInfo `json:"VNCProxyInfo"`
 }
@@ -22916,7 +23675,7 @@ func (s *ServerGetVNCProxyResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerGetVNCProxyResponseEnvelope) GetSuccess() string {
+func (s *ServerGetVNCProxyResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -22931,7 +23690,7 @@ func (s *ServerGetVNCProxyResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerGetVNCProxyResponseEnvelope) SetSuccess(val string) {
+func (s *ServerGetVNCProxyResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -22944,16 +23703,16 @@ func (s *ServerGetVNCProxyResponseEnvelope) SetVNCProxyInfo(val VNCProxyInfo) {
 // Ref: #/components/schemas/ServerInsertCDROMRequestEnvelope
 type ServerInsertCDROMRequestEnvelope struct {
 	// CDROM.
-	CDROM CDROM `json:"CDROM"`
+	CDROM InsertCDROMRequest `json:"CDROM"`
 }
 
 // GetCDROM returns the value of CDROM.
-func (s *ServerInsertCDROMRequestEnvelope) GetCDROM() CDROM {
+func (s *ServerInsertCDROMRequestEnvelope) GetCDROM() InsertCDROMRequest {
 	return s.CDROM
 }
 
 // SetCDROM sets the value of CDROM.
-func (s *ServerInsertCDROMRequestEnvelope) SetCDROM(val CDROM) {
+func (s *ServerInsertCDROMRequestEnvelope) SetCDROM(val InsertCDROMRequest) {
 	s.CDROM = val
 }
 
@@ -22963,7 +23722,7 @@ type ServerMonitorResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -22974,7 +23733,7 @@ func (s *ServerMonitorResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerMonitorResponseEnvelope) GetSuccess() string {
+func (s *ServerMonitorResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -22989,7 +23748,7 @@ func (s *ServerMonitorResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerMonitorResponseEnvelope) SetSuccess(val string) {
+func (s *ServerMonitorResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -23015,8 +23774,19 @@ func (s *ServerOpBootReq) SetParam(val OptServerBootVariables) {
 	s.Param = val
 }
 
-// ServerOpDeleteNoContent is response for ServerOpDelete operation.
-type ServerOpDeleteNoContent struct{}
+type ServerOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ServerOpDeleteReq struct {
 	Disks OptServerDeleteWithDisksRequest `json:"disks"`
@@ -23032,8 +23802,19 @@ func (s *ServerOpDeleteReq) SetDisks(val OptServerDeleteWithDisksRequest) {
 	s.Disks = val
 }
 
-// ServerOpEjectCDROMNoContent is response for ServerOpEjectCDROM operation.
-type ServerOpEjectCDROMNoContent struct{}
+type ServerOpEjectCDROMOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpEjectCDROMOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpEjectCDROMOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // ServerOpInsertCDROMNoContent is response for ServerOpInsertCDROM operation.
 type ServerOpInsertCDROMNoContent struct{}
@@ -23061,8 +23842,19 @@ type ServerOpSendKeyNoContent struct{}
 // ServerOpSendNMINoContent is response for ServerOpSendNMI operation.
 type ServerOpSendNMINoContent struct{}
 
-// ServerOpShutdownNoContent is response for ServerOpShutdown operation.
-type ServerOpShutdownNoContent struct{}
+type ServerOpShutdownOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpShutdownOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpShutdownOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Request envelope for serverPlanFindRequestEnvelope.
 // Ref: #/components/schemas/ServerPlanFindRequestEnvelope
@@ -23071,14 +23863,8 @@ type ServerPlanFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter ServerPlanFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -23091,24 +23877,9 @@ func (s *ServerPlanFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *ServerPlanFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *ServerPlanFindRequestEnvelope) GetFilter() ServerPlanFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *ServerPlanFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *ServerPlanFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -23121,24 +23892,9 @@ func (s *ServerPlanFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *ServerPlanFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *ServerPlanFindRequestEnvelope) SetFilter(val ServerPlanFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *ServerPlanFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *ServerPlanFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -23212,7 +23968,7 @@ type ServerPlanReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// ServerPlan.
 	ServerPlan ServerChangePlanRequest `json:"ServerPlan"`
 }
@@ -23223,7 +23979,7 @@ func (s *ServerPlanReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerPlanReadResponseEnvelope) GetSuccess() string {
+func (s *ServerPlanReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -23238,7 +23994,7 @@ func (s *ServerPlanReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerPlanReadResponseEnvelope) SetSuccess(val string) {
+func (s *ServerPlanReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -23253,7 +24009,7 @@ type ServerReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -23264,7 +24020,7 @@ func (s *ServerReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerReadResponseEnvelope) GetSuccess() string {
+func (s *ServerReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -23279,7 +24035,7 @@ func (s *ServerReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerReadResponseEnvelope) SetSuccess(val string) {
+func (s *ServerReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -23334,20 +24090,90 @@ func (s *ServerShutdownRequestEnvelope) SetForce(val bool) {
 	s.Force = val
 }
 
+// Ref: #/components/schemas/ServerUpdateRequest
+type ServerUpdateRequest struct {
+	Name            string           `json:"Name"`
+	Description     string           `json:"Description"`
+	Tags            []string         `json:"Tags"`
+	IconID          int64            `json:"IconID"`
+	PrivateHostID   int64            `json:"PrivateHostID"`
+	InterfaceDriver EInterfaceDriver `json:"InterfaceDriver"`
+}
+
+// GetName returns the value of Name.
+func (s *ServerUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *ServerUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *ServerUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *ServerUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// GetPrivateHostID returns the value of PrivateHostID.
+func (s *ServerUpdateRequest) GetPrivateHostID() int64 {
+	return s.PrivateHostID
+}
+
+// GetInterfaceDriver returns the value of InterfaceDriver.
+func (s *ServerUpdateRequest) GetInterfaceDriver() EInterfaceDriver {
+	return s.InterfaceDriver
+}
+
+// SetName sets the value of Name.
+func (s *ServerUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *ServerUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *ServerUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *ServerUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
+// SetPrivateHostID sets the value of PrivateHostID.
+func (s *ServerUpdateRequest) SetPrivateHostID(val int64) {
+	s.PrivateHostID = val
+}
+
+// SetInterfaceDriver sets the value of InterfaceDriver.
+func (s *ServerUpdateRequest) SetInterfaceDriver(val EInterfaceDriver) {
+	s.InterfaceDriver = val
+}
+
 // Request envelope for serverUpdateRequestEnvelope.
 // Ref: #/components/schemas/ServerUpdateRequestEnvelope
 type ServerUpdateRequestEnvelope struct {
 	// Server.
-	Server Server `json:"Server"`
+	Server ServerUpdateRequest `json:"Server"`
 }
 
 // GetServer returns the value of Server.
-func (s *ServerUpdateRequestEnvelope) GetServer() Server {
+func (s *ServerUpdateRequestEnvelope) GetServer() ServerUpdateRequest {
 	return s.Server
 }
 
 // SetServer sets the value of Server.
-func (s *ServerUpdateRequestEnvelope) SetServer(val Server) {
+func (s *ServerUpdateRequestEnvelope) SetServer(val ServerUpdateRequest) {
 	s.Server = val
 }
 
@@ -23357,7 +24183,7 @@ type ServerUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -23368,7 +24194,7 @@ func (s *ServerUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ServerUpdateResponseEnvelope) GetSuccess() string {
+func (s *ServerUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -23383,7 +24209,7 @@ func (s *ServerUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ServerUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *ServerUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -23469,14 +24295,8 @@ type ServiceClassFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter ServiceClassFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -23489,24 +24309,9 @@ func (s *ServiceClassFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *ServiceClassFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *ServiceClassFindRequestEnvelope) GetFilter() ServiceClassFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *ServiceClassFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *ServiceClassFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -23519,24 +24324,9 @@ func (s *ServiceClassFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *ServiceClassFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *ServiceClassFindRequestEnvelope) SetFilter(val ServiceClassFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *ServiceClassFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *ServiceClassFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -23827,7 +24617,7 @@ type SimpleMonitorMonitorResponseTimeResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -23838,7 +24628,7 @@ func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) GetSuccess() string {
+func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -23853,7 +24643,7 @@ func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) SetSuccess(val string) {
+func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -23908,7 +24698,7 @@ type SimpleNotificationDestinationStatusResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// SimpleNotificationDestination.
 	SimpleNotificationDestination SimpleNotificationDestinationStatus `json:"SimpleNotificationDestination"`
 }
@@ -23919,7 +24709,7 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetSuccess() string {
+func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -23934,7 +24724,7 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetIsOk(val bool) 
 }
 
 // SetSuccess sets the value of Success.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetSuccess(val string) {
+func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -23949,7 +24739,7 @@ type SimpleNotificationGroupHistoryResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// NotificationHistories.
 	NotificationHistories SimpleNotificationHistories `json:"NotificationHistories"`
 }
@@ -23960,7 +24750,7 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SimpleNotificationGroupHistoryResponseEnvelope) GetSuccess() string {
+func (s *SimpleNotificationGroupHistoryResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -23975,7 +24765,7 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetSuccess(val string) {
+func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -24340,14 +25130,8 @@ type SubnetFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter SubnetFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -24360,24 +25144,9 @@ func (s *SubnetFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *SubnetFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *SubnetFindRequestEnvelope) GetFilter() SubnetFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *SubnetFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *SubnetFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -24390,24 +25159,9 @@ func (s *SubnetFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *SubnetFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *SubnetFindRequestEnvelope) SetFilter(val SubnetFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *SubnetFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *SubnetFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -24481,7 +25235,7 @@ type SubnetReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Subnet.
 	Subnet InternetSubnet `json:"Subnet"`
 }
@@ -24492,7 +25246,7 @@ func (s *SubnetReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SubnetReadResponseEnvelope) GetSuccess() string {
+func (s *SubnetReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -24507,7 +25261,7 @@ func (s *SubnetReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SubnetReadResponseEnvelope) SetSuccess(val string) {
+func (s *SubnetReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -24516,20 +25270,90 @@ func (s *SubnetReadResponseEnvelope) SetSubnet(val InternetSubnet) {
 	s.Subnet = val
 }
 
+// Ref: #/components/schemas/SwitchCreateRequest
+type SwitchCreateRequest struct {
+	Name           string   `json:"Name"`
+	NetworkMaskLen int32    `json:"NetworkMaskLen"`
+	DefaultRoute   string   `json:"DefaultRoute"`
+	Description    string   `json:"Description"`
+	Tags           []string `json:"Tags"`
+	IconID         int64    `json:"IconID"`
+}
+
+// GetName returns the value of Name.
+func (s *SwitchCreateRequest) GetName() string {
+	return s.Name
+}
+
+// GetNetworkMaskLen returns the value of NetworkMaskLen.
+func (s *SwitchCreateRequest) GetNetworkMaskLen() int32 {
+	return s.NetworkMaskLen
+}
+
+// GetDefaultRoute returns the value of DefaultRoute.
+func (s *SwitchCreateRequest) GetDefaultRoute() string {
+	return s.DefaultRoute
+}
+
+// GetDescription returns the value of Description.
+func (s *SwitchCreateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *SwitchCreateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *SwitchCreateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetName sets the value of Name.
+func (s *SwitchCreateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetNetworkMaskLen sets the value of NetworkMaskLen.
+func (s *SwitchCreateRequest) SetNetworkMaskLen(val int32) {
+	s.NetworkMaskLen = val
+}
+
+// SetDefaultRoute sets the value of DefaultRoute.
+func (s *SwitchCreateRequest) SetDefaultRoute(val string) {
+	s.DefaultRoute = val
+}
+
+// SetDescription sets the value of Description.
+func (s *SwitchCreateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *SwitchCreateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *SwitchCreateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for switchCreateRequestEnvelope.
 // Ref: #/components/schemas/SwitchCreateRequestEnvelope
 type SwitchCreateRequestEnvelope struct {
 	// Switch.
-	Switch BridgeInfo `json:"Switch"`
+	Switch SwitchCreateRequest `json:"Switch"`
 }
 
 // GetSwitch returns the value of Switch.
-func (s *SwitchCreateRequestEnvelope) GetSwitch() BridgeInfo {
+func (s *SwitchCreateRequestEnvelope) GetSwitch() SwitchCreateRequest {
 	return s.Switch
 }
 
 // SetSwitch sets the value of Switch.
-func (s *SwitchCreateRequestEnvelope) SetSwitch(val BridgeInfo) {
+func (s *SwitchCreateRequestEnvelope) SetSwitch(val SwitchCreateRequest) {
 	s.Switch = val
 }
 
@@ -24539,7 +25363,7 @@ type SwitchCreateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Switch.
 	Switch BridgeInfo `json:"Switch"`
 }
@@ -24550,7 +25374,7 @@ func (s *SwitchCreateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SwitchCreateResponseEnvelope) GetSuccess() string {
+func (s *SwitchCreateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -24565,7 +25389,7 @@ func (s *SwitchCreateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SwitchCreateResponseEnvelope) SetSuccess(val string) {
+func (s *SwitchCreateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -24581,14 +25405,8 @@ type SwitchFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter SwitchFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -24601,24 +25419,9 @@ func (s *SwitchFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *SwitchFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *SwitchFindRequestEnvelope) GetFilter() SwitchFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *SwitchFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *SwitchFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -24631,24 +25434,9 @@ func (s *SwitchFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *SwitchFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *SwitchFindRequestEnvelope) SetFilter(val SwitchFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *SwitchFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *SwitchFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -24853,11 +25641,33 @@ func (s *SwitchInfo) SetIPv6Nets(val []IPv6NetInfo) {
 // SwitchOpConnectToBridgeNoContent is response for SwitchOpConnectToBridge operation.
 type SwitchOpConnectToBridgeNoContent struct{}
 
-// SwitchOpDeleteNoContent is response for SwitchOpDelete operation.
-type SwitchOpDeleteNoContent struct{}
+type SwitchOpDeleteOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// SwitchOpDisconnectFromBridgeNoContent is response for SwitchOpDisconnectFromBridge operation.
-type SwitchOpDisconnectFromBridgeNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *SwitchOpDeleteOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SwitchOpDeleteOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type SwitchOpDisconnectFromBridgeOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SwitchOpDisconnectFromBridgeOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SwitchOpDisconnectFromBridgeOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for switchReadResponseEnvelope.
 // Ref: #/components/schemas/SwitchReadResponseEnvelope
@@ -24865,7 +25675,7 @@ type SwitchReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Switch.
 	Switch BridgeInfo `json:"Switch"`
 }
@@ -24876,7 +25686,7 @@ func (s *SwitchReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SwitchReadResponseEnvelope) GetSuccess() string {
+func (s *SwitchReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -24891,7 +25701,7 @@ func (s *SwitchReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SwitchReadResponseEnvelope) SetSuccess(val string) {
+func (s *SwitchReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -24900,20 +25710,90 @@ func (s *SwitchReadResponseEnvelope) SetSwitch(val BridgeInfo) {
 	s.Switch = val
 }
 
+// Ref: #/components/schemas/SwitchUpdateRequest
+type SwitchUpdateRequest struct {
+	Name           string   `json:"Name"`
+	NetworkMaskLen int32    `json:"NetworkMaskLen"`
+	DefaultRoute   string   `json:"DefaultRoute"`
+	Description    string   `json:"Description"`
+	Tags           []string `json:"Tags"`
+	IconID         int64    `json:"IconID"`
+}
+
+// GetName returns the value of Name.
+func (s *SwitchUpdateRequest) GetName() string {
+	return s.Name
+}
+
+// GetNetworkMaskLen returns the value of NetworkMaskLen.
+func (s *SwitchUpdateRequest) GetNetworkMaskLen() int32 {
+	return s.NetworkMaskLen
+}
+
+// GetDefaultRoute returns the value of DefaultRoute.
+func (s *SwitchUpdateRequest) GetDefaultRoute() string {
+	return s.DefaultRoute
+}
+
+// GetDescription returns the value of Description.
+func (s *SwitchUpdateRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *SwitchUpdateRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIconID returns the value of IconID.
+func (s *SwitchUpdateRequest) GetIconID() int64 {
+	return s.IconID
+}
+
+// SetName sets the value of Name.
+func (s *SwitchUpdateRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetNetworkMaskLen sets the value of NetworkMaskLen.
+func (s *SwitchUpdateRequest) SetNetworkMaskLen(val int32) {
+	s.NetworkMaskLen = val
+}
+
+// SetDefaultRoute sets the value of DefaultRoute.
+func (s *SwitchUpdateRequest) SetDefaultRoute(val string) {
+	s.DefaultRoute = val
+}
+
+// SetDescription sets the value of Description.
+func (s *SwitchUpdateRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *SwitchUpdateRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIconID sets the value of IconID.
+func (s *SwitchUpdateRequest) SetIconID(val int64) {
+	s.IconID = val
+}
+
 // Request envelope for switchUpdateRequestEnvelope.
 // Ref: #/components/schemas/SwitchUpdateRequestEnvelope
 type SwitchUpdateRequestEnvelope struct {
 	// Switch.
-	Switch BridgeInfo `json:"Switch"`
+	Switch SwitchUpdateRequest `json:"Switch"`
 }
 
 // GetSwitch returns the value of Switch.
-func (s *SwitchUpdateRequestEnvelope) GetSwitch() BridgeInfo {
+func (s *SwitchUpdateRequestEnvelope) GetSwitch() SwitchUpdateRequest {
 	return s.Switch
 }
 
 // SetSwitch sets the value of Switch.
-func (s *SwitchUpdateRequestEnvelope) SetSwitch(val BridgeInfo) {
+func (s *SwitchUpdateRequestEnvelope) SetSwitch(val SwitchUpdateRequest) {
 	s.Switch = val
 }
 
@@ -24923,7 +25803,7 @@ type SwitchUpdateResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Switch.
 	Switch BridgeInfo `json:"Switch"`
 }
@@ -24934,7 +25814,7 @@ func (s *SwitchUpdateResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *SwitchUpdateResponseEnvelope) GetSuccess() string {
+func (s *SwitchUpdateResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -24949,7 +25829,7 @@ func (s *SwitchUpdateResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *SwitchUpdateResponseEnvelope) SetSuccess(val string) {
+func (s *SwitchUpdateResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -25075,7 +25955,7 @@ type VPCRouterLogsResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// VPCRouter.
 	VPCRouter VPCRouterLog `json:"VPCRouter"`
 }
@@ -25086,7 +25966,7 @@ func (s *VPCRouterLogsResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *VPCRouterLogsResponseEnvelope) GetSuccess() string {
+func (s *VPCRouterLogsResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -25101,7 +25981,7 @@ func (s *VPCRouterLogsResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *VPCRouterLogsResponseEnvelope) SetSuccess(val string) {
+func (s *VPCRouterLogsResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -25113,8 +25993,19 @@ func (s *VPCRouterLogsResponseEnvelope) SetVPCRouter(val VPCRouterLog) {
 // VPCRouterOpConnectToSwitchNoContent is response for VPCRouterOpConnectToSwitch operation.
 type VPCRouterOpConnectToSwitchNoContent struct{}
 
-// VPCRouterOpDisconnectFromSwitchNoContent is response for VPCRouterOpDisconnectFromSwitch operation.
-type VPCRouterOpDisconnectFromSwitchNoContent struct{}
+type VPCRouterOpDisconnectFromSwitchOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *VPCRouterOpDisconnectFromSwitchOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *VPCRouterOpDisconnectFromSwitchOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for vPCRouterPingResponseEnvelope.
 // Ref: #/components/schemas/VPCRouterPingResponseEnvelope
@@ -25122,7 +26013,7 @@ type VPCRouterPingResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// VPCRouter.
 	VPCRouter VPCRouterPingResults `json:"VPCRouter"`
 }
@@ -25133,7 +26024,7 @@ func (s *VPCRouterPingResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *VPCRouterPingResponseEnvelope) GetSuccess() string {
+func (s *VPCRouterPingResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -25148,7 +26039,7 @@ func (s *VPCRouterPingResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *VPCRouterPingResponseEnvelope) SetSuccess(val string) {
+func (s *VPCRouterPingResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 
@@ -25179,14 +26070,8 @@ type ZoneFindRequestEnvelope struct {
 	Count int32 `json:"Count"`
 	// From.
 	From int32 `json:"From"`
-	// Sort.
-	Sort jx.Raw `json:"Sort"`
 	// Filter.
 	Filter ZoneFindRequestEnvelopeFilter `json:"Filter"`
-	// Include.
-	Include []string `json:"Include"`
-	// Exclude.
-	Exclude []string `json:"Exclude"`
 }
 
 // GetCount returns the value of Count.
@@ -25199,24 +26084,9 @@ func (s *ZoneFindRequestEnvelope) GetFrom() int32 {
 	return s.From
 }
 
-// GetSort returns the value of Sort.
-func (s *ZoneFindRequestEnvelope) GetSort() jx.Raw {
-	return s.Sort
-}
-
 // GetFilter returns the value of Filter.
 func (s *ZoneFindRequestEnvelope) GetFilter() ZoneFindRequestEnvelopeFilter {
 	return s.Filter
-}
-
-// GetInclude returns the value of Include.
-func (s *ZoneFindRequestEnvelope) GetInclude() []string {
-	return s.Include
-}
-
-// GetExclude returns the value of Exclude.
-func (s *ZoneFindRequestEnvelope) GetExclude() []string {
-	return s.Exclude
 }
 
 // SetCount sets the value of Count.
@@ -25229,24 +26099,9 @@ func (s *ZoneFindRequestEnvelope) SetFrom(val int32) {
 	s.From = val
 }
 
-// SetSort sets the value of Sort.
-func (s *ZoneFindRequestEnvelope) SetSort(val jx.Raw) {
-	s.Sort = val
-}
-
 // SetFilter sets the value of Filter.
 func (s *ZoneFindRequestEnvelope) SetFilter(val ZoneFindRequestEnvelopeFilter) {
 	s.Filter = val
-}
-
-// SetInclude sets the value of Include.
-func (s *ZoneFindRequestEnvelope) SetInclude(val []string) {
-	s.Include = val
-}
-
-// SetExclude sets the value of Exclude.
-func (s *ZoneFindRequestEnvelope) SetExclude(val []string) {
-	s.Exclude = val
 }
 
 // Filter.
@@ -25401,7 +26256,7 @@ type ZoneReadResponseEnvelope struct {
 	// Is_ok - Operation result indicator.
 	IsOk bool `json:"is_ok"`
 	// Success - API result status.
-	Success string `json:"Success"`
+	Success OptBool `json:"Success"`
 	// Zone.
 	Zone ZoneInfo `json:"Zone"`
 }
@@ -25412,7 +26267,7 @@ func (s *ZoneReadResponseEnvelope) GetIsOk() bool {
 }
 
 // GetSuccess returns the value of Success.
-func (s *ZoneReadResponseEnvelope) GetSuccess() string {
+func (s *ZoneReadResponseEnvelope) GetSuccess() OptBool {
 	return s.Success
 }
 
@@ -25427,7 +26282,7 @@ func (s *ZoneReadResponseEnvelope) SetIsOk(val bool) {
 }
 
 // SetSuccess sets the value of Success.
-func (s *ZoneReadResponseEnvelope) SetSuccess(val string) {
+func (s *ZoneReadResponseEnvelope) SetSuccess(val OptBool) {
 	s.Success = val
 }
 

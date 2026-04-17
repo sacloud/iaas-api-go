@@ -19,24 +19,9 @@ model IconFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for iconFindResponseEnvelope
@@ -64,7 +49,7 @@ model IconCreateRequestEnvelope {
   /**
    * Icon
    */
-  Icon: Icon;
+  Icon: IconCreateRequest;
 }
 /**
  * Response envelope for iconCreateResponseEnvelope
@@ -74,7 +59,7 @@ model IconCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Icon
@@ -90,7 +75,7 @@ model IconReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Icon
@@ -105,7 +90,7 @@ model IconUpdateRequestEnvelope {
   /**
    * Icon
    */
-  Icon: Icon;
+  Icon: IconUpdateRequest;
 }
 /**
  * Response envelope for iconUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model IconUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Icon

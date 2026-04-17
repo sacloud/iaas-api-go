@@ -19,24 +19,9 @@ model ContainerRegistryFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for containerRegistryFindResponseEnvelope
@@ -64,7 +49,7 @@ model ContainerRegistryCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ContainerRegistry;
+  CommonServiceItem: ContainerRegistryCreateRequest;
 }
 /**
  * Response envelope for containerRegistryCreateResponseEnvelope
@@ -74,7 +59,7 @@ model ContainerRegistryCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model ContainerRegistryReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model ContainerRegistryUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ContainerRegistry;
+  CommonServiceItem: ContainerRegistryUpdateRequest;
 }
 /**
  * Response envelope for containerRegistryUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model ContainerRegistryUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model ContainerRegistryUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -156,7 +141,7 @@ model ContainerRegistryListUsersResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ContainerRegistry
@@ -171,7 +156,7 @@ model ContainerRegistryAddUserRequestEnvelope {
   /**
    * ContainerRegistry
    */
-  ContainerRegistry: ContainerRegistryUser;
+  ContainerRegistry: ContainerRegistryUserCreateRequest;
 }
 
 /**
@@ -181,5 +166,5 @@ model ContainerRegistryUpdateUserRequestEnvelope {
   /**
    * ContainerRegistry
    */
-  ContainerRegistry: ContainerRegistryUser;
+  ContainerRegistry: ContainerRegistryUserUpdateRequest;
 }

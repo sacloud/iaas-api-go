@@ -19,10 +19,10 @@ interface IPv6AddrOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/ipv6addr")
-  create(
-    @path zone: string,
-    @body body: IPv6AddrCreateRequestEnvelope,
-  ): IPv6AddrCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: IPv6AddrCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...IPv6AddrCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
@@ -41,5 +41,8 @@ interface IPv6AddrOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

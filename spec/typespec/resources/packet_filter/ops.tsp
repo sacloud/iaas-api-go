@@ -19,10 +19,10 @@ interface PacketFilterOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/packetfilter")
-  create(
-    @path zone: string,
-    @body body: PacketFilterCreateRequestEnvelope,
-  ): PacketFilterCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: PacketFilterCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...PacketFilterCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
@@ -41,5 +41,8 @@ interface PacketFilterOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

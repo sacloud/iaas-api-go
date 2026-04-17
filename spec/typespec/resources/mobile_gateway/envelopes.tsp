@@ -19,24 +19,9 @@ model MobileGatewayFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for mobileGatewayFindResponseEnvelope
@@ -64,7 +49,7 @@ model MobileGatewayCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: MobileGateway;
+  Appliance: MobileGatewayCreateRequest;
 }
 /**
  * Response envelope for mobileGatewayCreateResponseEnvelope
@@ -74,7 +59,7 @@ model MobileGatewayCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -90,7 +75,7 @@ model MobileGatewayReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -105,7 +90,7 @@ model MobileGatewayUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: MobileGateway;
+  Appliance: MobileGatewayUpdateRequest;
 }
 /**
  * Response envelope for mobileGatewayUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model MobileGatewayUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -140,7 +125,7 @@ model MobileGatewayUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -166,7 +151,7 @@ model MobileGatewayGetDNSResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SIMGroup
@@ -192,7 +177,7 @@ model MobileGatewayGetSIMRoutesResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SIMRoutes
@@ -218,7 +203,7 @@ model MobileGatewayListSIMResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SIM
@@ -233,7 +218,7 @@ model MobileGatewayAddSIMRequestEnvelope {
   /**
    * SIM
    */
-  SIM: MobileGatewaySIMInfo;
+  SIM: MobileGatewayAddSIMRequest;
 }
 
 /**
@@ -244,7 +229,7 @@ model MobileGatewayLogsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Logs
@@ -260,7 +245,7 @@ model MobileGatewayGetTrafficConfigResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * TrafficMonitoring
@@ -286,7 +271,7 @@ model MobileGatewayTrafficStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * TrafficStatus
@@ -316,7 +301,7 @@ model MobileGatewayMonitorInterfaceResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

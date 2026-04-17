@@ -19,24 +19,9 @@ model InterfaceFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for interfaceFindResponseEnvelope
@@ -64,7 +49,7 @@ model InterfaceCreateRequestEnvelope {
   /**
    * Interface
    */
-  Interface: InterfaceView;
+  Interface: InterfaceCreateRequest;
 }
 /**
  * Response envelope for interfaceCreateResponseEnvelope
@@ -74,7 +59,7 @@ model InterfaceCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Interface
@@ -90,7 +75,7 @@ model InterfaceReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Interface
@@ -105,7 +90,7 @@ model InterfaceUpdateRequestEnvelope {
   /**
    * Interface
    */
-  Interface: InterfaceView;
+  Interface: InterfaceUpdateRequest;
 }
 /**
  * Response envelope for interfaceUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model InterfaceUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Interface
@@ -145,7 +130,7 @@ model InterfaceMonitorResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

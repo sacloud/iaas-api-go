@@ -36,7 +36,7 @@ type Invoker interface {
 	// ApplianceOpDelete invokes ApplianceOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}
-	ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) error
+	ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (*ApplianceOpDeleteOK, error)
 	// ApplianceOpFind invokes ApplianceOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance
@@ -68,7 +68,7 @@ type Invoker interface {
 	// ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
-	ApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) error
+	ApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error)
 	// ApplianceOpStatus invokes ApplianceOp_status operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/status
@@ -80,7 +80,7 @@ type Invoker interface {
 	// ArchiveOpCloseFTP invokes ArchiveOp_closeFTP operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
-	ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) error
+	ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (*ArchiveOpCloseFTPOK, error)
 	// ArchiveOpCreate invokes ArchiveOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/archive
@@ -88,7 +88,7 @@ type Invoker interface {
 	// ArchiveOpDelete invokes ArchiveOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/archive/{id}
-	ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) error
+	ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (*ArchiveOpDeleteOK, error)
 	// ArchiveOpFind invokes ArchiveOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/archive
@@ -156,7 +156,7 @@ type Invoker interface {
 	// BridgeOpDelete invokes BridgeOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/bridge/{id}
-	BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) error
+	BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (*BridgeOpDeleteOK, error)
 	// BridgeOpFind invokes BridgeOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/bridge
@@ -172,7 +172,7 @@ type Invoker interface {
 	// CDROMOpCloseFTP invokes CDROMOp_closeFTP operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
-	CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) error
+	CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (*CDROMOpCloseFTPOK, error)
 	// CDROMOpCreate invokes CDROMOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/cdrom
@@ -180,7 +180,7 @@ type Invoker interface {
 	// CDROMOpDelete invokes CDROMOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}
-	CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) error
+	CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (*CDROMOpDeleteOK, error)
 	// CDROMOpFind invokes CDROMOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/cdrom
@@ -260,7 +260,7 @@ type Invoker interface {
 	// CommonServiceItemOpDelete invokes CommonServiceItemOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
-	CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) error
+	CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (*CommonServiceItemOpDeleteOK, error)
 	// CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem
@@ -284,7 +284,7 @@ type Invoker interface {
 	// ContainerRegistryOpDeleteUser invokes ContainerRegistryOp_deleteUser operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
-	ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) error
+	ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (*ContainerRegistryOpDeleteUserOK, error)
 	// ContainerRegistryOpListUsers invokes ContainerRegistryOp_listUsers operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
@@ -324,11 +324,11 @@ type Invoker interface {
 	// DiskOpDelete invokes DiskOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/disk/{id}
-	DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) error
+	DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*DiskOpDeleteOK, error)
 	// DiskOpDisconnectFromServer invokes DiskOp_disconnectFromServer operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/disk/{id}/to/server
-	DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) error
+	DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (*DiskOpDisconnectFromServerOK, error)
 	// DiskOpFind invokes DiskOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk
@@ -400,7 +400,7 @@ type Invoker interface {
 	// IPv6AddrOpDelete invokes IPv6AddrOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
-	IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) error
+	IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (*IPv6AddrOpDeleteOK, error)
 	// IPv6AddrOpFind invokes IPv6AddrOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr
@@ -428,7 +428,7 @@ type Invoker interface {
 	// IconOpDelete invokes IconOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/icon/{id}
-	IconOpDelete(ctx context.Context, params IconOpDeleteParams) error
+	IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*IconOpDeleteOK, error)
 	// IconOpFind invokes IconOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/icon
@@ -460,15 +460,15 @@ type Invoker interface {
 	// InterfaceOpDelete invokes InterfaceOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}
-	InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) error
+	InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (*InterfaceOpDeleteOK, error)
 	// InterfaceOpDisconnectFromPacketFilter invokes InterfaceOp_disconnectFromPacketFilter operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter
-	InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) error
+	InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (*InterfaceOpDisconnectFromPacketFilterOK, error)
 	// InterfaceOpDisconnectFromSwitch invokes InterfaceOp_disconnectFromSwitch operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/switch
-	InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) error
+	InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (*InterfaceOpDisconnectFromSwitchOK, error)
 	// InterfaceOpFind invokes InterfaceOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/interface
@@ -496,15 +496,15 @@ type Invoker interface {
 	// InternetOpDelete invokes InternetOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}
-	InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) error
+	InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (*InternetOpDeleteOK, error)
 	// InternetOpDeleteSubnet invokes InternetOp_deleteSubnet operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
-	InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) error
+	InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (*InternetOpDeleteSubnetOK, error)
 	// InternetOpDisableIPv6 invokes InternetOp_disableIPv6 operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}
-	InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) error
+	InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (*InternetOpDisableIPv6OK, error)
 	// InternetOpEnableIPv6 invokes InternetOp_enableIPv6 operation.
 	//
 	// POST /{zone}/api/cloud/1.1/internet/{id}/ipv6net
@@ -556,7 +556,7 @@ type Invoker interface {
 	// LicenseOpDelete invokes LicenseOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/license/{id}
-	LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) error
+	LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (*LicenseOpDeleteOK, error)
 	// LicenseOpFind invokes LicenseOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/license
@@ -584,15 +584,15 @@ type Invoker interface {
 	// MobileGatewayOpDeleteSIM invokes MobileGatewayOp_deleteSIM operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
-	MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) error
+	MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (*MobileGatewayOpDeleteSIMOK, error)
 	// MobileGatewayOpDeleteTrafficConfig invokes MobileGatewayOp_deleteTrafficConfig operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
-	MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) error
+	MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (*MobileGatewayOpDeleteTrafficConfigOK, error)
 	// MobileGatewayOpDisconnectFromSwitch invokes MobileGatewayOp_disconnectFromSwitch operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch
-	MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) error
+	MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (*MobileGatewayOpDisconnectFromSwitchOK, error)
 	// MobileGatewayOpGetDNS invokes MobileGatewayOp_getDNS operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
@@ -636,7 +636,7 @@ type Invoker interface {
 	// NoteOpDelete invokes NoteOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/note/{id}
-	NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) error
+	NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*NoteOpDeleteOK, error)
 	// NoteOpFind invokes NoteOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/note
@@ -656,7 +656,7 @@ type Invoker interface {
 	// PacketFilterOpDelete invokes PacketFilterOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
-	PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) error
+	PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (*PacketFilterOpDeleteOK, error)
 	// PacketFilterOpFind invokes PacketFilterOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/packetfilter
@@ -676,7 +676,7 @@ type Invoker interface {
 	// PrivateHostOpDelete invokes PrivateHostOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/privatehost/{id}
-	PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) error
+	PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (*PrivateHostOpDeleteOK, error)
 	// PrivateHostOpFind invokes PrivateHostOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/privatehost
@@ -704,7 +704,7 @@ type Invoker interface {
 	// ProxyLBOpDeleteCertificates invokes ProxyLBOp_deleteCertificates operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
-	ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) error
+	ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (*ProxyLBOpDeleteCertificatesOK, error)
 	// ProxyLBOpGetCertificates invokes ProxyLBOp_getCertificates operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
@@ -740,7 +740,7 @@ type Invoker interface {
 	// SIMOpClearIP invokes SIMOp_clearIP operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
-	SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) error
+	SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*SIMOpClearIPOK, error)
 	// SIMOpDeactivate invokes SIMOp_deactivate operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
@@ -756,7 +756,7 @@ type Invoker interface {
 	// SIMOpImeiUnlock invokes SIMOp_imeiUnlock operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
-	SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) error
+	SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (*SIMOpImeiUnlockOK, error)
 	// SIMOpLogs invokes SIMOp_logs operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog
@@ -780,7 +780,7 @@ type Invoker interface {
 	// SSHKeyOpDelete invokes SSHKeyOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/sshkey/{id}
-	SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) error
+	SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (*SSHKeyOpDeleteOK, error)
 	// SSHKeyOpFind invokes SSHKeyOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/sshkey
@@ -808,11 +808,11 @@ type Invoker interface {
 	// ServerOpDelete invokes ServerOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}
-	ServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) error
+	ServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (*ServerOpDeleteOK, error)
 	// ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
-	ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) error
+	ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (*ServerOpEjectCDROMOK, error)
 	// ServerOpFind invokes ServerOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server
@@ -848,7 +848,7 @@ type Invoker interface {
 	// ServerOpShutdown invokes ServerOp_shutdown operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/power
-	ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) error
+	ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (*ServerOpShutdownOK, error)
 	// ServerOpUpdate invokes ServerOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}
@@ -900,11 +900,11 @@ type Invoker interface {
 	// SwitchOpDelete invokes SwitchOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/switch/{id}
-	SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) error
+	SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (*SwitchOpDeleteOK, error)
 	// SwitchOpDisconnectFromBridge invokes SwitchOp_disconnectFromBridge operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/switch/{id}/to/bridge
-	SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) error
+	SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (*SwitchOpDisconnectFromBridgeOK, error)
 	// SwitchOpFind invokes SwitchOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/switch
@@ -928,7 +928,7 @@ type Invoker interface {
 	// VPCRouterOpDisconnectFromSwitch invokes VPCRouterOp_disconnectFromSwitch operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
-	VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) error
+	VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error)
 	// VPCRouterOpLogs invokes VPCRouterOp_logs operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs
@@ -1302,12 +1302,12 @@ func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceOp
 // ApplianceOpDelete invokes ApplianceOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}
-func (c *Client) ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) error {
-	_, err := c.sendApplianceOpDelete(ctx, params)
-	return err
+func (c *Client) ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (*ApplianceOpDeleteOK, error) {
+	res, err := c.sendApplianceOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (res *ApplianceOpDeleteNoContent, err error) {
+func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (res *ApplianceOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -2160,12 +2160,12 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 // ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
-func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) error {
-	_, err := c.sendApplianceOpShutdown(ctx, request, params)
-	return err
+func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error) {
+	res, err := c.sendApplianceOpShutdown(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (res *ApplianceOpShutdownNoContent, err error) {
+func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (res *ApplianceOpShutdownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -2492,12 +2492,12 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceOp
 // ArchiveOpCloseFTP invokes ArchiveOp_closeFTP operation.
 //
 // DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
-func (c *Client) ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) error {
-	_, err := c.sendArchiveOpCloseFTP(ctx, params)
-	return err
+func (c *Client) ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (*ArchiveOpCloseFTPOK, error) {
+	res, err := c.sendArchiveOpCloseFTP(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (res *ArchiveOpCloseFTPNoContent, err error) {
+func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (res *ArchiveOpCloseFTPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -2697,12 +2697,12 @@ func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveOpCrea
 // ArchiveOpDelete invokes ArchiveOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/archive/{id}
-func (c *Client) ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) error {
-	_, err := c.sendArchiveOpDelete(ctx, params)
-	return err
+func (c *Client) ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (*ArchiveOpDeleteOK, error) {
+	res, err := c.sendArchiveOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (res *ArchiveOpDeleteNoContent, err error) {
+func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (res *ArchiveOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -2808,15 +2808,6 @@ func (c *Client) ArchiveOpFind(ctx context.Context, request *ArchiveFindRequestE
 }
 
 func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -4505,15 +4496,6 @@ func (c *Client) BridgeOpCreate(ctx context.Context, request *BridgeCreateReques
 }
 
 func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (res *BridgeCreateResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -4598,12 +4580,12 @@ func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRe
 // BridgeOpDelete invokes BridgeOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/bridge/{id}
-func (c *Client) BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) error {
-	_, err := c.sendBridgeOpDelete(ctx, params)
-	return err
+func (c *Client) BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (*BridgeOpDeleteOK, error) {
+	res, err := c.sendBridgeOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (res *BridgeOpDeleteNoContent, err error) {
+func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (res *BridgeOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -4709,15 +4691,6 @@ func (c *Client) BridgeOpFind(ctx context.Context, request *BridgeFindRequestEnv
 }
 
 func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -4913,15 +4886,6 @@ func (c *Client) BridgeOpUpdate(ctx context.Context, request *BridgeUpdateReques
 }
 
 func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (res *BridgeUpdateResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -5024,12 +4988,12 @@ func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRe
 // CDROMOpCloseFTP invokes CDROMOp_closeFTP operation.
 //
 // DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
-func (c *Client) CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) error {
-	_, err := c.sendCDROMOpCloseFTP(ctx, params)
-	return err
+func (c *Client) CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (*CDROMOpCloseFTPOK, error) {
+	res, err := c.sendCDROMOpCloseFTP(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (res *CDROMOpCloseFTPNoContent, err error) {
+func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (res *CDROMOpCloseFTPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -5229,12 +5193,12 @@ func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequ
 // CDROMOpDelete invokes CDROMOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/cdrom/{id}
-func (c *Client) CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) error {
-	_, err := c.sendCDROMOpDelete(ctx, params)
-	return err
+func (c *Client) CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (*CDROMOpDeleteOK, error) {
+	res, err := c.sendCDROMOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (res *CDROMOpDeleteNoContent, err error) {
+func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (res *CDROMOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -5340,15 +5304,6 @@ func (c *Client) CDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvel
 }
 
 func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -7540,12 +7495,12 @@ func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *Com
 // CommonServiceItemOpDelete invokes CommonServiceItemOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
-func (c *Client) CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) error {
-	_, err := c.sendCommonServiceItemOpDelete(ctx, params)
-	return err
+func (c *Client) CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (*CommonServiceItemOpDeleteOK, error) {
+	res, err := c.sendCommonServiceItemOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (res *CommonServiceItemOpDeleteNoContent, err error) {
+func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (res *CommonServiceItemOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -8172,12 +8127,12 @@ func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *Co
 // ContainerRegistryOpDeleteUser invokes ContainerRegistryOp_deleteUser operation.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
-func (c *Client) ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) error {
-	_, err := c.sendContainerRegistryOpDeleteUser(ctx, params)
-	return err
+func (c *Client) ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (*ContainerRegistryOpDeleteUserOK, error) {
+	res, err := c.sendContainerRegistryOpDeleteUser(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (res *ContainerRegistryOpDeleteUserNoContent, err error) {
+func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (res *ContainerRegistryOpDeleteUserOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -9299,12 +9254,12 @@ func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskOpCreateReq,
 // DiskOpDelete invokes DiskOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/disk/{id}
-func (c *Client) DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) error {
-	_, err := c.sendDiskOpDelete(ctx, params)
-	return err
+func (c *Client) DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*DiskOpDeleteOK, error) {
+	res, err := c.sendDiskOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (res *DiskOpDeleteNoContent, err error) {
+func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (res *DiskOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -9404,12 +9359,12 @@ func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams
 // DiskOpDisconnectFromServer invokes DiskOp_disconnectFromServer operation.
 //
 // DELETE /{zone}/api/cloud/1.1/disk/{id}/to/server
-func (c *Client) DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) error {
-	_, err := c.sendDiskOpDisconnectFromServer(ctx, params)
-	return err
+func (c *Client) DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (*DiskOpDisconnectFromServerOK, error) {
+	res, err := c.sendDiskOpDisconnectFromServer(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (res *DiskOpDisconnectFromServerNoContent, err error) {
+func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (res *DiskOpDisconnectFromServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -9516,15 +9471,6 @@ func (c *Client) DiskOpFind(ctx context.Context, request *DiskFindRequestEnvelop
 }
 
 func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -10055,15 +10001,6 @@ func (c *Client) DiskPlanOpFind(ctx context.Context, request *DiskPlanFindReques
 }
 
 func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -11300,12 +11237,12 @@ func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCrea
 // IPv6AddrOpDelete invokes IPv6AddrOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
-func (c *Client) IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) error {
-	_, err := c.sendIPv6AddrOpDelete(ctx, params)
-	return err
+func (c *Client) IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (*IPv6AddrOpDeleteOK, error) {
+	res, err := c.sendIPv6AddrOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (res *IPv6AddrOpDeleteNoContent, err error) {
+func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (res *IPv6AddrOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -11411,15 +11348,6 @@ func (c *Client) IPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindReques
 }
 
 func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12011,12 +11939,12 @@ func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateReques
 // IconOpDelete invokes IconOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/icon/{id}
-func (c *Client) IconOpDelete(ctx context.Context, params IconOpDeleteParams) error {
-	_, err := c.sendIconOpDelete(ctx, params)
-	return err
+func (c *Client) IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*IconOpDeleteOK, error) {
+	res, err := c.sendIconOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams) (res *IconOpDeleteNoContent, err error) {
+func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams) (res *IconOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -12122,15 +12050,6 @@ func (c *Client) IconOpFind(ctx context.Context, request *IconFindRequestEnvelop
 }
 
 func (c *Client) sendIconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12881,12 +12800,12 @@ func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceCr
 // InterfaceOpDelete invokes InterfaceOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/interface/{id}
-func (c *Client) InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) error {
-	_, err := c.sendInterfaceOpDelete(ctx, params)
-	return err
+func (c *Client) InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (*InterfaceOpDeleteOK, error) {
+	res, err := c.sendInterfaceOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (res *InterfaceOpDeleteNoContent, err error) {
+func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (res *InterfaceOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -12986,12 +12905,12 @@ func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDe
 // InterfaceOpDisconnectFromPacketFilter invokes InterfaceOp_disconnectFromPacketFilter operation.
 //
 // DELETE /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter
-func (c *Client) InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) error {
-	_, err := c.sendInterfaceOpDisconnectFromPacketFilter(ctx, params)
-	return err
+func (c *Client) InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (*InterfaceOpDisconnectFromPacketFilterOK, error) {
+	res, err := c.sendInterfaceOpDisconnectFromPacketFilter(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (res *InterfaceOpDisconnectFromPacketFilterNoContent, err error) {
+func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (res *InterfaceOpDisconnectFromPacketFilterOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -13092,12 +13011,12 @@ func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, 
 // InterfaceOpDisconnectFromSwitch invokes InterfaceOp_disconnectFromSwitch operation.
 //
 // DELETE /{zone}/api/cloud/1.1/interface/{id}/to/switch
-func (c *Client) InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) error {
-	_, err := c.sendInterfaceOpDisconnectFromSwitch(ctx, params)
-	return err
+func (c *Client) InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (*InterfaceOpDisconnectFromSwitchOK, error) {
+	res, err := c.sendInterfaceOpDisconnectFromSwitch(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (res *InterfaceOpDisconnectFromSwitchNoContent, err error) {
+func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (res *InterfaceOpDisconnectFromSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -13204,15 +13123,6 @@ func (c *Client) InterfaceOpFind(ctx context.Context, request *InterfaceFindRequ
 }
 
 func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -13827,12 +13737,12 @@ func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCrea
 // InternetOpDelete invokes InternetOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/internet/{id}
-func (c *Client) InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) error {
-	_, err := c.sendInternetOpDelete(ctx, params)
-	return err
+func (c *Client) InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (*InternetOpDeleteOK, error) {
+	res, err := c.sendInternetOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (res *InternetOpDeleteNoContent, err error) {
+func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (res *InternetOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -13932,12 +13842,12 @@ func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDele
 // InternetOpDeleteSubnet invokes InternetOp_deleteSubnet operation.
 //
 // DELETE /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
-func (c *Client) InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) error {
-	_, err := c.sendInternetOpDeleteSubnet(ctx, params)
-	return err
+func (c *Client) InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (*InternetOpDeleteSubnetOK, error) {
+	res, err := c.sendInternetOpDeleteSubnet(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (res *InternetOpDeleteSubnetNoContent, err error) {
+func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (res *InternetOpDeleteSubnetOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -14056,12 +13966,12 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 // InternetOpDisableIPv6 invokes InternetOp_disableIPv6 operation.
 //
 // DELETE /{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}
-func (c *Client) InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) error {
-	_, err := c.sendInternetOpDisableIPv6(ctx, params)
-	return err
+func (c *Client) InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (*InternetOpDisableIPv6OK, error) {
+	res, err := c.sendInternetOpDisableIPv6(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (res *InternetOpDisableIPv6NoContent, err error) {
+func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (res *InternetOpDisableIPv6OK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -14292,15 +14202,6 @@ func (c *Client) InternetOpFind(ctx context.Context, request *InternetFindReques
 }
 
 func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14722,15 +14623,6 @@ func (c *Client) InternetOpUpdateBandWidth(ctx context.Context, request *Interne
 }
 
 func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (res *InternetUpdateBandWidthResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -14967,15 +14859,6 @@ func (c *Client) InternetPlanOpFind(ctx context.Context, request *InternetPlanFi
 }
 
 func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15171,15 +15054,6 @@ func (c *Client) LicenseInfoOpFind(ctx context.Context, request *LicenseInfoFind
 }
 
 func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15459,12 +15333,12 @@ func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseCreate
 // LicenseOpDelete invokes LicenseOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/license/{id}
-func (c *Client) LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) error {
-	_, err := c.sendLicenseOpDelete(ctx, params)
-	return err
+func (c *Client) LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (*LicenseOpDeleteOK, error) {
+	res, err := c.sendLicenseOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (res *LicenseOpDeleteNoContent, err error) {
+func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (res *LicenseOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -15570,15 +15444,6 @@ func (c *Client) LicenseOpFind(ctx context.Context, request *LicenseFindRequestE
 }
 
 func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -16218,12 +16083,12 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 // MobileGatewayOpDeleteSIM invokes MobileGatewayOp_deleteSIM operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
-func (c *Client) MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) error {
-	_, err := c.sendMobileGatewayOpDeleteSIM(ctx, params)
-	return err
+func (c *Client) MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (*MobileGatewayOpDeleteSIMOK, error) {
+	res, err := c.sendMobileGatewayOpDeleteSIM(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (res *MobileGatewayOpDeleteSIMNoContent, err error) {
+func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (res *MobileGatewayOpDeleteSIMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -16342,12 +16207,12 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 // MobileGatewayOpDeleteTrafficConfig invokes MobileGatewayOp_deleteTrafficConfig operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
-func (c *Client) MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) error {
-	_, err := c.sendMobileGatewayOpDeleteTrafficConfig(ctx, params)
-	return err
+func (c *Client) MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (*MobileGatewayOpDeleteTrafficConfigOK, error) {
+	res, err := c.sendMobileGatewayOpDeleteTrafficConfig(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (res *MobileGatewayOpDeleteTrafficConfigNoContent, err error) {
+func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (res *MobileGatewayOpDeleteTrafficConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -16448,12 +16313,12 @@ func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, par
 // MobileGatewayOpDisconnectFromSwitch invokes MobileGatewayOp_disconnectFromSwitch operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch
-func (c *Client) MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) error {
-	_, err := c.sendMobileGatewayOpDisconnectFromSwitch(ctx, params)
-	return err
+func (c *Client) MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (*MobileGatewayOpDisconnectFromSwitchOK, error) {
+	res, err := c.sendMobileGatewayOpDisconnectFromSwitch(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (res *MobileGatewayOpDisconnectFromSwitchNoContent, err error) {
+func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (res *MobileGatewayOpDisconnectFromSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -17625,12 +17490,12 @@ func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateReques
 // NoteOpDelete invokes NoteOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/note/{id}
-func (c *Client) NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) error {
-	_, err := c.sendNoteOpDelete(ctx, params)
-	return err
+func (c *Client) NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*NoteOpDeleteOK, error) {
+	res, err := c.sendNoteOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (res *NoteOpDeleteNoContent, err error) {
+func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (res *NoteOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -17736,15 +17601,6 @@ func (c *Client) NoteOpFind(ctx context.Context, request *NoteFindRequestEnvelop
 }
 
 func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18150,12 +18006,12 @@ func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFi
 // PacketFilterOpDelete invokes PacketFilterOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
-func (c *Client) PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) error {
-	_, err := c.sendPacketFilterOpDelete(ctx, params)
-	return err
+func (c *Client) PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (*PacketFilterOpDeleteOK, error) {
+	res, err := c.sendPacketFilterOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (res *PacketFilterOpDeleteNoContent, err error) {
+func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (res *PacketFilterOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -18261,15 +18117,6 @@ func (c *Client) PacketFilterOpFind(ctx context.Context, request *PacketFilterFi
 }
 
 func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18675,12 +18522,12 @@ func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHo
 // PrivateHostOpDelete invokes PrivateHostOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/privatehost/{id}
-func (c *Client) PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) error {
-	_, err := c.sendPrivateHostOpDelete(ctx, params)
-	return err
+func (c *Client) PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (*PrivateHostOpDeleteOK, error) {
+	res, err := c.sendPrivateHostOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (res *PrivateHostOpDeleteNoContent, err error) {
+func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (res *PrivateHostOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -18786,15 +18633,6 @@ func (c *Client) PrivateHostOpFind(ctx context.Context, request *PrivateHostFind
 }
 
 func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19107,15 +18945,6 @@ func (c *Client) PrivateHostPlanOpFind(ctx context.Context, request *PrivateHost
 }
 
 func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19414,12 +19243,12 @@ func (c *Client) sendProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOp
 // ProxyLBOpDeleteCertificates invokes ProxyLBOp_deleteCertificates operation.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
-func (c *Client) ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) error {
-	_, err := c.sendProxyLBOpDeleteCertificates(ctx, params)
-	return err
+func (c *Client) ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (*ProxyLBOpDeleteCertificatesOK, error) {
+	res, err := c.sendProxyLBOpDeleteCertificates(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (res *ProxyLBOpDeleteCertificatesNoContent, err error) {
+func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (res *ProxyLBOpDeleteCertificatesOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -19965,15 +19794,6 @@ func (c *Client) RegionOpFind(ctx context.Context, request *RegionFindRequestEnv
 }
 
 func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -20378,12 +20198,12 @@ func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPRe
 // SIMOpClearIP invokes SIMOp_clearIP operation.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
-func (c *Client) SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) error {
-	_, err := c.sendSIMOpClearIP(ctx, params)
-	return err
+func (c *Client) SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*SIMOpClearIPOK, error) {
+	res, err := c.sendSIMOpClearIP(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (res *SIMOpClearIPNoContent, err error) {
+func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (res *SIMOpClearIPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -20805,12 +20625,12 @@ func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockRe
 // SIMOpImeiUnlock invokes SIMOp_imeiUnlock operation.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
-func (c *Client) SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) error {
-	_, err := c.sendSIMOpImeiUnlock(ctx, params)
-	return err
+func (c *Client) SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (*SIMOpImeiUnlockOK, error) {
+	res, err := c.sendSIMOpImeiUnlock(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (res *SIMOpImeiUnlockNoContent, err error) {
+func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (res *SIMOpImeiUnlockOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -21440,12 +21260,12 @@ func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRe
 // SSHKeyOpDelete invokes SSHKeyOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/sshkey/{id}
-func (c *Client) SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) error {
-	_, err := c.sendSSHKeyOpDelete(ctx, params)
-	return err
+func (c *Client) SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (*SSHKeyOpDeleteOK, error) {
+	res, err := c.sendSSHKeyOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (res *SSHKeyOpDeleteNoContent, err error) {
+func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (res *SSHKeyOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -21551,15 +21371,6 @@ func (c *Client) SSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnv
 }
 
 func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -22174,12 +21985,12 @@ func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRe
 // ServerOpDelete invokes ServerOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}
-func (c *Client) ServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) error {
-	_, err := c.sendServerOpDelete(ctx, request, params)
-	return err
+func (c *Client) ServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (*ServerOpDeleteOK, error) {
+	res, err := c.sendServerOpDelete(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (res *ServerOpDeleteNoContent, err error) {
+func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (res *ServerOpDeleteOK, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -22291,21 +22102,12 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerOpDelete
 // ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
-func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) error {
-	_, err := c.sendServerOpEjectCDROM(ctx, request, params)
-	return err
+func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (*ServerOpEjectCDROMOK, error) {
+	res, err := c.sendServerOpEjectCDROM(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (res *ServerOpEjectCDROMNoContent, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
+func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (res *ServerOpEjectCDROMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -22415,15 +22217,6 @@ func (c *Client) ServerOpFind(ctx context.Context, request *ServerFindRequestEnv
 }
 
 func (c *Client) sendServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -22620,15 +22413,6 @@ func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertC
 }
 
 func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (res *ServerOpInsertCDROMNoContent, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -23276,12 +23060,12 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 // ServerOpShutdown invokes ServerOp_shutdown operation.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}/power
-func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) error {
-	_, err := c.sendServerOpShutdown(ctx, request, params)
-	return err
+func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (*ServerOpShutdownOK, error) {
+	res, err := c.sendServerOpShutdown(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (res *ServerOpShutdownNoContent, err error) {
+func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (res *ServerOpShutdownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -23508,15 +23292,6 @@ func (c *Client) ServerPlanOpFind(ctx context.Context, request *ServerPlanFindRe
 }
 
 func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -23712,15 +23487,6 @@ func (c *Client) ServiceClassOpFind(ctx context.Context, request *ServiceClassFi
 }
 
 func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -24222,15 +23988,6 @@ func (c *Client) SubnetOpFind(ctx context.Context, request *SubnetFindRequestEnv
 }
 
 func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -24550,6 +24307,15 @@ func (c *Client) SwitchOpCreate(ctx context.Context, request *SwitchCreateReques
 }
 
 func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (res *SwitchCreateResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -24634,12 +24400,12 @@ func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRe
 // SwitchOpDelete invokes SwitchOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/switch/{id}
-func (c *Client) SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) error {
-	_, err := c.sendSwitchOpDelete(ctx, params)
-	return err
+func (c *Client) SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (*SwitchOpDeleteOK, error) {
+	res, err := c.sendSwitchOpDelete(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (res *SwitchOpDeleteNoContent, err error) {
+func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (res *SwitchOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -24739,12 +24505,12 @@ func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeletePa
 // SwitchOpDisconnectFromBridge invokes SwitchOp_disconnectFromBridge operation.
 //
 // DELETE /{zone}/api/cloud/1.1/switch/{id}/to/bridge
-func (c *Client) SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) error {
-	_, err := c.sendSwitchOpDisconnectFromBridge(ctx, params)
-	return err
+func (c *Client) SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (*SwitchOpDisconnectFromBridgeOK, error) {
+	res, err := c.sendSwitchOpDisconnectFromBridge(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (res *SwitchOpDisconnectFromBridgeNoContent, err error) {
+func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (res *SwitchOpDisconnectFromBridgeOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -24851,15 +24617,6 @@ func (c *Client) SwitchOpFind(ctx context.Context, request *SwitchFindRequestEnv
 }
 
 func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -25161,6 +24918,15 @@ func (c *Client) SwitchOpUpdate(ctx context.Context, request *SwitchUpdateReques
 }
 
 func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (res *SwitchUpdateResponseEnvelope, err error) {
+	// Validate request before sending.
+	if err := func() error {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return res, errors.Wrap(err, "validate")
+	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -25406,12 +25172,12 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 // VPCRouterOpDisconnectFromSwitch invokes VPCRouterOp_disconnectFromSwitch operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
-func (c *Client) VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) error {
-	_, err := c.sendVPCRouterOpDisconnectFromSwitch(ctx, params)
-	return err
+func (c *Client) VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error) {
+	res, err := c.sendVPCRouterOpDisconnectFromSwitch(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (res *VPCRouterOpDisconnectFromSwitchNoContent, err error) {
+func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (res *VPCRouterOpDisconnectFromSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -25767,15 +25533,6 @@ func (c *Client) ZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelop
 }
 
 func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string

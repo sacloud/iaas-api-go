@@ -107,7 +107,7 @@ model BillDetailsCSVResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CSV

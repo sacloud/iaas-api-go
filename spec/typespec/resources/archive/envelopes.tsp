@@ -19,24 +19,9 @@ model ArchiveFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for archiveFindResponseEnvelope
@@ -64,7 +49,7 @@ model ArchiveCreateRequestEnvelope {
   /**
    * Archive
    */
-  Archive: Archive;
+  Archive: ArchiveCreateRequest;
 }
 /**
  * Response envelope for archiveCreateResponseEnvelope
@@ -74,7 +59,7 @@ model ArchiveCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Archive
@@ -89,7 +74,7 @@ model ArchiveCreateBlankRequestEnvelope {
   /**
    * Archive
    */
-  Archive: Archive;
+  Archive: ArchiveCreateBlankRequest;
 }
 /**
  * Response envelope for archiveCreateBlankResponseEnvelope
@@ -99,7 +84,7 @@ model ArchiveCreateBlankResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Archive
@@ -120,7 +105,7 @@ model ArchiveReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Archive
@@ -135,7 +120,7 @@ model ArchiveUpdateRequestEnvelope {
   /**
    * Archive
    */
-  Archive: Archive;
+  Archive: ArchiveUpdateRequest;
 }
 /**
  * Response envelope for archiveUpdateResponseEnvelope
@@ -145,7 +130,7 @@ model ArchiveUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Archive
@@ -170,7 +155,7 @@ model ArchiveOpenFTPResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * FTPServer
@@ -195,7 +180,7 @@ model ArchiveShareResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * ArchiveShareInfo
@@ -210,7 +195,7 @@ model ArchiveCreateFromSharedRequestEnvelope {
   /**
    * Archive
    */
-  Archive: Archive;
+  Archive: ArchiveCreateRequestFromShared;
 }
 /**
  * Response envelope for archiveCreateFromSharedResponseEnvelope
@@ -220,7 +205,7 @@ model ArchiveCreateFromSharedResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Archive
@@ -235,7 +220,7 @@ model ArchiveTransferRequestEnvelope {
   /**
    * Archive
    */
-  Archive: Archive;
+  Archive: ArchiveTransferRequest;
 }
 /**
  * Response envelope for archiveTransferResponseEnvelope
@@ -245,7 +230,7 @@ model ArchiveTransferResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Archive

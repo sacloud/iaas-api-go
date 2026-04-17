@@ -19,10 +19,10 @@ interface SSHKeyOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/sshkey")
-  create(
-    @path zone: string,
-    @body body: SSHKeyCreateRequestEnvelope,
-  ): SSHKeyCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: SSHKeyCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...SSHKeyCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
@@ -41,5 +41,8 @@ interface SSHKeyOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

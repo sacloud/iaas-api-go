@@ -19,24 +19,9 @@ model LicenseFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for licenseFindResponseEnvelope
@@ -64,7 +49,7 @@ model LicenseCreateRequestEnvelope {
   /**
    * License
    */
-  License: License;
+  License: LicenseCreateRequest;
 }
 /**
  * Response envelope for licenseCreateResponseEnvelope
@@ -74,7 +59,7 @@ model LicenseCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * License
@@ -90,7 +75,7 @@ model LicenseReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * License
@@ -105,7 +90,7 @@ model LicenseUpdateRequestEnvelope {
   /**
    * License
    */
-  License: License;
+  License: LicenseUpdateRequest;
 }
 /**
  * Response envelope for licenseUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model LicenseUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * License

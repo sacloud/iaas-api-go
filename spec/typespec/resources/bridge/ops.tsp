@@ -19,10 +19,10 @@ interface BridgeOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/bridge")
-  create(
-    @path zone: string,
-    @body body: BridgeCreateRequestEnvelope,
-  ): BridgeCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: BridgeCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...BridgeCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/bridge/{id}")
@@ -41,5 +41,8 @@ interface BridgeOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/bridge/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

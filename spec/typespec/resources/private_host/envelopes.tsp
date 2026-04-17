@@ -19,24 +19,9 @@ model PrivateHostFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for privateHostFindResponseEnvelope
@@ -64,7 +49,7 @@ model PrivateHostCreateRequestEnvelope {
   /**
    * PrivateHost
    */
-  PrivateHost: PrivateHost;
+  PrivateHost: PrivateHostCreateRequest;
 }
 /**
  * Response envelope for privateHostCreateResponseEnvelope
@@ -74,7 +59,7 @@ model PrivateHostCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PrivateHost
@@ -89,7 +74,7 @@ model PrivateHostCreateWithDedicatedStorageRequestEnvelope {
   /**
    * PrivateHost
    */
-  PrivateHost: PrivateHost;
+  PrivateHost: PrivateHostCreateRequest;
 
   /**
    * TargetDedicatedStorageContract
@@ -104,7 +89,7 @@ model PrivateHostCreateWithDedicatedStorageResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PrivateHost
@@ -120,7 +105,7 @@ model PrivateHostReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PrivateHost
@@ -135,7 +120,7 @@ model PrivateHostUpdateRequestEnvelope {
   /**
    * PrivateHost
    */
-  PrivateHost: PrivateHost;
+  PrivateHost: PrivateHostUpdateRequest;
 }
 /**
  * Response envelope for privateHostUpdateResponseEnvelope
@@ -145,7 +130,7 @@ model PrivateHostUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PrivateHost

@@ -19,24 +19,9 @@ model PacketFilterFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for packetFilterFindResponseEnvelope
@@ -64,7 +49,7 @@ model PacketFilterCreateRequestEnvelope {
   /**
    * PacketFilter
    */
-  PacketFilter: PacketFilter;
+  PacketFilter: PacketFilterCreateRequest;
 }
 /**
  * Response envelope for packetFilterCreateResponseEnvelope
@@ -74,7 +59,7 @@ model PacketFilterCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PacketFilter
@@ -90,7 +75,7 @@ model PacketFilterReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PacketFilter
@@ -105,7 +90,7 @@ model PacketFilterUpdateRequestEnvelope {
   /**
    * PacketFilter
    */
-  PacketFilter: PacketFilter;
+  PacketFilter: PacketFilterUpdateRequest;
 
   /**
    * OriginalExpressionHash
@@ -120,7 +105,7 @@ model PacketFilterUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * PacketFilter

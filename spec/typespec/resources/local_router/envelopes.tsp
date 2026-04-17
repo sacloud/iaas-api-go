@@ -19,24 +19,9 @@ model LocalRouterFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for localRouterFindResponseEnvelope
@@ -64,7 +49,7 @@ model LocalRouterCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: LocalRouter;
+  CommonServiceItem: LocalRouterCreateRequest;
 }
 /**
  * Response envelope for localRouterCreateResponseEnvelope
@@ -74,7 +59,7 @@ model LocalRouterCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model LocalRouterReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model LocalRouterUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: LocalRouter;
+  CommonServiceItem: LocalRouterUpdateRequest;
 }
 /**
  * Response envelope for localRouterUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model LocalRouterUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model LocalRouterUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -156,7 +141,7 @@ model LocalRouterHealthStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * LocalRouter
@@ -186,7 +171,7 @@ model LocalRouterMonitorLocalRouterResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

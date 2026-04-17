@@ -169,6 +169,28 @@ func stripNakedTypeName(goType string) string {
 	return goType
 }
 
+// resolvedPayload はエンベロープ内の1フィールド分の情報（TypeSpec型名解決済み）。
+type resolvedPayload struct {
+	Name   string
+	TSType string
+}
+
+// resolveRequestPayloadTSType はオペレーションの引数からリクエストペイロードの TypeSpec 型名を解決する。
+// MappableArgument でマッピングされた Model 引数がある場合はそのモデル名を使い、
+// なければ naked 型名から envelopePayloadTypeToTS で変換したものを返す。
+func resolveRequestPayloadTSType(op *dsl.Operation, payload *dsl.EnvelopePayloadDesc) string {
+	for _, arg := range op.Arguments {
+		if model, ok := arg.Type.(*dsl.Model); ok {
+			// MapConvTag は "{destField},recursive" の形式
+			destField := strings.SplitN(arg.MapConvTag, ",", 2)[0]
+			if destField == payload.Name {
+				return model.Name
+			}
+		}
+	}
+	return envelopePayloadTypeToTS(payload.TypeName())
+}
+
 // envelopeInfo は1オペレーション分のエンベロープ情報を保持する。
 type envelopeInfo struct {
 	HasRequestEnvelope           bool
@@ -181,7 +203,7 @@ type envelopeInfo struct {
 	IsRequestPlural              bool
 	IsResponseSingular           bool
 	IsResponsePlural             bool
-	RequestPayloads              []*dsl.EnvelopePayloadDesc
+	RequestPayloads              []resolvedPayload
 	ResponsePayloads             []*dsl.EnvelopePayloadDesc
 }
 
@@ -217,7 +239,7 @@ model {{ .RequestEnvelopeTypeSpecName }} {
 	/**
 	 * {{ .Name }}
 	 */
-	{{ .Name }}: {{ goTypeToTypeSpec .TypeName }}{{ if $isPlural }}[]{{ end }};
+	{{ .Name }}: {{ .TSType }}{{ if $isPlural }}[]{{ end }};
 {{- end }}
 }
 {{- end }}
@@ -248,7 +270,7 @@ model {{ .ResponseEnvelopeTypeSpecName }} {
 	is_ok: boolean;
 
 	@doc("success - API result status")
-	Success: string;
+	Success?: boolean;
 
 {{- range .ResponsePayloads }}
 	/**
@@ -276,6 +298,19 @@ func generateEnvelopes() {
 			reqStructName := op.RequestEnvelopeStructName()
 			respStructName := op.ResponseEnvelopeStructName()
 
+			// Sort/Include/Exclude は定義しない（AGENTS.md: 複雑性が高すぎる）
+			skipFields := map[string]bool{"Sort": true, "Include": true, "Exclude": true}
+			var reqPayloads []resolvedPayload
+			for _, p := range op.RequestPayloads() {
+				if skipFields[p.Name] {
+					continue
+				}
+				reqPayloads = append(reqPayloads, resolvedPayload{
+					Name:   p.Name,
+					TSType: resolveRequestPayloadTSType(op, p),
+				})
+			}
+
 			envelopes = append(envelopes, envelopeInfo{
 				HasRequestEnvelope:           hasRequestEnvelope,
 				HasResponseEnvelope:          hasResponseEnvelope,
@@ -287,7 +322,7 @@ func generateEnvelopes() {
 				IsRequestPlural:              op.IsRequestPlural(),
 				IsResponseSingular:           op.IsResponseSingular(),
 				IsResponsePlural:             op.IsResponsePlural(),
-				RequestPayloads:              op.RequestPayloads(),
+				RequestPayloads:              reqPayloads,
 				ResponsePayloads:             op.ResponsePayloads(),
 			})
 		}
@@ -298,10 +333,11 @@ func generateEnvelopes() {
 		}
 
 		// nakedInlineModels に対応する naked 型が使われている場合、ExtraModels に収集する
+		// レスポンスペイロードのみ対象（リクエストペイロードは引数モデルから解決済み）
 		usedInlineModels := map[string]bool{}
 		var extraModels []fatModelDef
 		for _, env := range envelopes {
-			for _, p := range append(env.RequestPayloads, env.ResponsePayloads...) {
+			for _, p := range env.ResponsePayloads {
 				name := stripNakedTypeName(p.TypeName())
 				if def, ok := nakedInlineModels[name]; ok && !usedInlineModels[def.Name] {
 					usedInlineModels[def.Name] = true

@@ -19,24 +19,9 @@ model SwitchFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for switchFindResponseEnvelope
@@ -64,7 +49,7 @@ model SwitchCreateRequestEnvelope {
   /**
    * Switch
    */
-  Switch: BridgeInfo;
+  Switch: SwitchCreateRequest;
 }
 /**
  * Response envelope for switchCreateResponseEnvelope
@@ -74,7 +59,7 @@ model SwitchCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Switch
@@ -90,7 +75,7 @@ model SwitchReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Switch
@@ -105,7 +90,7 @@ model SwitchUpdateRequestEnvelope {
   /**
    * Switch
    */
-  Switch: BridgeInfo;
+  Switch: SwitchUpdateRequest;
 }
 /**
  * Response envelope for switchUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model SwitchUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Switch

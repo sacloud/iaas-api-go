@@ -19,24 +19,9 @@ model VPCRouterFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for vPCRouterFindResponseEnvelope
@@ -64,7 +49,7 @@ model VPCRouterCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: VPCRouter;
+  Appliance: VPCRouterCreateRequest;
 }
 /**
  * Response envelope for vPCRouterCreateResponseEnvelope
@@ -74,7 +59,7 @@ model VPCRouterCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -90,7 +75,7 @@ model VPCRouterReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -105,7 +90,7 @@ model VPCRouterUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: VPCRouter;
+  Appliance: VPCRouterUpdateRequest;
 }
 /**
  * Response envelope for vPCRouterUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model VPCRouterUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -140,7 +125,7 @@ model VPCRouterUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -180,7 +165,7 @@ model VPCRouterMonitorCPUResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -210,7 +195,7 @@ model VPCRouterMonitorInterfaceResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -226,7 +211,7 @@ model VPCRouterStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Router
@@ -242,7 +227,7 @@ model VPCRouterLogsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * VPCRouter
@@ -258,7 +243,7 @@ model VPCRouterPingResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * VPCRouter

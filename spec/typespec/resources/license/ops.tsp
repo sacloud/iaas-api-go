@@ -19,10 +19,10 @@ interface LicenseOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/license")
-  create(
-    @path zone: string,
-    @body body: LicenseCreateRequestEnvelope,
-  ): LicenseCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: LicenseCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...LicenseCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/license/{id}")
@@ -41,5 +41,8 @@ interface LicenseOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/license/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

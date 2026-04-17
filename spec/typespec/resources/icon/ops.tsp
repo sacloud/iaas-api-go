@@ -19,10 +19,10 @@ interface IconOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/icon")
-  create(
-    @path zone: string,
-    @body body: IconCreateRequestEnvelope,
-  ): IconCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: IconCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...IconCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/icon/{id}")
@@ -41,5 +41,8 @@ interface IconOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/icon/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

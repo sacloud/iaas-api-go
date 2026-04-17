@@ -19,10 +19,10 @@ interface CDROMOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/cdrom")
-  create(
-    @path zone: string,
-    @body body: CDROMCreateRequestEnvelope,
-  ): CDROMCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: CDROMCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...CDROMCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
@@ -41,7 +41,10 @@ interface CDROMOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
@@ -53,5 +56,8 @@ interface CDROMOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
-  closeFTP(@path zone: string, @path id: string): void | ApiError;
+  closeFTP(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

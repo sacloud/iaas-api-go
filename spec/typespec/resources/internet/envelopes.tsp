@@ -19,24 +19,9 @@ model InternetFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for internetFindResponseEnvelope
@@ -64,7 +49,7 @@ model InternetCreateRequestEnvelope {
   /**
    * Internet
    */
-  Internet: Internet;
+  Internet: InternetCreateRequest;
 }
 /**
  * Response envelope for internetCreateResponseEnvelope
@@ -74,7 +59,7 @@ model InternetCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Internet
@@ -90,7 +75,7 @@ model InternetReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Internet
@@ -105,7 +90,7 @@ model InternetUpdateRequestEnvelope {
   /**
    * Internet
    */
-  Internet: Internet;
+  Internet: InternetUpdateRequest;
 }
 /**
  * Response envelope for internetUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model InternetUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Internet
@@ -130,7 +115,7 @@ model InternetUpdateBandWidthRequestEnvelope {
   /**
    * Internet
    */
-  Internet: Internet;
+  Internet: InternetUpdateBandWidthRequest;
 }
 /**
  * Response envelope for internetUpdateBandWidthResponseEnvelope
@@ -140,7 +125,7 @@ model InternetUpdateBandWidthResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Internet
@@ -170,7 +155,7 @@ model InternetAddSubnetResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Subnet
@@ -195,7 +180,7 @@ model InternetUpdateSubnetResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Subnet
@@ -225,7 +210,7 @@ model InternetMonitorResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -255,7 +240,7 @@ model InternetMonitorRouterResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -271,7 +256,7 @@ model InternetEnableIPv6ResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * IPv6Net

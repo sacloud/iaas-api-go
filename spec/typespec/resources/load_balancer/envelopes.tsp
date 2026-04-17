@@ -19,24 +19,9 @@ model LoadBalancerFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for loadBalancerFindResponseEnvelope
@@ -64,7 +49,7 @@ model LoadBalancerCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: LoadBalancer;
+  Appliance: LoadBalancerCreateRequest;
 }
 /**
  * Response envelope for loadBalancerCreateResponseEnvelope
@@ -74,7 +59,7 @@ model LoadBalancerCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -90,7 +75,7 @@ model LoadBalancerReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -105,7 +90,7 @@ model LoadBalancerUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: LoadBalancer;
+  Appliance: LoadBalancerUpdateRequest;
 }
 /**
  * Response envelope for loadBalancerUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model LoadBalancerUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -140,7 +125,7 @@ model LoadBalancerUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -180,7 +165,7 @@ model LoadBalancerMonitorCPUResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -210,7 +195,7 @@ model LoadBalancerMonitorInterfaceResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

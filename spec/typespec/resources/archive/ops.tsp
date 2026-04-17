@@ -19,10 +19,10 @@ interface ArchiveOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/archive")
-  create(
-    @path zone: string,
-    param: ArchiveCreateRequest,
-  ): ArchiveCreateResponseEnvelope | ApiError;
+  create(@path zone: string, param: ArchiveCreateRequest): {
+    @statusCode _: 201;
+    ...ArchiveCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/archive/{id}")
@@ -41,7 +41,10 @@ interface ArchiveOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
@@ -53,7 +56,10 @@ interface ArchiveOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  closeFTP(@path zone: string, @path id: string): void | ApiError;
+  closeFTP(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}")
@@ -62,5 +68,8 @@ interface ArchiveOp {
     @path sourceArchiveID: string,
     @path destZoneID: string,
     param: ArchiveCreateRequestFromShared,
-  ): ArchiveTransferResponseEnvelope | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...ArchiveTransferResponseEnvelope;
+  } | ApiError;
 }

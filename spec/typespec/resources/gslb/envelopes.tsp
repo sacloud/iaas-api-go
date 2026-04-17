@@ -19,24 +19,9 @@ model GSLBFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for gSLBFindResponseEnvelope
@@ -64,7 +49,7 @@ model GSLBCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: GSLB;
+  CommonServiceItem: GSLBCreateRequest;
 }
 /**
  * Response envelope for gSLBCreateResponseEnvelope
@@ -74,7 +59,7 @@ model GSLBCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model GSLBReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model GSLBUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: GSLB;
+  CommonServiceItem: GSLBUpdateRequest;
 }
 /**
  * Response envelope for gSLBUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model GSLBUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model GSLBUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem

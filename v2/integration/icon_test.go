@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"os"
 	"testing"
@@ -35,11 +34,11 @@ func TestIconCRUD(t *testing.T) {
 	zone := getZone()
 
 	// 1. Create - アイコン作成
-	// 1x1 pixel transparent PNG in base64
-	base64Image := base64.StdEncoding.EncodeToString([]byte("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="))
+	// 1x1 pixel transparent PNG (base64エンコード済み)
+	base64Image := "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
 
-	createReq := &client.IconOpCreateReq{
-		Param: client.IconCreateRequest{
+	createReq := &client.IconCreateRequestEnvelope{
+		Icon: client.IconCreateRequest{
 			Name:  "test-icon",
 			Tags:  []string{"test", "integration"},
 			Image: base64Image,
@@ -47,8 +46,7 @@ func TestIconCRUD(t *testing.T) {
 	}
 
 	createParams := client.IconOpCreateParams{
-		Zone:               zone,
-		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+		Zone: zone,
 	}
 
 	createResp, err := c.IconOpCreate(ctx, createReq, createParams)
@@ -60,9 +58,8 @@ func TestIconCRUD(t *testing.T) {
 
 	// 2. Read - アイコン取得
 	readParams := client.IconOpReadParams{
-		Zone:               zone,
-		ID:                 fmt.Sprintf("%d", iconID),
-		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+		Zone: zone,
+		ID:   fmt.Sprintf("%d", iconID),
 	}
 
 	readResp, err := c.IconOpRead(ctx, readParams)
@@ -72,16 +69,15 @@ func TestIconCRUD(t *testing.T) {
 	require.Equal(t, iconID, readResp.Icon.ID)
 
 	// 3. Update - アイコン更新
-	updateReq := &client.IconOpUpdateReq{
-		Param: client.IconUpdateRequest{
+	updateReq := &client.IconUpdateRequestEnvelope{
+		Icon: client.IconUpdateRequest{
 			Name: "test-icon-updated",
 			Tags: []string{"test", "integration", "updated"},
 		},
 	}
 	updateParams := client.IconOpUpdateParams{
-		Zone:               zone,
-		ID:                 fmt.Sprintf("%d", iconID),
-		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+		Zone: zone,
+		ID:   fmt.Sprintf("%d", iconID),
 	}
 
 	updateResp, err := c.IconOpUpdate(ctx, updateReq, updateParams)
@@ -90,12 +86,9 @@ func TestIconCRUD(t *testing.T) {
 	require.Equal(t, "test-icon-updated", updateResp.Icon.Name)
 
 	// 4. Find - アイコン検索
-	findReq := &client.IconOpFindReq{
-		Conditions: client.FindCondition{}, // 空の検索条件
-	}
+	findReq := &client.IconFindRequestEnvelope{}
 	findParams := client.IconOpFindParams{
-		Zone:               zone,
-		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+		Zone: zone,
 	}
 
 	findResp, err := c.IconOpFind(ctx, findReq, findParams)
@@ -111,21 +104,18 @@ func TestIconCRUD(t *testing.T) {
 			break
 		}
 	}
-	require.True(t, found, "Created icon should be found in list")
+	require.True(t, found, "作成したアイコンがリストに含まれていること")
 
 	// 5. Delete - アイコン削除
 	deleteParams := client.IconOpDeleteParams{
-		Zone:               zone,
-		ID:                 fmt.Sprintf("%d", iconID),
-		XSakuraBigintAsInt: client.CommonRequestHeaders1,
+		Zone: zone,
+		ID:   fmt.Sprintf("%d", iconID),
 	}
 
-	err = c.IconOpDelete(ctx, deleteParams)
+	_, err = c.IconOpDelete(ctx, deleteParams)
 	require.NoError(t, err)
 
 	// 削除後の取得でエラーになることを確認（404 Not Found）
 	_, err = c.IconOpRead(ctx, readParams)
-	// IconOpRead は成功レスポンスのみなので、エラーが発生することを確認
-	// 実際には API エラーが返る
 	require.Error(t, err)
 }

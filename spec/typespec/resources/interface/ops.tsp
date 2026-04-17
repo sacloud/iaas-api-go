@@ -19,10 +19,10 @@ interface InterfaceOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/interface")
-  create(
-    @path zone: string,
-    @body body: InterfaceCreateRequestEnvelope,
-  ): InterfaceCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: InterfaceCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...InterfaceCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}")
@@ -41,7 +41,10 @@ interface InterfaceOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}/monitor")
@@ -65,7 +68,10 @@ interface InterfaceOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
-  disconnectFromSwitch(@path zone: string, @path id: string): void | ApiError;
+  disconnectFromSwitch(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}")
@@ -77,8 +83,8 @@ interface InterfaceOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter")
-  disconnectFromPacketFilter(
-    @path zone: string,
-    @path id: string,
-  ): void | ApiError;
+  disconnectFromPacketFilter(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

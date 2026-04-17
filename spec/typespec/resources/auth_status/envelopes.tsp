@@ -12,7 +12,7 @@ model AuthStatusReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * AuthStatus

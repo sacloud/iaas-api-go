@@ -27,7 +27,10 @@ interface DiskOp {
     dedicatedStorageContractID?: ID,
     editParam?: DiskEditRequest,
     bootAtAvailable?: boolean,
-  ): DiskCreateResponseEnvelope | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...DiskCreateResponseEnvelope;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/config")
@@ -55,7 +58,10 @@ interface DiskOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server")
-  disconnectFromServer(@path zone: string, @path id: string): void | ApiError;
+  disconnectFromServer(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}")
@@ -74,7 +80,10 @@ interface DiskOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}/monitor")

@@ -19,24 +19,9 @@ model EnhancedDBFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for enhancedDBFindResponseEnvelope
@@ -64,7 +49,7 @@ model EnhancedDBCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: EnhancedDB;
+  CommonServiceItem: EnhancedDBCreateRequest;
 }
 /**
  * Response envelope for enhancedDBCreateResponseEnvelope
@@ -74,7 +59,7 @@ model EnhancedDBCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model EnhancedDBReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model EnhancedDBUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: EnhancedDB;
+  CommonServiceItem: EnhancedDBUpdateRequest;
 }
 /**
  * Response envelope for enhancedDBUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model EnhancedDBUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -141,7 +126,7 @@ model EnhancedDBGetConfigResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * EnhancedDB

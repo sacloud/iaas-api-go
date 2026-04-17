@@ -92,10 +92,10 @@ interface ApplianceOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/appliance")
-  create(
-    @path zone: string,
-    param: ApplianceCreateRequest,
-  ): DatabaseCreateResponseEnvelope | ApiError;
+  create(@path zone: string, param: ApplianceCreateRequest): {
+    @statusCode _: 201;
+    ...DatabaseCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
@@ -114,7 +114,10 @@ interface ApplianceOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/config")
@@ -130,7 +133,10 @@ interface ApplianceOp {
     @path zone: string,
     @path id: string,
     shutdownOption: ShutdownOption,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/reset")
@@ -214,7 +220,10 @@ interface MobileGatewayOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch")
-  disconnectFromSwitch(@path zone: string, @path id: string): void | ApiError;
+  disconnectFromSwitch(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
@@ -263,11 +272,10 @@ interface MobileGatewayOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}")
-  deleteSIM(
-    @path zone: string,
-    @path id: string,
-    @path simID: string,
-  ): void | ApiError;
+  deleteSIM(@path zone: string, @path id: string, @path simID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog")
@@ -293,7 +301,10 @@ interface MobileGatewayOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
-  deleteTrafficConfig(@path zone: string, @path id: string): void | ApiError;
+  deleteTrafficConfig(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status")
@@ -320,7 +331,10 @@ interface VPCRouterOp {
     @path zone: string,
     @path id: string,
     @path nicIndex: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs")
@@ -331,9 +345,8 @@ interface VPCRouterOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}")
-  ping(
-    @path zone: string,
-    @path id: string,
-    @path destination: string,
-  ): VPCRouterPingResponseEnvelope | ApiError;
+  ping(@path zone: string, @path id: string, @path destination: string): {
+    @statusCode _: 201;
+    ...VPCRouterPingResponseEnvelope;
+  } | ApiError;
 }

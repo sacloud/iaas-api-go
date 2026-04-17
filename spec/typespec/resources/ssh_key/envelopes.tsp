@@ -19,24 +19,9 @@ model SSHKeyFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for sSHKeyFindResponseEnvelope
@@ -64,7 +49,7 @@ model SSHKeyCreateRequestEnvelope {
   /**
    * SSHKey
    */
-  SSHKey: SSHKey;
+  SSHKey: SSHKeyCreateRequest;
 }
 /**
  * Response envelope for sSHKeyCreateResponseEnvelope
@@ -74,7 +59,7 @@ model SSHKeyCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SSHKey
@@ -90,7 +75,7 @@ model SSHKeyReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SSHKey
@@ -105,7 +90,7 @@ model SSHKeyUpdateRequestEnvelope {
   /**
    * SSHKey
    */
-  SSHKey: SSHKey;
+  SSHKey: SSHKeyUpdateRequest;
 }
 /**
  * Response envelope for sSHKeyUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model SSHKeyUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * SSHKey

@@ -19,24 +19,9 @@ model DiskFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for diskFindResponseEnvelope
@@ -64,7 +49,7 @@ model DiskCreateRequestEnvelope {
   /**
    * Disk
    */
-  Disk: Disk;
+  Disk: DiskCreateRequest;
 
   /**
    * DistantFrom
@@ -84,7 +69,7 @@ model DiskCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Disk
@@ -99,7 +84,7 @@ model DiskCreateOnDedicatedStorageRequestEnvelope {
   /**
    * Disk
    */
-  Disk: Disk;
+  Disk: DiskCreateRequest;
 
   /**
    * DistantFrom
@@ -124,7 +109,7 @@ model DiskCreateOnDedicatedStorageResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Disk
@@ -199,7 +184,7 @@ model DiskCreateWithConfigRequestEnvelope {
   /**
    * Disk
    */
-  Disk: Disk;
+  Disk: DiskCreateRequest;
 
   /**
    * Config
@@ -229,7 +214,7 @@ model DiskCreateWithConfigResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Disk
@@ -244,7 +229,7 @@ model DiskCreateOnDedicatedStorageWithConfigRequestEnvelope {
   /**
    * Disk
    */
-  Disk: Disk;
+  Disk: DiskCreateRequest;
 
   /**
    * Config
@@ -279,7 +264,7 @@ model DiskCreateOnDedicatedStorageWithConfigResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Disk
@@ -305,7 +290,7 @@ model DiskReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Disk
@@ -320,7 +305,7 @@ model DiskUpdateRequestEnvelope {
   /**
    * Disk
    */
-  Disk: Disk;
+  Disk: DiskUpdateRequest;
 }
 /**
  * Response envelope for diskUpdateResponseEnvelope
@@ -330,7 +315,7 @@ model DiskUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Disk
@@ -360,7 +345,7 @@ model DiskMonitorResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -390,7 +375,7 @@ model DiskMonitorDiskResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data

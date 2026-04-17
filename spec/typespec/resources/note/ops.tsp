@@ -19,10 +19,10 @@ interface NoteOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/note")
-  create(
-    @path zone: string,
-    @body body: NoteCreateRequestEnvelope,
-  ): NoteCreateResponseEnvelope | ApiError;
+  create(@path zone: string, @body body: NoteCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...NoteCreateResponseEnvelope;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/note/{id}")
@@ -41,5 +41,8 @@ interface NoteOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/note/{id}")
-  delete(@path zone: string, @path id: string): void | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

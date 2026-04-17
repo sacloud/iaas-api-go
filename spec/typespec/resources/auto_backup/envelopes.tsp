@@ -19,24 +19,9 @@ model AutoBackupFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for autoBackupFindResponseEnvelope
@@ -64,7 +49,7 @@ model AutoBackupCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoBackup;
+  CommonServiceItem: AutoBackupCreateRequest;
 }
 /**
  * Response envelope for autoBackupCreateResponseEnvelope
@@ -74,7 +59,7 @@ model AutoBackupCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -90,7 +75,7 @@ model AutoBackupReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -105,7 +90,7 @@ model AutoBackupUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoBackup;
+  CommonServiceItem: AutoBackupUpdateRequest;
 }
 /**
  * Response envelope for autoBackupUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model AutoBackupUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem
@@ -140,7 +125,7 @@ model AutoBackupUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * CommonServiceItem

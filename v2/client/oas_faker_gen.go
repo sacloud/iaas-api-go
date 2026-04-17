@@ -250,6 +250,15 @@ func (s *ApplianceOpCreateReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ApplianceOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ApplianceOpFindReq) SetFake() {
 	{
 		{
@@ -281,6 +290,15 @@ func (s *ApplianceOpMonitorInterfaceReq) SetFake() {
 	{
 		{
 			s.Condition.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ApplianceOpShutdownOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -565,7 +583,7 @@ func (s *ArchiveCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -589,36 +607,7 @@ func (s *ArchiveFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -666,10 +655,28 @@ func (s *ArchiveFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ArchiveOpCloseFTPOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ArchiveOpCreateReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ArchiveOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -701,7 +708,7 @@ func (s *ArchiveReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -729,7 +736,7 @@ func (s *ArchiveShareResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -748,12 +755,43 @@ func (s *ArchiveTransferResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Archive.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ArchiveUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
 		}
 	}
 }
@@ -776,7 +814,7 @@ func (s *ArchiveUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -859,7 +897,7 @@ func (s *AuthStatusReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -971,7 +1009,7 @@ func (s *AutoBackupCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1021,7 +1059,7 @@ func (s *AutoBackupReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1040,7 +1078,7 @@ func (s *AutoBackupUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1149,7 +1187,7 @@ func (s *AutoScaleStatusResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1409,7 +1447,7 @@ func (s *BillDetailsCSVResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1528,6 +1566,20 @@ func (s *Bridge) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *BridgeCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *BridgeCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -1545,7 +1597,7 @@ func (s *BridgeCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1569,36 +1621,7 @@ func (s *BridgeFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -1670,6 +1693,15 @@ func (s *BridgeInfo) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *BridgeOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *BridgeReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -1678,7 +1710,7 @@ func (s *BridgeReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1718,6 +1750,20 @@ func (s *BridgeSwitchInfo) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *BridgeUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *BridgeUpdateRequestEnvelope) SetFake() {
 	{
 		{
@@ -1735,7 +1781,7 @@ func (s *BridgeUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1836,6 +1882,42 @@ func (s *CDROM) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *CDROMCreateRequest) SetFake() {
+	{
+		{
+			s.SizeMB = int32(0)
+		}
+	}
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *CDROMCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -1853,7 +1935,7 @@ func (s *CDROMCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1882,36 +1964,7 @@ func (s *CDROMFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -1959,6 +2012,24 @@ func (s *CDROMFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *CDROMOpCloseFTPOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CDROMOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *CDROMOpenFTPRequestEnvelope) SetFake() {
 	{
 		{
@@ -1976,7 +2047,7 @@ func (s *CDROMOpenFTPResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -1995,12 +2066,43 @@ func (s *CDROMReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.CDROM.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CDROMUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
 		}
 	}
 }
@@ -2023,7 +2125,7 @@ func (s *CDROMUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -2107,7 +2209,7 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -2184,7 +2286,7 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -2256,7 +2358,7 @@ func (s *CertificateAuthorityDetailResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -2355,7 +2457,7 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -2374,7 +2476,7 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -3009,6 +3111,15 @@ func (s *CommonServiceItemOpCreateReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *CommonServiceItemOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *CommonServiceItemOpFindReq) SetFake() {
 	{
 		{
@@ -3496,6 +3607,20 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetFake
 }
 
 // SetFake set fake values.
+func (s *ConnectedSwitch) SetFake() {
+	{
+		{
+			s.ID = int64(0)
+		}
+	}
+	{
+		{
+			s.Scope.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ContainerRegistryListUsersResponseEnvelope) SetFake() {
 	{
 		{
@@ -3504,7 +3629,7 @@ func (s *ContainerRegistryListUsersResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -3519,6 +3644,15 @@ func (s *ContainerRegistryOpAddUserReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ContainerRegistryOpDeleteUserOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -3899,7 +4033,7 @@ func (s *DatabaseCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -3963,7 +4097,7 @@ func (s *DatabaseGetParameterResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4001,7 +4135,7 @@ func (s *DatabaseMonitorCPUResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4020,7 +4154,7 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4039,7 +4173,7 @@ func (s *DatabaseMonitorDiskResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4058,7 +4192,7 @@ func (s *DatabaseMonitorInterfaceResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4187,7 +4321,7 @@ func (s *DatabaseReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4449,7 +4583,7 @@ func (s *DatabaseStatusResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4468,7 +4602,7 @@ func (s *DatabaseUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4801,7 +4935,7 @@ func (s *DiskCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -4956,36 +5090,7 @@ func (s *DiskFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -5041,7 +5146,7 @@ func (s *DiskMonitorResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5088,6 +5193,24 @@ func (s *DiskOpCreateReq) SetFake() {
 	{
 		{
 			s.BootAtAvailable.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskOpDisconnectFromServerOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -5151,36 +5274,7 @@ func (s *DiskPlanFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -5236,7 +5330,7 @@ func (s *DiskPlanReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5279,7 +5373,7 @@ func (s *DiskReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5294,6 +5388,42 @@ func (s *DiskResizePartitionRequestEnvelope) SetFake() {
 	{
 		{
 			s.Background = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+	{
+		{
+			s.Connection.SetFake()
 		}
 	}
 }
@@ -5316,7 +5446,7 @@ func (s *DiskUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5604,7 +5734,7 @@ func (s *ESMELogsResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5679,7 +5809,7 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5722,7 +5852,7 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -5787,6 +5917,15 @@ func (s *EUpstreamNetworkType) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *EjectCDROMRequest) SetFake() {
+	{
+		{
+			s.ID = int64(0)
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *EnhancedDBConfig) SetFake() {
 	{
 		{
@@ -5816,7 +5955,7 @@ func (s *EnhancedDBGetConfigResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6042,7 +6181,7 @@ func (s *IPAddressReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6070,7 +6209,7 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6110,6 +6249,20 @@ func (s *IPv6Addr) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *IPv6AddrCreateRequest) SetFake() {
+	{
+		{
+			s.IPv6Addr = "string"
+		}
+	}
+	{
+		{
+			s.HostName = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *IPv6AddrCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -6127,7 +6280,7 @@ func (s *IPv6AddrCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6151,36 +6304,7 @@ func (s *IPv6AddrFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -6228,6 +6352,15 @@ func (s *IPv6AddrFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *IPv6AddrOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *IPv6AddrReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -6236,12 +6369,21 @@ func (s *IPv6AddrReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.IPv6Addr.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IPv6AddrUpdateRequest) SetFake() {
+	{
+		{
+			s.HostName = "string"
 		}
 	}
 }
@@ -6264,7 +6406,7 @@ func (s *IPv6AddrUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6342,7 +6484,7 @@ func (s *IPv6NetReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6404,6 +6546,32 @@ func (s *Icon) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *IconCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Image = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *IconCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -6421,7 +6589,7 @@ func (s *IconCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6445,36 +6613,7 @@ func (s *IconFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -6522,6 +6661,15 @@ func (s *IconFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *IconOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *IconReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -6530,12 +6678,33 @@ func (s *IconReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Icon.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IconUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
 		}
 	}
 }
@@ -6558,12 +6727,30 @@ func (s *IconUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Icon.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InsertCDROMRequest) SetFake() {
+	{
+		{
+			s.ID = int64(0)
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceCreateRequest) SetFake() {
+	{
+		{
+			s.ServerID = int64(0)
 		}
 	}
 }
@@ -6586,7 +6773,7 @@ func (s *InterfaceCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6610,36 +6797,7 @@ func (s *InterfaceFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -6709,12 +6867,39 @@ func (s *InterfaceMonitorResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Data = []byte("null")
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceOpDisconnectFromPacketFilterOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceOpDisconnectFromSwitchOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -6728,12 +6913,21 @@ func (s *InterfaceReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Interface.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceUpdateRequest) SetFake() {
+	{
+		{
+			s.UserIPAddress = "string"
 		}
 	}
 }
@@ -6756,7 +6950,7 @@ func (s *InterfaceUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6939,12 +7133,53 @@ func (s *InternetAddSubnetResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Subnet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+	{
+		{
+			s.NetworkMaskLen = int32(0)
+		}
+	}
+	{
+		{
+			s.BandWidthMbps = int32(0)
 		}
 	}
 }
@@ -6967,7 +7202,7 @@ func (s *InternetCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -6986,7 +7221,7 @@ func (s *InternetEnableIPv6ResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7010,36 +7245,7 @@ func (s *InternetFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -7095,12 +7301,39 @@ func (s *InternetMonitorResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Data = []byte("null")
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetOpDeleteSubnetOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetOpDisableIPv6OK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -7152,36 +7385,7 @@ func (s *InternetPlanFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -7237,7 +7441,7 @@ func (s *InternetPlanReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7256,7 +7460,7 @@ func (s *InternetReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7301,6 +7505,15 @@ func (s *InternetSubnet) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *InternetUpdateBandWidthRequest) SetFake() {
+	{
+		{
+			s.BandWidthMbps = int32(0)
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *InternetUpdateBandWidthRequestEnvelope) SetFake() {
 	{
 		{
@@ -7318,12 +7531,43 @@ func (s *InternetUpdateBandWidthResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Internet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InternetUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
 		}
 	}
 }
@@ -7346,7 +7590,7 @@ func (s *InternetUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7374,7 +7618,7 @@ func (s *InternetUpdateSubnetResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7452,6 +7696,20 @@ func (s *License) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *LicenseCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.LicenseInfoID = int64(0)
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *LicenseCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -7469,7 +7727,7 @@ func (s *LicenseCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7493,36 +7751,7 @@ func (s *LicenseFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -7612,36 +7841,7 @@ func (s *LicenseInfoFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -7697,12 +7897,21 @@ func (s *LicenseInfoReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.LicenseInfo.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *LicenseOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -7716,12 +7925,21 @@ func (s *LicenseReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.License.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *LicenseUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
 		}
 	}
 }
@@ -7744,7 +7962,7 @@ func (s *LicenseUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7805,7 +8023,7 @@ func (s *LocalRouterHealthStatusResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7855,7 +8073,7 @@ func (s *LocalRouterMonitorLocalRouterResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7963,7 +8181,7 @@ func (s *MobileGatewayGetDNSResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -7982,7 +8200,7 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8008,7 +8226,7 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8027,7 +8245,7 @@ func (s *MobileGatewayListSIMResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8053,7 +8271,7 @@ func (s *MobileGatewayLogsResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8079,7 +8297,7 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8094,6 +8312,33 @@ func (s *MobileGatewayOpAddSIMReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *MobileGatewayOpDeleteSIMOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *MobileGatewayOpDeleteTrafficConfigOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *MobileGatewayOpDisconnectFromSwitchOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -8342,7 +8587,7 @@ func (s *MobileGatewayTrafficStatusResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8451,6 +8696,42 @@ func (s *Note) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *NoteCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+	{
+		{
+			s.Class = "string"
+		}
+	}
+	{
+		{
+			s.Content = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *NoteCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -8468,7 +8749,7 @@ func (s *NoteCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -8492,36 +8773,7 @@ func (s *NoteFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -8569,6 +8821,15 @@ func (s *NoteFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *NoteOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *NoteReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -8577,12 +8838,48 @@ func (s *NoteReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Note.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *NoteUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+	{
+		{
+			s.Class = "string"
+		}
+	}
+	{
+		{
+			s.Content = "string"
 		}
 	}
 }
@@ -8605,7 +8902,7 @@ func (s *NoteUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -9202,6 +9499,32 @@ func (s *PacketFilter) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *PacketFilterCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Expression = nil
+			for i := 0; i < 0; i++ {
+				var elem PacketFilterExpression
+				{
+					elem.SetFake()
+				}
+				s.Expression = append(s.Expression, elem)
+			}
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *PacketFilterCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -9219,7 +9542,7 @@ func (s *PacketFilterCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -9277,36 +9600,7 @@ func (s *PacketFilterFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -9354,6 +9648,15 @@ func (s *PacketFilterFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *PacketFilterOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *PacketFilterReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -9362,12 +9665,38 @@ func (s *PacketFilterReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.PacketFilter.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *PacketFilterUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Expression = nil
+			for i := 0; i < 0; i++ {
+				var elem PacketFilterExpression
+				{
+					elem.SetFake()
+				}
+				s.Expression = append(s.Expression, elem)
+			}
 		}
 	}
 }
@@ -9395,7 +9724,7 @@ func (s *PacketFilterUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -9605,7 +9934,7 @@ func (s *PrivateHostCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -9629,36 +9958,7 @@ func (s *PrivateHostFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -9725,6 +10025,15 @@ func (s *PrivateHostOpCreateReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *PrivateHostOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *PrivateHostPlan) SetFake() {
 	{
 		{
@@ -9782,36 +10091,7 @@ func (s *PrivateHostPlanFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -9867,7 +10147,7 @@ func (s *PrivateHostPlanReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -9886,12 +10166,43 @@ func (s *PrivateHostReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.PrivateHost.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *PrivateHostUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
 		}
 	}
 }
@@ -9914,7 +10225,7 @@ func (s *PrivateHostUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10261,7 +10572,7 @@ func (s *ProxyLBChangePlanResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10280,7 +10591,7 @@ func (s *ProxyLBGetCertificatesResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10332,7 +10643,7 @@ func (s *ProxyLBMonitorConnectionResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10347,6 +10658,15 @@ func (s *ProxyLBOpChangePlanReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ProxyLBOpDeleteCertificatesOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -10559,7 +10879,7 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10665,36 +10985,7 @@ func (s *RegionFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -10750,7 +11041,7 @@ func (s *RegionReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10778,7 +11069,7 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10844,7 +11135,7 @@ func (s *SIMMonitorSIMResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10883,10 +11174,28 @@ func (s *SIMOpAssignIPReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SIMOpClearIPOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SIMOpImeiLockReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SIMOpImeiUnlockOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -10925,7 +11234,7 @@ func (s *SIMStatusResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -10984,6 +11293,25 @@ func (s *SSHKey) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SSHKeyCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.PublicKey = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SSHKeyCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -11001,7 +11329,7 @@ func (s *SSHKeyCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11025,36 +11353,7 @@ func (s *SSHKeyFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -11102,6 +11401,15 @@ func (s *SSHKeyFindResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SSHKeyOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SSHKeyReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -11110,12 +11418,26 @@ func (s *SSHKeyReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.SSHKey.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SSHKeyUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
 		}
 	}
 }
@@ -11138,7 +11460,7 @@ func (s *SSHKeyUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11439,7 +11761,7 @@ func (s *ServerChangePlanResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11504,6 +11826,104 @@ func (s *ServerConnectedDisk) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerCreateRequest) SetFake() {
+	{
+		{
+			s.CPU = int32(0)
+		}
+	}
+	{
+		{
+			s.MemoryMB = int32(0)
+		}
+	}
+	{
+		{
+			s.GPU = int32(0)
+		}
+	}
+	{
+		{
+			s.GPUModel = "string"
+		}
+	}
+	{
+		{
+			s.CPUModel = "string"
+		}
+	}
+	{
+		{
+			s.Commitment.SetFake()
+		}
+	}
+	{
+		{
+			s.Generation.SetFake()
+		}
+	}
+	{
+		{
+			s.ConfidentialVM = true
+		}
+	}
+	{
+		{
+			s.ConnectedSwitches = nil
+			for i := 0; i < 0; i++ {
+				var elem ConnectedSwitch
+				{
+					elem.SetFake()
+				}
+				s.ConnectedSwitches = append(s.ConnectedSwitches, elem)
+			}
+		}
+	}
+	{
+		{
+			s.InterfaceDriver.SetFake()
+		}
+	}
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+	{
+		{
+			s.WaitDiskMigration = true
+		}
+	}
+	{
+		{
+			s.PrivateHostID = int64(0)
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerCreateRequestEnvelope) SetFake() {
 	{
 		{
@@ -11521,7 +11941,7 @@ func (s *ServerCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11570,36 +11990,7 @@ func (s *ServerFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -11655,7 +12046,7 @@ func (s *ServerGetVNCProxyResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11683,7 +12074,7 @@ func (s *ServerMonitorResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11703,6 +12094,15 @@ func (s *ServerOpBootReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerOpDeleteReq) SetFake() {
 	{
 		{
@@ -11712,10 +12112,28 @@ func (s *ServerOpDeleteReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerOpEjectCDROMOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerOpMonitorReq) SetFake() {
 	{
 		{
 			s.Condition.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerOpShutdownOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -11734,36 +12152,7 @@ func (s *ServerPlanFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -11819,7 +12208,7 @@ func (s *ServerPlanReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11838,7 +12227,7 @@ func (s *ServerReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11879,6 +12268,47 @@ func (s *ServerShutdownRequestEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
+		}
+	}
+	{
+		{
+			s.PrivateHostID = int64(0)
+		}
+	}
+	{
+		{
+			s.InterfaceDriver.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerUpdateRequestEnvelope) SetFake() {
 	{
 		{
@@ -11896,7 +12326,7 @@ func (s *ServerUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -11954,36 +12384,7 @@ func (s *ServiceClassFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -12142,7 +12543,7 @@ func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -12184,7 +12585,7 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -12203,7 +12604,7 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -12414,36 +12815,7 @@ func (s *SubnetFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -12499,12 +12871,53 @@ func (s *SubnetReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Subnet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SwitchCreateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.NetworkMaskLen = int32(0)
+		}
+	}
+	{
+		{
+			s.DefaultRoute = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
 		}
 	}
 }
@@ -12527,7 +12940,7 @@ func (s *SwitchCreateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -12551,36 +12964,7 @@ func (s *SwitchFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -12719,6 +13103,24 @@ func (s *SwitchInfo) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SwitchOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SwitchOpDisconnectFromBridgeOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SwitchReadResponseEnvelope) SetFake() {
 	{
 		{
@@ -12727,12 +13129,53 @@ func (s *SwitchReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.Switch.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SwitchUpdateRequest) SetFake() {
+	{
+		{
+			s.Name = "string"
+		}
+	}
+	{
+		{
+			s.NetworkMaskLen = int32(0)
+		}
+	}
+	{
+		{
+			s.DefaultRoute = "string"
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.IconID = int64(0)
 		}
 	}
 }
@@ -12755,7 +13198,7 @@ func (s *SwitchUpdateResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -12831,12 +13274,21 @@ func (s *VPCRouterLogsResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
 		{
 			s.VPCRouter.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *VPCRouterOpDisconnectFromSwitchOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -12850,7 +13302,7 @@ func (s *VPCRouterPingResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{
@@ -12890,36 +13342,7 @@ func (s *ZoneFindRequestEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Sort = []byte("null")
-		}
-	}
-	{
-		{
 			s.Filter.SetFake()
-		}
-	}
-	{
-		{
-			s.Include = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Include = append(s.Include, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Exclude = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Exclude = append(s.Exclude, elem)
-			}
 		}
 	}
 }
@@ -13014,7 +13437,7 @@ func (s *ZoneReadResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.Success = "string"
+			s.Success.SetFake()
 		}
 	}
 	{

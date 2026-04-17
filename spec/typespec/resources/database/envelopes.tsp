@@ -19,24 +19,9 @@ model DatabaseFindRequestEnvelope {
   From: int32;
 
   /**
-   * Sort
-   */
-  Sort: unknown;
-
-  /**
    * Filter
    */
   Filter: Record<unknown>;
-
-  /**
-   * Include
-   */
-  Include: string[];
-
-  /**
-   * Exclude
-   */
-  Exclude: string[];
 }
 /**
  * Response envelope for databaseFindResponseEnvelope
@@ -64,7 +49,7 @@ model DatabaseCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: Database;
+  Appliance: DatabaseCreateRequest;
 }
 /**
  * Response envelope for databaseCreateResponseEnvelope
@@ -74,7 +59,7 @@ model DatabaseCreateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -90,7 +75,7 @@ model DatabaseReadResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -105,7 +90,7 @@ model DatabaseUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: Database;
+  Appliance: DatabaseUpdateRequest;
 }
 /**
  * Response envelope for databaseUpdateResponseEnvelope
@@ -115,7 +100,7 @@ model DatabaseUpdateResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -140,7 +125,7 @@ model DatabaseUpdateSettingsResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -180,7 +165,7 @@ model DatabaseMonitorCPUResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -210,7 +195,7 @@ model DatabaseMonitorDiskResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -240,7 +225,7 @@ model DatabaseMonitorInterfaceResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -270,7 +255,7 @@ model DatabaseMonitorDatabaseResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Data
@@ -286,7 +271,7 @@ model DatabaseStatusResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Appliance
@@ -302,7 +287,7 @@ model DatabaseGetParameterResponseEnvelope {
   is_ok: boolean;
 
   @doc("success - API result status")
-  Success: string;
+  Success?: boolean;
 
   /**
    * Database
