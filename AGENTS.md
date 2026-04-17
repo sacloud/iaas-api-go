@@ -172,6 +172,28 @@ spec/typespec/
  * 将来増えうる値は enum ではなく string にする
  * リソース単位で tag をつける。
 
+### HTTP ステータスコード
+
+実 API を検証して判明したステータスコードの実態：
+
+ * POST（create）→ **201 Created**（TypeSpec: `{@statusCode _: 201; ...ResponseEnvelope}`）
+ * GET（read/find）→ **200 OK**
+ * PUT（update）→ **200 OK**
+ * DELETE → **200 OK** with `{is_ok: boolean}`（204 ではない）
+
+`ops.go` のテンプレートでこれらを自動的に生成している。
+
+### レスポンスエンベロープの共通フィールド
+
+ * `is_ok: boolean` — 常に存在
+ * `Success?: boolean` — **省略されることがある**（optional）
+
+### リクエストエンベロープの型
+
+create/update のリクエストエンベロープは、レスポンス用のビュー型（`Icon` 等）ではなく、
+オペレーション固有のリクエスト型（`IconCreateRequest`、`IconUpdateRequest` 等）を使う。
+`envelopes.go` でオペレーションの Arguments から正しいモデル名を解決している。
+
 ## v2 テスト方針
 
 v2 のテストは **実 API を使用した統合テストのみ** を実施する。
@@ -195,4 +217,5 @@ v2 のテストは **実 API を使用した統合テストのみ** を実施す
 cd v2
 TEST_ACC=1 go test -v ./integration/...
 ```
+
 
