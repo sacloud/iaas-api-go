@@ -28,11 +28,15 @@ model ProxyLB {
   Syslog: ProxyLBSyslog;
   Timeout: ProxyLBTimeout;
   SettingsHash?: string | null;
+  Status?: ProxyLBStatus | null;
+}
+
+model ProxyLBStatus {
   UseVIPFailover: boolean;
-  Region: EProxyLBRegion;
-  ProxyNetworks: string[];
-  FQDN: string;
-  VirtualIPAddress: string;
+  Region?: EProxyLBRegion | null;
+  ProxyNetworks?: string[] | null;
+  FQDN?: string | null;
+  VirtualIPAddress?: string | null;
 }
 
 model ProxyLBHealthCheck {
@@ -133,12 +137,16 @@ model ProxyLBCreateRequest {
   MonitoringSuiteLog: MonitoringSuiteLog;
   ProxyProtocol: ProxyLBProxyProtocol;
   Syslog: ProxyLBSyslog;
-  UseVIPFailover: boolean;
-  Region: EProxyLBRegion;
+  Status?: ProxyLBCreateRequestStatus | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model ProxyLBCreateRequestStatus {
+  UseVIPFailover: boolean;
+  Region?: EProxyLBRegion | null;
 }
 
 model ProxyLBUpdateRequest {

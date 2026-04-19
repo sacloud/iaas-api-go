@@ -15,8 +15,7 @@ model MobileGateway {
   CreatedAt?: utcDateTime | null;
   InstanceHostName: string;
   InstanceHostInfoURL: string;
-  InstanceStatus: EServerInstanceStatus;
-  InstanceStatusChangedAt: utcDateTime;
+  Instance?: MobileGatewayInstance | null;
   Interfaces?: MobileGatewayInterface[] | null;
   ZoneID: int64;
   GlobalAddress: string;
@@ -27,26 +26,39 @@ model MobileGateway {
   SettingsHash?: string | null;
 }
 
+model MobileGatewayInstance {
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
+}
+
 model MobileGatewayInterface {
   ID?: int64 | null;
   MACAddress?: string | null;
   IPAddress?: string | null;
   UserIPAddress?: string | null;
   HostName?: string | null;
-  Switch?: ResourceRef | null;
-  SwitchName: string;
-  SwitchScope: EScope;
+  Switch?: MobileGatewayInterfaceSwitch | null;
   UserSubnetDefaultRoute: string;
   UserSubnetNetworkMaskLen: int32;
   SubnetDefaultRoute: string;
   SubnetNetworkMaskLen: int32;
   SubnetNetworkAddress: string;
   SubnetBandWidthMbps: int32;
-  PacketFilter?: ResourceRef | null;
-  PacketFilterName: string;
-  PacketFilterRequiredHostVersion: int32;
+  PacketFilter?: MobileGatewayInterfacePacketFilter | null;
   UpstreamType: EUpstreamNetworkType;
   Index: int32;
+}
+
+model MobileGatewayInterfaceSwitch {
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+}
+
+model MobileGatewayInterfacePacketFilter {
+  ID?: int64 | null;
+  Name?: string | null;
+  RequiredHostVersionn: int32;
 }
 
 model MobileGatewayInterfaceSetting {
@@ -144,10 +156,18 @@ model MobileGatewaySIMLogs {
 model MobileGatewayTrafficControl {
   TrafficQuotaInMB: int32;
   BandWidthLimitInKbps: int32;
-  EmailNotifyEnabled: boolean;
-  SlackNotifyEnabled: boolean;
-  SlackNotifyWebhooksURL: string;
+  EMailConfig: MobileGatewayTrafficControlEMailConfig;
+  SlackConfig: MobileGatewayTrafficControlSlackConfig;
   AutoTrafficShaping: boolean;
+}
+
+model MobileGatewayTrafficControlEMailConfig {
+  Enabled: boolean;
+}
+
+model MobileGatewayTrafficControlSlackConfig {
+  Enabled: boolean;
+  IncomingWebhooksURL?: string | null;
 }
 
 model MobileGatewayTrafficStatus {

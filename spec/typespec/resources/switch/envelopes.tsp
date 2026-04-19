@@ -39,7 +39,7 @@ model SwitchFindResponseEnvelope {
   /**
    * Switches
    */
-  Switches: BridgeInfo[];
+  Switches: Switch[];
 }
 
 /**
@@ -64,7 +64,7 @@ model SwitchCreateResponseEnvelope {
   /**
    * Switch
    */
-  Switch: BridgeInfo;
+  Switch: Switch;
 }
 
 /**
@@ -80,7 +80,7 @@ model SwitchReadResponseEnvelope {
   /**
    * Switch
    */
-  Switch: BridgeInfo;
+  Switch: Switch;
 }
 
 /**
@@ -105,7 +105,7 @@ model SwitchUpdateResponseEnvelope {
   /**
    * Switch
    */
-  Switch: BridgeInfo;
+  Switch: Switch;
 }
 
 /**

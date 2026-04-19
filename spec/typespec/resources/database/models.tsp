@@ -19,12 +19,11 @@ model Database {
   Backupv2Setting: DatabaseSettingBackupv2View;
   ReplicationSetting: DatabaseReplicationSetting;
   InterfaceSettings: DatabaseSettingsInterface[];
-  MonitoringSuite: MonitoringSuite;
+  Settings?: DatabaseSettings | null;
   SettingsHash?: string | null;
   InstanceHostName: string;
   InstanceHostInfoURL: string;
-  InstanceStatus: EServerInstanceStatus;
-  InstanceStatusChangedAt: utcDateTime;
+  Instance?: DatabaseInstance | null;
   PlanID: int64;
   SwitchID: int64;
   Conf: DatabaseRemarkDBConfCommon;
@@ -34,6 +33,15 @@ model Database {
   ZoneID: int64;
   Interfaces?: InterfaceView[] | null;
   Disk?: DatabaseDisk | null;
+}
+
+model DatabaseSettings {
+  MonitoringSuite?: MonitoringSuite | null;
+}
+
+model DatabaseInstance {
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
 }
 
 model DatabaseSettingCommon {
@@ -93,24 +101,36 @@ model InterfaceView {
   IPAddress?: string | null;
   UserIPAddress?: string | null;
   HostName?: string | null;
-  Switch?: ResourceRef | null;
-  SwitchName: string;
-  SwitchScope: EScope;
+  Switch?: InterfaceViewSwitch | null;
   UserSubnetDefaultRoute: string;
   UserSubnetNetworkMaskLen: int32;
   SubnetDefaultRoute: string;
   SubnetNetworkMaskLen: int32;
   SubnetNetworkAddress: string;
   SubnetBandWidthMbps: int32;
-  PacketFilter?: ResourceRef | null;
-  PacketFilterName: string;
-  PacketFilterRequiredHostVersion: int32;
+  PacketFilter?: InterfaceViewPacketFilter | null;
   UpstreamType: EUpstreamNetworkType;
+}
+
+model InterfaceViewSwitch {
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+}
+
+model InterfaceViewPacketFilter {
+  ID?: int64 | null;
+  Name?: string | null;
+  RequiredHostVersionn: int32;
 }
 
 model DatabaseDisk {
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
-  EncryptionKeyID: int64;
+  EncryptionKey?: DatabaseDiskEncryptionKey | null;
+}
+
+model DatabaseDiskEncryptionKey {
+  KMSKeyID?: int64 | null;
 }
 
 model DatabaseCreateRequest {
@@ -126,12 +146,16 @@ model DatabaseCreateRequest {
   Backupv2Setting: DatabaseSettingBackupv2;
   ReplicationSetting: DatabaseReplicationSetting;
   InterfaceSettings: DatabaseSettingsInterface[];
-  MonitoringSuite: MonitoringSuite;
+  Settings?: DatabaseCreateRequestSettings | null;
   Disk?: DatabaseDisk | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model DatabaseCreateRequestSettings {
+  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model DatabaseSettingBackupv2 {
@@ -151,8 +175,12 @@ model DatabaseUpdateRequest {
   Backupv2Setting: DatabaseSettingBackupv2;
   ReplicationSetting: DatabaseReplicationSetting;
   InterfaceSettings: DatabaseSettingsInterface[];
-  MonitoringSuite: MonitoringSuite;
+  Settings?: DatabaseUpdateRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model DatabaseUpdateRequestSettings {
+  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model DatabaseUpdateSettingsRequest {
@@ -161,8 +189,12 @@ model DatabaseUpdateSettingsRequest {
   Backupv2Setting: DatabaseSettingBackupv2;
   ReplicationSetting: DatabaseReplicationSetting;
   InterfaceSettings: DatabaseSettingsInterface[];
-  MonitoringSuite: MonitoringSuite;
+  Settings?: DatabaseUpdateSettingsRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model DatabaseUpdateSettingsRequestSettings {
+  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model ShutdownOption {
@@ -223,13 +255,17 @@ model MonitorDatabaseValue {
 }
 
 model DatabaseStatus {
-  Status?: EServerInstanceStatus | null;
+  SettingsResponse: DatabaseStatusSettingsResponse;
   MariaDBStatus: string;
   PostgresStatus: string;
-  IsFatal: boolean;
   Version: DatabaseVersionInfo;
   Logs: DatabaseLog[];
   Backups: DatabaseBackupHistory[];
+}
+
+model DatabaseStatusSettingsResponse {
+  Status: EServerInstanceStatus;
+  IsFatal: boolean;
 }
 
 model DatabaseVersionInfo {
@@ -254,14 +290,22 @@ model DatabaseBackupHistory {
 }
 
 model DatabaseParameter {
-  Settings: Record<unknown>;
+  Parameter?: DatabaseParameterParameter | null;
   MetaInfo: DatabaseParameterMeta[];
 }
 
+model DatabaseParameterParameter {
+  Attr?: Record<unknown> | null;
+}
+
 model DatabaseParameterMeta {
-  Type: string;
+  Options?: DatabaseParameterMetaOptions | null;
   Name: string;
   Label: string;
+}
+
+model DatabaseParameterMetaOptions {
+  Type: string;
   Text: string;
   Example: string;
   Min: float64;

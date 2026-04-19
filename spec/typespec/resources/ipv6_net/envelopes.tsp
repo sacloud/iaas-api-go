@@ -20,7 +20,7 @@ model IPv6NetListResponseEnvelope {
   /**
    * IPv6Nets
    */
-  IPv6Nets: IPv6NetInfo[];
+  IPv6Nets: IPv6Net[];
 }
 
 /**
@@ -58,7 +58,7 @@ model IPv6NetFindResponseEnvelope {
   /**
    * IPv6Nets
    */
-  IPv6Nets: IPv6NetInfo[];
+  IPv6Nets: IPv6Net[];
 }
 
 /**
@@ -74,5 +74,5 @@ model IPv6NetReadResponseEnvelope {
   /**
    * IPv6Net
    */
-  IPv6Net: IPv6NetInfo;
+  IPv6Net: IPv6Net;
 }

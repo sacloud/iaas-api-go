@@ -14,7 +14,7 @@ model SimpleMonitor {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   Class: string;
-  Target: string;
+  Status?: SimpleMonitorStatus | null;
   DelayLoop: int32 = 60;
   MaxCheckAttempts: int32 = 3;
   RetryInterval: int32 = 10;
@@ -28,6 +28,10 @@ model SimpleMonitor {
   Timeout: int32;
   MonitoringSuiteLog: MonitoringSuiteLog;
   SettingsHash?: string | null;
+}
+
+model SimpleMonitorStatus {
+  Target?: string | null;
 }
 
 model SimpleMonitorHealthCheck {

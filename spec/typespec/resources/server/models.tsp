@@ -15,36 +15,45 @@ model Server {
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
   InterfaceDriver?: EInterfaceDriver | null;
 
-  ServerPlan?: ResourceRef | null;
-  ServerPlanName: string;
-  CPU: int32;
-  MemoryMB: int32;
-  GPU: int32;
-  GPUModel: string;
-  CPUModel: string;
-
-  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment: ECommitment;
-
-  Generation: EPlanGeneration;
-  ConfidentialVM: boolean;
+  ServerPlan?: ServerServerPlan | null;
   Zone?: ZoneInfo | null;
   InstanceHostName: string;
   InstanceHostInfoURL: string;
-  InstanceStatus: EServerInstanceStatus;
-  InstanceBeforeStatus: EServerInstanceStatus;
-  InstanceStatusChangedAt: utcDateTime;
-  InstanceWarnings: string;
-  InstanceWarningsValue: int32;
+  Instance?: ServerInstance | null;
   Disks?: ServerConnectedDisk[] | null;
   Interfaces?: InterfaceView[] | null;
   CDROMID: int64;
-  PrivateHost?: ResourceRef | null;
-  PrivateHostName: string;
+  PrivateHost?: ServerPrivateHost | null;
   BundleInfo: BundleInfo;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
+}
+
+model ServerServerPlan {
+  ID?: int64 | null;
+  Name?: string | null;
+  CPU?: int32 | null;
+  MemoryMB?: int32 | null;
+  GPU?: int32 | null;
+  GPUModel?: string | null;
+  CPUModel?: string | null;
+  Commitment?: ECommitment | null;
+  Generation?: EPlanGeneration | null;
+  ConfidentialVM: boolean;
+}
+
+model ServerInstance {
+  Status?: EServerInstanceStatus | null;
+  BeforeStatus?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
+  Warnings?: string | null;
+  WarningsValue?: int32 | null;
+}
+
+model ServerPrivateHost {
+  ID: int64;
+  Name?: string | null;
 }
 
 model ZoneInfo {
@@ -81,17 +90,7 @@ model ServerConnectedDisk {
 }
 
 model ServerCreateRequest {
-  CPU: int32;
-  MemoryMB: int32;
-  GPU: int32;
-  GPUModel: string;
-  CPUModel: string;
-
-  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment: ECommitment;
-
-  Generation: EPlanGeneration;
-  ConfidentialVM: boolean;
+  ServerPlan?: ServerCreateRequestServerPlan | null;
   ConnectedSwitches?: ConnectedSwitch[] | null;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
@@ -103,6 +102,17 @@ model ServerCreateRequest {
   Icon?: ResourceRef | null;
   WaitDiskMigration: boolean;
   PrivateHost?: ResourceRef | null;
+}
+
+model ServerCreateRequestServerPlan {
+  CPU?: int32 | null;
+  MemoryMB?: int32 | null;
+  GPU?: int32 | null;
+  GPUModel?: string | null;
+  CPUModel?: string | null;
+  Commitment?: ECommitment | null;
+  Generation?: EPlanGeneration | null;
+  ConfidentialVM: boolean;
 }
 
 model ConnectedSwitch {
@@ -146,6 +156,10 @@ model EjectCDROMRequest {
 }
 
 model ServerBootVariables {
+  CloudInit: ServerBootVariablesCloudInit;
+}
+
+model ServerBootVariablesCloudInit {
   UserData: string;
 }
 

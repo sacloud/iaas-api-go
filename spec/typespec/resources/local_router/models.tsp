@@ -18,7 +18,11 @@ model LocalRouter {
   Peers: LocalRouterPeer[];
   StaticRoutes: LocalRouterStaticRoute[];
   SettingsHash?: string | null;
-  SecretKeys: string[];
+  Status?: LocalRouterStatus | null;
+}
+
+model LocalRouterStatus {
+  SecretKeys?: string[] | null;
 }
 
 model LocalRouterSwitch {

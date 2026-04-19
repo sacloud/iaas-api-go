@@ -16,20 +16,28 @@ model AutoBackup {
   BackupSpanWeekdays: EDayOfTheWeek[];
   MaximumNumberOfArchives: int32;
   SettingsHash?: string | null;
-  DiskID: int64;
-  AccountID: int64;
-  ZoneID: int64;
-  ZoneName: string;
+  Status?: AutoBackupStatus | null;
+}
+
+model AutoBackupStatus {
+  DiskID?: int64 | null;
+  AccountID?: int64 | null;
+  ZoneID?: int64 | null;
+  ZoneName?: string | null;
 }
 
 model AutoBackupCreateRequest {
-  DiskID: int64;
+  Status?: AutoBackupCreateRequestStatus | null;
   BackupSpanWeekdays: EDayOfTheWeek[];
   MaximumNumberOfArchives: int32;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model AutoBackupCreateRequestStatus {
+  DiskID?: int64 | null;
 }
 
 model AutoBackupUpdateRequest {

@@ -39,7 +39,7 @@ model ZoneFindResponseEnvelope {
   /**
    * Zones
    */
-  Zones: ZoneInfo[];
+  Zones: Zone[];
 }
 
 /**
@@ -55,5 +55,5 @@ model ZoneReadResponseEnvelope {
   /**
    * Zone
    */
-  Zone: ZoneInfo;
+  Zone: Zone;
 }

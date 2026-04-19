@@ -14,13 +14,9 @@ model Archive {
   Scope?: EScope | null;
   SizeMB?: int32 | null;
   MigratedMB?: int32 | null;
-  Plan?: ResourceRef | null;
-  DiskPlanName: string;
-  DiskPlanStorageClass: string;
-  SourceDisk?: ResourceRef | null;
-  SourceDiskAvailability: EAvailability;
-  SourceArchive?: ResourceRef | null;
-  SourceArchiveAvailability: EAvailability;
+  Plan?: ArchivePlan | null;
+  SourceDisk?: ArchiveSourceDisk | null;
+  SourceArchive?: ArchiveSourceArchive | null;
   BundleInfo?: BundleInfo | null;
   Storage?: Storage | null;
   Icon?: ResourceRef | null;
@@ -28,6 +24,22 @@ model Archive {
   ModifiedAt?: utcDateTime | null;
   OriginalArchive?: ResourceRef | null;
   SourceInfo?: SourceArchiveInfo | null;
+}
+
+model ArchivePlan {
+  ID?: int64 | null;
+  Name?: string | null;
+  StorageClass?: string | null;
+}
+
+model ArchiveSourceDisk {
+  ID?: int64 | null;
+  Availability?: EAvailability | null;
+}
+
+model ArchiveSourceArchive {
+  ID?: int64 | null;
+  Availability?: EAvailability | null;
 }
 
 model BundleInfo {

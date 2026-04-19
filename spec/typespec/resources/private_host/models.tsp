@@ -11,16 +11,14 @@ model PrivateHost {
   Tags: string[];
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
-  Plan?: ResourceRef | null;
-  PlanName: string;
-  PlanClass: string;
-  CPU: int32;
-  CPUModel: string;
-  Dedicated: boolean;
-  MemoryMB: int32;
+  Plan?: PrivateHostPlan | null;
   AssignedCPU?: int32 | null;
   AssignedMemoryMB?: int32 | null;
-  HostName: string;
+  Host?: PrivateHostHost | null;
+}
+
+model PrivateHostHost {
+  Name?: string | null;
 }
 
 model PrivateHostCreateRequest {

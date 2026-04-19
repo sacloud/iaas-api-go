@@ -13,10 +13,14 @@ model SimpleNotificationGroup {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
+  Settings?: SimpleNotificationGroupSettings | null;
+  SettingsHash?: string | null;
+}
+
+model SimpleNotificationGroupSettings {
   Destinations: string[];
   Disabled: boolean;
   Sources: string[];
-  SettingsHash?: string | null;
 }
 
 model SimpleNotificationGroupCreateRequest {
@@ -24,6 +28,10 @@ model SimpleNotificationGroupCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+  Settings?: SimpleNotificationGroupCreateRequestSettings | null;
+}
+
+model SimpleNotificationGroupCreateRequestSettings {
   Destinations: string[];
   Disabled: boolean;
   Sources: string[];
@@ -34,15 +42,23 @@ model SimpleNotificationGroupUpdateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Destinations: string[];
-  Disabled: boolean;
-  Sources: string[];
+  Settings?: SimpleNotificationGroupUpdateRequestSettings | null;
   SettingsHash?: string | null;
 }
 
-model SimpleNotificationGroupUpdateSettingsRequest {
+model SimpleNotificationGroupUpdateRequestSettings {
+  Destinations: string[];
   Disabled: boolean;
+  Sources: string[];
+}
+
+model SimpleNotificationGroupUpdateSettingsRequest {
+  Settings?: SimpleNotificationGroupUpdateSettingsRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model SimpleNotificationGroupUpdateSettingsRequestSettings {
+  Disabled: boolean;
 }
 
 model SimpleNotificationHistories {

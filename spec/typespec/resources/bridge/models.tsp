@@ -24,8 +24,12 @@ model Region {
 model BridgeInfo {
   ID?: int64 | null;
   Name?: string | null;
-  Zone?: ResourceRef | null;
-  ZoneName: string;
+  Zone?: BridgeInfoZone | null;
+}
+
+model BridgeInfoZone {
+  ID?: int64 | null;
+  Name?: string | null;
 }
 
 model BridgeSwitchInfo {

@@ -10,11 +10,15 @@ model Interface {
   IPAddress?: string | null;
   UserIPAddress?: string | null;
   HostName?: string | null;
-  Switch?: ResourceRef | null;
-  SwitchScope: EScope;
+  Switch?: InterfaceSwitch | null;
   PacketFilter?: ResourceRef | null;
   Server?: ResourceRef | null;
   CreatedAt: utcDateTime;
+}
+
+model InterfaceSwitch {
+  ID?: int64 | null;
+  Scope?: EScope | null;
 }
 
 model InterfaceCreateRequest {

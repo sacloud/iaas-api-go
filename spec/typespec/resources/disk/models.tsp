@@ -13,25 +13,39 @@ model Disk {
   Connection?: EDiskConnection | null;
   ConnectionOrder?: int32 | null;
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
-  KMSKeyID: int64;
+  EncryptionKey?: DiskEncryptionKey | null;
   ReinstallCount?: int32 | null;
   JobStatus?: JobStatus | null;
   SizeMB?: int32 | null;
   MigratedMB?: int32 | null;
-  Plan?: ResourceRef | null;
-  DiskPlanName: string;
-  DiskPlanStorageClass: string;
-  SourceDisk?: ResourceRef | null;
-  SourceDiskAvailability: EAvailability;
-  SourceArchive?: ResourceRef | null;
-  SourceArchiveAvailability: EAvailability;
+  Plan?: DiskPlan | null;
+  SourceDisk?: DiskSourceDisk | null;
+  SourceArchive?: DiskSourceArchive | null;
   BundleInfo?: BundleInfo | null;
   Storage?: Storage | null;
-  Server?: ResourceRef | null;
-  ServerName: string;
+  Server?: DiskServer | null;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
+}
+
+model DiskEncryptionKey {
+  KMSKeyID?: int64 | null;
+}
+
+model DiskSourceDisk {
+  ID?: int64 | null;
+  Availability?: EAvailability | null;
+}
+
+model DiskSourceArchive {
+  ID?: int64 | null;
+  Availability?: EAvailability | null;
+}
+
+model DiskServer {
+  ID?: int64 | null;
+  Name?: string | null;
 }
 
 model JobStatus {

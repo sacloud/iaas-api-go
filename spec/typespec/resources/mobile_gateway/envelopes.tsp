@@ -208,7 +208,7 @@ model MobileGatewayListSIMResponseEnvelope {
   /**
    * SIM
    */
-  SIM: MobileGatewaySIMInfo[];
+  SIM: SIMInfo[];
 }
 
 /**
@@ -234,7 +234,7 @@ model MobileGatewayLogsResponseEnvelope {
   /**
    * Logs
    */
-  Logs: MobileGatewaySIMLogs[];
+  Logs: SIMLog[];
 }
 
 /**

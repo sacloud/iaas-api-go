@@ -16,8 +16,12 @@ model ContainerRegistry {
   AccessLevel: EContainerRegistryAccessLevel;
   VirtualDomain: string;
   SettingsHash?: string | null;
-  SubDomainLabel: string;
-  FQDN: string;
+  Status?: ContainerRegistryStatus | null;
+}
+
+model ContainerRegistryStatus {
+  RegistryName: string;
+  FQDN?: string | null;
 }
 
 model ContainerRegistryCreateRequest {
@@ -27,7 +31,11 @@ model ContainerRegistryCreateRequest {
   Icon?: ResourceRef | null;
   AccessLevel: EContainerRegistryAccessLevel;
   VirtualDomain: string;
-  SubDomainLabel: string;
+  Status?: ContainerRegistryCreateRequestStatus | null;
+}
+
+model ContainerRegistryCreateRequestStatus {
+  RegistryName: string;
 }
 
 model ContainerRegistryUpdateRequest {

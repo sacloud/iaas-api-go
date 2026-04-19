@@ -39,7 +39,7 @@ model ServerPlanFindResponseEnvelope {
   /**
    * ServerPlans
    */
-  ServerPlans: ServerChangePlanRequest[];
+  ServerPlans: ServerPlan[];
 }
 
 /**
@@ -55,5 +55,5 @@ model ServerPlanReadResponseEnvelope {
   /**
    * ServerPlan
    */
-  ServerPlan: ServerChangePlanRequest;
+  ServerPlan: ServerPlan;
 }

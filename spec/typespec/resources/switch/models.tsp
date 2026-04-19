@@ -14,11 +14,15 @@ model Switch {
   ModifiedAt?: utcDateTime | null;
   Scope?: EScope | null;
   ServerCount?: int32 | null;
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
+  UserSubnet?: SwitchUserSubnet | null;
   Subnets?: SwitchSubnet[] | null;
   Bridge?: ResourceRef | null;
   HybridConnection?: ResourceRef | null;
+}
+
+model SwitchUserSubnet {
+  NetworkMaskLen: int32;
+  DefaultRoute: string;
 }
 
 model SwitchSubnet {
@@ -28,25 +32,45 @@ model SwitchSubnet {
   StaticRoute?: string | null;
   NetworkAddress?: string | null;
   NetworkMaskLen?: int32 | null;
-  Internet?: Internet | null;
-  AssignedIPAddressMax: string;
-  AssignedIPAddressMin: string;
+  Internet?: InternetInfo | null;
+  IPAddresses?: SwitchSubnetIPAddresses | null;
+}
+
+model SwitchSubnetIPAddresses {
+  Max: string;
+  Min: string;
+}
+
+model InternetInfo {
+  ID?: int64 | null;
+  Name?: string | null;
+  BandWidthMbps?: int32 | null;
+  Scope?: EScope | null;
+  ServiceClass?: string | null;
 }
 
 model SwitchCreateRequest {
   Name?: string | null;
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
+  UserSubnet?: SwitchCreateRequestUserSubnet | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
-model SwitchUpdateRequest {
-  Name?: string | null;
+model SwitchCreateRequestUserSubnet {
   NetworkMaskLen: int32;
   DefaultRoute: string;
+}
+
+model SwitchUpdateRequest {
+  Name?: string | null;
+  UserSubnet?: SwitchUpdateRequestUserSubnet | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model SwitchUpdateRequestUserSubnet {
+  NetworkMaskLen: int32;
+  DefaultRoute: string;
 }

@@ -160,7 +160,7 @@ model InternetAddSubnetResponseEnvelope {
   /**
    * Subnet
    */
-  Subnet: InternetSubnet;
+  Subnet: Subnet;
 }
 
 /**
@@ -185,7 +185,7 @@ model InternetUpdateSubnetResponseEnvelope {
   /**
    * Subnet
    */
-  Subnet: InternetSubnet;
+  Subnet: Subnet;
 }
 
 /**
@@ -261,5 +261,5 @@ model InternetEnableIPv6ResponseEnvelope {
   /**
    * IPv6Net
    */
-  IPv6Net: IPv6NetInfo;
+  IPv6Net: IPv6Net;
 }

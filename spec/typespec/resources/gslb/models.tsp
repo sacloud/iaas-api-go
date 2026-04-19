@@ -14,13 +14,17 @@ model GSLB {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   SettingsHash?: string | null;
-  FQDN: string;
+  Status?: GSLBStatus | null;
   DelayLoop: int32 = 10;
   Weighted: string;
   HealthCheck: GSLBHealthCheck;
   SorryServer: string;
   MonitoringSuiteLog: MonitoringSuiteLog;
   DestinationServers: GSLBServer[];
+}
+
+model GSLBStatus {
+  FQDN?: string | null;
 }
 
 model GSLBHealthCheck {

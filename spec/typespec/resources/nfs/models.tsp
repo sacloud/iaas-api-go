@@ -13,8 +13,7 @@ model NFS {
   Class?: string | null;
   InstanceHostName: string;
   InstanceHostInfoURL: string;
-  InstanceStatus: EServerInstanceStatus;
-  InstanceStatusChangedAt: utcDateTime;
+  Instance?: NFSInstance | null;
   Interfaces?: InterfaceView[] | null;
   PlanID: int64;
   SwitchID: int64;
@@ -25,7 +24,16 @@ model NFS {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  SwitchName: string;
+  Switch?: NFSSwitch | null;
+}
+
+model NFSInstance {
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
+}
+
+model NFSSwitch {
+  Name?: string | null;
 }
 
 model NFSCreateRequest {

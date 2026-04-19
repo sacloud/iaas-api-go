@@ -23,7 +23,6 @@ import (
 	"path/filepath"
 	"reflect"
 	"strings"
-	"text/template"
 
 	"github.com/sacloud/iaas-api-go/internal/define"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
@@ -332,46 +331,118 @@ func nakedFieldIsNullable(nakedRT reflect.Type, fieldName string) bool {
 	return false
 }
 
-// toTSModelFields は DSL フィールドリストをテンプレート用フィールドリストに変換する。
-// mapconv "Foo.ID"（深さ1）のフィールドは Foo?: ResourceRef | null に変換する。
-// naked 型の json タグ omitempty またはポインタ型フィールドは "type | null" に変換する。
-func toTSModelFields(modelName string, fields []*dsl.FieldDesc) []tsModelField {
-	exclusions := modelFieldExclusions[modelName]
+// resolvedModel はテンプレート出力用に解決済みのモデル定義（本体 or 合成サブモデル）。
+type resolvedModel struct {
+	Name   string
+	Fields []tsModelField
+}
 
-	// naked 型の reflect.Type を取得（nullable 判定に使用）
+// nestedField は mapconv の "Foo.Bar" パターンで root "Foo" にぶら下がる葉フィールド情報。
+type nestedField struct {
+	subName string
+	source  *dsl.FieldDesc
+}
+
+// resolveModel は DSL モデルを TypeSpec モデル群に変換する。
+// mapconv が "Foo.Bar" 形式（深さ2）のフィールドは親モデルでは Foo?: {Parent}Foo | null にまとめ、
+// 合成サブモデル {Parent}Foo をテンプレートに追加する。
+// "Foo.ID" かつ同じ root に他のサブフィールドがない場合は ResourceRef | null に短縮する（既存挙動）。
+// 既存 DSL モデル名と衝突する合成モデル名は、既存モデルを再利用して合成を省略する。
+func resolveModel(m *dsl.Model) []resolvedModel {
+	exclusions := modelFieldExclusions[m.Name]
+
 	var nakedRT reflect.Type
-	if m, ok := allModelsByName[modelName]; ok && m.HasNakedType() {
+	if m.HasNakedType() {
 		if st, ok := m.NakedType.(*meta.StaticType); ok {
 			nakedRT = st.ReflectType
 		}
 	}
 
-	var result []tsModelField
-	for _, f := range fields {
+	// 深さ2の mapconv フィールドを root 単位でグループ化する。
+	groups := map[string][]nestedField{}
+	var rootOrder []string
+	consumed := map[*dsl.FieldDesc]bool{}
+	for _, f := range m.Fields {
 		if exclusions[f.Name] {
 			continue
 		}
-		// mapconv "Foo.ID" パターン（深さ1のみ）を検出して変換
-		// ResourceRef を使うことで TypeSpec がモデル名を自動生成して衝突するのを防ぐ
-		if f.Tags != nil {
-			mc := strings.SplitN(f.Tags.MapConv, ",", 2)[0] // omitempty 等を除去
-			if strings.HasSuffix(mc, ".ID") && strings.Count(mc, ".") == 1 {
-				parent := strings.TrimSuffix(mc, ".ID")
-				result = append(result, tsModelField{
-					Name:     parent,
+		if f.Tags == nil {
+			continue
+		}
+		segs, _, _ := parseMapconvPath(f.Tags.MapConv)
+		if len(segs) != 2 {
+			continue
+		}
+		// 配列セグメント（[]X）は fat_model/既存挙動に委ねる
+		if strings.HasPrefix(segs[0], "[]") || strings.HasPrefix(segs[1], "[]") {
+			continue
+		}
+		root, sub := segs[0], segs[1]
+		if _, exists := groups[root]; !exists {
+			rootOrder = append(rootOrder, root)
+		}
+		groups[root] = append(groups[root], nestedField{subName: sub, source: f})
+		consumed[f] = true
+	}
+
+	// 各 root の TypeSpec 型名を決定。
+	// 合成名 "{Parent}{Root}" が既存 DSL モデルと衝突する場合は既存モデルを再利用し、
+	// 合成は行わない（例: Disk の Plan → 既存 DiskPlan モデルを参照）。
+	rootSubTypeName := map[string]string{}
+	rootReusesExisting := map[string]bool{}
+	for _, root := range rootOrder {
+		subName := m.Name + root
+		if _, exists := allModelsByName[subName]; exists {
+			rootReusesExisting[root] = true
+		}
+		rootSubTypeName[root] = subName
+	}
+
+	// メインモデルのフィールドを組み立てる。
+	var mainFields []tsModelField
+	emitted := map[string]bool{}
+	for _, f := range m.Fields {
+		if exclusions[f.Name] {
+			continue
+		}
+		if consumed[f] {
+			segs, _, _ := parseMapconvPath(f.Tags.MapConv)
+			root := segs[0]
+			if emitted[root] {
+				continue
+			}
+			emitted[root] = true
+			g := groups[root]
+			nullable := nakedFieldIsNullable(nakedRT, root)
+			// 単一 .ID かつ既存モデル再利用でない場合は ResourceRef | null に短縮
+			if len(g) == 1 && g[0].subName == "ID" && !rootReusesExisting[root] {
+				mainFields = append(mainFields, tsModelField{
+					Name:     root,
 					TSType:   "ResourceRef | null",
 					Optional: true,
 				})
 				continue
 			}
+			tsType := rootSubTypeName[root]
+			if nullable {
+				tsType = tsType + " | null"
+			}
+			mainFields = append(mainFields, tsModelField{
+				Name:     root,
+				TSType:   tsType,
+				Optional: nullable,
+			})
+			continue
 		}
+
+		// 通常フィールド
 		tsType := modelFieldTypeToTS(f.TypeName())
 		nullable := nakedFieldIsNullable(nakedRT, f.Name)
 		if nullable {
 			tsType = tsType + " | null"
 		}
 		tsDefault := convertDefaultValue(f.DefaultValue)
-		result = append(result, tsModelField{
+		mainFields = append(mainFields, tsModelField{
 			Name:     f.Name,
 			TSType:   tsType,
 			Optional: nullable,
@@ -390,12 +461,52 @@ func toTSModelFields(modelName string, fields []*dsl.FieldDesc) []tsModelField {
 			}(),
 		})
 	}
-	return result
+
+	results := []resolvedModel{{Name: m.Name, Fields: mainFields}}
+
+	// 合成サブモデルを構築（ResourceRef 短縮 or 既存モデル再利用のケースはスキップ）
+	for _, root := range rootOrder {
+		g := groups[root]
+		if len(g) == 1 && g[0].subName == "ID" && !rootReusesExisting[root] {
+			continue
+		}
+		if rootReusesExisting[root] {
+			continue
+		}
+		var parentRT reflect.Type
+		if nakedRT != nil {
+			if sf, ok := nakedRT.FieldByName(root); ok {
+				t := sf.Type
+				for t.Kind() == reflect.Ptr || t.Kind() == reflect.Slice {
+					t = t.Elem()
+				}
+				if t.Kind() == reflect.Struct {
+					parentRT = t
+				}
+			}
+		}
+		var subFields []tsModelField
+		for _, nf := range g {
+			subType := modelFieldTypeToTS(nf.source.TypeName())
+			nullable := nakedFieldIsNullable(parentRT, nf.subName)
+			if nullable {
+				subType = subType + " | null"
+			}
+			subFields = append(subFields, tsModelField{
+				Name:     nf.subName,
+				TSType:   subType,
+				Optional: nullable,
+			})
+		}
+		results = append(results, resolvedModel{Name: rootSubTypeName[root], Fields: subFields})
+	}
+
+	return results
 }
 
 // resourceModels は1リソース分の全モデルを1ファイルに出力するためのテンプレートパラメータ。
 type resourceModels struct {
-	Models []*dsl.Model
+	Models []resolvedModel
 }
 
 const modelsTmpl = `// generated by 'github.com/sacloud/iaas-api-go/internal/tools/gen-typespec'; DO NOT EDIT
@@ -405,7 +516,7 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 {{ range .Models }}
 model {{ .Name }} {
-	{{- range tsFields .Name .Fields }}
+	{{- range .Fields }}
 	{{- if .TSDefault }}
 	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}} = {{.TSDefault}};
 	{{- else if .EnumDefault }}
@@ -432,29 +543,31 @@ func resourceModelsForAPI(api *dsl.Resource) []*dsl.Model {
 
 func generateModels() {
 	// 全リソースにまたがる出力済みモデル名を追跡し、重複定義を防ぐ。
-	// 同じモデルが複数リソースで参照されている場合、最初に現れたリソースのファイルにのみ出力する。
+	// 同じモデル（DSL 本体 or 合成サブモデル）が複数リソースで現れる場合、最初に現れたリソースのファイルにのみ出力する。
 	outputtedModels := map[string]bool{}
 
 	for _, api := range define.APIs {
 		allModels := resourceModelsForAPI(api)
 
-		// 未出力のモデルのみ抽出
-		var newModels []*dsl.Model
+		var newModels []resolvedModel
 		for _, m := range allModels {
-			if !outputtedModels[m.Name] {
-				newModels = append(newModels, m)
-				outputtedModels[m.Name] = true
+			if outputtedModels[m.Name] {
+				continue
+			}
+			for _, rm := range resolveModel(m) {
+				if outputtedModels[rm.Name] {
+					continue
+				}
+				outputtedModels[rm.Name] = true
+				newModels = append(newModels, rm)
 			}
 		}
 
 		if len(newModels) == 0 {
-			// このリソースで新たに定義するモデルがなければスキップ
 			continue
 		}
 
 		outFile := filepath.Join(resourcesDir, api.FileSafeName(), "models.tsp")
-		writeFile(modelsTmpl, resourceModels{Models: newModels}, outFile, template.FuncMap{
-			"tsFields": toTSModelFields,
-		})
+		writeFile(modelsTmpl, resourceModels{Models: newModels}, outFile, nil)
 	}
 }

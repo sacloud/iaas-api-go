@@ -11,11 +11,15 @@ model SIM {
   Tags: string[];
   Availability?: EAvailability | null;
   Class: string;
-  ICCID: string;
-  Info: SIMInfo;
+  Status?: SIMStatus | null;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
+}
+
+model SIMStatus {
+  ICCID?: string | null;
+  SIMInfo?: SIMInfo | null;
 }
 
 model SIMInfo {
@@ -41,8 +45,16 @@ model SIMCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  ICCID: string;
-  PassCode: string;
+  Status?: SIMCreateRequestStatus | null;
+  Remark?: SIMCreateRequestRemark | null;
+}
+
+model SIMCreateRequestStatus {
+  ICCID?: string | null;
+}
+
+model SIMCreateRequestRemark {
+  PassCode?: string | null;
 }
 
 model SIMUpdateRequest {

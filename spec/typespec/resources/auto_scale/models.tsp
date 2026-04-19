@@ -13,15 +13,19 @@ model AutoScale {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  Disabled: boolean;
-  Zones: string[];
-  Config: string;
-  TriggerType: EAutoScaleTriggerType;
-  CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-  RouterThresholdScaling: AutoScaleRouterThresholdScaling;
-  ScheduleScaling: AutoScaleScheduleScaling[];
+  Settings?: AutoScaleSettings | null;
   SettingsHash?: string | null;
   APIKeyID: string;
+}
+
+model AutoScaleSettings {
+  Disabled: boolean;
+  Zones: string[];
+  Config?: string | null;
+  TriggerType: EAutoScaleTriggerType;
+  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
+  ScheduleScaling: AutoScaleScheduleScaling[];
 }
 
 model AutoScaleCPUThresholdScaling {
@@ -48,14 +52,18 @@ model AutoScaleCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+  Settings?: AutoScaleCreateRequestSettings | null;
+  APIKeyID: string;
+}
+
+model AutoScaleCreateRequestSettings {
   Disabled: boolean;
   Zones: string[];
-  Config: string;
+  Config?: string | null;
   TriggerType: EAutoScaleTriggerType;
-  CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-  RouterThresholdScaling: AutoScaleRouterThresholdScaling;
+  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
   ScheduleScaling: AutoScaleScheduleScaling[];
-  APIKeyID: string;
 }
 
 model AutoScaleUpdateRequest {
@@ -63,25 +71,33 @@ model AutoScaleUpdateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Disabled: boolean;
-  Zones: string[];
-  Config: string;
-  TriggerType: EAutoScaleTriggerType;
-  CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-  RouterThresholdScaling: AutoScaleRouterThresholdScaling;
-  ScheduleScaling: AutoScaleScheduleScaling[];
+  Settings?: AutoScaleUpdateRequestSettings | null;
   SettingsHash?: string | null;
 }
 
-model AutoScaleUpdateSettingsRequest {
+model AutoScaleUpdateRequestSettings {
   Disabled: boolean;
   Zones: string[];
-  Config: string;
+  Config?: string | null;
   TriggerType: EAutoScaleTriggerType;
-  CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-  RouterThresholdScaling: AutoScaleRouterThresholdScaling;
+  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
   ScheduleScaling: AutoScaleScheduleScaling[];
+}
+
+model AutoScaleUpdateSettingsRequest {
+  Settings?: AutoScaleUpdateSettingsRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model AutoScaleUpdateSettingsRequestSettings {
+  Disabled: boolean;
+  Zones: string[];
+  Config?: string | null;
+  TriggerType: EAutoScaleTriggerType;
+  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
+  ScheduleScaling: AutoScaleScheduleScaling[];
 }
 
 model AutoScaleStatus {

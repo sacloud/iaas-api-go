@@ -144,7 +144,7 @@ model SIMLogsResponseEnvelope {
   /**
    * Logs
    */
-  Logs: MobileGatewaySIMLogs[];
+  Logs: SIMLog[];
 }
 
 /**
@@ -216,5 +216,5 @@ model SIMStatusResponseEnvelope {
   /**
    * SIM
    */
-  SIM: MobileGatewaySIMInfo;
+  SIM: SIMInfo;
 }

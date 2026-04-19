@@ -16,8 +16,7 @@ model LoadBalancer {
   ModifiedAt?: utcDateTime | null;
   InstanceHostName: string;
   InstanceHostInfoURL: string;
-  InstanceStatus: EServerInstanceStatus;
-  InstanceStatusChangedAt: utcDateTime;
+  Instance?: LoadBalancerInstance | null;
   PlanID: int64;
   SwitchID: int64;
   DefaultRoute: string;
@@ -28,6 +27,11 @@ model LoadBalancer {
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
   SettingsHash?: string | null;
   Interfaces?: InterfaceView[] | null;
+}
+
+model LoadBalancerInstance {
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
 }
 
 model LoadBalancerVirtualIPAddress {

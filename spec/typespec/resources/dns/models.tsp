@@ -16,8 +16,12 @@ model DNS {
   Records: DNSRecord[];
   MonitoringSuiteLog: MonitoringSuiteLog;
   SettingsHash?: string | null;
-  DNSZone: string;
-  DNSNameServers: string[];
+  Status?: DNSStatus | null;
+}
+
+model DNSStatus {
+  Zone?: string | null;
+  NS?: string[] | null;
 }
 
 model DNSRecord {

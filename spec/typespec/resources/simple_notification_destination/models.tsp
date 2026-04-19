@@ -13,10 +13,14 @@ model SimpleNotificationDestination {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  Type: ESimpleNotificationDestinationTypes;
-  Disabled: boolean;
-  Value: string;
+  Settings?: SimpleNotificationDestinationSettings | null;
   SettingsHash?: string | null;
+}
+
+model SimpleNotificationDestinationSettings {
+  Type?: ESimpleNotificationDestinationTypes | null;
+  Disabled: boolean;
+  Value?: string | null;
 }
 
 model SimpleNotificationDestinationCreateRequest {
@@ -24,9 +28,13 @@ model SimpleNotificationDestinationCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Type: ESimpleNotificationDestinationTypes;
+  Settings?: SimpleNotificationDestinationCreateRequestSettings | null;
+}
+
+model SimpleNotificationDestinationCreateRequestSettings {
+  Type?: ESimpleNotificationDestinationTypes | null;
   Disabled: boolean;
-  Value: string;
+  Value?: string | null;
 }
 
 model SimpleNotificationDestinationUpdateRequest {
@@ -34,13 +42,21 @@ model SimpleNotificationDestinationUpdateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Disabled: boolean;
+  Settings?: SimpleNotificationDestinationUpdateRequestSettings | null;
   SettingsHash?: string | null;
 }
 
-model SimpleNotificationDestinationUpdateSettingsRequest {
+model SimpleNotificationDestinationUpdateRequestSettings {
   Disabled: boolean;
+}
+
+model SimpleNotificationDestinationUpdateSettingsRequest {
+  Settings?: SimpleNotificationDestinationUpdateSettingsRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model SimpleNotificationDestinationUpdateSettingsRequestSettings {
+  Disabled: boolean;
 }
 
 model SimpleNotificationDestinationStatus {

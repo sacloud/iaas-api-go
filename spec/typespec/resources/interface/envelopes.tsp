@@ -39,7 +39,7 @@ model InterfaceFindResponseEnvelope {
   /**
    * Interfaces
    */
-  Interfaces: InterfaceView[];
+  Interfaces: Interface[];
 }
 
 /**
@@ -64,7 +64,7 @@ model InterfaceCreateResponseEnvelope {
   /**
    * Interface
    */
-  Interface: InterfaceView;
+  Interface: Interface;
 }
 
 /**
@@ -80,7 +80,7 @@ model InterfaceReadResponseEnvelope {
   /**
    * Interface
    */
-  Interface: InterfaceView;
+  Interface: Interface;
 }
 
 /**
@@ -105,7 +105,7 @@ model InterfaceUpdateResponseEnvelope {
   /**
    * Interface
    */
-  Interface: InterfaceView;
+  Interface: Interface;
 }
 
 /**

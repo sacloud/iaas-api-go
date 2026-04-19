@@ -19,14 +19,18 @@ model VPCRouter {
   SettingsHash?: string | null;
   InstanceHostName: string;
   InstanceHostInfoURL: string;
-  InstanceStatus: EServerInstanceStatus;
-  InstanceStatusChangedAt: utcDateTime;
+  Instance?: VPCRouterInstance | null;
   Interfaces?: VPCRouterInterface[] | null;
   ZoneID: int64;
 }
 
+model VPCRouterInstance {
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
+}
+
 model VPCRouterSetting {
-  VRID: int32;
+  Router?: VPCRouterSettingRouter | null;
   InternetConnectionEnabled: string;
   Interfaces: VPCRouterInterfaceSetting[];
   StaticNAT: VPCRouterStaticNAT[];
@@ -34,7 +38,6 @@ model VPCRouterSetting {
   Firewall: VPCRouterFirewall[];
   DHCPServer: VPCRouterDHCPServer[];
   DHCPStaticMapping: VPCRouterDHCPStaticMapping[];
-  DNSForwarding: VPCRouterDNSForwarding;
   PPTPServer: VPCRouterPPTPServer;
   PPTPServerEnabled: string;
   L2TPIPsecServer: VPCRouterL2TPIPsecServer;
@@ -42,11 +45,16 @@ model VPCRouterSetting {
   WireGuard: VPCRouterWireGuard;
   WireGuardEnabled: string;
   RemoteAccessUsers: VPCRouterRemoteAccessUser[];
-  SiteToSiteIPsecVPN: VPCRouterSiteToSiteIPsecVPN;
   StaticRoute: VPCRouterStaticRoute[];
-  SyslogHost: string;
-  ScheduledMaintenance: VPCRouterScheduledMaintenance;
-  MonitoringSuite: MonitoringSuite;
+}
+
+model VPCRouterSettingRouter {
+  VRID?: int32 | null;
+  DNSForwarding?: VPCRouterDNSForwarding | null;
+  SiteToSiteIPsecVPN?: VPCRouterSiteToSiteIPsecVPN | null;
+  SyslogHost?: string | null;
+  ScheduledMaintenance?: VPCRouterScheduledMaintenance | null;
+  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model VPCRouterInterfaceSetting {
@@ -179,20 +187,28 @@ model VPCRouterInterface {
   IPAddress?: string | null;
   UserIPAddress?: string | null;
   HostName?: string | null;
-  Switch?: ResourceRef | null;
-  SwitchName: string;
-  SwitchScope: EScope;
+  Switch?: VPCRouterInterfaceSwitch | null;
   UserSubnetDefaultRoute: string;
   UserSubnetNetworkMaskLen: int32;
   SubnetDefaultRoute: string;
   SubnetNetworkMaskLen: int32;
   SubnetNetworkAddress: string;
   SubnetBandWidthMbps: int32;
-  PacketFilter?: ResourceRef | null;
-  PacketFilterName: string;
-  PacketFilterRequiredHostVersion: int32;
+  PacketFilter?: VPCRouterInterfacePacketFilter | null;
   UpstreamType: EUpstreamNetworkType;
   Index: int32;
+}
+
+model VPCRouterInterfaceSwitch {
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+}
+
+model VPCRouterInterfacePacketFilter {
+  ID?: int64 | null;
+  Name?: string | null;
+  RequiredHostVersionn: int32;
 }
 
 model VPCRouterCreateRequest {
@@ -201,10 +217,14 @@ model VPCRouterCreateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   Plan?: ResourceRef | null;
-  Switch?: ApplianceConnectedSwitch | null;
+  Remark?: VPCRouterCreateRequestRemark | null;
   IPAddresses: string[];
   Version: int32 = 2;
   Settings?: VPCRouterSetting | null;
+}
+
+model VPCRouterCreateRequestRemark {
+  Switch?: ApplianceConnectedSwitch | null;
 }
 
 model ApplianceConnectedSwitch {

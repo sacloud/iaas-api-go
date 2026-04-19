@@ -13,12 +13,16 @@ model CertificateAuthority {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  Country: string;
-  Organization: string;
-  OrganizationUnit: string[];
-  CommonName: string;
-  NotAfter: utcDateTime;
-  Subject: string;
+  Status?: CertificateAuthorityStatus | null;
+}
+
+model CertificateAuthorityStatus {
+  Country?: string | null;
+  Organization?: string | null;
+  OrganizationUnit?: string[] | null;
+  CommonName?: string | null;
+  NotAfter?: utcDateTime | null;
+  Subject?: string | null;
 }
 
 model CertificateAuthorityCreateRequest {
@@ -26,11 +30,15 @@ model CertificateAuthorityCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Country: string;
-  Organization: string;
-  OrganizationUnit: string[];
-  CommonName: string;
-  NotAfter: utcDateTime;
+  Status?: CertificateAuthorityCreateRequestStatus | null;
+}
+
+model CertificateAuthorityCreateRequestStatus {
+  Country?: string | null;
+  Organization?: string | null;
+  OrganizationUnit?: string[] | null;
+  CommonName?: string | null;
+  NotAfter?: utcDateTime | null;
 }
 
 model CertificateAuthorityUpdateRequest {

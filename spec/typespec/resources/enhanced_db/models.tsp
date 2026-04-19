@@ -14,11 +14,15 @@ model EnhancedDB {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   SettingsHash?: string | null;
-  DatabaseName: string;
-  DatabaseType: string;
-  Region: string;
-  HostName: string;
-  Port: int32;
+  Status?: EnhancedDBStatus | null;
+}
+
+model EnhancedDBStatus {
+  DatabaseName?: string | null;
+  DatabaseType?: string | null;
+  Region?: string | null;
+  HostName?: string | null;
+  Port?: int32 | null;
 }
 
 model EnhancedDBCreateRequest {
@@ -26,9 +30,13 @@ model EnhancedDBCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  DatabaseName: string;
-  DatabaseType: string;
-  Region: string;
+  Status?: EnhancedDBCreateRequestStatus | null;
+}
+
+model EnhancedDBCreateRequestStatus {
+  DatabaseName?: string | null;
+  DatabaseType?: string | null;
+  Region?: string | null;
 }
 
 model EnhancedDBUpdateRequest {
@@ -40,7 +48,11 @@ model EnhancedDBUpdateRequest {
 }
 
 model EnhancedDBSetPasswordRequest {
-  Password?: string | null;
+  EnhancedDB: EnhancedDBSetPasswordRequestEnhancedDB;
+}
+
+model EnhancedDBSetPasswordRequestEnhancedDB {
+  Password: string;
 }
 
 model EnhancedDBConfig {
@@ -49,5 +61,9 @@ model EnhancedDBConfig {
 }
 
 model EnhancedDBSetConfigRequest {
+  EnhancedDB?: EnhancedDBSetConfigRequestEnhancedDB | null;
+}
+
+model EnhancedDBSetConfigRequestEnhancedDB {
   AllowedNetworks: string[];
 }

@@ -39,7 +39,7 @@ model SubnetFindResponseEnvelope {
   /**
    * Subnets
    */
-  Subnets: InternetSubnet[];
+  Subnets: Subnet[];
 }
 
 /**
@@ -55,5 +55,5 @@ model SubnetReadResponseEnvelope {
   /**
    * Subnet
    */
-  Subnet: InternetSubnet;
+  Subnet: Subnet;
 }

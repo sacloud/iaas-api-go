@@ -80,7 +80,14 @@ func buildNakedToTSNameMap() map[string]string {
 		"DedicatedStorageContract": "unknown",
 		// MobileGatewaySIMGroup は nakedInlineModels でインライン定義するため除外
 	}
-	// define.APIs.Models() から naked 型名 → モデル名のマップを自動構築
+	// define.APIs.Models() から naked 型名 → モデル名のマップを自動構築。
+	// 同じ naked 型を共有するモデルが複数ある場合（例: naked.Switch を使う Switch と BridgeInfo）、
+	// モデル名が Go 型名と一致するものを優先する（自己参照モデルをエンベロープの自然な型名にするため）。
+	type mapEntry struct {
+		name      string
+		nameMatch bool
+	}
+	candidates := map[string]mapEntry{}
 	for _, model := range define.APIs.Models() {
 		if model.NakedType == nil {
 			continue
@@ -90,9 +97,21 @@ func buildNakedToTSNameMap() map[string]string {
 		if idx := strings.LastIndex(goType, "."); idx >= 0 {
 			goType = goType[idx+1:]
 		}
-		if _, exists := m[goType]; !exists {
-			m[goType] = model.Name
+		if _, manual := m[goType]; manual {
+			// 手動マッピングは上書きしない
+			continue
 		}
+		nameMatch := model.Name == goType
+		if existing, ok := candidates[goType]; ok {
+			if existing.nameMatch || !nameMatch {
+				// 既に name-match 候補が採用済み、または新しい候補も name-match でないなら維持
+				continue
+			}
+		}
+		candidates[goType] = mapEntry{name: model.Name, nameMatch: nameMatch}
+	}
+	for goType, c := range candidates {
+		m[goType] = c.name
 	}
 	return m
 }
