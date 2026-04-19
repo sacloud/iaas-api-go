@@ -5,85 +5,48 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Switch {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
-  Scope: EScope;
-  ServerCount: int32;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Scope?: EScope | null;
+  ServerCount?: int32 | null;
   NetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"UserSubnet.NetworkMaskLen"`
-
   DefaultRoute: string;
-
-  // Go tags: `mapconv:"UserSubnet.DefaultRoute"`
-
-  Subnets: SwitchSubnet[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]Subnets,omitempty,recursive"`
-
-  BridgeID: int64;
-
-  // Go tags: `mapconv:"Bridge.ID,omitempty"`
-
-  HybridConnectionID: int64;
-  // Go tags: `mapconv:"HybridConnection.ID,omitempty"`
+  Subnets?: SwitchSubnet[] | null;
+  Bridge?: ResourceRef | null;
+  HybridConnection?: ResourceRef | null;
 }
 
 model SwitchSubnet {
-  ID: int64;
-  DefaultRoute: string;
-  NextHop: string;
-  StaticRoute: string;
-  NetworkAddress: string;
-  NetworkMaskLen: int32;
-  Internet: Internet;
+  ID?: int64 | null;
+  DefaultRoute?: string | null;
+  NextHop?: string | null;
+  StaticRoute?: string | null;
+  NetworkAddress?: string | null;
+  NetworkMaskLen?: int32 | null;
+  Internet?: Internet | null;
   AssignedIPAddressMax: string;
-
-  // Go tags: `mapconv:"IPAddresses.Max"`
-
   AssignedIPAddressMin: string;
-  // Go tags: `mapconv:"IPAddresses.Min"`
 }
 
 model SwitchCreateRequest {
-  Name: string;
+  Name?: string | null;
   NetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"UserSubnet.NetworkMaskLen"`
-
   DefaultRoute: string;
-
-  // Go tags: `mapconv:"UserSubnet.DefaultRoute"`
-
   Description: string;
-
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model SwitchUpdateRequest {
-  Name: string;
+  Name?: string | null;
   NetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"UserSubnet.NetworkMaskLen"`
-
   DefaultRoute: string;
-
-  // Go tags: `mapconv:"UserSubnet.DefaultRoute"`
-
   Description: string;
-
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }

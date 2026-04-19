@@ -5,298 +5,148 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Server {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  HostName: string;
+  Availability?: EAvailability | null;
+  HostName?: string | null;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver: EInterfaceDriver;
+  InterfaceDriver?: EInterfaceDriver | null;
 
-  ServerPlanID: int64;
-
-  // Go tags: `mapconv:"ServerPlan.ID"`
-
+  ServerPlan?: ResourceRef | null;
   ServerPlanName: string;
-
-  // Go tags: `mapconv:"ServerPlan.Name"`
-
   CPU: int32;
-
-  // Go tags: `mapconv:"ServerPlan.CPU"`
-
   MemoryMB: int32;
-
-  // Go tags: `mapconv:"ServerPlan.MemoryMB"`
-
   GPU: int32;
-
-  // Go tags: `mapconv:"ServerPlan.GPU"`
-
   GPUModel: string;
-
-  // Go tags: `json:",omitempty" mapconv:"ServerPlan.GPUModel"`
-
   CPUModel: string;
-
-  // Go tags: `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment: ECommitment;
 
-  // Go tags: `json:",omitempty" mapconv:"ServerPlan.Commitment"`
-
   Generation: EPlanGeneration;
-
-  // Go tags: `mapconv:"ServerPlan.Generation"`
-
   ConfidentialVM: boolean;
-
-  // Go tags: `mapconv:"ServerPlan.ConfidentialVM"`
-
-  Zone: ZoneInfo;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
+  Zone?: ZoneInfo | null;
   InstanceHostName: string;
-
-  // Go tags: `mapconv:"Instance.Host.Name"`
-
   InstanceHostInfoURL: string;
-
-  // Go tags: `mapconv:"Instance.Host.InfoURL"`
-
   InstanceStatus: EServerInstanceStatus;
-
-  // Go tags: `mapconv:"Instance.Status"`
-
   InstanceBeforeStatus: EServerInstanceStatus;
-
-  // Go tags: `mapconv:"Instance.BeforeStatus"`
-
   InstanceStatusChangedAt: utcDateTime;
-
-  // Go tags: `mapconv:"Instance.StatusChangedAt"`
-
   InstanceWarnings: string;
-
-  // Go tags: `mapconv:"Instance.Warnings"`
-
   InstanceWarningsValue: int32;
-
-  // Go tags: `mapconv:"Instance.WarningsValue"`
-
-  Disks: ServerConnectedDisk[];
-
-  // Go tags: `json:",omitempty" mapconv:",recursive"`
-
-  Interfaces: InterfaceView[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
-
+  Disks?: ServerConnectedDisk[] | null;
+  Interfaces?: InterfaceView[] | null;
   CDROMID: int64;
-
-  // Go tags: `mapconv:"Instance.CDROM.ID"`
-
-  PrivateHostID: int64;
-
-  // Go tags: `mapconv:"PrivateHost.ID"`
-
+  PrivateHost?: ResourceRef | null;
   PrivateHostName: string;
-
-  // Go tags: `mapconv:"PrivateHost.Name"`
-
   BundleInfo: BundleInfo;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model ZoneInfo {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   DisplayName: string;
-
-  // Go tags: `json:",omitempty" mapconv:"Description,omitempty"`
-
   IsDummy: boolean;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  VNCProxy: VNCProxy;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  FTPServer: FTPServerInfo;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  Region: Region;
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
+  VNCProxy?: VNCProxy | null;
+  FTPServer?: FTPServerInfo | null;
+  Region?: Region | null;
 }
 
 model VNCProxy {
-  HostName: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  IPAddress: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  HostName?: string | null;
+  IPAddress?: string | null;
 }
 
 model FTPServerInfo {
-  HostName: string;
-  IPAddress: string;
+  HostName?: string | null;
+  IPAddress?: string | null;
 }
 
 model ServerConnectedDisk {
-  ID: int64;
-  Name: string;
-  Availability: EAvailability;
-  Connection: EDiskConnection;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  ConnectionOrder: int32;
-
-  EncryptionAlgorithm: EDiskEncryptionAlgorithm;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  ReinstallCount: int32;
-
-  SizeMB: int32;
-  DiskPlanID: int64;
-
-  // Go tags: `mapconv:"Plan.ID"`
-
-  Storage: Storage;
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
+  ID?: int64 | null;
+  Name?: string | null;
+  Availability?: EAvailability | null;
+  Connection?: EDiskConnection | null;
+  ConnectionOrder?: int32 | null;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+  ReinstallCount?: int32 | null;
+  SizeMB?: int32 | null;
+  Plan?: ResourceRef | null;
+  Storage?: Storage | null;
 }
 
 model ServerCreateRequest {
   CPU: int32;
-
-  // Go tags: `mapconv:"ServerPlan.CPU"`
-
   MemoryMB: int32;
-
-  // Go tags: `mapconv:"ServerPlan.MemoryMB"`
-
   GPU: int32;
-
-  // Go tags: `mapconv:"ServerPlan.GPU"`
-
   GPUModel: string;
-
-  // Go tags: `json:",omitempty" mapconv:"ServerPlan.GPUModel"`
-
   CPUModel: string;
-
-  // Go tags: `json:",omitempty" mapconv:"ServerPlan.CPUModel"`
 
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment: ECommitment;
 
-  // Go tags: `json:",omitempty" mapconv:"ServerPlan.Commitment"`
-
   Generation: EPlanGeneration;
-
-  // Go tags: `mapconv:"ServerPlan.Generation"`
-
   ConfidentialVM: boolean;
-
-  // Go tags: `mapconv:"ServerPlan.ConfidentialVM"`
-
-  ConnectedSwitches: ConnectedSwitch[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]ConnectedSwitches,recursive"`
+  ConnectedSwitches?: ConnectedSwitch[] | null;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver: EInterfaceDriver;
+  InterfaceDriver?: EInterfaceDriver | null;
 
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   WaitDiskMigration: boolean;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  PrivateHostID: int64;
-  // Go tags: `mapconv:"PrivateHost.ID"`
+  PrivateHost?: ResourceRef | null;
 }
 
 model ConnectedSwitch {
-  ID: int64;
-  Scope: EScope;
+  ID?: int64 | null;
+  Scope?: EScope | null;
 }
 
 model ServerUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  PrivateHostID: int64;
-
-  // Go tags: `mapconv:"PrivateHost.ID"`
+  Icon?: ResourceRef | null;
+  PrivateHost?: ResourceRef | null;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver: EInterfaceDriver;
+  InterfaceDriver?: EInterfaceDriver | null;
 }
 
 model ServerDeleteWithDisksRequest {
   IDs: int64[];
-  // Go tags: `mapconv:"WithDisk"`
 }
 
 model ServerChangePlanRequest {
-  CPU: int32;
-  MemoryMB: int32;
-  GPU: int32;
-  GPUModel: string;
-
-  // Go tags: `json:"GPUModel,omitempty"`
-
-  CPUModel: string;
-
-  // Go tags: `json:"CPUModel,omitempty"`
-
-  Generation: EPlanGeneration;
-
-  // Go tags: `json:"Generation,omitempty"`
+  CPU?: int32 | null;
+  MemoryMB?: int32 | null;
+  GPU?: int32 | null;
+  GPUModel?: string | null;
+  CPUModel?: string | null;
+  Generation?: EPlanGeneration | null;
 
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment: ECommitment;
-  // Go tags: `json:"Commitment,omitempty"`
+  Commitment?: ECommitment | null;
 }
 
 model InsertCDROMRequest {
-  ID: int64;
+  ID?: int64 | null;
 }
 
 model EjectCDROMRequest {
-  ID: int64;
+  ID?: int64 | null;
 }
 
 model ServerBootVariables {
   UserData: string;
-  // Go tags: `json:",omitempty" mapconv:"CloudInit.UserData,omitempty"`
 }
 
 model SendKeyRequest {
@@ -305,10 +155,10 @@ model SendKeyRequest {
 }
 
 model VNCProxyInfo {
-  Status: string;
-  Host: string;
-  IOServerHost: string;
-  Port: int32;
-  Password: string;
-  VNCFile: string;
+  Status?: string | null;
+  Host?: string | null;
+  IOServerHost?: string | null;
+  Port?: int32 | null;
+  Password?: string | null;
+  VNCFile?: string | null;
 }

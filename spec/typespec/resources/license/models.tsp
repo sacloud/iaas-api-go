@@ -5,27 +5,19 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model License {
-  ID: int64;
-  Name: string;
-  LicenseInfoID: int64;
-
-  // Go tags: `mapconv:"LicenseInfo.ID"`
-
+  ID?: int64 | null;
+  Name?: string | null;
+  LicenseInfo?: ResourceRef | null;
   LicenseInfoName: string;
-
-  // Go tags: `mapconv:"LicenseInfo.Name"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model LicenseCreateRequest {
-  Name: string;
-  LicenseInfoID: int64;
-  // Go tags: `mapconv:"LicenseInfo.ID"`
+  Name?: string | null;
+  LicenseInfo?: ResourceRef | null;
 }
 
 model LicenseUpdateRequest {
-  Name: string;
+  Name?: string | null;
 }

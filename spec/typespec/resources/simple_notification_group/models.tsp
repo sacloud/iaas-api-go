@@ -5,96 +5,55 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationGroup {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Destinations: string[];
-
-  // Go tags: `mapconv:"Settings.Destinations"`
-
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Sources: string[];
-
-  // Go tags: `mapconv:"Settings.Sources"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationGroupCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Destinations: string[];
-
-  // Go tags: `mapconv:"Settings.Destinations"`
-
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Sources: string[];
-  // Go tags: `mapconv:"Settings.Sources"`
 }
 
 model SimpleNotificationGroupUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Destinations: string[];
-
-  // Go tags: `mapconv:"Settings.Destinations"`
-
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Sources: string[];
-
-  // Go tags: `mapconv:"Settings.Sources"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationGroupUpdateSettingsRequest {
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationHistories {
-  NotificationHistories: SimpleNotificationHistory[];
+  NotificationHistories?: SimpleNotificationHistory[] | null;
 }
 
 model SimpleNotificationHistory {
   RequestID: string;
   SourceID: string;
   ReceivedAt: utcDateTime;
-  Message: SimpleNotificationHistoryMessage;
+  Message?: SimpleNotificationHistoryMessage | null;
   Statuses: SimpleNotificationHistoryStatus[];
 }
 

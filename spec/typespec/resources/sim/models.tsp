@@ -5,72 +5,51 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SIM {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
+  Availability?: EAvailability | null;
   Class: string;
   ICCID: string;
-
-  // Go tags: `mapconv:"Status.ICCID"`
-
   Info: SIMInfo;
-
-  // Go tags: `mapconv:"Status.SIMInfo"`
-
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model SIMInfo {
-  ICCID: string;
-  IMSI: string[];
-  IMEI: string;
-  IP: string;
-  SessionStatus: string;
+  ICCID?: string | null;
+  IMSI?: string[] | null;
+  IMEI?: string | null;
+  IP?: string | null;
+  SessionStatus?: string | null;
   IMEILock: boolean;
   Registered: boolean;
   Activated: boolean;
-  ResourceID: string;
-  RegisteredDate: utcDateTime;
-  ActivatedDate: utcDateTime;
-  DeactivatedDate: utcDateTime;
-  SIMGroupID: string;
-  TrafficBytesOfCurrentMonth: SIMTrafficBytes;
-
-  // Go tags: `mapconv:",recursive"`
-
-  ConnectedIMEI: string;
+  ResourceID?: string | null;
+  RegisteredDate?: utcDateTime | null;
+  ActivatedDate?: utcDateTime | null;
+  DeactivatedDate?: utcDateTime | null;
+  SIMGroupID?: string | null;
+  TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
+  ConnectedIMEI?: string | null;
 }
 
 model SIMCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   ICCID: string;
-
-  // Go tags: `mapconv:"Status.ICCID"`
-
   PassCode: string;
-  // Go tags: `mapconv:"Remark.PassCode"`
 }
 
 model SIMUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model SIMAssignIPRequest {
@@ -82,33 +61,25 @@ model SIMIMEILockRequest {
 }
 
 model SIMLog {
-  Date: utcDateTime;
-  SessionStatus: string;
-  ResourceID: string;
-  IMEI: string;
-  IMSI: string;
+  Date?: utcDateTime | null;
+  SessionStatus?: string | null;
+  ResourceID?: string | null;
+  IMEI?: string | null;
+  IMSI?: string | null;
 }
 
 model SIMNetworkOperatorConfig {
   Allow: boolean;
-  CountryCode: string;
-  Name: string;
+  CountryCode?: string | null;
+  Name?: string | null;
 }
 
 model LinkActivity {
   Values: MonitorLinkValue[];
-  // Go tags: `mapconv:"[]Link"`
 }
 
 model MonitorLinkValue {
   Time: utcDateTime;
-
-  // Go tags: `mapconv:",omitempty"`
-
   UplinkBPS: float64;
-
-  // Go tags: `mapconv:",omitempty"`
-
   DownlinkBPS: float64;
-  // Go tags: `mapconv:",omitempty"`
 }

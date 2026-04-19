@@ -45,6 +45,7 @@ type StaticType struct {
 	goPkg        string
 	goImportPath string
 	reflectKind  reflect.Kind
+	ReflectType  reflect.Type // 元の reflect.Type（struct フィールド検査用）
 }
 
 // GoType 型名
@@ -171,6 +172,7 @@ func Static(v interface{}) *StaticType {
 		goPkg:        pkgName,
 		goImportPath: t.PkgPath(),
 		reflectKind:  t.Kind(),
+		ReflectType:  t,
 	}
 }
 

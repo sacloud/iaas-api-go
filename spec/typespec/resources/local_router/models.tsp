@@ -5,40 +5,20 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LocalRouter {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Switch: LocalRouterSwitch;
-
-  // Go tags: `mapconv:"Settings.LocalRouter.Switch,recursive"`
-
   Interface: LocalRouterInterface;
-
-  // Go tags: `mapconv:"Settings.LocalRouter.Interface,recursive"`
-
   Peers: LocalRouterPeer[];
-
-  // Go tags: `mapconv:"Settings.LocalRouter.[]Peers,recursive"`
-
   StaticRoutes: LocalRouterStaticRoute[];
-
-  // Go tags: `mapconv:"Settings.LocalRouter.[]StaticRoutes,recursive"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  SettingsHash?: string | null;
   SecretKeys: string[];
-  // Go tags: `mapconv:"Status.SecretKeys"`
 }
 
 model LocalRouterSwitch {
@@ -67,66 +47,34 @@ model LocalRouterStaticRoute {
 }
 
 model LocalRouterCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model LocalRouterUpdateRequest {
   Switch: LocalRouterSwitch;
-
-  // Go tags: `mapconv:"Settings.LocalRouter.Switch,recursive"`
-
   Interface: LocalRouterInterface;
-
-  // Go tags: `mapconv:"Settings.LocalRouter.Interface,recursive"`
-
   Peers: LocalRouterPeer[];
-
-  // Go tags: `mapconv:"Settings.LocalRouter.[]Peers,recursive"`
-
   StaticRoutes: LocalRouterStaticRoute[];
-
-  // Go tags: `mapconv:"Settings.LocalRouter.[]StaticRoutes,recursive"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  Name: string;
-
+  SettingsHash?: string | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model LocalRouterUpdateSettingsRequest {
   Switch: LocalRouterSwitch;
-
-  // Go tags: `mapconv:"Settings.LocalRouter.Switch,recursive"`
-
   Interface: LocalRouterInterface;
-
-  // Go tags: `mapconv:"Settings.LocalRouter.Interface,recursive"`
-
   Peers: LocalRouterPeer[];
-
-  // Go tags: `mapconv:"Settings.LocalRouter.[]Peers,recursive"`
-
   StaticRoutes: LocalRouterStaticRoute[];
-
-  // Go tags: `mapconv:"Settings.LocalRouter.[]StaticRoutes,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model LocalRouterHealth {
   Peers: LocalRouterHealthPeer[];
-  // Go tags: `mapconv:"[]Peers,recursive"`
 }
 
 model LocalRouterHealthPeer {
@@ -137,18 +85,10 @@ model LocalRouterHealthPeer {
 
 model LocalRouterActivity {
   Values: MonitorLocalRouterValue[];
-  // Go tags: `mapconv:"[]LocalRouter"`
 }
 
 model MonitorLocalRouterValue {
   Time: utcDateTime;
-
-  // Go tags: `mapconv:",omitempty"`
-
   ReceiveBytesPerSec: float64;
-
-  // Go tags: `mapconv:",omitempty"`
-
   SendBytesPerSec: float64;
-  // Go tags: `mapconv:",omitempty"`
 }

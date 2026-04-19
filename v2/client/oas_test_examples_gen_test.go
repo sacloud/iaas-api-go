@@ -5715,6 +5715,18 @@ func TestRegionReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 RegionReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestResourceRef_EncodeDecode(t *testing.T) {
+	var typ ResourceRef
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ResourceRef
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestSIMAssignIPRequest_EncodeDecode(t *testing.T) {
 	var typ SIMAssignIPRequest
 	typ.SetFake()

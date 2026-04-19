@@ -5,156 +5,86 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Archive {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  DisplayOrder: int64;
-  Availability: EAvailability;
-  Scope: EScope;
-  SizeMB: int32;
-  MigratedMB: int32;
-  DiskPlanID: int64;
-
-  // Go tags: `mapconv:"Plan.ID"`
-
+  DisplayOrder?: int64 | null;
+  Availability?: EAvailability | null;
+  Scope?: EScope | null;
+  SizeMB?: int32 | null;
+  MigratedMB?: int32 | null;
+  Plan?: ResourceRef | null;
   DiskPlanName: string;
-
-  // Go tags: `mapconv:"Plan.Name"`
-
   DiskPlanStorageClass: string;
-
-  // Go tags: `mapconv:"Plan.StorageClass"`
-
-  SourceDiskID: int64;
-
-  // Go tags: `mapconv:"SourceDisk.ID,omitempty"`
-
+  SourceDisk?: ResourceRef | null;
   SourceDiskAvailability: EAvailability;
-
-  // Go tags: `mapconv:"SourceDisk.Availability,omitempty"`
-
-  SourceArchiveID: int64;
-
-  // Go tags: `mapconv:"SourceArchive.ID,omitempty"`
-
+  SourceArchive?: ResourceRef | null;
   SourceArchiveAvailability: EAvailability;
-
-  // Go tags: `mapconv:"SourceArchive.Availability,omitempty"`
-
-  BundleInfo: BundleInfo;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  Storage: Storage;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
-  OriginalArchiveID: int64;
-
-  // Go tags: `mapconv:"OriginalArchive.ID,omitempty"`
-
-  SourceInfo: SourceArchiveInfo;
-  // Go tags: `mapconv:",omitempty,recursive"`
+  BundleInfo?: BundleInfo | null;
+  Storage?: Storage | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  OriginalArchive?: ResourceRef | null;
+  SourceInfo?: SourceArchiveInfo | null;
 }
 
 model BundleInfo {
-  ID: int64;
-  HostClass: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  ServiceClass: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  ID?: int64 | null;
+  HostClass?: string | null;
+  ServiceClass?: string | null;
 }
 
 model Storage {
-  ID: int64;
-  Name: string;
-  Class: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  Generation: int32;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  DedicatedStorageContractID: int64;
-  // Go tags: `json:",omitempty" mapconv:"DedicatedStorageContract.ID,omitempty"`
+  ID?: int64 | null;
+  Name?: string | null;
+  Class?: string | null;
+  Generation?: int32 | null;
+  DedicatedStorageContract?: ResourceRef | null;
 }
 
 model SourceArchiveInfo {
-  ID: int64;
-
-  // Go tags: `mapconv:"ArchiveUnderZone.ID"`
-
+  ArchiveUnderZone?: ResourceRef | null;
   AccountID: int64;
-
-  // Go tags: `mapconv:"ArchiveUnderZone.Account.ID"`
-
   ZoneID: int64;
-
-  // Go tags: `mapconv:"ArchiveUnderZone.Zone.ID"`
-
   ZoneName: string;
-  // Go tags: `mapconv:"ArchiveUnderZone.Zone.Name"`
 }
 
 model FindCondition {
   Count: int32;
-
-  // Go tags: `mapconv:",omitempty"`
-
   From: int32;
-  // Go tags: `mapconv:",omitempty"`
 }
 
 model ArchiveCreateRequest {
-  SourceDiskID: int64;
-
-  // Go tags: `mapconv:"SourceDisk.ID,omitempty"`
-
-  SourceArchiveID: int64;
-
-  // Go tags: `mapconv:"SourceArchive.ID,omitempty"`
-
-  Name: string;
-
+  SourceDisk?: ResourceRef | null;
+  SourceArchive?: ResourceRef | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model FTPServer {
-  HostName: string;
-  IPAddress: string;
-  User: string;
-  Password: string;
+  HostName?: string | null;
+  IPAddress?: string | null;
+  User?: string | null;
+  Password?: string | null;
 }
 
 model ArchiveCreateBlankRequest {
-  SizeMB: int32;
-  Name: string;
+  SizeMB?: int32 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model ArchiveUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model OpenFTPRequest {
@@ -166,21 +96,17 @@ model ArchiveShareInfo {
 }
 
 model ArchiveCreateRequestFromShared {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  SourceSharedKey: string;
+  Icon?: ResourceRef | null;
+  SourceSharedKey?: string | null;
 }
 
 model ArchiveTransferRequest {
-  SizeMB: int32;
-  Name: string;
+  SizeMB?: int32 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }

@@ -5,173 +5,70 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model VPCRouter {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  Class: string;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
+  Availability?: EAvailability | null;
+  Class?: string | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
   PlanID: int64;
-
-  // Go tags: `mapconv:"Remark.Plan.ID/Plan.ID"`
-
   Version: int32 = 2;
-
-  // Go tags: `mapconv:"Remark.Router.VPCRouterVersion"`
-
-  Settings: VPCRouterSetting;
-
-  // Go tags: `mapconv:",omitempty,recursive"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  Settings?: VPCRouterSetting | null;
+  SettingsHash?: string | null;
   InstanceHostName: string;
-
-  // Go tags: `mapconv:"Instance.Host.Name"`
-
   InstanceHostInfoURL: string;
-
-  // Go tags: `mapconv:"Instance.Host.InfoURL"`
-
   InstanceStatus: EServerInstanceStatus;
-
-  // Go tags: `mapconv:"Instance.Status"`
-
   InstanceStatusChangedAt: utcDateTime;
-
-  // Go tags: `mapconv:"Instance.StatusChangedAt"`
-
-  Interfaces: VPCRouterInterface[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
-
+  Interfaces?: VPCRouterInterface[] | null;
   ZoneID: int64;
-  // Go tags: `mapconv:"Remark.Zone.ID"`
 }
 
 model VPCRouterSetting {
   VRID: int32;
-
-  // Go tags: `json:",omitempty" mapconv:"Router.VRID"`
-
   InternetConnectionEnabled: string;
-
-  // Go tags: `mapconv:"Router.InternetConnection.Enabled"`
-
   Interfaces: VPCRouterInterfaceSetting[];
-
-  // Go tags: `mapconv:"Router.[]Interfaces,omitempty,recursive"`
-
   StaticNAT: VPCRouterStaticNAT[];
-
-  // Go tags: `mapconv:"Router.StaticNAT.[]Config,omitempty,recursive"`
-
   PortForwarding: VPCRouterPortForwarding[];
-
-  // Go tags: `mapconv:"Router.PortForwarding.[]Config,omitempty,recursive"`
-
   Firewall: VPCRouterFirewall[];
-
-  // Go tags: `mapconv:"Router.Firewall.[]Config,omitempty,recursive"`
-
   DHCPServer: VPCRouterDHCPServer[];
-
-  // Go tags: `mapconv:"Router.DHCPServer.[]Config,omitempty,recursive"`
-
   DHCPStaticMapping: VPCRouterDHCPStaticMapping[];
-
-  // Go tags: `mapconv:"Router.DHCPStaticMapping.[]Config,omitempty,recursive"`
-
   DNSForwarding: VPCRouterDNSForwarding;
-
-  // Go tags: `mapconv:"Router.DNSForwarding,omitempty,recursive"`
-
   PPTPServer: VPCRouterPPTPServer;
-
-  // Go tags: `mapconv:"Router.PPTPServer.Config,omitempty,recursive"`
-
   PPTPServerEnabled: string;
-
-  // Go tags: `mapconv:"Router.PPTPServer.Enabled"`
-
   L2TPIPsecServer: VPCRouterL2TPIPsecServer;
-
-  // Go tags: `mapconv:"Router.L2TPIPsecServer.Config,omitempty,recursive"`
-
   L2TPIPsecServerEnabled: string;
-
-  // Go tags: `mapconv:"Router.L2TPIPsecServer.Enabled"`
-
   WireGuard: VPCRouterWireGuard;
-
-  // Go tags: `mapconv:"Router.WireGuard.Config,omitempty,recursive"`
-
   WireGuardEnabled: string;
-
-  // Go tags: `mapconv:"Router.WireGuard.Enabled"`
-
   RemoteAccessUsers: VPCRouterRemoteAccessUser[];
-
-  // Go tags: `mapconv:"Router.RemoteAccessUsers.[]Config,omitempty,recursive"`
-
   SiteToSiteIPsecVPN: VPCRouterSiteToSiteIPsecVPN;
-
-  // Go tags: `mapconv:"Router.SiteToSiteIPsecVPN,omitempty,recursive"`
-
   StaticRoute: VPCRouterStaticRoute[];
-
-  // Go tags: `mapconv:"Router.StaticRoutes.[]Config,omitempty,recursive"`
-
   SyslogHost: string;
-
-  // Go tags: `mapconv:"Router.SyslogHost"`
-
   ScheduledMaintenance: VPCRouterScheduledMaintenance;
-
-  // Go tags: `mapconv:"Router.ScheduledMaintenance,omitempty,recursive"`
-
   MonitoringSuite: MonitoringSuite;
-  // Go tags: `mapconv:"Router.MonitoringSuite,omitempty,recursive"`
 }
 
 model VPCRouterInterfaceSetting {
-  IPAddress: string[];
-  VirtualIPAddress: string;
-  IPAliases: string[];
-  NetworkMaskLen: int32;
+  IPAddress?: string[] | null;
+  VirtualIPAddress?: string | null;
+  IPAliases?: string[] | null;
+  NetworkMaskLen?: int32 | null;
   Index: int32;
 }
 
 model VPCRouterStaticNAT {
-  GlobalAddress: string;
-
-  // Go tags: `mapconv:"GlobalAddress"`
-
-  PrivateAddress: string;
-
-  // Go tags: `mapconv:"PrivateAddress"`
-
+  GlobalAddress?: string | null;
+  PrivateAddress?: string | null;
   Description: string;
 }
 
 model VPCRouterPortForwarding {
-  Protocol: EVPCRouterPortForwardingProtocol;
-  GlobalPort: int32;
-  PrivateAddress: string;
-
-  // Go tags: `mapconv:"PrivateAddress"`
-
-  PrivatePort: int32;
-
-  Description: string;
+  Protocol?: EVPCRouterPortForwardingProtocol | null;
+  GlobalPort?: int32 | null;
+  PrivateAddress?: string | null;
+  PrivatePort?: int32 | null;
+  Description?: string | null;
 }
 
 model VPCRouterFirewall {
@@ -181,92 +78,80 @@ model VPCRouterFirewall {
 }
 
 model VPCRouterFirewallRule {
-  Protocol: Protocol;
-  SourceNetwork: string;
-  SourcePort: string;
-  DestinationNetwork: string;
-  DestinationPort: string;
-  Action: Action;
+  Protocol?: Protocol | null;
+  SourceNetwork?: string | null;
+  SourcePort?: string | null;
+  DestinationNetwork?: string | null;
+  DestinationPort?: string | null;
+  Action?: Action | null;
   Logging: string;
   Description: string;
 }
 
 model VPCRouterDHCPServer {
-  Interface: string;
-  RangeStart: string;
-  RangeStop: string;
-  DNSServers: string[];
+  Interface?: string | null;
+  RangeStart?: string | null;
+  RangeStop?: string | null;
+  DNSServers?: string[] | null;
 }
 
 model VPCRouterDHCPStaticMapping {
-  MACAddress: string;
-  IPAddress: string;
+  MACAddress?: string | null;
+  IPAddress?: string | null;
 }
 
 model VPCRouterDNSForwarding {
-  Interface: string;
+  Interface?: string | null;
   DNSServers: string[];
 }
 
 model VPCRouterPPTPServer {
-  RangeStart: string;
-  RangeStop: string;
+  RangeStart?: string | null;
+  RangeStop?: string | null;
 }
 
 model VPCRouterL2TPIPsecServer {
-  RangeStart: string;
-  RangeStop: string;
-  PreSharedSecret: string;
+  RangeStart?: string | null;
+  RangeStop?: string | null;
+  PreSharedSecret?: string | null;
 }
 
 model VPCRouterWireGuard {
   IPAddress: string;
   Peers: VPCRouterWireGuardPeer[];
-  // Go tags: `mapconv:"[]Peers,omitempty,recursive"`
 }
 
 model VPCRouterWireGuardPeer {
-  Name: string;
-  IPAddress: string;
-  PublicKey: string;
+  Name?: string | null;
+  IPAddress?: string | null;
+  PublicKey?: string | null;
 }
 
 model VPCRouterRemoteAccessUser {
-  UserName: string;
-  Password: string;
+  UserName?: string | null;
+  Password?: string | null;
 }
 
 model VPCRouterSiteToSiteIPsecVPN {
-  Config: VPCRouterSiteToSiteIPsecVPNConfig[];
-
-  // Go tags: `mapconv:"[]Config,omitempty,recursive"`
-
-  IKE: VPCRouterSiteToSiteIPsecVPNIKE;
-
-  // Go tags: `mapconv:",omitempty,recursive"`
-
-  ESP: VPCRouterSiteToSiteIPsecVPNESP;
-
-  // Go tags: `mapconv:",omitempty,recursive"`
-
-  EncryptionAlgo: string;
-
-  HashAlgo: string;
-  DHGroup: string;
+  Config?: VPCRouterSiteToSiteIPsecVPNConfig[] | null;
+  IKE?: VPCRouterSiteToSiteIPsecVPNIKE | null;
+  ESP?: VPCRouterSiteToSiteIPsecVPNESP | null;
+  EncryptionAlgo?: string | null;
+  HashAlgo?: string | null;
+  DHGroup?: string | null;
 }
 
 model VPCRouterSiteToSiteIPsecVPNConfig {
-  Peer: string;
-  PreSharedSecret: string;
-  RemoteID: string;
-  Routes: string[];
-  LocalPrefix: string[];
+  Peer?: string | null;
+  PreSharedSecret?: string | null;
+  RemoteID?: string | null;
+  Routes?: string[] | null;
+  LocalPrefix?: string[] | null;
 }
 
 model VPCRouterSiteToSiteIPsecVPNIKE {
   Lifetime: int32;
   DPD: VPCRouterSiteToSiteIPsecVPNIKEDPD;
-  // Go tags: `mapconv:",omitempty,recursive"`
 }
 
 model VPCRouterSiteToSiteIPsecVPNIKEDPD {
@@ -279,8 +164,8 @@ model VPCRouterSiteToSiteIPsecVPNESP {
 }
 
 model VPCRouterStaticRoute {
-  Prefix: string;
-  NextHop: string;
+  Prefix?: string | null;
+  NextHop?: string | null;
 }
 
 model VPCRouterScheduledMaintenance {
@@ -289,147 +174,70 @@ model VPCRouterScheduledMaintenance {
 }
 
 model VPCRouterInterface {
-  ID: int64;
-  MACAddress: string;
-  IPAddress: string;
-  UserIPAddress: string;
-  HostName: string;
-  SwitchID: int64;
-
-  // Go tags: `mapconv:"Switch.ID"`
-
+  ID?: int64 | null;
+  MACAddress?: string | null;
+  IPAddress?: string | null;
+  UserIPAddress?: string | null;
+  HostName?: string | null;
+  Switch?: ResourceRef | null;
   SwitchName: string;
-
-  // Go tags: `mapconv:"Switch.Name"`
-
   SwitchScope: EScope;
-
-  // Go tags: `mapconv:"Switch.Scope"`
-
   UserSubnetDefaultRoute: string;
-
-  // Go tags: `mapconv:"Switch.UserSubnet.DefaultRoute"`
-
   UserSubnetNetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"Switch.UserSubnet.NetworkMaskLen"`
-
   SubnetDefaultRoute: string;
-
-  // Go tags: `mapconv:"Switch.Subnet.DefaultRoute"`
-
   SubnetNetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"Switch.Subnet.NetworkMaskLen"`
-
   SubnetNetworkAddress: string;
-
-  // Go tags: `mapconv:"Switch.Subnet.NetworkAddress"`
-
   SubnetBandWidthMbps: int32;
-
-  // Go tags: `mapconv:"Switch.Subnet.Internet.BandWidthMbps"`
-
-  PacketFilterID: int64;
-
-  // Go tags: `mapconv:"PacketFilter.ID"`
-
+  PacketFilter?: ResourceRef | null;
   PacketFilterName: string;
-
-  // Go tags: `mapconv:"PacketFilter.Name"`
-
   PacketFilterRequiredHostVersion: int32;
-
-  // Go tags: `mapconv:"PacketFilter.RequiredHostVersionn"`
-
   UpstreamType: EUpstreamNetworkType;
-
   Index: int32;
-  // Go tags: `mapconv:",omitempty"`
 }
 
 model VPCRouterCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  PlanID: int64;
-
-  // Go tags: `mapconv:"Plan.ID"`
-
-  Switch: ApplianceConnectedSwitch;
-
-  // Go tags: `json:",omitempty" mapconv:"Remark.Switch,recursive"`
-
+  Icon?: ResourceRef | null;
+  Plan?: ResourceRef | null;
+  Switch?: ApplianceConnectedSwitch | null;
   IPAddresses: string[];
-
-  // Go tags: `mapconv:"Remark.[]Servers.IPAddress"`
-
   Version: int32 = 2;
-
-  // Go tags: `mapconv:"Remark.Router.VPCRouterVersion"`
-
-  Settings: VPCRouterSetting;
-  // Go tags: `mapconv:",omitempty,recursive"`
+  Settings?: VPCRouterSetting | null;
 }
 
 model ApplianceConnectedSwitch {
-  ID: int64;
-  Scope: EScope;
+  ID?: int64 | null;
+  Scope?: EScope | null;
 }
 
 model VPCRouterUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  Settings: VPCRouterSetting;
-
-  // Go tags: `mapconv:",omitempty,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  Icon?: ResourceRef | null;
+  Settings?: VPCRouterSetting | null;
+  SettingsHash?: string | null;
 }
 
 model VPCRouterUpdateSettingsRequest {
-  Settings: VPCRouterSetting;
-
-  // Go tags: `mapconv:",omitempty,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  Settings?: VPCRouterSetting | null;
+  SettingsHash?: string | null;
 }
 
 model VPCRouterStatus {
-  FirewallReceiveLogs: string[];
-  FirewallSendLogs: string[];
-  VPNLogs: string[];
-  SessionCount: int32;
-  PercentageOfMemoryFree: int32[];
-  WireGuard: WireGuardStatus;
-  DHCPServerLeases: VPCRouterDHCPServerLease[];
-
-  // Go tags: `mapconv:"[]DHCPServerLeases,recursive"`
-
-  L2TPIPsecServerSessions: VPCRouterL2TPIPsecServerSession[];
-
-  // Go tags: `mapconv:"[]L2TPIPsecServerSessions,recursive"`
-
-  PPTPServerSessions: VPCRouterPPTPServerSession[];
-
-  // Go tags: `mapconv:"[]PPTPServerSessions,recursive"`
-
-  SiteToSiteIPsecVPNPeers: VPCRouterSiteToSiteIPsecVPNPeer[];
-
-  // Go tags: `mapconv:"[]SiteToSiteIPsecVPNPeers,recursive"`
-
-  SessionAnalysis: VPCRouterSessionAnalysis;
+  FirewallReceiveLogs?: string[] | null;
+  FirewallSendLogs?: string[] | null;
+  VPNLogs?: string[] | null;
+  SessionCount?: int32 | null;
+  PercentageOfMemoryFree?: int32[] | null;
+  WireGuard?: WireGuardStatus | null;
+  DHCPServerLeases?: VPCRouterDHCPServerLease[] | null;
+  L2TPIPsecServerSessions?: VPCRouterL2TPIPsecServerSession[] | null;
+  PPTPServerSessions?: VPCRouterPPTPServerSession[] | null;
+  SiteToSiteIPsecVPNPeers?: VPCRouterSiteToSiteIPsecVPNPeer[] | null;
+  SessionAnalysis?: VPCRouterSessionAnalysis | null;
 }
 
 model WireGuardStatus {
@@ -466,8 +274,8 @@ model VPCRouterSessionAnalysis {
 }
 
 model VPCRouterStatisticsValue {
-  Name: string;
-  Count: int32;
+  Name?: string | null;
+  Count?: int32 | null;
 }
 
 model VPCRouterLog {

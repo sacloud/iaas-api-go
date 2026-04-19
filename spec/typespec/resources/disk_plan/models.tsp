@@ -5,17 +5,16 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model DiskPlan {
-  ID: int64;
-  Name: string;
-  StorageClass: string;
-  Availability: EAvailability;
-  Size: DiskPlanSizeInfo[];
-  // Go tags: `mapconv:"[]Size,recursive"`
+  ID?: int64 | null;
+  Name?: string | null;
+  StorageClass?: string | null;
+  Availability?: EAvailability | null;
+  Size?: DiskPlanSizeInfo[] | null;
 }
 
 model DiskPlanSizeInfo {
-  Availability: EAvailability;
-  DisplaySize: int32;
-  DisplaySuffix: string;
-  SizeMB: int32;
+  Availability?: EAvailability | null;
+  DisplaySize?: int32 | null;
+  DisplaySuffix?: string | null;
+  SizeMB?: int32 | null;
 }

@@ -34,3 +34,9 @@ model ApiError {
   error_code?: string;
   error_msg?: string;
 }
+
+// リソース参照（ID のみ保持）
+// create/update リクエストで他リソースを参照する際に使用する
+model ResourceRef {
+  ID: int64;
+}

@@ -5,102 +5,58 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ContainerRegistry {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   AccessLevel: EContainerRegistryAccessLevel;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.Public"`
-
   VirtualDomain: string;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.VirtualDomain"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  SettingsHash?: string | null;
   SubDomainLabel: string;
-
-  // Go tags: `mapconv:"Status.RegistryName"`
-
   FQDN: string;
-  // Go tags: `mapconv:"Status.FQDN"`
 }
 
 model ContainerRegistryCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   AccessLevel: EContainerRegistryAccessLevel;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.Public"`
-
   VirtualDomain: string;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.VirtualDomain"`
-
   SubDomainLabel: string;
-  // Go tags: `mapconv:"Status.RegistryName"`
 }
 
 model ContainerRegistryUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   AccessLevel: EContainerRegistryAccessLevel;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.Public"`
-
   VirtualDomain: string;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.VirtualDomain"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model ContainerRegistryUpdateSettingsRequest {
   AccessLevel: EContainerRegistryAccessLevel;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.Public"`
-
   VirtualDomain: string;
-
-  // Go tags: `mapconv:"Settings.ContainerRegistry.VirtualDomain"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model ContainerRegistryUsers {
-  Users: ContainerRegistryUser[];
+  Users?: ContainerRegistryUser[] | null;
 }
 
 model ContainerRegistryUser {
-  UserName: string;
+  UserName?: string | null;
   Permission: EContainerRegistryPermission;
 }
 
 model ContainerRegistryUserCreateRequest {
-  UserName: string;
+  UserName?: string | null;
   Password: string;
   Permission: EContainerRegistryPermission;
 }

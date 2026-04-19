@@ -21,11 +21,13 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"text/template"
 
 	"github.com/sacloud/iaas-api-go/internal/define"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
+	"github.com/sacloud/iaas-api-go/internal/dsl/meta"
 )
 
 const resourcesDir = "spec/typespec/resources/"
@@ -290,6 +292,107 @@ var modelFieldExclusions = map[string]map[string]bool{
 	"FindCondition": {"Sort": true, "Filter": true, "Include": true, "Exclude": true},
 }
 
+// tsModelField はテンプレートに渡す TypeSpec フィールド情報。
+// mapconv で Foo.ID にマッピングされるフィールドは Foo?: { ID: int64 } に変換済み。
+type tsModelField struct {
+	Name       string
+	TSType     string
+	Optional   bool
+	TSDefault  string // TypeSpec デフォルト値（空なら省略）
+	EnumDefault string // enum デフォルトのコメント用
+	OtherDefault string // その他デフォルト値のコメント用
+}
+
+// nakedFieldIsNullable は naked 型の指定フィールドが null になりえるかを返す。
+// json タグに omitempty が含まれる場合、または フィールドがポインタ型の場合に true を返す。
+func nakedFieldIsNullable(nakedRT reflect.Type, fieldName string) bool {
+	if nakedRT == nil {
+		return false
+	}
+	// スライス・ポインタ型は要素型まで辿る
+	for nakedRT.Kind() == reflect.Slice || nakedRT.Kind() == reflect.Ptr {
+		nakedRT = nakedRT.Elem()
+	}
+	if nakedRT.Kind() != reflect.Struct {
+		return false
+	}
+	sf, ok := nakedRT.FieldByName(fieldName)
+	if !ok {
+		return false
+	}
+	if sf.Type.Kind() == reflect.Ptr {
+		return true
+	}
+	tag := sf.Tag.Get("json")
+	for _, part := range strings.Split(tag, ",") {
+		if part == "omitempty" {
+			return true
+		}
+	}
+	return false
+}
+
+// toTSModelFields は DSL フィールドリストをテンプレート用フィールドリストに変換する。
+// mapconv "Foo.ID"（深さ1）のフィールドは Foo?: ResourceRef | null に変換する。
+// naked 型の json タグ omitempty またはポインタ型フィールドは "type | null" に変換する。
+func toTSModelFields(modelName string, fields []*dsl.FieldDesc) []tsModelField {
+	exclusions := modelFieldExclusions[modelName]
+
+	// naked 型の reflect.Type を取得（nullable 判定に使用）
+	var nakedRT reflect.Type
+	if m, ok := allModelsByName[modelName]; ok && m.HasNakedType() {
+		if st, ok := m.NakedType.(*meta.StaticType); ok {
+			nakedRT = st.ReflectType
+		}
+	}
+
+	var result []tsModelField
+	for _, f := range fields {
+		if exclusions[f.Name] {
+			continue
+		}
+		// mapconv "Foo.ID" パターン（深さ1のみ）を検出して変換
+		// ResourceRef を使うことで TypeSpec がモデル名を自動生成して衝突するのを防ぐ
+		if f.Tags != nil {
+			mc := strings.SplitN(f.Tags.MapConv, ",", 2)[0] // omitempty 等を除去
+			if strings.HasSuffix(mc, ".ID") && strings.Count(mc, ".") == 1 {
+				parent := strings.TrimSuffix(mc, ".ID")
+				result = append(result, tsModelField{
+					Name:     parent,
+					TSType:   "ResourceRef | null",
+					Optional: true,
+				})
+				continue
+			}
+		}
+		tsType := modelFieldTypeToTS(f.TypeName())
+		nullable := nakedFieldIsNullable(nakedRT, f.Name)
+		if nullable {
+			tsType = tsType + " | null"
+		}
+		tsDefault := convertDefaultValue(f.DefaultValue)
+		result = append(result, tsModelField{
+			Name:     f.Name,
+			TSType:   tsType,
+			Optional: nullable,
+			TSDefault: tsDefault,
+			EnumDefault: func() string {
+				if tsDefault == "" {
+					return resolveEnumDefault(f.DefaultValue)
+				}
+				return ""
+			}(),
+			OtherDefault: func() string {
+				if tsDefault == "" && resolveEnumDefault(f.DefaultValue) == "" && f.DefaultValue != "" {
+					return f.DefaultValue
+				}
+				return ""
+			}(),
+		})
+	}
+	return result
+}
+
 // resourceModels は1リソース分の全モデルを1ファイルに出力するためのテンプレートパラメータ。
 type resourceModels struct {
 	Models []*dsl.Model
@@ -302,14 +405,18 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 {{ range .Models }}
 model {{ .Name }} {
-	{{- range filteredFields .Name .Fields }}
-	{{- $tsDefault := convertDefaultValue .DefaultValue }}
-	{{- $enumDefault := resolveEnumDefault .DefaultValue }}
-	{{if $tsDefault }}{{.Name}}: {{goTypeToTypeSpec .TypeName}} = {{$tsDefault}};{{else}}{{if $enumDefault }}// Default: {{$enumDefault}} (ogen の complex defaults 未対応のため省略)
-	{{else if .DefaultValue }}// Default value: {{.DefaultValue}}
-	{{end}}{{.Name}}: {{goTypeToTypeSpec .TypeName}};{{end}}{{if .HasTag }}
-	// Go tags: ` + "`" + `{{.TagString}}` + "`" + `
-	{{end}}
+	{{- range tsFields .Name .Fields }}
+	{{- if .TSDefault }}
+	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}} = {{.TSDefault}};
+	{{- else if .EnumDefault }}
+	// Default: {{.EnumDefault}} (ogen の complex defaults 未対応のため省略)
+	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}};
+	{{- else if .OtherDefault }}
+	// Default value: {{.OtherDefault}}
+	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}};
+	{{- else }}
+	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}};
+	{{- end }}
 	{{- end }}
 }
 {{ end }}`
@@ -347,22 +454,7 @@ func generateModels() {
 
 		outFile := filepath.Join(resourcesDir, api.FileSafeName(), "models.tsp")
 		writeFile(modelsTmpl, resourceModels{Models: newModels}, outFile, template.FuncMap{
-			"goTypeToTypeSpec":    modelFieldTypeToTS,
-			"convertDefaultValue": convertDefaultValue,
-			"resolveEnumDefault":  resolveEnumDefault,
-			"filteredFields": func(modelName string, fields []*dsl.FieldDesc) []*dsl.FieldDesc {
-				exclusions := modelFieldExclusions[modelName]
-				if len(exclusions) == 0 {
-					return fields
-				}
-				var result []*dsl.FieldDesc
-				for _, f := range fields {
-					if !exclusions[f.Name] {
-						result = append(result, f)
-					}
-				}
-				return result
-			},
+			"tsFields": toTSModelFields,
 		})
 	}
 }

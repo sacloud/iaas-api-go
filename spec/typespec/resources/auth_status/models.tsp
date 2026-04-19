@@ -5,35 +5,16 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AuthStatus {
-  AccountID: int64;
-
-  // Go tags: `mapconv:"Account.ID"`
-
+  Account?: ResourceRef | null;
   AccountName: string;
-
-  // Go tags: `mapconv:"Account.Name"`
-
   AccountCode: string;
-
-  // Go tags: `mapconv:"Account.Code"`
-
   AccountClass: string;
-
-  // Go tags: `mapconv:"Account.Class"`
-
   MemberCode: string;
-
-  // Go tags: `mapconv:"Member.Code"`
-
   MemberClass: string;
-
-  // Go tags: `mapconv:"Member.Class"`
-
-  AuthClass: EAuthClass;
-
-  AuthMethod: EAuthMethod;
+  AuthClass?: EAuthClass | null;
+  AuthMethod?: EAuthMethod | null;
   IsAPIKey: boolean;
-  ExternalPermission: string;
-  OperationPenalty: EOperationPenalty;
-  Permission: EPermission;
+  ExternalPermission?: string | null;
+  OperationPenalty?: EOperationPenalty | null;
+  Permission?: EPermission | null;
 }

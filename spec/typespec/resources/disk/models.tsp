@@ -5,202 +5,88 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Disk {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  Connection: EDiskConnection;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  ConnectionOrder: int32;
-
-  EncryptionAlgorithm: EDiskEncryptionAlgorithm;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  Availability?: EAvailability | null;
+  Connection?: EDiskConnection | null;
+  ConnectionOrder?: int32 | null;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
   KMSKeyID: int64;
-
-  // Go tags: `mapconv:"EncryptionKey.KMSKeyID"`
-
-  ReinstallCount: int32;
-
-  JobStatus: JobStatus;
-  SizeMB: int32;
-  MigratedMB: int32;
-  DiskPlanID: int64;
-
-  // Go tags: `mapconv:"Plan.ID"`
-
+  ReinstallCount?: int32 | null;
+  JobStatus?: JobStatus | null;
+  SizeMB?: int32 | null;
+  MigratedMB?: int32 | null;
+  Plan?: ResourceRef | null;
   DiskPlanName: string;
-
-  // Go tags: `mapconv:"Plan.Name"`
-
   DiskPlanStorageClass: string;
-
-  // Go tags: `mapconv:"Plan.StorageClass"`
-
-  SourceDiskID: int64;
-
-  // Go tags: `mapconv:"SourceDisk.ID,omitempty"`
-
+  SourceDisk?: ResourceRef | null;
   SourceDiskAvailability: EAvailability;
-
-  // Go tags: `mapconv:"SourceDisk.Availability,omitempty"`
-
-  SourceArchiveID: int64;
-
-  // Go tags: `mapconv:"SourceArchive.ID,omitempty"`
-
+  SourceArchive?: ResourceRef | null;
   SourceArchiveAvailability: EAvailability;
-
-  // Go tags: `mapconv:"SourceArchive.Availability,omitempty"`
-
-  BundleInfo: BundleInfo;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  Storage: Storage;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  ServerID: int64;
-
-  // Go tags: `mapconv:"Server.ID,omitempty"`
-
+  BundleInfo?: BundleInfo | null;
+  Storage?: Storage | null;
+  Server?: ResourceRef | null;
   ServerName: string;
-
-  // Go tags: `mapconv:"Server.Name,omitempty"`
-
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model JobStatus {
-  Status: string;
-  ConfigError: JobConfigError;
+  Status?: string | null;
+  ConfigError?: JobConfigError | null;
 }
 
 model JobConfigError {
-  ErrorCode: string;
-  ErrorMsg: string;
-  Status: string;
+  ErrorCode?: string | null;
+  ErrorMsg?: string | null;
+  Status?: string | null;
 }
 
 model DiskCreateRequest {
-  DiskPlanID: int64;
-
-  // Go tags: `mapconv:"Plan.ID"`
-
-  Connection: EDiskConnection;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  EncryptionAlgorithm: EDiskEncryptionAlgorithm;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  SourceDiskID: int64;
-
-  // Go tags: `mapconv:"SourceDisk.ID,omitempty"`
-
-  SourceArchiveID: int64;
-
-  // Go tags: `mapconv:"SourceArchive.ID,omitempty"`
-
-  ServerID: int64;
-
-  // Go tags: `mapconv:"Server.ID,omitempty"`
-
-  SizeMB: int32;
-
-  Name: string;
+  Plan?: ResourceRef | null;
+  Connection?: EDiskConnection | null;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+  SourceDisk?: ResourceRef | null;
+  SourceArchive?: ResourceRef | null;
+  Server?: ResourceRef | null;
+  SizeMB?: int32 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model DiskEditRequest {
-  Background: boolean;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  Password: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  SSHKey: DiskEditSSHKey;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  SSHKeys: DiskEditSSHKey[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]SSHKeys,omitempty,recursive"`
-
-  DisablePWAuth: boolean;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  EnableDHCP: boolean;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  ChangePartitionUUID: boolean;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  HostName: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  Notes: DiskEditNote[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]Notes,omitempty,recursive"`
-
-  UserIPAddress: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  UserSubnet: DiskEditUserSubnet;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  Background?: boolean | null;
+  Password?: string | null;
+  SSHKey?: DiskEditSSHKey | null;
+  SSHKeys?: DiskEditSSHKey[] | null;
+  DisablePWAuth?: boolean | null;
+  EnableDHCP?: boolean | null;
+  ChangePartitionUUID?: boolean | null;
+  HostName?: string | null;
+  Notes?: DiskEditNote[] | null;
+  UserIPAddress?: string | null;
+  UserSubnet?: DiskEditUserSubnet | null;
 }
 
 model DiskEditSSHKey {
   ID: int64;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   PublicKey: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
 }
 
 model DiskEditNote {
-  ID: int64;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  APIKeyID: int64;
-
-  // Go tags: `json:",omitempty" mapconv:"APIKey.ID,omitempty"`
-
-  Variables: Record<unknown>;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  ID?: int64 | null;
+  APIKey?: ResourceRef | null;
+  Variables?: Record<unknown> | null;
 }
 
 model DiskEditUserSubnet {
   DefaultRoute: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   NetworkMaskLen: int32;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
 }
 
 model DiskResizePartitionRequest {
@@ -208,13 +94,9 @@ model DiskResizePartitionRequest {
 }
 
 model DiskUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  Connection: EDiskConnection;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  Icon?: ResourceRef | null;
+  Connection?: EDiskConnection | null;
 }

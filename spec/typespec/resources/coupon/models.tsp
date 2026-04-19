@@ -5,11 +5,11 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Coupon {
-  ID: int64;
-  MemberID: string;
-  ContractID: int64;
-  ServiceClassID: int64;
-  Discount: int64;
-  AppliedAt: utcDateTime;
-  UntilAt: utcDateTime;
+  ID?: int64 | null;
+  MemberID?: string | null;
+  ContractID?: int64 | null;
+  ServiceClassID?: int64 | null;
+  Discount?: int64 | null;
+  AppliedAt?: utcDateTime | null;
+  UntilAt?: utcDateTime | null;
 }

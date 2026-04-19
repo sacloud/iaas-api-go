@@ -5,114 +5,53 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model NFS {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  Class: string;
+  Availability?: EAvailability | null;
+  Class?: string | null;
   InstanceHostName: string;
-
-  // Go tags: `mapconv:"Instance.Host.Name"`
-
   InstanceHostInfoURL: string;
-
-  // Go tags: `mapconv:"Instance.Host.InfoURL"`
-
   InstanceStatus: EServerInstanceStatus;
-
-  // Go tags: `mapconv:"Instance.Status"`
-
   InstanceStatusChangedAt: utcDateTime;
-
-  // Go tags: `mapconv:"Instance.StatusChangedAt"`
-
-  Interfaces: InterfaceView[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
-
+  Interfaces?: InterfaceView[] | null;
   PlanID: int64;
-
-  // Go tags: `mapconv:"Remark.Plan.ID/Plan.ID"`
-
   SwitchID: int64;
-
-  // Go tags: `mapconv:"Remark.Switch.ID"`
-
   DefaultRoute: string;
-
-  // Go tags: `mapconv:"Remark.Network.DefaultRoute"`
-
   NetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"Remark.Network.NetworkMaskLen"`
-
   IPAddresses: string[];
-
-  // Go tags: `mapconv:"Remark.[]Servers.IPAddress"`
-
   ZoneID: int64;
-
-  // Go tags: `mapconv:"Remark.Zone.ID"`
-
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   SwitchName: string;
-  // Go tags: `mapconv:"Switch.Name"`
 }
 
 model NFSCreateRequest {
   SwitchID: int64;
-
-  // Go tags: `mapconv:"Remark.Switch.ID"`
-
   PlanID: int64;
-
-  // Go tags: `mapconv:"Remark.Plan.ID/Plan.ID"`
-
   IPAddresses: string[];
-
-  // Go tags: `mapconv:"Remark.[]Servers.IPAddress"`
-
   NetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"Remark.Network.NetworkMaskLen"`
-
   DefaultRoute: string;
-
-  // Go tags: `mapconv:"Remark.Network.DefaultRoute"`
-
-  Name: string;
-
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model NFSUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model FreeDiskSizeActivity {
   Values: MonitorFreeDiskSizeValue[];
-  // Go tags: `mapconv:"[]FreeDiskSize"`
 }
 
 model MonitorFreeDiskSizeValue {
   Time: utcDateTime;
-
-  // Go tags: `mapconv:",omitempty"`
-
   FreeDiskSize: float64;
-  // Go tags: `mapconv:",omitempty"`
 }

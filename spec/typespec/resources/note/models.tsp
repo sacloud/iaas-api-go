@@ -5,43 +5,31 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Note {
-  ID: int64;
-  Name: string;
-  Description: string;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description?: string | null;
   Tags: string[];
-  Availability: EAvailability;
-  Scope: EScope;
-  Class: string;
-  Content: string;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Scope?: EScope | null;
+  Class?: string | null;
+  Content?: string | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model NoteCreateRequest {
-  Name: string;
+  Name?: string | null;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  Class: string;
-
-  Content: string;
+  Icon?: ResourceRef | null;
+  Class?: string | null;
+  Content?: string | null;
 }
 
 model NoteUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  Class: string;
-
-  Content: string;
+  Icon?: ResourceRef | null;
+  Class?: string | null;
+  Content?: string | null;
 }

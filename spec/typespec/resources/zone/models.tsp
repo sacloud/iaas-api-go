@@ -5,19 +5,12 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Zone {
-  ID: int64;
-  Name: string;
-  Description: string;
-  DisplayOrder: int64;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description?: string | null;
+  DisplayOrder?: int64 | null;
   IsDummy: boolean;
-  VNCProxy: VNCProxy;
-
-  // Go tags: `json:",omitempty"`
-
-  FTPServer: FTPServerInfo;
-
-  // Go tags: `json:",omitempty"`
-
-  Region: Region;
-  // Go tags: `json:",omitempty"`
+  VNCProxy?: VNCProxy | null;
+  FTPServer?: FTPServerInfo | null;
+  Region?: Region | null;
 }

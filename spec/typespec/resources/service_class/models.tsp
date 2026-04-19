@@ -10,8 +10,7 @@ model ServiceClass {
   ServiceClassPath: string;
   DisplayName: string;
   IsPublic: boolean;
-  Price: Price;
-  // Go tags: `mapconv:",recursive"`
+  Price?: Price | null;
 }
 
 model Price {

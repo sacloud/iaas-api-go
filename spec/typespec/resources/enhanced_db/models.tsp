@@ -5,85 +5,49 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model EnhancedDB {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  SettingsHash?: string | null;
   DatabaseName: string;
-
-  // Go tags: `mapconv:"Status.DatabaseName"`
-
   DatabaseType: string;
-
-  // Go tags: `mapconv:"Status.DatabaseType"`
-
   Region: string;
-
-  // Go tags: `mapconv:"Status.Region"`
-
   HostName: string;
-
-  // Go tags: `mapconv:"Status.HostName"`
-
   Port: int32;
-  // Go tags: `mapconv:"Status.Port"`
 }
 
 model EnhancedDBCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   DatabaseName: string;
-
-  // Go tags: `mapconv:"Status.DatabaseName"`
-
   DatabaseType: string;
-
-  // Go tags: `mapconv:"Status.DatabaseType"`
-
   Region: string;
-  // Go tags: `mapconv:"Status.Region"`
 }
 
 model EnhancedDBUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  Icon?: ResourceRef | null;
+  SettingsHash?: string | null;
 }
 
 model EnhancedDBSetPasswordRequest {
-  Password: string;
-  // Go tags: `mapconv:"EnhancedDB.Password"`
+  Password?: string | null;
 }
 
 model EnhancedDBConfig {
-  MaxConnections: int32;
+  MaxConnections?: int32 | null;
   AllowedNetworks: string[];
 }
 
 model EnhancedDBSetConfigRequest {
   AllowedNetworks: string[];
-  // Go tags: `mapconv:"EnhancedDB.AllowedNetworks"`
 }

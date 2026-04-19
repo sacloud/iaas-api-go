@@ -5,26 +5,18 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Subnet {
-  ID: int64;
-  SwitchID: int64;
-
-  // Go tags: `mapconv:"Switch.ID,omitempty"`
-
+  ID?: int64 | null;
+  Switch?: ResourceRef | null;
   InternetID: int64;
-
-  // Go tags: `mapconv:"Switch.Internet.ID,omitempty"`
-
-  DefaultRoute: string;
-
-  NextHop: string;
-  StaticRoute: string;
-  NetworkAddress: string;
-  NetworkMaskLen: int32;
-  IPAddresses: SubnetIPAddress[];
-  // Go tags: `mapconv:"[]IPAddresses,recursive"`
+  DefaultRoute?: string | null;
+  NextHop?: string | null;
+  StaticRoute?: string | null;
+  NetworkAddress?: string | null;
+  NetworkMaskLen?: int32 | null;
+  IPAddresses?: SubnetIPAddress[] | null;
 }
 
 model SubnetIPAddress {
   HostName: string;
-  IPAddress: string;
+  IPAddress?: string | null;
 }

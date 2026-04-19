@@ -39,9 +39,9 @@ func TestIconCRUD(t *testing.T) {
 
 	createReq := &client.IconCreateRequestEnvelope{
 		Icon: client.IconCreateRequest{
-			Name:  "test-icon",
+			Name:  client.NewOptNilString("test-icon"),
 			Tags:  []string{"test", "integration"},
-			Image: base64Image,
+			Image: client.NewOptNilString(base64Image),
 		},
 	}
 
@@ -54,7 +54,7 @@ func TestIconCRUD(t *testing.T) {
 	require.NotNil(t, createResp)
 	iconID := createResp.Icon.ID
 	t.Logf("Created icon ID: %d", iconID)
-	require.Equal(t, "test-icon", createResp.Icon.Name)
+	require.Equal(t, "test-icon", createResp.Icon.Name.Value)
 
 	// 2. Read - アイコン取得
 	readParams := client.IconOpReadParams{
@@ -65,13 +65,13 @@ func TestIconCRUD(t *testing.T) {
 	readResp, err := c.IconOpRead(ctx, readParams)
 	require.NoError(t, err)
 	require.NotNil(t, readResp)
-	require.Equal(t, "test-icon", readResp.Icon.Name)
+	require.Equal(t, "test-icon", readResp.Icon.Name.Value)
 	require.Equal(t, iconID, readResp.Icon.ID)
 
 	// 3. Update - アイコン更新
 	updateReq := &client.IconUpdateRequestEnvelope{
 		Icon: client.IconUpdateRequest{
-			Name: "test-icon-updated",
+			Name: client.NewOptNilString("test-icon-updated"),
 			Tags: []string{"test", "integration", "updated"},
 		},
 	}
@@ -83,7 +83,7 @@ func TestIconCRUD(t *testing.T) {
 	updateResp, err := c.IconOpUpdate(ctx, updateReq, updateParams)
 	require.NoError(t, err)
 	require.NotNil(t, updateResp)
-	require.Equal(t, "test-icon-updated", updateResp.Icon.Name)
+	require.Equal(t, "test-icon-updated", updateResp.Icon.Name.Value)
 
 	// 4. Find - アイコン検索
 	findReq := &client.IconFindRequestEnvelope{}
@@ -112,7 +112,7 @@ func TestIconCRUD(t *testing.T) {
 		ID:   fmt.Sprintf("%d", iconID),
 	}
 
-	_, err = c.IconOpDelete(ctx, deleteParams)
+	_, err = c.IconOpDelete(ctx, deleteParams) //nolint:errcheck
 	require.NoError(t, err)
 
 	// 削除後の取得でエラーになることを確認（404 Not Found）

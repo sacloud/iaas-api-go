@@ -5,96 +5,45 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoBackup {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   BackupSpanWeekdays: EDayOfTheWeek[];
-
-  // Go tags: `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
-
   MaximumNumberOfArchives: int32;
-
-  // Go tags: `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  SettingsHash?: string | null;
   DiskID: int64;
-
-  // Go tags: `mapconv:"Status.DiskID"`
-
   AccountID: int64;
-
-  // Go tags: `mapconv:"Status.AccountID"`
-
   ZoneID: int64;
-
-  // Go tags: `mapconv:"Status.ZoneID"`
-
   ZoneName: string;
-  // Go tags: `mapconv:"Status.ZoneName"`
 }
 
 model AutoBackupCreateRequest {
   DiskID: int64;
-
-  // Go tags: `mapconv:"Status.DiskID"`
-
   BackupSpanWeekdays: EDayOfTheWeek[];
-
-  // Go tags: `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
-
   MaximumNumberOfArchives: int32;
-
-  // Go tags: `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
-
-  Name: string;
-
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model AutoBackupUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   BackupSpanWeekdays: EDayOfTheWeek[];
-
-  // Go tags: `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
-
   MaximumNumberOfArchives: int32;
-
-  // Go tags: `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model AutoBackupUpdateSettingsRequest {
   BackupSpanWeekdays: EDayOfTheWeek[];
-
-  // Go tags: `mapconv:"Settings.Autobackup.BackupSpanWeekdays"`
-
   MaximumNumberOfArchives: int32;
-
-  // Go tags: `mapconv:"Settings.Autobackup.MaximumNumberOfArchives"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }

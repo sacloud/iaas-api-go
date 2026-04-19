@@ -5,64 +5,35 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoScale {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Zones: string[];
-
-  // Go tags: `mapconv:"Settings.Zones"`
-
   Config: string;
-
-  // Go tags: `mapconv:"Settings.Config"`
-
   TriggerType: EAutoScaleTriggerType;
-
-  // Go tags: `mapconv:"Settings.TriggerType"`
-
   CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.CPUThresholdScaling,recursive"`
-
   RouterThresholdScaling: AutoScaleRouterThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.RouterThresholdScaling,recursive"`
-
   ScheduleScaling: AutoScaleScheduleScaling[];
-
-  // Go tags: `mapconv:"Settings.ScheduleScaling,recursive"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  SettingsHash?: string | null;
   APIKeyID: string;
-  // Go tags: `mapconv:"Status.APIKey.ID"`
 }
 
 model AutoScaleCPUThresholdScaling {
-  ServerPrefix: string;
-  Up: int32;
-  Down: int32;
+  ServerPrefix?: string | null;
+  Up?: int32 | null;
+  Down?: int32 | null;
 }
 
 model AutoScaleRouterThresholdScaling {
-  RouterPrefix: string;
-  Direction: string;
-  Mbps: int32;
+  RouterPrefix?: string | null;
+  Direction?: string | null;
+  Mbps?: int32 | null;
 }
 
 model AutoScaleScheduleScaling {
@@ -73,116 +44,44 @@ model AutoScaleScheduleScaling {
 }
 
 model AutoScaleCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Zones: string[];
-
-  // Go tags: `mapconv:"Settings.Zones"`
-
   Config: string;
-
-  // Go tags: `mapconv:"Settings.Config"`
-
   TriggerType: EAutoScaleTriggerType;
-
-  // Go tags: `mapconv:"Settings.TriggerType"`
-
   CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.CPUThresholdScaling,recursive"`
-
   RouterThresholdScaling: AutoScaleRouterThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.RouterThresholdScaling,recursive"`
-
   ScheduleScaling: AutoScaleScheduleScaling[];
-
-  // Go tags: `mapconv:"Settings.ScheduleScaling,recursive"`
-
   APIKeyID: string;
-  // Go tags: `mapconv:"Status.APIKey.ID"`
 }
 
 model AutoScaleUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Zones: string[];
-
-  // Go tags: `mapconv:"Settings.Zones"`
-
   Config: string;
-
-  // Go tags: `mapconv:"Settings.Config"`
-
   TriggerType: EAutoScaleTriggerType;
-
-  // Go tags: `mapconv:"Settings.TriggerType"`
-
   CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.CPUThresholdScaling,recursive"`
-
   RouterThresholdScaling: AutoScaleRouterThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.RouterThresholdScaling,recursive"`
-
   ScheduleScaling: AutoScaleScheduleScaling[];
-
-  // Go tags: `mapconv:"Settings.ScheduleScaling,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model AutoScaleUpdateSettingsRequest {
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Zones: string[];
-
-  // Go tags: `mapconv:"Settings.Zones"`
-
   Config: string;
-
-  // Go tags: `mapconv:"Settings.Config"`
-
   TriggerType: EAutoScaleTriggerType;
-
-  // Go tags: `mapconv:"Settings.TriggerType"`
-
   CPUThresholdScaling: AutoScaleCPUThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.CPUThresholdScaling,recursive"`
-
   RouterThresholdScaling: AutoScaleRouterThresholdScaling;
-
-  // Go tags: `mapconv:"Settings.RouterThresholdScaling,recursive"`
-
   ScheduleScaling: AutoScaleScheduleScaling[];
-
-  // Go tags: `mapconv:"Settings.ScheduleScaling,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model AutoScaleStatus {

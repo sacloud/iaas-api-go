@@ -5,54 +5,43 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Bridge {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
-  CreatedAt: utcDateTime;
-  Region: Region;
-
-  // Go tags: `json:",omitempty"`
-
+  CreatedAt?: utcDateTime | null;
+  Region?: Region | null;
   BridgeInfo: BridgeInfo[];
-
-  // Go tags: `mapconv:"Info.[]Switches,recursive"`
-
-  SwitchInZone: BridgeSwitchInfo;
+  SwitchInZone?: BridgeSwitchInfo | null;
 }
 
 model Region {
-  ID: int64;
-  Name: string;
-  Description: string;
-  NameServers: string[];
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  ID?: int64 | null;
+  Name?: string | null;
+  Description?: string | null;
+  NameServers?: string[] | null;
 }
 
 model BridgeInfo {
-  ID: int64;
-  Name: string;
-  ZoneID: int64;
-
-  // Go tags: `mapconv:"Zone.ID"`
-
+  ID?: int64 | null;
+  Name?: string | null;
+  Zone?: ResourceRef | null;
   ZoneName: string;
-  // Go tags: `mapconv:"Zone.Name"`
 }
 
 model BridgeSwitchInfo {
-  ID: int64;
-  Name: string;
-  Scope: EScope;
-  ServerCount: int32;
-  ApplianceCount: int32;
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+  ServerCount?: int32 | null;
+  ApplianceCount?: int32 | null;
 }
 
 model BridgeCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
 }
 
 model BridgeUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
 }

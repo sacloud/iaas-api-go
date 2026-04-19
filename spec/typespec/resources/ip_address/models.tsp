@@ -6,11 +6,7 @@ namespace Sacloud.IaaS;
 
 model IPAddress {
   HostName: string;
-  IPAddress: string;
-  InterfaceID: int64;
-
-  // Go tags: `mapconv:"Interface.ID,omitempty"`
-
-  SubnetID: int64;
-  // Go tags: `mapconv:"Subnet.ID,omitempty"`
+  IPAddress?: string | null;
+  Interface?: ResourceRef | null;
+  Subnet?: ResourceRef | null;
 }

@@ -6,66 +6,34 @@ namespace Sacloud.IaaS;
 
 model PrivateHost {
   ID: int64;
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  PlanID: int64;
-
-  // Go tags: `mapconv:"Plan.ID,omitempty"`
-
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  Plan?: ResourceRef | null;
   PlanName: string;
-
-  // Go tags: `mapconv:"Plan.Name"`
-
   PlanClass: string;
-
-  // Go tags: `mapconv:"Plan.Class"`
-
   CPU: int32;
-
-  // Go tags: `mapconv:"Plan.CPU"`
-
   CPUModel: string;
-
-  // Go tags: `mapconv:"Plan.CPUModel"`
-
   Dedicated: boolean;
-
-  // Go tags: `mapconv:"Plan.Dedicated"`
-
   MemoryMB: int32;
-
-  // Go tags: `mapconv:"Plan.MemoryMB"`
-
-  AssignedCPU: int32;
-
-  AssignedMemoryMB: int32;
+  AssignedCPU?: int32 | null;
+  AssignedMemoryMB?: int32 | null;
   HostName: string;
-  // Go tags: `mapconv:"Host.Name"`
 }
 
 model PrivateHostCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  PlanID: int64;
-  // Go tags: `mapconv:"Plan.ID,omitempty"`
+  Icon?: ResourceRef | null;
+  Plan?: ResourceRef | null;
 }
 
 model PrivateHostUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }

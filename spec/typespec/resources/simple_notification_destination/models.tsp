@@ -5,80 +5,45 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationDestination {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Type: ESimpleNotificationDestinationTypes;
-
-  // Go tags: `mapconv:"Settings.Type"`
-
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Value: string;
-
-  // Go tags: `mapconv:"Settings.Value"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationDestinationCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Type: ESimpleNotificationDestinationTypes;
-
-  // Go tags: `mapconv:"Settings.Type"`
-
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
   Value: string;
-  // Go tags: `mapconv:"Settings.Value"`
 }
 
 model SimpleNotificationDestinationUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationDestinationUpdateSettingsRequest {
   Disabled: boolean;
-
-  // Go tags: `mapconv:"Settings.Disabled"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationDestinationStatus {
   Disabled: boolean;
-  ModifiedAt: utcDateTime;
+  ModifiedAt?: utcDateTime | null;
 }

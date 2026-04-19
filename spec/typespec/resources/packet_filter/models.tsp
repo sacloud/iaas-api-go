@@ -5,17 +5,13 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PacketFilter {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
-  RequiredHostVersion: int32;
+  RequiredHostVersion?: int32 | null;
   Expression: PacketFilterExpression[];
-
-  // Go tags: `mapconv:"[]Expression,recursive"`
-
-  ExpressionHash: string;
-
-  CreatedAt: utcDateTime;
+  ExpressionHash?: string | null;
+  CreatedAt?: utcDateTime | null;
 }
 
 model PacketFilterExpression {
@@ -28,15 +24,13 @@ model PacketFilterExpression {
 }
 
 model PacketFilterCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Expression: PacketFilterExpression[];
-  // Go tags: `mapconv:"[]Expression,recursive"`
 }
 
 model PacketFilterUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Expression: PacketFilterExpression[];
-  // Go tags: `mapconv:"[]Expression,recursive"`
 }

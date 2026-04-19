@@ -5,136 +5,96 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model CertificateAuthority {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Country: string;
-
-  // Go tags: `mapconv:"Status.Country"`
-
   Organization: string;
-
-  // Go tags: `mapconv:"Status.Organization"`
-
   OrganizationUnit: string[];
-
-  // Go tags: `mapconv:"Status.OrganizationUnit"`
-
   CommonName: string;
-
-  // Go tags: `mapconv:"Status.CommonName"`
-
   NotAfter: utcDateTime;
-
-  // Go tags: `mapconv:"Status.NotAfter"`
-
   Subject: string;
-  // Go tags: `mapconv:"Status.Subject"`
 }
 
 model CertificateAuthorityCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Country: string;
-
-  // Go tags: `mapconv:"Status.Country"`
-
   Organization: string;
-
-  // Go tags: `mapconv:"Status.Organization"`
-
   OrganizationUnit: string[];
-
-  // Go tags: `mapconv:"Status.OrganizationUnit"`
-
   CommonName: string;
-
-  // Go tags: `mapconv:"Status.CommonName"`
-
   NotAfter: utcDateTime;
-  // Go tags: `mapconv:"Status.NotAfter"`
 }
 
 model CertificateAuthorityUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model CertificateAuthorityDetail {
-  Subject: string;
-  CertificateData: CertificateData;
-  // Go tags: `mapconv:",recursive"`
+  Subject?: string | null;
+  CertificateData?: CertificateData | null;
 }
 
 model CertificateData {
-  CertificatePEM: string;
-  Subject: string;
-  SerialNumber: string;
-  NotBefore: utcDateTime;
-  NotAfter: utcDateTime;
+  CertificatePEM?: string | null;
+  Subject?: string | null;
+  SerialNumber?: string | null;
+  NotBefore?: utcDateTime | null;
+  NotAfter?: utcDateTime | null;
 }
 
 model CertificateAuthorityAddClientOrServerResult {
-  ID: string;
+  ID?: string | null;
 }
 
 model CertificateAuthorityAddClientParam {
-  Country: string;
-  Organization: string;
-  OrganizationUnit: string[];
-  CommonName: string;
-  NotAfter: utcDateTime;
-  IssuanceMethod: ECertificateAuthorityIssuanceMethod;
-  EMail: string;
-  CertificateSigningRequest: string;
-  PublicKey: string;
+  Country?: string | null;
+  Organization?: string | null;
+  OrganizationUnit?: string[] | null;
+  CommonName?: string | null;
+  NotAfter?: utcDateTime | null;
+  IssuanceMethod?: ECertificateAuthorityIssuanceMethod | null;
+  EMail?: string | null;
+  CertificateSigningRequest?: string | null;
+  PublicKey?: string | null;
 }
 
 model CertificateAuthorityClient {
-  ID: string;
-  Subject: string;
-  EMail: string;
-  IssuanceMethod: ECertificateAuthorityIssuanceMethod;
-  IssueState: string;
-  URL: string;
-  CertificateData: CertificateData;
-  // Go tags: `mapconv:",recursive"`
+  ID?: string | null;
+  Subject?: string | null;
+  EMail?: string | null;
+  IssuanceMethod?: ECertificateAuthorityIssuanceMethod | null;
+  IssueState?: string | null;
+  URL?: string | null;
+  CertificateData?: CertificateData | null;
 }
 
 model CertificateAuthorityAddServerParam {
-  Country: string;
-  Organization: string;
-  OrganizationUnit: string[];
-  CommonName: string;
-  NotAfter: utcDateTime;
+  Country?: string | null;
+  Organization?: string | null;
+  OrganizationUnit?: string[] | null;
+  CommonName?: string | null;
+  NotAfter?: utcDateTime | null;
   SANs: string[];
-  CertificateSigningRequest: string;
-  PublicKey: string;
+  CertificateSigningRequest?: string | null;
+  PublicKey?: string | null;
 }
 
 model CertificateAuthorityServer {
-  ID: string;
-  Subject: string;
-  SANs: string[];
-  EMail: string;
-  IssueState: string;
-  CertificateData: CertificateData;
-  // Go tags: `mapconv:",recursive"`
+  ID?: string | null;
+  Subject?: string | null;
+  SANs?: string[] | null;
+  EMail?: string | null;
+  IssueState?: string | null;
+  CertificateData?: CertificateData | null;
 }

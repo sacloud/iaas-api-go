@@ -6,22 +6,22 @@ namespace Sacloud.IaaS;
 
 model Icon {
   ID: int64;
-  Name: string;
+  Name?: string | null;
   Tags: string[];
-  Availability: EAvailability;
-  Scope: EScope;
-  URL: string;
-  CreatedAt: utcDateTime;
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Scope?: EScope | null;
+  URL?: string | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model IconCreateRequest {
-  Name: string;
+  Name?: string | null;
   Tags: string[];
-  Image: string;
+  Image?: string | null;
 }
 
 model IconUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Tags: string[];
 }

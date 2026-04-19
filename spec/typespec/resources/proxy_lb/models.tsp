@@ -5,93 +5,34 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ProxyLB {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Plan: EProxyLBPlan;
   HealthCheck: ProxyLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-
   SorryServer: ProxyLBSorryServer;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-
   BindPorts: ProxyLBBindPort[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-
   Servers: ProxyLBServer[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-
   Rules: ProxyLBRule[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-
   LetsEncrypt: ProxyLBACMESetting;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-
   StickySession: ProxyLBStickySession;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-
   Gzip: ProxyLBGzip;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-
   BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
-
   ProxyProtocol: ProxyLBProxyProtocol;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-
   Syslog: ProxyLBSyslog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-
   Timeout: ProxyLBTimeout;
-
-  // Go tags: `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  SettingsHash?: string | null;
   UseVIPFailover: boolean;
-
-  // Go tags: `mapconv:"Status.UseVIPFailover"`
-
   Region: EProxyLBRegion;
-
-  // Go tags: `mapconv:"Status.Region"`
-
   ProxyNetworks: string[];
-
-  // Go tags: `mapconv:"Status.ProxyNetworks"`
-
   FQDN: string;
-
-  // Go tags: `mapconv:"Status.FQDN"`
-
   VirtualIPAddress: string;
-  // Go tags: `mapconv:"Status.VirtualIPAddress"`
 }
 
 model ProxyLBHealthCheck {
@@ -104,7 +45,6 @@ model ProxyLBHealthCheck {
 model ProxyLBSorryServer {
   IPAddress: string;
   Port: int32;
-  // Go tags: `mapconv:",omitempty"`
 }
 
 model ProxyLBBindPort {
@@ -113,9 +53,6 @@ model ProxyLBBindPort {
   RedirectToHTTPS: boolean;
   SupportHTTP2: boolean;
   AddResponseHeader: ProxyLBResponseHeader[];
-
-  // Go tags: `mapconv:"[]AddResponseHeader,recursive"`
-
   SSLPolicy: string;
 }
 
@@ -141,38 +78,18 @@ model ProxyLBRule {
   RequestHeaderValueIgnoreCase: boolean;
   RequestHeaderValueNotMatch: boolean;
   ServerGroup: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   Action: EProxyLBRuleAction;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   RedirectLocation: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   RedirectStatusCode: int32;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   FixedStatusCode: int32;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   FixedContentType: EProxyLBFixedContentType;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
   FixedMessageBody: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
 }
 
 model ProxyLBACMESetting {
   CommonName: string;
   Enabled: boolean;
   SubjectAltNames: string[];
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
 }
 
 model ProxyLBStickySession {
@@ -204,203 +121,71 @@ model ProxyLBTimeout {
 model ProxyLBCreateRequest {
   Plan: EProxyLBPlan;
   HealthCheck: ProxyLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-
   SorryServer: ProxyLBSorryServer;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-
   BindPorts: ProxyLBBindPort[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-
   Servers: ProxyLBServer[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-
   Rules: ProxyLBRule[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-
   LetsEncrypt: ProxyLBACMESetting;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-
   StickySession: ProxyLBStickySession;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-
   Timeout: ProxyLBTimeout;
-
-  // Go tags: `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-
   Gzip: ProxyLBGzip;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-
   BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
-
   ProxyProtocol: ProxyLBProxyProtocol;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-
   Syslog: ProxyLBSyslog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-
   UseVIPFailover: boolean;
-
-  // Go tags: `mapconv:"Status.UseVIPFailover"`
-
   Region: EProxyLBRegion;
-
-  // Go tags: `mapconv:"Status.Region"`
-
-  Name: string;
-
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model ProxyLBUpdateRequest {
   HealthCheck: ProxyLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-
   SorryServer: ProxyLBSorryServer;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-
   BindPorts: ProxyLBBindPort[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-
   Servers: ProxyLBServer[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-
   Rules: ProxyLBRule[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-
   LetsEncrypt: ProxyLBACMESetting;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-
   StickySession: ProxyLBStickySession;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-
   Timeout: ProxyLBTimeout;
-
-  // Go tags: `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-
   Gzip: ProxyLBGzip;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-
   BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
-
   ProxyProtocol: ProxyLBProxyProtocol;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-
   Syslog: ProxyLBSyslog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
-  Name: string;
-
+  SettingsHash?: string | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model ProxyLBUpdateSettingsRequest {
   HealthCheck: ProxyLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.HealthCheck,recursive"`
-
   SorryServer: ProxyLBSorryServer;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.SorryServer,recursive"`
-
   BindPorts: ProxyLBBindPort[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]BindPorts,recursive"`
-
   Servers: ProxyLBServer[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Servers,recursive"`
-
   Rules: ProxyLBRule[];
-
-  // Go tags: `mapconv:"Settings.ProxyLB.[]Rules,recursive"`
-
   LetsEncrypt: ProxyLBACMESetting;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.LetsEncrypt,recursive"`
-
   StickySession: ProxyLBStickySession;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.StickySession,recursive"`
-
   Timeout: ProxyLBTimeout;
-
-  // Go tags: `json:",omitempty" mapconv:"Settings.ProxyLB.Timeout,recursive,omitempty"`
-
   Gzip: ProxyLBGzip;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Gzip,recursive"`
-
   BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.BackendHttpKeepAlive,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.MonitoringSuiteLog,recursive"`
-
   ProxyProtocol: ProxyLBProxyProtocol;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.ProxyProtocol,recursive"`
-
   Syslog: ProxyLBSyslog;
-
-  // Go tags: `mapconv:"Settings.ProxyLB.Syslog,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model ProxyLBChangePlanRequest {
-  ServiceClass: string;
+  ServiceClass?: string | null;
 }
 
 model ProxyLBCertificates {
-  PrimaryCert: ProxyLBPrimaryCert;
+  PrimaryCert?: ProxyLBPrimaryCert | null;
   AdditionalCerts: ProxyLBAdditionalCert[];
-  // Go tags: `mapconv:"[]AdditionalCerts, recursive"`
 }
 
 model ProxyLBPrimaryCert {
@@ -423,35 +208,22 @@ model ProxyLBAdditionalCert {
 
 model ProxyLBSetCertificatesRequest {
   PrimaryCerts: ProxyLBPrimaryCert;
-
-  // Go tags: `mapconv:"PrimaryCert"`
-
   AdditionalCerts: ProxyLBAdditionalCert[];
-  // Go tags: `mapconv:"[]AdditionalCerts, recursive"`
 }
 
 model ProxyLBHealth {
-  ActiveConn: int32;
-  CPS: float64;
-  CurrentVIP: string;
-  Servers: LoadBalancerServerStatus[];
-  // Go tags: `mapconv:"[]Servers,recursive"`
+  ActiveConn?: int32 | null;
+  CPS?: float64 | null;
+  CurrentVIP?: string | null;
+  Servers?: LoadBalancerServerStatus[] | null;
 }
 
 model ConnectionActivity {
   Values: MonitorConnectionValue[];
-  // Go tags: `mapconv:"[]Connection"`
 }
 
 model MonitorConnectionValue {
   Time: utcDateTime;
-
-  // Go tags: `mapconv:",omitempty"`
-
   ActiveConnections: float64;
-
-  // Go tags: `mapconv:",omitempty"`
-
   ConnectionsPerSec: float64;
-  // Go tags: `mapconv:",omitempty"`
 }

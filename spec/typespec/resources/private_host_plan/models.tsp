@@ -5,16 +5,12 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PrivateHostPlan {
-  ID: int64;
-  Name: string;
-  Class: string;
-  CPU: int32;
-  CPUModel: string;
-
-  // Go tags: `json:"CPUModel,omitempty"`
-
+  ID?: int64 | null;
+  Name?: string | null;
+  Class?: string | null;
+  CPU?: int32 | null;
+  CPUModel?: string | null;
   Dedicated: boolean;
-
-  MemoryMB: int32;
-  Availability: EAvailability;
+  MemoryMB?: int32 | null;
+  Availability?: EAvailability | null;
 }

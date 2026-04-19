@@ -5,66 +5,30 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model GSLB {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  SettingsHash?: string | null;
   FQDN: string;
-
-  // Go tags: `mapconv:"Status.FQDN"`
-
   DelayLoop: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
-
   Weighted: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.Weighted"`
-
   HealthCheck: GSLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-
   SorryServer: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.SorryServer"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
-
   DestinationServers: GSLBServer[];
-  // Go tags: `mapconv:"Settings.GSLB.[]Servers,recursive"`
 }
 
 model GSLBHealthCheck {
-  Protocol: EGSLBHealthCheckProtocol;
+  Protocol?: EGSLBHealthCheckProtocol | null;
   HostHeader: string;
-
-  // Go tags: `mapconv:"Host"`
-
-  Path: string;
-
-  // Go tags: `mapconv:"Path"`
-
+  Path?: string | null;
   ResponseCode: int32;
-
-  // Go tags: `mapconv:"Status"`
-
-  Port: int32;
-  // Go tags: `mapconv:"Port"`
+  Port?: int32 | null;
 }
 
 model GSLBServer {
@@ -75,98 +39,37 @@ model GSLBServer {
 
 model GSLBCreateRequest {
   HealthCheck: GSLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-
   DelayLoop: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
-
   Weighted: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.Weighted"`
-
   SorryServer: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.SorryServer"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
-
   DestinationServers: GSLBServer[];
-
-  // Go tags: `mapconv:"Settings.GSLB.[]Servers,recursive"`
-
-  Name: string;
-
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model GSLBUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   HealthCheck: GSLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-
   DelayLoop: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
-
   Weighted: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.Weighted"`
-
   SorryServer: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.SorryServer"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
-
   DestinationServers: GSLBServer[];
-
-  // Go tags: `mapconv:"Settings.GSLB.[]Servers,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model GSLBUpdateSettingsRequest {
   HealthCheck: GSLBHealthCheck;
-
-  // Go tags: `mapconv:"Settings.GSLB.HealthCheck,recursive"`
-
   DelayLoop: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.GSLB.DelayLoop"`
-
   Weighted: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.Weighted"`
-
   SorryServer: string;
-
-  // Go tags: `mapconv:"Settings.GSLB.SorryServer"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.GSLB.MonitoringSuiteLog,recursive"`
-
   DestinationServers: GSLBServer[];
-
-  // Go tags: `mapconv:"Settings.GSLB.[]Servers,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }

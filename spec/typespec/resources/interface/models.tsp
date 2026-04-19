@@ -5,35 +5,22 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Interface {
-  ID: int64;
-  MACAddress: string;
-  IPAddress: string;
-  UserIPAddress: string;
-  HostName: string;
-  SwitchID: int64;
-
-  // Go tags: `mapconv:"Switch.ID,omitempty"`
-
+  ID?: int64 | null;
+  MACAddress?: string | null;
+  IPAddress?: string | null;
+  UserIPAddress?: string | null;
+  HostName?: string | null;
+  Switch?: ResourceRef | null;
   SwitchScope: EScope;
-
-  // Go tags: `mapconv:"Switch.Scope,omitempty"`
-
-  PacketFilterID: int64;
-
-  // Go tags: `mapconv:"PacketFilter.ID,omitempty"`
-
-  ServerID: int64;
-
-  // Go tags: `mapconv:"Server.ID,omitempty"`
-
+  PacketFilter?: ResourceRef | null;
+  Server?: ResourceRef | null;
   CreatedAt: utcDateTime;
 }
 
 model InterfaceCreateRequest {
-  ServerID: int64;
-  // Go tags: `mapconv:"Server.ID,omitempty"`
+  Server?: ResourceRef | null;
 }
 
 model InterfaceUpdateRequest {
-  UserIPAddress: string;
+  UserIPAddress?: string | null;
 }

@@ -5,73 +5,29 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleMonitor {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Class: string;
   Target: string;
-
-  // Go tags: `mapconv:"Status.Target"`
-
   DelayLoop: int32 = 60;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
-
   MaxCheckAttempts: int32 = 3;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MaxCheckAttempts"`
-
   RetryInterval: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.RetryInterval"`
-
   Enabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
-
   HealthCheck: SimpleMonitorHealthCheck;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
-
   NotifyEmailEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
-
   NotifyEmailHTML: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
-
   NotifySlackEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
-
   SlackWebhooksURL: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
-
   NotifyInterval: int32 = 7200;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
-
   Timeout: int32;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Timeout"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleMonitorHealthCheck {
@@ -97,193 +53,70 @@ model SimpleMonitorHealthCheck {
 
 model SimpleMonitorCreateRequest {
   Target: string;
-
-  // Go tags: `mapconv:"Name/Status.Target"`
-
   MaxCheckAttempts: int32 = 3;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MaxCheckAttempts"`
-
   RetryInterval: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.RetryInterval"`
-
   DelayLoop: int32 = 60;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
-
   Enabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
-
   HealthCheck: SimpleMonitorHealthCheck;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
-
   NotifyEmailEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
-
   NotifyEmailHTML: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
-
   NotifySlackEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
-
   SlackWebhooksURL: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
-
   NotifyInterval: int32 = 7200;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
-
   Timeout: int32;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Timeout"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
-
   Description: string;
-
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model SimpleMonitorUpdateRequest {
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   MaxCheckAttempts: int32 = 3;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MaxCheckAttempts"`
-
   RetryInterval: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.RetryInterval"`
-
   DelayLoop: int32 = 60;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
-
   Enabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
-
   HealthCheck: SimpleMonitorHealthCheck;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
-
   NotifyEmailEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
-
   NotifyEmailHTML: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
-
   NotifySlackEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
-
   SlackWebhooksURL: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
-
   NotifyInterval: int32 = 7200;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
-
   Timeout: int32;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Timeout"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model SimpleMonitorUpdateSettingsRequest {
   MaxCheckAttempts: int32 = 3;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MaxCheckAttempts"`
-
   RetryInterval: int32 = 10;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.RetryInterval"`
-
   DelayLoop: int32 = 60;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.DelayLoop"`
-
   Enabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Enabled"`
-
   HealthCheck: SimpleMonitorHealthCheck;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.HealthCheck,recursive"`
-
   NotifyEmailEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.Enabled"`
-
   NotifyEmailHTML: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyEmail.HTML"`
-
   NotifySlackEnabled: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.Enabled"`
-
   SlackWebhooksURL: string;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifySlack.IncomingWebhooksURL"`
-
   NotifyInterval: int32 = 7200;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.NotifyInterval"`
-
   Timeout: int32;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.Timeout"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.SimpleMonitor.MonitoringSuiteLog,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model ResponseTimeSecActivity {
   Values: MonitorResponseTimeSecValue[];
-  // Go tags: `mapconv:"[]ResponseTimeSec"`
 }
 
 model MonitorResponseTimeSecValue {
   Time: utcDateTime;
-
-  // Go tags: `mapconv:",omitempty"`
-
   ResponseTimeSec: float64;
-  // Go tags: `mapconv:",omitempty"`
 }
 
 model SimpleMonitorHealthStatus {
-  LastCheckedAt: utcDateTime;
-  LastHealthChangedAt: utcDateTime;
-  Health: ESimpleMonitorHealth;
-  LatestLogs: string[];
+  LastCheckedAt?: utcDateTime | null;
+  LastHealthChangedAt?: utcDateTime | null;
+  Health?: ESimpleMonitorHealth | null;
+  LatestLogs?: string[] | null;
 }

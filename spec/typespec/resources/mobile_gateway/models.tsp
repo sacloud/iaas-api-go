@@ -5,241 +5,123 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model MobileGateway {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  Class: string;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
+  Availability?: EAvailability | null;
+  Class?: string | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
   InstanceHostName: string;
-
-  // Go tags: `mapconv:"Instance.Host.Name"`
-
   InstanceHostInfoURL: string;
-
-  // Go tags: `mapconv:"Instance.Host.InfoURL"`
-
   InstanceStatus: EServerInstanceStatus;
-
-  // Go tags: `mapconv:"Instance.Status"`
-
   InstanceStatusChangedAt: utcDateTime;
-
-  // Go tags: `mapconv:"Instance.StatusChangedAt"`
-
-  Interfaces: MobileGatewayInterface[];
-
-  // Go tags: `json:",omitempty" mapconv:"[]Interfaces,recursive,omitempty"`
-
+  Interfaces?: MobileGatewayInterface[] | null;
   ZoneID: int64;
-
-  // Go tags: `mapconv:"Remark.Zone.ID"`
-
   GlobalAddress: string;
-
-  // Go tags: `mapconv:"Remark.MobileGateway.GlobalAddress"`
-
   InterfaceSettings: MobileGatewayInterfaceSetting[];
-
-  // Go tags: `mapconv:"Settings.MobileGateway.[]Interfaces,recursive"`
-
   StaticRoutes: MobileGatewayStaticRoute[];
-
-  // Go tags: `mapconv:"Settings.MobileGateway.[]StaticRoutes,recursive"`
-
   InternetConnectionEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
-
   InterDeviceCommunicationEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model MobileGatewayInterface {
-  ID: int64;
-  MACAddress: string;
-  IPAddress: string;
-  UserIPAddress: string;
-  HostName: string;
-  SwitchID: int64;
-
-  // Go tags: `mapconv:"Switch.ID"`
-
+  ID?: int64 | null;
+  MACAddress?: string | null;
+  IPAddress?: string | null;
+  UserIPAddress?: string | null;
+  HostName?: string | null;
+  Switch?: ResourceRef | null;
   SwitchName: string;
-
-  // Go tags: `mapconv:"Switch.Name"`
-
   SwitchScope: EScope;
-
-  // Go tags: `mapconv:"Switch.Scope"`
-
   UserSubnetDefaultRoute: string;
-
-  // Go tags: `mapconv:"Switch.UserSubnet.DefaultRoute"`
-
   UserSubnetNetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"Switch.UserSubnet.NetworkMaskLen"`
-
   SubnetDefaultRoute: string;
-
-  // Go tags: `mapconv:"Switch.Subnet.DefaultRoute"`
-
   SubnetNetworkMaskLen: int32;
-
-  // Go tags: `mapconv:"Switch.Subnet.NetworkMaskLen"`
-
   SubnetNetworkAddress: string;
-
-  // Go tags: `mapconv:"Switch.Subnet.NetworkAddress"`
-
   SubnetBandWidthMbps: int32;
-
-  // Go tags: `mapconv:"Switch.Subnet.Internet.BandWidthMbps"`
-
-  PacketFilterID: int64;
-
-  // Go tags: `mapconv:"PacketFilter.ID"`
-
+  PacketFilter?: ResourceRef | null;
   PacketFilterName: string;
-
-  // Go tags: `mapconv:"PacketFilter.Name"`
-
   PacketFilterRequiredHostVersion: int32;
-
-  // Go tags: `mapconv:"PacketFilter.RequiredHostVersionn"`
-
   UpstreamType: EUpstreamNetworkType;
-
   Index: int32;
-  // Go tags: `mapconv:",omitempty"`
 }
 
 model MobileGatewayInterfaceSetting {
-  IPAddress: string[];
-  NetworkMaskLen: int32;
+  IPAddress?: string[] | null;
+  NetworkMaskLen?: int32 | null;
   Index: int32;
 }
 
 model MobileGatewayStaticRoute {
-  Prefix: string;
-  NextHop: string;
+  Prefix?: string | null;
+  NextHop?: string | null;
 }
 
 model MobileGatewayCreateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   StaticRoutes: MobileGatewayStaticRoute[];
-
-  // Go tags: `json:",omitempty" mapconv:"Settings.MobileGateway.[]StaticRoutes,omitempty,recursive"`
-
   InternetConnectionEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
-
   InterDeviceCommunicationEnabled: string;
-  // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
 }
 
 model MobileGatewayUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   InterfaceSettings: MobileGatewayInterfaceSetting[];
-
-  // Go tags: `mapconv:"Settings.MobileGateway.[]Interfaces,recursive"`
-
   StaticRoutes: MobileGatewayStaticRoute[];
-
-  // Go tags: `mapconv:"Settings.MobileGateway.[]StaticRoutes,recursive"`
-
   InternetConnectionEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
-
   InterDeviceCommunicationEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model MobileGatewayUpdateSettingsRequest {
   InterfaceSettings: MobileGatewayInterfaceSetting[];
-
-  // Go tags: `mapconv:"Settings.MobileGateway.[]Interfaces,recursive"`
-
   StaticRoutes: MobileGatewayStaticRoute[];
-
-  // Go tags: `mapconv:"Settings.MobileGateway.[]StaticRoutes,recursive"`
-
   InternetConnectionEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InternetConnection.Enabled"`
-
   InterDeviceCommunicationEnabled: string;
-
-  // Go tags: `mapconv:"Settings.MobileGateway.InterDeviceCommunication.Enabled"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model MobileGatewayDNSSetting {
-  DNS1: string;
-  DNS2: string;
+  DNS1?: string | null;
+  DNS2?: string | null;
 }
 
 model MobileGatewaySIMRoute {
-  ResourceID: string;
-  Prefix: string;
-  ICCID: string;
+  ResourceID?: string | null;
+  Prefix?: string | null;
+  ICCID?: string | null;
 }
 
 model MobileGatewaySIMRouteParam {
-  ResourceID: string;
-  Prefix: string;
+  ResourceID?: string | null;
+  Prefix?: string | null;
 }
 
 model MobileGatewaySIMInfo {
-  ICCID: string;
-  IMSI: string[];
-  IMEI: string;
-  IP: string;
-  SessionStatus: string;
+  ICCID?: string | null;
+  IMSI?: string[] | null;
+  IMEI?: string | null;
+  IP?: string | null;
+  SessionStatus?: string | null;
   IMEILock: boolean;
   Registered: boolean;
   Activated: boolean;
-  ResourceID: string;
-  RegisteredDate: utcDateTime;
-  ActivatedDate: utcDateTime;
-  DeactivatedDate: utcDateTime;
-  SIMGroupID: string;
-  TrafficBytesOfCurrentMonth: SIMTrafficBytes;
-
-  // Go tags: `mapconv:",recursive"`
-
-  ConnectedIMEI: string;
+  ResourceID?: string | null;
+  RegisteredDate?: utcDateTime | null;
+  ActivatedDate?: utcDateTime | null;
+  DeactivatedDate?: utcDateTime | null;
+  SIMGroupID?: string | null;
+  TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
+  ConnectedIMEI?: string | null;
 }
 
 model SIMTrafficBytes {
@@ -249,37 +131,27 @@ model SIMTrafficBytes {
 
 model MobileGatewayAddSIMRequest {
   SIMID: string;
-  // Go tags: `json:"resource_id" mapconv:"ResourceID"`
 }
 
 model MobileGatewaySIMLogs {
-  Date: utcDateTime;
-  SessionStatus: string;
-  ResourceID: string;
-  IMEI: string;
-  IMSI: string;
+  Date?: utcDateTime | null;
+  SessionStatus?: string | null;
+  ResourceID?: string | null;
+  IMEI?: string | null;
+  IMSI?: string | null;
 }
 
 model MobileGatewayTrafficControl {
   TrafficQuotaInMB: int32;
   BandWidthLimitInKbps: int32;
   EmailNotifyEnabled: boolean;
-
-  // Go tags: `mapconv:"EMailConfig.Enabled"`
-
   SlackNotifyEnabled: boolean;
-
-  // Go tags: `mapconv:"SlackConfig.Enabled"`
-
   SlackNotifyWebhooksURL: string;
-
-  // Go tags: `mapconv:"SlackConfig.IncomingWebhooksURL"`
-
   AutoTrafficShaping: boolean;
 }
 
 model MobileGatewayTrafficStatus {
-  UplinkBytes: int32;
-  DownlinkBytes: int32;
+  UplinkBytes?: int32 | null;
+  DownlinkBytes?: int32 | null;
   TrafficShaping: boolean;
 }

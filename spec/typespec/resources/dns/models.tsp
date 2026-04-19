@@ -5,36 +5,19 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model DNS {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability: EAvailability;
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
   Records: DNSRecord[];
-
-  // Go tags: `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
-
-  SettingsHash: string;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
-
+  SettingsHash?: string | null;
   DNSZone: string;
-
-  // Go tags: `mapconv:"Status.Zone"`
-
   DNSNameServers: string[];
-  // Go tags: `mapconv:"Status.NS"`
 }
 
 model DNSRecord {
@@ -49,53 +32,25 @@ model MonitoringSuiteLog {
 }
 
 model DNSCreateRequest {
-  Name: string;
-
-  // Go tags: `mapconv:"Name/Status.Zone"`
-
+  Name?: string | null;
   Records: DNSRecord[];
-
-  // Go tags: `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
-
   Description: string;
-
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model DNSUpdateRequest {
   Description: string;
   Tags: string[];
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
+  Icon?: ResourceRef | null;
   Records: DNSRecord[];
-
-  // Go tags: `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }
 
 model DNSUpdateSettingsRequest {
   Records: DNSRecord[];
-
-  // Go tags: `mapconv:"Settings.DNS.[]ResourceRecordSets,recursive"`
-
   MonitoringSuiteLog: MonitoringSuiteLog;
-
-  // Go tags: `mapconv:"Settings.DNS.MonitoringSuiteLog,recursive"`
-
-  SettingsHash: string;
-  // Go tags: `json:",omitempty" mapconv:",omitempty"`
+  SettingsHash?: string | null;
 }

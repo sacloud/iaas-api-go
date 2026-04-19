@@ -836,8 +836,15 @@ func (s *Bridge) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Region.Validate(); err != nil {
-			return err
+		if value, ok := s.Region.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -1203,8 +1210,15 @@ func (s *CertificateAuthorityAddClientParam) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.OrganizationUnit == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.OrganizationUnit.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -1226,8 +1240,15 @@ func (s *CertificateAuthorityAddServerParam) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.OrganizationUnit == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.OrganizationUnit.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -1392,8 +1413,15 @@ func (s *CertificateAuthorityServer) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.SANs == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.SANs.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -1930,8 +1958,15 @@ func (s *ContainerRegistryUsers) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Users == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Users.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -2042,8 +2077,15 @@ func (s *Database) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.Interfaces == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Interfaces.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -2248,25 +2290,32 @@ func (s *DatabaseSettingBackup) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.DayOfWeek == nil {
-			return errors.New("nil is invalid value")
-		}
-		var failures []validate.FieldError
-		for i, elem := range s.DayOfWeek {
+		if value, ok := s.DayOfWeek.Get(); ok {
 			if err := func() error {
-				if err := elem.Validate(); err != nil {
-					return err
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				var failures []validate.FieldError
+				for i, elem := range value {
+					if err := func() error {
+						if err := elem.Validate(); err != nil {
+							return err
+						}
+						return nil
+					}(); err != nil {
+						failures = append(failures, validate.FieldError{
+							Name:  fmt.Sprintf("[%d]", i),
+							Error: err,
+						})
+					}
+				}
+				if len(failures) > 0 {
+					return &validate.Error{Fields: failures}
 				}
 				return nil
 			}(); err != nil {
-				failures = append(failures, validate.FieldError{
-					Name:  fmt.Sprintf("[%d]", i),
-					Error: err,
-				})
+				return err
 			}
-		}
-		if len(failures) > 0 {
-			return &validate.Error{Fields: failures}
 		}
 		return nil
 	}(); err != nil {
@@ -2288,25 +2337,32 @@ func (s *DatabaseSettingBackupv2View) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.DayOfWeek == nil {
-			return errors.New("nil is invalid value")
-		}
-		var failures []validate.FieldError
-		for i, elem := range s.DayOfWeek {
+		if value, ok := s.DayOfWeek.Get(); ok {
 			if err := func() error {
-				if err := elem.Validate(); err != nil {
-					return err
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				var failures []validate.FieldError
+				for i, elem := range value {
+					if err := func() error {
+						if err := elem.Validate(); err != nil {
+							return err
+						}
+						return nil
+					}(); err != nil {
+						failures = append(failures, validate.FieldError{
+							Name:  fmt.Sprintf("[%d]", i),
+							Error: err,
+						})
+					}
+				}
+				if len(failures) > 0 {
+					return &validate.Error{Fields: failures}
 				}
 				return nil
 			}(); err != nil {
-				failures = append(failures, validate.FieldError{
-					Name:  fmt.Sprintf("[%d]", i),
-					Error: err,
-				})
+				return err
 			}
-		}
-		if len(failures) > 0 {
-			return &validate.Error{Fields: failures}
 		}
 		return nil
 	}(); err != nil {
@@ -2534,8 +2590,15 @@ func (s *DiskEditRequest) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.SSHKeys == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.SSHKeys.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -2545,8 +2608,15 @@ func (s *DiskEditRequest) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.Notes == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Notes.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -2660,8 +2730,15 @@ func (s *DiskPlan) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Size == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Size.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -3278,8 +3355,15 @@ func (s *Internet) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.Switch.Validate(); err != nil {
-			return err
+		if value, ok := s.Switch.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -3812,8 +3896,15 @@ func (s *MobileGatewaySIMInfo) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.IMSI == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.IMSI.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -4834,8 +4925,15 @@ func (s *Region) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.NameServers == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.NameServers.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5046,8 +5144,15 @@ func (s *Server) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.Zone.Validate(); err != nil {
-			return err
+		if value, ok := s.Zone.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5057,8 +5162,15 @@ func (s *Server) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.Disks == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Disks.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5068,8 +5180,15 @@ func (s *Server) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.Interfaces == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Interfaces.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5114,8 +5233,15 @@ func (s *ServerCreateRequest) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.ConnectedSwitches == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.ConnectedSwitches.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5471,25 +5597,32 @@ func (s *SimpleNotificationHistories) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.NotificationHistories == nil {
-			return errors.New("nil is invalid value")
-		}
-		var failures []validate.FieldError
-		for i, elem := range s.NotificationHistories {
+		if value, ok := s.NotificationHistories.Get(); ok {
 			if err := func() error {
-				if err := elem.Validate(); err != nil {
-					return err
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				var failures []validate.FieldError
+				for i, elem := range value {
+					if err := func() error {
+						if err := elem.Validate(); err != nil {
+							return err
+						}
+						return nil
+					}(); err != nil {
+						failures = append(failures, validate.FieldError{
+							Name:  fmt.Sprintf("[%d]", i),
+							Error: err,
+						})
+					}
+				}
+				if len(failures) > 0 {
+					return &validate.Error{Fields: failures}
 				}
 				return nil
 			}(); err != nil {
-				failures = append(failures, validate.FieldError{
-					Name:  fmt.Sprintf("[%d]", i),
-					Error: err,
-				})
+				return err
 			}
-		}
-		if len(failures) > 0 {
-			return &validate.Error{Fields: failures}
 		}
 		return nil
 	}(); err != nil {
@@ -5677,8 +5810,15 @@ func (s *SwitchInfo) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.Subnets == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Subnets.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5688,8 +5828,15 @@ func (s *SwitchInfo) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.IPv6Nets == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.IPv6Nets.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -5843,8 +5990,15 @@ func (s *ZoneInfo) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Region.Validate(); err != nil {
-			return err
+		if value, ok := s.Region.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {

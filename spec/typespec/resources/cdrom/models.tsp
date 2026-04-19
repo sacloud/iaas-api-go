@@ -5,41 +5,31 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model CDROM {
-  ID: int64;
-  Name: string;
+  ID?: int64 | null;
+  Name?: string | null;
   Description: string;
-  DisplayOrder: int64;
+  DisplayOrder?: int64 | null;
   Tags: string[];
-  Availability: EAvailability;
-  Scope: EScope;
-  Storage: Storage;
-
-  // Go tags: `json:",omitempty" mapconv:",omitempty,recursive"`
-
-  SizeMB: int32;
-
-  IconID: int64;
-
-  // Go tags: `mapconv:"Icon.ID"`
-
-  CreatedAt: utcDateTime;
-
-  ModifiedAt: utcDateTime;
+  Availability?: EAvailability | null;
+  Scope?: EScope | null;
+  Storage?: Storage | null;
+  SizeMB?: int32 | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model CDROMCreateRequest {
-  SizeMB: int32;
-  Name: string;
+  SizeMB?: int32 | null;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
 
 model CDROMUpdateRequest {
-  Name: string;
+  Name?: string | null;
   Description: string;
   Tags: string[];
-  IconID: int64;
-  // Go tags: `mapconv:"Icon.ID"`
+  Icon?: ResourceRef | null;
 }
