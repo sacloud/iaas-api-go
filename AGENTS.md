@@ -171,6 +171,11 @@ spec/typespec/
  * oneOf は使用しない
  * 将来増えうる値は enum ではなく string にする
  * リソース単位で tag をつける。
+ * **Terraform / usacloud で利用するフィールドのみを TypeSpec に載せる**。
+   * v2 TypeSpec は「実 API の完全な写像」ではなく「主要コンシューマ（terraform-provider-sakuracloud と usacloud）が必要とする範囲」をカバーすることを目指す。
+   * API レスポンスに存在しても Terraform/usacloud が参照しないフィールドは TypeSpec に定義しなくてよい（ogen の decoder は TypeSpec 未定義のフィールドを読み飛ばすため、レスポンス JSON に余計なキーが含まれていても decode は失敗しない）。
+   * v1 DSL のビューモデル（`internetModel` など）が過剰なフィールドを含み、かつネスト先の API 表現ではそれらが返らず required 違反で decode が失敗するケースでは、軽量ビュー（例: `internetInfoModel` → `InternetInfo`）を別モデルとして定義してネスト先で使わせる。
+   * 逆に Terraform/usacloud が参照するフィールドは漏れなく載せる。判断に迷う場合はこの2リポジトリの利用箇所を確認する。
 
 ### HTTP ステータスコード
 
