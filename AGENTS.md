@@ -171,11 +171,12 @@ spec/typespec/
  * oneOf は使用しない
  * 将来増えうる値は enum ではなく string にする
  * リソース単位で tag をつける。
- * **Terraform / usacloud で利用するフィールドのみを TypeSpec に載せる**。
+ * **v2 のカバー範囲は「v1 DSL が実装しているもの」に一致させる**。
    * v2 TypeSpec は「実 API の完全な写像」ではなく「主要コンシューマ（terraform-provider-sakuracloud と usacloud）が必要とする範囲」をカバーすることを目指す。
-   * API レスポンスに存在しても Terraform/usacloud が参照しないフィールドは TypeSpec に定義しなくてよい（ogen の decoder は TypeSpec 未定義のフィールドを読み飛ばすため、レスポンス JSON に余計なキーが含まれていても decode は失敗しない）。
-   * v1 DSL のビューモデル（`internetModel` など）が過剰なフィールドを含み、かつネスト先の API 表現ではそれらが返らず required 違反で decode が失敗するケースでは、軽量ビュー（例: `internetInfoModel` → `InternetInfo`）を別モデルとして定義してネスト先で使わせる。
-   * 逆に Terraform/usacloud が参照するフィールドは漏れなく載せる。判断に迷う場合はこの2リポジトリの利用箇所を確認する。
+   * 判定の近道として **v1 DSL を真とみなす**。Terraform/usacloud はすでに v1 で動いているため、v1 DSL に存在するエンドポイント・フィールドが「使われている」集合そのものであり、v1 に無いものは使われていないことが保証される。
+   * **v1 DSL にないエンドポイントは v2 にも載せない**（具体的な除外リストは下記「実装しないエンドポイント」参照）。
+   * **v1 DSL に無いフィールドは v2 TypeSpec に載せない**。API レスポンス JSON に余計なキーが混じっても ogen の decoder は TypeSpec 未定義フィールドを読み飛ばすので decode は失敗しない。
+   * **v1 DSL のビューが過剰なフィールドを持ち、ネスト先の API 表現ではそれらが返らず required 違反で decode が失敗するケース** では、軽量ビュー（例: `internetInfoModel` → `InternetInfo`）を別モデルとして定義してネスト先で使わせる。
 
 ### HTTP ステータスコード
 
@@ -199,6 +200,17 @@ create/update のリクエストエンベロープは、レスポンス用のビ
 オペレーション固有のリクエスト型（`IconCreateRequest`、`IconUpdateRequest` 等）を使う。
 `envelopes.go` でオペレーションの Arguments から正しいモデル名を解決している。
 
+### 実装しないエンドポイント
+
+v1 DSL で未実装かつ Terraform/usacloud でも利用されていないため、v2 でも実装しないと決定したエンドポイント一覧。
+新しいリソースのインテグレーションテストを書く際は、公式マニュアルと照合してここに漏れがないか確認し、未実装と決定したものは追記すること。
+
+| リソース | メソッド・パス | 概要 | 備考 |
+|---|---|---|---|
+| Switch | GET `/switch/:id/appliance` | 接続中アプライアンス一覧 | v1 未実装 |
+| Switch | GET `/switch/:id/tag` | スイッチに付けられたタグ取得 | v1 未実装 |
+| Switch | GET `/switch/tag` | スイッチタグ一覧 | v1 未実装 |
+
 ## v2 テスト方針
 
 v2 のテストは **実 API を使用した統合テストのみ** を実施する。
@@ -208,6 +220,31 @@ v2 のテストは **実 API を使用した統合テストのみ** を実施す
 - テストディレクトリ: `v2/integration/`
 - 全リソースの CRUD 操作をテストする
 - 最初のテスト対象は Icon（軽量・安全なリソース）から開始
+
+### テスト設計時の参照先
+
+新しいリソースのインテグレーションテストを書く前に、以下の2つを必ず参照する：
+
+1. **さくらのクラウド API マニュアル** — そのリソースで提供されている全エンドポイントの把握に使う。
+   例: Switch なら https://manual.sakura.ad.jp/cloud-api/1.1/switch/index.html
+2. **terraform-provider-sakuracloud のドキュメント** — Terraform が実際に利用しているフィールド・オペレーションの把握に使う。テスト対象の要否判断（v1 DSL との照合）に使う。
+   例: Switch なら https://registry.terraform.io/providers/sacloud/sakura/latest/docs/resources/switch
+
+URL の `switch` 部分を対応するリソース名に置き換えれば、他リソースのマニュアル/docs も同じ構造で辿れる。
+
+### テスト保留中のエンドポイント（複数リソース連携が必要）
+
+単一リソースの CRUD だけでは検証できず、他リソースと組み合わせた setup/teardown が必要なエンドポイントは、
+**該当リソース側のインテグレーションテストが揃ってから** 追加する方針で、いったん保留する。
+（例: Switch-Bridge の connect/disconnect は Bridge 側のテストが整ってから書く。）
+
+TypeSpec / ogen クライアントには定義済みなのでコードは存在するが、`v2/integration/` にテストが無い状態。
+各リソースのテスト整備が進み次第、この表から消していく。
+
+| テスト対象 | 必要な前提リソース | 関連エンドポイント |
+|---|---|---|
+| Switch ↔ Bridge 接続/切断 | Bridge | PUT `/switch/:id/to/bridge/:bridgeID`、DELETE `/switch/:id/to/bridge` |
+| Switch の接続サーバ一覧 | Server | GET `/switch/:id/server` |
 
 ### 環境設定
 
