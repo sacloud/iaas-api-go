@@ -10,17 +10,21 @@ namespace Sacloud.IaaS;
 
 @tag("IPv6Net")
 interface IPv6NetOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/ipv6net")
-  list(
+  op list(
     @path zone: string,
     @body body: IPv6NetListRequestEnvelope,
+    
   ): IPv6NetListResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/ipv6net/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): IPv6NetReadResponseEnvelope | ApiError;
+
 }

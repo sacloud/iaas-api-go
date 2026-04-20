@@ -65,6 +65,8 @@ pnpm run build
   + generate:client # OpenAPI → Go クライアント (iaas/client/)
 ```
 
+`v2/client/find_request_gen.go`（Find 用 typed request / filter 構造体）は別途 `go run ./internal/tools/gen-find-request/` で生成する。manifest は `internal/tools/gen-find-request/main.go` にハードコードされており、フィルタ対応フィールドを追加・削除する際はここを編集して再生成する。
+
 `verify` は「特別対応した既知のモデル / envelope が退行していないか」を `spec/typespec/` の生成ファイルに対してチェックする。現状のチェック対象:
 - 同一パス相乗り op の envelope merge（Archive / Disk / Server / 他）で期待フィールドが残っているか
 - merge により吸収される variant model（`ArchiveCreateBlankRequest` など）が再び emit されていないか
@@ -140,7 +142,8 @@ spec/typespec/
 **対策**（`ops.go` の `generateSharedGroupFile`）: primary op の非 path 引数の `MapConvTag` を見て、
 
 - `"<payload>,recursive"` パターン（= `MappableArgument`、Create/Update）→ 専用 envelope モデル（`ApplianceCreateRequestEnvelope { Appliance: ApplianceCreateRequest }` など）を生成して `@body body: EnvelopeName` で渡す。body は `{"Appliance": {...}}` となる。
-- `,squash` パターン（= `PassthroughModelArgument`、Find の `FindCondition`、Shutdown の `ShutdownOption` 等）→ wrap せず `@body body: <ArgType>` で直接渡す。body は該当モデルの構造そのまま（`{"Count": 0, "From": 0, "Filter": {...}}` 等）。
+- `,squash` パターン（= `PassthroughModelArgument`、Shutdown の `ShutdownOption` 等）→ wrap せず `@body body: <ArgType>` で直接渡す。body は該当モデルの構造そのまま。
+- **Find の `FindCondition` は例外**: 後述の「Find クエリ設計」参照。`@body` ではなく `@query q?: string` で渡す。
 
 ### 共有グループ response の代表型（Database）と field optional 化
 
@@ -170,6 +173,59 @@ spec/typespec/
 - **fat model との使い分け**: 共有エンドポイントグループ（appliance / commonserviceitem）は複数リソース横断のため別系統の `fat_model.go` で処理する。ここで述べた統合は単一リソース内の op 相乗りの話。
 
 **例外的に生成から外したい op**: 単純な合流では API 仕様と整合が取れないケース向けに `excluded_ops.go` の `excludedOps` マップを残している。現時点で除外対象は無い。除外した場合は「実装しないエンドポイント」表に理由と共に記載する。
+
+### Find クエリ設計（`?q={json}` 形式）
+
+**背景**: さくらのクラウド IaaS API の Find 系エンドポイントは、現行サーバー実装がクエリストリング直下に JSON を置く非標準フォーマットを要求する:
+
+```
+GET /is1a/api/cloud/1.1/bridge?{"Count":3,"From":0,"Filter":{"Name":"foo"}}
+```
+
+将来的には `?q={"Count":3}` のように `q` パラメータ化する計画があるが未実装。OpenAPI では「クエリ文字列そのものが JSON」を表現できないため、以下の二段構えで折衷する:
+
+**OpenAPI 層**: Find オペレーションは `@get` + `@query q?: string` として記述する。将来形 `?q={json}` と一致する。`ops.go` の `generateIndividualFile` / `generateSharedGroupFile` は以下の条件で `@body` を `@query` に差し替える:
+
+- 単一リソース: `method == GET` かつ envelope 名が `FindRequestEnvelope` で終わる
+- 共有グループ: `method == GET` かつ arg 型が `FindCondition`
+
+それ以外（Create/Update body や Shutdown body など）は従来通り `@body`。
+
+**クライアントワイヤー層**: ogen は `?q=%7B%22Count%22%3A3%7D`（URL-encoded）で送信する。`v2/client/find_transport.go` の `findQueryRewriteTransport` がこれを `?{"Count":3}` に書き換えて現行サーバーに適合させる。条件は「`GET` + `RawQuery` が `q=` で始まる + decode 後が `{` で始まる」。将来サーバーが `?q={json}` を受け付けるようになったらこの RoundTripper は削除するだけで済む。
+
+**クライアント利用方法**: ogen 生成の `BridgeOpFind(ctx, params BridgeOpFindParams)` が `Q OptString` フィールドを持つ。`v2/client/find_request_gen.go`（`internal/tools/gen-find-request/` が生成）が提供するリソース別 `XxxFindRequest` / `XxxFindFilter` を組み立てて `.ToOptString()` で変換する:
+
+```go
+req := &client.PrivateHostPlanFindRequest{
+    Count:  1,
+    Filter: client.PrivateHostPlanFindFilter{Class: "dynamic"},
+}
+resp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{
+    Zone: zone,
+    Q:    req.ToOptString(),
+})
+```
+
+クライアント側での RoundTripper 組み込みは **opt-in**。以下のいずれかが必要:
+
+- `client.NewClient(serverURL, sec, client.WithFindQueryRewrite())` — 推奨。内部で `http.Client{Transport: findQueryRewriteTransport}` を `WithClient` に渡す。
+- 独自 `http.Client` を使う場合: `Transport` を `client.NewFindQueryRewriteTransport(base)` で wrap する。
+
+> TODO（Phase 2）: `client.NewClient` 自身に書き換えを自動埋め込みするには ogen 出力を `v2/client/oasgen/` に移し、`v2/client/` を手書きラッパーパッケージにする必要がある（214 型の alias 再 export が必要）。現状は opt-in 運用とし、サブパッケージ化は別 PR で扱う。
+
+**フィルタサポートフィールドのホワイトリスト**: `gen-find-request/main.go` の `manifest` に手動で記述する。各リソースが対応するフィールドのみ `XxxFindFilter` に生成される。
+
+| フィールド | 対象リソース | 検索意味 |
+|---|---|---|
+| `Name` | ほぼ全リソース | スペース区切りで部分一致 AND |
+| `Tags` | ユーザー作成リソース・CommonServiceItem・Appliance | 配列で完全一致 AND |
+| `Scope` | Archive / CDROM / Disk / Icon / Note / Switch | "shared" / "user" の部分一致 |
+| `Class` | Appliance 個別（Database / LoadBalancer 等）+ PrivateHostPlan | Appliance のサブクラス絞り込み |
+| `ProviderClass` | CommonServiceItem 系（DNS / GSLB / ProxyLB 等） | `Provider.Class` JSON key、部分一致 |
+
+意図的に定義しない:
+- **Sort**: クライアント側で並べ替え可能なので API 定義から外す（複雑性削減）
+- **Include** / **Exclude**: スキーマ駆動開発と相性が悪い（返却フィールドの可変化はジェネレータを複雑化する）
 
 ### convenient errors
 

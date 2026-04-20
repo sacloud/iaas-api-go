@@ -4,110 +4,104 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for simpleNotificationDestinationFindRequestEnvelope
  */
 model SimpleNotificationDestinationFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for simpleNotificationDestinationFindResponseEnvelope
  */
 model SimpleNotificationDestinationFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CommonServiceItems
-   */
-  CommonServiceItems: SimpleNotificationDestination[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CommonServiceItems
+	 */
+	CommonServiceItems: SimpleNotificationDestination[];
 }
 
 /**
  * Request envelope for simpleNotificationDestinationCreateRequestEnvelope
  */
 model SimpleNotificationDestinationCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: SimpleNotificationDestinationCreateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: SimpleNotificationDestinationCreateRequest;
 }
 /**
  * Response envelope for simpleNotificationDestinationCreateResponseEnvelope
  */
 model SimpleNotificationDestinationCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: SimpleNotificationDestination;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: SimpleNotificationDestination;
 }
 
 /**
  * Response envelope for simpleNotificationDestinationReadResponseEnvelope
  */
 model SimpleNotificationDestinationReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: SimpleNotificationDestination;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: SimpleNotificationDestination;
 }
 
 /**
  * Request envelope for simpleNotificationDestinationUpdateRequestEnvelope
  */
 model SimpleNotificationDestinationUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: SimpleNotificationDestinationUpdateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: SimpleNotificationDestinationUpdateRequest;
 }
 /**
  * Response envelope for simpleNotificationDestinationUpdateResponseEnvelope
  */
 model SimpleNotificationDestinationUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: SimpleNotificationDestination;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: SimpleNotificationDestination;
 }
 
 /**
  * Response envelope for simpleNotificationDestinationStatusResponseEnvelope
  */
 model SimpleNotificationDestinationStatusResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * SimpleNotificationDestination
-   */
-  SimpleNotificationDestination: SimpleNotificationDestinationStatus;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * SimpleNotificationDestination
+	 */
+	SimpleNotificationDestination: SimpleNotificationDestinationStatus;
 }

@@ -48,7 +48,7 @@ enum EDayOfTheWeek {
   wednesday: "wed",
   thursday: "thu",
   friday: "fri",
-  saturday: "sat",
+  saturday: "sat"
 }
 
 /** EDiskConnection: known values are "virtio", "ide" */
@@ -143,3 +143,4 @@ scalar Protocol extends string;
 
 /** SpecialTag: known values are "@group=a", "@group=b", "@group=c", "@group=d", "@auto-reboot", "@keyboard-us", "@boot-cdrom", "@boot-network", "@cpu-topology" */
 scalar SpecialTag extends string;
+

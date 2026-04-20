@@ -35,7 +35,7 @@ func TestRegionFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.RegionOpFind(ctx, &client.RegionFindRequestEnvelope{}, client.RegionOpFindParams{Zone: zone})
+	findResp, err := c.RegionOpFind(ctx, client.RegionOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Regions), 0, "Region が 1 件以上返ること")
 
@@ -61,7 +61,7 @@ func TestZoneFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.ZoneOpFind(ctx, &client.ZoneFindRequestEnvelope{}, client.ZoneOpFindParams{Zone: zone})
+	findResp, err := c.ZoneOpFind(ctx, client.ZoneOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Zones), 0, "Zone が 1 件以上返ること")
 

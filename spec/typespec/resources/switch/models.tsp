@@ -5,72 +5,72 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Switch {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Scope?: EScope | null;
-  ServerCount?: int32 | null;
-  UserSubnet?: SwitchUserSubnet | null;
-  Subnets?: SwitchSubnet[] | null;
-  Bridge?: ResourceRef | null;
-  HybridConnection?: ResourceRef | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	Scope?: EScope | null;
+	ServerCount?: int32 | null;
+	UserSubnet?: SwitchUserSubnet | null;
+	Subnets?: SwitchSubnet[] | null;
+	Bridge?: ResourceRef | null;
+	HybridConnection?: ResourceRef | null;
 }
 
 model SwitchUserSubnet {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
+	DefaultRoute?: string | null;
 }
 
 model SwitchSubnet {
-  ID?: int64 | null;
-  DefaultRoute?: string | null;
-  NextHop?: string | null;
-  StaticRoute?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
-  Internet?: InternetInfo | null;
-  IPAddresses?: SwitchSubnetIPAddresses | null;
+	ID?: int64 | null;
+	DefaultRoute?: string | null;
+	NextHop?: string | null;
+	StaticRoute?: string | null;
+	NetworkAddress?: string | null;
+	NetworkMaskLen?: int32 | null;
+	Internet?: InternetInfo | null;
+	IPAddresses?: SwitchSubnetIPAddresses | null;
 }
 
 model SwitchSubnetIPAddresses {
-  Max: string;
-  Min: string;
+	Max: string;
+	Min: string;
 }
 
 model InternetInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  BandWidthMbps?: int32 | null;
-  Scope?: EScope | null;
-  ServiceClass?: string | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	BandWidthMbps?: int32 | null;
+	Scope?: EScope | null;
+	ServiceClass?: string | null;
 }
 
 model SwitchCreateRequest {
-  Name?: string | null;
-  UserSubnet?: SwitchCreateRequestUserSubnet | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	UserSubnet?: SwitchCreateRequestUserSubnet | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model SwitchCreateRequestUserSubnet {
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
+	NetworkMaskLen: int32;
+	DefaultRoute: string;
 }
 
 model SwitchUpdateRequest {
-  Name?: string | null;
-  UserSubnet?: SwitchUpdateRequestUserSubnet | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	UserSubnet?: SwitchUpdateRequestUserSubnet | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model SwitchUpdateRequestUserSubnet {
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
+	NetworkMaskLen: int32;
+	DefaultRoute: string;
 }

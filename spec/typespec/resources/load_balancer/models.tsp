@@ -5,119 +5,119 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LoadBalancer {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Class?: string | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Instance?: LoadBalancerInstance | null;
-  Remark?: LoadBalancerRemark | null;
-  IPAddresses: string[];
-  VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
-  SettingsHash?: string | null;
-  Interfaces?: InterfaceView[] | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Class?: string | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	Instance?: LoadBalancerInstance | null;
+	Remark?: LoadBalancerRemark | null;
+	IPAddresses: string[];
+	VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
+	SettingsHash?: string | null;
+	Interfaces?: InterfaceView[] | null;
 }
 
 model LoadBalancerInstance {
-  Host?: LoadBalancerInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
-  StatusChangedAt?: utcDateTime | null;
+	Host?: LoadBalancerInstanceHost | null;
+	Status?: EServerInstanceStatus | null;
+	StatusChangedAt?: utcDateTime | null;
 }
 
 model LoadBalancerInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+	Name?: string | null;
+	InfoURL?: string | null;
 }
 
 model LoadBalancerRemark {
-  Plan?: ResourceRef | null;
-  Network?: LoadBalancerRemarkNetwork | null;
-  VRRP?: LoadBalancerRemarkVRRP | null;
+	Plan?: ResourceRef | null;
+	Network?: LoadBalancerRemarkNetwork | null;
+	VRRP?: LoadBalancerRemarkVRRP | null;
 }
 
 model LoadBalancerRemarkNetwork {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
+	DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
 }
 
 model LoadBalancerRemarkVRRP {
-  VRID?: int32 | null;
+	VRID?: int32 | null;
 }
 
 model LoadBalancerVirtualIPAddress {
-  VirtualIPAddress: string;
-  Port: int32;
-  DelayLoop: int32 = 10;
-  SorryServer: string;
-  Description: string;
-  Servers: LoadBalancerServer[];
+	VirtualIPAddress: string;
+	Port: int32;
+	DelayLoop: int32 = 10;
+	SorryServer: string;
+	Description: string;
+	Servers: LoadBalancerServer[];
 }
 
 model LoadBalancerServer {
-  IPAddress: string;
-  Port: int32;
-  Enabled: string;
-  HealthCheck: LoadBalancerServerHealthCheck;
+	IPAddress: string;
+	Port: int32;
+	Enabled: string;
+	HealthCheck: LoadBalancerServerHealthCheck;
 }
 
 model LoadBalancerServerHealthCheck {
-  Protocol: ELoadBalancerHealthCheckProtocol;
-  Path: string;
-  Status: int32;
-  Retry: int32;
-  ConnectTimeout: int32;
+	Protocol: ELoadBalancerHealthCheckProtocol;
+	Path: string;
+	Status: int32;
+	Retry: int32;
+	ConnectTimeout: int32;
 }
 
 model LoadBalancerCreateRequest {
-  Remark?: LoadBalancerCreateRequestRemark | null;
-  IPAddresses: string[];
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
+	Remark?: LoadBalancerCreateRequestRemark | null;
+	IPAddresses: string[];
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
 }
 
 model LoadBalancerCreateRequestRemark {
-  Switch?: ResourceRef | null;
-  Plan?: ResourceRef | null;
-  VRRP?: LoadBalancerCreateRequestRemarkVRRP | null;
-  Network?: LoadBalancerCreateRequestRemarkNetwork | null;
+	Switch?: ResourceRef | null;
+	Plan?: ResourceRef | null;
+	VRRP?: LoadBalancerCreateRequestRemarkVRRP | null;
+	Network?: LoadBalancerCreateRequestRemarkNetwork | null;
 }
 
 model LoadBalancerCreateRequestRemarkVRRP {
-  VRID?: int32 | null;
+	VRID?: int32 | null;
 }
 
 model LoadBalancerCreateRequestRemarkNetwork {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
+	DefaultRoute?: string | null;
 }
 
 model LoadBalancerUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
-  SettingsHash?: string | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
+	SettingsHash?: string | null;
 }
 
 model LoadBalancerStatus {
-  VirtualIPAddress?: string | null;
-  Port?: int32 | null;
-  CPS?: int32 | null;
-  Servers?: LoadBalancerServerStatus[] | null;
+	VirtualIPAddress?: string | null;
+	Port?: int32 | null;
+	CPS?: int32 | null;
+	Servers?: LoadBalancerServerStatus[] | null;
 }
 
 model LoadBalancerServerStatus {
-  ActiveConn: int32;
-  Status: EServerInstanceStatus;
-  IPAddress: string;
-  Port: int32;
-  CPS: int32;
+	ActiveConn: int32;
+	Status: EServerInstanceStatus;
+	IPAddress: string;
+	Port: int32;
+	CPS: int32;
 }

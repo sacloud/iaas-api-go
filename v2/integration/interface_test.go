@@ -98,7 +98,7 @@ func TestInterfaceCRUD(t *testing.T) {
 	require.Equal(t, "192.2.0.1", updateResp.Interface.UserIPAddress.Value)
 
 	// 5. Find - リストに含まれることを確認
-	findResp, err := c.InterfaceOpFind(ctx, &client.InterfaceFindRequestEnvelope{}, client.InterfaceOpFindParams{Zone: zone})
+	findResp, err := c.InterfaceOpFind(ctx, client.InterfaceOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	var found bool
 	for _, ifv := range findResp.Interfaces {

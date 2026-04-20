@@ -10,10 +10,13 @@ namespace Sacloud.IaaS;
 
 @tag("ServiceClass")
 interface ServiceClassOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/public/price")
-  find(
+  op find(
     @path zone: string,
-    @body body: ServiceClassFindRequestEnvelope,
+    @query q?: string,
+    
   ): ServiceClassFindResponseEnvelope | ApiError;
+
 }

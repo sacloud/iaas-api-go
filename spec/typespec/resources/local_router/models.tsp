@@ -5,99 +5,99 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LocalRouter {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Settings?: LocalRouterSettings | null;
-  Peers: LocalRouterPeer[];
-  StaticRoutes: LocalRouterStaticRoute[];
-  SettingsHash?: string | null;
-  Status?: LocalRouterStatus | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	Settings?: LocalRouterSettings | null;
+	Peers: LocalRouterPeer[];
+	StaticRoutes: LocalRouterStaticRoute[];
+	SettingsHash?: string | null;
+	Status?: LocalRouterStatus | null;
 }
 
 model LocalRouterSettings {
-  LocalRouter?: LocalRouterSettingsLocalRouter | null;
+	LocalRouter?: LocalRouterSettingsLocalRouter | null;
 }
 
 model LocalRouterSettingsLocalRouter {
-  Switch?: LocalRouterSwitch | null;
-  Interface?: LocalRouterInterface | null;
+	Switch?: LocalRouterSwitch | null;
+	Interface?: LocalRouterInterface | null;
 }
 
 model LocalRouterStatus {
-  SecretKeys?: string[] | null;
+	SecretKeys?: string[] | null;
 }
 
 model LocalRouterSwitch {
-  Code: string;
-  Category: string;
-  ZoneID: string;
+	Code: string;
+	Category: string;
+	ZoneID: string;
 }
 
 model LocalRouterInterface {
-  VirtualIPAddress: string;
-  IPAddress: string[];
-  NetworkMaskLen: int32;
-  VRID: int32;
+	VirtualIPAddress: string;
+	IPAddress: string[];
+	NetworkMaskLen: int32;
+	VRID: int32;
 }
 
 model LocalRouterPeer {
-  ID: int64;
-  SecretKey: string;
-  Enabled: boolean;
-  Description: string;
+	ID: int64;
+	SecretKey: string;
+	Enabled: boolean;
+	Description: string;
 }
 
 model LocalRouterStaticRoute {
-  Prefix: string;
-  NextHop: string;
+	Prefix: string;
+	NextHop: string;
 }
 
 model LocalRouterCreateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model LocalRouterUpdateRequest {
-  Settings?: LocalRouterUpdateRequestSettings | null;
-  SettingsHash?: string | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Settings?: LocalRouterUpdateRequestSettings | null;
+	SettingsHash?: string | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model LocalRouterUpdateRequestSettings {
-  LocalRouter?: LocalRouterUpdateRequestSettingsLocalRouter | null;
+	LocalRouter?: LocalRouterUpdateRequestSettingsLocalRouter | null;
 }
 
 model LocalRouterUpdateRequestSettingsLocalRouter {
-  Switch?: LocalRouterSwitch | null;
+	Switch?: LocalRouterSwitch | null;
 }
 
 model LocalRouterHealth {
-  Peers: LocalRouterHealthPeer[];
+	Peers: LocalRouterHealthPeer[];
 }
 
 model LocalRouterHealthPeer {
-  ID: int64;
-  Status: EServerInstanceStatus;
-  Routes: string[];
+	ID: int64;
+	Status: EServerInstanceStatus;
+	Routes: string[];
 }
 
 model LocalRouterActivity {
-  Values: MonitorLocalRouterValue[];
+	Values: MonitorLocalRouterValue[];
 }
 
 model MonitorLocalRouterValue {
-  Time: utcDateTime;
-  ReceiveBytesPerSec: float64;
-  SendBytesPerSec: float64;
+	Time: utcDateTime;
+	ReceiveBytesPerSec: float64;
+	SendBytesPerSec: float64;
 }

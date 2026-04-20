@@ -35,7 +35,7 @@ func TestCleanupInternet(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.InternetOpFind(ctx, &client.InternetFindRequestEnvelope{}, client.InternetOpFindParams{Zone: zone})
+	findResp, err := c.InternetOpFind(ctx, client.InternetOpFindParams{Zone: zone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -73,7 +73,7 @@ func TestCleanupSwitchTK1a(t *testing.T) {
 	c := newClient(t)
 	ctx := context.Background()
 
-	findResp, err := c.SwitchOpFind(ctx, &client.SwitchFindRequestEnvelope{}, client.SwitchOpFindParams{Zone: bridgeTestZone})
+	findResp, err := c.SwitchOpFind(ctx, client.SwitchOpFindParams{Zone: bridgeTestZone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -98,7 +98,7 @@ func TestCleanupBridge(t *testing.T) {
 	c := newClient(t)
 	ctx := context.Background()
 
-	findResp, err := c.BridgeOpFind(ctx, &client.BridgeFindRequestEnvelope{}, client.BridgeOpFindParams{Zone: bridgeTestZone})
+	findResp, err := c.BridgeOpFind(ctx, client.BridgeOpFindParams{Zone: bridgeTestZone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -125,7 +125,7 @@ func TestCleanupAppliance(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.ApplianceOpFind(ctx, &client.FindCondition{}, client.ApplianceOpFindParams{Zone: zone})
+	findResp, err := c.ApplianceOpFind(ctx, client.ApplianceOpFindParams{Zone: zone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -157,7 +157,7 @@ func TestCleanupPrivateHost(t *testing.T) {
 	c := newClient(t)
 	ctx := context.Background()
 
-	findResp, err := c.PrivateHostOpFind(ctx, &client.PrivateHostFindRequestEnvelope{}, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
+	findResp, err := c.PrivateHostOpFind(ctx, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -183,7 +183,7 @@ func TestCleanupCDROM(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.CDROMOpFind(ctx, &client.CDROMFindRequestEnvelope{}, client.CDROMOpFindParams{Zone: zone})
+	findResp, err := c.CDROMOpFind(ctx, client.CDROMOpFindParams{Zone: zone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -214,7 +214,7 @@ func TestCleanupSSHKey(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.SSHKeyOpFind(ctx, &client.SSHKeyFindRequestEnvelope{}, client.SSHKeyOpFindParams{Zone: zone})
+	findResp, err := c.SSHKeyOpFind(ctx, client.SSHKeyOpFindParams{Zone: zone})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}

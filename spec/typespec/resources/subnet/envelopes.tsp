@@ -4,53 +4,50 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for subnetFindRequestEnvelope
  */
 model SubnetFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for subnetFindResponseEnvelope
  */
 model SubnetFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * Subnets
-   */
-  Subnets: Subnet[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * Subnets
+	 */
+	Subnets: Subnet[];
 }
 
 /**
  * Response envelope for subnetReadResponseEnvelope
  */
 model SubnetReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Subnet
-   */
-  Subnet: Subnet;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * Subnet
+	 */
+	Subnet: Subnet;
 }

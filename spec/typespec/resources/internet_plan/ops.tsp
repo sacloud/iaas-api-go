@@ -10,17 +10,21 @@ namespace Sacloud.IaaS;
 
 @tag("InternetPlan")
 interface InternetPlanOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/product/internet")
-  find(
+  op find(
     @path zone: string,
-    @body body: InternetPlanFindRequestEnvelope,
+    @query q?: string,
+    
   ): InternetPlanFindResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/product/internet/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): InternetPlanReadResponseEnvelope | ApiError;
+
 }

@@ -5,113 +5,113 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Archive {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  DisplayOrder?: int64 | null;
-  Availability?: EAvailability | null;
-  Scope?: EScope | null;
-  SizeMB?: int32 | null;
-  MigratedMB?: int32 | null;
-  Plan?: ArchivePlan | null;
-  SourceDisk?: ArchiveSourceDisk | null;
-  SourceArchive?: ArchiveSourceArchive | null;
-  BundleInfo?: BundleInfo | null;
-  Storage?: Storage | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  OriginalArchive?: ResourceRef | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	DisplayOrder?: int64 | null;
+	Availability?: EAvailability | null;
+	Scope?: EScope | null;
+	SizeMB?: int32 | null;
+	MigratedMB?: int32 | null;
+	Plan?: ArchivePlan | null;
+	SourceDisk?: ArchiveSourceDisk | null;
+	SourceArchive?: ArchiveSourceArchive | null;
+	BundleInfo?: BundleInfo | null;
+	Storage?: Storage | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	OriginalArchive?: ResourceRef | null;
 }
 
 model ArchivePlan {
-  ID?: int64 | null;
-  Name?: string | null;
-  StorageClass?: string | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	StorageClass?: string | null;
 }
 
 model ArchiveSourceDisk {
-  ID?: int64 | null;
-  Availability?: EAvailability | null;
+	ID?: int64 | null;
+	Availability?: EAvailability | null;
 }
 
 model ArchiveSourceArchive {
-  ID?: int64 | null;
-  Availability?: EAvailability | null;
+	ID?: int64 | null;
+	Availability?: EAvailability | null;
 }
 
 model BundleInfo {
-  ID?: int64 | null;
-  HostClass?: string | null;
-  ServiceClass?: string | null;
+	ID?: int64 | null;
+	HostClass?: string | null;
+	ServiceClass?: string | null;
 }
 
 model Storage {
-  ID?: int64 | null;
-  Name?: string | null;
-  Class?: string | null;
-  Generation?: int32 | null;
-  DedicatedStorageContract?: ResourceRef | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Class?: string | null;
+	Generation?: int32 | null;
+	DedicatedStorageContract?: ResourceRef | null;
 }
 
 model SourceArchiveInfo {
-  ArchiveUnderZone: SourceArchiveInfoArchiveUnderZone;
+	ArchiveUnderZone: SourceArchiveInfoArchiveUnderZone;
 }
 
 model SourceArchiveInfoArchiveUnderZone {
-  ID: int64;
-  Account?: ResourceRef | null;
-  Zone: SourceArchiveInfoArchiveUnderZoneZone;
+	ID: int64;
+	Account?: ResourceRef | null;
+	Zone: SourceArchiveInfoArchiveUnderZoneZone;
 }
 
 model SourceArchiveInfoArchiveUnderZoneZone {
-  ID: int64;
-  Name: string;
+	ID: int64;
+	Name: string;
 }
 
 model FindCondition {
-  Count: int32;
-  From: int32;
+	Count: int32;
+	From: int32;
 }
 
 model ArchiveCreateRequest {
-  SourceDisk?: ResourceRef | null;
-  SourceArchive?: ResourceRef | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  SizeMB?: int32 | null;
+	SourceDisk?: ResourceRef | null;
+	SourceArchive?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	SizeMB?: int32 | null;
 }
 
 model FTPServer {
-  HostName?: string | null;
-  IPAddress?: string | null;
-  User?: string | null;
-  Password?: string | null;
+	HostName?: string | null;
+	IPAddress?: string | null;
+	User?: string | null;
+	Password?: string | null;
 }
 
 model ArchiveUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model OpenFTPRequest {
-  ChangePassword: boolean;
+	ChangePassword: boolean;
 }
 
 model ArchiveShareInfo {
-  SharedKey: string;
+	SharedKey: string;
 }
 
 model ArchiveTransferRequest {
-  SizeMB?: int32 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  SourceSharedKey?: string | null;
+	SizeMB?: int32 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	SourceSharedKey?: string | null;
 }

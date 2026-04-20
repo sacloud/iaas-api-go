@@ -529,36 +529,6 @@ func (s *ArchiveCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ArchiveFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ArchiveFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *ArchiveFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -1626,36 +1596,6 @@ func (s *BridgeCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *BridgeFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BridgeFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *BridgeFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -1959,36 +1899,6 @@ func (s *CDROMCreateResponseEnvelope) SetFake() {
 		{
 			s.FTPServer.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CDROMFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CDROMFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -5127,36 +5037,6 @@ func (s *DiskEncryptionKey) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *DiskFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *DiskFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *DiskFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -5286,36 +5166,6 @@ func (s *DiskPlan) SetFake() {
 		{
 			s.Size.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *DiskPlanFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *DiskPlanFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -6110,20 +5960,6 @@ func (s *FTPServerInfo) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *FindCondition) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *GSLBHealthCheck) SetFake() {
 	{
 		{
@@ -6330,36 +6166,6 @@ func (s *IPv6AddrCreateResponseEnvelope) SetFake() {
 		{
 			s.IPv6Addr.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IPv6AddrFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IPv6AddrFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -6712,36 +6518,6 @@ func (s *IconCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *IconFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *IconFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *IconFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -6926,36 +6702,6 @@ func (s *InterfaceCreateResponseEnvelope) SetFake() {
 		{
 			s.Interface.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InterfaceFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -7429,36 +7175,6 @@ func (s *InternetEnableIPv6ResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *InternetFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *InternetFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -7594,36 +7310,6 @@ func (s *InternetPlan) SetFake() {
 		{
 			s.Availability.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetPlanFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *InternetPlanFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -7929,36 +7615,6 @@ func (s *LicenseCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *LicenseFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *LicenseFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *LicenseFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -8015,36 +7671,6 @@ func (s *LicenseInfo) SetFake() {
 		{
 			s.TermsOfUse.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *LicenseInfoFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *LicenseInfoFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -8844,36 +8470,6 @@ func (s *NoteCreateResponseEnvelope) SetFake() {
 		{
 			s.Note.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *NoteFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *NoteFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -10425,36 +10021,6 @@ func (s *PacketFilterExpression) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PacketFilterFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PacketFilterFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *PacketFilterFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -10752,36 +10318,6 @@ func (s *PrivateHostCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *PrivateHostFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PrivateHostFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *PrivateHostFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -10871,36 +10407,6 @@ func (s *PrivateHostPlan) SetFake() {
 		{
 			s.Availability.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PrivateHostPlanFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *PrivateHostPlanFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -11756,36 +11262,6 @@ func (s *Region) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *RegionFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *RegionFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *RegionFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -12261,36 +11737,6 @@ func (s *SSHKeyCreateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SSHKeyFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SSHKeyFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *SSHKeyFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -12755,36 +12201,6 @@ func (s *ServerEjectCDROMRequestEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ServerFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *ServerFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -13051,36 +12467,6 @@ func (s *ServerPlan) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ServerPlanFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServerPlanFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *ServerPlanFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -13332,36 +12718,6 @@ func (s *ServiceClass) SetFake() {
 		{
 			s.Price.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServiceClassFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ServiceClassFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -13774,36 +13130,6 @@ func (s *Subnet) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SubnetFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SubnetFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
-	}
-}
-
-// SetFake set fake values.
 func (s *SubnetFindResponseEnvelope) SetFake() {
 	{
 		{
@@ -14022,36 +13348,6 @@ func (s *SwitchCreateResponseEnvelope) SetFake() {
 		{
 			s.Switch.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SwitchFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SwitchFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 
@@ -14502,36 +13798,6 @@ func (s *Zone) SetFake() {
 		{
 			s.Region.SetFake()
 		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ZoneFindRequestEnvelope) SetFake() {
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Filter.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ZoneFindRequestEnvelopeFilter) SetFake() {
-	var (
-		elem jx.Raw
-		m    map[string]jx.Raw = s.init()
-	)
-	for i := 0; i < 0; i++ {
-		m[fmt.Sprintf("fake%d", i)] = elem
 	}
 }
 

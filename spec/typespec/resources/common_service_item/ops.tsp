@@ -243,463 +243,305 @@ model CommonServiceItemUpdateRequestEnvelope {
 
 @tag("CommonServiceItem")
 interface CommonServiceItemOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem")
-  find(
+  op find(
     @path zone: string,
-    @body body: FindCondition,
+    @query q?: string,
+    
   ): AutoBackupFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem")
-  create(
+  op create(
     @path zone: string,
     @body body: CommonServiceItemCreateRequestEnvelope,
-  ): {
-    @statusCode _: 201;
-    ...AutoBackupCreateResponseEnvelope;
-  } | ApiError;
+    
+  ): {@statusCode _: 201; ...AutoBackupCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): AutoBackupReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: CommonServiceItemUpdateRequestEnvelope,
+    
   ): AutoBackupUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/health")
-  healthStatus(
+  op healthStatus(
     @path zone: string,
     @path id: string,
+    
   ): LocalRouterHealthStatusResponseEnvelope | ApiError;
+
 }
 
 @tag("AutoScale")
 interface AutoScaleOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status")
-  status(
-    @path zone: string,
-    @path id: string,
-  ): AutoScaleStatusResponseEnvelope | ApiError;
+  op status(@path zone: string, @path id: string, ): AutoScaleStatusResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up")
-  scaleUp(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op scaleUp(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down")
-  scaleDown(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op scaleDown(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }
 
 @tag("CertificateAuthority")
 interface CertificateAuthorityOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority")
-  detail(
-    @path zone: string,
-    @path id: string,
-  ): CertificateAuthorityDetailResponseEnvelope | ApiError;
+  op detail(@path zone: string, @path id: string, ): CertificateAuthorityDetailResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients")
-  addClient(
-    @path zone: string,
-    @path id: string,
-    param: CertificateAuthorityAddClientParam,
-  ): {
-    @statusCode _: 201;
-    ...CertificateAuthorityAddClientResponseEnvelope;
-  } | ApiError;
+  op addClient(@path zone: string, @path id: string, param: CertificateAuthorityAddClientParam, ): {@statusCode _: 201; ...CertificateAuthorityAddClientResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients")
-  listClients(
-    @path zone: string,
-    @path id: string,
-  ): CertificateAuthorityListClientsResponseEnvelope | ApiError;
+  op listClients(@path zone: string, @path id: string, ): CertificateAuthorityListClientsResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}")
-  readClient(
-    @path zone: string,
-    @path id: string,
-    @path clientID: string,
-  ): CertificateAuthorityReadClientResponseEnvelope | ApiError;
+  op readClient(@path zone: string, @path id: string, @path clientID: string, ): CertificateAuthorityReadClientResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke")
-  revokeClient(@path zone: string, @path id: string, @path clientID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op revokeClient(@path zone: string, @path id: string, @path clientID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold")
-  holdClient(@path zone: string, @path id: string, @path clientID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op holdClient(@path zone: string, @path id: string, @path clientID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume")
-  resumeClient(@path zone: string, @path id: string, @path clientID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op resumeClient(@path zone: string, @path id: string, @path clientID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny")
-  denyClient(@path zone: string, @path id: string, @path clientID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op denyClient(@path zone: string, @path id: string, @path clientID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers")
-  addServer(
-    @path zone: string,
-    @path id: string,
-    param: CertificateAuthorityAddServerParam,
-  ): {
-    @statusCode _: 201;
-    ...CertificateAuthorityAddServerResponseEnvelope;
-  } | ApiError;
+  op addServer(@path zone: string, @path id: string, param: CertificateAuthorityAddServerParam, ): {@statusCode _: 201; ...CertificateAuthorityAddServerResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers")
-  listServers(
-    @path zone: string,
-    @path id: string,
-  ): CertificateAuthorityListServersResponseEnvelope | ApiError;
+  op listServers(@path zone: string, @path id: string, ): CertificateAuthorityListServersResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}")
-  readServer(
-    @path zone: string,
-    @path id: string,
-    @path serverID: string,
-  ): CertificateAuthorityReadServerResponseEnvelope | ApiError;
+  op readServer(@path zone: string, @path id: string, @path serverID: string, ): CertificateAuthorityReadServerResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke")
-  revokeServer(@path zone: string, @path id: string, @path serverID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op revokeServer(@path zone: string, @path id: string, @path serverID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold")
-  holdServer(@path zone: string, @path id: string, @path serverID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op holdServer(@path zone: string, @path id: string, @path serverID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume")
-  resumeServer(@path zone: string, @path id: string, @path serverID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op resumeServer(@path zone: string, @path id: string, @path serverID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }
 
 @tag("ContainerRegistry")
 interface ContainerRegistryOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users")
-  listUsers(
-    @path zone: string,
-    @path id: string,
-  ): ContainerRegistryListUsersResponseEnvelope | ApiError;
+  op listUsers(@path zone: string, @path id: string, ): ContainerRegistryListUsersResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users")
-  addUser(
-    @path zone: string,
-    @path id: string,
-    param: ContainerRegistryUserCreateRequest,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op addUser(@path zone: string, @path id: string, param: ContainerRegistryUserCreateRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
-  updateUser(
-    @path zone: string,
-    @path id: string,
-    @path username: string,
-    param: ContainerRegistryUserUpdateRequest,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op updateUser(@path zone: string, @path id: string, @path username: string, param: ContainerRegistryUserUpdateRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
-  deleteUser(@path zone: string, @path id: string, @path username: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op deleteUser(@path zone: string, @path id: string, @path username: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }
 
 @tag("ESME")
 interface ESMEOp {
+
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa/otp")
-  sendMessageWithGeneratedOTP(
-    @path zone: string,
-    @path id: string,
-    param: ESMESendMessageWithGeneratedOTPRequest,
-  ): ESMESendMessageWithGeneratedOTPResponseEnvelope | ApiError;
+  op sendMessageWithGeneratedOTP(@path zone: string, @path id: string, param: ESMESendMessageWithGeneratedOTPRequest, ): ESMESendMessageWithGeneratedOTPResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa")
-  sendMessageWithInputtedOTP(
-    @path zone: string,
-    @path id: string,
-    param: ESMESendMessageWithInputtedOTPRequest,
-  ): ESMESendMessageWithInputtedOTPResponseEnvelope | ApiError;
+  op sendMessageWithInputtedOTP(@path zone: string, @path id: string, param: ESMESendMessageWithInputtedOTPRequest, ): ESMESendMessageWithInputtedOTPResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/logs")
-  logs(
-    @path zone: string,
-    @path id: string,
-  ): ESMELogsResponseEnvelope | ApiError;
+  op logs(@path zone: string, @path id: string, ): ESMELogsResponseEnvelope | ApiError;
+
 }
 
 @tag("EnhancedDB")
 interface EnhancedDBOp {
+
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password")
-  setPassword(
-    @path zone: string,
-    @path id: string,
-    param: EnhancedDBSetPasswordRequest,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op setPassword(@path zone: string, @path id: string, param: EnhancedDBSetPasswordRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config")
-  getConfig(
-    @path zone: string,
-    @path id: string,
-  ): EnhancedDBGetConfigResponseEnvelope | ApiError;
+  op getConfig(@path zone: string, @path id: string, ): EnhancedDBGetConfigResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config")
-  setConfig(
-    @path zone: string,
-    @path id: string,
-    param: EnhancedDBSetConfigRequest,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op setConfig(@path zone: string, @path id: string, param: EnhancedDBSetConfigRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }
 
 @tag("LocalRouter")
 interface LocalRouterOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor")
-  monitorLocalRouter(
-    @path zone: string,
-    @path id: string,
-    condition: MonitorCondition,
-  ): LocalRouterMonitorLocalRouterResponseEnvelope | ApiError;
+  op monitorLocalRouter(@path zone: string, @path id: string, condition: MonitorCondition, ): LocalRouterMonitorLocalRouterResponseEnvelope | ApiError;
+
 }
 
 @tag("ProxyLB")
 interface ProxyLBOp {
+
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/plan")
-  changePlan(
-    @path zone: string,
-    @path id: string,
-    param: ProxyLBChangePlanRequest,
-  ): ProxyLBChangePlanResponseEnvelope | ApiError;
+  op changePlan(@path zone: string, @path id: string, param: ProxyLBChangePlanRequest, ): ProxyLBChangePlanResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
-  getCertificates(
-    @path zone: string,
-    @path id: string,
-  ): ProxyLBGetCertificatesResponseEnvelope | ApiError;
+  op getCertificates(@path zone: string, @path id: string, ): ProxyLBGetCertificatesResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
-  setCertificates(
-    @path zone: string,
-    @path id: string,
-    param: ProxyLBSetCertificatesRequest,
-  ): ProxyLBSetCertificatesResponseEnvelope | ApiError;
+  op setCertificates(@path zone: string, @path id: string, param: ProxyLBSetCertificatesRequest, ): ProxyLBSetCertificatesResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
-  deleteCertificates(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op deleteCertificates(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew")
-  renewLetsEncryptCert(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op renewLetsEncryptCert(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor")
-  monitorConnection(
-    @path zone: string,
-    @path id: string,
-    condition: MonitorCondition,
-  ): ProxyLBMonitorConnectionResponseEnvelope | ApiError;
+  op monitorConnection(@path zone: string, @path id: string, condition: MonitorCondition, ): ProxyLBMonitorConnectionResponseEnvelope | ApiError;
+
 }
 
 @tag("SIM")
 interface SIMOp {
+
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate")
-  activate(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op activate(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate")
-  deactivate(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op deactivate(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
-  assignIP(@path zone: string, @path id: string, param: SIMAssignIPRequest): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op assignIP(@path zone: string, @path id: string, param: SIMAssignIPRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
-  clearIP(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op clearIP(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
-  imeiLock(@path zone: string, @path id: string, param: SIMIMEILockRequest): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op imeiLock(@path zone: string, @path id: string, param: SIMIMEILockRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
-  imeiUnlock(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op imeiUnlock(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog")
-  logs(
-    @path zone: string,
-    @path id: string,
-  ): SIMLogsResponseEnvelope | ApiError;
+  op logs(@path zone: string, @path id: string, ): SIMLogsResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config")
-  getNetworkOperator(
-    @path zone: string,
-    @path id: string,
-  ): SIMGetNetworkOperatorResponseEnvelope | ApiError;
+  op getNetworkOperator(@path zone: string, @path id: string, ): SIMGetNetworkOperatorResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config")
-  setNetworkOperator(
-    @path zone: string,
-    @path id: string,
-    configs: SIMNetworkOperatorConfig[],
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op setNetworkOperator(@path zone: string, @path id: string, configs: SIMNetworkOperatorConfig[], ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor")
-  monitorSIM(
-    @path zone: string,
-    @path id: string,
-    condition: MonitorCondition,
-  ): SIMMonitorSIMResponseEnvelope | ApiError;
+  op monitorSIM(@path zone: string, @path id: string, condition: MonitorCondition, ): SIMMonitorSIMResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status")
-  status(
-    @path zone: string,
-    @path id: string,
-  ): SIMStatusResponseEnvelope | ApiError;
+  op status(@path zone: string, @path id: string, ): SIMStatusResponseEnvelope | ApiError;
+
 }
 
 @tag("SimpleMonitor")
 interface SimpleMonitorOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor")
-  monitorResponseTime(
-    @path zone: string,
-    @path id: string,
-    condition: MonitorCondition,
-  ): SimpleMonitorMonitorResponseTimeResponseEnvelope | ApiError;
+  op monitorResponseTime(@path zone: string, @path id: string, condition: MonitorCondition, ): SimpleMonitorMonitorResponseTimeResponseEnvelope | ApiError;
+
 }
 
 @tag("SimpleNotificationDestination")
 interface SimpleNotificationDestinationOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/status")
-  status(
-    @path zone: string,
-    @path id: string,
-  ): SimpleNotificationDestinationStatusResponseEnvelope | ApiError;
+  op status(@path zone: string, @path id: string, ): SimpleNotificationDestinationStatusResponseEnvelope | ApiError;
+
 }
 
 @tag("SimpleNotificationGroup")
 interface SimpleNotificationGroupOp {
+
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message")
-  postMessage(@path zone: string, @path id: string, message: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op postMessage(@path zone: string, @path id: string, message: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history")
-  history(
-    @path zone: string,
-  ): SimpleNotificationGroupHistoryResponseEnvelope | ApiError;
+  op history(@path zone: string, ): SimpleNotificationGroupHistoryResponseEnvelope | ApiError;
+
 }

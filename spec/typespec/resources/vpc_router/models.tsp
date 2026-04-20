@@ -5,339 +5,339 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model VPCRouter {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Class?: string | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  Remark?: VPCRouterRemark | null;
-  Settings?: VPCRouterSetting | null;
-  SettingsHash?: string | null;
-  Instance?: VPCRouterInstance | null;
-  Interfaces?: VPCRouterInterface[] | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Class?: string | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	Remark?: VPCRouterRemark | null;
+	Settings?: VPCRouterSetting | null;
+	SettingsHash?: string | null;
+	Instance?: VPCRouterInstance | null;
+	Interfaces?: VPCRouterInterface[] | null;
 }
 
 model VPCRouterRemark {
-  Plan?: ResourceRef | null;
-  Router?: VPCRouterRemarkRouter | null;
+	Plan?: ResourceRef | null;
+	Router?: VPCRouterRemarkRouter | null;
 }
 
 model VPCRouterRemarkRouter {
-  VPCRouterVersion?: int32 | null = 2;
+	VPCRouterVersion?: int32 | null = 2;
 }
 
 model VPCRouterInstance {
-  Host?: VPCRouterInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
-  StatusChangedAt?: utcDateTime | null;
+	Host?: VPCRouterInstanceHost | null;
+	Status?: EServerInstanceStatus | null;
+	StatusChangedAt?: utcDateTime | null;
 }
 
 model VPCRouterInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+	Name?: string | null;
+	InfoURL?: string | null;
 }
 
 model VPCRouterSetting {
-  Router?: VPCRouterSettingRouter | null;
-  Interfaces: VPCRouterInterfaceSetting[];
-  StaticNAT: VPCRouterStaticNAT[];
-  PortForwarding: VPCRouterPortForwarding[];
-  Firewall: VPCRouterFirewall[];
-  DHCPServer: VPCRouterDHCPServer[];
-  DHCPStaticMapping: VPCRouterDHCPStaticMapping[];
-  RemoteAccessUsers: VPCRouterRemoteAccessUser[];
-  StaticRoute: VPCRouterStaticRoute[];
+	Router?: VPCRouterSettingRouter | null;
+	Interfaces: VPCRouterInterfaceSetting[];
+	StaticNAT: VPCRouterStaticNAT[];
+	PortForwarding: VPCRouterPortForwarding[];
+	Firewall: VPCRouterFirewall[];
+	DHCPServer: VPCRouterDHCPServer[];
+	DHCPStaticMapping: VPCRouterDHCPStaticMapping[];
+	RemoteAccessUsers: VPCRouterRemoteAccessUser[];
+	StaticRoute: VPCRouterStaticRoute[];
 }
 
 model VPCRouterSettingRouter {
-  VRID?: int32 | null;
-  InternetConnection?: VPCRouterSettingRouterInternetConnection | null;
-  DNSForwarding?: VPCRouterDNSForwarding | null;
-  PPTPServer?: VPCRouterSettingRouterPPTPServer | null;
-  L2TPIPsecServer?: VPCRouterSettingRouterL2TPIPsecServer | null;
-  WireGuard?: VPCRouterSettingRouterWireGuard | null;
-  SiteToSiteIPsecVPN?: VPCRouterSiteToSiteIPsecVPN | null;
-  SyslogHost?: string | null;
-  ScheduledMaintenance?: VPCRouterScheduledMaintenance | null;
-  MonitoringSuite?: MonitoringSuite | null;
+	VRID?: int32 | null;
+	InternetConnection?: VPCRouterSettingRouterInternetConnection | null;
+	DNSForwarding?: VPCRouterDNSForwarding | null;
+	PPTPServer?: VPCRouterSettingRouterPPTPServer | null;
+	L2TPIPsecServer?: VPCRouterSettingRouterL2TPIPsecServer | null;
+	WireGuard?: VPCRouterSettingRouterWireGuard | null;
+	SiteToSiteIPsecVPN?: VPCRouterSiteToSiteIPsecVPN | null;
+	SyslogHost?: string | null;
+	ScheduledMaintenance?: VPCRouterScheduledMaintenance | null;
+	MonitoringSuite?: MonitoringSuite | null;
 }
 
 model VPCRouterSettingRouterInternetConnection {
-  Enabled: string;
+	Enabled: string;
 }
 
 model VPCRouterSettingRouterPPTPServer {
-  Config?: VPCRouterPPTPServer | null;
-  Enabled: string;
+	Config?: VPCRouterPPTPServer | null;
+	Enabled: string;
 }
 
 model VPCRouterSettingRouterL2TPIPsecServer {
-  Config?: VPCRouterL2TPIPsecServer | null;
-  Enabled: string;
+	Config?: VPCRouterL2TPIPsecServer | null;
+	Enabled: string;
 }
 
 model VPCRouterSettingRouterWireGuard {
-  Config?: VPCRouterWireGuard | null;
-  Enabled: string;
+	Config?: VPCRouterWireGuard | null;
+	Enabled: string;
 }
 
 model VPCRouterInterfaceSetting {
-  IPAddress?: string[] | null;
-  VirtualIPAddress?: string | null;
-  IPAliases?: string[] | null;
-  NetworkMaskLen?: int32 | null;
-  Index: int32;
+	IPAddress?: string[] | null;
+	VirtualIPAddress?: string | null;
+	IPAliases?: string[] | null;
+	NetworkMaskLen?: int32 | null;
+	Index: int32;
 }
 
 model VPCRouterStaticNAT {
-  GlobalAddress?: string | null;
-  PrivateAddress?: string | null;
-  Description: string;
+	GlobalAddress?: string | null;
+	PrivateAddress?: string | null;
+	Description: string;
 }
 
 model VPCRouterPortForwarding {
-  Protocol?: EVPCRouterPortForwardingProtocol | null;
-  GlobalPort?: int32 | null;
-  PrivateAddress?: string | null;
-  PrivatePort?: int32 | null;
-  Description?: string | null;
+	Protocol?: EVPCRouterPortForwardingProtocol | null;
+	GlobalPort?: int32 | null;
+	PrivateAddress?: string | null;
+	PrivatePort?: int32 | null;
+	Description?: string | null;
 }
 
 model VPCRouterFirewall {
-  Send: VPCRouterFirewallRule[];
-  Receive: VPCRouterFirewallRule[];
-  Index: int32;
+	Send: VPCRouterFirewallRule[];
+	Receive: VPCRouterFirewallRule[];
+	Index: int32;
 }
 
 model VPCRouterFirewallRule {
-  Protocol?: Protocol | null;
-  SourceNetwork?: string | null;
-  SourcePort?: string | null;
-  DestinationNetwork?: string | null;
-  DestinationPort?: string | null;
-  Action?: Action | null;
-  Logging: string;
-  Description: string;
+	Protocol?: Protocol | null;
+	SourceNetwork?: string | null;
+	SourcePort?: string | null;
+	DestinationNetwork?: string | null;
+	DestinationPort?: string | null;
+	Action?: Action | null;
+	Logging: string;
+	Description: string;
 }
 
 model VPCRouterDHCPServer {
-  Interface?: string | null;
-  RangeStart?: string | null;
-  RangeStop?: string | null;
-  DNSServers?: string[] | null;
+	Interface?: string | null;
+	RangeStart?: string | null;
+	RangeStop?: string | null;
+	DNSServers?: string[] | null;
 }
 
 model VPCRouterDHCPStaticMapping {
-  MACAddress?: string | null;
-  IPAddress?: string | null;
+	MACAddress?: string | null;
+	IPAddress?: string | null;
 }
 
 model VPCRouterDNSForwarding {
-  Interface?: string | null;
-  DNSServers: string[];
+	Interface?: string | null;
+	DNSServers: string[];
 }
 
 model VPCRouterPPTPServer {
-  RangeStart?: string | null;
-  RangeStop?: string | null;
+	RangeStart?: string | null;
+	RangeStop?: string | null;
 }
 
 model VPCRouterL2TPIPsecServer {
-  RangeStart?: string | null;
-  RangeStop?: string | null;
-  PreSharedSecret?: string | null;
+	RangeStart?: string | null;
+	RangeStop?: string | null;
+	PreSharedSecret?: string | null;
 }
 
 model VPCRouterWireGuard {
-  IPAddress: string;
-  Peers: VPCRouterWireGuardPeer[];
+	IPAddress: string;
+	Peers: VPCRouterWireGuardPeer[];
 }
 
 model VPCRouterWireGuardPeer {
-  Name?: string | null;
-  IPAddress?: string | null;
-  PublicKey?: string | null;
+	Name?: string | null;
+	IPAddress?: string | null;
+	PublicKey?: string | null;
 }
 
 model VPCRouterRemoteAccessUser {
-  UserName?: string | null;
-  Password?: string | null;
+	UserName?: string | null;
+	Password?: string | null;
 }
 
 model VPCRouterSiteToSiteIPsecVPN {
-  Config?: VPCRouterSiteToSiteIPsecVPNConfig[] | null;
-  IKE?: VPCRouterSiteToSiteIPsecVPNIKE | null;
-  ESP?: VPCRouterSiteToSiteIPsecVPNESP | null;
-  EncryptionAlgo?: string | null;
-  HashAlgo?: string | null;
-  DHGroup?: string | null;
+	Config?: VPCRouterSiteToSiteIPsecVPNConfig[] | null;
+	IKE?: VPCRouterSiteToSiteIPsecVPNIKE | null;
+	ESP?: VPCRouterSiteToSiteIPsecVPNESP | null;
+	EncryptionAlgo?: string | null;
+	HashAlgo?: string | null;
+	DHGroup?: string | null;
 }
 
 model VPCRouterSiteToSiteIPsecVPNConfig {
-  Peer?: string | null;
-  PreSharedSecret?: string | null;
-  RemoteID?: string | null;
-  Routes?: string[] | null;
-  LocalPrefix?: string[] | null;
+	Peer?: string | null;
+	PreSharedSecret?: string | null;
+	RemoteID?: string | null;
+	Routes?: string[] | null;
+	LocalPrefix?: string[] | null;
 }
 
 model VPCRouterSiteToSiteIPsecVPNIKE {
-  Lifetime: int32;
-  DPD: VPCRouterSiteToSiteIPsecVPNIKEDPD;
+	Lifetime: int32;
+	DPD: VPCRouterSiteToSiteIPsecVPNIKEDPD;
 }
 
 model VPCRouterSiteToSiteIPsecVPNIKEDPD {
-  Interval: int32;
-  Timeout: int32;
+	Interval: int32;
+	Timeout: int32;
 }
 
 model VPCRouterSiteToSiteIPsecVPNESP {
-  Lifetime: int32;
+	Lifetime: int32;
 }
 
 model VPCRouterStaticRoute {
-  Prefix?: string | null;
-  NextHop?: string | null;
+	Prefix?: string | null;
+	NextHop?: string | null;
 }
 
 model VPCRouterScheduledMaintenance {
-  DayOfWeek: int32;
-  Hour: int32;
+	DayOfWeek: int32;
+	Hour: int32;
 }
 
 model VPCRouterInterface {
-  ID?: int64 | null;
-  MACAddress?: string | null;
-  IPAddress?: string | null;
-  UserIPAddress?: string | null;
-  HostName?: string | null;
-  Switch?: VPCRouterInterfaceSwitch | null;
-  PacketFilter?: VPCRouterInterfacePacketFilter | null;
+	ID?: int64 | null;
+	MACAddress?: string | null;
+	IPAddress?: string | null;
+	UserIPAddress?: string | null;
+	HostName?: string | null;
+	Switch?: VPCRouterInterfaceSwitch | null;
+	PacketFilter?: VPCRouterInterfacePacketFilter | null;
 }
 
 model VPCRouterInterfaceSwitch {
-  ID?: int64 | null;
-  Name?: string | null;
-  Scope?: EScope | null;
-  UserSubnet?: VPCRouterInterfaceSwitchUserSubnet | null;
-  Subnet?: VPCRouterInterfaceSwitchSubnet | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Scope?: EScope | null;
+	UserSubnet?: VPCRouterInterfaceSwitchUserSubnet | null;
+	Subnet?: VPCRouterInterfaceSwitchSubnet | null;
 }
 
 model VPCRouterInterfaceSwitchUserSubnet {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
+	DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
 }
 
 model VPCRouterInterfaceSwitchSubnet {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
-  NetworkAddress?: string | null;
-  Internet?: VPCRouterInterfaceSwitchSubnetInternet | null;
+	DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
+	NetworkAddress?: string | null;
+	Internet?: VPCRouterInterfaceSwitchSubnetInternet | null;
 }
 
 model VPCRouterInterfaceSwitchSubnetInternet {
-  BandWidthMbps?: int32 | null;
+	BandWidthMbps?: int32 | null;
 }
 
 model VPCRouterInterfacePacketFilter {
-  ID?: int64 | null;
-  Name?: string | null;
-  RequiredHostVersionn: int32;
+	ID?: int64 | null;
+	Name?: string | null;
+	RequiredHostVersionn: int32;
 }
 
 model VPCRouterCreateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  Plan?: ResourceRef | null;
-  Remark?: VPCRouterCreateRequestRemark | null;
-  IPAddresses: string[];
-  Settings?: VPCRouterSetting | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	Plan?: ResourceRef | null;
+	Remark?: VPCRouterCreateRequestRemark | null;
+	IPAddresses: string[];
+	Settings?: VPCRouterSetting | null;
 }
 
 model VPCRouterCreateRequestRemark {
-  Switch?: ApplianceConnectedSwitch | null;
-  Router?: VPCRouterCreateRequestRemarkRouter | null;
+	Switch?: ApplianceConnectedSwitch | null;
+	Router?: VPCRouterCreateRequestRemarkRouter | null;
 }
 
 model VPCRouterCreateRequestRemarkRouter {
-  VPCRouterVersion?: int32 | null = 2;
+	VPCRouterVersion?: int32 | null = 2;
 }
 
 model ApplianceConnectedSwitch {
-  ID?: int64 | null;
-  Scope?: EScope | null;
+	ID?: int64 | null;
+	Scope?: EScope | null;
 }
 
 model VPCRouterUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  Settings?: VPCRouterSetting | null;
-  SettingsHash?: string | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	Settings?: VPCRouterSetting | null;
+	SettingsHash?: string | null;
 }
 
 model VPCRouterStatus {
-  FirewallReceiveLogs?: string[] | null;
-  FirewallSendLogs?: string[] | null;
-  VPNLogs?: string[] | null;
-  SessionCount?: int32 | null;
-  PercentageOfMemoryFree?: int32[] | null;
-  WireGuard?: WireGuardStatus | null;
-  DHCPServerLeases?: VPCRouterDHCPServerLease[] | null;
-  L2TPIPsecServerSessions?: VPCRouterL2TPIPsecServerSession[] | null;
-  PPTPServerSessions?: VPCRouterPPTPServerSession[] | null;
-  SiteToSiteIPsecVPNPeers?: VPCRouterSiteToSiteIPsecVPNPeer[] | null;
-  SessionAnalysis?: VPCRouterSessionAnalysis | null;
+	FirewallReceiveLogs?: string[] | null;
+	FirewallSendLogs?: string[] | null;
+	VPNLogs?: string[] | null;
+	SessionCount?: int32 | null;
+	PercentageOfMemoryFree?: int32[] | null;
+	WireGuard?: WireGuardStatus | null;
+	DHCPServerLeases?: VPCRouterDHCPServerLease[] | null;
+	L2TPIPsecServerSessions?: VPCRouterL2TPIPsecServerSession[] | null;
+	PPTPServerSessions?: VPCRouterPPTPServerSession[] | null;
+	SiteToSiteIPsecVPNPeers?: VPCRouterSiteToSiteIPsecVPNPeer[] | null;
+	SessionAnalysis?: VPCRouterSessionAnalysis | null;
 }
 
 model WireGuardStatus {
-  PublicKey: string;
+	PublicKey: string;
 }
 
 model VPCRouterDHCPServerLease {
-  IPAddress: string;
-  MACAddress: string;
+	IPAddress: string;
+	MACAddress: string;
 }
 
 model VPCRouterL2TPIPsecServerSession {
-  User: string;
-  IPAddress: string;
-  TimeSec: int32;
+	User: string;
+	IPAddress: string;
+	TimeSec: int32;
 }
 
 model VPCRouterPPTPServerSession {
-  User: string;
-  IPAddress: string;
-  TimeSec: int32;
+	User: string;
+	IPAddress: string;
+	TimeSec: int32;
 }
 
 model VPCRouterSiteToSiteIPsecVPNPeer {
-  Status: string;
-  Peer: string;
+	Status: string;
+	Peer: string;
 }
 
 model VPCRouterSessionAnalysis {
-  SourceAndDestination: VPCRouterStatisticsValue[];
-  DestinationAddress: VPCRouterStatisticsValue[];
-  DestinationPort: VPCRouterStatisticsValue[];
-  SourceAddress: VPCRouterStatisticsValue[];
+	SourceAndDestination: VPCRouterStatisticsValue[];
+	DestinationAddress: VPCRouterStatisticsValue[];
+	DestinationPort: VPCRouterStatisticsValue[];
+	SourceAddress: VPCRouterStatisticsValue[];
 }
 
 model VPCRouterStatisticsValue {
-  Name?: string | null;
-  Count?: int32 | null;
+	Name?: string | null;
+	Count?: int32 | null;
 }
 
 model VPCRouterLog {
-  Log: string;
+	Log: string;
 }
 
 model VPCRouterPingResults {
-  Result: string[];
+	Result: string[];
 }

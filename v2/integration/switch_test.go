@@ -81,7 +81,7 @@ func TestSwitchCRUD(t *testing.T) {
 	require.Equal(t, "test-switch-updated", updateResp.Switch.Name.Value)
 
 	// 4. Find - スイッチ検索
-	findResp, err := c.SwitchOpFind(ctx, &client.SwitchFindRequestEnvelope{}, client.SwitchOpFindParams{Zone: zone})
+	findResp, err := c.SwitchOpFind(ctx, client.SwitchOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Switches), 0)
 

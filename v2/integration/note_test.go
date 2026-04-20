@@ -76,7 +76,7 @@ func TestNoteCRUD(t *testing.T) {
 	require.Equal(t, "test-note-updated", updateResp.Note.Name.Value)
 
 	// 4. Find - スクリプト検索
-	findResp, err := c.NoteOpFind(ctx, &client.NoteFindRequestEnvelope{}, client.NoteOpFindParams{Zone: zone})
+	findResp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Notes), 0)
 

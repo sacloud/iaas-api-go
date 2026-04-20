@@ -10,64 +10,71 @@ namespace Sacloud.IaaS;
 
 @tag("Switch")
 interface SwitchOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/switch")
-  find(
+  op find(
     @path zone: string,
-    @body body: SwitchFindRequestEnvelope,
+    @query q?: string,
+    
   ): SwitchFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/switch")
-  create(@path zone: string, @body body: SwitchCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...SwitchCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: SwitchCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...SwitchCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): SwitchReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: SwitchUpdateRequestEnvelope,
+    
   ): SwitchUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}")
-  connectToBridge(
+  op connectToBridge(
     @path zone: string,
     @path id: string,
     @path bridgeID: string,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge")
-  disconnectFromBridge(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op disconnectFromBridge(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}/server")
-  getServers(
+  op getServers(
     @path zone: string,
     @path id: string,
+    
   ): SwitchGetServersResponseEnvelope | ApiError;
+
 }

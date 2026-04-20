@@ -10,39 +10,46 @@ namespace Sacloud.IaaS;
 
 @tag("IPv6Addr")
 interface IPv6AddrOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/ipv6addr")
-  find(
+  op find(
     @path zone: string,
-    @body body: IPv6AddrFindRequestEnvelope,
+    @query q?: string,
+    
   ): IPv6AddrFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/ipv6addr")
-  create(@path zone: string, @body body: IPv6AddrCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...IPv6AddrCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: IPv6AddrCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...IPv6AddrCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): IPv6AddrReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: IPv6AddrUpdateRequestEnvelope,
+    
   ): IPv6AddrUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }

@@ -10,50 +10,58 @@ namespace Sacloud.IaaS;
 
 @tag("Bill")
 interface BillOp {
+
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}")
-  byContract(
+  op byContract(
     @path zone: string,
     @path accountID: string,
+    
   ): BillByContractResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}")
-  byContractYear(
+  op byContractYear(
     @path zone: string,
     @path accountID: string,
     @path year: string,
+    
   ): BillByContractYearResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}")
-  byContractYearMonth(
+  op byContractYearMonth(
     @path zone: string,
     @path accountID: string,
     @path year: string,
     @path month: string,
+    
   ): BillByContractYearMonthResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/system/1.0/bill/id/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): BillReadResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}")
-  details(
+  op details(
     @path zone: string,
     @path MemberCode: string,
     @path id: string,
+    
   ): BillDetailsResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv")
-  detailsCSV(
+  op detailsCSV(
     @path zone: string,
     @path MemberCode: string,
     @path id: string,
+    
   ): BillDetailsCSVResponseEnvelope | ApiError;
+
 }

@@ -39,6 +39,52 @@ func waitArchiveAvailable(t *testing.T, ctx context.Context, c *client.Client, z
 	t.Fatalf("archive %s did not become available within timeout", id)
 }
 
+// TestArchiveFindWithQuery は `?q={json}` 書き換え + FindRequest/FindFilter の動作を
+// 読み取り専用で確認する。tk1v にはさくらクラウド提供の shared archive が大量にある
+// ため、Count + Filter(Scope="shared", Name="CentOS") を使って q= パラメータが効いていることを検証する。
+func TestArchiveFindWithQuery(t *testing.T) {
+	if os.Getenv("TEST_ACC") == "" {
+		t.Skip("TEST_ACC=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	// 1. フィルタ無し + Count=3 → 3 件以下返る
+	reqCount := &client.ArchiveFindRequest{Count: 3}
+	respCount, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone, Q: reqCount.ToOptString()})
+	require.NoError(t, err)
+	require.LessOrEqual(t, len(respCount.Archives), 3, "Count=3 の結果は 3 件以下であること")
+	t.Logf("Count=3 returned %d archives (Total=%d)", len(respCount.Archives), respCount.Total)
+
+	// 2. Scope="shared" フィルタ → 全件 shared
+	reqScope := &client.ArchiveFindRequest{
+		Count:  5,
+		Filter: client.ArchiveFindFilter{Scope: "shared"},
+	}
+	respScope, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone, Q: reqScope.ToOptString()})
+	require.NoError(t, err)
+	require.Greater(t, len(respScope.Archives), 0, "shared archive が 1 件以上返ること")
+	for _, a := range respScope.Archives {
+		require.Equal(t, "shared", string(a.Scope.Value), "Scope=shared フィルタが効いていること (archive=%s)", a.Name.Value)
+	}
+	t.Logf("Scope=shared returned %d archives", len(respScope.Archives))
+
+	// 3. Name="CentOS" 部分一致 → 全件 Name に "CentOS" を含む（大文字小文字区別しない実装あり）
+	reqName := &client.ArchiveFindRequest{
+		Count:  5,
+		Filter: client.ArchiveFindFilter{Name: "CentOS"},
+	}
+	respName, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone, Q: reqName.ToOptString()})
+	require.NoError(t, err)
+	// さくらクラウドが提供する CentOS archive は tk1v に少なくとも 1 つある
+	require.Greater(t, len(respName.Archives), 0, "Name=CentOS にマッチする archive があること")
+	for _, a := range respName.Archives {
+		require.Contains(t, a.Name.Value, "CentOS", "Name=CentOS 部分一致が効いていること")
+	}
+	t.Logf("Name=CentOS returned %d archives (first=%s)", len(respName.Archives), respName.Archives[0].Name.Value)
+}
+
 func TestArchiveCRUD(t *testing.T) {
 	if os.Getenv("TEST_ACC") == "" {
 		t.Skip("TEST_ACC=1 env var required")
@@ -93,7 +139,7 @@ func TestArchiveCRUD(t *testing.T) {
 	require.Equal(t, "test-archive-updated", updateResp.Archive.Name.Value)
 
 	// 4. Find
-	findResp, err := c.ArchiveOpFind(ctx, &client.ArchiveFindRequestEnvelope{}, client.ArchiveOpFindParams{Zone: zone})
+	findResp, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Archives), 0)
 

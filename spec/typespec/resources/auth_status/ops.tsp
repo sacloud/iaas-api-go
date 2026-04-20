@@ -10,7 +10,12 @@ namespace Sacloud.IaaS;
 
 @tag("AuthStatus")
 interface AuthStatusOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/auth-status")
-  read(@path zone: string): AuthStatusReadResponseEnvelope | ApiError;
+  op read(
+    @path zone: string,
+    
+  ): AuthStatusReadResponseEnvelope | ApiError;
+
 }

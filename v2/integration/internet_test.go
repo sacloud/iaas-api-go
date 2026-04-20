@@ -94,7 +94,7 @@ func TestInternetCRUD(t *testing.T) {
 	require.Equal(t, "test-internet-updated", updateResp.Internet.Name.Value)
 
 	// 4. Find
-	findResp, err := c.InternetOpFind(ctx, &client.InternetFindRequestEnvelope{}, client.InternetOpFindParams{Zone: zone})
+	findResp, err := c.InternetOpFind(ctx, client.InternetOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Internet), 0)
 	var found bool

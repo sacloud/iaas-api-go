@@ -10,96 +10,109 @@ namespace Sacloud.IaaS;
 
 @tag("Internet")
 interface InternetOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/internet")
-  find(
+  op find(
     @path zone: string,
-    @body body: InternetFindRequestEnvelope,
+    @query q?: string,
+    
   ): InternetFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/internet")
-  create(@path zone: string, @body body: InternetCreateRequestEnvelope): {
-    @statusCode _: 202;
-    ...InternetCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: InternetCreateRequestEnvelope,
+    
+  ): {@statusCode _: 202; ...InternetCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): InternetReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: InternetUpdateRequestEnvelope,
+    
   ): InternetUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/bandwidth")
-  updateBandWidth(
+  op updateBandWidth(
     @path zone: string,
     @path id: string,
     @body body: InternetUpdateBandWidthRequestEnvelope,
+    
   ): InternetUpdateBandWidthResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet")
-  addSubnet(
+  op addSubnet(
     @path zone: string,
     @path id: string,
     @body body: InternetAddSubnetRequestEnvelope,
-  ): {
-    @statusCode _: 201;
-    ...InternetAddSubnetResponseEnvelope;
-  } | ApiError;
+    
+  ): {@statusCode _: 201; ...InternetAddSubnetResponseEnvelope} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
-  updateSubnet(
+  op updateSubnet(
     @path zone: string,
     @path id: string,
     @path subnetID: string,
     @body body: InternetUpdateSubnetRequestEnvelope,
+    
   ): InternetUpdateSubnetResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
-  deleteSubnet(@path zone: string, @path id: string, @path subnetID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op deleteSubnet(
+    @path zone: string,
+    @path id: string,
+    @path subnetID: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}/monitor")
-  monitor(
+  op monitor(
     @path zone: string,
     @path id: string,
     @body body: InternetMonitorRequestEnvelope,
+    
   ): InternetMonitorResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net")
-  enableIPv6(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    ...InternetEnableIPv6ResponseEnvelope;
-  } | ApiError;
+  op enableIPv6(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; ...InternetEnableIPv6ResponseEnvelope} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}")
-  disableIPv6(@path zone: string, @path id: string, @path ipv6netID: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op disableIPv6(
+    @path zone: string,
+    @path id: string,
+    @path ipv6netID: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }

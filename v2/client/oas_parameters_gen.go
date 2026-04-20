@@ -28,6 +28,7 @@ type ApplianceOpDeleteParams struct {
 // ApplianceOpFindParams is parameters of ApplianceOp_find operation.
 type ApplianceOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // ApplianceOpMonitorCPUParams is parameters of ApplianceOp_monitorCPU operation.
@@ -105,6 +106,7 @@ type ArchiveOpDeleteParams struct {
 // ArchiveOpFindParams is parameters of ArchiveOp_find operation.
 type ArchiveOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // ArchiveOpReadParams is parameters of ArchiveOp_read operation.
@@ -210,6 +212,7 @@ type BridgeOpDeleteParams struct {
 // BridgeOpFindParams is parameters of BridgeOp_find operation.
 type BridgeOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // BridgeOpReadParams is parameters of BridgeOp_read operation.
@@ -244,6 +247,7 @@ type CDROMOpDeleteParams struct {
 // CDROMOpFindParams is parameters of CDROMOp_find operation.
 type CDROMOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // CDROMOpOpenFTPParams is parameters of CDROMOp_openFTP operation.
@@ -371,6 +375,7 @@ type CommonServiceItemOpDeleteParams struct {
 // CommonServiceItemOpFindParams is parameters of CommonServiceItemOp_find operation.
 type CommonServiceItemOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // CommonServiceItemOpHealthStatusParams is parameters of CommonServiceItemOp_healthStatus operation.
@@ -474,6 +479,7 @@ type DiskOpDisconnectFromServerParams struct {
 // DiskOpFindParams is parameters of DiskOp_find operation.
 type DiskOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // DiskOpMonitorParams is parameters of DiskOp_monitor operation.
@@ -503,6 +509,7 @@ type DiskOpUpdateParams struct {
 // DiskPlanOpFindParams is parameters of DiskPlanOp_find operation.
 type DiskPlanOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // DiskPlanOpReadParams is parameters of DiskPlanOp_read operation.
@@ -578,6 +585,7 @@ type IPv6AddrOpDeleteParams struct {
 // IPv6AddrOpFindParams is parameters of IPv6AddrOp_find operation.
 type IPv6AddrOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // IPv6AddrOpReadParams is parameters of IPv6AddrOp_read operation.
@@ -617,6 +625,7 @@ type IconOpDeleteParams struct {
 // IconOpFindParams is parameters of IconOp_find operation.
 type IconOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // IconOpReadParams is parameters of IconOp_read operation.
@@ -677,6 +686,7 @@ type InterfaceOpDisconnectFromSwitchParams struct {
 // InterfaceOpFindParams is parameters of InterfaceOp_find operation.
 type InterfaceOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // InterfaceOpMonitorParams is parameters of InterfaceOp_monitor operation.
@@ -737,6 +747,7 @@ type InternetOpEnableIPv6Params struct {
 // InternetOpFindParams is parameters of InternetOp_find operation.
 type InternetOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // InternetOpMonitorParams is parameters of InternetOp_monitor operation.
@@ -773,6 +784,7 @@ type InternetOpUpdateSubnetParams struct {
 // InternetPlanOpFindParams is parameters of InternetPlanOp_find operation.
 type InternetPlanOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // InternetPlanOpReadParams is parameters of InternetPlanOp_read operation.
@@ -784,6 +796,7 @@ type InternetPlanOpReadParams struct {
 // LicenseInfoOpFindParams is parameters of LicenseInfoOp_find operation.
 type LicenseInfoOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // LicenseInfoOpReadParams is parameters of LicenseInfoOp_read operation.
@@ -806,6 +819,7 @@ type LicenseOpDeleteParams struct {
 // LicenseOpFindParams is parameters of LicenseOp_find operation.
 type LicenseOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // LicenseOpReadParams is parameters of LicenseOp_read operation.
@@ -926,6 +940,7 @@ type NoteOpDeleteParams struct {
 // NoteOpFindParams is parameters of NoteOp_find operation.
 type NoteOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // NoteOpReadParams is parameters of NoteOp_read operation.
@@ -954,6 +969,7 @@ type PacketFilterOpDeleteParams struct {
 // PacketFilterOpFindParams is parameters of PacketFilterOp_find operation.
 type PacketFilterOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // PacketFilterOpReadParams is parameters of PacketFilterOp_read operation.
@@ -982,6 +998,7 @@ type PrivateHostOpDeleteParams struct {
 // PrivateHostOpFindParams is parameters of PrivateHostOp_find operation.
 type PrivateHostOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // PrivateHostOpReadParams is parameters of PrivateHostOp_read operation.
@@ -999,6 +1016,7 @@ type PrivateHostOpUpdateParams struct {
 // PrivateHostPlanOpFindParams is parameters of PrivateHostPlanOp_find operation.
 type PrivateHostPlanOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // PrivateHostPlanOpReadParams is parameters of PrivateHostPlanOp_read operation.
@@ -1046,6 +1064,7 @@ type ProxyLBOpSetCertificatesParams struct {
 // RegionOpFindParams is parameters of RegionOp_find operation.
 type RegionOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // RegionOpReadParams is parameters of RegionOp_read operation.
@@ -1134,6 +1153,7 @@ type SSHKeyOpDeleteParams struct {
 // SSHKeyOpFindParams is parameters of SSHKeyOp_find operation.
 type SSHKeyOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // SSHKeyOpReadParams is parameters of SSHKeyOp_read operation.
@@ -1180,6 +1200,7 @@ type ServerOpEjectCDROMParams struct {
 // ServerOpFindParams is parameters of ServerOp_find operation.
 type ServerOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // ServerOpGetVNCProxyParams is parameters of ServerOp_getVNCProxy operation.
@@ -1239,6 +1260,7 @@ type ServerOpUpdateParams struct {
 // ServerPlanOpFindParams is parameters of ServerPlanOp_find operation.
 type ServerPlanOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // ServerPlanOpReadParams is parameters of ServerPlanOp_read operation.
@@ -1250,6 +1272,7 @@ type ServerPlanOpReadParams struct {
 // ServiceClassOpFindParams is parameters of ServiceClassOp_find operation.
 type ServiceClassOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // SimpleMonitorOpMonitorResponseTimeParams is parameters of SimpleMonitorOp_monitorResponseTime operation.
@@ -1278,6 +1301,7 @@ type SimpleNotificationGroupOpPostMessageParams struct {
 // SubnetOpFindParams is parameters of SubnetOp_find operation.
 type SubnetOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // SubnetOpReadParams is parameters of SubnetOp_read operation.
@@ -1313,6 +1337,7 @@ type SwitchOpDisconnectFromBridgeParams struct {
 // SwitchOpFindParams is parameters of SwitchOp_find operation.
 type SwitchOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // SwitchOpGetServersParams is parameters of SwitchOp_getServers operation.
@@ -1364,6 +1389,7 @@ type VPCRouterOpPingParams struct {
 // ZoneOpFindParams is parameters of ZoneOp_find operation.
 type ZoneOpFindParams struct {
 	Zone string
+	Q    OptString `json:",omitempty,omitzero"`
 }
 
 // ZoneOpReadParams is parameters of ZoneOp_read operation.

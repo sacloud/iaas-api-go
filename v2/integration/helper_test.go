@@ -113,13 +113,17 @@ func newClient(t *testing.T) *client.Client {
 		password: accessTokenSecret,
 	}
 
-	// 合成順: baseTransport を最外で走らせ（ヘッダ付与）→ dumpTransport がヘッダ付与後の state をダンプ → DefaultTransport で実送信。
-	// こうしないと dump が「baseTransport 適用前」の request を吐いてしまい、User-Agent や X-Sakura-Bigint-As-Int が
-	// トレースに出てこなくなる。
+	// 合成順: baseTransport を最外で走らせ（ヘッダ付与）→ dumpTransport がヘッダ付与後の state をダンプ
+	// → findQueryRewriteTransport が ?q=... → ?... 書き換え → DefaultTransport で実送信。
+	// ただし dumpTransport は findQueryRewriteTransport の外側に置く想定だが、書き換え後の wire format
+	// を確認したいので findQueryRewriteTransport → dumpTransport → DefaultTransport の順にする。
+	// 実装順序（RoundTripper 合成は "外側が内側を包む" の逆構造）:
+	//   request: baseTransport → findQueryRewriteTransport → dumpTransport → DefaultTransport
 	var transport http.RoundTripper = http.DefaultTransport
 	if os.Getenv("SAKURA_TRACE") == "1" {
 		transport = &dumpTransport{base: transport}
 	}
+	transport = client.NewFindQueryRewriteTransport(transport)
 	transport = &baseTransport{base: transport}
 	opts := []client.ClientOption{
 		client.WithClient(&http.Client{Transport: transport}),

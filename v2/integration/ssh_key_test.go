@@ -73,7 +73,7 @@ func TestSSHKeyCRUD(t *testing.T) {
 	require.Equal(t, "desc-updated", updateResp.SSHKey.Description)
 
 	// 4. Find
-	findResp, err := c.SSHKeyOpFind(ctx, &client.SSHKeyFindRequestEnvelope{}, client.SSHKeyOpFindParams{Zone: zone})
+	findResp, err := c.SSHKeyOpFind(ctx, client.SSHKeyOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.SSHKeys), 0)
 

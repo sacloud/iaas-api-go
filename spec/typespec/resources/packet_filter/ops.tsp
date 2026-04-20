@@ -10,39 +10,46 @@ namespace Sacloud.IaaS;
 
 @tag("PacketFilter")
 interface PacketFilterOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/packetfilter")
-  find(
+  op find(
     @path zone: string,
-    @body body: PacketFilterFindRequestEnvelope,
+    @query q?: string,
+    
   ): PacketFilterFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/packetfilter")
-  create(@path zone: string, @body body: PacketFilterCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...PacketFilterCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: PacketFilterCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...PacketFilterCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): PacketFilterReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: PacketFilterUpdateRequestEnvelope,
+    
   ): PacketFilterUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }

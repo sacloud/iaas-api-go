@@ -4,56 +4,54 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Response envelope for iPAddressListResponseEnvelope
  */
 model IPAddressListResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * IPAddress
-   */
-  IPAddress: IPAddress[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * IPAddress
+	 */
+	IPAddress: IPAddress[];
 }
 
 /**
  * Response envelope for iPAddressReadResponseEnvelope
  */
 model IPAddressReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * IPAddress
-   */
-  IPAddress: IPAddress;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * IPAddress
+	 */
+	IPAddress: IPAddress;
 }
 
 /**
  * Request envelope for iPAddressUpdateHostNameRequestEnvelope
  */
 model IPAddressUpdateHostNameRequestEnvelope {
-  /**
-   * IPAddress
-   */
-  IPAddress: IPAddress;
+	/**
+	 * IPAddress
+	 */
+	IPAddress: IPAddress;
 }
 /**
  * Response envelope for iPAddressUpdateHostNameResponseEnvelope
  */
 model IPAddressUpdateHostNameResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * IPAddress
-   */
-  IPAddress: IPAddress;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * IPAddress
+	 */
+	IPAddress: IPAddress;
 }

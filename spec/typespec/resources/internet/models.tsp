@@ -5,87 +5,87 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Internet {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  BandWidthMbps?: int32 | null;
-  NetworkMaskLen?: int32 | null;
-  Switch?: SwitchInfo | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	BandWidthMbps?: int32 | null;
+	NetworkMaskLen?: int32 | null;
+	Switch?: SwitchInfo | null;
 }
 
 model SwitchInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description?: string | null;
-  Tags?: string[] | null;
-  Scope?: EScope | null;
-  Subnets?: InternetSubnet[] | null;
-  IPv6Nets?: IPv6NetInfo[] | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description?: string | null;
+	Tags?: string[] | null;
+	Scope?: EScope | null;
+	Subnets?: InternetSubnet[] | null;
+	IPv6Nets?: IPv6NetInfo[] | null;
 }
 
 model InternetSubnet {
-  ID?: int64 | null;
-  DefaultRoute?: string | null;
-  NextHop?: string | null;
-  StaticRoute?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
+	ID?: int64 | null;
+	DefaultRoute?: string | null;
+	NextHop?: string | null;
+	StaticRoute?: string | null;
+	NetworkAddress?: string | null;
+	NetworkMaskLen?: int32 | null;
 }
 
 model IPv6NetInfo {
-  ID?: int64 | null;
-  IPv6Prefix?: string | null;
-  IPv6PrefixLen?: int32 | null;
+	ID?: int64 | null;
+	IPv6Prefix?: string | null;
+	IPv6PrefixLen?: int32 | null;
 }
 
 model InternetCreateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  NetworkMaskLen?: int32 | null;
-  BandWidthMbps?: int32 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	NetworkMaskLen?: int32 | null;
+	BandWidthMbps?: int32 | null;
 }
 
 model InternetUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model InternetUpdateBandWidthRequest {
-  BandWidthMbps?: int32 | null;
+	BandWidthMbps?: int32 | null;
 }
 
 model InternetSubnetOperationResult {
-  ID?: int64 | null;
-  DefaultRoute?: string | null;
-  NextHop?: string | null;
-  StaticRoute?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
-  IPAddresses?: string[] | null;
+	ID?: int64 | null;
+	DefaultRoute?: string | null;
+	NextHop?: string | null;
+	StaticRoute?: string | null;
+	NetworkAddress?: string | null;
+	NetworkMaskLen?: int32 | null;
+	IPAddresses?: string[] | null;
 }
 
 model InternetAddSubnetRequest {
-  NetworkMaskLen?: int32 | null;
-  NextHop?: string | null;
+	NetworkMaskLen?: int32 | null;
+	NextHop?: string | null;
 }
 
 model InternetUpdateSubnetRequest {
-  NextHop?: string | null;
+	NextHop?: string | null;
 }
 
 model RouterActivity {
-  Values: MonitorRouterValue[];
+	Values: MonitorRouterValue[];
 }
 
 model MonitorRouterValue {
-  Time: utcDateTime;
-  In: float64;
-  Out: float64;
+	Time: utcDateTime;
+	In: float64;
+	Out: float64;
 }

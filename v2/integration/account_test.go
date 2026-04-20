@@ -42,7 +42,7 @@ func TestLicenseCRUD(t *testing.T) {
 	zone := licenseTestZone
 
 	// 1. LicenseInfo を Find して有効な LicenseInfo.ID を得る
-	infoResp, err := c.LicenseInfoOpFind(ctx, &client.LicenseInfoFindRequestEnvelope{}, client.LicenseInfoOpFindParams{Zone: zone})
+	infoResp, err := c.LicenseInfoOpFind(ctx, client.LicenseInfoOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(infoResp.LicenseInfo), 0)
 	licenseInfoID := infoResp.LicenseInfo[0].ID.Value
@@ -78,7 +78,7 @@ func TestLicenseCRUD(t *testing.T) {
 	require.Equal(t, "test-license-updated", updateResp.License.Name.Value)
 
 	// 5. Find - リストに含まれることを確認
-	findResp, err := c.LicenseOpFind(ctx, &client.LicenseFindRequestEnvelope{}, client.LicenseOpFindParams{Zone: zone})
+	findResp, err := c.LicenseOpFind(ctx, client.LicenseOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	var found bool
 	for _, l := range findResp.Licenses {

@@ -5,25 +5,25 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ServiceClass {
-  ID: int64;
-  ServiceClassName: string;
-  ServiceClassPath: string;
-  DisplayName: string;
-  IsPublic: boolean;
-  Price?: Price | null;
+	ID: int64;
+	ServiceClassName: string;
+	ServiceClassPath: string;
+	DisplayName: string;
+	IsPublic: boolean;
+	Price?: Price | null;
 }
 
 model Price {
-  Base: int32;
-  Daily: int32;
-  Hourly: int32;
-  Monthly: int32;
-  PerUse: int32;
-  Basic: int32;
-  Traffic: int32;
-  DocomoTraffic: int32;
-  KddiTraffic: int32;
-  SbTraffic: int32;
-  SimSheet: int32;
-  Zone: string;
+	Base: int32;
+	Daily: int32;
+	Hourly: int32;
+	Monthly: int32;
+	PerUse: int32;
+	Basic: int32;
+	Traffic: int32;
+	DocomoTraffic: int32;
+	KddiTraffic: int32;
+	SbTraffic: int32;
+	SimSheet: int32;
+	Zone: string;
 }

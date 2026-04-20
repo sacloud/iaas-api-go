@@ -10,54 +10,63 @@ namespace Sacloud.IaaS;
 
 @tag("CDROM")
 interface CDROMOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/cdrom")
-  find(
+  op find(
     @path zone: string,
-    @body body: CDROMFindRequestEnvelope,
+    @query q?: string,
+    
   ): CDROMFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/cdrom")
-  create(@path zone: string, @body body: CDROMCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...CDROMCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: CDROMCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...CDROMCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): CDROMReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: CDROMUpdateRequestEnvelope,
+    
   ): CDROMUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
-  openFTP(
+  op openFTP(
     @path zone: string,
     @path id: string,
     @body body: CDROMOpenFTPRequestEnvelope,
+    
   ): CDROMOpenFTPResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
-  closeFTP(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op closeFTP(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }

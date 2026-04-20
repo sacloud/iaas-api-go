@@ -4,219 +4,197 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for diskFindRequestEnvelope
  */
 model DiskFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for diskFindResponseEnvelope
  */
 model DiskFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * Disks
-   */
-  Disks: Disk[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * Disks
+	 */
+	Disks: Disk[];
 }
 
 /**
  * Request envelope for diskCreateRequestEnvelope
  */
 model DiskCreateRequestEnvelope {
-  /**
-   * Disk
-   */
-  Disk: DiskCreateRequest;
-
-  /**
-   * DistantFrom
-   */
-  DistantFrom?: ID[];
-
-  /**
-   * KMSKey
-   */
-  KMSKey?: unknown;
-
-  /**
-   * TargetDedicatedStorageContract
-   */
-  TargetDedicatedStorageContract?: unknown;
-
-  /**
-   * Config
-   */
-  Config?: DiskEditRequest;
-
-  /**
-   * BootAtAvailable
-   */
-  BootAtAvailable?: boolean;
+	/**
+	 * Disk
+	 */
+	Disk: DiskCreateRequest;
+	/**
+	 * DistantFrom
+	 */
+	DistantFrom?: ID[];
+	/**
+	 * KMSKey
+	 */
+	KMSKey?: unknown;
+	/**
+	 * TargetDedicatedStorageContract
+	 */
+	TargetDedicatedStorageContract?: unknown;
+	/**
+	 * Config
+	 */
+	Config?: DiskEditRequest;
+	/**
+	 * BootAtAvailable
+	 */
+	BootAtAvailable?: boolean;
 }
 /**
  * Response envelope for diskCreateResponseEnvelope
  */
 model DiskCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Disk
-   */
-  Disk: Disk;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * Disk
+	 */
+	Disk: Disk;
 }
 
 /**
  * Request envelope for diskConfigRequestEnvelope
  */
 model DiskConfigRequestEnvelope {
-  /**
-   * Background
-   */
-  Background: boolean;
-
-  /**
-   * Password
-   */
-  Password: string;
-
-  /**
-   * SSHKey
-   */
-  SSHKey?: DiskEditSSHKey;
-
-  /**
-   * SSHKeys
-   */
-  SSHKeys?: DiskEditSSHKey[];
-
-  /**
-   * DisablePWAuth
-   */
-  DisablePWAuth: boolean;
-
-  /**
-   * EnableDHCP
-   */
-  EnableDHCP: boolean;
-
-  /**
-   * ChangePartitionUUID
-   */
-  ChangePartitionUUID: boolean;
-
-  /**
-   * HostName
-   */
-  HostName: string;
-
-  /**
-   * Notes
-   */
-  Notes?: DiskEditNote[];
-
-  /**
-   * UserIPAddress
-   */
-  UserIPAddress: string;
-
-  /**
-   * UserSubnet
-   */
-  UserSubnet?: DiskEditUserSubnet;
+	/**
+	 * Background
+	 */
+	Background: boolean;
+	/**
+	 * Password
+	 */
+	Password: string;
+	/**
+	 * SSHKey
+	 */
+	SSHKey?: DiskEditSSHKey;
+	/**
+	 * SSHKeys
+	 */
+	SSHKeys?: DiskEditSSHKey[];
+	/**
+	 * DisablePWAuth
+	 */
+	DisablePWAuth: boolean;
+	/**
+	 * EnableDHCP
+	 */
+	EnableDHCP: boolean;
+	/**
+	 * ChangePartitionUUID
+	 */
+	ChangePartitionUUID: boolean;
+	/**
+	 * HostName
+	 */
+	HostName: string;
+	/**
+	 * Notes
+	 */
+	Notes?: DiskEditNote[];
+	/**
+	 * UserIPAddress
+	 */
+	UserIPAddress: string;
+	/**
+	 * UserSubnet
+	 */
+	UserSubnet?: DiskEditUserSubnet;
 }
 
 /**
  * Request envelope for diskResizePartitionRequestEnvelope
  */
 model DiskResizePartitionRequestEnvelope {
-  /**
-   * Background
-   */
-  Background: boolean;
+	/**
+	 * Background
+	 */
+	Background: boolean;
 }
 
 /**
  * Response envelope for diskReadResponseEnvelope
  */
 model DiskReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Disk
-   */
-  Disk: Disk;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * Disk
+	 */
+	Disk: Disk;
 }
 
 /**
  * Request envelope for diskUpdateRequestEnvelope
  */
 model DiskUpdateRequestEnvelope {
-  /**
-   * Disk
-   */
-  Disk: DiskUpdateRequest;
+	/**
+	 * Disk
+	 */
+	Disk: DiskUpdateRequest;
 }
 /**
  * Response envelope for diskUpdateResponseEnvelope
  */
 model DiskUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Disk
-   */
-  Disk: Disk;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * Disk
+	 */
+	Disk: Disk;
 }
 
 /**
  * Request envelope for diskMonitorRequestEnvelope
  */
 model DiskMonitorRequestEnvelope {
-  /**
-   * Start
-   */
-  Start: utcDateTime;
-
-  /**
-   * End
-   */
-  End: utcDateTime;
+	/**
+	 * Start
+	 */
+	Start: utcDateTime;
+	/**
+	 * End
+	 */
+	End: utcDateTime;
 }
 /**
  * Response envelope for diskMonitorResponseEnvelope
  */
 model DiskMonitorResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Data
-   */
-  Data: unknown;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * Data
+	 */
+	Data: unknown;
 }

@@ -5,26 +5,26 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Interface {
-  ID?: int64 | null;
-  MACAddress?: string | null;
-  IPAddress?: string | null;
-  UserIPAddress?: string | null;
-  HostName?: string | null;
-  Switch?: InterfaceSwitch | null;
-  PacketFilter?: ResourceRef | null;
-  Server?: ResourceRef | null;
-  CreatedAt: utcDateTime;
+	ID?: int64 | null;
+	MACAddress?: string | null;
+	IPAddress?: string | null;
+	UserIPAddress?: string | null;
+	HostName?: string | null;
+	Switch?: InterfaceSwitch | null;
+	PacketFilter?: ResourceRef | null;
+	Server?: ResourceRef | null;
+	CreatedAt: utcDateTime;
 }
 
 model InterfaceSwitch {
-  ID?: int64 | null;
-  Scope?: EScope | null;
+	ID?: int64 | null;
+	Scope?: EScope | null;
 }
 
 model InterfaceCreateRequest {
-  Server?: ResourceRef | null;
+	Server?: ResourceRef | null;
 }
 
 model InterfaceUpdateRequest {
-  UserIPAddress?: string | null;
+	UserIPAddress?: string | null;
 }

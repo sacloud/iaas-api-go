@@ -94,7 +94,7 @@ func TestDiskCRUD(t *testing.T) {
 	require.Equal(t, "test-disk-updated", updateResp.Disk.Name.Value)
 
 	// 4. Find - リストに含まれることを確認
-	findResp, err := c.DiskOpFind(ctx, &client.DiskFindRequestEnvelope{}, client.DiskOpFindParams{Zone: zone})
+	findResp, err := c.DiskOpFind(ctx, client.DiskOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Disks), 0)
 

@@ -4,97 +4,92 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for autoBackupFindRequestEnvelope
  */
 model AutoBackupFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for autoBackupFindResponseEnvelope
  */
 model AutoBackupFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CommonServiceItems
-   */
-  CommonServiceItems: AutoBackup[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CommonServiceItems
+	 */
+	CommonServiceItems: AutoBackup[];
 }
 
 /**
  * Request envelope for autoBackupCreateRequestEnvelope
  */
 model AutoBackupCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: AutoBackupCreateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: AutoBackupCreateRequest;
 }
 /**
  * Response envelope for autoBackupCreateResponseEnvelope
  */
 model AutoBackupCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: AutoBackup;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: AutoBackup;
 }
 
 /**
  * Response envelope for autoBackupReadResponseEnvelope
  */
 model AutoBackupReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: AutoBackup;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: AutoBackup;
 }
 
 /**
  * Request envelope for autoBackupUpdateRequestEnvelope
  */
 model AutoBackupUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: AutoBackupUpdateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: AutoBackupUpdateRequest;
 }
 /**
  * Response envelope for autoBackupUpdateResponseEnvelope
  */
 model AutoBackupUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: AutoBackup;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: AutoBackup;
 }

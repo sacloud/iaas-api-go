@@ -4,110 +4,105 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Response envelope for billByContractResponseEnvelope
  */
 model BillByContractResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * Bills
-   */
-  Bills: Bill[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * Bills
+	 */
+	Bills: Bill[];
 }
 
 /**
  * Response envelope for billByContractYearResponseEnvelope
  */
 model BillByContractYearResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * Bills
-   */
-  Bills: Bill[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * Bills
+	 */
+	Bills: Bill[];
 }
 
 /**
  * Response envelope for billByContractYearMonthResponseEnvelope
  */
 model BillByContractYearMonthResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * Bills
-   */
-  Bills: Bill[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * Bills
+	 */
+	Bills: Bill[];
 }
 
 /**
  * Response envelope for billReadResponseEnvelope
  */
 model BillReadResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * Bills
-   */
-  Bills: Bill[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * Bills
+	 */
+	Bills: Bill[];
 }
 
 /**
  * Response envelope for billDetailsResponseEnvelope
  */
 model BillDetailsResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * BillDetails
-   */
-  BillDetails: BillDetail[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * BillDetails
+	 */
+	BillDetails: BillDetail[];
 }
 
 /**
  * Response envelope for billDetailsCSVResponseEnvelope
  */
 model BillDetailsCSVResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CSV
-   */
-  CSV: BillDetailCSV;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CSV
+	 */
+	CSV: BillDetailCSV;
 }

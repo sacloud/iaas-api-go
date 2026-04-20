@@ -10,90 +10,97 @@ namespace Sacloud.IaaS;
 
 @tag("Interface")
 interface InterfaceOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/interface")
-  find(
+  op find(
     @path zone: string,
-    @body body: InterfaceFindRequestEnvelope,
+    @query q?: string,
+    
   ): InterfaceFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/interface")
-  create(@path zone: string, @body body: InterfaceCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...InterfaceCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: InterfaceCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...InterfaceCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): InterfaceReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: InterfaceUpdateRequestEnvelope,
+    
   ): InterfaceUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}/monitor")
-  monitor(
+  op monitor(
     @path zone: string,
     @path id: string,
     @body body: InterfaceMonitorRequestEnvelope,
+    
   ): InterfaceMonitorResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/shared")
-  connectToSharedSegment(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op connectToSharedSegment(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}")
-  connectToSwitch(
+  op connectToSwitch(
     @path zone: string,
     @path id: string,
     @path switchID: string,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
-  disconnectFromSwitch(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op disconnectFromSwitch(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}")
-  connectToPacketFilter(
+  op connectToPacketFilter(
     @path zone: string,
     @path id: string,
     @path packetFilterID: string,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter")
-  disconnectFromPacketFilter(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op disconnectFromPacketFilter(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+
 }

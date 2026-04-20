@@ -5,104 +5,104 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model CertificateAuthority {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Status?: CertificateAuthorityStatus | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	Status?: CertificateAuthorityStatus | null;
 }
 
 model CertificateAuthorityStatus {
-  Country?: string | null;
-  Organization?: string | null;
-  OrganizationUnit?: string[] | null;
-  CommonName?: string | null;
-  NotAfter?: utcDateTime | null;
-  Subject?: string | null;
+	Country?: string | null;
+	Organization?: string | null;
+	OrganizationUnit?: string[] | null;
+	CommonName?: string | null;
+	NotAfter?: utcDateTime | null;
+	Subject?: string | null;
 }
 
 model CertificateAuthorityCreateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  Status?: CertificateAuthorityCreateRequestStatus | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	Status?: CertificateAuthorityCreateRequestStatus | null;
 }
 
 model CertificateAuthorityCreateRequestStatus {
-  Country?: string | null;
-  Organization?: string | null;
-  OrganizationUnit?: string[] | null;
-  CommonName?: string | null;
-  NotAfter?: utcDateTime | null;
+	Country?: string | null;
+	Organization?: string | null;
+	OrganizationUnit?: string[] | null;
+	CommonName?: string | null;
+	NotAfter?: utcDateTime | null;
 }
 
 model CertificateAuthorityUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model CertificateAuthorityDetail {
-  Subject?: string | null;
-  CertificateData?: CertificateData | null;
+	Subject?: string | null;
+	CertificateData?: CertificateData | null;
 }
 
 model CertificateData {
-  CertificatePEM?: string | null;
-  Subject?: string | null;
-  SerialNumber?: string | null;
-  NotBefore?: utcDateTime | null;
-  NotAfter?: utcDateTime | null;
+	CertificatePEM?: string | null;
+	Subject?: string | null;
+	SerialNumber?: string | null;
+	NotBefore?: utcDateTime | null;
+	NotAfter?: utcDateTime | null;
 }
 
 model CertificateAuthorityAddClientOrServerResult {
-  ID?: string | null;
+	ID?: string | null;
 }
 
 model CertificateAuthorityAddClientParam {
-  Country?: string | null;
-  Organization?: string | null;
-  OrganizationUnit?: string[] | null;
-  CommonName?: string | null;
-  NotAfter?: utcDateTime | null;
-  IssuanceMethod?: ECertificateAuthorityIssuanceMethod | null;
-  EMail?: string | null;
-  CertificateSigningRequest?: string | null;
-  PublicKey?: string | null;
+	Country?: string | null;
+	Organization?: string | null;
+	OrganizationUnit?: string[] | null;
+	CommonName?: string | null;
+	NotAfter?: utcDateTime | null;
+	IssuanceMethod?: ECertificateAuthorityIssuanceMethod | null;
+	EMail?: string | null;
+	CertificateSigningRequest?: string | null;
+	PublicKey?: string | null;
 }
 
 model CertificateAuthorityClient {
-  ID?: string | null;
-  Subject?: string | null;
-  EMail?: string | null;
-  IssuanceMethod?: ECertificateAuthorityIssuanceMethod | null;
-  IssueState?: string | null;
-  URL?: string | null;
-  CertificateData?: CertificateData | null;
+	ID?: string | null;
+	Subject?: string | null;
+	EMail?: string | null;
+	IssuanceMethod?: ECertificateAuthorityIssuanceMethod | null;
+	IssueState?: string | null;
+	URL?: string | null;
+	CertificateData?: CertificateData | null;
 }
 
 model CertificateAuthorityAddServerParam {
-  Country?: string | null;
-  Organization?: string | null;
-  OrganizationUnit?: string[] | null;
-  CommonName?: string | null;
-  NotAfter?: utcDateTime | null;
-  SANs: string[];
-  CertificateSigningRequest?: string | null;
-  PublicKey?: string | null;
+	Country?: string | null;
+	Organization?: string | null;
+	OrganizationUnit?: string[] | null;
+	CommonName?: string | null;
+	NotAfter?: utcDateTime | null;
+	SANs: string[];
+	CertificateSigningRequest?: string | null;
+	PublicKey?: string | null;
 }
 
 model CertificateAuthorityServer {
-  ID?: string | null;
-  Subject?: string | null;
-  SANs?: string[] | null;
-  EMail?: string | null;
-  IssueState?: string | null;
-  CertificateData?: CertificateData | null;
+	ID?: string | null;
+	Subject?: string | null;
+	SANs?: string[] | null;
+	EMail?: string | null;
+	IssueState?: string | null;
+	CertificateData?: CertificateData | null;
 }

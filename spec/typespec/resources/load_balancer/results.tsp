@@ -5,29 +5,31 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LoadBalancerFindResult {
-  @doc("対象リソースの総件数")
-  Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("検索結果")
-  LoadBalancers: LoadBalancer[];
+	@doc("現在のページの件数")
+	Count: int32;
+	@doc("検索結果")
+	LoadBalancers: LoadBalancer[];
+
 }
 
 model LoadBalancerStatusResult {
-  @doc("対象リソースの総件数")
-  Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("検索結果")
-  Status: LoadBalancerStatus[];
+	@doc("現在のページの件数")
+	Count: int32;
+	@doc("検索結果")
+	Status: LoadBalancerStatus[];
+
 }

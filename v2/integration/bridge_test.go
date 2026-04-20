@@ -71,7 +71,7 @@ func TestBridgeCRUD(t *testing.T) {
 	require.Equal(t, "test-bridge-updated", updateResp.Bridge.Name.Value)
 
 	// 4. Find
-	findResp, err := c.BridgeOpFind(ctx, &client.BridgeFindRequestEnvelope{}, client.BridgeOpFindParams{Zone: zone})
+	findResp, err := c.BridgeOpFind(ctx, client.BridgeOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	var found bool
 	for _, b := range findResp.Bridges {

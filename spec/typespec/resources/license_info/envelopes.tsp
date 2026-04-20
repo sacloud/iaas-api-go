@@ -4,53 +4,50 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for licenseInfoFindRequestEnvelope
  */
 model LicenseInfoFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for licenseInfoFindResponseEnvelope
  */
 model LicenseInfoFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * LicenseInfo
-   */
-  LicenseInfo: LicenseInfo[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * LicenseInfo
+	 */
+	LicenseInfo: LicenseInfo[];
 }
 
 /**
  * Response envelope for licenseInfoReadResponseEnvelope
  */
 model LicenseInfoReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * LicenseInfo
-   */
-  LicenseInfo: LicenseInfo;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * LicenseInfo
+	 */
+	LicenseInfo: LicenseInfo;
 }

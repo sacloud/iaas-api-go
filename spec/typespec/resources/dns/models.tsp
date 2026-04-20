@@ -5,65 +5,65 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model DNS {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Records: DNSRecord[];
-  Settings?: DNSSettings | null;
-  SettingsHash?: string | null;
-  Status?: DNSStatus | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	Records: DNSRecord[];
+	Settings?: DNSSettings | null;
+	SettingsHash?: string | null;
+	Status?: DNSStatus | null;
 }
 
 model DNSSettings {
-  DNS?: DNSSettingsDNS | null;
+	DNS?: DNSSettingsDNS | null;
 }
 
 model DNSSettingsDNS {
-  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+	MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model DNSStatus {
-  Zone?: string | null;
-  NS?: string[] | null;
+	Zone?: string | null;
+	NS?: string[] | null;
 }
 
 model DNSRecord {
-  Name: string;
-  Type: EDNSRecordType;
-  RData: string;
-  TTL: int32;
+	Name: string;
+	Type: EDNSRecordType;
+	RData: string;
+	TTL: int32;
 }
 
 model MonitoringSuiteLog {
-  Enabled: boolean;
+	Enabled: boolean;
 }
 
 model DNSCreateRequest {
-  Name?: string | null;
-  Records: DNSRecord[];
-  Settings?: DNSCreateRequestSettings | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Records: DNSRecord[];
+	Settings?: DNSCreateRequestSettings | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model DNSCreateRequestSettings {
-  DNS?: DNSCreateRequestSettingsDNS | null;
+	DNS?: DNSCreateRequestSettingsDNS | null;
 }
 
 model DNSCreateRequestSettingsDNS {
-  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+	MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model DNSUpdateRequest {
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  Records: DNSRecord[];
-  SettingsHash?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	Records: DNSRecord[];
+	SettingsHash?: string | null;
 }

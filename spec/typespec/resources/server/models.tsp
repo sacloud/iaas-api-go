@@ -5,183 +5,173 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Server {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  HostName?: string | null;
-
-  // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver?: EInterfaceDriver | null;
-
-  ServerPlan?: ServerServerPlan | null;
-  Zone?: ZoneInfo | null;
-  Instance?: ServerInstance | null;
-  Disks?: ServerConnectedDisk[] | null;
-  Interfaces?: InterfaceView[] | null;
-  PrivateHost?: ServerPrivateHost | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	HostName?: string | null;
+	// Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
+	InterfaceDriver?: EInterfaceDriver | null;
+	ServerPlan?: ServerServerPlan | null;
+	Zone?: ZoneInfo | null;
+	Instance?: ServerInstance | null;
+	Disks?: ServerConnectedDisk[] | null;
+	Interfaces?: InterfaceView[] | null;
+	PrivateHost?: ServerPrivateHost | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
 }
 
 model ServerServerPlan {
-  ID?: int64 | null;
-  Name?: string | null;
-  CPU?: int32 | null;
-  MemoryMB?: int32 | null;
-  GPU?: int32 | null;
-  GPUModel?: string | null;
-  CPUModel?: string | null;
-
-  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment?: ECommitment | null;
-
-  Generation?: EPlanGeneration | null;
-  ConfidentialVM: boolean;
+	ID?: int64 | null;
+	Name?: string | null;
+	CPU?: int32 | null;
+	MemoryMB?: int32 | null;
+	GPU?: int32 | null;
+	GPUModel?: string | null;
+	CPUModel?: string | null;
+	// Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
+	Commitment?: ECommitment | null;
+	Generation?: EPlanGeneration | null;
+	ConfidentialVM: boolean;
 }
 
 model ServerInstance {
-  Host?: ServerInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
-  BeforeStatus?: EServerInstanceStatus | null;
-  StatusChangedAt?: utcDateTime | null;
-  Warnings?: string | null;
-  WarningsValue?: int32 | null;
-  CDROM?: ResourceRef | null;
+	Host?: ServerInstanceHost | null;
+	Status?: EServerInstanceStatus | null;
+	BeforeStatus?: EServerInstanceStatus | null;
+	StatusChangedAt?: utcDateTime | null;
+	Warnings?: string | null;
+	WarningsValue?: int32 | null;
+	CDROM?: ResourceRef | null;
 }
 
 model ServerInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+	Name?: string | null;
+	InfoURL?: string | null;
 }
 
 model ServerPrivateHost {
-  ID: int64;
-  Name?: string | null;
+	ID: int64;
+	Name?: string | null;
 }
 
 model ZoneInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description?: string | null;
-  IsDummy: boolean;
-  VNCProxy?: VNCProxy | null;
-  FTPServer?: FTPServerInfo | null;
-  Region?: Region | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description?: string | null;
+	IsDummy: boolean;
+	VNCProxy?: VNCProxy | null;
+	FTPServer?: FTPServerInfo | null;
+	Region?: Region | null;
 }
 
 model VNCProxy {
-  HostName?: string | null;
-  IPAddress?: string | null;
+	HostName?: string | null;
+	IPAddress?: string | null;
 }
 
 model FTPServerInfo {
-  HostName?: string | null;
-  IPAddress?: string | null;
+	HostName?: string | null;
+	IPAddress?: string | null;
 }
 
 model ServerConnectedDisk {
-  ID?: int64 | null;
-  Name?: string | null;
-  Availability?: EAvailability | null;
-  Connection?: EDiskConnection | null;
-  ConnectionOrder?: int32 | null;
-  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
-  ReinstallCount?: int32 | null;
-  SizeMB?: int32 | null;
-  Plan?: ResourceRef | null;
-  Storage?: Storage | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Availability?: EAvailability | null;
+	Connection?: EDiskConnection | null;
+	ConnectionOrder?: int32 | null;
+	EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+	ReinstallCount?: int32 | null;
+	SizeMB?: int32 | null;
+	Plan?: ResourceRef | null;
+	Storage?: Storage | null;
 }
 
 model ServerCreateRequest {
-  ServerPlan?: ServerCreateRequestServerPlan | null;
-  ConnectedSwitches?: ConnectedSwitch[] | null;
-
-  // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver?: EInterfaceDriver | null;
-
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  WaitDiskMigration: boolean;
-  PrivateHost?: ResourceRef | null;
+	ServerPlan?: ServerCreateRequestServerPlan | null;
+	ConnectedSwitches?: ConnectedSwitch[] | null;
+	// Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
+	InterfaceDriver?: EInterfaceDriver | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	WaitDiskMigration: boolean;
+	PrivateHost?: ResourceRef | null;
 }
 
 model ServerCreateRequestServerPlan {
-  CPU?: int32 | null;
-  MemoryMB?: int32 | null;
-  GPU?: int32 | null;
-  GPUModel?: string | null;
-  CPUModel?: string | null;
-
-  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment?: ECommitment | null;
-
-  Generation?: EPlanGeneration | null;
-  ConfidentialVM: boolean;
+	CPU?: int32 | null;
+	MemoryMB?: int32 | null;
+	GPU?: int32 | null;
+	GPUModel?: string | null;
+	CPUModel?: string | null;
+	// Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
+	Commitment?: ECommitment | null;
+	Generation?: EPlanGeneration | null;
+	ConfidentialVM: boolean;
 }
 
 model ConnectedSwitch {
-  ID?: int64 | null;
-  Scope?: EScope | null;
+	ID?: int64 | null;
+	Scope?: EScope | null;
 }
 
 model ServerUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  PrivateHost?: ResourceRef | null;
-
-  // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver?: EInterfaceDriver | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	PrivateHost?: ResourceRef | null;
+	// Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
+	InterfaceDriver?: EInterfaceDriver | null;
 }
 
 model ServerDeleteWithDisksRequest {
-  WithDisk: int64[];
+	WithDisk: int64[];
 }
 
 model ServerChangePlanRequest {
-  CPU?: int32 | null;
-  MemoryMB?: int32 | null;
-  GPU?: int32 | null;
-  GPUModel?: string | null;
-  CPUModel?: string | null;
-  Generation?: EPlanGeneration | null;
-
-  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment?: ECommitment | null;
+	CPU?: int32 | null;
+	MemoryMB?: int32 | null;
+	GPU?: int32 | null;
+	GPUModel?: string | null;
+	CPUModel?: string | null;
+	Generation?: EPlanGeneration | null;
+	// Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
+	Commitment?: ECommitment | null;
 }
 
 model InsertCDROMRequest {
-  ID?: int64 | null;
+	ID?: int64 | null;
 }
 
 model EjectCDROMRequest {
-  ID?: int64 | null;
+	ID?: int64 | null;
 }
 
 model ServerBootVariables {
-  CloudInit: ServerBootVariablesCloudInit;
+	CloudInit: ServerBootVariablesCloudInit;
 }
 
 model ServerBootVariablesCloudInit {
-  UserData: string;
+	UserData: string;
 }
 
 model SendKeyRequest {
-  Key: string;
-  Keys: string[];
+	Key: string;
+	Keys: string[];
 }
 
 model VNCProxyInfo {
-  Status?: string | null;
-  Host?: string | null;
-  IOServerHost?: string | null;
-  Port?: int32 | null;
-  Password?: string | null;
-  VNCFile?: string | null;
+	Status?: string | null;
+	Host?: string | null;
+	IOServerHost?: string | null;
+	Port?: int32 | null;
+	Password?: string | null;
+	VNCFile?: string | null;
 }

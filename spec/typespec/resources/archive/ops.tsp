@@ -10,66 +10,73 @@ namespace Sacloud.IaaS;
 
 @tag("Archive")
 interface ArchiveOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/archive")
-  find(
+  op find(
     @path zone: string,
-    @body body: ArchiveFindRequestEnvelope,
+    @query q?: string,
+    
   ): ArchiveFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/archive")
-  create(@path zone: string, @body body: ArchiveCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...ArchiveCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: ArchiveCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...ArchiveCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): ArchiveReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: ArchiveUpdateRequestEnvelope,
+    
   ): ArchiveUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  share(
+  op share(
     @path zone: string,
     @path id: string,
     @body body: ArchiveShareRequestEnvelope,
+    
   ): ArchiveShareResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  closeFTP(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op closeFTP(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}")
-  transfer(
+  op transfer(
     @path zone: string,
     @path sourceArchiveID: string,
     @path destZoneID: string,
     @body body: ArchiveTransferRequestEnvelope,
-  ): {
-    @statusCode _: 201;
-    ...ArchiveTransferResponseEnvelope;
-  } | ApiError;
+    
+  ): {@statusCode _: 201; ...ArchiveTransferResponseEnvelope} | ApiError;
+
 }

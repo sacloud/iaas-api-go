@@ -333,14 +333,26 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 		}
 
 		if envelopeName, ok := envelopeNameByKey[g.key]; ok && envelopeName != "" {
-			// グループのいずれかにリクエストエンベロープがある → 統合エンベロープを @body で使用
-			// （単一 op の場合は従来通り、そのエンベロープ名。複数 op の場合は primary のエンベロープ名に
-			// 全バリアントの payload が union でマージ済み）
-			params = append(params, opParam{
-				Decorator: "@body",
-				Name:      "body",
-				TSType:    envelopeName,
-			})
+			// Find 系 (GET + XxxFindRequestEnvelope) は @query q?: string に差し替える。
+			// サーバーは将来 `?q={json}` を受け付ける予定（未実装）。OpenAPI はその未来形で記述し、
+			// ワイヤーレベルでは findQueryRewriteTransport が `q=` を剥がして `?{json}` に変換する。
+			if strings.ToLower(g.key.method) == "get" && strings.HasSuffix(envelopeName, "FindRequestEnvelope") {
+				params = append(params, opParam{
+					Decorator: "@query",
+					Name:      "q",
+					TSType:    "string",
+					Optional:  true,
+				})
+			} else {
+				// グループのいずれかにリクエストエンベロープがある → 統合エンベロープを @body で使用
+				// （単一 op の場合は従来通り、そのエンベロープ名。複数 op の場合は primary のエンベロープ名に
+				// 全バリアントの payload が union でマージ済み）
+				params = append(params, opParam{
+					Decorator: "@body",
+					Name:      "body",
+					TSType:    envelopeName,
+				})
+			}
 		} else {
 			// エンベロープなし: primary op の引数をボディ引数として出力
 			for _, arg := range primary.Arguments {
@@ -559,6 +571,12 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 				// 全バリアントが同じ型 → そのまま使用
 				// wrap が必要なら envelope モデル名を TSType に、不要なら型そのものを使う
 				tsType := firstArg.tsType
+				// Find 系共有グループ (GET + FindCondition) は @query q?: string に差し替え。
+				// 詳細は generateIndividualFile 側の同種分岐コメント参照。
+				if strings.ToLower(k.method) == "get" && tsType == "FindCondition" {
+					params = append(params, opParam{Decorator: "@query", Name: "q", TSType: "string", Optional: true})
+					continue
+				}
 				if shouldWrap && len(firstArgs) == 1 {
 					envName := groupName + upperFirst(lowerFirst(repOp.Name)) + "RequestEnvelope"
 					if !fatModelExists(fatModels, envName) {

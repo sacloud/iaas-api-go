@@ -5,79 +5,79 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model NFS {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Class?: string | null;
-  Instance?: NFSInstance | null;
-  Interfaces?: InterfaceView[] | null;
-  Remark?: NFSRemark | null;
-  IPAddresses: string[];
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Switch?: NFSSwitch | null;
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Class?: string | null;
+	Instance?: NFSInstance | null;
+	Interfaces?: InterfaceView[] | null;
+	Remark?: NFSRemark | null;
+	IPAddresses: string[];
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	Switch?: NFSSwitch | null;
 }
 
 model NFSInstance {
-  Host?: NFSInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
-  StatusChangedAt?: utcDateTime | null;
+	Host?: NFSInstanceHost | null;
+	Status?: EServerInstanceStatus | null;
+	StatusChangedAt?: utcDateTime | null;
 }
 
 model NFSInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+	Name?: string | null;
+	InfoURL?: string | null;
 }
 
 model NFSRemark {
-  Plan?: ResourceRef | null;
-  Network?: NFSRemarkNetwork | null;
+	Plan?: ResourceRef | null;
+	Network?: NFSRemarkNetwork | null;
 }
 
 model NFSRemarkNetwork {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
+	DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
 }
 
 model NFSSwitch {
-  Name?: string | null;
+	Name?: string | null;
 }
 
 model NFSCreateRequest {
-  Remark?: NFSCreateRequestRemark | null;
-  IPAddresses: string[];
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Remark?: NFSCreateRequestRemark | null;
+	IPAddresses: string[];
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model NFSCreateRequestRemark {
-  Switch?: ResourceRef | null;
-  Plan?: ResourceRef | null;
-  Network?: NFSCreateRequestRemarkNetwork | null;
+	Switch?: ResourceRef | null;
+	Plan?: ResourceRef | null;
+	Network?: NFSCreateRequestRemarkNetwork | null;
 }
 
 model NFSCreateRequestRemarkNetwork {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
+	NetworkMaskLen?: int32 | null;
+	DefaultRoute?: string | null;
 }
 
 model NFSUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model FreeDiskSizeActivity {
-  Values: MonitorFreeDiskSizeValue[];
+	Values: MonitorFreeDiskSizeValue[];
 }
 
 model MonitorFreeDiskSizeValue {
-  Time: utcDateTime;
-  FreeDiskSize: float64;
+	Time: utcDateTime;
+	FreeDiskSize: float64;
 }

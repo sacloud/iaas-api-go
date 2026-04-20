@@ -34,7 +34,7 @@ func findNFSPlanID(t *testing.T, ctx context.Context, c *client.Client, zone str
 	t.Helper()
 
 	// v2 の Filter syntax は v1 search.Filter と異なるため、全 Note を舐めて Name=="sys-nfs" & Class=="json" を探す。
-	resp, err := c.NoteOpFind(ctx, &client.NoteFindRequestEnvelope{}, client.NoteOpFindParams{Zone: zone})
+	resp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{Zone: zone})
 	require.NoError(t, err)
 
 	var content string
@@ -202,7 +202,7 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	require.Equal(t, "test-nfs-updated", updateResp.Appliance.Name.Value)
 
 	// 6. Find
-	findResp, err := c.ApplianceOpFind(ctx, &client.FindCondition{}, client.ApplianceOpFindParams{Zone: zone})
+	findResp, err := c.ApplianceOpFind(ctx, client.ApplianceOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	var found bool
 	for _, app := range findResp.Appliances {

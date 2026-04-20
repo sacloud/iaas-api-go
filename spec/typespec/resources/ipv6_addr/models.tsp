@@ -5,22 +5,22 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6Addr {
-  IPv6Addr?: string | null;
-  HostName: string;
-  IPv6Net?: IPv6AddrIPv6Net | null;
-  Interface?: ResourceRef | null;
+	IPv6Addr?: string | null;
+	HostName: string;
+	IPv6Net?: IPv6AddrIPv6Net | null;
+	Interface?: ResourceRef | null;
 }
 
 model IPv6AddrIPv6Net {
-  ID?: int64 | null;
-  Switch?: ResourceRef | null;
+	ID?: int64 | null;
+	Switch?: ResourceRef | null;
 }
 
 model IPv6AddrCreateRequest {
-  IPv6Addr?: string | null;
-  HostName: string;
+	IPv6Addr?: string | null;
+	HostName: string;
 }
 
 model IPv6AddrUpdateRequest {
-  HostName: string;
+	HostName: string;
 }

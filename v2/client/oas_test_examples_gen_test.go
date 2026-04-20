@@ -323,32 +323,6 @@ func TestArchiveCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestArchiveFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ ArchiveFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestArchiveFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ ArchiveFindRequestEnvelopeFilter
-	typ = make(ArchiveFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveFindRequestEnvelopeFilter
-	typ2 = make(ArchiveFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestArchiveFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ArchiveFindResponseEnvelope
 	typ.SetFake()
@@ -925,32 +899,6 @@ func TestBridgeCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BridgeCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestBridgeFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ BridgeFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BridgeFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBridgeFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ BridgeFindRequestEnvelopeFilter
-	typ = make(BridgeFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BridgeFindRequestEnvelopeFilter
-	typ2 = make(BridgeFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestBridgeFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ BridgeFindResponseEnvelope
 	typ.SetFake()
@@ -1117,32 +1065,6 @@ func TestCDROMCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 CDROMCreateResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestCDROMFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ CDROMFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 CDROMFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestCDROMFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ CDROMFindRequestEnvelopeFilter
-	typ = make(CDROMFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 CDROMFindRequestEnvelopeFilter
-	typ2 = make(CDROMFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestCDROMFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -2699,32 +2621,6 @@ func TestDiskEncryptionKey_EncodeDecode(t *testing.T) {
 	var typ2 DiskEncryptionKey
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestDiskFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ DiskFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 DiskFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestDiskFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ DiskFindRequestEnvelopeFilter
-	typ = make(DiskFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 DiskFindRequestEnvelopeFilter
-	typ2 = make(DiskFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestDiskFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DiskFindResponseEnvelope
 	typ.SetFake()
@@ -2831,32 +2727,6 @@ func TestDiskPlan_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 DiskPlan
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestDiskPlanFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ DiskPlanFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 DiskPlanFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestDiskPlanFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ DiskPlanFindRequestEnvelopeFilter
-	typ = make(DiskPlanFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 DiskPlanFindRequestEnvelopeFilter
-	typ2 = make(DiskPlanFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestDiskPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -3627,18 +3497,6 @@ func TestFTPServerInfo_EncodeDecode(t *testing.T) {
 	var typ2 FTPServerInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestFindCondition_EncodeDecode(t *testing.T) {
-	var typ FindCondition
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 FindCondition
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestGSLBHealthCheck_EncodeDecode(t *testing.T) {
 	var typ GSLBHealthCheck
 	typ.SetFake()
@@ -3781,32 +3639,6 @@ func TestIPv6AddrCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 IPv6AddrCreateResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestIPv6AddrFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ IPv6AddrFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 IPv6AddrFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestIPv6AddrFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ IPv6AddrFindRequestEnvelopeFilter
-	typ = make(IPv6AddrFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 IPv6AddrFindRequestEnvelopeFilter
-	typ2 = make(IPv6AddrFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestIPv6AddrFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -4015,32 +3847,6 @@ func TestIconCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 IconCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestIconFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ IconFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 IconFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestIconFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ IconFindRequestEnvelopeFilter
-	typ = make(IconFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 IconFindRequestEnvelopeFilter
-	typ2 = make(IconFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestIconFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ IconFindResponseEnvelope
 	typ.SetFake()
@@ -4171,32 +3977,6 @@ func TestInterfaceCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 InterfaceCreateResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestInterfaceFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ InterfaceFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InterfaceFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestInterfaceFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ InterfaceFindRequestEnvelopeFilter
-	typ = make(InterfaceFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InterfaceFindRequestEnvelopeFilter
-	typ2 = make(InterfaceFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestInterfaceFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -4523,32 +4303,6 @@ func TestInternetEnableIPv6ResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetEnableIPv6ResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestInternetFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ InternetFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InternetFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestInternetFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ InternetFindRequestEnvelopeFilter
-	typ = make(InternetFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InternetFindRequestEnvelopeFilter
-	typ2 = make(InternetFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestInternetFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetFindResponseEnvelope
 	typ.SetFake()
@@ -4643,32 +4397,6 @@ func TestInternetPlan_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 InternetPlan
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestInternetPlanFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ InternetPlanFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InternetPlanFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestInternetPlanFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ InternetPlanFindRequestEnvelopeFilter
-	typ = make(InternetPlanFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InternetPlanFindRequestEnvelopeFilter
-	typ2 = make(InternetPlanFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestInternetPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -4887,32 +4615,6 @@ func TestLicenseCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 LicenseCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestLicenseFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ LicenseFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 LicenseFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestLicenseFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ LicenseFindRequestEnvelopeFilter
-	typ = make(LicenseFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 LicenseFindRequestEnvelopeFilter
-	typ2 = make(LicenseFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestLicenseFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ LicenseFindResponseEnvelope
 	typ.SetFake()
@@ -4935,32 +4637,6 @@ func TestLicenseInfo_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 LicenseInfo
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestLicenseInfoFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ LicenseInfoFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 LicenseInfoFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestLicenseInfoFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ LicenseInfoFindRequestEnvelopeFilter
-	typ = make(LicenseInfoFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 LicenseInfoFindRequestEnvelopeFilter
-	typ2 = make(LicenseInfoFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestLicenseInfoFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -5575,32 +5251,6 @@ func TestNoteCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 NoteCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestNoteFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ NoteFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 NoteFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestNoteFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ NoteFindRequestEnvelopeFilter
-	typ = make(NoteFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 NoteFindRequestEnvelopeFilter
-	typ2 = make(NoteFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestNoteFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ NoteFindResponseEnvelope
 	typ.SetFake()
@@ -5731,32 +5381,6 @@ func TestPacketFilterExpression_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 PacketFilterExpression
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestPacketFilterFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ PacketFilterFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PacketFilterFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestPacketFilterFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ PacketFilterFindRequestEnvelopeFilter
-	typ = make(PacketFilterFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PacketFilterFindRequestEnvelopeFilter
-	typ2 = make(PacketFilterFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestPacketFilterFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -5891,32 +5515,6 @@ func TestPrivateHostCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 PrivateHostCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestPrivateHostFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ PrivateHostFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PrivateHostFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestPrivateHostFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ PrivateHostFindRequestEnvelopeFilter
-	typ = make(PrivateHostFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PrivateHostFindRequestEnvelopeFilter
-	typ2 = make(PrivateHostFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestPrivateHostFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ PrivateHostFindResponseEnvelope
 	typ.SetFake()
@@ -5963,32 +5561,6 @@ func TestPrivateHostPlan_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 PrivateHostPlan
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestPrivateHostPlanFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ PrivateHostPlanFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PrivateHostPlanFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestPrivateHostPlanFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ PrivateHostPlanFindRequestEnvelopeFilter
-	typ = make(PrivateHostPlanFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PrivateHostPlanFindRequestEnvelopeFilter
-	typ2 = make(PrivateHostPlanFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestPrivateHostPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -6459,32 +6031,6 @@ func TestRegion_EncodeDecode(t *testing.T) {
 	var typ2 Region
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestRegionFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ RegionFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 RegionFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestRegionFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ RegionFindRequestEnvelopeFilter
-	typ = make(RegionFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 RegionFindRequestEnvelopeFilter
-	typ2 = make(RegionFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestRegionFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ RegionFindResponseEnvelope
 	typ.SetFake()
@@ -6821,32 +6367,6 @@ func TestSSHKeyCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SSHKeyCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSSHKeyFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ SSHKeyFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SSHKeyFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSSHKeyFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ SSHKeyFindRequestEnvelopeFilter
-	typ = make(SSHKeyFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SSHKeyFindRequestEnvelopeFilter
-	typ2 = make(SSHKeyFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSSHKeyFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SSHKeyFindResponseEnvelope
 	typ.SetFake()
@@ -7075,32 +6595,6 @@ func TestServerEjectCDROMRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerEjectCDROMRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestServerFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ ServerFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestServerFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ ServerFindRequestEnvelopeFilter
-	typ = make(ServerFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerFindRequestEnvelopeFilter
-	typ2 = make(ServerFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestServerFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerFindResponseEnvelope
 	typ.SetFake()
@@ -7293,32 +6787,6 @@ func TestServerPlan_EncodeDecode(t *testing.T) {
 	var typ2 ServerPlan
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestServerPlanFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ ServerPlanFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerPlanFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestServerPlanFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ ServerPlanFindRequestEnvelopeFilter
-	typ = make(ServerPlanFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerPlanFindRequestEnvelopeFilter
-	typ2 = make(ServerPlanFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestServerPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerPlanFindResponseEnvelope
 	typ.SetFake()
@@ -7449,32 +6917,6 @@ func TestServiceClass_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ServiceClass
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestServiceClassFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ ServiceClassFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServiceClassFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestServiceClassFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ ServiceClassFindRequestEnvelopeFilter
-	typ = make(ServiceClassFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServiceClassFindRequestEnvelopeFilter
-	typ2 = make(ServiceClassFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestServiceClassFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -7669,32 +7111,6 @@ func TestSubnet_EncodeDecode(t *testing.T) {
 	var typ2 Subnet
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSubnetFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ SubnetFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SubnetFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSubnetFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ SubnetFindRequestEnvelopeFilter
-	typ = make(SubnetFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SubnetFindRequestEnvelopeFilter
-	typ2 = make(SubnetFindRequestEnvelopeFilter)
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSubnetFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SubnetFindResponseEnvelope
 	typ.SetFake()
@@ -7801,32 +7217,6 @@ func TestSwitchCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 SwitchCreateResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSwitchFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ SwitchFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SwitchFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSwitchFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ SwitchFindRequestEnvelopeFilter
-	typ = make(SwitchFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SwitchFindRequestEnvelopeFilter
-	typ2 = make(SwitchFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestSwitchFindResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -8103,32 +7493,6 @@ func TestZone_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 Zone
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestZoneFindRequestEnvelope_EncodeDecode(t *testing.T) {
-	var typ ZoneFindRequestEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ZoneFindRequestEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestZoneFindRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
-	var typ ZoneFindRequestEnvelopeFilter
-	typ = make(ZoneFindRequestEnvelopeFilter)
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ZoneFindRequestEnvelopeFilter
-	typ2 = make(ZoneFindRequestEnvelopeFilter)
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestZoneFindResponseEnvelope_EncodeDecode(t *testing.T) {

@@ -4,218 +4,206 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for certificateAuthorityFindRequestEnvelope
  */
 model CertificateAuthorityFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for certificateAuthorityFindResponseEnvelope
  */
 model CertificateAuthorityFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CommonServiceItems
-   */
-  CommonServiceItems: CertificateAuthority[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CommonServiceItems
+	 */
+	CommonServiceItems: CertificateAuthority[];
 }
 
 /**
  * Request envelope for certificateAuthorityCreateRequestEnvelope
  */
 model CertificateAuthorityCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: CertificateAuthorityCreateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: CertificateAuthorityCreateRequest;
 }
 /**
  * Response envelope for certificateAuthorityCreateResponseEnvelope
  */
 model CertificateAuthorityCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: CertificateAuthority;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: CertificateAuthority;
 }
 
 /**
  * Response envelope for certificateAuthorityReadResponseEnvelope
  */
 model CertificateAuthorityReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: CertificateAuthority;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: CertificateAuthority;
 }
 
 /**
  * Request envelope for certificateAuthorityUpdateRequestEnvelope
  */
 model CertificateAuthorityUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: CertificateAuthorityUpdateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: CertificateAuthorityUpdateRequest;
 }
 /**
  * Response envelope for certificateAuthorityUpdateResponseEnvelope
  */
 model CertificateAuthorityUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: CertificateAuthority;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: CertificateAuthority;
 }
 
 /**
  * Response envelope for certificateAuthorityDetailResponseEnvelope
  */
 model CertificateAuthorityDetailResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityDetail;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityDetail;
 }
 
 /**
  * Request envelope for certificateAuthorityAddClientRequestEnvelope
  */
 model CertificateAuthorityAddClientRequestEnvelope {
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityAddClientParam;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityAddClientParam;
 }
 /**
  * Response envelope for certificateAuthorityAddClientResponseEnvelope
  */
 model CertificateAuthorityAddClientResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityAddClientOrServerResult;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityAddClientOrServerResult;
 }
 
 /**
  * Response envelope for certificateAuthorityListClientsResponseEnvelope
  */
 model CertificateAuthorityListClientsResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityClient[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityClient[];
 }
 
 /**
  * Response envelope for certificateAuthorityReadClientResponseEnvelope
  */
 model CertificateAuthorityReadClientResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityClient;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityClient;
 }
 
 /**
  * Request envelope for certificateAuthorityAddServerRequestEnvelope
  */
 model CertificateAuthorityAddServerRequestEnvelope {
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityAddServerParam;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityAddServerParam;
 }
 /**
  * Response envelope for certificateAuthorityAddServerResponseEnvelope
  */
 model CertificateAuthorityAddServerResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityAddClientOrServerResult;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityAddClientOrServerResult;
 }
 
 /**
  * Response envelope for certificateAuthorityListServersResponseEnvelope
  */
 model CertificateAuthorityListServersResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityServer[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityServer[];
 }
 
 /**
  * Response envelope for certificateAuthorityReadServerResponseEnvelope
  */
 model CertificateAuthorityReadServerResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CertificateAuthority
-   */
-  CertificateAuthority: CertificateAuthorityServer;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CertificateAuthority
+	 */
+	CertificateAuthority: CertificateAuthorityServer;
 }

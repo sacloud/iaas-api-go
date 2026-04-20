@@ -10,87 +10,90 @@ namespace Sacloud.IaaS;
 
 @tag("Disk")
 interface DiskOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/disk")
-  find(
+  op find(
     @path zone: string,
-    @body body: DiskFindRequestEnvelope,
+    @query q?: string,
+    
   ): DiskFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/disk")
-  create(@path zone: string, @body body: DiskCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...DiskCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: DiskCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...DiskCreateResponseEnvelope} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/config")
-  config(
+  op config(
     @path zone: string,
     @path id: string,
     @body body: DiskConfigRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/resize-partition")
-  resizePartition(
+  op resizePartition(
     @path zone: string,
     @path id: string,
     @body body: DiskResizePartitionRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}")
-  connectToServer(
+  op connectToServer(
     @path zone: string,
     @path id: string,
     @path serverID: string,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server")
-  disconnectFromServer(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op disconnectFromServer(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): DiskReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: DiskUpdateRequestEnvelope,
+    
   ): DiskUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}")
-  delete(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op delete(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}/monitor")
-  monitor(
+  op monitor(
     @path zone: string,
     @path id: string,
     @body body: DiskMonitorRequestEnvelope,
+    
   ): DiskMonitorResponseEnvelope | ApiError;
+
 }

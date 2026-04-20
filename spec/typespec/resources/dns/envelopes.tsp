@@ -4,97 +4,92 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for dNSFindRequestEnvelope
  */
 model DNSFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for dNSFindResponseEnvelope
  */
 model DNSFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CommonServiceItems
-   */
-  CommonServiceItems: DNS[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CommonServiceItems
+	 */
+	CommonServiceItems: DNS[];
 }
 
 /**
  * Request envelope for dNSCreateRequestEnvelope
  */
 model DNSCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: DNSCreateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: DNSCreateRequest;
 }
 /**
  * Response envelope for dNSCreateResponseEnvelope
  */
 model DNSCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: DNS;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: DNS;
 }
 
 /**
  * Response envelope for dNSReadResponseEnvelope
  */
 model DNSReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: DNS;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: DNS;
 }
 
 /**
  * Request envelope for dNSUpdateRequestEnvelope
  */
 model DNSUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: DNSUpdateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: DNSUpdateRequest;
 }
 /**
  * Response envelope for dNSUpdateResponseEnvelope
  */
 model DNSUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: DNS;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: DNS;
 }

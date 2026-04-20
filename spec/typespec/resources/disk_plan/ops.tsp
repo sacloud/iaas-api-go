@@ -10,17 +10,21 @@ namespace Sacloud.IaaS;
 
 @tag("DiskPlan")
 interface DiskPlanOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/product/disk")
-  find(
+  op find(
     @path zone: string,
-    @body body: DiskPlanFindRequestEnvelope,
+    @query q?: string,
+    
   ): DiskPlanFindResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/product/disk/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): DiskPlanReadResponseEnvelope | ApiError;
+
 }

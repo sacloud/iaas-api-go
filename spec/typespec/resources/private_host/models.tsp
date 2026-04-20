@@ -5,33 +5,33 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PrivateHost {
-  ID: int64;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  Plan?: PrivateHostPlan | null;
-  AssignedCPU?: int32 | null;
-  AssignedMemoryMB?: int32 | null;
-  Host?: PrivateHostHost | null;
+	ID: int64;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	Plan?: PrivateHostPlan | null;
+	AssignedCPU?: int32 | null;
+	AssignedMemoryMB?: int32 | null;
+	Host?: PrivateHostHost | null;
 }
 
 model PrivateHostHost {
-  Name?: string | null;
+	Name?: string | null;
 }
 
 model PrivateHostCreateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  Plan?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	Plan?: ResourceRef | null;
 }
 
 model PrivateHostUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }

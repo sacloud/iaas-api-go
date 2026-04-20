@@ -77,7 +77,7 @@ func TestServerCRUD(t *testing.T) {
 	require.Equal(t, "test-server-updated", updateResp.Server.Name.Value)
 
 	// 4. Find
-	findResp, err := c.ServerOpFind(ctx, &client.ServerFindRequestEnvelope{}, client.ServerOpFindParams{Zone: zone})
+	findResp, err := c.ServerOpFind(ctx, client.ServerOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Servers), 0)
 

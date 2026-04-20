@@ -968,59 +968,6 @@ func (s *ArchiveCreateResponseEnvelope) SetFTPServer(val OptFTPServer) {
 	s.FTPServer = val
 }
 
-// Request envelope for archiveFindRequestEnvelope.
-// Ref: #/components/schemas/ArchiveFindRequestEnvelope
-type ArchiveFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter ArchiveFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *ArchiveFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *ArchiveFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *ArchiveFindRequestEnvelope) GetFilter() ArchiveFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *ArchiveFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *ArchiveFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *ArchiveFindRequestEnvelope) SetFilter(val ArchiveFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type ArchiveFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *ArchiveFindRequestEnvelopeFilter) init() ArchiveFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for archiveFindResponseEnvelope.
 // Ref: #/components/schemas/ArchiveFindResponseEnvelope
 type ArchiveFindResponseEnvelope struct {
@@ -3017,59 +2964,6 @@ func (s *BridgeCreateResponseEnvelope) SetBridge(val Bridge) {
 	s.Bridge = val
 }
 
-// Request envelope for bridgeFindRequestEnvelope.
-// Ref: #/components/schemas/BridgeFindRequestEnvelope
-type BridgeFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter BridgeFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *BridgeFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *BridgeFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *BridgeFindRequestEnvelope) GetFilter() BridgeFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *BridgeFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *BridgeFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *BridgeFindRequestEnvelope) SetFilter(val BridgeFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type BridgeFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *BridgeFindRequestEnvelopeFilter) init() BridgeFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for bridgeFindResponseEnvelope.
 // Ref: #/components/schemas/BridgeFindResponseEnvelope
 type BridgeFindResponseEnvelope struct {
@@ -3648,59 +3542,6 @@ func (s *CDROMCreateResponseEnvelope) SetCDROM(val CDROM) {
 // SetFTPServer sets the value of FTPServer.
 func (s *CDROMCreateResponseEnvelope) SetFTPServer(val FTPServer) {
 	s.FTPServer = val
-}
-
-// Request envelope for cDROMFindRequestEnvelope.
-// Ref: #/components/schemas/CDROMFindRequestEnvelope
-type CDROMFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter CDROMFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *CDROMFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *CDROMFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *CDROMFindRequestEnvelope) GetFilter() CDROMFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *CDROMFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *CDROMFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *CDROMFindRequestEnvelope) SetFilter(val CDROMFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type CDROMFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *CDROMFindRequestEnvelopeFilter) init() CDROMFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for cDROMFindResponseEnvelope.
@@ -9407,59 +9248,6 @@ func (s *DiskEncryptionKey) SetKMSKeyID(val OptNilInt64) {
 	s.KMSKeyID = val
 }
 
-// Request envelope for diskFindRequestEnvelope.
-// Ref: #/components/schemas/DiskFindRequestEnvelope
-type DiskFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter DiskFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *DiskFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *DiskFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *DiskFindRequestEnvelope) GetFilter() DiskFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *DiskFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *DiskFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *DiskFindRequestEnvelope) SetFilter(val DiskFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type DiskFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *DiskFindRequestEnvelopeFilter) init() DiskFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for diskFindResponseEnvelope.
 // Ref: #/components/schemas/DiskFindResponseEnvelope
 type DiskFindResponseEnvelope struct {
@@ -9698,59 +9486,6 @@ func (s *DiskPlan) SetAvailability(val OptNilEAvailability) {
 // SetSize sets the value of Size.
 func (s *DiskPlan) SetSize(val OptNilDiskPlanSizeInfoArray) {
 	s.Size = val
-}
-
-// Request envelope for diskPlanFindRequestEnvelope.
-// Ref: #/components/schemas/DiskPlanFindRequestEnvelope
-type DiskPlanFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter DiskPlanFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *DiskPlanFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *DiskPlanFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *DiskPlanFindRequestEnvelope) GetFilter() DiskPlanFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *DiskPlanFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *DiskPlanFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *DiskPlanFindRequestEnvelope) SetFilter(val DiskPlanFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type DiskPlanFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *DiskPlanFindRequestEnvelopeFilter) init() DiskPlanFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for diskPlanFindResponseEnvelope.
@@ -10827,32 +10562,6 @@ func (s *FTPServerInfo) SetIPAddress(val OptNilString) {
 	s.IPAddress = val
 }
 
-// Ref: #/components/schemas/FindCondition
-type FindCondition struct {
-	Count int32 `json:"Count"`
-	From  int32 `json:"From"`
-}
-
-// GetCount returns the value of Count.
-func (s *FindCondition) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *FindCondition) GetFrom() int32 {
-	return s.From
-}
-
-// SetCount sets the value of Count.
-func (s *FindCondition) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *FindCondition) SetFrom(val int32) {
-	s.From = val
-}
-
 // Ref: #/components/schemas/GSLBHealthCheck
 type GSLBHealthCheck struct {
 	Protocol OptNilEGSLBHealthCheckProtocol `json:"Protocol"`
@@ -11245,59 +10954,6 @@ func (s *IPv6AddrCreateResponseEnvelope) SetIsOk(val bool) {
 // SetIPv6Addr sets the value of IPv6Addr.
 func (s *IPv6AddrCreateResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 	s.IPv6Addr = val
-}
-
-// Request envelope for iPv6AddrFindRequestEnvelope.
-// Ref: #/components/schemas/IPv6AddrFindRequestEnvelope
-type IPv6AddrFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter IPv6AddrFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *IPv6AddrFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *IPv6AddrFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *IPv6AddrFindRequestEnvelope) GetFilter() IPv6AddrFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *IPv6AddrFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *IPv6AddrFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *IPv6AddrFindRequestEnvelope) SetFilter(val IPv6AddrFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type IPv6AddrFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *IPv6AddrFindRequestEnvelopeFilter) init() IPv6AddrFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for iPv6AddrFindResponseEnvelope.
@@ -11944,59 +11600,6 @@ func (s *IconCreateResponseEnvelope) SetIcon(val Icon) {
 	s.Icon = val
 }
 
-// Request envelope for iconFindRequestEnvelope.
-// Ref: #/components/schemas/IconFindRequestEnvelope
-type IconFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter IconFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *IconFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *IconFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *IconFindRequestEnvelope) GetFilter() IconFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *IconFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *IconFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *IconFindRequestEnvelope) SetFilter(val IconFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type IconFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *IconFindRequestEnvelopeFilter) init() IconFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for iconFindResponseEnvelope.
 // Ref: #/components/schemas/IconFindResponseEnvelope
 type IconFindResponseEnvelope struct {
@@ -12342,59 +11945,6 @@ func (s *InterfaceCreateResponseEnvelope) SetIsOk(val bool) {
 // SetInterface sets the value of Interface.
 func (s *InterfaceCreateResponseEnvelope) SetInterface(val Interface) {
 	s.Interface = val
-}
-
-// Request envelope for interfaceFindRequestEnvelope.
-// Ref: #/components/schemas/InterfaceFindRequestEnvelope
-type InterfaceFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter InterfaceFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *InterfaceFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *InterfaceFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *InterfaceFindRequestEnvelope) GetFilter() InterfaceFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *InterfaceFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *InterfaceFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *InterfaceFindRequestEnvelope) SetFilter(val InterfaceFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type InterfaceFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *InterfaceFindRequestEnvelopeFilter) init() InterfaceFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for interfaceFindResponseEnvelope.
@@ -13280,59 +12830,6 @@ func (s *InternetEnableIPv6ResponseEnvelope) SetIPv6Net(val IPv6Net) {
 	s.IPv6Net = val
 }
 
-// Request envelope for internetFindRequestEnvelope.
-// Ref: #/components/schemas/InternetFindRequestEnvelope
-type InternetFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter InternetFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *InternetFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *InternetFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *InternetFindRequestEnvelope) GetFilter() InternetFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *InternetFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *InternetFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *InternetFindRequestEnvelope) SetFilter(val InternetFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type InternetFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *InternetFindRequestEnvelopeFilter) init() InternetFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for internetFindResponseEnvelope.
 // Ref: #/components/schemas/InternetFindResponseEnvelope
 type InternetFindResponseEnvelope struct {
@@ -13591,59 +13088,6 @@ func (s *InternetPlan) SetBandWidthMbps(val OptNilInt32) {
 // SetAvailability sets the value of Availability.
 func (s *InternetPlan) SetAvailability(val OptNilEAvailability) {
 	s.Availability = val
-}
-
-// Request envelope for internetPlanFindRequestEnvelope.
-// Ref: #/components/schemas/InternetPlanFindRequestEnvelope
-type InternetPlanFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter InternetPlanFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *InternetPlanFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *InternetPlanFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *InternetPlanFindRequestEnvelope) GetFilter() InternetPlanFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *InternetPlanFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *InternetPlanFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *InternetPlanFindRequestEnvelope) SetFilter(val InternetPlanFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type InternetPlanFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *InternetPlanFindRequestEnvelopeFilter) init() InternetPlanFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for internetPlanFindResponseEnvelope.
@@ -14222,59 +13666,6 @@ func (s *LicenseCreateResponseEnvelope) SetLicense(val License) {
 	s.License = val
 }
 
-// Request envelope for licenseFindRequestEnvelope.
-// Ref: #/components/schemas/LicenseFindRequestEnvelope
-type LicenseFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter LicenseFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *LicenseFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *LicenseFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *LicenseFindRequestEnvelope) GetFilter() LicenseFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *LicenseFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *LicenseFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *LicenseFindRequestEnvelope) SetFilter(val LicenseFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type LicenseFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *LicenseFindRequestEnvelopeFilter) init() LicenseFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for licenseFindResponseEnvelope.
 // Ref: #/components/schemas/LicenseFindResponseEnvelope
 type LicenseFindResponseEnvelope struct {
@@ -14385,59 +13776,6 @@ func (s *LicenseInfo) SetModifiedAt(val OptNilDateTime) {
 // SetTermsOfUse sets the value of TermsOfUse.
 func (s *LicenseInfo) SetTermsOfUse(val OptNilString) {
 	s.TermsOfUse = val
-}
-
-// Request envelope for licenseInfoFindRequestEnvelope.
-// Ref: #/components/schemas/LicenseInfoFindRequestEnvelope
-type LicenseInfoFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter LicenseInfoFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *LicenseInfoFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *LicenseInfoFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *LicenseInfoFindRequestEnvelope) GetFilter() LicenseInfoFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *LicenseInfoFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *LicenseInfoFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *LicenseInfoFindRequestEnvelope) SetFilter(val LicenseInfoFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type LicenseInfoFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *LicenseInfoFindRequestEnvelopeFilter) init() LicenseInfoFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for licenseInfoFindResponseEnvelope.
@@ -15831,59 +15169,6 @@ func (s *NoteCreateResponseEnvelope) SetIsOk(val bool) {
 // SetNote sets the value of Note.
 func (s *NoteCreateResponseEnvelope) SetNote(val Note) {
 	s.Note = val
-}
-
-// Request envelope for noteFindRequestEnvelope.
-// Ref: #/components/schemas/NoteFindRequestEnvelope
-type NoteFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter NoteFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *NoteFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *NoteFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *NoteFindRequestEnvelope) GetFilter() NoteFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *NoteFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *NoteFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *NoteFindRequestEnvelope) SetFilter(val NoteFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type NoteFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *NoteFindRequestEnvelopeFilter) init() NoteFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for noteFindResponseEnvelope.
@@ -26774,59 +26059,6 @@ func (s *PacketFilterExpression) SetDescription(val string) {
 	s.Description = val
 }
 
-// Request envelope for packetFilterFindRequestEnvelope.
-// Ref: #/components/schemas/PacketFilterFindRequestEnvelope
-type PacketFilterFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter PacketFilterFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *PacketFilterFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *PacketFilterFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *PacketFilterFindRequestEnvelope) GetFilter() PacketFilterFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *PacketFilterFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *PacketFilterFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *PacketFilterFindRequestEnvelope) SetFilter(val PacketFilterFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type PacketFilterFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *PacketFilterFindRequestEnvelopeFilter) init() PacketFilterFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for packetFilterFindResponseEnvelope.
 // Ref: #/components/schemas/PacketFilterFindResponseEnvelope
 type PacketFilterFindResponseEnvelope struct {
@@ -27385,59 +26617,6 @@ func (s *PrivateHostCreateResponseEnvelope) SetPrivateHost(val PrivateHost) {
 	s.PrivateHost = val
 }
 
-// Request envelope for privateHostFindRequestEnvelope.
-// Ref: #/components/schemas/PrivateHostFindRequestEnvelope
-type PrivateHostFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter PrivateHostFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *PrivateHostFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *PrivateHostFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *PrivateHostFindRequestEnvelope) GetFilter() PrivateHostFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *PrivateHostFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *PrivateHostFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *PrivateHostFindRequestEnvelope) SetFilter(val PrivateHostFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type PrivateHostFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *PrivateHostFindRequestEnvelopeFilter) init() PrivateHostFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for privateHostFindResponseEnvelope.
 // Ref: #/components/schemas/PrivateHostFindResponseEnvelope
 type PrivateHostFindResponseEnvelope struct {
@@ -27610,59 +26789,6 @@ func (s *PrivateHostPlan) SetMemoryMB(val OptNilInt32) {
 // SetAvailability sets the value of Availability.
 func (s *PrivateHostPlan) SetAvailability(val OptNilEAvailability) {
 	s.Availability = val
-}
-
-// Request envelope for privateHostPlanFindRequestEnvelope.
-// Ref: #/components/schemas/PrivateHostPlanFindRequestEnvelope
-type PrivateHostPlanFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter PrivateHostPlanFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *PrivateHostPlanFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *PrivateHostPlanFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *PrivateHostPlanFindRequestEnvelope) GetFilter() PrivateHostPlanFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *PrivateHostPlanFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *PrivateHostPlanFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *PrivateHostPlanFindRequestEnvelope) SetFilter(val PrivateHostPlanFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type PrivateHostPlanFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *PrivateHostPlanFindRequestEnvelopeFilter) init() PrivateHostPlanFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for privateHostPlanFindResponseEnvelope.
@@ -29206,59 +28332,6 @@ func (s *Region) SetNameServers(val OptNilStringArray) {
 	s.NameServers = val
 }
 
-// Request envelope for regionFindRequestEnvelope.
-// Ref: #/components/schemas/RegionFindRequestEnvelope
-type RegionFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter RegionFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *RegionFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *RegionFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *RegionFindRequestEnvelope) GetFilter() RegionFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *RegionFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *RegionFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *RegionFindRequestEnvelope) SetFilter(val RegionFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type RegionFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *RegionFindRequestEnvelopeFilter) init() RegionFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for regionFindResponseEnvelope.
 // Ref: #/components/schemas/RegionFindResponseEnvelope
 type RegionFindResponseEnvelope struct {
@@ -30122,59 +29195,6 @@ func (s *SSHKeyCreateResponseEnvelope) SetIsOk(val bool) {
 // SetSSHKey sets the value of SSHKey.
 func (s *SSHKeyCreateResponseEnvelope) SetSSHKey(val SSHKey) {
 	s.SSHKey = val
-}
-
-// Request envelope for sSHKeyFindRequestEnvelope.
-// Ref: #/components/schemas/SSHKeyFindRequestEnvelope
-type SSHKeyFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter SSHKeyFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *SSHKeyFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *SSHKeyFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *SSHKeyFindRequestEnvelope) GetFilter() SSHKeyFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *SSHKeyFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *SSHKeyFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *SSHKeyFindRequestEnvelope) SetFilter(val SSHKeyFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type SSHKeyFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *SSHKeyFindRequestEnvelopeFilter) init() SSHKeyFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for sSHKeyFindResponseEnvelope.
@@ -31079,59 +30099,6 @@ func (s *ServerEjectCDROMRequestEnvelope) SetCDROM(val OptEjectCDROMRequest) {
 	s.CDROM = val
 }
 
-// Request envelope for serverFindRequestEnvelope.
-// Ref: #/components/schemas/ServerFindRequestEnvelope
-type ServerFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter ServerFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *ServerFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *ServerFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *ServerFindRequestEnvelope) GetFilter() ServerFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *ServerFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *ServerFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *ServerFindRequestEnvelope) SetFilter(val ServerFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type ServerFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *ServerFindRequestEnvelopeFilter) init() ServerFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for serverFindResponseEnvelope.
 // Ref: #/components/schemas/ServerFindResponseEnvelope
 type ServerFindResponseEnvelope struct {
@@ -31633,59 +30600,6 @@ func (s *ServerPlan) SetAvailability(val OptNilEAvailability) {
 	s.Availability = val
 }
 
-// Request envelope for serverPlanFindRequestEnvelope.
-// Ref: #/components/schemas/ServerPlanFindRequestEnvelope
-type ServerPlanFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter ServerPlanFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *ServerPlanFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *ServerPlanFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *ServerPlanFindRequestEnvelope) GetFilter() ServerPlanFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *ServerPlanFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *ServerPlanFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *ServerPlanFindRequestEnvelope) SetFilter(val ServerPlanFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type ServerPlanFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *ServerPlanFindRequestEnvelopeFilter) init() ServerPlanFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for serverPlanFindResponseEnvelope.
 // Ref: #/components/schemas/ServerPlanFindResponseEnvelope
 type ServerPlanFindResponseEnvelope struct {
@@ -32167,59 +31081,6 @@ func (s *ServiceClass) SetIsPublic(val bool) {
 // SetPrice sets the value of Price.
 func (s *ServiceClass) SetPrice(val OptNilPrice) {
 	s.Price = val
-}
-
-// Request envelope for serviceClassFindRequestEnvelope.
-// Ref: #/components/schemas/ServiceClassFindRequestEnvelope
-type ServiceClassFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter ServiceClassFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *ServiceClassFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *ServiceClassFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *ServiceClassFindRequestEnvelope) GetFilter() ServiceClassFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *ServiceClassFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *ServiceClassFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *ServiceClassFindRequestEnvelope) SetFilter(val ServiceClassFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type ServiceClassFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *ServiceClassFindRequestEnvelopeFilter) init() ServiceClassFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for serviceClassFindResponseEnvelope.
@@ -33023,59 +31884,6 @@ func (s *Subnet) SetIPAddresses(val OptNilSubnetIPAddressArray) {
 	s.IPAddresses = val
 }
 
-// Request envelope for subnetFindRequestEnvelope.
-// Ref: #/components/schemas/SubnetFindRequestEnvelope
-type SubnetFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter SubnetFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *SubnetFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *SubnetFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *SubnetFindRequestEnvelope) GetFilter() SubnetFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *SubnetFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *SubnetFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *SubnetFindRequestEnvelope) SetFilter(val SubnetFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type SubnetFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *SubnetFindRequestEnvelopeFilter) init() SubnetFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
-}
-
 // Response envelope for subnetFindResponseEnvelope.
 // Ref: #/components/schemas/SubnetFindResponseEnvelope
 type SubnetFindResponseEnvelope struct {
@@ -33486,59 +32294,6 @@ func (s *SwitchCreateResponseEnvelope) SetIsOk(val bool) {
 // SetSwitch sets the value of Switch.
 func (s *SwitchCreateResponseEnvelope) SetSwitch(val Switch) {
 	s.Switch = val
-}
-
-// Request envelope for switchFindRequestEnvelope.
-// Ref: #/components/schemas/SwitchFindRequestEnvelope
-type SwitchFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter SwitchFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *SwitchFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *SwitchFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *SwitchFindRequestEnvelope) GetFilter() SwitchFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *SwitchFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *SwitchFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *SwitchFindRequestEnvelope) SetFilter(val SwitchFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type SwitchFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *SwitchFindRequestEnvelopeFilter) init() SwitchFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for switchFindResponseEnvelope.
@@ -34376,59 +33131,6 @@ func (s *Zone) SetFTPServer(val OptNilFTPServerInfo) {
 // SetRegion sets the value of Region.
 func (s *Zone) SetRegion(val OptNilRegion) {
 	s.Region = val
-}
-
-// Request envelope for zoneFindRequestEnvelope.
-// Ref: #/components/schemas/ZoneFindRequestEnvelope
-type ZoneFindRequestEnvelope struct {
-	// Count.
-	Count int32 `json:"Count"`
-	// From.
-	From int32 `json:"From"`
-	// Filter.
-	Filter ZoneFindRequestEnvelopeFilter `json:"Filter"`
-}
-
-// GetCount returns the value of Count.
-func (s *ZoneFindRequestEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetFrom returns the value of From.
-func (s *ZoneFindRequestEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetFilter returns the value of Filter.
-func (s *ZoneFindRequestEnvelope) GetFilter() ZoneFindRequestEnvelopeFilter {
-	return s.Filter
-}
-
-// SetCount sets the value of Count.
-func (s *ZoneFindRequestEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetFrom sets the value of From.
-func (s *ZoneFindRequestEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetFilter sets the value of Filter.
-func (s *ZoneFindRequestEnvelope) SetFilter(val ZoneFindRequestEnvelopeFilter) {
-	s.Filter = val
-}
-
-// Filter.
-type ZoneFindRequestEnvelopeFilter map[string]jx.Raw
-
-func (s *ZoneFindRequestEnvelopeFilter) init() ZoneFindRequestEnvelopeFilter {
-	m := *s
-	if m == nil {
-		m = map[string]jx.Raw{}
-		*s = m
-	}
-	return m
 }
 
 // Response envelope for zoneFindResponseEnvelope.

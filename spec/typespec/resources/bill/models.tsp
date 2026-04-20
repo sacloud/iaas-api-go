@@ -5,33 +5,33 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Bill {
-  ID?: int64 | null;
-  Amount?: int64 | null;
-  Date?: utcDateTime | null;
-  MemberID?: string | null;
-  Paid: boolean;
-  PayLimit?: utcDateTime | null;
-  PaymentClassID?: int64 | null;
+	ID?: int64 | null;
+	Amount?: int64 | null;
+	Date?: utcDateTime | null;
+	MemberID?: string | null;
+	Paid: boolean;
+	PayLimit?: utcDateTime | null;
+	PaymentClassID?: int64 | null;
 }
 
 model BillDetail {
-  ID?: int64 | null;
-  Amount?: int64 | null;
-  Description: string;
-  ServiceClassID?: int64 | null;
-  ServiceClassPath?: string | null;
-  Usage?: int64 | null;
-  FormattedUsage?: string | null;
-  ServiceUsagePath?: string | null;
-  Zone?: string | null;
-  ContractEndAt?: utcDateTime | null;
+	ID?: int64 | null;
+	Amount?: int64 | null;
+	Description: string;
+	ServiceClassID?: int64 | null;
+	ServiceClassPath?: string | null;
+	Usage?: int64 | null;
+	FormattedUsage?: string | null;
+	ServiceUsagePath?: string | null;
+	Zone?: string | null;
+	ContractEndAt?: utcDateTime | null;
 }
 
 model BillDetailCSV {
-  Count?: int32 | null;
-  ResponsedAt?: utcDateTime | null;
-  Filename?: string | null;
-  RawBody?: string | null;
-  HeaderRow: string[];
-  BodyRows: string[][];
+	Count?: int32 | null;
+	ResponsedAt?: utcDateTime | null;
+	Filename?: string | null;
+	RawBody?: string | null;
+	HeaderRow: string[];
+	BodyRows: string[][];
 }

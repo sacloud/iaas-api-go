@@ -10,17 +10,21 @@ namespace Sacloud.IaaS;
 
 @tag("LicenseInfo")
 interface LicenseInfoOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/product/license")
-  find(
+  op find(
     @path zone: string,
-    @body body: LicenseInfoFindRequestEnvelope,
+    @query q?: string,
+    
   ): LicenseInfoFindResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/product/license/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): LicenseInfoReadResponseEnvelope | ApiError;
+
 }

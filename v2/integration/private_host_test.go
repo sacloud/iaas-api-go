@@ -16,12 +16,10 @@ package integration
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"testing"
 
-	"github.com/go-faster/jx"
 	"github.com/sacloud/iaas-api-go/v2/client"
 	"github.com/stretchr/testify/require"
 )
@@ -29,15 +27,6 @@ import (
 // PrivateHost はサンドボックス tk1v には Plan が無いので、v1 の test/private_host_op_test.go に
 // 倣って本番ゾーン tk1a をハードコードする。さくら社員向けテストなので料金面は気にしない運用。
 const privateHostTestZone = "tk1a"
-
-// filterByClass は PrivateHostPlanFindRequestEnvelopeFilter に {"Class": "<class>"} を設定する。
-// Filter は map[string]jx.Raw なので JSON-encode した値を載せる必要がある。
-func filterByClass(class string) client.PrivateHostPlanFindRequestEnvelopeFilter {
-	b, _ := json.Marshal(class)
-	return client.PrivateHostPlanFindRequestEnvelopeFilter{
-		"Class": jx.Raw(b),
-	}
-}
 
 func TestPrivateHostPlanFind(t *testing.T) {
 	if os.Getenv("TEST_ACC") == "" {
@@ -47,9 +36,11 @@ func TestPrivateHostPlanFind(t *testing.T) {
 	c := newClient(t)
 	ctx := context.Background()
 
-	findResp, err := c.PrivateHostPlanOpFind(ctx, &client.PrivateHostPlanFindRequestEnvelope{Count: 1}, client.PrivateHostPlanOpFindParams{Zone: privateHostTestZone})
+	req := &client.PrivateHostPlanFindRequest{Count: 1}
+	findResp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{Zone: privateHostTestZone, Q: req.ToOptString()})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.PrivateHostPlans), 0, "PrivateHostPlan が 1 件以上返ること")
+	require.LessOrEqual(t, len(findResp.PrivateHostPlans), 1, "Count=1 が反映されていること")
 
 	plan := findResp.PrivateHostPlans[0]
 	planIDStr := fmt.Sprintf("%d", plan.ID.Value)
@@ -74,9 +65,10 @@ func TestPrivateHostCRUD(t *testing.T) {
 	ctx := context.Background()
 
 	// PrivateHostPlan を Class=dynamic, Dedicated=false で検索して ID を得る
-	planFindResp, err := c.PrivateHostPlanOpFind(ctx, &client.PrivateHostPlanFindRequestEnvelope{
-		Filter: filterByClass("dynamic"),
-	}, client.PrivateHostPlanOpFindParams{Zone: privateHostTestZone})
+	planReq := &client.PrivateHostPlanFindRequest{
+		Filter: client.PrivateHostPlanFindFilter{Class: "dynamic"},
+	}
+	planFindResp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{Zone: privateHostTestZone, Q: planReq.ToOptString()})
 	require.NoError(t, err)
 	require.Greater(t, len(planFindResp.PrivateHostPlans), 0, "PrivateHostPlan (Class=dynamic) が見つかること")
 	var planID int64
@@ -124,7 +116,7 @@ func TestPrivateHostCRUD(t *testing.T) {
 	require.Equal(t, "test-private-host-updated", updateResp.PrivateHost.Name.Value)
 
 	// 4. Find
-	findResp, err := c.PrivateHostOpFind(ctx, &client.PrivateHostFindRequestEnvelope{}, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
+	findResp, err := c.PrivateHostOpFind(ctx, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
 	require.NoError(t, err)
 	var found bool
 	for _, ph := range findResp.PrivateHosts {

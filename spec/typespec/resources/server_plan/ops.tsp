@@ -10,17 +10,21 @@ namespace Sacloud.IaaS;
 
 @tag("ServerPlan")
 interface ServerPlanOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/product/server")
-  find(
+  op find(
     @path zone: string,
-    @body body: ServerPlanFindRequestEnvelope,
+    @query q?: string,
+    
   ): ServerPlanFindResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/product/server/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): ServerPlanReadResponseEnvelope | ApiError;
+
 }

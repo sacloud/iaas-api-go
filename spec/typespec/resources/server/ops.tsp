@@ -10,135 +10,134 @@ namespace Sacloud.IaaS;
 
 @tag("Server")
 interface ServerOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/server")
-  find(
+  op find(
     @path zone: string,
-    @body body: ServerFindRequestEnvelope,
+    @query q?: string,
+    
   ): ServerFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/server")
-  create(@path zone: string, @body body: ServerCreateRequestEnvelope): {
-    @statusCode _: 201;
-    ...ServerCreateResponseEnvelope;
-  } | ApiError;
+  op create(
+    @path zone: string,
+    @body body: ServerCreateRequestEnvelope,
+    
+  ): {@statusCode _: 201; ...ServerCreateResponseEnvelope} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): ServerReadResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}")
-  update(
+  op update(
     @path zone: string,
     @path id: string,
     @body body: ServerUpdateRequestEnvelope,
+    
   ): ServerUpdateResponseEnvelope | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}")
-  delete(
+  op delete(
     @path zone: string,
     @path id: string,
     @body body: ServerDeleteRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/plan")
-  changePlan(
+  op changePlan(
     @path zone: string,
     @path id: string,
     @body body: ServerChangePlanRequestEnvelope,
+    
   ): ServerChangePlanResponseEnvelope | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
-  insertCDROM(
+  op insertCDROM(
     @path zone: string,
     @path id: string,
     @body body: ServerInsertCDROMRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
-  ejectCDROM(
+  op ejectCDROM(
     @path zone: string,
     @path id: string,
     @body body: ServerEjectCDROMRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
-  boot(
+  op boot(
     @path zone: string,
     @path id: string,
     @body body: ServerBootRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
-  shutdown(
+  op shutdown(
     @path zone: string,
     @path id: string,
     @body body: ServerShutdownRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/reset")
-  reset(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op reset(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/keyboard")
-  sendKey(
+  op sendKey(
     @path zone: string,
     @path id: string,
     @body body: ServerSendKeyRequestEnvelope,
-  ): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/qemu/nmi")
-  sendNMI(@path zone: string, @path id: string): {
-    @statusCode _: 200;
-    is_ok: boolean;
-  } | ApiError;
+  op sendNMI(
+    @path zone: string,
+    @path id: string,
+    
+  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/vnc/proxy")
-  getVNCProxy(
+  op getVNCProxy(
     @path zone: string,
     @path id: string,
+    
   ): ServerGetVNCProxyResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/monitor")
-  monitor(
+  op monitor(
     @path zone: string,
     @path id: string,
     @body body: ServerMonitorRequestEnvelope,
+    
   ): ServerMonitorResponseEnvelope | ApiError;
+
 }

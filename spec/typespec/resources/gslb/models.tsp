@@ -5,84 +5,84 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model GSLB {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Availability?: EAvailability | null;
-  Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  SettingsHash?: string | null;
-  Status?: GSLBStatus | null;
-  Settings?: GSLBSettings | null;
-  DestinationServers: GSLBServer[];
+	ID?: int64 | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Availability?: EAvailability | null;
+	Icon?: ResourceRef | null;
+	CreatedAt?: utcDateTime | null;
+	ModifiedAt?: utcDateTime | null;
+	SettingsHash?: string | null;
+	Status?: GSLBStatus | null;
+	Settings?: GSLBSettings | null;
+	DestinationServers: GSLBServer[];
 }
 
 model GSLBStatus {
-  FQDN?: string | null;
+	FQDN?: string | null;
 }
 
 model GSLBSettings {
-  GSLB?: GSLBSettingsGSLB | null;
+	GSLB?: GSLBSettingsGSLB | null;
 }
 
 model GSLBSettingsGSLB {
-  DelayLoop?: int32 | null = 10;
-  Weighted: string;
-  HealthCheck?: GSLBHealthCheck | null;
-  SorryServer?: string | null;
-  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+	DelayLoop?: int32 | null = 10;
+	Weighted: string;
+	HealthCheck?: GSLBHealthCheck | null;
+	SorryServer?: string | null;
+	MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model GSLBHealthCheck {
-  Protocol?: EGSLBHealthCheckProtocol | null;
-  Host?: string | null;
-  Path?: string | null;
-  Status?: int32 | null;
-  Port?: int32 | null;
+	Protocol?: EGSLBHealthCheckProtocol | null;
+	Host?: string | null;
+	Path?: string | null;
+	Status?: int32 | null;
+	Port?: int32 | null;
 }
 
 model GSLBServer {
-  IPAddress: string;
-  Enabled: string;
-  Weight: int32;
+	IPAddress: string;
+	Enabled: string;
+	Weight: int32;
 }
 
 model GSLBCreateRequest {
-  Settings?: GSLBCreateRequestSettings | null;
-  DestinationServers: GSLBServer[];
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
+	Settings?: GSLBCreateRequestSettings | null;
+	DestinationServers: GSLBServer[];
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
 }
 
 model GSLBCreateRequestSettings {
-  GSLB?: GSLBCreateRequestSettingsGSLB | null;
+	GSLB?: GSLBCreateRequestSettingsGSLB | null;
 }
 
 model GSLBCreateRequestSettingsGSLB {
-  HealthCheck?: GSLBHealthCheck | null;
-  DelayLoop?: int32 | null = 10;
-  Weighted: string;
-  SorryServer?: string | null;
-  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+	HealthCheck?: GSLBHealthCheck | null;
+	DelayLoop?: int32 | null = 10;
+	Weighted: string;
+	SorryServer?: string | null;
+	MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model GSLBUpdateRequest {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  Settings?: GSLBUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+	Name?: string | null;
+	Description: string;
+	Tags: string[];
+	Icon?: ResourceRef | null;
+	Settings?: GSLBUpdateRequestSettings | null;
+	SettingsHash?: string | null;
 }
 
 model GSLBUpdateRequestSettings {
-  GSLB?: GSLBUpdateRequestSettingsGSLB | null;
+	GSLB?: GSLBUpdateRequestSettingsGSLB | null;
 }
 
 model GSLBUpdateRequestSettingsGSLB {
-  HealthCheck?: GSLBHealthCheck | null;
+	HealthCheck?: GSLBHealthCheck | null;
 }

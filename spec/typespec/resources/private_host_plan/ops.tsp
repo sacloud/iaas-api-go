@@ -10,17 +10,21 @@ namespace Sacloud.IaaS;
 
 @tag("PrivateHostPlan")
 interface PrivateHostPlanOp {
+
   @get
   @route("/{zone}/api/cloud/1.1/product/privatehost")
-  find(
+  op find(
     @path zone: string,
-    @body body: PrivateHostPlanFindRequestEnvelope,
+    @query q?: string,
+    
   ): PrivateHostPlanFindResponseEnvelope | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/product/privatehost/{id}")
-  read(
+  op read(
     @path zone: string,
     @path id: string,
+    
   ): PrivateHostPlanReadResponseEnvelope | ApiError;
+
 }

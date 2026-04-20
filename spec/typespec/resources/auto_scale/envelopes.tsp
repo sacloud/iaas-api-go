@@ -4,110 +4,104 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for autoScaleFindRequestEnvelope
  */
 model AutoScaleFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for autoScaleFindResponseEnvelope
  */
 model AutoScaleFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CommonServiceItems
-   */
-  CommonServiceItems: AutoScale[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CommonServiceItems
+	 */
+	CommonServiceItems: AutoScale[];
 }
 
 /**
  * Request envelope for autoScaleCreateRequestEnvelope
  */
 model AutoScaleCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: AutoScaleCreateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: AutoScaleCreateRequest;
 }
 /**
  * Response envelope for autoScaleCreateResponseEnvelope
  */
 model AutoScaleCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: AutoScale;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: AutoScale;
 }
 
 /**
  * Response envelope for autoScaleReadResponseEnvelope
  */
 model AutoScaleReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: AutoScale;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: AutoScale;
 }
 
 /**
  * Request envelope for autoScaleUpdateRequestEnvelope
  */
 model AutoScaleUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: AutoScaleUpdateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: AutoScaleUpdateRequest;
 }
 /**
  * Response envelope for autoScaleUpdateResponseEnvelope
  */
 model AutoScaleUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: AutoScale;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: AutoScale;
 }
 
 /**
  * Response envelope for autoScaleStatusResponseEnvelope
  */
 model AutoScaleStatusResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * AutoScale
-   */
-  AutoScale: AutoScaleStatus;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * AutoScale
+	 */
+	AutoScale: AutoScaleStatus;
 }

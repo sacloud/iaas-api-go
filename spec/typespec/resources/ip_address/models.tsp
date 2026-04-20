@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPAddress {
-  HostName: string;
-  IPAddress?: string | null;
-  Interface?: ResourceRef | null;
-  Subnet?: ResourceRef | null;
+	HostName: string;
+	IPAddress?: string | null;
+	Interface?: ResourceRef | null;
+	Subnet?: ResourceRef | null;
 }

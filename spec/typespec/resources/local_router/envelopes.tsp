@@ -4,137 +4,129 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for localRouterFindRequestEnvelope
  */
 model LocalRouterFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for localRouterFindResponseEnvelope
  */
 model LocalRouterFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * CommonServiceItems
-   */
-  CommonServiceItems: LocalRouter[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * CommonServiceItems
+	 */
+	CommonServiceItems: LocalRouter[];
 }
 
 /**
  * Request envelope for localRouterCreateRequestEnvelope
  */
 model LocalRouterCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: LocalRouterCreateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: LocalRouterCreateRequest;
 }
 /**
  * Response envelope for localRouterCreateResponseEnvelope
  */
 model LocalRouterCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: LocalRouter;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: LocalRouter;
 }
 
 /**
  * Response envelope for localRouterReadResponseEnvelope
  */
 model LocalRouterReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: LocalRouter;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: LocalRouter;
 }
 
 /**
  * Request envelope for localRouterUpdateRequestEnvelope
  */
 model LocalRouterUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem?: LocalRouterUpdateRequest;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem?: LocalRouterUpdateRequest;
 }
 /**
  * Response envelope for localRouterUpdateResponseEnvelope
  */
 model LocalRouterUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: LocalRouter;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * CommonServiceItem
+	 */
+	CommonServiceItem: LocalRouter;
 }
 
 /**
  * Response envelope for localRouterHealthStatusResponseEnvelope
  */
 model LocalRouterHealthStatusResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * LocalRouter
-   */
-  LocalRouter: LocalRouterHealth;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * LocalRouter
+	 */
+	LocalRouter: LocalRouterHealth;
 }
 
 /**
  * Request envelope for localRouterMonitorLocalRouterRequestEnvelope
  */
 model LocalRouterMonitorLocalRouterRequestEnvelope {
-  /**
-   * Start
-   */
-  Start: utcDateTime;
-
-  /**
-   * End
-   */
-  End: utcDateTime;
+	/**
+	 * Start
+	 */
+	Start: utcDateTime;
+	/**
+	 * End
+	 */
+	End: utcDateTime;
 }
 /**
  * Response envelope for localRouterMonitorLocalRouterResponseEnvelope
  */
 model LocalRouterMonitorLocalRouterResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Data
-   */
-  Data: unknown;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * Data
+	 */
+	Data: unknown;
 }

@@ -4,97 +4,92 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
+
 /**
  * Request envelope for iPv6AddrFindRequestEnvelope
  */
 model IPv6AddrFindRequestEnvelope {
-  /**
-   * Count
-   */
-  Count: int32;
-
-  /**
-   * From
-   */
-  From: int32;
-
-  /**
-   * Filter
-   */
-  Filter: Record<unknown>;
+	/**
+	 * Count
+	 */
+	Count: int32;
+	/**
+	 * From
+	 */
+	From: int32;
+	/**
+	 * Filter
+	 */
+	Filter: Record<unknown>;
 }
 /**
  * Response envelope for iPv6AddrFindResponseEnvelope
  */
 model IPv6AddrFindResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
+	@doc("対象リソースの総件数")
+	Total: int32;
 
-  @doc("現在のページ番号")
-  From: int32;
+	@doc("現在のページ番号")
+	From: int32;
 
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * IPv6Addrs
-   */
-  IPv6Addrs: IPv6Addr[];
+	@doc("現在のページの件数")
+	Count: int32;
+	/**
+	 * IPv6Addrs
+	 */
+	IPv6Addrs: IPv6Addr[];
 }
 
 /**
  * Request envelope for iPv6AddrCreateRequestEnvelope
  */
 model IPv6AddrCreateRequestEnvelope {
-  /**
-   * IPv6Addr
-   */
-  IPv6Addr: IPv6AddrCreateRequest;
+	/**
+	 * IPv6Addr
+	 */
+	IPv6Addr: IPv6AddrCreateRequest;
 }
 /**
  * Response envelope for iPv6AddrCreateResponseEnvelope
  */
 model IPv6AddrCreateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * IPv6Addr
-   */
-  IPv6Addr: IPv6Addr;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * IPv6Addr
+	 */
+	IPv6Addr: IPv6Addr;
 }
 
 /**
  * Response envelope for iPv6AddrReadResponseEnvelope
  */
 model IPv6AddrReadResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * IPv6Addr
-   */
-  IPv6Addr: IPv6Addr;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * IPv6Addr
+	 */
+	IPv6Addr: IPv6Addr;
 }
 
 /**
  * Request envelope for iPv6AddrUpdateRequestEnvelope
  */
 model IPv6AddrUpdateRequestEnvelope {
-  /**
-   * IPv6Addr
-   */
-  IPv6Addr: IPv6AddrUpdateRequest;
+	/**
+	 * IPv6Addr
+	 */
+	IPv6Addr: IPv6AddrUpdateRequest;
 }
 /**
  * Response envelope for iPv6AddrUpdateResponseEnvelope
  */
 model IPv6AddrUpdateResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * IPv6Addr
-   */
-  IPv6Addr: IPv6Addr;
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+	is_ok: boolean;
+	/**
+	 * IPv6Addr
+	 */
+	IPv6Addr: IPv6Addr;
 }

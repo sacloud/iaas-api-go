@@ -35,7 +35,7 @@ func TestDiskPlanFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.DiskPlanOpFind(ctx, &client.DiskPlanFindRequestEnvelope{}, client.DiskPlanOpFindParams{Zone: zone})
+	findResp, err := c.DiskPlanOpFind(ctx, client.DiskPlanOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.DiskPlans), 0, "DiskPlan が 1 件以上返ること")
 
@@ -60,7 +60,7 @@ func TestInternetPlanFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.InternetPlanOpFind(ctx, &client.InternetPlanFindRequestEnvelope{}, client.InternetPlanOpFindParams{Zone: zone})
+	findResp, err := c.InternetPlanOpFind(ctx, client.InternetPlanOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.InternetPlans), 0, "InternetPlan が 1 件以上返ること")
 
@@ -85,7 +85,7 @@ func TestServerPlanFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.ServerPlanOpFind(ctx, &client.ServerPlanFindRequestEnvelope{}, client.ServerPlanOpFindParams{Zone: zone})
+	findResp, err := c.ServerPlanOpFind(ctx, client.ServerPlanOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.ServerPlans), 0, "ServerPlan が 1 件以上返ること")
 
@@ -114,7 +114,7 @@ func TestLicenseInfoFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.LicenseInfoOpFind(ctx, &client.LicenseInfoFindRequestEnvelope{}, client.LicenseInfoOpFindParams{Zone: zone})
+	findResp, err := c.LicenseInfoOpFind(ctx, client.LicenseInfoOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.LicenseInfo), 0, "LicenseInfo が 1 件以上返ること")
 

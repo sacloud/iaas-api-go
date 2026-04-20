@@ -40,7 +40,7 @@ type Invoker interface {
 	// ApplianceOpFind invokes ApplianceOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance
-	ApplianceOpFind(ctx context.Context, request *FindCondition, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error)
+	ApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error)
 	// ApplianceOpMonitorCPU invokes ApplianceOp_monitorCPU operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
@@ -92,7 +92,7 @@ type Invoker interface {
 	// ArchiveOpFind invokes ArchiveOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/archive
-	ArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error)
+	ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error)
 	// ArchiveOpRead invokes ArchiveOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/archive/{id}
@@ -160,7 +160,7 @@ type Invoker interface {
 	// BridgeOpFind invokes BridgeOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/bridge
-	BridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error)
+	BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error)
 	// BridgeOpRead invokes BridgeOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/bridge/{id}
@@ -184,7 +184,7 @@ type Invoker interface {
 	// CDROMOpFind invokes CDROMOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/cdrom
-	CDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error)
+	CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error)
 	// CDROMOpOpenFTP invokes CDROMOp_openFTP operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
@@ -264,7 +264,7 @@ type Invoker interface {
 	// CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem
-	CommonServiceItemOpFind(ctx context.Context, request *FindCondition, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error)
+	CommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error)
 	// CommonServiceItemOpHealthStatus invokes CommonServiceItemOp_healthStatus operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/health
@@ -332,7 +332,7 @@ type Invoker interface {
 	// DiskOpFind invokes DiskOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk
-	DiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (*DiskFindResponseEnvelope, error)
+	DiskOpFind(ctx context.Context, params DiskOpFindParams) (*DiskFindResponseEnvelope, error)
 	// DiskOpMonitor invokes DiskOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk/{id}/monitor
@@ -352,7 +352,7 @@ type Invoker interface {
 	// DiskPlanOpFind invokes DiskPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/disk
-	DiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error)
+	DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error)
 	// DiskPlanOpRead invokes DiskPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/disk/{id}
@@ -404,7 +404,7 @@ type Invoker interface {
 	// IPv6AddrOpFind invokes IPv6AddrOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr
-	IPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error)
+	IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error)
 	// IPv6AddrOpRead invokes IPv6AddrOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr/{id}
@@ -432,7 +432,7 @@ type Invoker interface {
 	// IconOpFind invokes IconOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/icon
-	IconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (*IconFindResponseEnvelope, error)
+	IconOpFind(ctx context.Context, params IconOpFindParams) (*IconFindResponseEnvelope, error)
 	// IconOpRead invokes IconOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/icon/{id}
@@ -472,7 +472,7 @@ type Invoker interface {
 	// InterfaceOpFind invokes InterfaceOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/interface
-	InterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error)
+	InterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error)
 	// InterfaceOpMonitor invokes InterfaceOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/interface/{id}/monitor
@@ -512,7 +512,7 @@ type Invoker interface {
 	// InternetOpFind invokes InternetOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/internet
-	InternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (*InternetFindResponseEnvelope, error)
+	InternetOpFind(ctx context.Context, params InternetOpFindParams) (*InternetFindResponseEnvelope, error)
 	// InternetOpMonitor invokes InternetOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/internet/{id}/monitor
@@ -536,7 +536,7 @@ type Invoker interface {
 	// InternetPlanOpFind invokes InternetPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/internet
-	InternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error)
+	InternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error)
 	// InternetPlanOpRead invokes InternetPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/internet/{id}
@@ -544,7 +544,7 @@ type Invoker interface {
 	// LicenseInfoOpFind invokes LicenseInfoOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/license
-	LicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error)
+	LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error)
 	// LicenseInfoOpRead invokes LicenseInfoOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/license/{id}
@@ -560,7 +560,7 @@ type Invoker interface {
 	// LicenseOpFind invokes LicenseOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/license
-	LicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error)
+	LicenseOpFind(ctx context.Context, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error)
 	// LicenseOpRead invokes LicenseOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/license/{id}
@@ -640,7 +640,7 @@ type Invoker interface {
 	// NoteOpFind invokes NoteOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/note
-	NoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (*NoteFindResponseEnvelope, error)
+	NoteOpFind(ctx context.Context, params NoteOpFindParams) (*NoteFindResponseEnvelope, error)
 	// NoteOpRead invokes NoteOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/note/{id}
@@ -660,7 +660,7 @@ type Invoker interface {
 	// PacketFilterOpFind invokes PacketFilterOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/packetfilter
-	PacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error)
+	PacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error)
 	// PacketFilterOpRead invokes PacketFilterOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/packetfilter/{id}
@@ -680,7 +680,7 @@ type Invoker interface {
 	// PrivateHostOpFind invokes PrivateHostOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/privatehost
-	PrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error)
+	PrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error)
 	// PrivateHostOpRead invokes PrivateHostOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/privatehost/{id}
@@ -692,7 +692,7 @@ type Invoker interface {
 	// PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/privatehost
-	PrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error)
+	PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error)
 	// PrivateHostPlanOpRead invokes PrivateHostPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/privatehost/{id}
@@ -724,7 +724,7 @@ type Invoker interface {
 	// RegionOpFind invokes RegionOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/region
-	RegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (*RegionFindResponseEnvelope, error)
+	RegionOpFind(ctx context.Context, params RegionOpFindParams) (*RegionFindResponseEnvelope, error)
 	// RegionOpRead invokes RegionOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/region/{id}
@@ -784,7 +784,7 @@ type Invoker interface {
 	// SSHKeyOpFind invokes SSHKeyOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/sshkey
-	SSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error)
+	SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error)
 	// SSHKeyOpRead invokes SSHKeyOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/sshkey/{id}
@@ -816,7 +816,7 @@ type Invoker interface {
 	// ServerOpFind invokes ServerOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server
-	ServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (*ServerFindResponseEnvelope, error)
+	ServerOpFind(ctx context.Context, params ServerOpFindParams) (*ServerFindResponseEnvelope, error)
 	// ServerOpGetVNCProxy invokes ServerOp_getVNCProxy operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/vnc/proxy
@@ -856,7 +856,7 @@ type Invoker interface {
 	// ServerPlanOpFind invokes ServerPlanOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/server
-	ServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error)
+	ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error)
 	// ServerPlanOpRead invokes ServerPlanOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/product/server/{id}
@@ -864,7 +864,7 @@ type Invoker interface {
 	// ServiceClassOpFind invokes ServiceClassOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/public/price
-	ServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error)
+	ServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error)
 	// SimpleMonitorOpMonitorResponseTime invokes SimpleMonitorOp_monitorResponseTime operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
@@ -884,7 +884,7 @@ type Invoker interface {
 	// SubnetOpFind invokes SubnetOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/subnet
-	SubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error)
+	SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error)
 	// SubnetOpRead invokes SubnetOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/subnet/{id}
@@ -908,7 +908,7 @@ type Invoker interface {
 	// SwitchOpFind invokes SwitchOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/switch
-	SwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error)
+	SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error)
 	// SwitchOpGetServers invokes SwitchOp_getServers operation.
 	//
 	// GET /{zone}/api/cloud/1.1/switch/{id}/server
@@ -940,7 +940,7 @@ type Invoker interface {
 	// ZoneOpFind invokes ZoneOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/zone
-	ZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error)
+	ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error)
 	// ZoneOpRead invokes ZoneOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/zone/{id}
@@ -1407,12 +1407,12 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 // ApplianceOpFind invokes ApplianceOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/appliance
-func (c *Client) ApplianceOpFind(ctx context.Context, request *FindCondition, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error) {
-	res, err := c.sendApplianceOpFind(ctx, request, params)
+func (c *Client) ApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error) {
+	res, err := c.sendApplianceOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpFind(ctx context.Context, request *FindCondition, params ApplianceOpFindParams) (res *DatabaseFindResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (res *DatabaseFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -1438,12 +1438,29 @@ func (c *Client) sendApplianceOpFind(ctx context.Context, request *FindCondition
 	pathParts[2] = "/api/cloud/1.1/appliance"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeApplianceOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -2802,12 +2819,12 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 // ArchiveOpFind invokes ArchiveOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/archive
-func (c *Client) ArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error) {
-	res, err := c.sendArchiveOpFind(ctx, request, params)
+func (c *Client) ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error) {
+	res, err := c.sendArchiveOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveFindRequestEnvelope, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -2833,12 +2850,29 @@ func (c *Client) sendArchiveOpFind(ctx context.Context, request *ArchiveFindRequ
 	pathParts[2] = "/api/cloud/1.1/archive"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeArchiveOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -4685,12 +4719,12 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 // BridgeOpFind invokes BridgeOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/bridge
-func (c *Client) BridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error) {
-	res, err := c.sendBridgeOpFind(ctx, request, params)
+func (c *Client) BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error) {
+	res, err := c.sendBridgeOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeFindRequestEnvelope, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
+func (c *Client) sendBridgeOpFind(ctx context.Context, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -4716,12 +4750,29 @@ func (c *Client) sendBridgeOpFind(ctx context.Context, request *BridgeFindReques
 	pathParts[2] = "/api/cloud/1.1/bridge"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeBridgeOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -5298,12 +5349,12 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 // CDROMOpFind invokes CDROMOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/cdrom
-func (c *Client) CDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error) {
-	res, err := c.sendCDROMOpFind(ctx, request, params)
+func (c *Client) CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error) {
+	res, err := c.sendCDROMOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMFindRequestEnvelope, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
+func (c *Client) sendCDROMOpFind(ctx context.Context, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -5329,12 +5380,29 @@ func (c *Client) sendCDROMOpFind(ctx context.Context, request *CDROMFindRequestE
 	pathParts[2] = "/api/cloud/1.1/cdrom"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeCDROMOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -7600,12 +7668,12 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 // CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem
-func (c *Client) CommonServiceItemOpFind(ctx context.Context, request *FindCondition, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error) {
-	res, err := c.sendCommonServiceItemOpFind(ctx, request, params)
+func (c *Client) CommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error) {
+	res, err := c.sendCommonServiceItemOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, request *FindCondition, params CommonServiceItemOpFindParams) (res *AutoBackupFindResponseEnvelope, err error) {
+func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (res *AutoBackupFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -7631,12 +7699,29 @@ func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, request *FindC
 	pathParts[2] = "/api/cloud/1.1/commonserviceitem"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeCommonServiceItemOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -9456,12 +9541,12 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 // DiskOpFind invokes DiskOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/disk
-func (c *Client) DiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (*DiskFindResponseEnvelope, error) {
-	res, err := c.sendDiskOpFind(ctx, request, params)
+func (c *Client) DiskOpFind(ctx context.Context, params DiskOpFindParams) (*DiskFindResponseEnvelope, error) {
+	res, err := c.sendDiskOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskFindRequestEnvelope, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
+func (c *Client) sendDiskOpFind(ctx context.Context, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -9487,12 +9572,29 @@ func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskFindRequestEnv
 	pathParts[2] = "/api/cloud/1.1/disk"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeDiskOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -9986,12 +10088,12 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateReques
 // DiskPlanOpFind invokes DiskPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/disk
-func (c *Client) DiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error) {
-	res, err := c.sendDiskPlanOpFind(ctx, request, params)
+func (c *Client) DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error) {
+	res, err := c.sendDiskPlanOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanFindRequestEnvelope, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
+func (c *Client) sendDiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -10017,12 +10119,29 @@ func (c *Client) sendDiskPlanOpFind(ctx context.Context, request *DiskPlanFindRe
 	pathParts[2] = "/api/cloud/1.1/product/disk"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeDiskPlanOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -11333,12 +11452,12 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 // IPv6AddrOpFind invokes IPv6AddrOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/ipv6addr
-func (c *Client) IPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error) {
-	res, err := c.sendIPv6AddrOpFind(ctx, request, params)
+func (c *Client) IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error) {
+	res, err := c.sendIPv6AddrOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRequestEnvelope, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
+func (c *Client) sendIPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -11364,12 +11483,29 @@ func (c *Client) sendIPv6AddrOpFind(ctx context.Context, request *IPv6AddrFindRe
 	pathParts[2] = "/api/cloud/1.1/ipv6addr"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeIPv6AddrOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -12035,12 +12171,12 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 // IconOpFind invokes IconOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/icon
-func (c *Client) IconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (*IconFindResponseEnvelope, error) {
-	res, err := c.sendIconOpFind(ctx, request, params)
+func (c *Client) IconOpFind(ctx context.Context, params IconOpFindParams) (*IconFindResponseEnvelope, error) {
+	res, err := c.sendIconOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendIconOpFind(ctx context.Context, request *IconFindRequestEnvelope, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
+func (c *Client) sendIconOpFind(ctx context.Context, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -12066,12 +12202,29 @@ func (c *Client) sendIconOpFind(ctx context.Context, request *IconFindRequestEnv
 	pathParts[2] = "/api/cloud/1.1/icon"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeIconOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -13108,12 +13261,12 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 // InterfaceOpFind invokes InterfaceOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/interface
-func (c *Client) InterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error) {
-	res, err := c.sendInterfaceOpFind(ctx, request, params)
+func (c *Client) InterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error) {
+	res, err := c.sendInterfaceOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceFindRequestEnvelope, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
+func (c *Client) sendInterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -13139,12 +13292,29 @@ func (c *Client) sendInterfaceOpFind(ctx context.Context, request *InterfaceFind
 	pathParts[2] = "/api/cloud/1.1/interface"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeInterfaceOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -14187,12 +14357,12 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 // InternetOpFind invokes InternetOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/internet
-func (c *Client) InternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (*InternetFindResponseEnvelope, error) {
-	res, err := c.sendInternetOpFind(ctx, request, params)
+func (c *Client) InternetOpFind(ctx context.Context, params InternetOpFindParams) (*InternetFindResponseEnvelope, error) {
+	res, err := c.sendInternetOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetFindRequestEnvelope, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
+func (c *Client) sendInternetOpFind(ctx context.Context, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14218,12 +14388,29 @@ func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetFindRe
 	pathParts[2] = "/api/cloud/1.1/internet"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeInternetOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -14844,12 +15031,12 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 // InternetPlanOpFind invokes InternetPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/internet
-func (c *Client) InternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error) {
-	res, err := c.sendInternetPlanOpFind(ctx, request, params)
+func (c *Client) InternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error) {
+	res, err := c.sendInternetPlanOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPlanFindRequestEnvelope, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
+func (c *Client) sendInternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14875,12 +15062,29 @@ func (c *Client) sendInternetPlanOpFind(ctx context.Context, request *InternetPl
 	pathParts[2] = "/api/cloud/1.1/product/internet"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeInternetPlanOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -15039,12 +15243,12 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 // LicenseInfoOpFind invokes LicenseInfoOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/license
-func (c *Client) LicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error) {
-	res, err := c.sendLicenseInfoOpFind(ctx, request, params)
+func (c *Client) LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error) {
+	res, err := c.sendLicenseInfoOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfoFindRequestEnvelope, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
+func (c *Client) sendLicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15070,12 +15274,29 @@ func (c *Client) sendLicenseInfoOpFind(ctx context.Context, request *LicenseInfo
 	pathParts[2] = "/api/cloud/1.1/product/license"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeLicenseInfoOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -15429,12 +15650,12 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 // LicenseOpFind invokes LicenseOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/license
-func (c *Client) LicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error) {
-	res, err := c.sendLicenseOpFind(ctx, request, params)
+func (c *Client) LicenseOpFind(ctx context.Context, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error) {
+	res, err := c.sendLicenseOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseFindRequestEnvelope, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
+func (c *Client) sendLicenseOpFind(ctx context.Context, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -15460,12 +15681,29 @@ func (c *Client) sendLicenseOpFind(ctx context.Context, request *LicenseFindRequ
 	pathParts[2] = "/api/cloud/1.1/license"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeLicenseOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -17586,12 +17824,12 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 // NoteOpFind invokes NoteOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/note
-func (c *Client) NoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (*NoteFindResponseEnvelope, error) {
-	res, err := c.sendNoteOpFind(ctx, request, params)
+func (c *Client) NoteOpFind(ctx context.Context, params NoteOpFindParams) (*NoteFindResponseEnvelope, error) {
+	res, err := c.sendNoteOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteFindRequestEnvelope, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
+func (c *Client) sendNoteOpFind(ctx context.Context, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -17617,12 +17855,29 @@ func (c *Client) sendNoteOpFind(ctx context.Context, request *NoteFindRequestEnv
 	pathParts[2] = "/api/cloud/1.1/note"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeNoteOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -18102,12 +18357,12 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 // PacketFilterOpFind invokes PacketFilterOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/packetfilter
-func (c *Client) PacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error) {
-	res, err := c.sendPacketFilterOpFind(ctx, request, params)
+func (c *Client) PacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error) {
+	res, err := c.sendPacketFilterOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilterFindRequestEnvelope, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
+func (c *Client) sendPacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18133,12 +18388,29 @@ func (c *Client) sendPacketFilterOpFind(ctx context.Context, request *PacketFilt
 	pathParts[2] = "/api/cloud/1.1/packetfilter"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodePacketFilterOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -18618,12 +18890,12 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 // PrivateHostOpFind invokes PrivateHostOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/privatehost
-func (c *Client) PrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error) {
-	res, err := c.sendPrivateHostOpFind(ctx, request, params)
+func (c *Client) PrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error) {
+	res, err := c.sendPrivateHostOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHostFindRequestEnvelope, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18649,12 +18921,29 @@ func (c *Client) sendPrivateHostOpFind(ctx context.Context, request *PrivateHost
 	pathParts[2] = "/api/cloud/1.1/privatehost"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodePrivateHostOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -18930,12 +19219,12 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 // PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/privatehost
-func (c *Client) PrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error) {
-	res, err := c.sendPrivateHostPlanOpFind(ctx, request, params)
+func (c *Client) PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error) {
+	res, err := c.sendPrivateHostPlanOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *PrivateHostPlanFindRequestEnvelope, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -18961,12 +19250,29 @@ func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, request *Private
 	pathParts[2] = "/api/cloud/1.1/product/privatehost"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodePrivateHostPlanOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -19779,12 +20085,12 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 // RegionOpFind invokes RegionOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/region
-func (c *Client) RegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (*RegionFindResponseEnvelope, error) {
-	res, err := c.sendRegionOpFind(ctx, request, params)
+func (c *Client) RegionOpFind(ctx context.Context, params RegionOpFindParams) (*RegionFindResponseEnvelope, error) {
+	res, err := c.sendRegionOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionFindRequestEnvelope, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
+func (c *Client) sendRegionOpFind(ctx context.Context, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -19810,12 +20116,29 @@ func (c *Client) sendRegionOpFind(ctx context.Context, request *RegionFindReques
 	pathParts[2] = "/api/cloud/1.1/region"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeRegionOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -21356,12 +21679,12 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 // SSHKeyOpFind invokes SSHKeyOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/sshkey
-func (c *Client) SSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error) {
-	res, err := c.sendSSHKeyOpFind(ctx, request, params)
+func (c *Client) SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error) {
+	res, err := c.sendSSHKeyOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyFindRequestEnvelope, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
+func (c *Client) sendSSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -21387,12 +21710,29 @@ func (c *Client) sendSSHKeyOpFind(ctx context.Context, request *SSHKeyFindReques
 	pathParts[2] = "/api/cloud/1.1/sshkey"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeSSHKeyOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -22193,12 +22533,12 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjec
 // ServerOpFind invokes ServerOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/server
-func (c *Client) ServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (*ServerFindResponseEnvelope, error) {
-	res, err := c.sendServerOpFind(ctx, request, params)
+func (c *Client) ServerOpFind(ctx context.Context, params ServerOpFindParams) (*ServerFindResponseEnvelope, error) {
+	res, err := c.sendServerOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpFind(ctx context.Context, request *ServerFindRequestEnvelope, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
+func (c *Client) sendServerOpFind(ctx context.Context, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -22224,12 +22564,29 @@ func (c *Client) sendServerOpFind(ctx context.Context, request *ServerFindReques
 	pathParts[2] = "/api/cloud/1.1/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeServerOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -23259,12 +23616,12 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRe
 // ServerPlanOpFind invokes ServerPlanOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/product/server
-func (c *Client) ServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error) {
-	res, err := c.sendServerPlanOpFind(ctx, request, params)
+func (c *Client) ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error) {
+	res, err := c.sendServerPlanOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanFindRequestEnvelope, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
+func (c *Client) sendServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -23290,12 +23647,29 @@ func (c *Client) sendServerPlanOpFind(ctx context.Context, request *ServerPlanFi
 	pathParts[2] = "/api/cloud/1.1/product/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeServerPlanOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -23454,12 +23828,12 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 // ServiceClassOpFind invokes ServiceClassOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/public/price
-func (c *Client) ServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error) {
-	res, err := c.sendServiceClassOpFind(ctx, request, params)
+func (c *Client) ServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error) {
+	res, err := c.sendServiceClassOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceClassFindRequestEnvelope, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
+func (c *Client) sendServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -23485,12 +23859,29 @@ func (c *Client) sendServiceClassOpFind(ctx context.Context, request *ServiceCla
 	pathParts[2] = "/api/cloud/1.1/public/price"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeServiceClassOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -23955,12 +24346,12 @@ func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, r
 // SubnetOpFind invokes SubnetOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/subnet
-func (c *Client) SubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error) {
-	res, err := c.sendSubnetOpFind(ctx, request, params)
+func (c *Client) SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error) {
+	res, err := c.sendSubnetOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetFindRequestEnvelope, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
+func (c *Client) sendSubnetOpFind(ctx context.Context, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -23986,12 +24377,29 @@ func (c *Client) sendSubnetOpFind(ctx context.Context, request *SubnetFindReques
 	pathParts[2] = "/api/cloud/1.1/subnet"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeSubnetOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -24584,12 +24992,12 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 // SwitchOpFind invokes SwitchOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/switch
-func (c *Client) SwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error) {
-	res, err := c.sendSwitchOpFind(ctx, request, params)
+func (c *Client) SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error) {
+	res, err := c.sendSwitchOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchFindRequestEnvelope, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
+func (c *Client) sendSwitchOpFind(ctx context.Context, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -24615,12 +25023,29 @@ func (c *Client) sendSwitchOpFind(ctx context.Context, request *SwitchFindReques
 	pathParts[2] = "/api/cloud/1.1/switch"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeSwitchOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{
@@ -25500,12 +25925,12 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 // ZoneOpFind invokes ZoneOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/zone
-func (c *Client) ZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error) {
-	res, err := c.sendZoneOpFind(ctx, request, params)
+func (c *Client) ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error) {
+	res, err := c.sendZoneOpFind(ctx, params)
 	return res, err
 }
 
-func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneFindRequestEnvelope, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
+func (c *Client) sendZoneOpFind(ctx context.Context, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -25531,12 +25956,29 @@ func (c *Client) sendZoneOpFind(ctx context.Context, request *ZoneFindRequestEnv
 	pathParts[2] = "/api/cloud/1.1/zone"
 	uri.AddPathParts(u, pathParts[:]...)
 
+	q := uri.NewQueryEncoder()
+	{
+		// Encode "q" parameter.
+		cfg := uri.QueryParameterEncodingConfig{
+			Name:    "q",
+			Style:   uri.QueryStyleForm,
+			Explode: false,
+		}
+
+		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
+			if val, ok := params.Q.Get(); ok {
+				return e.EncodeValue(conv.StringToString(val))
+			}
+			return nil
+		}); err != nil {
+			return res, errors.Wrap(err, "encode query")
+		}
+	}
+	u.RawQuery = q.Values().Encode()
+
 	r, err := ht.NewRequest(ctx, "GET", u)
 	if err != nil {
 		return res, errors.Wrap(err, "create request")
-	}
-	if err := encodeZoneOpFindRequest(request, r); err != nil {
-		return res, errors.Wrap(err, "encode request")
 	}
 
 	{

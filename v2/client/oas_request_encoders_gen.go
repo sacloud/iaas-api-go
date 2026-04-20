@@ -24,20 +24,6 @@ func encodeApplianceOpCreateRequest(
 	return nil
 }
 
-func encodeApplianceOpFindRequest(
-	req *FindCondition,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeApplianceOpMonitorCPURequest(
 	req *MonitorCondition,
 	r *http.Request,
@@ -122,20 +108,6 @@ func encodeArchiveOpCreateRequest(
 	return nil
 }
 
-func encodeArchiveOpFindRequest(
-	req *ArchiveFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeArchiveOpShareRequest(
 	req *ArchiveShareRequestEnvelope,
 	r *http.Request,
@@ -192,20 +164,6 @@ func encodeBridgeOpCreateRequest(
 	return nil
 }
 
-func encodeBridgeOpFindRequest(
-	req *BridgeFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeBridgeOpUpdateRequest(
 	req *BridgeUpdateRequestEnvelope,
 	r *http.Request,
@@ -222,20 +180,6 @@ func encodeBridgeOpUpdateRequest(
 
 func encodeCDROMOpCreateRequest(
 	req *CDROMCreateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeCDROMOpFindRequest(
-	req *CDROMFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -306,20 +250,6 @@ func encodeCertificateAuthorityOpAddServerRequest(
 
 func encodeCommonServiceItemOpCreateRequest(
 	req *CommonServiceItemCreateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeCommonServiceItemOpFindRequest(
-	req *FindCondition,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -430,20 +360,6 @@ func encodeDiskOpCreateRequest(
 	return nil
 }
 
-func encodeDiskOpFindRequest(
-	req *DiskFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeDiskOpMonitorRequest(
 	req *DiskMonitorRequestEnvelope,
 	r *http.Request,
@@ -474,20 +390,6 @@ func encodeDiskOpResizePartitionRequest(
 
 func encodeDiskOpUpdateRequest(
 	req *DiskUpdateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeDiskPlanOpFindRequest(
-	req *DiskPlanFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -584,20 +486,6 @@ func encodeIPv6AddrOpCreateRequest(
 	return nil
 }
 
-func encodeIPv6AddrOpFindRequest(
-	req *IPv6AddrFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeIPv6AddrOpUpdateRequest(
 	req *IPv6AddrUpdateRequestEnvelope,
 	r *http.Request,
@@ -640,20 +528,6 @@ func encodeIconOpCreateRequest(
 	return nil
 }
 
-func encodeIconOpFindRequest(
-	req *IconFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeIconOpUpdateRequest(
 	req *IconUpdateRequestEnvelope,
 	r *http.Request,
@@ -670,20 +544,6 @@ func encodeIconOpUpdateRequest(
 
 func encodeInterfaceOpCreateRequest(
 	req *InterfaceCreateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeInterfaceOpFindRequest(
-	req *InterfaceFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -752,20 +612,6 @@ func encodeInternetOpCreateRequest(
 	return nil
 }
 
-func encodeInternetOpFindRequest(
-	req *InternetFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeInternetOpMonitorRequest(
 	req *InternetMonitorRequestEnvelope,
 	r *http.Request,
@@ -822,50 +668,8 @@ func encodeInternetOpUpdateSubnetRequest(
 	return nil
 }
 
-func encodeInternetPlanOpFindRequest(
-	req *InternetPlanFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeLicenseInfoOpFindRequest(
-	req *LicenseInfoFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeLicenseOpCreateRequest(
 	req *LicenseCreateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeLicenseOpFindRequest(
-	req *LicenseFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -976,20 +780,6 @@ func encodeNoteOpCreateRequest(
 	return nil
 }
 
-func encodeNoteOpFindRequest(
-	req *NoteFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeNoteOpUpdateRequest(
 	req *NoteUpdateRequestEnvelope,
 	r *http.Request,
@@ -1006,20 +796,6 @@ func encodeNoteOpUpdateRequest(
 
 func encodePacketFilterOpCreateRequest(
 	req *PacketFilterCreateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodePacketFilterOpFindRequest(
-	req *PacketFilterFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1060,36 +836,8 @@ func encodePrivateHostOpCreateRequest(
 	return nil
 }
 
-func encodePrivateHostOpFindRequest(
-	req *PrivateHostFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodePrivateHostOpUpdateRequest(
 	req *PrivateHostUpdateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodePrivateHostPlanOpFindRequest(
-	req *PrivateHostPlanFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1132,20 +880,6 @@ func encodeProxyLBOpMonitorConnectionRequest(
 
 func encodeProxyLBOpSetCertificatesRequest(
 	req *ProxyLBOpSetCertificatesReq,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeRegionOpFindRequest(
-	req *RegionFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1216,20 +950,6 @@ func encodeSIMOpSetNetworkOperatorRequest(
 
 func encodeSSHKeyOpCreateRequest(
 	req *SSHKeyCreateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeSSHKeyOpFindRequest(
-	req *SSHKeyFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -1326,20 +1046,6 @@ func encodeServerOpEjectCDROMRequest(
 	return nil
 }
 
-func encodeServerOpFindRequest(
-	req *ServerFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeServerOpInsertCDROMRequest(
 	req *ServerInsertCDROMRequestEnvelope,
 	r *http.Request,
@@ -1410,34 +1116,6 @@ func encodeServerOpUpdateRequest(
 	return nil
 }
 
-func encodeServerPlanOpFindRequest(
-	req *ServerPlanFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeServiceClassOpFindRequest(
-	req *ServiceClassFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeSimpleMonitorOpMonitorResponseTimeRequest(
 	req *SimpleMonitorOpMonitorResponseTimeReq,
 	r *http.Request,
@@ -1466,20 +1144,6 @@ func encodeSimpleNotificationGroupOpPostMessageRequest(
 	return nil
 }
 
-func encodeSubnetOpFindRequest(
-	req *SubnetFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeSwitchOpCreateRequest(
 	req *SwitchCreateRequestEnvelope,
 	r *http.Request,
@@ -1494,36 +1158,8 @@ func encodeSwitchOpCreateRequest(
 	return nil
 }
 
-func encodeSwitchOpFindRequest(
-	req *SwitchFindRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
 func encodeSwitchOpUpdateRequest(
 	req *SwitchUpdateRequestEnvelope,
-	r *http.Request,
-) error {
-	const contentType = "application/json"
-	e := new(jx.Encoder)
-	{
-		req.Encode(e)
-	}
-	encoded := e.Bytes()
-	ht.SetBody(r, bytes.NewReader(encoded), contentType)
-	return nil
-}
-
-func encodeZoneOpFindRequest(
-	req *ZoneFindRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"

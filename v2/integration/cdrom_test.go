@@ -96,7 +96,7 @@ func TestCDROMCRUD(t *testing.T) {
 	require.Equal(t, "test-cdrom-updated", updateResp.CDROM.Name.Value)
 
 	// 4. Find
-	findResp, err := c.CDROMOpFind(ctx, &client.CDROMFindRequestEnvelope{}, client.CDROMOpFindParams{Zone: zone})
+	findResp, err := c.CDROMOpFind(ctx, client.CDROMOpFindParams{Zone: zone})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.CDROMs), 0)
 

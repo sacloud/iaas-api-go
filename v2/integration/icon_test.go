@@ -86,12 +86,11 @@ func TestIconCRUD(t *testing.T) {
 	require.Equal(t, "test-icon-updated", updateResp.Icon.Name.Value)
 
 	// 4. Find - アイコン検索
-	findReq := &client.IconFindRequestEnvelope{}
 	findParams := client.IconOpFindParams{
 		Zone: zone,
 	}
 
-	findResp, err := c.IconOpFind(ctx, findReq, findParams)
+	findResp, err := c.IconOpFind(ctx, findParams)
 	require.NoError(t, err)
 	require.NotNil(t, findResp)
 	require.Greater(t, len(findResp.Icons), 0)
