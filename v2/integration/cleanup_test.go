@@ -63,6 +63,31 @@ func TestCleanupInternet(t *testing.T) {
 	}
 }
 
+// TestCleanupPrivateHost は tk1a に取り残された "test" タグの PrivateHost を一括削除する。
+// PrivateHost は sandbox では Plan が無いためテストは tk1a 固定で走る（private_host_test.go 参照）。
+func TestCleanupPrivateHost(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+
+	findResp, err := c.PrivateHostOpFind(ctx, &client.PrivateHostFindRequestEnvelope{}, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, ph := range findResp.PrivateHosts {
+		if !hasTestTag(ph.Tags) && !strings.HasPrefix(ph.Name.Value, "test-private-host") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", ph.ID)
+		t.Logf("Deleting privatehost %s (name=%s)", idStr, ph.Name.Value)
+		if _, err := c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{Zone: privateHostTestZone, ID: idStr}); err != nil {
+			t.Logf("delete privatehost %s failed: %v", idStr, err)
+		}
+	}
+}
+
 // TestCleanupCDROM は "test" タグが付いた CDROM リソースを一括削除する。
 // FTP 共有中（uploading）の CDROM は先に CloseFTP してから削除する。
 func TestCleanupCDROM(t *testing.T) {
