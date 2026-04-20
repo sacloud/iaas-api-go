@@ -303,6 +303,20 @@ var modelFieldExclusions = map[string]map[string]bool{
 	// `X-Sakura-Bigint-As-Int: 1` ヘッダに反して文字列で返ってくる仕様で decode が困難。
 	// usacloud / terraform いずれも参照していないため除外する。
 	"Archive": {"SourceInfo": true},
+	// Appliance の Remark.Switch.ID / Remark.Zone.ID は `X-Sakura-Bigint-As-Int` ヘッダに反して文字列で返る
+	// （上位の Appliance.Switch.ID / Zone.ID は int のため齟齬がある）。downstream は上位のフィールドを
+	// 使うので除外する。共有エンドポイントの response は Database を代表型として使うため DatabaseRemark
+	// のみで実害が出るが、将来 per-resource envelope を emit した場合に備えて個別 Remark も同様に除外しておく。
+	"DatabaseRemark":      {"Switch": true, "Zone": true},
+	"LoadBalancerRemark":  {"Switch": true, "Zone": true},
+	"NFSRemark":           {"Switch": true, "Zone": true},
+	"MobileGatewayRemark": {"Switch": true, "Zone": true},
+	"VPCRouterRemark":     {"Switch": true, "Zone": true},
+	// VPCRouter の Interfaces レスポンスは 8 スロットで未使用枠に null が混在する
+	// (`[{...}, null, null, ...]`) ため ogen の strict decode と相性が悪い。共有 Appliance 応答の
+	// 代表型 Database からは Interfaces を丸ごと除外する。downstream (terraform / usacloud) は
+	// Appliance.Interfaces は直接使わないため実害なし。
+	"Database": {"Interfaces": true},
 }
 
 // tsModelField はテンプレートに渡す TypeSpec フィールド情報。
@@ -379,6 +393,20 @@ var fieldNullabilityOverrides = map[string]map[string]bool{
 	"SwitchInfo": {
 		"Description": true,
 		"Tags":        true,
+	},
+	// Database 型は共有 Appliance endpoint の代表レスポンス型として使われるため、
+	// Database 固有の InterfaceSettings / IPAddresses は他 Appliance（NFS/LB/VPCR 等）のレスポンスには
+	// 含まれない。required のままだと NFS などを decode するときに失敗するので optional 化する。
+	"Database": {
+		"InterfaceSettings": true,
+		"IPAddresses":       true,
+		"Disk":              true,
+	},
+	// DatabaseSettingCommon の WebUI / SourceNetwork は実 API レスポンスで省略されることがある
+	// （ユーザが指定しない場合、API は WebUI を返さない）。required のままだと decode が失敗する。
+	"DatabaseSettingCommon": {
+		"WebUI":         true,
+		"SourceNetwork": true,
 	},
 }
 
@@ -492,7 +520,14 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 	var mainFields []tsModelField
 	var subs []resolvedModel
 
+	// 合成サブモデル（例: `DatabaseRemark`）側でフィールドをスキップしたいケース向けに、
+	// ルートの `resolveModel` だけでなく再帰呼び出しでも modelFieldExclusions を参照する。
+	subExclusions := modelFieldExclusions[modelName]
+
 	for _, child := range node.children {
+		if subExclusions[child.name] {
+			continue
+		}
 		nullable := nakedFieldIsNullable(nakedRT, child.name)
 		if overrides, ok := fieldNullabilityOverrides[modelName]; ok && overrides[child.name] {
 			nullable = true

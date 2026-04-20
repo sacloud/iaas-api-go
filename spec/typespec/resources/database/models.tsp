@@ -15,12 +15,11 @@ model Database {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   Settings?: DatabaseSettings | null;
-  InterfaceSettings: DatabaseSettingsInterface[];
+  InterfaceSettings?: DatabaseSettingsInterface[] | null;
   SettingsHash?: string | null;
   Instance?: DatabaseInstance | null;
   Remark?: DatabaseRemark | null;
-  IPAddresses: string[];
-  Interfaces?: InterfaceView[] | null;
+  IPAddresses?: string[] | null;
   Disk?: DatabaseDisk | null;
 }
 
@@ -49,10 +48,8 @@ model DatabaseInstanceHost {
 
 model DatabaseRemark {
   Plan?: ResourceRef | null;
-  Switch?: ResourceRef | null;
   DBConf?: DatabaseRemarkDBConf | null;
   Network?: DatabaseRemarkNetwork | null;
-  Zone?: ResourceRef | null;
 }
 
 model DatabaseRemarkDBConf {
@@ -65,9 +62,9 @@ model DatabaseRemarkNetwork {
 }
 
 model DatabaseSettingCommon {
-  WebUI: string;
+  WebUI?: string | null;
   ServicePort?: int32 | null;
-  SourceNetwork: string[];
+  SourceNetwork?: string[] | null;
   DefaultUser?: string | null;
   UserPassword?: string | null;
   ReplicaUser?: string | null;

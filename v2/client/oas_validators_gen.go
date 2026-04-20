@@ -32,43 +32,20 @@ func (s *ApplianceCreateRequest) Validate() error {
 	return nil
 }
 
-func (s *ApplianceOpCreateReq) Validate() error {
+func (s *ApplianceCreateRequestEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
 	}
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
+		if err := s.Appliance.Validate(); err != nil {
 			return err
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *ApplianceOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
+			Name:  "Appliance",
 			Error: err,
 		})
 	}
@@ -92,6 +69,29 @@ func (s *ApplianceUpdateRequest) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Tags",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *ApplianceUpdateRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.Appliance.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "Appliance",
 			Error: err,
 		})
 	}
@@ -1510,8 +1510,15 @@ func (s *CommonServiceItemCreateRequest) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if err := s.Settings.Validate(); err != nil {
-			return err
+		if value, ok := s.Settings.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
@@ -1528,6 +1535,29 @@ func (s *CommonServiceItemCreateRequest) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Tags",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *CommonServiceItemCreateRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.CommonServiceItem.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "CommonServiceItem",
 			Error: err,
 		})
 	}
@@ -1702,52 +1732,6 @@ func (s *CommonServiceItemCreateRequestSettingsProxyLB) Validate() error {
 	return nil
 }
 
-func (s *CommonServiceItemOpCreateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *CommonServiceItemOpUpdateReq) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.Param.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "param",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *CommonServiceItemUpdateRequest) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -1766,13 +1750,43 @@ func (s *CommonServiceItemUpdateRequest) Validate() error {
 		})
 	}
 	if err := func() error {
-		if err := s.Settings.Validate(); err != nil {
-			return err
+		if value, ok := s.Settings.Get(); ok {
+			if err := func() error {
+				if err := value.Validate(); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Settings",
+			Error: err,
+		})
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+	return nil
+}
+
+func (s *CommonServiceItemUpdateRequestEnvelope) Validate() error {
+	if s == nil {
+		return validate.ErrNilPointer
+	}
+
+	var failures []validate.FieldError
+	if err := func() error {
+		if err := s.CommonServiceItem.Validate(); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "CommonServiceItem",
 			Error: err,
 		})
 	}
@@ -2107,29 +2121,7 @@ func (s *Database) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.InterfaceSettings == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "InterfaceSettings",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if s.IPAddresses == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "IPAddresses",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if value, ok := s.Interfaces.Get(); ok {
+		if value, ok := s.InterfaceSettings.Get(); ok {
 			if err := func() error {
 				if value == nil {
 					return errors.New("nil is invalid value")
@@ -2142,7 +2134,25 @@ func (s *Database) Validate() error {
 		return nil
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
-			Name:  "Interfaces",
+			Name:  "InterfaceSettings",
+			Error: err,
+		})
+	}
+	if err := func() error {
+		if value, ok := s.IPAddresses.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
+		}
+		return nil
+	}(); err != nil {
+		failures = append(failures, validate.FieldError{
+			Name:  "IPAddresses",
 			Error: err,
 		})
 	}
@@ -2466,8 +2476,15 @@ func (s *DatabaseSettingCommon) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.SourceNetwork == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.SourceNetwork.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {

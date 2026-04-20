@@ -104,6 +104,15 @@ func (s *ApplianceCreateRequest) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ApplianceCreateRequestEnvelope) SetFake() {
+	{
+		{
+			s.Appliance.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ApplianceCreateRequestIcon) SetFake() {
 	{
 		{
@@ -241,15 +250,6 @@ func (s *ApplianceCreateRequestRemarkVRRP) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ApplianceOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *ApplianceOpDeleteOK) SetFake() {
 	{
 		{
@@ -259,64 +259,10 @@ func (s *ApplianceOpDeleteOK) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *ApplianceOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ApplianceOpMonitorCPUReq) SetFake() {
-	{
-		{
-			s.Condition.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ApplianceOpMonitorDatabaseReq) SetFake() {
-	{
-		{
-			s.Condition.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ApplianceOpMonitorInterfaceReq) SetFake() {
-	{
-		{
-			s.Condition.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *ApplianceOpShutdownOK) SetFake() {
 	{
 		{
 			s.IsOk = true
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ApplianceOpShutdownReq) SetFake() {
-	{
-		{
-			s.ShutdownOption.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ApplianceOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
 		}
 	}
 }
@@ -358,6 +304,15 @@ func (s *ApplianceUpdateRequest) SetFake() {
 	{
 		{
 			s.SettingsHash.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ApplianceUpdateRequestEnvelope) SetFake() {
+	{
+		{
+			s.Appliance.SetFake()
 		}
 	}
 }
@@ -2571,6 +2526,15 @@ func (s *CommonServiceItemCreateRequest) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *CommonServiceItemCreateRequestEnvelope) SetFake() {
+	{
+		{
+			s.CommonServiceItem.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *CommonServiceItemCreateRequestIcon) SetFake() {
 	{
 		{
@@ -3060,37 +3024,10 @@ func (s *CommonServiceItemCreateRequestStatusAPIKey) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *CommonServiceItemOpCreateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *CommonServiceItemOpDeleteOK) SetFake() {
 	{
 		{
 			s.IsOk = true
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CommonServiceItemOpFindReq) SetFake() {
-	{
-		{
-			s.Conditions.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *CommonServiceItemOpUpdateReq) SetFake() {
-	{
-		{
-			s.Param.SetFake()
 		}
 	}
 }
@@ -3132,6 +3069,15 @@ func (s *CommonServiceItemUpdateRequest) SetFake() {
 	{
 		{
 			s.SettingsHash.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CommonServiceItemUpdateRequestEnvelope) SetFake() {
+	{
+		{
+			s.CommonServiceItem.SetFake()
 		}
 	}
 }
@@ -3830,14 +3776,7 @@ func (s *Database) SetFake() {
 	}
 	{
 		{
-			s.InterfaceSettings = nil
-			for i := 0; i < 0; i++ {
-				var elem DatabaseSettingsInterface
-				{
-					elem.SetFake()
-				}
-				s.InterfaceSettings = append(s.InterfaceSettings, elem)
-			}
+			s.InterfaceSettings.SetFake()
 		}
 	}
 	{
@@ -3857,19 +3796,7 @@ func (s *Database) SetFake() {
 	}
 	{
 		{
-			s.IPAddresses = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.IPAddresses = append(s.IPAddresses, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Interfaces.SetFake()
+			s.IPAddresses.SetFake()
 		}
 	}
 	{
@@ -4244,22 +4171,12 @@ func (s *DatabaseRemark) SetFake() {
 	}
 	{
 		{
-			s.Switch.SetFake()
-		}
-	}
-	{
-		{
 			s.DBConf.SetFake()
 		}
 	}
 	{
 		{
 			s.Network.SetFake()
-		}
-	}
-	{
-		{
-			s.Zone.SetFake()
 		}
 	}
 }
@@ -4407,7 +4324,7 @@ func (s *DatabaseSettingBackupv2View) SetFake() {
 func (s *DatabaseSettingCommon) SetFake() {
 	{
 		{
-			s.WebUI = "string"
+			s.WebUI.SetFake()
 		}
 	}
 	{
@@ -4417,14 +4334,7 @@ func (s *DatabaseSettingCommon) SetFake() {
 	}
 	{
 		{
-			s.SourceNetwork = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.SourceNetwork = append(s.SourceNetwork, elem)
-			}
+			s.SourceNetwork.SetFake()
 		}
 	}
 	{
@@ -8836,6 +8746,15 @@ func (s *NoteUpdateResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptApplianceCreateRequestIcon) SetFake() {
+	var elem ApplianceCreateRequestIcon
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptApplianceCreateRequestPlan) SetFake() {
 	var elem ApplianceCreateRequestPlan
 	{
@@ -8899,6 +8818,15 @@ func (s *OptApplianceCreateRequestRemarkVRRP) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptApplianceUpdateRequestIcon) SetFake() {
+	var elem ApplianceUpdateRequestIcon
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptArchiveShareInfo) SetFake() {
 	var elem ArchiveShareInfo
 	{
@@ -8935,8 +8863,26 @@ func (s *OptBool) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptCommonServiceItemCreateRequestIcon) SetFake() {
+	var elem CommonServiceItemCreateRequestIcon
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptCommonServiceItemCreateRequestRemark) SetFake() {
 	var elem CommonServiceItemCreateRequestRemark
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptCommonServiceItemCreateRequestSettings) SetFake() {
+	var elem CommonServiceItemCreateRequestSettings
 	{
 		elem.SetFake()
 	}
@@ -9018,6 +8964,24 @@ func (s *OptCommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack) SetF
 // SetFake set fake values.
 func (s *OptCommonServiceItemCreateRequestStatusAPIKey) SetFake() {
 	var elem CommonServiceItemCreateRequestStatusAPIKey
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptCommonServiceItemUpdateRequestIcon) SetFake() {
+	var elem CommonServiceItemUpdateRequestIcon
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptCommonServiceItemUpdateRequestSettings) SetFake() {
+	var elem CommonServiceItemUpdateRequestSettings
 	{
 		elem.SetFake()
 	}
@@ -9464,6 +9428,12 @@ func (s *OptNilDatabaseSettings) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilDatabaseSettingsDBConf) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseSettingsInterfaceArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }

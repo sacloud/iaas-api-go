@@ -93,7 +93,8 @@ func postSuccessStatus(resolvedPath string) int {
 // 観測済みエンドポイントのみ登録し、未登録は 201 にフォールバックする。
 var postStatusCodeOverrides = map[string]int{
 	// 202 Accepted（非同期受付完了）を返すエンドポイント
-	"/{zone}/api/cloud/1.1/internet": 202,
+	"/{zone}/api/cloud/1.1/internet":  202,
+	"/{zone}/api/cloud/1.1/appliance": 202,
 
 	// 200 OK を返す sub-action 系 POST（既存リソースに対する操作で「新規リソース作成」では無い）
 	"/{zone}/api/cloud/1.1/internet/{id}/ipv6net": 200,
@@ -183,6 +184,16 @@ func bodyArgs(op *dsl.Operation, resolvedPath string) []bodyArg {
 		args = append(args, bodyArg{arg.ArgName(), goArgTypeToTS(arg.TypeName())})
 	}
 	return args
+}
+
+// fatModelExists は同名の fatModelDef が既に存在するかチェックする。
+func fatModelExists(defs []fatModelDef, name string) bool {
+	for _, d := range defs {
+		if d.Name == name {
+			return true
+		}
+	}
+	return false
 }
 
 // primaryOpForKey は同一 opKey を持つ複数オペレーションから代表を選ぶ。
@@ -492,6 +503,35 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 			resBodyArgs[rm.resource] = bodyArgs(primaryOpForKey(ops), resolvedPath)
 		}
 
+		// 共有グループの body は DSL の Arg 名ではなく実 API の JSON 構造に合わせる必要がある。
+		// DSL 上は以下の 2 パターン:
+		// - MappableArgument: MapConvTag = "<PayloadName>,recursive" → body を `{ <PayloadName>: T }` で包む (Create/Update)
+		// - PassthroughModelArgument: MapConvTag = ",squash"       → body は flat (Shutdown の Force, Find の Count/From/Filter 等)
+		// この判定は primary op の最初の非 path 引数の MapConvTag から行う。
+		shouldWrap := false
+		wrapKey := ""
+		if len(resources) > 0 {
+			if firstOps, ok := resourceOps[0].byKey[k]; ok {
+				primary := primaryOpForKey(firstOps)
+				pathSet := map[string]bool{}
+				for _, p := range extractPathParams(resolvedPath) {
+					pathSet[p] = true
+				}
+				for _, arg := range primary.Arguments {
+					if pathSet[arg.PathFormatName()] {
+						continue
+					}
+					// "<dest>,recursive" パターンで wrap する
+					parts := strings.SplitN(arg.MapConvTag, ",", 2)
+					if len(parts) == 2 && parts[0] != "" && strings.Contains(parts[1], "recursive") {
+						shouldWrap = true
+						wrapKey = parts[0]
+					}
+					break // 最初の 1 つだけ判定
+				}
+			}
+		}
+
 		// パラメータリストを構築: @path を先に出力
 		var params []opParam
 		for _, p := range pathParams {
@@ -517,7 +557,19 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 
 			if allSame {
 				// 全バリアントが同じ型 → そのまま使用
-				params = append(params, opParam{Name: firstArg.name, TSType: firstArg.tsType})
+				// wrap が必要なら envelope モデル名を TSType に、不要なら型そのものを使う
+				tsType := firstArg.tsType
+				if shouldWrap && len(firstArgs) == 1 {
+					envName := groupName + upperFirst(lowerFirst(repOp.Name)) + "RequestEnvelope"
+					if !fatModelExists(fatModels, envName) {
+						fatModels = append(fatModels, fatModelDef{
+							Name:   envName,
+							Fields: []fatField{{Name: wrapKey, TSType: firstArg.tsType}},
+						})
+					}
+					tsType = envName
+				}
+				params = append(params, opParam{Decorator: "@body", Name: "body", TSType: tsType})
 			} else {
 				// 型がリソースによって異なる → fat model を生成
 				// fat model 名はリソース TypeName プレフィックスを除いた共通サフィックスから決定
@@ -548,7 +600,19 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 					}
 					fatModels = append(fatModels, buildFatModelDefs(fatModelName, argVariants, resources, totalVariants, addClass)...)
 				}
-				params = append(params, opParam{Name: firstArg.name, TSType: fatModelName})
+				// fat model も wrap が必要なら envelope モデルでラップする
+				tsType := fatModelName
+				if shouldWrap && len(firstArgs) == 1 {
+					envName := groupName + upperFirst(lowerFirst(repOp.Name)) + "RequestEnvelope"
+					if !fatModelExists(fatModels, envName) {
+						fatModels = append(fatModels, fatModelDef{
+							Name:   envName,
+							Fields: []fatField{{Name: wrapKey, TSType: fatModelName}},
+						})
+					}
+					tsType = envName
+				}
+				params = append(params, opParam{Decorator: "@body", Name: "body", TSType: tsType})
 			}
 		}
 

@@ -32,7 +32,7 @@ type Invoker interface {
 	// ApplianceOpCreate invokes ApplianceOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/appliance
-	ApplianceOpCreate(ctx context.Context, request *ApplianceOpCreateReq, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error)
+	ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error)
 	// ApplianceOpDelete invokes ApplianceOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}
@@ -40,19 +40,19 @@ type Invoker interface {
 	// ApplianceOpFind invokes ApplianceOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance
-	ApplianceOpFind(ctx context.Context, request *ApplianceOpFindReq, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error)
+	ApplianceOpFind(ctx context.Context, request *FindCondition, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error)
 	// ApplianceOpMonitorCPU invokes ApplianceOp_monitorCPU operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
-	ApplianceOpMonitorCPU(ctx context.Context, request *ApplianceOpMonitorCPUReq, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error)
+	ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error)
 	// ApplianceOpMonitorDatabase invokes ApplianceOp_monitorDatabase operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/database/monitor
-	ApplianceOpMonitorDatabase(ctx context.Context, request *ApplianceOpMonitorDatabaseReq, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error)
+	ApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error)
 	// ApplianceOpMonitorInterface invokes ApplianceOp_monitorInterface operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/monitor
-	ApplianceOpMonitorInterface(ctx context.Context, request *ApplianceOpMonitorInterfaceReq, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error)
+	ApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error)
 	// ApplianceOpMonitorInterfaceByIndex invokes ApplianceOp_monitorInterfaceByIndex operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor
@@ -68,7 +68,7 @@ type Invoker interface {
 	// ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
-	ApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error)
+	ApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error)
 	// ApplianceOpStatus invokes ApplianceOp_status operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/status
@@ -76,7 +76,7 @@ type Invoker interface {
 	// ApplianceOpUpdate invokes ApplianceOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}
-	ApplianceOpUpdate(ctx context.Context, request *ApplianceOpUpdateReq, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error)
+	ApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error)
 	// ArchiveOpCloseFTP invokes ArchiveOp_closeFTP operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
@@ -256,7 +256,7 @@ type Invoker interface {
 	// CommonServiceItemOpCreate invokes CommonServiceItemOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem
-	CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemOpCreateReq, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error)
+	CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error)
 	// CommonServiceItemOpDelete invokes CommonServiceItemOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
@@ -264,7 +264,7 @@ type Invoker interface {
 	// CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem
-	CommonServiceItemOpFind(ctx context.Context, request *CommonServiceItemOpFindReq, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error)
+	CommonServiceItemOpFind(ctx context.Context, request *FindCondition, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error)
 	// CommonServiceItemOpHealthStatus invokes CommonServiceItemOp_healthStatus operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/health
@@ -276,7 +276,7 @@ type Invoker interface {
 	// CommonServiceItemOpUpdate invokes CommonServiceItemOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}
-	CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemOpUpdateReq, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error)
+	CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error)
 	// ContainerRegistryOpAddUser invokes ContainerRegistryOp_addUser operation.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
@@ -1203,12 +1203,12 @@ func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpCo
 // ApplianceOpCreate invokes ApplianceOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/appliance
-func (c *Client) ApplianceOpCreate(ctx context.Context, request *ApplianceOpCreateReq, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error) {
+func (c *Client) ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error) {
 	res, err := c.sendApplianceOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceOpCreateReq, params ApplianceOpCreateParams) (res *DatabaseCreateResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (res *DatabaseCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -1407,12 +1407,12 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 // ApplianceOpFind invokes ApplianceOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/appliance
-func (c *Client) ApplianceOpFind(ctx context.Context, request *ApplianceOpFindReq, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error) {
+func (c *Client) ApplianceOpFind(ctx context.Context, request *FindCondition, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error) {
 	res, err := c.sendApplianceOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpFind(ctx context.Context, request *ApplianceOpFindReq, params ApplianceOpFindParams) (res *DatabaseFindResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpFind(ctx context.Context, request *FindCondition, params ApplianceOpFindParams) (res *DatabaseFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -1497,12 +1497,12 @@ func (c *Client) sendApplianceOpFind(ctx context.Context, request *ApplianceOpFi
 // ApplianceOpMonitorCPU invokes ApplianceOp_monitorCPU operation.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
-func (c *Client) ApplianceOpMonitorCPU(ctx context.Context, request *ApplianceOpMonitorCPUReq, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error) {
+func (c *Client) ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorCPU(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *ApplianceOpMonitorCPUReq, params ApplianceOpMonitorCPUParams) (res *DatabaseMonitorCPUResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (res *DatabaseMonitorCPUResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -1606,12 +1606,12 @@ func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *Applian
 // ApplianceOpMonitorDatabase invokes ApplianceOp_monitorDatabase operation.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/database/monitor
-func (c *Client) ApplianceOpMonitorDatabase(ctx context.Context, request *ApplianceOpMonitorDatabaseReq, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error) {
+func (c *Client) ApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorDatabase(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *ApplianceOpMonitorDatabaseReq, params ApplianceOpMonitorDatabaseParams) (res *DatabaseMonitorDatabaseResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (res *DatabaseMonitorDatabaseResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -1715,12 +1715,12 @@ func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *Ap
 // ApplianceOpMonitorInterface invokes ApplianceOp_monitorInterface operation.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/interface/monitor
-func (c *Client) ApplianceOpMonitorInterface(ctx context.Context, request *ApplianceOpMonitorInterfaceReq, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error) {
+func (c *Client) ApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorInterface(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *ApplianceOpMonitorInterfaceReq, params ApplianceOpMonitorInterfaceParams) (res *DatabaseMonitorInterfaceResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (res *DatabaseMonitorInterfaceResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -2160,12 +2160,12 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 // ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
-func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error) {
+func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error) {
 	res, err := c.sendApplianceOpShutdown(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ApplianceOpShutdownReq, params ApplianceOpShutdownParams) (res *ApplianceOpShutdownOK, err error) {
+func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (res *ApplianceOpShutdownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -2375,12 +2375,12 @@ func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpSt
 // ApplianceOpUpdate invokes ApplianceOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}
-func (c *Client) ApplianceOpUpdate(ctx context.Context, request *ApplianceOpUpdateReq, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error) {
+func (c *Client) ApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error) {
 	res, err := c.sendApplianceOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceOpUpdateReq, params ApplianceOpUpdateParams) (res *DatabaseUpdateResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (res *DatabaseUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -7396,12 +7396,12 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 // CommonServiceItemOpCreate invokes CommonServiceItemOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/commonserviceitem
-func (c *Client) CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemOpCreateReq, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error) {
+func (c *Client) CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemOpCreateReq, params CommonServiceItemOpCreateParams) (res *AutoBackupCreateResponseEnvelope, err error) {
+func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (res *AutoBackupCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -7600,12 +7600,12 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 // CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem
-func (c *Client) CommonServiceItemOpFind(ctx context.Context, request *CommonServiceItemOpFindReq, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error) {
+func (c *Client) CommonServiceItemOpFind(ctx context.Context, request *FindCondition, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpFind(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, request *CommonServiceItemOpFindReq, params CommonServiceItemOpFindParams) (res *AutoBackupFindResponseEnvelope, err error) {
+func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, request *FindCondition, params CommonServiceItemOpFindParams) (res *AutoBackupFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -7901,12 +7901,12 @@ func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonS
 // CommonServiceItemOpUpdate invokes CommonServiceItemOp_update operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}
-func (c *Client) CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemOpUpdateReq, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error) {
+func (c *Client) CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpUpdate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemOpUpdateReq, params CommonServiceItemOpUpdateParams) (res *AutoBackupUpdateResponseEnvelope, err error) {
+func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (res *AutoBackupUpdateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {

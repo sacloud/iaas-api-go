@@ -192,8 +192,27 @@ func buildFatModelTree(argVariants map[*dsl.Resource]string, resources []*dsl.Re
 }
 
 // generateFatModelsFromTree はツリーから TypeSpec モデル群を生成する。
+// fatModelAlwaysOptionalTop は共有グループ fat model のトップレベルで常に optional 扱いにする
+// フィールドのセット。v1 naked 型ではポインタで omitempty されているため、全 variant に現れても
+// 実 API は省略可能なもの。
+// Fat model のデフォルト（全 variant にあれば required）だと、例えば Icon: {ID: 0} を常に送る
+// 羽目になり、Sakura Cloud 側が「不正な Icon.ID=0」と解釈して 503 を返すケースがある。
+var fatModelAlwaysOptionalTop = map[string]bool{
+	"Icon":         true,
+	"Plan":         true,
+	"Disk":         true,
+	"Settings":     true,
+	"SettingsHash": true,
+}
+
 // 戻り値: メインモデルを先頭に、中間モデルを後続に含むリスト
 func generateFatModelsFromTree(name string, node *jsonNode, totalVariants int, addClass bool) []fatModelDef {
+	return generateFatModelsFromTreeWithDepth(name, node, totalVariants, addClass, 0)
+}
+
+// generateFatModelsFromTreeWithDepth は depth=0 の top-level フィールドのみ
+// `fatModelAlwaysOptionalTop` を適用して optional にする。
+func generateFatModelsFromTreeWithDepth(name string, node *jsonNode, totalVariants int, addClass bool, depth int) []fatModelDef {
 	mainModel := fatModelDef{
 		Name:     name,
 		AddClass: addClass,
@@ -203,6 +222,9 @@ func generateFatModelsFromTree(name string, node *jsonNode, totalVariants int, a
 	for _, key := range node.childOrder {
 		child := node.children[key]
 		optional := child.count < totalVariants
+		if depth == 0 && fatModelAlwaysOptionalTop[key] {
+			optional = true
+		}
 
 		if child.hasConflict {
 			// 型競合 → unknown
@@ -231,7 +253,7 @@ func generateFatModelsFromTree(name string, node *jsonNode, totalVariants int, a
 		} else {
 			// 中間ノード → 再帰的に処理して中間モデルを生成
 			childModelName := name + upperFirst(key)
-			childModels := generateFatModelsFromTree(childModelName, child, child.count, false)
+			childModels := generateFatModelsFromTreeWithDepth(childModelName, child, child.count, false, depth+1)
 			extraModels = append(extraModels, childModels...)
 
 			tsType := childModelName

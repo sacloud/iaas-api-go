@@ -110,7 +110,7 @@ type ApplianceCreateRequest struct {
 	Name        string                        `json:"Name"`
 	Description string                        `json:"Description"`
 	Tags        []string                      `json:"Tags"`
-	Icon        ApplianceCreateRequestIcon    `json:"Icon"`
+	Icon        OptApplianceCreateRequestIcon `json:"Icon"`
 	Plan        OptApplianceCreateRequestPlan `json:"Plan"`
 }
 
@@ -150,7 +150,7 @@ func (s *ApplianceCreateRequest) GetTags() []string {
 }
 
 // GetIcon returns the value of Icon.
-func (s *ApplianceCreateRequest) GetIcon() ApplianceCreateRequestIcon {
+func (s *ApplianceCreateRequest) GetIcon() OptApplianceCreateRequestIcon {
 	return s.Icon
 }
 
@@ -195,13 +195,28 @@ func (s *ApplianceCreateRequest) SetTags(val []string) {
 }
 
 // SetIcon sets the value of Icon.
-func (s *ApplianceCreateRequest) SetIcon(val ApplianceCreateRequestIcon) {
+func (s *ApplianceCreateRequest) SetIcon(val OptApplianceCreateRequestIcon) {
 	s.Icon = val
 }
 
 // SetPlan sets the value of Plan.
 func (s *ApplianceCreateRequest) SetPlan(val OptApplianceCreateRequestPlan) {
 	s.Plan = val
+}
+
+// Ref: #/components/schemas/ApplianceCreateRequestEnvelope
+type ApplianceCreateRequestEnvelope struct {
+	Appliance ApplianceCreateRequest `json:"Appliance"`
+}
+
+// GetAppliance returns the value of Appliance.
+func (s *ApplianceCreateRequestEnvelope) GetAppliance() ApplianceCreateRequest {
+	return s.Appliance
+}
+
+// SetAppliance sets the value of Appliance.
+func (s *ApplianceCreateRequestEnvelope) SetAppliance(val ApplianceCreateRequest) {
+	s.Appliance = val
 }
 
 // Ref: #/components/schemas/ApplianceCreateRequestIcon
@@ -448,20 +463,6 @@ type ApplianceOpBootNoContent struct{}
 // ApplianceOpConfigNoContent is response for ApplianceOpConfig operation.
 type ApplianceOpConfigNoContent struct{}
 
-type ApplianceOpCreateReq struct {
-	Param ApplianceCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *ApplianceOpCreateReq) GetParam() ApplianceCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *ApplianceOpCreateReq) SetParam(val ApplianceCreateRequest) {
-	s.Param = val
-}
-
 type ApplianceOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
 }
@@ -474,62 +475,6 @@ func (s *ApplianceOpDeleteOK) GetIsOk() bool {
 // SetIsOk sets the value of IsOk.
 func (s *ApplianceOpDeleteOK) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-type ApplianceOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *ApplianceOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *ApplianceOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type ApplianceOpMonitorCPUReq struct {
-	Condition MonitorCondition `json:"condition"`
-}
-
-// GetCondition returns the value of Condition.
-func (s *ApplianceOpMonitorCPUReq) GetCondition() MonitorCondition {
-	return s.Condition
-}
-
-// SetCondition sets the value of Condition.
-func (s *ApplianceOpMonitorCPUReq) SetCondition(val MonitorCondition) {
-	s.Condition = val
-}
-
-type ApplianceOpMonitorDatabaseReq struct {
-	Condition MonitorCondition `json:"condition"`
-}
-
-// GetCondition returns the value of Condition.
-func (s *ApplianceOpMonitorDatabaseReq) GetCondition() MonitorCondition {
-	return s.Condition
-}
-
-// SetCondition sets the value of Condition.
-func (s *ApplianceOpMonitorDatabaseReq) SetCondition(val MonitorCondition) {
-	s.Condition = val
-}
-
-type ApplianceOpMonitorInterfaceReq struct {
-	Condition MonitorCondition `json:"condition"`
-}
-
-// GetCondition returns the value of Condition.
-func (s *ApplianceOpMonitorInterfaceReq) GetCondition() MonitorCondition {
-	return s.Condition
-}
-
-// SetCondition sets the value of Condition.
-func (s *ApplianceOpMonitorInterfaceReq) SetCondition(val MonitorCondition) {
-	s.Condition = val
 }
 
 // ApplianceOpResetNoContent is response for ApplianceOpReset operation.
@@ -549,42 +494,14 @@ func (s *ApplianceOpShutdownOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-type ApplianceOpShutdownReq struct {
-	ShutdownOption ShutdownOption `json:"shutdownOption"`
-}
-
-// GetShutdownOption returns the value of ShutdownOption.
-func (s *ApplianceOpShutdownReq) GetShutdownOption() ShutdownOption {
-	return s.ShutdownOption
-}
-
-// SetShutdownOption sets the value of ShutdownOption.
-func (s *ApplianceOpShutdownReq) SetShutdownOption(val ShutdownOption) {
-	s.ShutdownOption = val
-}
-
-type ApplianceOpUpdateReq struct {
-	Param ApplianceUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *ApplianceOpUpdateReq) GetParam() ApplianceUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *ApplianceOpUpdateReq) SetParam(val ApplianceUpdateRequest) {
-	s.Param = val
-}
-
 // Ref: #/components/schemas/ApplianceUpdateRequest
 type ApplianceUpdateRequest struct {
-	Name         string                     `json:"Name"`
-	Description  string                     `json:"Description"`
-	Tags         []string                   `json:"Tags"`
-	Icon         ApplianceUpdateRequestIcon `json:"Icon"`
-	Settings     jx.Raw                     `json:"Settings"`
-	SettingsHash OptString                  `json:"SettingsHash"`
+	Name         string                        `json:"Name"`
+	Description  string                        `json:"Description"`
+	Tags         []string                      `json:"Tags"`
+	Icon         OptApplianceUpdateRequestIcon `json:"Icon"`
+	Settings     jx.Raw                        `json:"Settings"`
+	SettingsHash OptString                     `json:"SettingsHash"`
 }
 
 // GetName returns the value of Name.
@@ -603,7 +520,7 @@ func (s *ApplianceUpdateRequest) GetTags() []string {
 }
 
 // GetIcon returns the value of Icon.
-func (s *ApplianceUpdateRequest) GetIcon() ApplianceUpdateRequestIcon {
+func (s *ApplianceUpdateRequest) GetIcon() OptApplianceUpdateRequestIcon {
 	return s.Icon
 }
 
@@ -633,7 +550,7 @@ func (s *ApplianceUpdateRequest) SetTags(val []string) {
 }
 
 // SetIcon sets the value of Icon.
-func (s *ApplianceUpdateRequest) SetIcon(val ApplianceUpdateRequestIcon) {
+func (s *ApplianceUpdateRequest) SetIcon(val OptApplianceUpdateRequestIcon) {
 	s.Icon = val
 }
 
@@ -645,6 +562,21 @@ func (s *ApplianceUpdateRequest) SetSettings(val jx.Raw) {
 // SetSettingsHash sets the value of SettingsHash.
 func (s *ApplianceUpdateRequest) SetSettingsHash(val OptString) {
 	s.SettingsHash = val
+}
+
+// Ref: #/components/schemas/ApplianceUpdateRequestEnvelope
+type ApplianceUpdateRequestEnvelope struct {
+	Appliance ApplianceUpdateRequest `json:"Appliance"`
+}
+
+// GetAppliance returns the value of Appliance.
+func (s *ApplianceUpdateRequestEnvelope) GetAppliance() ApplianceUpdateRequest {
+	return s.Appliance
+}
+
+// SetAppliance sets the value of Appliance.
+func (s *ApplianceUpdateRequestEnvelope) SetAppliance(val ApplianceUpdateRequest) {
+	s.Appliance = val
 }
 
 // Ref: #/components/schemas/ApplianceUpdateRequestIcon
@@ -4714,15 +4646,15 @@ func (s *CertificateData) SetNotAfter(val OptNilDateTime) {
 
 // Ref: #/components/schemas/CommonServiceItemCreateRequest
 type CommonServiceItemCreateRequest struct {
-	Class       string                                  `json:"Class"`
-	Status      CommonServiceItemCreateRequestStatus    `json:"Status"`
-	Settings    CommonServiceItemCreateRequestSettings  `json:"Settings"`
-	Name        string                                  `json:"Name"`
-	Description string                                  `json:"Description"`
-	Tags        []string                                `json:"Tags"`
-	Icon        CommonServiceItemCreateRequestIcon      `json:"Icon"`
-	Plan        OptEProxyLBPlan                         `json:"Plan"`
-	Remark      OptCommonServiceItemCreateRequestRemark `json:"Remark"`
+	Class       string                                    `json:"Class"`
+	Status      CommonServiceItemCreateRequestStatus      `json:"Status"`
+	Settings    OptCommonServiceItemCreateRequestSettings `json:"Settings"`
+	Name        string                                    `json:"Name"`
+	Description string                                    `json:"Description"`
+	Tags        []string                                  `json:"Tags"`
+	Icon        OptCommonServiceItemCreateRequestIcon     `json:"Icon"`
+	Plan        OptEProxyLBPlan                           `json:"Plan"`
+	Remark      OptCommonServiceItemCreateRequestRemark   `json:"Remark"`
 }
 
 // GetClass returns the value of Class.
@@ -4736,7 +4668,7 @@ func (s *CommonServiceItemCreateRequest) GetStatus() CommonServiceItemCreateRequ
 }
 
 // GetSettings returns the value of Settings.
-func (s *CommonServiceItemCreateRequest) GetSettings() CommonServiceItemCreateRequestSettings {
+func (s *CommonServiceItemCreateRequest) GetSettings() OptCommonServiceItemCreateRequestSettings {
 	return s.Settings
 }
 
@@ -4756,7 +4688,7 @@ func (s *CommonServiceItemCreateRequest) GetTags() []string {
 }
 
 // GetIcon returns the value of Icon.
-func (s *CommonServiceItemCreateRequest) GetIcon() CommonServiceItemCreateRequestIcon {
+func (s *CommonServiceItemCreateRequest) GetIcon() OptCommonServiceItemCreateRequestIcon {
 	return s.Icon
 }
 
@@ -4781,7 +4713,7 @@ func (s *CommonServiceItemCreateRequest) SetStatus(val CommonServiceItemCreateRe
 }
 
 // SetSettings sets the value of Settings.
-func (s *CommonServiceItemCreateRequest) SetSettings(val CommonServiceItemCreateRequestSettings) {
+func (s *CommonServiceItemCreateRequest) SetSettings(val OptCommonServiceItemCreateRequestSettings) {
 	s.Settings = val
 }
 
@@ -4801,7 +4733,7 @@ func (s *CommonServiceItemCreateRequest) SetTags(val []string) {
 }
 
 // SetIcon sets the value of Icon.
-func (s *CommonServiceItemCreateRequest) SetIcon(val CommonServiceItemCreateRequestIcon) {
+func (s *CommonServiceItemCreateRequest) SetIcon(val OptCommonServiceItemCreateRequestIcon) {
 	s.Icon = val
 }
 
@@ -4813,6 +4745,21 @@ func (s *CommonServiceItemCreateRequest) SetPlan(val OptEProxyLBPlan) {
 // SetRemark sets the value of Remark.
 func (s *CommonServiceItemCreateRequest) SetRemark(val OptCommonServiceItemCreateRequestRemark) {
 	s.Remark = val
+}
+
+// Ref: #/components/schemas/CommonServiceItemCreateRequestEnvelope
+type CommonServiceItemCreateRequestEnvelope struct {
+	CommonServiceItem CommonServiceItemCreateRequest `json:"CommonServiceItem"`
+}
+
+// GetCommonServiceItem returns the value of CommonServiceItem.
+func (s *CommonServiceItemCreateRequestEnvelope) GetCommonServiceItem() CommonServiceItemCreateRequest {
+	return s.CommonServiceItem
+}
+
+// SetCommonServiceItem sets the value of CommonServiceItem.
+func (s *CommonServiceItemCreateRequestEnvelope) SetCommonServiceItem(val CommonServiceItemCreateRequest) {
+	s.CommonServiceItem = val
 }
 
 // Ref: #/components/schemas/CommonServiceItemCreateRequestIcon
@@ -5659,20 +5606,6 @@ func (s *CommonServiceItemCreateRequestStatusAPIKey) SetID(val string) {
 	s.ID = val
 }
 
-type CommonServiceItemOpCreateReq struct {
-	Param CommonServiceItemCreateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *CommonServiceItemOpCreateReq) GetParam() CommonServiceItemCreateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *CommonServiceItemOpCreateReq) SetParam(val CommonServiceItemCreateRequest) {
-	s.Param = val
-}
-
 type CommonServiceItemOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
 }
@@ -5687,42 +5620,14 @@ func (s *CommonServiceItemOpDeleteOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-type CommonServiceItemOpFindReq struct {
-	Conditions FindCondition `json:"conditions"`
-}
-
-// GetConditions returns the value of Conditions.
-func (s *CommonServiceItemOpFindReq) GetConditions() FindCondition {
-	return s.Conditions
-}
-
-// SetConditions sets the value of Conditions.
-func (s *CommonServiceItemOpFindReq) SetConditions(val FindCondition) {
-	s.Conditions = val
-}
-
-type CommonServiceItemOpUpdateReq struct {
-	Param CommonServiceItemUpdateRequest `json:"param"`
-}
-
-// GetParam returns the value of Param.
-func (s *CommonServiceItemOpUpdateReq) GetParam() CommonServiceItemUpdateRequest {
-	return s.Param
-}
-
-// SetParam sets the value of Param.
-func (s *CommonServiceItemOpUpdateReq) SetParam(val CommonServiceItemUpdateRequest) {
-	s.Param = val
-}
-
 // Ref: #/components/schemas/CommonServiceItemUpdateRequest
 type CommonServiceItemUpdateRequest struct {
-	Name         OptString                              `json:"Name"`
-	Description  string                                 `json:"Description"`
-	Tags         []string                               `json:"Tags"`
-	Icon         CommonServiceItemUpdateRequestIcon     `json:"Icon"`
-	Settings     CommonServiceItemUpdateRequestSettings `json:"Settings"`
-	SettingsHash OptString                              `json:"SettingsHash"`
+	Name         OptString                                 `json:"Name"`
+	Description  string                                    `json:"Description"`
+	Tags         []string                                  `json:"Tags"`
+	Icon         OptCommonServiceItemUpdateRequestIcon     `json:"Icon"`
+	Settings     OptCommonServiceItemUpdateRequestSettings `json:"Settings"`
+	SettingsHash OptString                                 `json:"SettingsHash"`
 }
 
 // GetName returns the value of Name.
@@ -5741,12 +5646,12 @@ func (s *CommonServiceItemUpdateRequest) GetTags() []string {
 }
 
 // GetIcon returns the value of Icon.
-func (s *CommonServiceItemUpdateRequest) GetIcon() CommonServiceItemUpdateRequestIcon {
+func (s *CommonServiceItemUpdateRequest) GetIcon() OptCommonServiceItemUpdateRequestIcon {
 	return s.Icon
 }
 
 // GetSettings returns the value of Settings.
-func (s *CommonServiceItemUpdateRequest) GetSettings() CommonServiceItemUpdateRequestSettings {
+func (s *CommonServiceItemUpdateRequest) GetSettings() OptCommonServiceItemUpdateRequestSettings {
 	return s.Settings
 }
 
@@ -5771,18 +5676,33 @@ func (s *CommonServiceItemUpdateRequest) SetTags(val []string) {
 }
 
 // SetIcon sets the value of Icon.
-func (s *CommonServiceItemUpdateRequest) SetIcon(val CommonServiceItemUpdateRequestIcon) {
+func (s *CommonServiceItemUpdateRequest) SetIcon(val OptCommonServiceItemUpdateRequestIcon) {
 	s.Icon = val
 }
 
 // SetSettings sets the value of Settings.
-func (s *CommonServiceItemUpdateRequest) SetSettings(val CommonServiceItemUpdateRequestSettings) {
+func (s *CommonServiceItemUpdateRequest) SetSettings(val OptCommonServiceItemUpdateRequestSettings) {
 	s.Settings = val
 }
 
 // SetSettingsHash sets the value of SettingsHash.
 func (s *CommonServiceItemUpdateRequest) SetSettingsHash(val OptString) {
 	s.SettingsHash = val
+}
+
+// Ref: #/components/schemas/CommonServiceItemUpdateRequestEnvelope
+type CommonServiceItemUpdateRequestEnvelope struct {
+	CommonServiceItem CommonServiceItemUpdateRequest `json:"CommonServiceItem"`
+}
+
+// GetCommonServiceItem returns the value of CommonServiceItem.
+func (s *CommonServiceItemUpdateRequestEnvelope) GetCommonServiceItem() CommonServiceItemUpdateRequest {
+	return s.CommonServiceItem
+}
+
+// SetCommonServiceItem sets the value of CommonServiceItem.
+func (s *CommonServiceItemUpdateRequestEnvelope) SetCommonServiceItem(val CommonServiceItemUpdateRequest) {
+	s.CommonServiceItem = val
 }
 
 // Ref: #/components/schemas/CommonServiceItemUpdateRequestIcon
@@ -6880,23 +6800,22 @@ func (s *DNSRecord) SetTTL(val int32) {
 
 // Ref: #/components/schemas/Database
 type Database struct {
-	ID                OptNilInt64                 `json:"ID"`
-	Class             OptNilString                `json:"Class"`
-	Name              OptNilString                `json:"Name"`
-	Description       string                      `json:"Description"`
-	Tags              []string                    `json:"Tags"`
-	Availability      OptNilEAvailability         `json:"Availability"`
-	Icon              OptNilResourceRef           `json:"Icon"`
-	CreatedAt         OptNilDateTime              `json:"CreatedAt"`
-	ModifiedAt        OptNilDateTime              `json:"ModifiedAt"`
-	Settings          OptNilDatabaseSettings      `json:"Settings"`
-	InterfaceSettings []DatabaseSettingsInterface `json:"InterfaceSettings"`
-	SettingsHash      OptNilString                `json:"SettingsHash"`
-	Instance          OptNilDatabaseInstance      `json:"Instance"`
-	Remark            OptNilDatabaseRemark        `json:"Remark"`
-	IPAddresses       []string                    `json:"IPAddresses"`
-	Interfaces        OptNilInterfaceViewArray    `json:"Interfaces"`
-	Disk              OptNilDatabaseDisk          `json:"Disk"`
+	ID                OptNilInt64                          `json:"ID"`
+	Class             OptNilString                         `json:"Class"`
+	Name              OptNilString                         `json:"Name"`
+	Description       string                               `json:"Description"`
+	Tags              []string                             `json:"Tags"`
+	Availability      OptNilEAvailability                  `json:"Availability"`
+	Icon              OptNilResourceRef                    `json:"Icon"`
+	CreatedAt         OptNilDateTime                       `json:"CreatedAt"`
+	ModifiedAt        OptNilDateTime                       `json:"ModifiedAt"`
+	Settings          OptNilDatabaseSettings               `json:"Settings"`
+	InterfaceSettings OptNilDatabaseSettingsInterfaceArray `json:"InterfaceSettings"`
+	SettingsHash      OptNilString                         `json:"SettingsHash"`
+	Instance          OptNilDatabaseInstance               `json:"Instance"`
+	Remark            OptNilDatabaseRemark                 `json:"Remark"`
+	IPAddresses       OptNilStringArray                    `json:"IPAddresses"`
+	Disk              OptNilDatabaseDisk                   `json:"Disk"`
 }
 
 // GetID returns the value of ID.
@@ -6950,7 +6869,7 @@ func (s *Database) GetSettings() OptNilDatabaseSettings {
 }
 
 // GetInterfaceSettings returns the value of InterfaceSettings.
-func (s *Database) GetInterfaceSettings() []DatabaseSettingsInterface {
+func (s *Database) GetInterfaceSettings() OptNilDatabaseSettingsInterfaceArray {
 	return s.InterfaceSettings
 }
 
@@ -6970,13 +6889,8 @@ func (s *Database) GetRemark() OptNilDatabaseRemark {
 }
 
 // GetIPAddresses returns the value of IPAddresses.
-func (s *Database) GetIPAddresses() []string {
+func (s *Database) GetIPAddresses() OptNilStringArray {
 	return s.IPAddresses
-}
-
-// GetInterfaces returns the value of Interfaces.
-func (s *Database) GetInterfaces() OptNilInterfaceViewArray {
-	return s.Interfaces
 }
 
 // GetDisk returns the value of Disk.
@@ -7035,7 +6949,7 @@ func (s *Database) SetSettings(val OptNilDatabaseSettings) {
 }
 
 // SetInterfaceSettings sets the value of InterfaceSettings.
-func (s *Database) SetInterfaceSettings(val []DatabaseSettingsInterface) {
+func (s *Database) SetInterfaceSettings(val OptNilDatabaseSettingsInterfaceArray) {
 	s.InterfaceSettings = val
 }
 
@@ -7055,13 +6969,8 @@ func (s *Database) SetRemark(val OptNilDatabaseRemark) {
 }
 
 // SetIPAddresses sets the value of IPAddresses.
-func (s *Database) SetIPAddresses(val []string) {
+func (s *Database) SetIPAddresses(val OptNilStringArray) {
 	s.IPAddresses = val
-}
-
-// SetInterfaces sets the value of Interfaces.
-func (s *Database) SetInterfaces(val OptNilInterfaceViewArray) {
-	s.Interfaces = val
 }
 
 // SetDisk sets the value of Disk.
@@ -7729,20 +7638,13 @@ func (s *DatabaseReadResponseEnvelope) SetAppliance(val Database) {
 // Ref: #/components/schemas/DatabaseRemark
 type DatabaseRemark struct {
 	Plan    OptNilResourceRef           `json:"Plan"`
-	Switch  OptNilResourceRef           `json:"Switch"`
 	DBConf  OptNilDatabaseRemarkDBConf  `json:"DBConf"`
 	Network OptNilDatabaseRemarkNetwork `json:"Network"`
-	Zone    OptNilResourceRef           `json:"Zone"`
 }
 
 // GetPlan returns the value of Plan.
 func (s *DatabaseRemark) GetPlan() OptNilResourceRef {
 	return s.Plan
-}
-
-// GetSwitch returns the value of Switch.
-func (s *DatabaseRemark) GetSwitch() OptNilResourceRef {
-	return s.Switch
 }
 
 // GetDBConf returns the value of DBConf.
@@ -7755,19 +7657,9 @@ func (s *DatabaseRemark) GetNetwork() OptNilDatabaseRemarkNetwork {
 	return s.Network
 }
 
-// GetZone returns the value of Zone.
-func (s *DatabaseRemark) GetZone() OptNilResourceRef {
-	return s.Zone
-}
-
 // SetPlan sets the value of Plan.
 func (s *DatabaseRemark) SetPlan(val OptNilResourceRef) {
 	s.Plan = val
-}
-
-// SetSwitch sets the value of Switch.
-func (s *DatabaseRemark) SetSwitch(val OptNilResourceRef) {
-	s.Switch = val
 }
 
 // SetDBConf sets the value of DBConf.
@@ -7778,11 +7670,6 @@ func (s *DatabaseRemark) SetDBConf(val OptNilDatabaseRemarkDBConf) {
 // SetNetwork sets the value of Network.
 func (s *DatabaseRemark) SetNetwork(val OptNilDatabaseRemarkNetwork) {
 	s.Network = val
-}
-
-// SetZone sets the value of Zone.
-func (s *DatabaseRemark) SetZone(val OptNilResourceRef) {
-	s.Zone = val
 }
 
 // Ref: #/components/schemas/DatabaseRemarkDBConf
@@ -8064,17 +7951,17 @@ func (s *DatabaseSettingBackupv2View) SetFirstEnabledAt(val OptNilDateTime) {
 
 // Ref: #/components/schemas/DatabaseSettingCommon
 type DatabaseSettingCommon struct {
-	WebUI           string       `json:"WebUI"`
-	ServicePort     OptNilInt32  `json:"ServicePort"`
-	SourceNetwork   []string     `json:"SourceNetwork"`
-	DefaultUser     OptNilString `json:"DefaultUser"`
-	UserPassword    OptNilString `json:"UserPassword"`
-	ReplicaUser     OptNilString `json:"ReplicaUser"`
-	ReplicaPassword OptNilString `json:"ReplicaPassword"`
+	WebUI           OptNilString      `json:"WebUI"`
+	ServicePort     OptNilInt32       `json:"ServicePort"`
+	SourceNetwork   OptNilStringArray `json:"SourceNetwork"`
+	DefaultUser     OptNilString      `json:"DefaultUser"`
+	UserPassword    OptNilString      `json:"UserPassword"`
+	ReplicaUser     OptNilString      `json:"ReplicaUser"`
+	ReplicaPassword OptNilString      `json:"ReplicaPassword"`
 }
 
 // GetWebUI returns the value of WebUI.
-func (s *DatabaseSettingCommon) GetWebUI() string {
+func (s *DatabaseSettingCommon) GetWebUI() OptNilString {
 	return s.WebUI
 }
 
@@ -8084,7 +7971,7 @@ func (s *DatabaseSettingCommon) GetServicePort() OptNilInt32 {
 }
 
 // GetSourceNetwork returns the value of SourceNetwork.
-func (s *DatabaseSettingCommon) GetSourceNetwork() []string {
+func (s *DatabaseSettingCommon) GetSourceNetwork() OptNilStringArray {
 	return s.SourceNetwork
 }
 
@@ -8109,7 +7996,7 @@ func (s *DatabaseSettingCommon) GetReplicaPassword() OptNilString {
 }
 
 // SetWebUI sets the value of WebUI.
-func (s *DatabaseSettingCommon) SetWebUI(val string) {
+func (s *DatabaseSettingCommon) SetWebUI(val OptNilString) {
 	s.WebUI = val
 }
 
@@ -8119,7 +8006,7 @@ func (s *DatabaseSettingCommon) SetServicePort(val OptNilInt32) {
 }
 
 // SetSourceNetwork sets the value of SourceNetwork.
-func (s *DatabaseSettingCommon) SetSourceNetwork(val []string) {
+func (s *DatabaseSettingCommon) SetSourceNetwork(val OptNilStringArray) {
 	s.SourceNetwork = val
 }
 
@@ -15892,6 +15779,52 @@ func (s *NoteUpdateResponseEnvelope) SetNote(val Note) {
 	s.Note = val
 }
 
+// NewOptApplianceCreateRequestIcon returns new OptApplianceCreateRequestIcon with value set to v.
+func NewOptApplianceCreateRequestIcon(v ApplianceCreateRequestIcon) OptApplianceCreateRequestIcon {
+	return OptApplianceCreateRequestIcon{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptApplianceCreateRequestIcon is optional ApplianceCreateRequestIcon.
+type OptApplianceCreateRequestIcon struct {
+	Value ApplianceCreateRequestIcon
+	Set   bool
+}
+
+// IsSet returns true if OptApplianceCreateRequestIcon was set.
+func (o OptApplianceCreateRequestIcon) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptApplianceCreateRequestIcon) Reset() {
+	var v ApplianceCreateRequestIcon
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptApplianceCreateRequestIcon) SetTo(v ApplianceCreateRequestIcon) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptApplianceCreateRequestIcon) Get() (v ApplianceCreateRequestIcon, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptApplianceCreateRequestIcon) Or(d ApplianceCreateRequestIcon) ApplianceCreateRequestIcon {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
 // NewOptApplianceCreateRequestPlan returns new OptApplianceCreateRequestPlan with value set to v.
 func NewOptApplianceCreateRequestPlan(v ApplianceCreateRequestPlan) OptApplianceCreateRequestPlan {
 	return OptApplianceCreateRequestPlan{
@@ -16214,6 +16147,52 @@ func (o OptApplianceCreateRequestRemarkVRRP) Or(d ApplianceCreateRequestRemarkVR
 	return d
 }
 
+// NewOptApplianceUpdateRequestIcon returns new OptApplianceUpdateRequestIcon with value set to v.
+func NewOptApplianceUpdateRequestIcon(v ApplianceUpdateRequestIcon) OptApplianceUpdateRequestIcon {
+	return OptApplianceUpdateRequestIcon{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptApplianceUpdateRequestIcon is optional ApplianceUpdateRequestIcon.
+type OptApplianceUpdateRequestIcon struct {
+	Value ApplianceUpdateRequestIcon
+	Set   bool
+}
+
+// IsSet returns true if OptApplianceUpdateRequestIcon was set.
+func (o OptApplianceUpdateRequestIcon) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptApplianceUpdateRequestIcon) Reset() {
+	var v ApplianceUpdateRequestIcon
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptApplianceUpdateRequestIcon) SetTo(v ApplianceUpdateRequestIcon) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptApplianceUpdateRequestIcon) Get() (v ApplianceUpdateRequestIcon, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptApplianceUpdateRequestIcon) Or(d ApplianceUpdateRequestIcon) ApplianceUpdateRequestIcon {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
 // NewOptArchiveShareInfo returns new OptArchiveShareInfo with value set to v.
 func NewOptArchiveShareInfo(v ArchiveShareInfo) OptArchiveShareInfo {
 	return OptArchiveShareInfo{
@@ -16398,6 +16377,52 @@ func (o OptBool) Or(d bool) bool {
 	return d
 }
 
+// NewOptCommonServiceItemCreateRequestIcon returns new OptCommonServiceItemCreateRequestIcon with value set to v.
+func NewOptCommonServiceItemCreateRequestIcon(v CommonServiceItemCreateRequestIcon) OptCommonServiceItemCreateRequestIcon {
+	return OptCommonServiceItemCreateRequestIcon{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptCommonServiceItemCreateRequestIcon is optional CommonServiceItemCreateRequestIcon.
+type OptCommonServiceItemCreateRequestIcon struct {
+	Value CommonServiceItemCreateRequestIcon
+	Set   bool
+}
+
+// IsSet returns true if OptCommonServiceItemCreateRequestIcon was set.
+func (o OptCommonServiceItemCreateRequestIcon) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptCommonServiceItemCreateRequestIcon) Reset() {
+	var v CommonServiceItemCreateRequestIcon
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptCommonServiceItemCreateRequestIcon) SetTo(v CommonServiceItemCreateRequestIcon) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptCommonServiceItemCreateRequestIcon) Get() (v CommonServiceItemCreateRequestIcon, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptCommonServiceItemCreateRequestIcon) Or(d CommonServiceItemCreateRequestIcon) CommonServiceItemCreateRequestIcon {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
 // NewOptCommonServiceItemCreateRequestRemark returns new OptCommonServiceItemCreateRequestRemark with value set to v.
 func NewOptCommonServiceItemCreateRequestRemark(v CommonServiceItemCreateRequestRemark) OptCommonServiceItemCreateRequestRemark {
 	return OptCommonServiceItemCreateRequestRemark{
@@ -16438,6 +16463,52 @@ func (o OptCommonServiceItemCreateRequestRemark) Get() (v CommonServiceItemCreat
 
 // Or returns value if set, or given parameter if does not.
 func (o OptCommonServiceItemCreateRequestRemark) Or(d CommonServiceItemCreateRequestRemark) CommonServiceItemCreateRequestRemark {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptCommonServiceItemCreateRequestSettings returns new OptCommonServiceItemCreateRequestSettings with value set to v.
+func NewOptCommonServiceItemCreateRequestSettings(v CommonServiceItemCreateRequestSettings) OptCommonServiceItemCreateRequestSettings {
+	return OptCommonServiceItemCreateRequestSettings{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptCommonServiceItemCreateRequestSettings is optional CommonServiceItemCreateRequestSettings.
+type OptCommonServiceItemCreateRequestSettings struct {
+	Value CommonServiceItemCreateRequestSettings
+	Set   bool
+}
+
+// IsSet returns true if OptCommonServiceItemCreateRequestSettings was set.
+func (o OptCommonServiceItemCreateRequestSettings) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptCommonServiceItemCreateRequestSettings) Reset() {
+	var v CommonServiceItemCreateRequestSettings
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptCommonServiceItemCreateRequestSettings) SetTo(v CommonServiceItemCreateRequestSettings) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptCommonServiceItemCreateRequestSettings) Get() (v CommonServiceItemCreateRequestSettings, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptCommonServiceItemCreateRequestSettings) Or(d CommonServiceItemCreateRequestSettings) CommonServiceItemCreateRequestSettings {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -16852,6 +16923,98 @@ func (o OptCommonServiceItemCreateRequestStatusAPIKey) Get() (v CommonServiceIte
 
 // Or returns value if set, or given parameter if does not.
 func (o OptCommonServiceItemCreateRequestStatusAPIKey) Or(d CommonServiceItemCreateRequestStatusAPIKey) CommonServiceItemCreateRequestStatusAPIKey {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptCommonServiceItemUpdateRequestIcon returns new OptCommonServiceItemUpdateRequestIcon with value set to v.
+func NewOptCommonServiceItemUpdateRequestIcon(v CommonServiceItemUpdateRequestIcon) OptCommonServiceItemUpdateRequestIcon {
+	return OptCommonServiceItemUpdateRequestIcon{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptCommonServiceItemUpdateRequestIcon is optional CommonServiceItemUpdateRequestIcon.
+type OptCommonServiceItemUpdateRequestIcon struct {
+	Value CommonServiceItemUpdateRequestIcon
+	Set   bool
+}
+
+// IsSet returns true if OptCommonServiceItemUpdateRequestIcon was set.
+func (o OptCommonServiceItemUpdateRequestIcon) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptCommonServiceItemUpdateRequestIcon) Reset() {
+	var v CommonServiceItemUpdateRequestIcon
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptCommonServiceItemUpdateRequestIcon) SetTo(v CommonServiceItemUpdateRequestIcon) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptCommonServiceItemUpdateRequestIcon) Get() (v CommonServiceItemUpdateRequestIcon, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptCommonServiceItemUpdateRequestIcon) Or(d CommonServiceItemUpdateRequestIcon) CommonServiceItemUpdateRequestIcon {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptCommonServiceItemUpdateRequestSettings returns new OptCommonServiceItemUpdateRequestSettings with value set to v.
+func NewOptCommonServiceItemUpdateRequestSettings(v CommonServiceItemUpdateRequestSettings) OptCommonServiceItemUpdateRequestSettings {
+	return OptCommonServiceItemUpdateRequestSettings{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptCommonServiceItemUpdateRequestSettings is optional CommonServiceItemUpdateRequestSettings.
+type OptCommonServiceItemUpdateRequestSettings struct {
+	Value CommonServiceItemUpdateRequestSettings
+	Set   bool
+}
+
+// IsSet returns true if OptCommonServiceItemUpdateRequestSettings was set.
+func (o OptCommonServiceItemUpdateRequestSettings) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptCommonServiceItemUpdateRequestSettings) Reset() {
+	var v CommonServiceItemUpdateRequestSettings
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptCommonServiceItemUpdateRequestSettings) SetTo(v CommonServiceItemUpdateRequestSettings) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptCommonServiceItemUpdateRequestSettings) Get() (v CommonServiceItemUpdateRequestSettings, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptCommonServiceItemUpdateRequestSettings) Or(d CommonServiceItemUpdateRequestSettings) CommonServiceItemUpdateRequestSettings {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -20156,6 +20319,69 @@ func (o OptNilDatabaseSettingsDBConf) Get() (v DatabaseSettingsDBConf, ok bool) 
 
 // Or returns value if set, or given parameter if does not.
 func (o OptNilDatabaseSettingsDBConf) Or(d DatabaseSettingsDBConf) DatabaseSettingsDBConf {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptNilDatabaseSettingsInterfaceArray returns new OptNilDatabaseSettingsInterfaceArray with value set to v.
+func NewOptNilDatabaseSettingsInterfaceArray(v []DatabaseSettingsInterface) OptNilDatabaseSettingsInterfaceArray {
+	return OptNilDatabaseSettingsInterfaceArray{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptNilDatabaseSettingsInterfaceArray is optional nullable []DatabaseSettingsInterface.
+type OptNilDatabaseSettingsInterfaceArray struct {
+	Value []DatabaseSettingsInterface
+	Set   bool
+	Null  bool
+}
+
+// IsSet returns true if OptNilDatabaseSettingsInterfaceArray was set.
+func (o OptNilDatabaseSettingsInterfaceArray) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptNilDatabaseSettingsInterfaceArray) Reset() {
+	var v []DatabaseSettingsInterface
+	o.Value = v
+	o.Set = false
+	o.Null = false
+}
+
+// SetTo sets value to v.
+func (o *OptNilDatabaseSettingsInterfaceArray) SetTo(v []DatabaseSettingsInterface) {
+	o.Set = true
+	o.Null = false
+	o.Value = v
+}
+
+// IsNull returns true if value is Null.
+func (o OptNilDatabaseSettingsInterfaceArray) IsNull() bool { return o.Null }
+
+// SetToNull sets value to null.
+func (o *OptNilDatabaseSettingsInterfaceArray) SetToNull() {
+	o.Set = true
+	o.Null = true
+	var v []DatabaseSettingsInterface
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptNilDatabaseSettingsInterfaceArray) Get() (v []DatabaseSettingsInterface, ok bool) {
+	if o.Null {
+		return v, false
+	}
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptNilDatabaseSettingsInterfaceArray) Or(d []DatabaseSettingsInterface) []DatabaseSettingsInterface {
 	if v, ok := o.Get(); ok {
 		return v
 	}

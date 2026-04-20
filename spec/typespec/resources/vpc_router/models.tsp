@@ -23,7 +23,6 @@ model VPCRouter {
 model VPCRouterRemark {
   Plan?: ResourceRef | null;
   Router?: VPCRouterRemarkRouter | null;
-  Zone?: ResourceRef | null;
 }
 
 model VPCRouterRemarkRouter {

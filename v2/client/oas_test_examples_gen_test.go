@@ -47,6 +47,18 @@ func TestApplianceCreateRequest_EncodeDecode(t *testing.T) {
 	var typ2 ApplianceCreateRequest
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestApplianceCreateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ApplianceCreateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ApplianceCreateRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestApplianceCreateRequestIcon_EncodeDecode(t *testing.T) {
 	var typ ApplianceCreateRequestIcon
 	typ.SetFake()
@@ -167,18 +179,6 @@ func TestApplianceCreateRequestRemarkVRRP_EncodeDecode(t *testing.T) {
 	var typ2 ApplianceCreateRequestRemarkVRRP
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestApplianceOpCreateReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpCreateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpCreateReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestApplianceOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ ApplianceOpDeleteOK
 	typ.SetFake()
@@ -189,54 +189,6 @@ func TestApplianceOpDeleteOK_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ApplianceOpDeleteOK
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestApplianceOpFindReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpFindReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpFindReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestApplianceOpMonitorCPUReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpMonitorCPUReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpMonitorCPUReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestApplianceOpMonitorDatabaseReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpMonitorDatabaseReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpMonitorDatabaseReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestApplianceOpMonitorInterfaceReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpMonitorInterfaceReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpMonitorInterfaceReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestApplianceOpShutdownOK_EncodeDecode(t *testing.T) {
@@ -251,30 +203,6 @@ func TestApplianceOpShutdownOK_EncodeDecode(t *testing.T) {
 	var typ2 ApplianceOpShutdownOK
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestApplianceOpShutdownReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpShutdownReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpShutdownReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestApplianceOpUpdateReq_EncodeDecode(t *testing.T) {
-	var typ ApplianceOpUpdateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ApplianceOpUpdateReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestApplianceUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ ApplianceUpdateRequest
 	typ.SetFake()
@@ -285,6 +213,18 @@ func TestApplianceUpdateRequest_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ApplianceUpdateRequest
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestApplianceUpdateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ApplianceUpdateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ApplianceUpdateRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestApplianceUpdateRequestIcon_EncodeDecode(t *testing.T) {
@@ -1457,6 +1397,18 @@ func TestCommonServiceItemCreateRequest_EncodeDecode(t *testing.T) {
 	var typ2 CommonServiceItemCreateRequest
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestCommonServiceItemCreateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ CommonServiceItemCreateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 CommonServiceItemCreateRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestCommonServiceItemCreateRequestIcon_EncodeDecode(t *testing.T) {
 	var typ CommonServiceItemCreateRequestIcon
 	typ.SetFake()
@@ -1613,18 +1565,6 @@ func TestCommonServiceItemCreateRequestStatusAPIKey_EncodeDecode(t *testing.T) {
 	var typ2 CommonServiceItemCreateRequestStatusAPIKey
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestCommonServiceItemOpCreateReq_EncodeDecode(t *testing.T) {
-	var typ CommonServiceItemOpCreateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 CommonServiceItemOpCreateReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestCommonServiceItemOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ CommonServiceItemOpDeleteOK
 	typ.SetFake()
@@ -1637,30 +1577,6 @@ func TestCommonServiceItemOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ2 CommonServiceItemOpDeleteOK
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestCommonServiceItemOpFindReq_EncodeDecode(t *testing.T) {
-	var typ CommonServiceItemOpFindReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 CommonServiceItemOpFindReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestCommonServiceItemOpUpdateReq_EncodeDecode(t *testing.T) {
-	var typ CommonServiceItemOpUpdateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 CommonServiceItemOpUpdateReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestCommonServiceItemUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ CommonServiceItemUpdateRequest
 	typ.SetFake()
@@ -1671,6 +1587,18 @@ func TestCommonServiceItemUpdateRequest_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 CommonServiceItemUpdateRequest
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestCommonServiceItemUpdateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ CommonServiceItemUpdateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 CommonServiceItemUpdateRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestCommonServiceItemUpdateRequestIcon_EncodeDecode(t *testing.T) {

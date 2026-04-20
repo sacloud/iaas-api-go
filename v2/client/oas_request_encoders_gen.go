@@ -11,7 +11,7 @@ import (
 )
 
 func encodeApplianceOpCreateRequest(
-	req *ApplianceOpCreateReq,
+	req *ApplianceCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -25,7 +25,7 @@ func encodeApplianceOpCreateRequest(
 }
 
 func encodeApplianceOpFindRequest(
-	req *ApplianceOpFindReq,
+	req *FindCondition,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -39,7 +39,7 @@ func encodeApplianceOpFindRequest(
 }
 
 func encodeApplianceOpMonitorCPURequest(
-	req *ApplianceOpMonitorCPUReq,
+	req *MonitorCondition,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -53,7 +53,7 @@ func encodeApplianceOpMonitorCPURequest(
 }
 
 func encodeApplianceOpMonitorDatabaseRequest(
-	req *ApplianceOpMonitorDatabaseReq,
+	req *MonitorCondition,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -67,7 +67,7 @@ func encodeApplianceOpMonitorDatabaseRequest(
 }
 
 func encodeApplianceOpMonitorInterfaceRequest(
-	req *ApplianceOpMonitorInterfaceReq,
+	req *MonitorCondition,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -81,7 +81,7 @@ func encodeApplianceOpMonitorInterfaceRequest(
 }
 
 func encodeApplianceOpShutdownRequest(
-	req *ApplianceOpShutdownReq,
+	req *ShutdownOption,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -95,7 +95,7 @@ func encodeApplianceOpShutdownRequest(
 }
 
 func encodeApplianceOpUpdateRequest(
-	req *ApplianceOpUpdateReq,
+	req *ApplianceUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -305,7 +305,7 @@ func encodeCertificateAuthorityOpAddServerRequest(
 }
 
 func encodeCommonServiceItemOpCreateRequest(
-	req *CommonServiceItemOpCreateReq,
+	req *CommonServiceItemCreateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -319,7 +319,7 @@ func encodeCommonServiceItemOpCreateRequest(
 }
 
 func encodeCommonServiceItemOpFindRequest(
-	req *CommonServiceItemOpFindReq,
+	req *FindCondition,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"
@@ -333,7 +333,7 @@ func encodeCommonServiceItemOpFindRequest(
 }
 
 func encodeCommonServiceItemOpUpdateRequest(
-	req *CommonServiceItemOpUpdateReq,
+	req *CommonServiceItemUpdateRequestEnvelope,
 	r *http.Request,
 ) error {
 	const contentType = "application/json"

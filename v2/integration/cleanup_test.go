@@ -20,6 +20,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/sacloud/iaas-api-go/v2/client"
 )
@@ -59,6 +60,39 @@ func TestCleanupInternet(t *testing.T) {
 		}
 		if _, err := c.InternetOpDelete(ctx, client.InternetOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
 			t.Logf("delete internet %s failed: %v", idStr, err)
+		}
+	}
+}
+
+// TestCleanupAppliance は "test" タグが付いた Appliance（NFS / DB / LB / VPC Router 等）を一括削除する。
+// shutdown が必要な状態なら force shutdown してから削除する。
+func TestCleanupAppliance(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	findResp, err := c.ApplianceOpFind(ctx, &client.FindCondition{}, client.ApplianceOpFindParams{Zone: zone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, app := range findResp.Appliances {
+		if !hasTestTag(app.Tags) && !strings.HasPrefix(app.Name.Value, "test-") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", app.ID.Value)
+		t.Logf("Deleting appliance %s (name=%s class=%s status=%s)", idStr, app.Name.Value, app.Class.Value, app.Instance.Value.Status.Value)
+		if app.Instance.Value.Status.Value == "up" {
+			if _, err := c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{Zone: zone, ID: idStr}); err != nil {
+				t.Logf("force shutdown %s failed: %v", idStr, err)
+			}
+			// wait a bit for status to flip
+			time.Sleep(10 * time.Second)
+		}
+		if _, err := c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+			t.Logf("delete appliance %s failed: %v", idStr, err)
 		}
 	}
 }

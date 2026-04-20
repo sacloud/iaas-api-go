@@ -34,7 +34,6 @@ model MobileGatewayInstanceHost {
 }
 
 model MobileGatewayRemark {
-  Zone?: ResourceRef | null;
   MobileGateway?: MobileGatewayRemarkMobileGateway | null;
 }
 

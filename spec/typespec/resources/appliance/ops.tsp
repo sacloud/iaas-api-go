@@ -11,12 +11,12 @@ namespace Sacloud.IaaS;
 model ApplianceCreateRequest {
   Class: string;
   Remark: ApplianceCreateRequestRemark;
-  Settings: unknown;
+  Settings?: unknown;
   Disk?: DatabaseDisk;
   Name: string;
   Description: string;
   Tags: string[];
-  Icon: ApplianceCreateRequestIcon;
+  Icon?: ApplianceCreateRequestIcon;
   Plan?: ApplianceCreateRequestPlan;
 }
 
@@ -68,17 +68,25 @@ model ApplianceCreateRequestPlan {
   ID: int64;
 }
 
+model ApplianceCreateRequestEnvelope {
+  Appliance: ApplianceCreateRequest;
+}
+
 model ApplianceUpdateRequest {
   Name: string;
   Description: string;
   Tags: string[];
-  Icon: ApplianceUpdateRequestIcon;
-  Settings: unknown;
+  Icon?: ApplianceUpdateRequestIcon;
+  Settings?: unknown;
   SettingsHash?: string;
 }
 
 model ApplianceUpdateRequestIcon {
   ID: int64;
+}
+
+model ApplianceUpdateRequestEnvelope {
+  Appliance: ApplianceUpdateRequest;
 }
 
 @tag("Appliance")
@@ -87,13 +95,13 @@ interface ApplianceOp {
   @route("/{zone}/api/cloud/1.1/appliance")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: FindCondition,
   ): DatabaseFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/appliance")
-  create(@path zone: string, param: ApplianceCreateRequest): {
-    @statusCode _: 201;
+  create(@path zone: string, @body body: ApplianceCreateRequestEnvelope): {
+    @statusCode _: 202;
     ...DatabaseCreateResponseEnvelope;
   } | ApiError;
 
@@ -109,7 +117,7 @@ interface ApplianceOp {
   update(
     @path zone: string,
     @path id: string,
-    param: ApplianceUpdateRequest,
+    @body body: ApplianceUpdateRequestEnvelope,
   ): DatabaseUpdateResponseEnvelope | ApiError;
 
   @delete
@@ -129,11 +137,7 @@ interface ApplianceOp {
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  shutdown(
-    @path zone: string,
-    @path id: string,
-    shutdownOption: ShutdownOption,
-  ): {
+  shutdown(@path zone: string, @path id: string, @body body: ShutdownOption): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -147,7 +151,7 @@ interface ApplianceOp {
   monitorCPU(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: MonitorCondition,
   ): DatabaseMonitorCPUResponseEnvelope | ApiError;
 
   @get
@@ -155,7 +159,7 @@ interface ApplianceOp {
   monitorInterface(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: MonitorCondition,
   ): DatabaseMonitorInterfaceResponseEnvelope | ApiError;
 
   @get
@@ -163,7 +167,7 @@ interface ApplianceOp {
   monitorDatabase(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: MonitorCondition,
   ): DatabaseMonitorDatabaseResponseEnvelope | ApiError;
 
   @get

@@ -34,9 +34,7 @@ model NFSInstanceHost {
 
 model NFSRemark {
   Plan?: ResourceRef | null;
-  Switch?: ResourceRef | null;
   Network?: NFSRemarkNetwork | null;
-  Zone?: ResourceRef | null;
 }
 
 model NFSRemarkNetwork {

@@ -35,9 +35,7 @@ model LoadBalancerInstanceHost {
 
 model LoadBalancerRemark {
   Plan?: ResourceRef | null;
-  Switch?: ResourceRef | null;
   Network?: LoadBalancerRemarkNetwork | null;
-  Zone?: ResourceRef | null;
   VRRP?: LoadBalancerRemarkVRRP | null;
 }
 

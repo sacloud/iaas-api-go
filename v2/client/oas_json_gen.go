@@ -230,8 +230,10 @@ func (s *ApplianceCreateRequest) encodeFields(e *jx.Encoder) {
 		e.ArrEnd()
 	}
 	{
-		e.FieldStart("Icon")
-		s.Icon.Encode(e)
+		if s.Icon.Set {
+			e.FieldStart("Icon")
+			s.Icon.Encode(e)
+		}
 	}
 	{
 		if s.Plan.Set {
@@ -285,7 +287,6 @@ func (s *ApplianceCreateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Remark\"")
 			}
 		case "Settings":
-			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.RawAppend(nil)
 				s.Settings = jx.Raw(v)
@@ -351,8 +352,8 @@ func (s *ApplianceCreateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Tags\"")
 			}
 		case "Icon":
-			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
+				s.Icon.Reset()
 				if err := s.Icon.Decode(d); err != nil {
 					return err
 				}
@@ -380,7 +381,7 @@ func (s *ApplianceCreateRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b11110111,
+		0b01110011,
 		0b00000000,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -423,6 +424,100 @@ func (s *ApplianceCreateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ApplianceCreateRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *ApplianceCreateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ApplianceCreateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Appliance")
+		s.Appliance.Encode(e)
+	}
+}
+
+var jsonFieldsNameOfApplianceCreateRequestEnvelope = [1]string{
+	0: "Appliance",
+}
+
+// Decode decodes ApplianceCreateRequestEnvelope from json.
+func (s *ApplianceCreateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ApplianceCreateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Appliance":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.Appliance.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Appliance\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ApplianceCreateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfApplianceCreateRequestEnvelope) {
+					name = jsonFieldsNameOfApplianceCreateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ApplianceCreateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ApplianceCreateRequestEnvelope) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -1468,100 +1563,6 @@ func (s *ApplianceCreateRequestRemarkVRRP) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *ApplianceOpCreateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpCreateReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("param")
-		s.Param.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpCreateReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes ApplianceOpCreateReq from json.
-func (s *ApplianceOpCreateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpCreateReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpCreateReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpCreateReq) {
-					name = jsonFieldsNameOfApplianceOpCreateReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpCreateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpCreateReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *ApplianceOpDeleteOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -1653,382 +1654,6 @@ func (s *ApplianceOpDeleteOK) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ApplianceOpDeleteOK) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ApplianceOpFindReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpFindReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("conditions")
-		s.Conditions.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpFindReq = [1]string{
-	0: "conditions",
-}
-
-// Decode decodes ApplianceOpFindReq from json.
-func (s *ApplianceOpFindReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpFindReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "conditions":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Conditions.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"conditions\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpFindReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpFindReq) {
-					name = jsonFieldsNameOfApplianceOpFindReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpFindReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpFindReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ApplianceOpMonitorCPUReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpMonitorCPUReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("condition")
-		s.Condition.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpMonitorCPUReq = [1]string{
-	0: "condition",
-}
-
-// Decode decodes ApplianceOpMonitorCPUReq from json.
-func (s *ApplianceOpMonitorCPUReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpMonitorCPUReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "condition":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Condition.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"condition\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpMonitorCPUReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpMonitorCPUReq) {
-					name = jsonFieldsNameOfApplianceOpMonitorCPUReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpMonitorCPUReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpMonitorCPUReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ApplianceOpMonitorDatabaseReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpMonitorDatabaseReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("condition")
-		s.Condition.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpMonitorDatabaseReq = [1]string{
-	0: "condition",
-}
-
-// Decode decodes ApplianceOpMonitorDatabaseReq from json.
-func (s *ApplianceOpMonitorDatabaseReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpMonitorDatabaseReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "condition":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Condition.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"condition\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpMonitorDatabaseReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpMonitorDatabaseReq) {
-					name = jsonFieldsNameOfApplianceOpMonitorDatabaseReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpMonitorDatabaseReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpMonitorDatabaseReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ApplianceOpMonitorInterfaceReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpMonitorInterfaceReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("condition")
-		s.Condition.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpMonitorInterfaceReq = [1]string{
-	0: "condition",
-}
-
-// Decode decodes ApplianceOpMonitorInterfaceReq from json.
-func (s *ApplianceOpMonitorInterfaceReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpMonitorInterfaceReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "condition":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Condition.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"condition\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpMonitorInterfaceReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpMonitorInterfaceReq) {
-					name = jsonFieldsNameOfApplianceOpMonitorInterfaceReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpMonitorInterfaceReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpMonitorInterfaceReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -2130,194 +1755,6 @@ func (s *ApplianceOpShutdownOK) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *ApplianceOpShutdownReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpShutdownReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("shutdownOption")
-		s.ShutdownOption.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpShutdownReq = [1]string{
-	0: "shutdownOption",
-}
-
-// Decode decodes ApplianceOpShutdownReq from json.
-func (s *ApplianceOpShutdownReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpShutdownReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "shutdownOption":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.ShutdownOption.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"shutdownOption\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpShutdownReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpShutdownReq) {
-					name = jsonFieldsNameOfApplianceOpShutdownReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpShutdownReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpShutdownReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ApplianceOpUpdateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ApplianceOpUpdateReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("param")
-		s.Param.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfApplianceOpUpdateReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes ApplianceOpUpdateReq from json.
-func (s *ApplianceOpUpdateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ApplianceOpUpdateReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ApplianceOpUpdateReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfApplianceOpUpdateReq) {
-					name = jsonFieldsNameOfApplianceOpUpdateReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ApplianceOpUpdateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ApplianceOpUpdateReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *ApplianceUpdateRequest) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -2343,8 +1780,10 @@ func (s *ApplianceUpdateRequest) encodeFields(e *jx.Encoder) {
 		e.ArrEnd()
 	}
 	{
-		e.FieldStart("Icon")
-		s.Icon.Encode(e)
+		if s.Icon.Set {
+			e.FieldStart("Icon")
+			s.Icon.Encode(e)
+		}
 	}
 	{
 		if len(s.Settings) != 0 {
@@ -2423,8 +1862,8 @@ func (s *ApplianceUpdateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Tags\"")
 			}
 		case "Icon":
-			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
+				s.Icon.Reset()
 				if err := s.Icon.Decode(d); err != nil {
 					return err
 				}
@@ -2433,7 +1872,6 @@ func (s *ApplianceUpdateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Icon\"")
 			}
 		case "Settings":
-			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
 				v, err := d.RawAppend(nil)
 				s.Settings = jx.Raw(v)
@@ -2464,7 +1902,7 @@ func (s *ApplianceUpdateRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00011111,
+		0b00000111,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -2506,6 +1944,100 @@ func (s *ApplianceUpdateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ApplianceUpdateRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *ApplianceUpdateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ApplianceUpdateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Appliance")
+		s.Appliance.Encode(e)
+	}
+}
+
+var jsonFieldsNameOfApplianceUpdateRequestEnvelope = [1]string{
+	0: "Appliance",
+}
+
+// Decode decodes ApplianceUpdateRequestEnvelope from json.
+func (s *ApplianceUpdateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ApplianceUpdateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Appliance":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.Appliance.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Appliance\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ApplianceUpdateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfApplianceUpdateRequestEnvelope) {
+					name = jsonFieldsNameOfApplianceUpdateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ApplianceUpdateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ApplianceUpdateRequestEnvelope) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -14896,8 +14428,10 @@ func (s *CommonServiceItemCreateRequest) encodeFields(e *jx.Encoder) {
 		s.Status.Encode(e)
 	}
 	{
-		e.FieldStart("Settings")
-		s.Settings.Encode(e)
+		if s.Settings.Set {
+			e.FieldStart("Settings")
+			s.Settings.Encode(e)
+		}
 	}
 	{
 		e.FieldStart("Name")
@@ -14916,8 +14450,10 @@ func (s *CommonServiceItemCreateRequest) encodeFields(e *jx.Encoder) {
 		e.ArrEnd()
 	}
 	{
-		e.FieldStart("Icon")
-		s.Icon.Encode(e)
+		if s.Icon.Set {
+			e.FieldStart("Icon")
+			s.Icon.Encode(e)
+		}
 	}
 	{
 		if s.Plan.Set {
@@ -14977,8 +14513,8 @@ func (s *CommonServiceItemCreateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Status\"")
 			}
 		case "Settings":
-			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
+				s.Settings.Reset()
 				if err := s.Settings.Decode(d); err != nil {
 					return err
 				}
@@ -15031,8 +14567,8 @@ func (s *CommonServiceItemCreateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Tags\"")
 			}
 		case "Icon":
-			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
+				s.Icon.Reset()
 				if err := s.Icon.Decode(d); err != nil {
 					return err
 				}
@@ -15070,7 +14606,7 @@ func (s *CommonServiceItemCreateRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b01111111,
+		0b00111011,
 		0b00000000,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -15113,6 +14649,100 @@ func (s *CommonServiceItemCreateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *CommonServiceItemCreateRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *CommonServiceItemCreateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *CommonServiceItemCreateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("CommonServiceItem")
+		s.CommonServiceItem.Encode(e)
+	}
+}
+
+var jsonFieldsNameOfCommonServiceItemCreateRequestEnvelope = [1]string{
+	0: "CommonServiceItem",
+}
+
+// Decode decodes CommonServiceItemCreateRequestEnvelope from json.
+func (s *CommonServiceItemCreateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode CommonServiceItemCreateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "CommonServiceItem":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.CommonServiceItem.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"CommonServiceItem\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode CommonServiceItemCreateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfCommonServiceItemCreateRequestEnvelope) {
+					name = jsonFieldsNameOfCommonServiceItemCreateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *CommonServiceItemCreateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *CommonServiceItemCreateRequestEnvelope) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -17169,100 +16799,6 @@ func (s *CommonServiceItemCreateRequestStatusAPIKey) UnmarshalJSON(data []byte) 
 }
 
 // Encode implements json.Marshaler.
-func (s *CommonServiceItemOpCreateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *CommonServiceItemOpCreateReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("param")
-		s.Param.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfCommonServiceItemOpCreateReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes CommonServiceItemOpCreateReq from json.
-func (s *CommonServiceItemOpCreateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode CommonServiceItemOpCreateReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode CommonServiceItemOpCreateReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfCommonServiceItemOpCreateReq) {
-					name = jsonFieldsNameOfCommonServiceItemOpCreateReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *CommonServiceItemOpCreateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CommonServiceItemOpCreateReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *CommonServiceItemOpDeleteOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -17359,194 +16895,6 @@ func (s *CommonServiceItemOpDeleteOK) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *CommonServiceItemOpFindReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *CommonServiceItemOpFindReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("conditions")
-		s.Conditions.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfCommonServiceItemOpFindReq = [1]string{
-	0: "conditions",
-}
-
-// Decode decodes CommonServiceItemOpFindReq from json.
-func (s *CommonServiceItemOpFindReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode CommonServiceItemOpFindReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "conditions":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Conditions.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"conditions\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode CommonServiceItemOpFindReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfCommonServiceItemOpFindReq) {
-					name = jsonFieldsNameOfCommonServiceItemOpFindReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *CommonServiceItemOpFindReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CommonServiceItemOpFindReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *CommonServiceItemOpUpdateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *CommonServiceItemOpUpdateReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("param")
-		s.Param.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfCommonServiceItemOpUpdateReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes CommonServiceItemOpUpdateReq from json.
-func (s *CommonServiceItemOpUpdateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode CommonServiceItemOpUpdateReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode CommonServiceItemOpUpdateReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfCommonServiceItemOpUpdateReq) {
-					name = jsonFieldsNameOfCommonServiceItemOpUpdateReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *CommonServiceItemOpUpdateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *CommonServiceItemOpUpdateReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *CommonServiceItemUpdateRequest) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -17574,12 +16922,16 @@ func (s *CommonServiceItemUpdateRequest) encodeFields(e *jx.Encoder) {
 		e.ArrEnd()
 	}
 	{
-		e.FieldStart("Icon")
-		s.Icon.Encode(e)
+		if s.Icon.Set {
+			e.FieldStart("Icon")
+			s.Icon.Encode(e)
+		}
 	}
 	{
-		e.FieldStart("Settings")
-		s.Settings.Encode(e)
+		if s.Settings.Set {
+			e.FieldStart("Settings")
+			s.Settings.Encode(e)
+		}
 	}
 	{
 		if s.SettingsHash.Set {
@@ -17650,8 +17002,8 @@ func (s *CommonServiceItemUpdateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Tags\"")
 			}
 		case "Icon":
-			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
+				s.Icon.Reset()
 				if err := s.Icon.Decode(d); err != nil {
 					return err
 				}
@@ -17660,8 +17012,8 @@ func (s *CommonServiceItemUpdateRequest) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Icon\"")
 			}
 		case "Settings":
-			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
+				s.Settings.Reset()
 				if err := s.Settings.Decode(d); err != nil {
 					return err
 				}
@@ -17689,7 +17041,7 @@ func (s *CommonServiceItemUpdateRequest) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00011110,
+		0b00000110,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -17731,6 +17083,100 @@ func (s *CommonServiceItemUpdateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *CommonServiceItemUpdateRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *CommonServiceItemUpdateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *CommonServiceItemUpdateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("CommonServiceItem")
+		s.CommonServiceItem.Encode(e)
+	}
+}
+
+var jsonFieldsNameOfCommonServiceItemUpdateRequestEnvelope = [1]string{
+	0: "CommonServiceItem",
+}
+
+// Decode decodes CommonServiceItemUpdateRequestEnvelope from json.
+func (s *CommonServiceItemUpdateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode CommonServiceItemUpdateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "CommonServiceItem":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.CommonServiceItem.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"CommonServiceItem\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode CommonServiceItemUpdateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfCommonServiceItemUpdateRequestEnvelope) {
+					name = jsonFieldsNameOfCommonServiceItemUpdateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *CommonServiceItemUpdateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *CommonServiceItemUpdateRequestEnvelope) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -20857,12 +20303,10 @@ func (s *Database) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("InterfaceSettings")
-		e.ArrStart()
-		for _, elem := range s.InterfaceSettings {
-			elem.Encode(e)
+		if s.InterfaceSettings.Set {
+			e.FieldStart("InterfaceSettings")
+			s.InterfaceSettings.Encode(e)
 		}
-		e.ArrEnd()
 	}
 	{
 		if s.SettingsHash.Set {
@@ -20883,17 +20327,9 @@ func (s *Database) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("IPAddresses")
-		e.ArrStart()
-		for _, elem := range s.IPAddresses {
-			e.Str(elem)
-		}
-		e.ArrEnd()
-	}
-	{
-		if s.Interfaces.Set {
-			e.FieldStart("Interfaces")
-			s.Interfaces.Encode(e)
+		if s.IPAddresses.Set {
+			e.FieldStart("IPAddresses")
+			s.IPAddresses.Encode(e)
 		}
 	}
 	{
@@ -20904,7 +20340,7 @@ func (s *Database) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfDatabase = [17]string{
+var jsonFieldsNameOfDatabase = [16]string{
 	0:  "ID",
 	1:  "Class",
 	2:  "Name",
@@ -20920,8 +20356,7 @@ var jsonFieldsNameOfDatabase = [17]string{
 	12: "Instance",
 	13: "Remark",
 	14: "IPAddresses",
-	15: "Interfaces",
-	16: "Disk",
+	15: "Disk",
 }
 
 // Decode decodes Database from json.
@@ -20929,7 +20364,7 @@ func (s *Database) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode Database to nil")
 	}
-	var requiredBitSet [3]uint8
+	var requiredBitSet [2]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
@@ -21046,17 +20481,9 @@ func (s *Database) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Settings\"")
 			}
 		case "InterfaceSettings":
-			requiredBitSet[1] |= 1 << 2
 			if err := func() error {
-				s.InterfaceSettings = make([]DatabaseSettingsInterface, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem DatabaseSettingsInterface
-					if err := elem.Decode(d); err != nil {
-						return err
-					}
-					s.InterfaceSettings = append(s.InterfaceSettings, elem)
-					return nil
-				}); err != nil {
+				s.InterfaceSettings.Reset()
+				if err := s.InterfaceSettings.Decode(d); err != nil {
 					return err
 				}
 				return nil
@@ -21094,34 +20521,14 @@ func (s *Database) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Remark\"")
 			}
 		case "IPAddresses":
-			requiredBitSet[1] |= 1 << 6
 			if err := func() error {
-				s.IPAddresses = make([]string, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem string
-					v, err := d.Str()
-					elem = string(v)
-					if err != nil {
-						return err
-					}
-					s.IPAddresses = append(s.IPAddresses, elem)
-					return nil
-				}); err != nil {
+				s.IPAddresses.Reset()
+				if err := s.IPAddresses.Decode(d); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"IPAddresses\"")
-			}
-		case "Interfaces":
-			if err := func() error {
-				s.Interfaces.Reset()
-				if err := s.Interfaces.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Interfaces\"")
 			}
 		case "Disk":
 			if err := func() error {
@@ -21142,9 +20549,8 @@ func (s *Database) Decode(d *jx.Decoder) error {
 	}
 	// Validate required fields.
 	var failures []validate.FieldError
-	for i, mask := range [3]uint8{
+	for i, mask := range [2]uint8{
 		0b00011000,
-		0b01000100,
 		0b00000000,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
@@ -23506,12 +22912,6 @@ func (s *DatabaseRemark) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Switch.Set {
-			e.FieldStart("Switch")
-			s.Switch.Encode(e)
-		}
-	}
-	{
 		if s.DBConf.Set {
 			e.FieldStart("DBConf")
 			s.DBConf.Encode(e)
@@ -23523,20 +22923,12 @@ func (s *DatabaseRemark) encodeFields(e *jx.Encoder) {
 			s.Network.Encode(e)
 		}
 	}
-	{
-		if s.Zone.Set {
-			e.FieldStart("Zone")
-			s.Zone.Encode(e)
-		}
-	}
 }
 
-var jsonFieldsNameOfDatabaseRemark = [5]string{
+var jsonFieldsNameOfDatabaseRemark = [3]string{
 	0: "Plan",
-	1: "Switch",
-	2: "DBConf",
-	3: "Network",
-	4: "Zone",
+	1: "DBConf",
+	2: "Network",
 }
 
 // Decode decodes DatabaseRemark from json.
@@ -23557,16 +22949,6 @@ func (s *DatabaseRemark) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Plan\"")
 			}
-		case "Switch":
-			if err := func() error {
-				s.Switch.Reset()
-				if err := s.Switch.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Switch\"")
-			}
 		case "DBConf":
 			if err := func() error {
 				s.DBConf.Reset()
@@ -23586,16 +22968,6 @@ func (s *DatabaseRemark) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Network\"")
-			}
-		case "Zone":
-			if err := func() error {
-				s.Zone.Reset()
-				if err := s.Zone.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Zone\"")
 			}
 		default:
 			return d.Skip()
@@ -24298,8 +23670,10 @@ func (s *DatabaseSettingCommon) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *DatabaseSettingCommon) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("WebUI")
-		e.Str(s.WebUI)
+		if s.WebUI.Set {
+			e.FieldStart("WebUI")
+			s.WebUI.Encode(e)
+		}
 	}
 	{
 		if s.ServicePort.Set {
@@ -24308,12 +23682,10 @@ func (s *DatabaseSettingCommon) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("SourceNetwork")
-		e.ArrStart()
-		for _, elem := range s.SourceNetwork {
-			e.Str(elem)
+		if s.SourceNetwork.Set {
+			e.FieldStart("SourceNetwork")
+			s.SourceNetwork.Encode(e)
 		}
-		e.ArrEnd()
 	}
 	{
 		if s.DefaultUser.Set {
@@ -24356,16 +23728,13 @@ func (s *DatabaseSettingCommon) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode DatabaseSettingCommon to nil")
 	}
-	var requiredBitSet [1]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
 		case "WebUI":
-			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Str()
-				s.WebUI = string(v)
-				if err != nil {
+				s.WebUI.Reset()
+				if err := s.WebUI.Decode(d); err != nil {
 					return err
 				}
 				return nil
@@ -24383,19 +23752,9 @@ func (s *DatabaseSettingCommon) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"ServicePort\"")
 			}
 		case "SourceNetwork":
-			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				s.SourceNetwork = make([]string, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem string
-					v, err := d.Str()
-					elem = string(v)
-					if err != nil {
-						return err
-					}
-					s.SourceNetwork = append(s.SourceNetwork, elem)
-					return nil
-				}); err != nil {
+				s.SourceNetwork.Reset()
+				if err := s.SourceNetwork.Decode(d); err != nil {
 					return err
 				}
 				return nil
@@ -24448,38 +23807,6 @@ func (s *DatabaseSettingCommon) Decode(d *jx.Decoder) error {
 		return nil
 	}); err != nil {
 		return errors.Wrap(err, "decode DatabaseSettingCommon")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000101,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfDatabaseSettingCommon) {
-					name = jsonFieldsNameOfDatabaseSettingCommon[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
 	}
 
 	return nil
@@ -51557,6 +50884,39 @@ func (s *NoteUpdateResponseEnvelope) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes ApplianceCreateRequestIcon as json.
+func (o OptApplianceCreateRequestIcon) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes ApplianceCreateRequestIcon from json.
+func (o *OptApplianceCreateRequestIcon) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptApplianceCreateRequestIcon to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptApplianceCreateRequestIcon) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptApplianceCreateRequestIcon) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes ApplianceCreateRequestPlan as json.
 func (o OptApplianceCreateRequestPlan) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -51788,6 +51148,39 @@ func (s *OptApplianceCreateRequestRemarkVRRP) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes ApplianceUpdateRequestIcon as json.
+func (o OptApplianceUpdateRequestIcon) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes ApplianceUpdateRequestIcon from json.
+func (o *OptApplianceUpdateRequestIcon) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptApplianceUpdateRequestIcon to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptApplianceUpdateRequestIcon) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptApplianceUpdateRequestIcon) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes ArchiveShareInfo as json.
 func (o OptArchiveShareInfo) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -51922,6 +51315,39 @@ func (s *OptBool) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes CommonServiceItemCreateRequestIcon as json.
+func (o OptCommonServiceItemCreateRequestIcon) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes CommonServiceItemCreateRequestIcon from json.
+func (o *OptCommonServiceItemCreateRequestIcon) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptCommonServiceItemCreateRequestIcon to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptCommonServiceItemCreateRequestIcon) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptCommonServiceItemCreateRequestIcon) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes CommonServiceItemCreateRequestRemark as json.
 func (o OptCommonServiceItemCreateRequestRemark) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -51951,6 +51377,39 @@ func (s OptCommonServiceItemCreateRequestRemark) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptCommonServiceItemCreateRequestRemark) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes CommonServiceItemCreateRequestSettings as json.
+func (o OptCommonServiceItemCreateRequestSettings) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes CommonServiceItemCreateRequestSettings from json.
+func (o *OptCommonServiceItemCreateRequestSettings) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptCommonServiceItemCreateRequestSettings to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptCommonServiceItemCreateRequestSettings) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptCommonServiceItemCreateRequestSettings) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -52248,6 +51707,72 @@ func (s OptCommonServiceItemCreateRequestStatusAPIKey) MarshalJSON() ([]byte, er
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptCommonServiceItemCreateRequestStatusAPIKey) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes CommonServiceItemUpdateRequestIcon as json.
+func (o OptCommonServiceItemUpdateRequestIcon) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes CommonServiceItemUpdateRequestIcon from json.
+func (o *OptCommonServiceItemUpdateRequestIcon) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptCommonServiceItemUpdateRequestIcon to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptCommonServiceItemUpdateRequestIcon) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptCommonServiceItemUpdateRequestIcon) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes CommonServiceItemUpdateRequestSettings as json.
+func (o OptCommonServiceItemUpdateRequestSettings) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes CommonServiceItemUpdateRequestSettings from json.
+func (o *OptCommonServiceItemUpdateRequestSettings) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptCommonServiceItemUpdateRequestSettings to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptCommonServiceItemUpdateRequestSettings) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptCommonServiceItemUpdateRequestSettings) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -54774,6 +54299,67 @@ func (s OptNilDatabaseSettingsDBConf) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilDatabaseSettingsDBConf) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes []DatabaseSettingsInterface as json.
+func (o OptNilDatabaseSettingsInterfaceArray) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	if o.Null {
+		e.Null()
+		return
+	}
+	e.ArrStart()
+	for _, elem := range o.Value {
+		elem.Encode(e)
+	}
+	e.ArrEnd()
+}
+
+// Decode decodes []DatabaseSettingsInterface from json.
+func (o *OptNilDatabaseSettingsInterfaceArray) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptNilDatabaseSettingsInterfaceArray to nil")
+	}
+	if d.Next() == jx.Null {
+		if err := d.Null(); err != nil {
+			return err
+		}
+
+		var v []DatabaseSettingsInterface
+		o.Value = v
+		o.Set = true
+		o.Null = true
+		return nil
+	}
+	o.Set = true
+	o.Null = false
+	o.Value = make([]DatabaseSettingsInterface, 0)
+	if err := d.Arr(func(d *jx.Decoder) error {
+		var elem DatabaseSettingsInterface
+		if err := elem.Decode(d); err != nil {
+			return err
+		}
+		o.Value = append(o.Value, elem)
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptNilDatabaseSettingsInterfaceArray) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptNilDatabaseSettingsInterfaceArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }

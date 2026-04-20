@@ -11,11 +11,11 @@ namespace Sacloud.IaaS;
 model CommonServiceItemCreateRequest {
   Class: string;
   Status: CommonServiceItemCreateRequestStatus;
-  Settings: CommonServiceItemCreateRequestSettings;
+  Settings?: CommonServiceItemCreateRequestSettings;
   Name: string;
   Description: string;
   Tags: string[];
-  Icon: CommonServiceItemCreateRequestIcon;
+  Icon?: CommonServiceItemCreateRequestIcon;
   Plan?: EProxyLBPlan;
   Remark?: CommonServiceItemCreateRequestRemark;
 }
@@ -131,12 +131,16 @@ model CommonServiceItemCreateRequestRemark {
   PassCode: string;
 }
 
+model CommonServiceItemCreateRequestEnvelope {
+  CommonServiceItem: CommonServiceItemCreateRequest;
+}
+
 model CommonServiceItemUpdateRequest {
   Name?: string;
   Description: string;
   Tags: string[];
-  Icon: CommonServiceItemUpdateRequestIcon;
-  Settings: CommonServiceItemUpdateRequestSettings;
+  Icon?: CommonServiceItemUpdateRequestIcon;
+  Settings?: CommonServiceItemUpdateRequestSettings;
   SettingsHash?: string;
 }
 
@@ -233,18 +237,25 @@ model CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack {
   IncomingWebhooksURL?: string;
 }
 
+model CommonServiceItemUpdateRequestEnvelope {
+  CommonServiceItem: CommonServiceItemUpdateRequest;
+}
+
 @tag("CommonServiceItem")
 interface CommonServiceItemOp {
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem")
   find(
     @path zone: string,
-    conditions: FindCondition,
+    @body body: FindCondition,
   ): AutoBackupFindResponseEnvelope | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem")
-  create(@path zone: string, param: CommonServiceItemCreateRequest): {
+  create(
+    @path zone: string,
+    @body body: CommonServiceItemCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...AutoBackupCreateResponseEnvelope;
   } | ApiError;
@@ -261,7 +272,7 @@ interface CommonServiceItemOp {
   update(
     @path zone: string,
     @path id: string,
-    param: CommonServiceItemUpdateRequest,
+    @body body: CommonServiceItemUpdateRequestEnvelope,
   ): AutoBackupUpdateResponseEnvelope | ApiError;
 
   @delete
