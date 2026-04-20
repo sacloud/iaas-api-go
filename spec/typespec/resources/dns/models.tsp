@@ -14,9 +14,17 @@ model DNS {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   Records: DNSRecord[];
-  MonitoringSuiteLog: MonitoringSuiteLog;
+  Settings?: DNSSettings | null;
   SettingsHash?: string | null;
   Status?: DNSStatus | null;
+}
+
+model DNSSettings {
+  DNS?: DNSSettingsDNS | null;
+}
+
+model DNSSettingsDNS {
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model DNSStatus {
@@ -38,10 +46,18 @@ model MonitoringSuiteLog {
 model DNSCreateRequest {
   Name?: string | null;
   Records: DNSRecord[];
-  MonitoringSuiteLog: MonitoringSuiteLog;
+  Settings?: DNSCreateRequestSettings | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model DNSCreateRequestSettings {
+  DNS?: DNSCreateRequestSettingsDNS | null;
+}
+
+model DNSCreateRequestSettingsDNS {
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model DNSUpdateRequest {

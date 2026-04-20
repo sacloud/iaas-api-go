@@ -337,17 +337,89 @@ type resolvedModel struct {
 	Fields []tsModelField
 }
 
-// nestedField は mapconv の "Foo.Bar" パターンで root "Foo" にぶら下がる葉フィールド情報。
-type nestedField struct {
-	subName string
-	source  *dsl.FieldDesc
+// fieldNullabilityOverrides は v1 naked 型の宣言と実 API の挙動が食い違うフィールドに対して、
+// 明示的に nullable 扱いに切り替えるホワイトリスト。
+// キー = TypeSpec モデル名（合成サブモデル名または DSL モデル名）、値 = nullable にするフィールド名のセット。
+//
+// 典型例: naked.UserSubnet.DefaultRoute は `string` 非ポインタだが、実 API は
+// `{"DefaultRoute": null}` を返すため、v2 TypeSpec の該当フィールドは optional にする必要がある。
+// 運用: 実 API で null 由来の decode 失敗に遭遇したら、該当の (モデル名, フィールド名) を
+// このマップに追記し、同時に verify-typespec 側に期待チェックを追加する。
+var fieldNullabilityOverrides = map[string]map[string]bool{
+	// Server response の Interfaces[].Switch.UserSubnet は DefaultRoute が null で返ることがある
+	"InterfaceViewSwitchUserSubnet": {
+		"DefaultRoute":   true,
+		"NetworkMaskLen": true,
+	},
+	// Switch 本体の UserSubnet も同様
+	"SwitchUserSubnet": {
+		"DefaultRoute":   true,
+		"NetworkMaskLen": true,
+	},
+}
+
+// fieldNode は DSL モデルのフィールドを mapconv 経路でツリー化したノード。
+// ルートが DSL モデル自体に対応し、子ノードがそのモデルのフィールド（または mapconv によってネスト
+// される中間セグメント）となる。葉ノードは `leafField` に元 DSL フィールドを持つ。
+type fieldNode struct {
+	name       string
+	children   []*fieldNode
+	childIdx   map[string]*fieldNode
+	leafField  *dsl.FieldDesc // 葉ノードでのみ設定
+	leafIsArr  bool           // セグメント側に [] があった／フィールド型自体が配列の場合 true
+}
+
+func (n *fieldNode) getOrCreate(name string, isArr bool) *fieldNode {
+	if n.childIdx == nil {
+		n.childIdx = map[string]*fieldNode{}
+	}
+	if c, ok := n.childIdx[name]; ok {
+		if isArr {
+			c.leafIsArr = true
+		}
+		return c
+	}
+	c := &fieldNode{name: name, leafIsArr: isArr}
+	n.childIdx[name] = c
+	n.children = append(n.children, c)
+	return c
+}
+
+// insertField は segs（mapconv パス）に沿って f を tree に挿入する。
+func insertField(root *fieldNode, segs []string, f *dsl.FieldDesc) {
+	node := root
+	for i, seg := range segs {
+		isArr := strings.HasPrefix(seg, "[]")
+		if isArr {
+			seg = seg[2:]
+		}
+		child := node.getOrCreate(seg, isArr)
+		if i == len(segs)-1 {
+			child.leafField = f
+		}
+		node = child
+	}
+}
+
+// isResourceRefShortcut は child が {ID} のみを持つ葉構造（つまり `Foo.ID` 単独）か判定する。
+// true なら ResourceRef | null でショートカットできる。
+func isResourceRefShortcut(child *fieldNode) bool {
+	if len(child.children) != 1 {
+		return false
+	}
+	gc := child.children[0]
+	return gc.name == "ID" && gc.leafField != nil && len(gc.children) == 0
 }
 
 // resolveModel は DSL モデルを TypeSpec モデル群に変換する。
-// mapconv が "Foo.Bar" 形式（深さ2）のフィールドは親モデルでは Foo?: {Parent}Foo | null にまとめ、
-// 合成サブモデル {Parent}Foo をテンプレートに追加する。
-// "Foo.ID" かつ同じ root に他のサブフィールドがない場合は ResourceRef | null に短縮する（既存挙動）。
-// 既存 DSL モデル名と衝突する合成モデル名は、既存モデルを再利用して合成を省略する。
+// mapconv を tree に展開し、任意階層のネストに対応する:
+//   - `Foo.ID` 単独 → `Foo?: ResourceRef | null`
+//   - `Foo.Bar` / `Foo.Bar.Baz` などそれ以外 → 合成サブモデル `{Parent}{Foo}` を生成し `Foo?: ... | null`
+//   - 合成名が既存 DSL モデルと衝突する場合は既存モデルを再利用し、合成を省略する
+//   - 深さ 3 以上でも再帰的に同じルールでサブモデルを生成する
+//
+// 配列セグメント（`[]X`）を含む mapconv パスは tree ネスト化せず、当該フィールドを平坦にそのまま
+// 出力する。fat_model/既存挙動との互換のため。
 func resolveModel(m *dsl.Model) []resolvedModel {
 	exclusions := modelFieldExclusions[m.Name]
 
@@ -358,150 +430,133 @@ func resolveModel(m *dsl.Model) []resolvedModel {
 		}
 	}
 
-	// 深さ2の mapconv フィールドを root 単位でグループ化する。
-	groups := map[string][]nestedField{}
-	var rootOrder []string
-	consumed := map[*dsl.FieldDesc]bool{}
+	root := &fieldNode{name: m.Name}
 	for _, f := range m.Fields {
 		if exclusions[f.Name] {
 			continue
 		}
-		if f.Tags == nil {
+		var segs []string
+		if f.Tags != nil {
+			segs, _, _ = parseMapconvPath(f.Tags.MapConv)
+		}
+		if len(segs) == 0 {
+			segs = []string{f.Name}
+		}
+		// 配列セグメントを含むパスは tree nesting を適用しない（既存挙動維持）
+		hasArrayInPath := false
+		for _, s := range segs {
+			if strings.HasPrefix(s, "[]") {
+				hasArrayInPath = true
+				break
+			}
+		}
+		if hasArrayInPath {
+			insertField(root, []string{f.Name}, f)
 			continue
 		}
-		segs, _, _ := parseMapconvPath(f.Tags.MapConv)
-		if len(segs) != 2 {
-			continue
-		}
-		// 配列セグメント（[]X）は fat_model/既存挙動に委ねる
-		if strings.HasPrefix(segs[0], "[]") || strings.HasPrefix(segs[1], "[]") {
-			continue
-		}
-		root, sub := segs[0], segs[1]
-		if _, exists := groups[root]; !exists {
-			rootOrder = append(rootOrder, root)
-		}
-		groups[root] = append(groups[root], nestedField{subName: sub, source: f})
-		consumed[f] = true
+		insertField(root, segs, f)
 	}
 
-	// 各 root の TypeSpec 型名を決定。
-	// 合成名 "{Parent}{Root}" が既存 DSL モデルと衝突する場合は既存モデルを再利用し、
-	// 合成は行わない（例: Disk の Plan → 既存 DiskPlan モデルを参照）。
-	rootSubTypeName := map[string]string{}
-	rootReusesExisting := map[string]bool{}
-	for _, root := range rootOrder {
-		subName := m.Name + root
-		if _, exists := allModelsByName[subName]; exists {
-			rootReusesExisting[root] = true
-		}
-		rootSubTypeName[root] = subName
-	}
+	return emitFromFieldTree(m.Name, root, nakedRT)
+}
 
-	// メインモデルのフィールドを組み立てる。
+// emitFromFieldTree は tree を根から辿って TypeSpec モデルを生成する。
+// - modelName: この呼び出しが emit する model の名前
+// - node:      その model のフィールド集合（= node.children）
+// - nakedRT:   この model に対応する naked struct の reflect.Type（null チェック用、無ければ nil）
+func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) []resolvedModel {
 	var mainFields []tsModelField
-	emitted := map[string]bool{}
-	for _, f := range m.Fields {
-		if exclusions[f.Name] {
-			continue
+	var subs []resolvedModel
+
+	for _, child := range node.children {
+		nullable := nakedFieldIsNullable(nakedRT, child.name)
+		if overrides, ok := fieldNullabilityOverrides[modelName]; ok && overrides[child.name] {
+			nullable = true
 		}
-		if consumed[f] {
-			segs, _, _ := parseMapconvPath(f.Tags.MapConv)
-			root := segs[0]
-			if emitted[root] {
-				continue
+
+		// 葉ノード
+		if child.leafField != nil && len(child.children) == 0 {
+			tsType := modelFieldTypeToTS(child.leafField.TypeName())
+			if child.leafIsArr && !strings.HasSuffix(tsType, "[]") {
+				tsType = tsType + "[]"
 			}
-			emitted[root] = true
-			g := groups[root]
-			nullable := nakedFieldIsNullable(nakedRT, root)
-			// 単一 .ID かつ既存モデル再利用でない場合は ResourceRef | null に短縮
-			if len(g) == 1 && g[0].subName == "ID" && !rootReusesExisting[root] {
-				mainFields = append(mainFields, tsModelField{
-					Name:     root,
-					TSType:   "ResourceRef | null",
-					Optional: true,
-				})
-				continue
-			}
-			tsType := rootSubTypeName[root]
 			if nullable {
 				tsType = tsType + " | null"
 			}
+			tsDefault := convertDefaultValue(child.leafField.DefaultValue)
 			mainFields = append(mainFields, tsModelField{
-				Name:     root,
-				TSType:   tsType,
-				Optional: nullable,
+				Name:      child.name,
+				TSType:    tsType,
+				Optional:  nullable,
+				TSDefault: tsDefault,
+				EnumDefault: func() string {
+					if tsDefault == "" {
+						return resolveEnumDefault(child.leafField.DefaultValue)
+					}
+					return ""
+				}(),
+				OtherDefault: func() string {
+					if tsDefault == "" && resolveEnumDefault(child.leafField.DefaultValue) == "" && child.leafField.DefaultValue != "" {
+						return child.leafField.DefaultValue
+					}
+					return ""
+				}(),
 			})
 			continue
 		}
 
-		// 通常フィールド
-		tsType := modelFieldTypeToTS(f.TypeName())
-		nullable := nakedFieldIsNullable(nakedRT, f.Name)
-		if nullable {
-			tsType = tsType + " | null"
-		}
-		tsDefault := convertDefaultValue(f.DefaultValue)
-		mainFields = append(mainFields, tsModelField{
-			Name:     f.Name,
-			TSType:   tsType,
-			Optional: nullable,
-			TSDefault: tsDefault,
-			EnumDefault: func() string {
-				if tsDefault == "" {
-					return resolveEnumDefault(f.DefaultValue)
-				}
-				return ""
-			}(),
-			OtherDefault: func() string {
-				if tsDefault == "" && resolveEnumDefault(f.DefaultValue) == "" && f.DefaultValue != "" {
-					return f.DefaultValue
-				}
-				return ""
-			}(),
-		})
-	}
+		// 中間ノード
+		// `.ID` のみを持つ → ResourceRef | null に短縮
+		subName := modelName + child.name
+		_, reuseExisting := allModelsByName[subName]
 
-	results := []resolvedModel{{Name: m.Name, Fields: mainFields}}
-
-	// 合成サブモデルを構築（ResourceRef 短縮 or 既存モデル再利用のケースはスキップ）
-	for _, root := range rootOrder {
-		g := groups[root]
-		if len(g) == 1 && g[0].subName == "ID" && !rootReusesExisting[root] {
+		if isResourceRefShortcut(child) && !reuseExisting {
+			tsType := "ResourceRef"
+			if child.leafIsArr {
+				tsType += "[]"
+			}
+			tsType += " | null"
+			mainFields = append(mainFields, tsModelField{
+				Name:     child.name,
+				TSType:   tsType,
+				Optional: true,
+			})
 			continue
 		}
-		if rootReusesExisting[root] {
-			continue
-		}
-		var parentRT reflect.Type
+
+		// サブモデル参照（既存再利用 or 新規合成）
+		var subRT reflect.Type
 		if nakedRT != nil {
-			if sf, ok := nakedRT.FieldByName(root); ok {
+			if sf, ok := nakedRT.FieldByName(child.name); ok {
 				t := sf.Type
 				for t.Kind() == reflect.Ptr || t.Kind() == reflect.Slice {
 					t = t.Elem()
 				}
 				if t.Kind() == reflect.Struct {
-					parentRT = t
+					subRT = t
 				}
 			}
 		}
-		var subFields []tsModelField
-		for _, nf := range g {
-			subType := modelFieldTypeToTS(nf.source.TypeName())
-			nullable := nakedFieldIsNullable(parentRT, nf.subName)
-			if nullable {
-				subType = subType + " | null"
-			}
-			subFields = append(subFields, tsModelField{
-				Name:     nf.subName,
-				TSType:   subType,
-				Optional: nullable,
-			})
+
+		if !reuseExisting {
+			subs = append(subs, emitFromFieldTree(subName, child, subRT)...)
 		}
-		results = append(results, resolvedModel{Name: rootSubTypeName[root], Fields: subFields})
+
+		tsType := subName
+		if child.leafIsArr {
+			tsType += "[]"
+		}
+		if nullable {
+			tsType += " | null"
+		}
+		mainFields = append(mainFields, tsModelField{
+			Name:     child.name,
+			TSType:   tsType,
+			Optional: nullable,
+		})
 	}
 
-	return results
+	return append([]resolvedModel{{Name: modelName, Fields: mainFields}}, subs...)
 }
 
 // resourceModels は1リソース分の全モデルを1ファイルに出力するためのテンプレートパラメータ。

@@ -661,6 +661,30 @@ func TestAutoBackupReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 AutoBackupReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestAutoBackupSettings_EncodeDecode(t *testing.T) {
+	var typ AutoBackupSettings
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 AutoBackupSettings
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestAutoBackupSettingsAutobackup_EncodeDecode(t *testing.T) {
+	var typ AutoBackupSettingsAutobackup
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 AutoBackupSettingsAutobackup
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestAutoBackupStatus_EncodeDecode(t *testing.T) {
 	var typ AutoBackupStatus
 	typ.SetFake()
@@ -2021,6 +2045,18 @@ func TestDatabaseInstance_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseInstance
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestDatabaseInstanceHost_EncodeDecode(t *testing.T) {
+	var typ DatabaseInstanceHost
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseInstanceHost
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestDatabaseLog_EncodeDecode(t *testing.T) {
 	var typ DatabaseLog
 	typ.SetFake()
@@ -2193,6 +2229,30 @@ func TestDatabaseReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestDatabaseRemark_EncodeDecode(t *testing.T) {
+	var typ DatabaseRemark
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseRemark
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestDatabaseRemarkDBConf_EncodeDecode(t *testing.T) {
+	var typ DatabaseRemarkDBConf
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseRemarkDBConf
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestDatabaseRemarkDBConfCommon_EncodeDecode(t *testing.T) {
 	var typ DatabaseRemarkDBConfCommon
 	typ.SetFake()
@@ -2203,6 +2263,18 @@ func TestDatabaseRemarkDBConfCommon_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 DatabaseRemarkDBConfCommon
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestDatabaseRemarkNetwork_EncodeDecode(t *testing.T) {
+	var typ DatabaseRemarkNetwork
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseRemarkNetwork
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestDatabaseReplicationSetting_EncodeDecode(t *testing.T) {
@@ -2265,6 +2337,18 @@ func TestDatabaseSettings_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseSettings
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestDatabaseSettingsDBConf_EncodeDecode(t *testing.T) {
+	var typ DatabaseSettingsDBConf
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseSettingsDBConf
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestDatabaseSettingsInterface_EncodeDecode(t *testing.T) {
 	var typ DatabaseSettingsInterface
 	typ.SetFake()
@@ -2311,6 +2395,42 @@ func TestDatabaseStatusSettingsResponse_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 DatabaseStatusSettingsResponse
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestDatabaseStatusSettingsResponseDBConf_EncodeDecode(t *testing.T) {
+	var typ DatabaseStatusSettingsResponseDBConf
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseStatusSettingsResponseDBConf
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestDatabaseStatusSettingsResponseDBConfMariaDB_EncodeDecode(t *testing.T) {
+	var typ DatabaseStatusSettingsResponseDBConfMariaDB
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseStatusSettingsResponseDBConfMariaDB
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestDatabaseStatusSettingsResponseDBConfPostgres_EncodeDecode(t *testing.T) {
+	var typ DatabaseStatusSettingsResponseDBConfPostgres
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseStatusSettingsResponseDBConfPostgres
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestDatabaseUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -3545,6 +3665,18 @@ func TestIPv6AddrFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 IPv6AddrFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestIPv6AddrIPv6Net_EncodeDecode(t *testing.T) {
+	var typ IPv6AddrIPv6Net
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 IPv6AddrIPv6Net
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestIPv6AddrOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ IPv6AddrOpDeleteOK
 	typ.SetFake()
@@ -4077,6 +4209,42 @@ func TestInterfaceViewSwitch_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 InterfaceViewSwitch
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestInterfaceViewSwitchSubnet_EncodeDecode(t *testing.T) {
+	var typ InterfaceViewSwitchSubnet
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 InterfaceViewSwitchSubnet
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestInterfaceViewSwitchSubnetInternet_EncodeDecode(t *testing.T) {
+	var typ InterfaceViewSwitchSubnetInternet
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 InterfaceViewSwitchSubnetInternet
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestInterfaceViewSwitchUserSubnet_EncodeDecode(t *testing.T) {
+	var typ InterfaceViewSwitchUserSubnet
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 InterfaceViewSwitchUserSubnet
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestInternet_EncodeDecode(t *testing.T) {
@@ -5931,6 +6099,30 @@ func TestProxyLBSetCertificatesResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ProxyLBSetCertificatesResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestProxyLBSettings_EncodeDecode(t *testing.T) {
+	var typ ProxyLBSettings
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ProxyLBSettings
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestProxyLBSettingsProxyLB_EncodeDecode(t *testing.T) {
+	var typ ProxyLBSettingsProxyLB
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ProxyLBSettingsProxyLB
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestProxyLBSorryServer_EncodeDecode(t *testing.T) {
 	var typ ProxyLBSorryServer
 	typ.SetFake()
@@ -6633,6 +6825,18 @@ func TestServerInstance_EncodeDecode(t *testing.T) {
 	var typ2 ServerInstance
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestServerInstanceHost_EncodeDecode(t *testing.T) {
+	var typ ServerInstanceHost
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ServerInstanceHost
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestServerMonitorRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerMonitorRequestEnvelope
 	typ.SetFake()
@@ -7057,6 +7261,30 @@ func TestSourceArchiveInfo_EncodeDecode(t *testing.T) {
 	var typ2 SourceArchiveInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestSourceArchiveInfoArchiveUnderZone_EncodeDecode(t *testing.T) {
+	var typ SourceArchiveInfoArchiveUnderZone
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 SourceArchiveInfoArchiveUnderZone
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestSourceArchiveInfoArchiveUnderZoneZone_EncodeDecode(t *testing.T) {
+	var typ SourceArchiveInfoArchiveUnderZoneZone
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 SourceArchiveInfoArchiveUnderZoneZone
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestStorage_EncodeDecode(t *testing.T) {
 	var typ Storage
 	typ.SetFake()
@@ -7141,6 +7369,18 @@ func TestSubnetReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 SubnetReadResponseEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestSubnetSwitch_EncodeDecode(t *testing.T) {
+	var typ SubnetSwitch
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 SubnetSwitch
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestSwitch_EncodeDecode(t *testing.T) {

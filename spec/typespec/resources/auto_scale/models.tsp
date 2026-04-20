@@ -15,7 +15,7 @@ model AutoScale {
   ModifiedAt?: utcDateTime | null;
   Settings?: AutoScaleSettings | null;
   SettingsHash?: string | null;
-  APIKeyID: string;
+  Status?: AutoScaleStatus | null;
 }
 
 model AutoScaleSettings {
@@ -53,7 +53,7 @@ model AutoScaleCreateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: AutoScaleCreateRequestSettings | null;
-  APIKeyID: string;
+  Status?: AutoScaleCreateRequestStatus | null;
 }
 
 model AutoScaleCreateRequestSettings {
@@ -64,6 +64,10 @@ model AutoScaleCreateRequestSettings {
   CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
   RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
   ScheduleScaling: AutoScaleScheduleScaling[];
+}
+
+model AutoScaleCreateRequestStatus {
+  APIKey?: ResourceRef | null;
 }
 
 model AutoScaleUpdateRequest {

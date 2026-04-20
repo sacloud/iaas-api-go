@@ -17,12 +17,9 @@ model Server {
 
   ServerPlan?: ServerServerPlan | null;
   Zone?: ZoneInfo | null;
-  InstanceHostName: string;
-  InstanceHostInfoURL: string;
   Instance?: ServerInstance | null;
   Disks?: ServerConnectedDisk[] | null;
   Interfaces?: InterfaceView[] | null;
-  CDROMID: int64;
   PrivateHost?: ServerPrivateHost | null;
   BundleInfo: BundleInfo;
   Icon?: ResourceRef | null;
@@ -38,17 +35,27 @@ model ServerServerPlan {
   GPU?: int32 | null;
   GPUModel?: string | null;
   CPUModel?: string | null;
+
+  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment?: ECommitment | null;
+
   Generation?: EPlanGeneration | null;
   ConfidentialVM: boolean;
 }
 
 model ServerInstance {
+  Host?: ServerInstanceHost | null;
   Status?: EServerInstanceStatus | null;
   BeforeStatus?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
   Warnings?: string | null;
   WarningsValue?: int32 | null;
+  CDROM?: ResourceRef | null;
+}
+
+model ServerInstanceHost {
+  Name?: string | null;
+  InfoURL?: string | null;
 }
 
 model ServerPrivateHost {
@@ -59,7 +66,7 @@ model ServerPrivateHost {
 model ZoneInfo {
   ID?: int64 | null;
   Name?: string | null;
-  DisplayName: string;
+  Description?: string | null;
   IsDummy: boolean;
   VNCProxy?: VNCProxy | null;
   FTPServer?: FTPServerInfo | null;
@@ -110,7 +117,10 @@ model ServerCreateRequestServerPlan {
   GPU?: int32 | null;
   GPUModel?: string | null;
   CPUModel?: string | null;
+
+  // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment?: ECommitment | null;
+
   Generation?: EPlanGeneration | null;
   ConfidentialVM: boolean;
 }
@@ -132,7 +142,7 @@ model ServerUpdateRequest {
 }
 
 model ServerDeleteWithDisksRequest {
-  IDs: int64[];
+  WithDisk: int64[];
 }
 
 model ServerChangePlanRequest {

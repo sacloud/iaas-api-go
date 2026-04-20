@@ -15,11 +15,7 @@ model GSLB {
   ModifiedAt?: utcDateTime | null;
   SettingsHash?: string | null;
   Status?: GSLBStatus | null;
-  DelayLoop: int32 = 10;
-  Weighted: string;
-  HealthCheck: GSLBHealthCheck;
-  SorryServer: string;
-  MonitoringSuiteLog: MonitoringSuiteLog;
+  Settings?: GSLBSettings | null;
   DestinationServers: GSLBServer[];
 }
 
@@ -27,11 +23,23 @@ model GSLBStatus {
   FQDN?: string | null;
 }
 
+model GSLBSettings {
+  GSLB?: GSLBSettingsGSLB | null;
+}
+
+model GSLBSettingsGSLB {
+  DelayLoop?: int32 | null = 10;
+  Weighted: string;
+  HealthCheck?: GSLBHealthCheck | null;
+  SorryServer?: string | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+}
+
 model GSLBHealthCheck {
   Protocol?: EGSLBHealthCheckProtocol | null;
-  HostHeader: string;
+  Host?: string | null;
   Path?: string | null;
-  ResponseCode: int32;
+  Status?: int32 | null;
   Port?: int32 | null;
 }
 
@@ -42,11 +50,7 @@ model GSLBServer {
 }
 
 model GSLBCreateRequest {
-  HealthCheck: GSLBHealthCheck;
-  DelayLoop: int32 = 10;
-  Weighted: string;
-  SorryServer: string;
-  MonitoringSuiteLog: MonitoringSuiteLog;
+  Settings?: GSLBCreateRequestSettings | null;
   DestinationServers: GSLBServer[];
   Name?: string | null;
   Description: string;
@@ -54,11 +58,31 @@ model GSLBCreateRequest {
   Icon?: ResourceRef | null;
 }
 
+model GSLBCreateRequestSettings {
+  GSLB?: GSLBCreateRequestSettingsGSLB | null;
+}
+
+model GSLBCreateRequestSettingsGSLB {
+  HealthCheck?: GSLBHealthCheck | null;
+  DelayLoop?: int32 | null = 10;
+  Weighted: string;
+  SorryServer?: string | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+}
+
 model GSLBUpdateRequest {
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  HealthCheck: GSLBHealthCheck;
+  Settings?: GSLBUpdateRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model GSLBUpdateRequestSettings {
+  GSLB?: GSLBUpdateRequestSettingsGSLB | null;
+}
+
+model GSLBUpdateRequestSettingsGSLB {
+  HealthCheck?: GSLBHealthCheck | null;
 }

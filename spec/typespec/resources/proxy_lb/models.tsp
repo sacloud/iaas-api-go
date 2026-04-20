@@ -14,21 +14,29 @@ model ProxyLB {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   Plan: EProxyLBPlan;
-  HealthCheck: ProxyLBHealthCheck;
-  SorryServer: ProxyLBSorryServer;
+  Settings?: ProxyLBSettings | null;
   BindPorts: ProxyLBBindPort[];
   Servers: ProxyLBServer[];
   Rules: ProxyLBRule[];
-  LetsEncrypt: ProxyLBACMESetting;
-  StickySession: ProxyLBStickySession;
-  Gzip: ProxyLBGzip;
-  BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  ProxyProtocol: ProxyLBProxyProtocol;
-  Syslog: ProxyLBSyslog;
-  Timeout: ProxyLBTimeout;
   SettingsHash?: string | null;
   Status?: ProxyLBStatus | null;
+}
+
+model ProxyLBSettings {
+  ProxyLB?: ProxyLBSettingsProxyLB | null;
+}
+
+model ProxyLBSettingsProxyLB {
+  HealthCheck: ProxyLBHealthCheck;
+  SorryServer: ProxyLBSorryServer;
+  LetsEncrypt?: ProxyLBACMESetting | null;
+  StickySession: ProxyLBStickySession;
+  Gzip: ProxyLBGzip;
+  BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+  ProxyProtocol: ProxyLBProxyProtocol;
+  Syslog: ProxyLBSyslog;
+  Timeout?: ProxyLBTimeout | null;
 }
 
 model ProxyLBStatus {
@@ -124,24 +132,32 @@ model ProxyLBTimeout {
 
 model ProxyLBCreateRequest {
   Plan: EProxyLBPlan;
-  HealthCheck: ProxyLBHealthCheck;
-  SorryServer: ProxyLBSorryServer;
+  Settings?: ProxyLBCreateRequestSettings | null;
   BindPorts: ProxyLBBindPort[];
   Servers: ProxyLBServer[];
   Rules: ProxyLBRule[];
-  LetsEncrypt: ProxyLBACMESetting;
-  StickySession: ProxyLBStickySession;
-  Timeout: ProxyLBTimeout;
-  Gzip: ProxyLBGzip;
-  BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  ProxyProtocol: ProxyLBProxyProtocol;
-  Syslog: ProxyLBSyslog;
   Status?: ProxyLBCreateRequestStatus | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model ProxyLBCreateRequestSettings {
+  ProxyLB?: ProxyLBCreateRequestSettingsProxyLB | null;
+}
+
+model ProxyLBCreateRequestSettingsProxyLB {
+  HealthCheck: ProxyLBHealthCheck;
+  SorryServer: ProxyLBSorryServer;
+  LetsEncrypt?: ProxyLBACMESetting | null;
+  StickySession: ProxyLBStickySession;
+  Timeout?: ProxyLBTimeout | null;
+  Gzip: ProxyLBGzip;
+  BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+  ProxyProtocol: ProxyLBProxyProtocol;
+  Syslog: ProxyLBSyslog;
 }
 
 model ProxyLBCreateRequestStatus {
@@ -150,12 +166,20 @@ model ProxyLBCreateRequestStatus {
 }
 
 model ProxyLBUpdateRequest {
-  HealthCheck: ProxyLBHealthCheck;
+  Settings?: ProxyLBUpdateRequestSettings | null;
   SettingsHash?: string | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model ProxyLBUpdateRequestSettings {
+  ProxyLB?: ProxyLBUpdateRequestSettingsProxyLB | null;
+}
+
+model ProxyLBUpdateRequestSettingsProxyLB {
+  HealthCheck: ProxyLBHealthCheck;
 }
 
 model ProxyLBChangePlanRequest {
@@ -186,7 +210,7 @@ model ProxyLBAdditionalCert {
 }
 
 model ProxyLBSetCertificatesRequest {
-  PrimaryCerts: ProxyLBPrimaryCert;
+  PrimaryCert?: ProxyLBPrimaryCert | null;
   AdditionalCerts: ProxyLBAdditionalCert[];
 }
 

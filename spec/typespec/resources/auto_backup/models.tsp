@@ -13,10 +13,18 @@ model AutoBackup {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  BackupSpanWeekdays: EDayOfTheWeek[];
-  MaximumNumberOfArchives: int32;
+  Settings?: AutoBackupSettings | null;
   SettingsHash?: string | null;
   Status?: AutoBackupStatus | null;
+}
+
+model AutoBackupSettings {
+  Autobackup?: AutoBackupSettingsAutobackup | null;
+}
+
+model AutoBackupSettingsAutobackup {
+  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
+  MaximumNumberOfArchives?: int32 | null;
 }
 
 model AutoBackupStatus {
@@ -28,8 +36,7 @@ model AutoBackupStatus {
 
 model AutoBackupCreateRequest {
   Status?: AutoBackupCreateRequestStatus | null;
-  BackupSpanWeekdays: EDayOfTheWeek[];
-  MaximumNumberOfArchives: int32;
+  Settings?: AutoBackupCreateRequestSettings | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
@@ -40,11 +47,28 @@ model AutoBackupCreateRequestStatus {
   DiskID?: int64 | null;
 }
 
+model AutoBackupCreateRequestSettings {
+  Autobackup?: AutoBackupCreateRequestSettingsAutobackup | null;
+}
+
+model AutoBackupCreateRequestSettingsAutobackup {
+  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
+  MaximumNumberOfArchives?: int32 | null;
+}
+
 model AutoBackupUpdateRequest {
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  BackupSpanWeekdays: EDayOfTheWeek[];
+  Settings?: AutoBackupUpdateRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model AutoBackupUpdateRequestSettings {
+  Autobackup?: AutoBackupUpdateRequestSettingsAutobackup | null;
+}
+
+model AutoBackupUpdateRequestSettingsAutobackup {
+  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
 }

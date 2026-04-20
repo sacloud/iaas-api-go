@@ -57,10 +57,18 @@ model Storage {
 }
 
 model SourceArchiveInfo {
-  ArchiveUnderZone?: ResourceRef | null;
-  AccountID: int64;
-  ZoneID: int64;
-  ZoneName: string;
+  ArchiveUnderZone: SourceArchiveInfoArchiveUnderZone;
+}
+
+model SourceArchiveInfoArchiveUnderZone {
+  ID: int64;
+  Account?: ResourceRef | null;
+  Zone: SourceArchiveInfoArchiveUnderZoneZone;
+}
+
+model SourceArchiveInfoArchiveUnderZoneZone {
+  ID: int64;
+  Name: string;
 }
 
 model FindCondition {

@@ -13,48 +13,76 @@ model VPCRouter {
   Class?: string | null;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
-  PlanID: int64;
-  Version: int32 = 2;
+  Remark?: VPCRouterRemark | null;
   Settings?: VPCRouterSetting | null;
   SettingsHash?: string | null;
-  InstanceHostName: string;
-  InstanceHostInfoURL: string;
   Instance?: VPCRouterInstance | null;
   Interfaces?: VPCRouterInterface[] | null;
-  ZoneID: int64;
+}
+
+model VPCRouterRemark {
+  Plan?: ResourceRef | null;
+  Router?: VPCRouterRemarkRouter | null;
+  Zone?: ResourceRef | null;
+}
+
+model VPCRouterRemarkRouter {
+  VPCRouterVersion?: int32 | null = 2;
 }
 
 model VPCRouterInstance {
+  Host?: VPCRouterInstanceHost | null;
   Status?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
 }
 
+model VPCRouterInstanceHost {
+  Name?: string | null;
+  InfoURL?: string | null;
+}
+
 model VPCRouterSetting {
   Router?: VPCRouterSettingRouter | null;
-  InternetConnectionEnabled: string;
   Interfaces: VPCRouterInterfaceSetting[];
   StaticNAT: VPCRouterStaticNAT[];
   PortForwarding: VPCRouterPortForwarding[];
   Firewall: VPCRouterFirewall[];
   DHCPServer: VPCRouterDHCPServer[];
   DHCPStaticMapping: VPCRouterDHCPStaticMapping[];
-  PPTPServer: VPCRouterPPTPServer;
-  PPTPServerEnabled: string;
-  L2TPIPsecServer: VPCRouterL2TPIPsecServer;
-  L2TPIPsecServerEnabled: string;
-  WireGuard: VPCRouterWireGuard;
-  WireGuardEnabled: string;
   RemoteAccessUsers: VPCRouterRemoteAccessUser[];
   StaticRoute: VPCRouterStaticRoute[];
 }
 
 model VPCRouterSettingRouter {
   VRID?: int32 | null;
+  InternetConnection?: VPCRouterSettingRouterInternetConnection | null;
   DNSForwarding?: VPCRouterDNSForwarding | null;
+  PPTPServer?: VPCRouterSettingRouterPPTPServer | null;
+  L2TPIPsecServer?: VPCRouterSettingRouterL2TPIPsecServer | null;
+  WireGuard?: VPCRouterSettingRouterWireGuard | null;
   SiteToSiteIPsecVPN?: VPCRouterSiteToSiteIPsecVPN | null;
   SyslogHost?: string | null;
   ScheduledMaintenance?: VPCRouterScheduledMaintenance | null;
   MonitoringSuite?: MonitoringSuite | null;
+}
+
+model VPCRouterSettingRouterInternetConnection {
+  Enabled: string;
+}
+
+model VPCRouterSettingRouterPPTPServer {
+  Config?: VPCRouterPPTPServer | null;
+  Enabled: string;
+}
+
+model VPCRouterSettingRouterL2TPIPsecServer {
+  Config?: VPCRouterL2TPIPsecServer | null;
+  Enabled: string;
+}
+
+model VPCRouterSettingRouterWireGuard {
+  Config?: VPCRouterWireGuard | null;
+  Enabled: string;
 }
 
 model VPCRouterInterfaceSetting {
@@ -188,12 +216,6 @@ model VPCRouterInterface {
   UserIPAddress?: string | null;
   HostName?: string | null;
   Switch?: VPCRouterInterfaceSwitch | null;
-  UserSubnetDefaultRoute: string;
-  UserSubnetNetworkMaskLen: int32;
-  SubnetDefaultRoute: string;
-  SubnetNetworkMaskLen: int32;
-  SubnetNetworkAddress: string;
-  SubnetBandWidthMbps: int32;
   PacketFilter?: VPCRouterInterfacePacketFilter | null;
   UpstreamType: EUpstreamNetworkType;
   Index: int32;
@@ -203,6 +225,24 @@ model VPCRouterInterfaceSwitch {
   ID?: int64 | null;
   Name?: string | null;
   Scope?: EScope | null;
+  UserSubnet?: VPCRouterInterfaceSwitchUserSubnet | null;
+  Subnet?: VPCRouterInterfaceSwitchSubnet | null;
+}
+
+model VPCRouterInterfaceSwitchUserSubnet {
+  DefaultRoute: string;
+  NetworkMaskLen: int32;
+}
+
+model VPCRouterInterfaceSwitchSubnet {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string | null;
+  Internet?: VPCRouterInterfaceSwitchSubnetInternet | null;
+}
+
+model VPCRouterInterfaceSwitchSubnetInternet {
+  BandWidthMbps?: int32 | null;
 }
 
 model VPCRouterInterfacePacketFilter {
@@ -219,12 +259,16 @@ model VPCRouterCreateRequest {
   Plan?: ResourceRef | null;
   Remark?: VPCRouterCreateRequestRemark | null;
   IPAddresses: string[];
-  Version: int32 = 2;
   Settings?: VPCRouterSetting | null;
 }
 
 model VPCRouterCreateRequestRemark {
   Switch?: ApplianceConnectedSwitch | null;
+  Router?: VPCRouterCreateRequestRemarkRouter | null;
+}
+
+model VPCRouterCreateRequestRemarkRouter {
+  VPCRouterVersion?: int32 | null = 2;
 }
 
 model ApplianceConnectedSwitch {

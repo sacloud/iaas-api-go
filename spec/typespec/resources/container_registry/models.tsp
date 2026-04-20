@@ -13,10 +13,18 @@ model ContainerRegistry {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  AccessLevel: EContainerRegistryAccessLevel;
-  VirtualDomain: string;
+  Settings?: ContainerRegistrySettings | null;
   SettingsHash?: string | null;
   Status?: ContainerRegistryStatus | null;
+}
+
+model ContainerRegistrySettings {
+  ContainerRegistry?: ContainerRegistrySettingsContainerRegistry | null;
+}
+
+model ContainerRegistrySettingsContainerRegistry {
+  Public: EContainerRegistryAccessLevel;
+  VirtualDomain: string;
 }
 
 model ContainerRegistryStatus {
@@ -29,9 +37,17 @@ model ContainerRegistryCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  AccessLevel: EContainerRegistryAccessLevel;
-  VirtualDomain: string;
+  Settings?: ContainerRegistryCreateRequestSettings | null;
   Status?: ContainerRegistryCreateRequestStatus | null;
+}
+
+model ContainerRegistryCreateRequestSettings {
+  ContainerRegistry?: ContainerRegistryCreateRequestSettingsContainerRegistry | null;
+}
+
+model ContainerRegistryCreateRequestSettingsContainerRegistry {
+  Public: EContainerRegistryAccessLevel;
+  VirtualDomain: string;
 }
 
 model ContainerRegistryCreateRequestStatus {
@@ -43,8 +59,16 @@ model ContainerRegistryUpdateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  AccessLevel: EContainerRegistryAccessLevel;
+  Settings?: ContainerRegistryUpdateRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model ContainerRegistryUpdateRequestSettings {
+  ContainerRegistry?: ContainerRegistryUpdateRequestSettingsContainerRegistry | null;
+}
+
+model ContainerRegistryUpdateRequestSettingsContainerRegistry {
+  Public: EContainerRegistryAccessLevel;
 }
 
 model ContainerRegistryUsers {

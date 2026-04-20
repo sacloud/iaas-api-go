@@ -15,23 +15,39 @@ model SimpleMonitor {
   ModifiedAt?: utcDateTime | null;
   Class: string;
   Status?: SimpleMonitorStatus | null;
-  DelayLoop: int32 = 60;
-  MaxCheckAttempts: int32 = 3;
-  RetryInterval: int32 = 10;
-  Enabled: string;
-  HealthCheck: SimpleMonitorHealthCheck;
-  NotifyEmailEnabled: string;
-  NotifyEmailHTML: string;
-  NotifySlackEnabled: string;
-  SlackWebhooksURL: string;
-  NotifyInterval: int32 = 7200;
-  Timeout: int32;
-  MonitoringSuiteLog: MonitoringSuiteLog;
+  Settings?: SimpleMonitorSettings | null;
   SettingsHash?: string | null;
 }
 
 model SimpleMonitorStatus {
   Target?: string | null;
+}
+
+model SimpleMonitorSettings {
+  SimpleMonitor?: SimpleMonitorSettingsSimpleMonitor | null;
+}
+
+model SimpleMonitorSettingsSimpleMonitor {
+  DelayLoop?: int32 | null = 60;
+  MaxCheckAttempts?: int32 | null = 3;
+  RetryInterval?: int32 | null = 10;
+  Enabled: string;
+  HealthCheck?: SimpleMonitorHealthCheck | null;
+  NotifyEmail?: SimpleMonitorSettingsSimpleMonitorNotifyEmail | null;
+  NotifySlack?: SimpleMonitorSettingsSimpleMonitorNotifySlack | null;
+  NotifyInterval?: int32 | null = 7200;
+  Timeout?: int32 | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+}
+
+model SimpleMonitorSettingsSimpleMonitorNotifyEmail {
+  Enabled: string;
+  HTML: string;
+}
+
+model SimpleMonitorSettingsSimpleMonitorNotifySlack {
+  Enabled: string;
+  IncomingWebhooksURL?: string | null;
 }
 
 model SimpleMonitorHealthCheck {
@@ -56,30 +72,54 @@ model SimpleMonitorHealthCheck {
 }
 
 model SimpleMonitorCreateRequest {
-  Target: string;
-  MaxCheckAttempts: int32 = 3;
-  RetryInterval: int32 = 10;
-  DelayLoop: int32 = 60;
-  Enabled: string;
-  HealthCheck: SimpleMonitorHealthCheck;
-  NotifyEmailEnabled: string;
-  NotifyEmailHTML: string;
-  NotifySlackEnabled: string;
-  SlackWebhooksURL: string;
-  NotifyInterval: int32 = 7200;
-  Timeout: int32;
-  MonitoringSuiteLog: MonitoringSuiteLog;
+  Name?: string | null;
+  Settings?: SimpleMonitorCreateRequestSettings | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model SimpleMonitorCreateRequestSettings {
+  SimpleMonitor?: SimpleMonitorCreateRequestSettingsSimpleMonitor | null;
+}
+
+model SimpleMonitorCreateRequestSettingsSimpleMonitor {
+  MaxCheckAttempts?: int32 | null = 3;
+  RetryInterval?: int32 | null = 10;
+  DelayLoop?: int32 | null = 60;
+  Enabled: string;
+  HealthCheck?: SimpleMonitorHealthCheck | null;
+  NotifyEmail?: SimpleMonitorCreateRequestSettingsSimpleMonitorNotifyEmail | null;
+  NotifySlack?: SimpleMonitorCreateRequestSettingsSimpleMonitorNotifySlack | null;
+  NotifyInterval?: int32 | null = 7200;
+  Timeout?: int32 | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+}
+
+model SimpleMonitorCreateRequestSettingsSimpleMonitorNotifyEmail {
+  Enabled: string;
+  HTML: string;
+}
+
+model SimpleMonitorCreateRequestSettingsSimpleMonitorNotifySlack {
+  Enabled: string;
+  IncomingWebhooksURL?: string | null;
 }
 
 model SimpleMonitorUpdateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  MaxCheckAttempts: int32 = 3;
+  Settings?: SimpleMonitorUpdateRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model SimpleMonitorUpdateRequestSettings {
+  SimpleMonitor?: SimpleMonitorUpdateRequestSettingsSimpleMonitor | null;
+}
+
+model SimpleMonitorUpdateRequestSettingsSimpleMonitor {
+  MaxCheckAttempts?: int32 | null = 3;
 }
 
 model ResponseTimeSecActivity {

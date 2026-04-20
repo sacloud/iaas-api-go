@@ -13,12 +13,20 @@ model LocalRouter {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  Switch: LocalRouterSwitch;
-  Interface: LocalRouterInterface;
+  Settings?: LocalRouterSettings | null;
   Peers: LocalRouterPeer[];
   StaticRoutes: LocalRouterStaticRoute[];
   SettingsHash?: string | null;
   Status?: LocalRouterStatus | null;
+}
+
+model LocalRouterSettings {
+  LocalRouter?: LocalRouterSettingsLocalRouter | null;
+}
+
+model LocalRouterSettingsLocalRouter {
+  Switch?: LocalRouterSwitch | null;
+  Interface?: LocalRouterInterface | null;
 }
 
 model LocalRouterStatus {
@@ -58,12 +66,20 @@ model LocalRouterCreateRequest {
 }
 
 model LocalRouterUpdateRequest {
-  Switch: LocalRouterSwitch;
+  Settings?: LocalRouterUpdateRequestSettings | null;
   SettingsHash?: string | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model LocalRouterUpdateRequestSettings {
+  LocalRouter?: LocalRouterUpdateRequestSettingsLocalRouter | null;
+}
+
+model LocalRouterUpdateRequestSettingsLocalRouter {
+  Switch?: LocalRouterSwitch | null;
 }
 
 model LocalRouterHealth {

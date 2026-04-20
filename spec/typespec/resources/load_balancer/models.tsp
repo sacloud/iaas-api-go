@@ -14,24 +14,40 @@ model LoadBalancer {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  InstanceHostName: string;
-  InstanceHostInfoURL: string;
   Instance?: LoadBalancerInstance | null;
-  PlanID: int64;
-  SwitchID: int64;
-  DefaultRoute: string;
-  NetworkMaskLen: int32;
+  Remark?: LoadBalancerRemark | null;
   IPAddresses: string[];
-  ZoneID: int64;
-  VRID: int32;
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
   SettingsHash?: string | null;
   Interfaces?: InterfaceView[] | null;
 }
 
 model LoadBalancerInstance {
+  Host?: LoadBalancerInstanceHost | null;
   Status?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
+}
+
+model LoadBalancerInstanceHost {
+  Name?: string | null;
+  InfoURL?: string | null;
+}
+
+model LoadBalancerRemark {
+  Plan?: ResourceRef | null;
+  Switch?: ResourceRef | null;
+  Network?: LoadBalancerRemarkNetwork | null;
+  Zone?: ResourceRef | null;
+  VRRP?: LoadBalancerRemarkVRRP | null;
+}
+
+model LoadBalancerRemarkNetwork {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+}
+
+model LoadBalancerRemarkVRRP {
+  VRID?: int32 | null;
 }
 
 model LoadBalancerVirtualIPAddress {
@@ -53,23 +69,35 @@ model LoadBalancerServer {
 model LoadBalancerServerHealthCheck {
   Protocol: ELoadBalancerHealthCheckProtocol;
   Path: string;
-  ResponseCode: int32;
+  Status: int32;
   Retry: int32;
   ConnectTimeout: int32;
 }
 
 model LoadBalancerCreateRequest {
-  SwitchID: int64;
-  PlanID: int64;
-  VRID: int32;
+  Remark?: LoadBalancerCreateRequestRemark | null;
   IPAddresses: string[];
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
+}
+
+model LoadBalancerCreateRequestRemark {
+  Switch?: ResourceRef | null;
+  Plan?: ResourceRef | null;
+  VRRP?: LoadBalancerCreateRequestRemarkVRRP | null;
+  Network?: LoadBalancerCreateRequestRemarkNetwork | null;
+}
+
+model LoadBalancerCreateRequestRemarkVRRP {
+  VRID?: int32 | null;
+}
+
+model LoadBalancerCreateRequestRemarkNetwork {
+  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
 }
 
 model LoadBalancerUpdateRequest {

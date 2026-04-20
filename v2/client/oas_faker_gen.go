@@ -998,19 +998,7 @@ func (s *AutoBackup) SetFake() {
 	}
 	{
 		{
-			s.BackupSpanWeekdays = nil
-			for i := 0; i < 0; i++ {
-				var elem EDayOfTheWeek
-				{
-					elem.SetFake()
-				}
-				s.BackupSpanWeekdays = append(s.BackupSpanWeekdays, elem)
-			}
-		}
-	}
-	{
-		{
-			s.MaximumNumberOfArchives = int32(0)
+			s.Settings.SetFake()
 		}
 	}
 	{
@@ -1080,6 +1068,29 @@ func (s *AutoBackupReadResponseEnvelope) SetFake() {
 	{
 		{
 			s.CommonServiceItem.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *AutoBackupSettings) SetFake() {
+	{
+		{
+			s.Autobackup.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *AutoBackupSettingsAutobackup) SetFake() {
+	{
+		{
+			s.BackupSpanWeekdays.SetFake()
+		}
+	}
+	{
+		{
+			s.MaximumNumberOfArchives.SetFake()
 		}
 	}
 }
@@ -3819,22 +3830,7 @@ func (s *Database) SetFake() {
 	}
 	{
 		{
-			s.CommonSetting.SetFake()
-		}
-	}
-	{
-		{
-			s.BackupSetting.SetFake()
-		}
-	}
-	{
-		{
-			s.Backupv2Setting.SetFake()
-		}
-	}
-	{
-		{
-			s.ReplicationSetting.SetFake()
+			s.Settings.SetFake()
 		}
 	}
 	{
@@ -3851,22 +3847,7 @@ func (s *Database) SetFake() {
 	}
 	{
 		{
-			s.Settings.SetFake()
-		}
-	}
-	{
-		{
 			s.SettingsHash.SetFake()
-		}
-	}
-	{
-		{
-			s.InstanceHostName = "string"
-		}
-	}
-	{
-		{
-			s.InstanceHostInfoURL = "string"
 		}
 	}
 	{
@@ -3876,27 +3857,7 @@ func (s *Database) SetFake() {
 	}
 	{
 		{
-			s.PlanID = int64(0)
-		}
-	}
-	{
-		{
-			s.SwitchID = int64(0)
-		}
-	}
-	{
-		{
-			s.Conf.SetFake()
-		}
-	}
-	{
-		{
-			s.DefaultRoute = "string"
-		}
-	}
-	{
-		{
-			s.NetworkMaskLen = int32(0)
+			s.Remark.SetFake()
 		}
 	}
 	{
@@ -3909,11 +3870,6 @@ func (s *Database) SetFake() {
 				}
 				s.IPAddresses = append(s.IPAddresses, elem)
 			}
-		}
-	}
-	{
-		{
-			s.ZoneID = int64(0)
 		}
 	}
 	{
@@ -4038,12 +3994,31 @@ func (s *DatabaseGetParameterResponseEnvelope) SetFake() {
 func (s *DatabaseInstance) SetFake() {
 	{
 		{
+			s.Host.SetFake()
+		}
+	}
+	{
+		{
 			s.Status.SetFake()
 		}
 	}
 	{
 		{
 			s.StatusChangedAt.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseInstanceHost) SetFake() {
+	{
+		{
+			s.Name.SetFake()
+		}
+	}
+	{
+		{
+			s.InfoURL.SetFake()
 		}
 	}
 }
@@ -4266,6 +4241,44 @@ func (s *DatabaseReadResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *DatabaseRemark) SetFake() {
+	{
+		{
+			s.Plan.SetFake()
+		}
+	}
+	{
+		{
+			s.Switch.SetFake()
+		}
+	}
+	{
+		{
+			s.DBConf.SetFake()
+		}
+	}
+	{
+		{
+			s.Network.SetFake()
+		}
+	}
+	{
+		{
+			s.Zone.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseRemarkDBConf) SetFake() {
+	{
+		{
+			s.Common.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *DatabaseRemarkDBConfCommon) SetFake() {
 	{
 		{
@@ -4290,6 +4303,20 @@ func (s *DatabaseRemarkDBConfCommon) SetFake() {
 	{
 		{
 			s.UserPassword.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseRemarkNetwork) SetFake() {
+	{
+		{
+			s.DefaultRoute.SetFake()
+		}
+	}
+	{
+		{
+			s.NetworkMaskLen.SetFake()
 		}
 	}
 }
@@ -4431,7 +4458,36 @@ func (s *DatabaseSettingCommon) SetFake() {
 func (s *DatabaseSettings) SetFake() {
 	{
 		{
+			s.DBConf.SetFake()
+		}
+	}
+	{
+		{
 			s.MonitoringSuite.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseSettingsDBConf) SetFake() {
+	{
+		{
+			s.Common.SetFake()
+		}
+	}
+	{
+		{
+			s.Backup.SetFake()
+		}
+	}
+	{
+		{
+			s.Backupv2.SetFake()
+		}
+	}
+	{
+		{
+			s.Replication.SetFake()
 		}
 	}
 }
@@ -4455,21 +4511,6 @@ func (s *DatabaseStatus) SetFake() {
 	{
 		{
 			s.SettingsResponse.SetFake()
-		}
-	}
-	{
-		{
-			s.MariaDBStatus = "string"
-		}
-	}
-	{
-		{
-			s.PostgresStatus = "string"
-		}
-	}
-	{
-		{
-			s.Version.SetFake()
 		}
 	}
 	{
@@ -4521,7 +4562,49 @@ func (s *DatabaseStatusSettingsResponse) SetFake() {
 	}
 	{
 		{
+			s.DBConf.SetFake()
+		}
+	}
+	{
+		{
 			s.IsFatal = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseStatusSettingsResponseDBConf) SetFake() {
+	{
+		{
+			s.MariaDB.SetFake()
+		}
+	}
+	{
+		{
+			s.Postgres.SetFake()
+		}
+	}
+	{
+		{
+			s.Version.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseStatusSettingsResponseDBConfMariaDB) SetFake() {
+	{
+		{
+			s.Status = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseStatusSettingsResponseDBConfPostgres) SetFake() {
+	{
+		{
+			s.Status = "string"
 		}
 	}
 }
@@ -5529,9 +5612,9 @@ func (s *EPermission) SetFake() {
 
 // SetFake set fake values.
 func (s *EPlanGeneration) SetFake() {
-	var unwrapped string
+	var unwrapped int32
 	{
-		unwrapped = "string"
+		unwrapped = int32(0)
 	}
 	*s = EPlanGeneration(unwrapped)
 }
@@ -5565,9 +5648,9 @@ func (s *EProxyLBHealthCheckProtocol) SetFake() {
 
 // SetFake set fake values.
 func (s *EProxyLBPlan) SetFake() {
-	var unwrapped string
+	var unwrapped int32
 	{
-		unwrapped = "string"
+		unwrapped = int32(0)
 	}
 	*s = EProxyLBPlan(unwrapped)
 }
@@ -5980,7 +6063,7 @@ func (s *GSLBHealthCheck) SetFake() {
 	}
 	{
 		{
-			s.HostHeader = "string"
+			s.Host.SetFake()
 		}
 	}
 	{
@@ -5990,7 +6073,7 @@ func (s *GSLBHealthCheck) SetFake() {
 	}
 	{
 		{
-			s.ResponseCode = int32(0)
+			s.Status.SetFake()
 		}
 	}
 	{
@@ -6139,11 +6222,6 @@ func (s *IPv6Addr) SetFake() {
 	}
 	{
 		{
-			s.SwitchID = int64(0)
-		}
-	}
-	{
-		{
 			s.Interface.SetFake()
 		}
 	}
@@ -6243,6 +6321,20 @@ func (s *IPv6AddrFindResponseEnvelope) SetFake() {
 				}
 				s.IPv6Addrs = append(s.IPv6Addrs, elem)
 			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *IPv6AddrIPv6Net) SetFake() {
+	{
+		{
+			s.ID.SetFake()
+		}
+	}
+	{
+		{
+			s.Switch.SetFake()
 		}
 	}
 }
@@ -6978,36 +7070,6 @@ func (s *InterfaceView) SetFake() {
 	}
 	{
 		{
-			s.UserSubnetDefaultRoute = "string"
-		}
-	}
-	{
-		{
-			s.UserSubnetNetworkMaskLen = int32(0)
-		}
-	}
-	{
-		{
-			s.SubnetDefaultRoute = "string"
-		}
-	}
-	{
-		{
-			s.SubnetNetworkMaskLen = int32(0)
-		}
-	}
-	{
-		{
-			s.SubnetNetworkAddress = "string"
-		}
-	}
-	{
-		{
-			s.SubnetBandWidthMbps = int32(0)
-		}
-	}
-	{
-		{
 			s.PacketFilter.SetFake()
 		}
 	}
@@ -7052,6 +7114,63 @@ func (s *InterfaceViewSwitch) SetFake() {
 	{
 		{
 			s.Scope.SetFake()
+		}
+	}
+	{
+		{
+			s.UserSubnet.SetFake()
+		}
+	}
+	{
+		{
+			s.Subnet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceViewSwitchSubnet) SetFake() {
+	{
+		{
+			s.DefaultRoute.SetFake()
+		}
+	}
+	{
+		{
+			s.NetworkMaskLen.SetFake()
+		}
+	}
+	{
+		{
+			s.NetworkAddress.SetFake()
+		}
+	}
+	{
+		{
+			s.Internet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceViewSwitchSubnetInternet) SetFake() {
+	{
+		{
+			s.BandWidthMbps.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceViewSwitchUserSubnet) SetFake() {
+	{
+		{
+			s.DefaultRoute.SetFake()
+		}
+	}
+	{
+		{
+			s.NetworkMaskLen.SetFake()
 		}
 	}
 }
@@ -8123,7 +8242,7 @@ func (s *LocalRouterSwitch) SetFake() {
 func (s *MobileGatewayAddSIMRequest) SetFake() {
 	{
 		{
-			s.SIMID = "string"
+			s.ResourceID.SetFake()
 		}
 	}
 }
@@ -9207,6 +9326,18 @@ func (s *OptNilAuthStatusMember) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilAutoBackupSettings) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilAutoBackupSettingsAutobackup) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilAutoBackupStatus) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9273,6 +9404,12 @@ func (s *OptNilDatabaseInstance) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilDatabaseInstanceHost) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilDatabaseParameterMetaOptions) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9291,7 +9428,61 @@ func (s *OptNilDatabaseParameterParameterAttr) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilDatabaseRemark) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseRemarkDBConf) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseRemarkDBConfCommon) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseRemarkNetwork) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseReplicationSetting) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseSettingBackup) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseSettingBackupv2View) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseSettingCommon) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilDatabaseSettings) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilDatabaseSettingsDBConf) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -9483,6 +9674,12 @@ func (s *OptNilFTPServerInfo) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilIPv6AddrIPv6Net) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilIPv6NetInfoArray) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9525,6 +9722,24 @@ func (s *OptNilInterfaceViewSwitch) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilInterfaceViewSwitchSubnet) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilInterfaceViewSwitchSubnetInternet) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilInterfaceViewSwitchUserSubnet) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilInternetInfo) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9561,6 +9776,12 @@ func (s *OptNilMonitoringSuite) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilMonitoringSuiteLog) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilPrice) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9579,13 +9800,43 @@ func (s *OptNilPrivateHostPlan) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptNilProxyLBACMESetting) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilProxyLBBackendHttpKeepAlive) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilProxyLBPrimaryCert) SetFake() {
 	s.Null = true
 	s.Set = true
 }
 
 // SetFake set fake values.
+func (s *OptNilProxyLBSettings) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilProxyLBSettingsProxyLB) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
 func (s *OptNilProxyLBStatus) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilProxyLBTimeout) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -9622,6 +9873,12 @@ func (s *OptNilServerCreateRequestServerPlan) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilServerInstance) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilServerInstanceHost) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -9676,6 +9933,12 @@ func (s *OptNilStringArray) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilSubnetIPAddressArray) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilSubnetSwitch) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -10623,12 +10886,7 @@ func (s *ProxyLB) SetFake() {
 	}
 	{
 		{
-			s.HealthCheck.SetFake()
-		}
-	}
-	{
-		{
-			s.SorryServer.SetFake()
+			s.Settings.SetFake()
 		}
 	}
 	{
@@ -10665,46 +10923,6 @@ func (s *ProxyLB) SetFake() {
 				}
 				s.Rules = append(s.Rules, elem)
 			}
-		}
-	}
-	{
-		{
-			s.LetsEncrypt.SetFake()
-		}
-	}
-	{
-		{
-			s.StickySession.SetFake()
-		}
-	}
-	{
-		{
-			s.Gzip.SetFake()
-		}
-	}
-	{
-		{
-			s.BackendHttpKeepAlive.SetFake()
-		}
-	}
-	{
-		{
-			s.MonitoringSuiteLog.SetFake()
-		}
-	}
-	{
-		{
-			s.ProxyProtocol.SetFake()
-		}
-	}
-	{
-		{
-			s.Syslog.SetFake()
-		}
-	}
-	{
-		{
-			s.Timeout.SetFake()
 		}
 	}
 	{
@@ -11134,7 +11352,7 @@ func (s *ProxyLBServer) SetFake() {
 func (s *ProxyLBSetCertificatesRequest) SetFake() {
 	{
 		{
-			s.PrimaryCerts.SetFake()
+			s.PrimaryCert.SetFake()
 		}
 	}
 	{
@@ -11161,6 +11379,69 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) SetFake() {
 	{
 		{
 			s.ProxyLB.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ProxyLBSettings) SetFake() {
+	{
+		{
+			s.ProxyLB.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ProxyLBSettingsProxyLB) SetFake() {
+	{
+		{
+			s.HealthCheck.SetFake()
+		}
+	}
+	{
+		{
+			s.SorryServer.SetFake()
+		}
+	}
+	{
+		{
+			s.LetsEncrypt.SetFake()
+		}
+	}
+	{
+		{
+			s.StickySession.SetFake()
+		}
+	}
+	{
+		{
+			s.Gzip.SetFake()
+		}
+	}
+	{
+		{
+			s.BackendHttpKeepAlive.SetFake()
+		}
+	}
+	{
+		{
+			s.MonitoringSuiteLog.SetFake()
+		}
+	}
+	{
+		{
+			s.ProxyProtocol.SetFake()
+		}
+	}
+	{
+		{
+			s.Syslog.SetFake()
+		}
+	}
+	{
+		{
+			s.Timeout.SetFake()
 		}
 	}
 }
@@ -11906,16 +12187,6 @@ func (s *Server) SetFake() {
 	}
 	{
 		{
-			s.InstanceHostName = "string"
-		}
-	}
-	{
-		{
-			s.InstanceHostInfoURL = "string"
-		}
-	}
-	{
-		{
 			s.Instance.SetFake()
 		}
 	}
@@ -11927,11 +12198,6 @@ func (s *Server) SetFake() {
 	{
 		{
 			s.Interfaces.SetFake()
-		}
-	}
-	{
-		{
-			s.CDROMID = int64(0)
 		}
 	}
 	{
@@ -12331,6 +12597,11 @@ func (s *ServerInsertCDROMRequestEnvelope) SetFake() {
 func (s *ServerInstance) SetFake() {
 	{
 		{
+			s.Host.SetFake()
+		}
+	}
+	{
+		{
 			s.Status.SetFake()
 		}
 	}
@@ -12352,6 +12623,25 @@ func (s *ServerInstance) SetFake() {
 	{
 		{
 			s.WarningsValue.SetFake()
+		}
+	}
+	{
+		{
+			s.CDROM.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerInstanceHost) SetFake() {
+	{
+		{
+			s.Name.SetFake()
+		}
+	}
+	{
+		{
+			s.InfoURL.SetFake()
 		}
 	}
 }
@@ -13118,19 +13408,37 @@ func (s *SourceArchiveInfo) SetFake() {
 			s.ArchiveUnderZone.SetFake()
 		}
 	}
+}
+
+// SetFake set fake values.
+func (s *SourceArchiveInfoArchiveUnderZone) SetFake() {
 	{
 		{
-			s.AccountID = int64(0)
+			s.ID = int64(0)
 		}
 	}
 	{
 		{
-			s.ZoneID = int64(0)
+			s.Account.SetFake()
 		}
 	}
 	{
 		{
-			s.ZoneName = "string"
+			s.Zone.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SourceArchiveInfoArchiveUnderZoneZone) SetFake() {
+	{
+		{
+			s.ID = int64(0)
+		}
+	}
+	{
+		{
+			s.Name = "string"
 		}
 	}
 }
@@ -13174,11 +13482,6 @@ func (s *Subnet) SetFake() {
 	{
 		{
 			s.Switch.SetFake()
-		}
-	}
-	{
-		{
-			s.InternetID = int64(0)
 		}
 	}
 	{
@@ -13298,6 +13601,20 @@ func (s *SubnetReadResponseEnvelope) SetFake() {
 	{
 		{
 			s.Subnet.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SubnetSwitch) SetFake() {
+	{
+		{
+			s.ID.SetFake()
+		}
+	}
+	{
+		{
+			s.Internet.SetFake()
 		}
 	}
 }
@@ -13756,12 +14073,12 @@ func (s *SwitchUpdateResponseEnvelope) SetFake() {
 func (s *SwitchUserSubnet) SetFake() {
 	{
 		{
-			s.NetworkMaskLen = int32(0)
+			s.NetworkMaskLen.SetFake()
 		}
 	}
 	{
 		{
-			s.DefaultRoute = "string"
+			s.DefaultRoute.SetFake()
 		}
 	}
 }
@@ -13995,7 +14312,7 @@ func (s *ZoneInfo) SetFake() {
 	}
 	{
 		{
-			s.DisplayName = "string"
+			s.Description.SetFake()
 		}
 	}
 	{

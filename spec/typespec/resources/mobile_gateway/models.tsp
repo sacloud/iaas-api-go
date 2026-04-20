@@ -13,22 +13,50 @@ model MobileGateway {
   Class?: string | null;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
-  InstanceHostName: string;
-  InstanceHostInfoURL: string;
   Instance?: MobileGatewayInstance | null;
   Interfaces?: MobileGatewayInterface[] | null;
-  ZoneID: int64;
-  GlobalAddress: string;
+  Remark?: MobileGatewayRemark | null;
   InterfaceSettings: MobileGatewayInterfaceSetting[];
   StaticRoutes: MobileGatewayStaticRoute[];
-  InternetConnectionEnabled: string;
-  InterDeviceCommunicationEnabled: string;
+  Settings?: MobileGatewaySettings | null;
   SettingsHash?: string | null;
 }
 
 model MobileGatewayInstance {
+  Host?: MobileGatewayInstanceHost | null;
   Status?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
+}
+
+model MobileGatewayInstanceHost {
+  Name?: string | null;
+  InfoURL?: string | null;
+}
+
+model MobileGatewayRemark {
+  Zone?: ResourceRef | null;
+  MobileGateway?: MobileGatewayRemarkMobileGateway | null;
+}
+
+model MobileGatewayRemarkMobileGateway {
+  GlobalAddress: string;
+}
+
+model MobileGatewaySettings {
+  MobileGateway?: MobileGatewaySettingsMobileGateway | null;
+}
+
+model MobileGatewaySettingsMobileGateway {
+  InternetConnection?: MobileGatewaySettingsMobileGatewayInternetConnection | null;
+  InterDeviceCommunication?: MobileGatewaySettingsMobileGatewayInterDeviceCommunication | null;
+}
+
+model MobileGatewaySettingsMobileGatewayInternetConnection {
+  Enabled: string;
+}
+
+model MobileGatewaySettingsMobileGatewayInterDeviceCommunication {
+  Enabled: string;
 }
 
 model MobileGatewayInterface {
@@ -38,12 +66,6 @@ model MobileGatewayInterface {
   UserIPAddress?: string | null;
   HostName?: string | null;
   Switch?: MobileGatewayInterfaceSwitch | null;
-  UserSubnetDefaultRoute: string;
-  UserSubnetNetworkMaskLen: int32;
-  SubnetDefaultRoute: string;
-  SubnetNetworkMaskLen: int32;
-  SubnetNetworkAddress: string;
-  SubnetBandWidthMbps: int32;
   PacketFilter?: MobileGatewayInterfacePacketFilter | null;
   UpstreamType: EUpstreamNetworkType;
   Index: int32;
@@ -53,6 +75,24 @@ model MobileGatewayInterfaceSwitch {
   ID?: int64 | null;
   Name?: string | null;
   Scope?: EScope | null;
+  UserSubnet?: MobileGatewayInterfaceSwitchUserSubnet | null;
+  Subnet?: MobileGatewayInterfaceSwitchSubnet | null;
+}
+
+model MobileGatewayInterfaceSwitchUserSubnet {
+  DefaultRoute: string;
+  NetworkMaskLen: int32;
+}
+
+model MobileGatewayInterfaceSwitchSubnet {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string | null;
+  Internet?: MobileGatewayInterfaceSwitchSubnetInternet | null;
+}
+
+model MobileGatewayInterfaceSwitchSubnetInternet {
+  BandWidthMbps?: int32 | null;
 }
 
 model MobileGatewayInterfacePacketFilter {
@@ -78,8 +118,24 @@ model MobileGatewayCreateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   StaticRoutes: MobileGatewayStaticRoute[];
-  InternetConnectionEnabled: string;
-  InterDeviceCommunicationEnabled: string;
+  Settings?: MobileGatewayCreateRequestSettings | null;
+}
+
+model MobileGatewayCreateRequestSettings {
+  MobileGateway?: MobileGatewayCreateRequestSettingsMobileGateway | null;
+}
+
+model MobileGatewayCreateRequestSettingsMobileGateway {
+  InternetConnection?: MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection | null;
+  InterDeviceCommunication?: MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication | null;
+}
+
+model MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection {
+  Enabled: string;
+}
+
+model MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication {
+  Enabled: string;
 }
 
 model MobileGatewayUpdateRequest {
@@ -131,7 +187,7 @@ model SIMTrafficBytes {
 }
 
 model MobileGatewayAddSIMRequest {
-  SIMID: string;
+  ResourceID?: string | null;
 }
 
 model MobileGatewaySIMLogs {

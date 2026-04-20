@@ -52,11 +52,13 @@ type check struct {
 	// - payloadTypeInModel != "": 指定 model ブロック中の payload フィールド (payloadTypeInModel) が payloadType で参照されていること
 	model              string
 	fieldsIncluded     []string
+	fieldsAbsent       []string // 指定フィールドが model 内に存在してはいけない
 	notPresent         bool
 	payloadFieldName   string // 例: "Switch"
 	payloadType        string // 例: "Switch"（"BridgeInfo" を期待してしまう退行を防ぐ）
 	fieldOptionalName  string // 指定フィールドが optional / required のどちらで宣言されているかを検証するときに使う
 	fieldOptionalWant  bool   // true = optional であること (`X?:` or `X?:`)、false = required (`X:`)
+	rawContains        string // tsp ファイル全体にこの文字列が含まれるかを検証（model ブロックに収まらないトップレベル宣言の検査用）
 }
 
 var checks = []check{
@@ -157,6 +159,87 @@ var checks = []check{
 		payloadFieldName: "Switch",
 		payloadType:      "Switch",
 	},
+
+	// 深さ3 mapconv のネスト展開 (Archive SourceArchiveInfo: ArchiveUnderZone.{Account,Zone,ID}.* )
+	{
+		label:          "SourceArchiveInfo has nested ArchiveUnderZone (depth-3 mapconv flattening regression guard)",
+		tsp:            "spec/typespec/resources/archive/models.tsp",
+		model:          "SourceArchiveInfo",
+		fieldsIncluded: []string{"ArchiveUnderZone"},
+	},
+	{
+		label:        "Flattened AccountID/ZoneID/ZoneName must NOT appear at SourceArchiveInfo top-level",
+		tsp:          "spec/typespec/resources/archive/models.tsp",
+		model:        "SourceArchiveInfo",
+		fieldsAbsent: []string{"AccountID", "ZoneID", "ZoneName"},
+	},
+	{
+		label:          "SourceArchiveInfoArchiveUnderZone carries Account and Zone sub-refs",
+		tsp:            "spec/typespec/resources/archive/models.tsp",
+		model:          "SourceArchiveInfoArchiveUnderZone",
+		fieldsIncluded: []string{"ID", "Account", "Zone"},
+	},
+
+	// 深さ3 mapconv (Server Instance.Host.Name / Instance.CDROM.ID / Instance.HostInfoURL など)
+	{
+		label:          "Server Instance has nested Host submodel (Instance.Host.Name / Instance.Host.InfoURL)",
+		tsp:            "spec/typespec/resources/server/models.tsp",
+		model:          "ServerInstance",
+		fieldsIncluded: []string{"Host", "CDROM"},
+	},
+	{
+		label:          "ServerInstanceHost has Name and InfoURL",
+		tsp:            "spec/typespec/resources/server/models.tsp",
+		model:          "ServerInstanceHost",
+		fieldsIncluded: []string{"Name", "InfoURL"},
+	},
+
+	// int ベースの enum は scalar extends int32 であるべき（string にすると JSON 数値の decode が失敗する）
+	{
+		label:       "EPlanGeneration is declared as int32 scalar",
+		tsp:         "spec/typespec/types.tsp",
+		rawContains: "scalar EPlanGeneration extends int32;",
+	},
+	{
+		label:       "ENFSSize is declared as int32 scalar",
+		tsp:         "spec/typespec/types.tsp",
+		rawContains: "scalar ENFSSize extends int32;",
+	},
+	{
+		label:       "EProxyLBPlan is declared as int32 scalar",
+		tsp:         "spec/typespec/types.tsp",
+		rawContains: "scalar EProxyLBPlan extends int32;",
+	},
+
+	// fieldNullabilityOverrides で nullable 化したフィールドの確認（v1 naked 型と実 API の挙動差異の救済）
+	{
+		label:             "InterfaceViewSwitchUserSubnet.DefaultRoute is optional (API returns null)",
+		tsp:               "spec/typespec/resources/database/models.tsp",
+		model:             "InterfaceViewSwitchUserSubnet",
+		fieldOptionalName: "DefaultRoute",
+		fieldOptionalWant: true,
+	},
+	{
+		label:             "InterfaceViewSwitchUserSubnet.NetworkMaskLen is optional",
+		tsp:               "spec/typespec/resources/database/models.tsp",
+		model:             "InterfaceViewSwitchUserSubnet",
+		fieldOptionalName: "NetworkMaskLen",
+		fieldOptionalWant: true,
+	},
+	{
+		label:             "SwitchUserSubnet.DefaultRoute is optional",
+		tsp:               "spec/typespec/resources/switch/models.tsp",
+		model:             "SwitchUserSubnet",
+		fieldOptionalName: "DefaultRoute",
+		fieldOptionalWant: true,
+	},
+	{
+		label:             "SwitchUserSubnet.NetworkMaskLen is optional",
+		tsp:               "spec/typespec/resources/switch/models.tsp",
+		model:             "SwitchUserSubnet",
+		fieldOptionalName: "NetworkMaskLen",
+		fieldOptionalWant: true,
+	},
 }
 
 func main() {
@@ -181,6 +264,13 @@ func run(c check) error {
 		return fmt.Errorf("read %s: %w", c.tsp, err)
 	}
 	content := string(data)
+
+	if c.rawContains != "" {
+		if !strings.Contains(content, c.rawContains) {
+			return fmt.Errorf("%s does not contain expected text %q", c.tsp, c.rawContains)
+		}
+		return nil
+	}
 
 	if c.notPresent {
 		if modelExists(content, c.model) {
@@ -226,6 +316,11 @@ func run(c check) error {
 	for _, f := range c.fieldsIncluded {
 		if !fieldInBlock(block, f) {
 			return fmt.Errorf("model %q missing field %q in %s", c.model, f, c.tsp)
+		}
+	}
+	for _, f := range c.fieldsAbsent {
+		if fieldInBlock(block, f) {
+			return fmt.Errorf("model %q unexpectedly contains field %q (should be nested under a sub-model) in %s", c.model, f, c.tsp)
 		}
 	}
 	return nil
@@ -278,5 +373,3 @@ func fieldInBlock(block, fieldName string) bool {
 	return re.MatchString(block)
 }
 
-// strings import 保持（将来の拡張余地）
-var _ = strings.HasPrefix

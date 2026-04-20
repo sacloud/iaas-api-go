@@ -14,34 +14,54 @@ model Database {
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
-  CommonSetting: DatabaseSettingCommon;
-  BackupSetting: DatabaseSettingBackup;
-  Backupv2Setting: DatabaseSettingBackupv2View;
-  ReplicationSetting: DatabaseReplicationSetting;
-  InterfaceSettings: DatabaseSettingsInterface[];
   Settings?: DatabaseSettings | null;
+  InterfaceSettings: DatabaseSettingsInterface[];
   SettingsHash?: string | null;
-  InstanceHostName: string;
-  InstanceHostInfoURL: string;
   Instance?: DatabaseInstance | null;
-  PlanID: int64;
-  SwitchID: int64;
-  Conf: DatabaseRemarkDBConfCommon;
-  DefaultRoute: string;
-  NetworkMaskLen: int32;
+  Remark?: DatabaseRemark | null;
   IPAddresses: string[];
-  ZoneID: int64;
   Interfaces?: InterfaceView[] | null;
   Disk?: DatabaseDisk | null;
 }
 
 model DatabaseSettings {
+  DBConf?: DatabaseSettingsDBConf | null;
   MonitoringSuite?: MonitoringSuite | null;
 }
 
+model DatabaseSettingsDBConf {
+  Common?: DatabaseSettingCommon | null;
+  Backup?: DatabaseSettingBackup | null;
+  Backupv2?: DatabaseSettingBackupv2View | null;
+  Replication?: DatabaseReplicationSetting | null;
+}
+
 model DatabaseInstance {
+  Host?: DatabaseInstanceHost | null;
   Status?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
+}
+
+model DatabaseInstanceHost {
+  Name?: string | null;
+  InfoURL?: string | null;
+}
+
+model DatabaseRemark {
+  Plan?: ResourceRef | null;
+  Switch?: ResourceRef | null;
+  DBConf?: DatabaseRemarkDBConf | null;
+  Network?: DatabaseRemarkNetwork | null;
+  Zone?: ResourceRef | null;
+}
+
+model DatabaseRemarkDBConf {
+  Common?: DatabaseRemarkDBConfCommon | null;
+}
+
+model DatabaseRemarkNetwork {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
 }
 
 model DatabaseSettingCommon {
@@ -102,12 +122,6 @@ model InterfaceView {
   UserIPAddress?: string | null;
   HostName?: string | null;
   Switch?: InterfaceViewSwitch | null;
-  UserSubnetDefaultRoute: string;
-  UserSubnetNetworkMaskLen: int32;
-  SubnetDefaultRoute: string;
-  SubnetNetworkMaskLen: int32;
-  SubnetNetworkAddress: string;
-  SubnetBandWidthMbps: int32;
   PacketFilter?: InterfaceViewPacketFilter | null;
   UpstreamType: EUpstreamNetworkType;
 }
@@ -116,6 +130,24 @@ model InterfaceViewSwitch {
   ID?: int64 | null;
   Name?: string | null;
   Scope?: EScope | null;
+  UserSubnet?: InterfaceViewSwitchUserSubnet | null;
+  Subnet?: InterfaceViewSwitchSubnet | null;
+}
+
+model InterfaceViewSwitchUserSubnet {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+}
+
+model InterfaceViewSwitchSubnet {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string | null;
+  Internet?: InterfaceViewSwitchSubnetInternet | null;
+}
+
+model InterfaceViewSwitchSubnetInternet {
+  BandWidthMbps?: int32 | null;
 }
 
 model InterfaceViewPacketFilter {
@@ -134,19 +166,10 @@ model DatabaseDiskEncryptionKey {
 }
 
 model DatabaseCreateRequest {
-  PlanID: int64;
-  SwitchID: int64;
+  Remark?: DatabaseCreateRequestRemark | null;
   IPAddresses: string[];
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
-  Conf: DatabaseRemarkDBConfCommon;
-  SourceID: int64;
-  CommonSetting: DatabaseSettingCommon;
-  BackupSetting: DatabaseSettingBackup;
-  Backupv2Setting: DatabaseSettingBackupv2;
-  ReplicationSetting: DatabaseReplicationSetting;
-  InterfaceSettings: DatabaseSettingsInterface[];
   Settings?: DatabaseCreateRequestSettings | null;
+  InterfaceSettings: DatabaseSettingsInterface[];
   Disk?: DatabaseDisk | null;
   Name?: string | null;
   Description: string;
@@ -154,8 +177,33 @@ model DatabaseCreateRequest {
   Icon?: ResourceRef | null;
 }
 
+model DatabaseCreateRequestRemark {
+  Plan?: ResourceRef | null;
+  Switch?: ResourceRef | null;
+  Network?: DatabaseCreateRequestRemarkNetwork | null;
+  DBConf?: DatabaseCreateRequestRemarkDBConf | null;
+  SourceAppliance?: ResourceRef | null;
+}
+
+model DatabaseCreateRequestRemarkNetwork {
+  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
+}
+
+model DatabaseCreateRequestRemarkDBConf {
+  Common?: DatabaseRemarkDBConfCommon | null;
+}
+
 model DatabaseCreateRequestSettings {
+  DBConf?: DatabaseCreateRequestSettingsDBConf | null;
   MonitoringSuite?: MonitoringSuite | null;
+}
+
+model DatabaseCreateRequestSettingsDBConf {
+  Common?: DatabaseSettingCommon | null;
+  Backup?: DatabaseSettingBackup | null;
+  Backupv2?: DatabaseSettingBackupv2 | null;
+  Replication?: DatabaseReplicationSetting | null;
 }
 
 model DatabaseSettingBackupv2 {
@@ -170,8 +218,16 @@ model DatabaseUpdateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  CommonSetting: DatabaseSettingCommon;
+  Settings?: DatabaseUpdateRequestSettings | null;
   SettingsHash?: string | null;
+}
+
+model DatabaseUpdateRequestSettings {
+  DBConf?: DatabaseUpdateRequestSettingsDBConf | null;
+}
+
+model DatabaseUpdateRequestSettingsDBConf {
+  Common?: DatabaseSettingCommon | null;
 }
 
 model ShutdownOption {
@@ -233,16 +289,28 @@ model MonitorDatabaseValue {
 
 model DatabaseStatus {
   SettingsResponse: DatabaseStatusSettingsResponse;
-  MariaDBStatus: string;
-  PostgresStatus: string;
-  Version: DatabaseVersionInfo;
   Logs: DatabaseLog[];
   Backups: DatabaseBackupHistory[];
 }
 
 model DatabaseStatusSettingsResponse {
   Status: EServerInstanceStatus;
+  DBConf: DatabaseStatusSettingsResponseDBConf;
   IsFatal: boolean;
+}
+
+model DatabaseStatusSettingsResponseDBConf {
+  MariaDB: DatabaseStatusSettingsResponseDBConfMariaDB;
+  Postgres: DatabaseStatusSettingsResponseDBConfPostgres;
+  Version: DatabaseVersionInfo;
+}
+
+model DatabaseStatusSettingsResponseDBConfMariaDB {
+  Status: string;
+}
+
+model DatabaseStatusSettingsResponseDBConfPostgres {
+  Status: string;
 }
 
 model DatabaseVersionInfo {

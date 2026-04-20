@@ -21,8 +21,8 @@ model Switch {
 }
 
 model SwitchUserSubnet {
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
+  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
 }
 
 model SwitchSubnet {

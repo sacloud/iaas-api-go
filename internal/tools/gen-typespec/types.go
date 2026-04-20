@@ -33,6 +33,7 @@ type enumMember struct {
 
 type enumDef struct {
 	TypeName string
+	BaseType string // "string" or "int"
 	Members  []enumMember
 }
 
@@ -120,7 +121,7 @@ func generateTypes() {
 				}
 
 				base := enumBaseTypes[targetType]
-				def := &enumDef{TypeName: targetType}
+				def := &enumDef{TypeName: targetType, BaseType: base}
 
 				for _, elt := range cl.Elts {
 					kv, ok := elt.(*ast.KeyValueExpr)
@@ -200,14 +201,20 @@ func generateTypes() {
 			}
 			buf.WriteString("}\n\n")
 		} else {
-			// 非ホワイトリスト: scalar extends string（将来の値追加を許容）
-			// 既知の値をドキュメントコメントとして記載
+			// 非ホワイトリスト: scalar でラップ（将来の値追加を許容）
+			// 既知の値をドキュメントコメントとして記載。
+			// Go 側の base 型に合わせて extends を選ぶ。int ベースの enum（例: EPlanGeneration, EProxyLBPlan 等）を
+			// string として扱うと API レスポンス中の JSON 整数を decode できないため。
 			var knownValues []string
 			for _, m := range def.Members {
 				knownValues = append(knownValues, m.Value)
 			}
 			buf.WriteString(fmt.Sprintf("/** %s: known values are %s */\n", def.TypeName, strings.Join(knownValues, ", ")))
-			buf.WriteString(fmt.Sprintf("scalar %s extends string;\n\n", def.TypeName))
+			extends := "string"
+			if def.BaseType == "int" {
+				extends = "int32"
+			}
+			buf.WriteString(fmt.Sprintf("scalar %s extends %s;\n\n", def.TypeName, extends))
 		}
 	}
 

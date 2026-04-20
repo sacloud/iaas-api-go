@@ -11,16 +11,10 @@ model NFS {
   Tags: string[];
   Availability?: EAvailability | null;
   Class?: string | null;
-  InstanceHostName: string;
-  InstanceHostInfoURL: string;
   Instance?: NFSInstance | null;
   Interfaces?: InterfaceView[] | null;
-  PlanID: int64;
-  SwitchID: int64;
-  DefaultRoute: string;
-  NetworkMaskLen: int32;
+  Remark?: NFSRemark | null;
   IPAddresses: string[];
-  ZoneID: int64;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
@@ -28,8 +22,26 @@ model NFS {
 }
 
 model NFSInstance {
+  Host?: NFSInstanceHost | null;
   Status?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
+}
+
+model NFSInstanceHost {
+  Name?: string | null;
+  InfoURL?: string | null;
+}
+
+model NFSRemark {
+  Plan?: ResourceRef | null;
+  Switch?: ResourceRef | null;
+  Network?: NFSRemarkNetwork | null;
+  Zone?: ResourceRef | null;
+}
+
+model NFSRemarkNetwork {
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
 }
 
 model NFSSwitch {
@@ -37,15 +49,23 @@ model NFSSwitch {
 }
 
 model NFSCreateRequest {
-  SwitchID: int64;
-  PlanID: int64;
+  Remark?: NFSCreateRequestRemark | null;
   IPAddresses: string[];
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+}
+
+model NFSCreateRequestRemark {
+  Switch?: ResourceRef | null;
+  Plan?: ResourceRef | null;
+  Network?: NFSCreateRequestRemarkNetwork | null;
+}
+
+model NFSCreateRequestRemarkNetwork {
+  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
 }
 
 model NFSUpdateRequest {

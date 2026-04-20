@@ -67,7 +67,7 @@ scalar EInterfaceDriver extends string;
 scalar ELoadBalancerHealthCheckProtocol extends string;
 
 /** ENFSSize: known values are 20, 100, 500 */
-scalar ENFSSize extends string;
+scalar ENFSSize extends int32;
 
 /** EOTPOperation: known values are "", "input", "generate" */
 scalar EOTPOperation extends string;
@@ -79,7 +79,7 @@ scalar EOperationPenalty extends string;
 scalar EPermission extends string;
 
 /** EPlanGeneration: known values are 0, 100, 200 */
-scalar EPlanGeneration extends string;
+scalar EPlanGeneration extends int32;
 
 /** EProxyLBBackendHttpKeepAlive: known values are "safe", "aggressive" */
 scalar EProxyLBBackendHttpKeepAlive extends string;
@@ -91,7 +91,7 @@ scalar EProxyLBFixedContentType extends string;
 scalar EProxyLBHealthCheckProtocol extends string;
 
 /** EProxyLBPlan: known values are 100, 500, 1000, 5000, 10000, 50000, 100000, 400000 */
-scalar EProxyLBPlan extends string;
+scalar EProxyLBPlan extends int32;
 
 /** EProxyLBProxyMode: known values are "http", "https", "tcp" */
 scalar EProxyLBProxyMode extends string;
