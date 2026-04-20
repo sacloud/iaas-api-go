@@ -171,30 +171,7 @@ model DatabaseUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   CommonSetting: DatabaseSettingCommon;
-  BackupSetting: DatabaseSettingBackup;
-  Backupv2Setting: DatabaseSettingBackupv2;
-  ReplicationSetting: DatabaseReplicationSetting;
-  InterfaceSettings: DatabaseSettingsInterface[];
-  Settings?: DatabaseUpdateRequestSettings | null;
   SettingsHash?: string | null;
-}
-
-model DatabaseUpdateRequestSettings {
-  MonitoringSuite?: MonitoringSuite | null;
-}
-
-model DatabaseUpdateSettingsRequest {
-  CommonSetting: DatabaseSettingCommon;
-  BackupSetting: DatabaseSettingBackup;
-  Backupv2Setting: DatabaseSettingBackupv2;
-  ReplicationSetting: DatabaseReplicationSetting;
-  InterfaceSettings: DatabaseSettingsInterface[];
-  Settings?: DatabaseUpdateSettingsRequestSettings | null;
-  SettingsHash?: string | null;
-}
-
-model DatabaseUpdateSettingsRequestSettings {
-  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model ShutdownOption {

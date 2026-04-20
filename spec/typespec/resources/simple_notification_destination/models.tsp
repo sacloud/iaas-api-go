@@ -50,15 +50,6 @@ model SimpleNotificationDestinationUpdateRequestSettings {
   Disabled: boolean;
 }
 
-model SimpleNotificationDestinationUpdateSettingsRequest {
-  Settings?: SimpleNotificationDestinationUpdateSettingsRequestSettings | null;
-  SettingsHash?: string | null;
-}
-
-model SimpleNotificationDestinationUpdateSettingsRequestSettings {
-  Disabled: boolean;
-}
-
 model SimpleNotificationDestinationStatus {
   Disabled: boolean;
   ModifiedAt?: utcDateTime | null;

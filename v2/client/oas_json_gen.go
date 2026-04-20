@@ -3067,15 +3067,22 @@ func (s *ArchiveCreateRequest) encodeFields(e *jx.Encoder) {
 			s.Icon.Encode(e)
 		}
 	}
+	{
+		if s.SizeMB.Set {
+			e.FieldStart("SizeMB")
+			s.SizeMB.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfArchiveCreateRequest = [6]string{
+var jsonFieldsNameOfArchiveCreateRequest = [7]string{
 	0: "SourceDisk",
 	1: "SourceArchive",
 	2: "Name",
 	3: "Description",
 	4: "Tags",
 	5: "Icon",
+	6: "SizeMB",
 }
 
 // Decode decodes ArchiveCreateRequest from json.
@@ -3158,6 +3165,16 @@ func (s *ArchiveCreateRequest) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Icon\"")
+			}
+		case "SizeMB":
+			if err := func() error {
+				s.SizeMB.Reset()
+				if err := s.SizeMB.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"SizeMB\"")
 			}
 		default:
 			return d.Skip()
@@ -3305,182 +3322,6 @@ func (s *ArchiveCreateRequestEnvelope) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ArchiveCreateRequestEnvelope) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ArchiveCreateRequestFromShared) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ArchiveCreateRequestFromShared) encodeFields(e *jx.Encoder) {
-	{
-		if s.Name.Set {
-			e.FieldStart("Name")
-			s.Name.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("Description")
-		e.Str(s.Description)
-	}
-	{
-		e.FieldStart("Tags")
-		e.ArrStart()
-		for _, elem := range s.Tags {
-			e.Str(elem)
-		}
-		e.ArrEnd()
-	}
-	{
-		if s.Icon.Set {
-			e.FieldStart("Icon")
-			s.Icon.Encode(e)
-		}
-	}
-	{
-		if s.SourceSharedKey.Set {
-			e.FieldStart("SourceSharedKey")
-			s.SourceSharedKey.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfArchiveCreateRequestFromShared = [5]string{
-	0: "Name",
-	1: "Description",
-	2: "Tags",
-	3: "Icon",
-	4: "SourceSharedKey",
-}
-
-// Decode decodes ArchiveCreateRequestFromShared from json.
-func (s *ArchiveCreateRequestFromShared) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ArchiveCreateRequestFromShared to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "Name":
-			if err := func() error {
-				s.Name.Reset()
-				if err := s.Name.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Name\"")
-			}
-		case "Description":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				v, err := d.Str()
-				s.Description = string(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Description\"")
-			}
-		case "Tags":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				s.Tags = make([]string, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem string
-					v, err := d.Str()
-					elem = string(v)
-					if err != nil {
-						return err
-					}
-					s.Tags = append(s.Tags, elem)
-					return nil
-				}); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Tags\"")
-			}
-		case "Icon":
-			if err := func() error {
-				s.Icon.Reset()
-				if err := s.Icon.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Icon\"")
-			}
-		case "SourceSharedKey":
-			if err := func() error {
-				s.SourceSharedKey.Reset()
-				if err := s.SourceSharedKey.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"SourceSharedKey\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ArchiveCreateRequestFromShared")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000110,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfArchiveCreateRequestFromShared) {
-					name = jsonFieldsNameOfArchiveCreateRequestFromShared[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ArchiveCreateRequestFromShared) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ArchiveCreateRequestFromShared) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -4462,22 +4303,22 @@ func (s *ArchiveShareRequestEnvelope) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *ArchiveShareRequestEnvelope) encodeFields(e *jx.Encoder) {
 	{
-		if s.ChangePassword.Set {
-			e.FieldStart("ChangePassword")
-			s.ChangePassword.Encode(e)
-		}
-	}
-	{
 		if s.Shared.Set {
 			e.FieldStart("Shared")
 			s.Shared.Encode(e)
 		}
 	}
+	{
+		if s.ChangePassword.Set {
+			e.FieldStart("ChangePassword")
+			s.ChangePassword.Encode(e)
+		}
+	}
 }
 
 var jsonFieldsNameOfArchiveShareRequestEnvelope = [2]string{
-	0: "ChangePassword",
-	1: "Shared",
+	0: "Shared",
+	1: "ChangePassword",
 }
 
 // Decode decodes ArchiveShareRequestEnvelope from json.
@@ -4488,16 +4329,6 @@ func (s *ArchiveShareRequestEnvelope) Decode(d *jx.Decoder) error {
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "ChangePassword":
-			if err := func() error {
-				s.ChangePassword.Reset()
-				if err := s.ChangePassword.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"ChangePassword\"")
-			}
 		case "Shared":
 			if err := func() error {
 				s.Shared.Reset()
@@ -4507,6 +4338,16 @@ func (s *ArchiveShareRequestEnvelope) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Shared\"")
+			}
+		case "ChangePassword":
+			if err := func() error {
+				s.ChangePassword.Reset()
+				if err := s.ChangePassword.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"ChangePassword\"")
 			}
 		default:
 			return d.Skip()
@@ -4546,23 +4387,23 @@ func (s *ArchiveShareResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.FTPServer.Set {
-			e.FieldStart("FTPServer")
-			s.FTPServer.Encode(e)
-		}
-	}
-	{
 		if s.ArchiveShareInfo.Set {
 			e.FieldStart("ArchiveShareInfo")
 			s.ArchiveShareInfo.Encode(e)
+		}
+	}
+	{
+		if s.FTPServer.Set {
+			e.FieldStart("FTPServer")
+			s.FTPServer.Encode(e)
 		}
 	}
 }
 
 var jsonFieldsNameOfArchiveShareResponseEnvelope = [3]string{
 	0: "is_ok",
-	1: "FTPServer",
-	2: "ArchiveShareInfo",
+	1: "ArchiveShareInfo",
+	2: "FTPServer",
 }
 
 // Decode decodes ArchiveShareResponseEnvelope from json.
@@ -4586,16 +4427,6 @@ func (s *ArchiveShareResponseEnvelope) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"is_ok\"")
 			}
-		case "FTPServer":
-			if err := func() error {
-				s.FTPServer.Reset()
-				if err := s.FTPServer.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"FTPServer\"")
-			}
 		case "ArchiveShareInfo":
 			if err := func() error {
 				s.ArchiveShareInfo.Reset()
@@ -4605,6 +4436,16 @@ func (s *ArchiveShareResponseEnvelope) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"ArchiveShareInfo\"")
+			}
+		case "FTPServer":
+			if err := func() error {
+				s.FTPServer.Reset()
+				if err := s.FTPServer.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"FTPServer\"")
 			}
 		default:
 			return d.Skip()
@@ -4818,6 +4659,199 @@ func (s *ArchiveSourceDisk) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ArchiveSourceDisk) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s *ArchiveTransferRequest) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ArchiveTransferRequest) encodeFields(e *jx.Encoder) {
+	{
+		if s.SizeMB.Set {
+			e.FieldStart("SizeMB")
+			s.SizeMB.Encode(e)
+		}
+	}
+	{
+		if s.Name.Set {
+			e.FieldStart("Name")
+			s.Name.Encode(e)
+		}
+	}
+	{
+		e.FieldStart("Description")
+		e.Str(s.Description)
+	}
+	{
+		e.FieldStart("Tags")
+		e.ArrStart()
+		for _, elem := range s.Tags {
+			e.Str(elem)
+		}
+		e.ArrEnd()
+	}
+	{
+		if s.Icon.Set {
+			e.FieldStart("Icon")
+			s.Icon.Encode(e)
+		}
+	}
+	{
+		if s.SourceSharedKey.Set {
+			e.FieldStart("SourceSharedKey")
+			s.SourceSharedKey.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfArchiveTransferRequest = [6]string{
+	0: "SizeMB",
+	1: "Name",
+	2: "Description",
+	3: "Tags",
+	4: "Icon",
+	5: "SourceSharedKey",
+}
+
+// Decode decodes ArchiveTransferRequest from json.
+func (s *ArchiveTransferRequest) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ArchiveTransferRequest to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "SizeMB":
+			if err := func() error {
+				s.SizeMB.Reset()
+				if err := s.SizeMB.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"SizeMB\"")
+			}
+		case "Name":
+			if err := func() error {
+				s.Name.Reset()
+				if err := s.Name.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Name\"")
+			}
+		case "Description":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.Str()
+				s.Description = string(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Description\"")
+			}
+		case "Tags":
+			requiredBitSet[0] |= 1 << 3
+			if err := func() error {
+				s.Tags = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.Tags = append(s.Tags, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Tags\"")
+			}
+		case "Icon":
+			if err := func() error {
+				s.Icon.Reset()
+				if err := s.Icon.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Icon\"")
+			}
+		case "SourceSharedKey":
+			if err := func() error {
+				s.SourceSharedKey.Reset()
+				if err := s.SourceSharedKey.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"SourceSharedKey\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ArchiveTransferRequest")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00001100,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfArchiveTransferRequest) {
+					name = jsonFieldsNameOfArchiveTransferRequest[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ArchiveTransferRequest) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ArchiveTransferRequest) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }

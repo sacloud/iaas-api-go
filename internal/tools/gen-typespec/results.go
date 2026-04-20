@@ -74,6 +74,9 @@ func generateResults() {
 		var results []resultInfo
 
 		for _, op := range api.Operations {
+			if opIsExcluded(api, op) {
+				continue
+			}
 			if !op.UseWrappedResult {
 				continue
 			}

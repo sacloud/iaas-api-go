@@ -241,11 +241,6 @@ model VPCRouterUpdateRequest {
   SettingsHash?: string | null;
 }
 
-model VPCRouterUpdateSettingsRequest {
-  Settings?: VPCRouterSetting | null;
-  SettingsHash?: string | null;
-}
-
 model VPCRouterStatus {
   FirewallReceiveLogs?: string[] | null;
   FirewallSendLogs?: string[] | null;

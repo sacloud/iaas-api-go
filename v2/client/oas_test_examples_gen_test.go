@@ -335,18 +335,6 @@ func TestArchiveCreateRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveCreateRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestArchiveCreateRequestFromShared_EncodeDecode(t *testing.T) {
-	var typ ArchiveCreateRequestFromShared
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveCreateRequestFromShared
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestArchiveCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ArchiveCreateResponseEnvelope
 	typ.SetFake()
@@ -503,6 +491,18 @@ func TestArchiveSourceDisk_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ArchiveSourceDisk
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestArchiveTransferRequest_EncodeDecode(t *testing.T) {
+	var typ ArchiveTransferRequest
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ArchiveTransferRequest
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestArchiveTransferRequestEnvelope_EncodeDecode(t *testing.T) {

@@ -79,33 +79,6 @@ model SimpleMonitorUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   MaxCheckAttempts: int32 = 3;
-  RetryInterval: int32 = 10;
-  DelayLoop: int32 = 60;
-  Enabled: string;
-  HealthCheck: SimpleMonitorHealthCheck;
-  NotifyEmailEnabled: string;
-  NotifyEmailHTML: string;
-  NotifySlackEnabled: string;
-  SlackWebhooksURL: string;
-  NotifyInterval: int32 = 7200;
-  Timeout: int32;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  SettingsHash?: string | null;
-}
-
-model SimpleMonitorUpdateSettingsRequest {
-  MaxCheckAttempts: int32 = 3;
-  RetryInterval: int32 = 10;
-  DelayLoop: int32 = 60;
-  Enabled: string;
-  HealthCheck: SimpleMonitorHealthCheck;
-  NotifyEmailEnabled: string;
-  NotifyEmailHTML: string;
-  NotifySlackEnabled: string;
-  SlackWebhooksURL: string;
-  NotifyInterval: int32 = 7200;
-  Timeout: int32;
-  MonitoringSuiteLog: MonitoringSuiteLog;
   SettingsHash?: string | null;
 }
 

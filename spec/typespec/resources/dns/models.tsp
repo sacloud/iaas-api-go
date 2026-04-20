@@ -49,12 +49,5 @@ model DNSUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   Records: DNSRecord[];
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  SettingsHash?: string | null;
-}
-
-model DNSUpdateSettingsRequest {
-  Records: DNSRecord[];
-  MonitoringSuiteLog: MonitoringSuiteLog;
   SettingsHash?: string | null;
 }

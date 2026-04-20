@@ -541,19 +541,166 @@ func resourceModelsForAPI(api *dsl.Resource) []*dsl.Model {
 	return ms.UniqByName()
 }
 
+// computeRequestModelMerges は同一 method+path の op 群で同名 payload に異なる request model が
+// 割り当てられているケースを検出し、primary の model 名に variant の DSL model を合流させる計画を返す。
+//
+// 背景: v1 DSL では Go メソッドの使いやすさを優先して 1 エンドポイントを複数メソッドに分割している
+// （例: POST /archive の Create（SourceDisk/SourceArchive 指定）と CreateBlank（SizeMB 指定））が、
+// API 定義としてはどちらも同じ 1 エンドポイントで、wire の envelope も同一構造。
+// 公式マニュアルが定義するフィールドはすべて受けられるよう、primary の model にすべての variant の
+// フィールドを union する。variant 側の request model は v2 では emit しない。
+//
+// 戻り値:
+//   - merges:   primary model 名 → 合流対象の DSL model リスト（primary 自身を先頭に含む）
+//   - skipSet:  models.tsp で emit を省略する variant model 名のセット
+func computeRequestModelMerges(api *dsl.Resource) (merges map[string][]*dsl.Model, skipSet map[string]bool) {
+	merges = map[string][]*dsl.Model{}
+	skipSet = map[string]bool{}
+
+	type opGroup struct {
+		key opKey
+		ops []*dsl.Operation
+	}
+	var groups []opGroup
+	groupIdx := map[opKey]int{}
+	for _, op := range api.Operations {
+		if opIsExcluded(api, op) {
+			continue
+		}
+		k := opKey{strings.ToLower(op.Method), resolveOpPath(op, api)}
+		if idx, ok := groupIdx[k]; ok {
+			groups[idx].ops = append(groups[idx].ops, op)
+		} else {
+			groupIdx[k] = len(groups)
+			groups = append(groups, opGroup{key: k, ops: []*dsl.Operation{op}})
+		}
+	}
+
+	for _, g := range groups {
+		if len(g.ops) < 2 {
+			continue
+		}
+		primary := primaryOpForKey(g.ops)
+
+		type payloadEntry struct {
+			models []*dsl.Model
+			seen   map[string]bool
+		}
+		payloadMap := map[string]*payloadEntry{}
+
+		collect := func(op *dsl.Operation) {
+			for _, p := range op.RequestPayloads() {
+				for _, arg := range op.Arguments {
+					model, ok := arg.Type.(*dsl.Model)
+					if !ok {
+						continue
+					}
+					destField := strings.SplitN(arg.MapConvTag, ",", 2)[0]
+					if destField != p.Name {
+						continue
+					}
+					entry := payloadMap[p.Name]
+					if entry == nil {
+						entry = &payloadEntry{seen: map[string]bool{}}
+						payloadMap[p.Name] = entry
+					}
+					if !entry.seen[model.Name] {
+						entry.seen[model.Name] = true
+						entry.models = append(entry.models, model)
+					}
+					break
+				}
+			}
+		}
+		collect(primary)
+		for _, op := range g.ops {
+			if op != primary {
+				collect(op)
+			}
+		}
+
+		for _, entry := range payloadMap {
+			if len(entry.models) < 2 {
+				continue
+			}
+			primaryModel := entry.models[0]
+			merges[primaryModel.Name] = entry.models
+			for _, m := range entry.models[1:] {
+				skipSet[m.Name] = true
+			}
+		}
+	}
+	return merges, skipSet
+}
+
+// mergedDSLFields は複数 DSL model の Fields を union する。
+// 同一フィールド名（mapconv root が同一の場合も含む）は最初の model の定義を採用する。
+func mergedDSLFields(models []*dsl.Model) []*dsl.FieldDesc {
+	seen := map[string]bool{}
+	var result []*dsl.FieldDesc
+	for _, m := range models {
+		for _, f := range m.Fields {
+			key := f.Name
+			if f.Tags != nil {
+				mc := strings.SplitN(f.Tags.MapConv, ",", 2)[0]
+				if mc != "" {
+					if segs := strings.Split(mc, "."); len(segs) > 0 && !strings.HasPrefix(segs[0], "[]") {
+						key = segs[0]
+					}
+				}
+			}
+			if seen[key] {
+				continue
+			}
+			seen[key] = true
+			result = append(result, f)
+		}
+	}
+	return result
+}
+
+// filteredModelsForAPI は resourceModelsForAPI から除外対象 op 経由のみで参照されるモデルを除いたもの。
+// excludedOps に指定された op は仕様として生成対象外のため、そのリクエストモデルも emit しない。
+func filteredModelsForAPI(api *dsl.Resource) []*dsl.Model {
+	ms := dsl.Models{}
+	for _, op := range api.Operations {
+		if opIsExcluded(api, op) {
+			continue
+		}
+		ms = append(ms, op.Models()...)
+	}
+	return ms.UniqByName()
+}
+
 func generateModels() {
 	// 全リソースにまたがる出力済みモデル名を追跡し、重複定義を防ぐ。
 	// 同じモデル（DSL 本体 or 合成サブモデル）が複数リソースで現れる場合、最初に現れたリソースのファイルにのみ出力する。
 	outputtedModels := map[string]bool{}
 
 	for _, api := range define.APIs {
-		allModels := resourceModelsForAPI(api)
+		allModels := filteredModelsForAPI(api)
+		merges, skipSet := computeRequestModelMerges(api)
 
 		var newModels []resolvedModel
 		for _, m := range allModels {
+			if skipSet[m.Name] {
+				// 同一パスの別 op で primary に合流させるため個別には emit しない
+				continue
+			}
 			if outputtedModels[m.Name] {
 				continue
 			}
+
+			// primary model（合流対象あり）の場合、variant の Fields を union した一時 DSL model を作って処理
+			if variants, isMergePrimary := merges[m.Name]; isMergePrimary {
+				m = &dsl.Model{
+					Name:      m.Name,
+					NakedType: m.NakedType,
+					IsArray:   m.IsArray,
+					Fields:    mergedDSLFields(variants),
+				}
+			}
+
 			for _, rm := range resolveModel(m) {
 				if outputtedModels[rm.Name] {
 					continue

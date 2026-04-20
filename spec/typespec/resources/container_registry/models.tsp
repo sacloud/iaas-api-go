@@ -44,13 +44,6 @@ model ContainerRegistryUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   AccessLevel: EContainerRegistryAccessLevel;
-  VirtualDomain: string;
-  SettingsHash?: string | null;
-}
-
-model ContainerRegistryUpdateSettingsRequest {
-  AccessLevel: EContainerRegistryAccessLevel;
-  VirtualDomain: string;
   SettingsHash?: string | null;
 }
 

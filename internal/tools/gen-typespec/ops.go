@@ -265,6 +265,9 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 	groupIdx := map[opKey]int{}
 
 	for _, op := range api.Operations {
+		if opIsExcluded(api, op) {
+			continue
+		}
 		path := resolveOpPath(op, api)
 		k := opKey{strings.ToLower(op.Method), path}
 		if idx, ok := groupIdx[k]; ok {

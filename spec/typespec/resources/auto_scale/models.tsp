@@ -77,27 +77,6 @@ model AutoScaleUpdateRequest {
 
 model AutoScaleUpdateRequestSettings {
   Disabled: boolean;
-  Zones: string[];
-  Config?: string | null;
-  TriggerType: EAutoScaleTriggerType;
-  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
-  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
-  ScheduleScaling: AutoScaleScheduleScaling[];
-}
-
-model AutoScaleUpdateSettingsRequest {
-  Settings?: AutoScaleUpdateSettingsRequestSettings | null;
-  SettingsHash?: string | null;
-}
-
-model AutoScaleUpdateSettingsRequestSettings {
-  Disabled: boolean;
-  Zones: string[];
-  Config?: string | null;
-  TriggerType: EAutoScaleTriggerType;
-  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
-  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
-  ScheduleScaling: AutoScaleScheduleScaling[];
 }
 
 model AutoScaleStatus {

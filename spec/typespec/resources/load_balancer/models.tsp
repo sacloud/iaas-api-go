@@ -81,11 +81,6 @@ model LoadBalancerUpdateRequest {
   SettingsHash?: string | null;
 }
 
-model LoadBalancerUpdateSettingsRequest {
-  VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
-  SettingsHash?: string | null;
-}
-
 model LoadBalancerStatus {
   VirtualIPAddress?: string | null;
   Port?: int32 | null;

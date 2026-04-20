@@ -318,6 +318,9 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 	var groups []opGroup
 	groupIdx := map[opKey]int{}
 	for _, op := range api.Operations {
+		if opIsExcluded(api, op) {
+			continue
+		}
 		path := resolveOpPath(op, api)
 		k := opKey{strings.ToLower(op.Method), path}
 		if idx, ok := groupIdx[k]; ok {
@@ -356,12 +359,22 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 			envelopeNameByKey[g.key] = upperFirst(reqName)
 		}
 
+		// primary op を先頭に並べて payload TS type の解決で primary の argument model が優先されるようにする。
+		// （api.Operations 順では primary 以外が先に visit される可能性があり、envelope 名と payload 型名が
+		//  別の op に由来する不整合を招くため）
+		visitOrder := []*dsl.Operation{primary}
+		for _, op := range g.ops {
+			if op != primary {
+				visitOrder = append(visitOrder, op)
+			}
+		}
+
 		// リクエスト payload を union でマージ
 		total := len(g.ops)
 		reqIndex := map[string]*resolvedPayload{}
 		reqCount := map[string]int{}
 		var reqOrder []string
-		for _, op := range g.ops {
+		for _, op := range visitOrder {
 			for _, p := range op.RequestPayloads() {
 				if skipFields[p.Name] {
 					continue
@@ -387,7 +400,7 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 		respIndex := map[string]*resolvedPayload{}
 		respCount := map[string]int{}
 		var respOrder []string
-		for _, op := range g.ops {
+		for _, op := range visitOrder {
 			for _, p := range op.ResponsePayloads() {
 				if _, exists := respIndex[p.Name]; !exists {
 					respIndex[p.Name] = &resolvedPayload{

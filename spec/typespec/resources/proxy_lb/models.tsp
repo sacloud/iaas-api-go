@@ -151,40 +151,11 @@ model ProxyLBCreateRequestStatus {
 
 model ProxyLBUpdateRequest {
   HealthCheck: ProxyLBHealthCheck;
-  SorryServer: ProxyLBSorryServer;
-  BindPorts: ProxyLBBindPort[];
-  Servers: ProxyLBServer[];
-  Rules: ProxyLBRule[];
-  LetsEncrypt: ProxyLBACMESetting;
-  StickySession: ProxyLBStickySession;
-  Timeout: ProxyLBTimeout;
-  Gzip: ProxyLBGzip;
-  BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  ProxyProtocol: ProxyLBProxyProtocol;
-  Syslog: ProxyLBSyslog;
   SettingsHash?: string | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-}
-
-model ProxyLBUpdateSettingsRequest {
-  HealthCheck: ProxyLBHealthCheck;
-  SorryServer: ProxyLBSorryServer;
-  BindPorts: ProxyLBBindPort[];
-  Servers: ProxyLBServer[];
-  Rules: ProxyLBRule[];
-  LetsEncrypt: ProxyLBACMESetting;
-  StickySession: ProxyLBStickySession;
-  Timeout: ProxyLBTimeout;
-  Gzip: ProxyLBGzip;
-  BackendHttpKeepAlive: ProxyLBBackendHttpKeepAlive;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  ProxyProtocol: ProxyLBProxyProtocol;
-  Syslog: ProxyLBSyslog;
-  SettingsHash?: string | null;
 }
 
 model ProxyLBChangePlanRequest {

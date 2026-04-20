@@ -60,20 +60,5 @@ model GSLBUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   HealthCheck: GSLBHealthCheck;
-  DelayLoop: int32 = 10;
-  Weighted: string;
-  SorryServer: string;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  DestinationServers: GSLBServer[];
-  SettingsHash?: string | null;
-}
-
-model GSLBUpdateSettingsRequest {
-  HealthCheck: GSLBHealthCheck;
-  DelayLoop: int32 = 10;
-  Weighted: string;
-  SorryServer: string;
-  MonitoringSuiteLog: MonitoringSuiteLog;
-  DestinationServers: GSLBServer[];
   SettingsHash?: string | null;
 }

@@ -75,6 +75,7 @@ model ArchiveCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+  SizeMB?: int32 | null;
 }
 
 model FTPServer {
@@ -82,14 +83,6 @@ model FTPServer {
   IPAddress?: string | null;
   User?: string | null;
   Password?: string | null;
-}
-
-model ArchiveCreateBlankRequest {
-  SizeMB?: int32 | null;
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
 }
 
 model ArchiveUpdateRequest {
@@ -107,18 +100,11 @@ model ArchiveShareInfo {
   SharedKey: string;
 }
 
-model ArchiveCreateRequestFromShared {
-  Name?: string | null;
-  Description: string;
-  Tags: string[];
-  Icon?: ResourceRef | null;
-  SourceSharedKey?: string | null;
-}
-
 model ArchiveTransferRequest {
   SizeMB?: int32 | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
+  SourceSharedKey?: string | null;
 }

@@ -46,12 +46,5 @@ model AutoBackupUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   BackupSpanWeekdays: EDayOfTheWeek[];
-  MaximumNumberOfArchives: int32;
-  SettingsHash?: string | null;
-}
-
-model AutoBackupUpdateSettingsRequest {
-  BackupSpanWeekdays: EDayOfTheWeek[];
-  MaximumNumberOfArchives: int32;
   SettingsHash?: string | null;
 }

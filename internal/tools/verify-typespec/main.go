@@ -1,0 +1,229 @@
+// Copyright 2022-2025 The sacloud/iaas-api-go Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// verify-typespec は generator が特別対応した既知の TypeSpec モデル・envelope について
+// 期待するフィールドが含まれ続けているかを post-generation で検証する。
+// 退行（リファクタ中に merge ロジックが外れる等）を検出するのが目的。
+//
+// 実行: `go run ./internal/tools/verify-typespec` （`spec/package.json` の verify ステップから呼ばれる想定）
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+	"path/filepath"
+	"regexp"
+	"runtime"
+	"strings"
+)
+
+var repoRoot string
+
+func init() {
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		log.Fatal("failed to get current file path")
+	}
+	// internal/tools/verify-typespec/main.go → ../../.. でリポジトリルートを解決
+	repoRoot = filepath.Join(filepath.Dir(filename), "../../..")
+}
+
+// check は 1 件の検証ケース。
+type check struct {
+	// label は失敗時メッセージで使う人間向けラベル。
+	label string
+	// tsp は repoRoot 相対の対象ファイル。
+	tsp string
+	// 以下の何れかを使う。
+	// - model != "" && fieldsIncluded: 指定 model ブロック中に fieldsIncluded の各フィールドが定義されていること
+	// - model != "" && notPresent: 指定 model が tsp に存在しないこと（merge により吸収されたはず）
+	// - payloadTypeInModel != "": 指定 model ブロック中の payload フィールド (payloadTypeInModel) が payloadType で参照されていること
+	model              string
+	fieldsIncluded     []string
+	notPresent         bool
+	payloadFieldName   string // 例: "Switch"
+	payloadType        string // 例: "Switch"（"BridgeInfo" を期待してしまう退行を防ぐ）
+}
+
+var checks = []check{
+	// Archive: POST /archive で Create（SourceDisk/SourceArchive）と CreateBlank（SizeMB）を 1 定義に統合
+	{
+		label:          "Archive POST /archive envelope body model merges Create + CreateBlank",
+		tsp:            "spec/typespec/resources/archive/models.tsp",
+		model:          "ArchiveCreateRequest",
+		fieldsIncluded: []string{"SourceDisk", "SourceArchive", "SizeMB", "Name", "Description", "Tags", "Icon"},
+	},
+	{
+		label:      "ArchiveCreateBlankRequest is absorbed into ArchiveCreateRequest (must not be emitted)",
+		tsp:        "spec/typespec/resources/archive/models.tsp",
+		model:      "ArchiveCreateBlankRequest",
+		notPresent: true,
+	},
+
+	// Archive: POST /archive/:sid/to/zone/:did で Transfer と CreateFromShared を統合
+	{
+		label:          "Archive transfer endpoint merges Transfer + CreateFromShared",
+		tsp:            "spec/typespec/resources/archive/models.tsp",
+		model:          "ArchiveTransferRequest",
+		fieldsIncluded: []string{"SizeMB", "SourceSharedKey", "Name", "Description", "Tags", "Icon"},
+	},
+	{
+		label:      "ArchiveCreateRequestFromShared is absorbed (must not be emitted)",
+		tsp:        "spec/typespec/resources/archive/models.tsp",
+		model:      "ArchiveCreateRequestFromShared",
+		notPresent: true,
+	},
+
+	// Archive: PUT /archive/:id/ftp で Share と OpenFTP を統合（wire payload 名は違うので envelope に両方入る）
+	{
+		label:          "Archive PUT /archive/:id/ftp envelope merges Share + OpenFTP",
+		tsp:            "spec/typespec/resources/archive/envelopes.tsp",
+		model:          "ArchiveShareRequestEnvelope",
+		fieldsIncluded: []string{"Shared", "ChangePassword"},
+	},
+
+	// Disk: POST /disk で 4 variant の optional payload を envelope に union
+	{
+		label:          "Disk POST /disk envelope merges Create + 3 variants",
+		tsp:            "spec/typespec/resources/disk/envelopes.tsp",
+		model:          "DiskCreateRequestEnvelope",
+		fieldsIncluded: []string{"Disk", "DistantFrom", "KMSKey", "Config", "BootAtAvailable", "TargetDedicatedStorageContract"},
+	},
+
+	// Server: DELETE /server/:id で Delete + DeleteWithDisks を統合（WithDisk が optional 追加される）
+	{
+		label:          "Server DELETE /server/:id envelope merges Delete + DeleteWithDisks",
+		tsp:            "spec/typespec/resources/server/envelopes.tsp",
+		model:          "ServerDeleteRequestEnvelope",
+		fieldsIncluded: []string{"WithDisk"},
+	},
+
+	// Server: PUT /server/:id/power で Boot + BootWithVariables を統合
+	{
+		label:          "Server PUT /server/:id/power envelope merges Boot + BootWithVariables",
+		tsp:            "spec/typespec/resources/server/envelopes.tsp",
+		model:          "ServerBootRequestEnvelope",
+		fieldsIncluded: []string{"UserBootVariables"},
+	},
+
+	// Switch: POST /switch response envelope は Switch 型を参照するべき（以前 naked.Switch を共有する BridgeInfo に誤解決されるバグがあった）
+	{
+		label:            "SwitchCreateResponseEnvelope.Switch references Switch model (regression guard)",
+		tsp:              "spec/typespec/resources/switch/envelopes.tsp",
+		model:            "SwitchCreateResponseEnvelope",
+		payloadFieldName: "Switch",
+		payloadType:      "Switch",
+	},
+	{
+		label:            "SwitchReadResponseEnvelope.Switch references Switch model",
+		tsp:              "spec/typespec/resources/switch/envelopes.tsp",
+		model:            "SwitchReadResponseEnvelope",
+		payloadFieldName: "Switch",
+		payloadType:      "Switch",
+	},
+}
+
+func main() {
+	failed := 0
+	for _, c := range checks {
+		if err := run(c); err != nil {
+			fmt.Fprintf(os.Stderr, "FAIL: %s\n  %v\n", c.label, err)
+			failed++
+		}
+	}
+	if failed > 0 {
+		fmt.Fprintf(os.Stderr, "\nverify-typespec: %d check(s) failed\n", failed)
+		os.Exit(1)
+	}
+	fmt.Printf("verify-typespec: all %d check(s) passed\n", len(checks))
+}
+
+func run(c check) error {
+	path := filepath.Join(repoRoot, c.tsp)
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return fmt.Errorf("read %s: %w", c.tsp, err)
+	}
+	content := string(data)
+
+	if c.notPresent {
+		if modelExists(content, c.model) {
+			return fmt.Errorf("model %q should have been absorbed into its primary (via merge), but it is still emitted in %s", c.model, c.tsp)
+		}
+		return nil
+	}
+
+	block, ok := modelBlock(content, c.model)
+	if !ok {
+		return fmt.Errorf("model %q not found in %s", c.model, c.tsp)
+	}
+
+	if c.payloadFieldName != "" {
+		re := regexp.MustCompile(`(?m)^\s*` + regexp.QuoteMeta(c.payloadFieldName) + `\??:\s*([A-Za-z0-9_]+)`)
+		m := re.FindStringSubmatch(block)
+		if m == nil {
+			return fmt.Errorf("model %q has no payload field %q", c.model, c.payloadFieldName)
+		}
+		if m[1] != c.payloadType {
+			return fmt.Errorf("model %q field %q has type %q, expected %q", c.model, c.payloadFieldName, m[1], c.payloadType)
+		}
+	}
+
+	for _, f := range c.fieldsIncluded {
+		if !fieldInBlock(block, f) {
+			return fmt.Errorf("model %q missing field %q in %s", c.model, f, c.tsp)
+		}
+	}
+	return nil
+}
+
+// modelExists は tsp 本文に `model <Name> {` の宣言があるかを返す。
+func modelExists(content, name string) bool {
+	re := regexp.MustCompile(`(?m)^model\s+` + regexp.QuoteMeta(name) + `\s*\{`)
+	return re.MatchString(content)
+}
+
+// modelBlock は `model <Name> { ... }` の中身（中括弧の間の文字列）を返す。
+func modelBlock(content, name string) (string, bool) {
+	re := regexp.MustCompile(`(?m)^model\s+` + regexp.QuoteMeta(name) + `\s*\{`)
+	loc := re.FindStringIndex(content)
+	if loc == nil {
+		return "", false
+	}
+	// 宣言行の `{` の位置から対応する `}` までを取り出す（TypeSpec はこのレベルでネスト block を含まない想定）
+	start := loc[1]
+	depth := 1
+	for i := start; i < len(content); i++ {
+		switch content[i] {
+		case '{':
+			depth++
+		case '}':
+			depth--
+			if depth == 0 {
+				return content[start:i], true
+			}
+		}
+	}
+	return "", false
+}
+
+// fieldInBlock は model block 中に行頭（インデント含む）からフィールド宣言 `Name:` or `Name?:` があるかを返す。
+func fieldInBlock(block, fieldName string) bool {
+	re := regexp.MustCompile(`(?m)^\s*` + regexp.QuoteMeta(fieldName) + `\??:\s`)
+	return re.MatchString(block)
+}
+
+// strings import 保持（将来の拡張余地）
+var _ = strings.HasPrefix

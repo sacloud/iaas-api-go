@@ -59,22 +59,11 @@ model LocalRouterCreateRequest {
 
 model LocalRouterUpdateRequest {
   Switch: LocalRouterSwitch;
-  Interface: LocalRouterInterface;
-  Peers: LocalRouterPeer[];
-  StaticRoutes: LocalRouterStaticRoute[];
   SettingsHash?: string | null;
   Name?: string | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-}
-
-model LocalRouterUpdateSettingsRequest {
-  Switch: LocalRouterSwitch;
-  Interface: LocalRouterInterface;
-  Peers: LocalRouterPeer[];
-  StaticRoutes: LocalRouterStaticRoute[];
-  SettingsHash?: string | null;
 }
 
 model LocalRouterHealth {

@@ -88,17 +88,6 @@ model MobileGatewayUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   InterfaceSettings: MobileGatewayInterfaceSetting[];
-  StaticRoutes: MobileGatewayStaticRoute[];
-  InternetConnectionEnabled: string;
-  InterDeviceCommunicationEnabled: string;
-  SettingsHash?: string | null;
-}
-
-model MobileGatewayUpdateSettingsRequest {
-  InterfaceSettings: MobileGatewayInterfaceSetting[];
-  StaticRoutes: MobileGatewayStaticRoute[];
-  InternetConnectionEnabled: string;
-  InterDeviceCommunicationEnabled: string;
   SettingsHash?: string | null;
 }
 

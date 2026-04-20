@@ -883,6 +883,7 @@ type ArchiveCreateRequest struct {
 	Description   string            `json:"Description"`
 	Tags          []string          `json:"Tags"`
 	Icon          OptNilResourceRef `json:"Icon"`
+	SizeMB        OptNilInt32       `json:"SizeMB"`
 }
 
 // GetSourceDisk returns the value of SourceDisk.
@@ -915,6 +916,11 @@ func (s *ArchiveCreateRequest) GetIcon() OptNilResourceRef {
 	return s.Icon
 }
 
+// GetSizeMB returns the value of SizeMB.
+func (s *ArchiveCreateRequest) GetSizeMB() OptNilInt32 {
+	return s.SizeMB
+}
+
 // SetSourceDisk sets the value of SourceDisk.
 func (s *ArchiveCreateRequest) SetSourceDisk(val OptNilResourceRef) {
 	s.SourceDisk = val
@@ -945,6 +951,11 @@ func (s *ArchiveCreateRequest) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
 }
 
+// SetSizeMB sets the value of SizeMB.
+func (s *ArchiveCreateRequest) SetSizeMB(val OptNilInt32) {
+	s.SizeMB = val
+}
+
 // Request envelope for archiveCreateRequestEnvelope.
 // Ref: #/components/schemas/ArchiveCreateRequestEnvelope
 type ArchiveCreateRequestEnvelope struct {
@@ -960,65 +971,6 @@ func (s *ArchiveCreateRequestEnvelope) GetArchive() ArchiveCreateRequest {
 // SetArchive sets the value of Archive.
 func (s *ArchiveCreateRequestEnvelope) SetArchive(val ArchiveCreateRequest) {
 	s.Archive = val
-}
-
-// Ref: #/components/schemas/ArchiveCreateRequestFromShared
-type ArchiveCreateRequestFromShared struct {
-	Name            OptNilString      `json:"Name"`
-	Description     string            `json:"Description"`
-	Tags            []string          `json:"Tags"`
-	Icon            OptNilResourceRef `json:"Icon"`
-	SourceSharedKey OptNilString      `json:"SourceSharedKey"`
-}
-
-// GetName returns the value of Name.
-func (s *ArchiveCreateRequestFromShared) GetName() OptNilString {
-	return s.Name
-}
-
-// GetDescription returns the value of Description.
-func (s *ArchiveCreateRequestFromShared) GetDescription() string {
-	return s.Description
-}
-
-// GetTags returns the value of Tags.
-func (s *ArchiveCreateRequestFromShared) GetTags() []string {
-	return s.Tags
-}
-
-// GetIcon returns the value of Icon.
-func (s *ArchiveCreateRequestFromShared) GetIcon() OptNilResourceRef {
-	return s.Icon
-}
-
-// GetSourceSharedKey returns the value of SourceSharedKey.
-func (s *ArchiveCreateRequestFromShared) GetSourceSharedKey() OptNilString {
-	return s.SourceSharedKey
-}
-
-// SetName sets the value of Name.
-func (s *ArchiveCreateRequestFromShared) SetName(val OptNilString) {
-	s.Name = val
-}
-
-// SetDescription sets the value of Description.
-func (s *ArchiveCreateRequestFromShared) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetTags sets the value of Tags.
-func (s *ArchiveCreateRequestFromShared) SetTags(val []string) {
-	s.Tags = val
-}
-
-// SetIcon sets the value of Icon.
-func (s *ArchiveCreateRequestFromShared) SetIcon(val OptNilResourceRef) {
-	s.Icon = val
-}
-
-// SetSourceSharedKey sets the value of SourceSharedKey.
-func (s *ArchiveCreateRequestFromShared) SetSourceSharedKey(val OptNilString) {
-	s.SourceSharedKey = val
 }
 
 // Response envelope for archiveCreateResponseEnvelope.
@@ -1280,15 +1232,10 @@ func (s *ArchiveShareInfo) SetSharedKey(val string) {
 // Request envelope for archiveShareRequestEnvelope.
 // Ref: #/components/schemas/ArchiveShareRequestEnvelope
 type ArchiveShareRequestEnvelope struct {
-	// ChangePassword.
-	ChangePassword OptBool `json:"ChangePassword"`
 	// Shared.
 	Shared OptBool `json:"Shared"`
-}
-
-// GetChangePassword returns the value of ChangePassword.
-func (s *ArchiveShareRequestEnvelope) GetChangePassword() OptBool {
-	return s.ChangePassword
+	// ChangePassword.
+	ChangePassword OptBool `json:"ChangePassword"`
 }
 
 // GetShared returns the value of Shared.
@@ -1296,9 +1243,9 @@ func (s *ArchiveShareRequestEnvelope) GetShared() OptBool {
 	return s.Shared
 }
 
-// SetChangePassword sets the value of ChangePassword.
-func (s *ArchiveShareRequestEnvelope) SetChangePassword(val OptBool) {
-	s.ChangePassword = val
+// GetChangePassword returns the value of ChangePassword.
+func (s *ArchiveShareRequestEnvelope) GetChangePassword() OptBool {
+	return s.ChangePassword
 }
 
 // SetShared sets the value of Shared.
@@ -1306,15 +1253,20 @@ func (s *ArchiveShareRequestEnvelope) SetShared(val OptBool) {
 	s.Shared = val
 }
 
+// SetChangePassword sets the value of ChangePassword.
+func (s *ArchiveShareRequestEnvelope) SetChangePassword(val OptBool) {
+	s.ChangePassword = val
+}
+
 // Response envelope for archiveShareResponseEnvelope.
 // Ref: #/components/schemas/ArchiveShareResponseEnvelope
 type ArchiveShareResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// FTPServer.
-	FTPServer OptFTPServer `json:"FTPServer"`
 	// ArchiveShareInfo.
 	ArchiveShareInfo OptArchiveShareInfo `json:"ArchiveShareInfo"`
+	// FTPServer.
+	FTPServer OptFTPServer `json:"FTPServer"`
 }
 
 // GetIsOk returns the value of IsOk.
@@ -1322,14 +1274,14 @@ func (s *ArchiveShareResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
 }
 
-// GetFTPServer returns the value of FTPServer.
-func (s *ArchiveShareResponseEnvelope) GetFTPServer() OptFTPServer {
-	return s.FTPServer
-}
-
 // GetArchiveShareInfo returns the value of ArchiveShareInfo.
 func (s *ArchiveShareResponseEnvelope) GetArchiveShareInfo() OptArchiveShareInfo {
 	return s.ArchiveShareInfo
+}
+
+// GetFTPServer returns the value of FTPServer.
+func (s *ArchiveShareResponseEnvelope) GetFTPServer() OptFTPServer {
+	return s.FTPServer
 }
 
 // SetIsOk sets the value of IsOk.
@@ -1337,14 +1289,14 @@ func (s *ArchiveShareResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetFTPServer sets the value of FTPServer.
-func (s *ArchiveShareResponseEnvelope) SetFTPServer(val OptFTPServer) {
-	s.FTPServer = val
-}
-
 // SetArchiveShareInfo sets the value of ArchiveShareInfo.
 func (s *ArchiveShareResponseEnvelope) SetArchiveShareInfo(val OptArchiveShareInfo) {
 	s.ArchiveShareInfo = val
+}
+
+// SetFTPServer sets the value of FTPServer.
+func (s *ArchiveShareResponseEnvelope) SetFTPServer(val OptFTPServer) {
+	s.FTPServer = val
 }
 
 // Ref: #/components/schemas/ArchiveSourceArchive
@@ -1399,20 +1351,90 @@ func (s *ArchiveSourceDisk) SetAvailability(val OptNilEAvailability) {
 	s.Availability = val
 }
 
+// Ref: #/components/schemas/ArchiveTransferRequest
+type ArchiveTransferRequest struct {
+	SizeMB          OptNilInt32       `json:"SizeMB"`
+	Name            OptNilString      `json:"Name"`
+	Description     string            `json:"Description"`
+	Tags            []string          `json:"Tags"`
+	Icon            OptNilResourceRef `json:"Icon"`
+	SourceSharedKey OptNilString      `json:"SourceSharedKey"`
+}
+
+// GetSizeMB returns the value of SizeMB.
+func (s *ArchiveTransferRequest) GetSizeMB() OptNilInt32 {
+	return s.SizeMB
+}
+
+// GetName returns the value of Name.
+func (s *ArchiveTransferRequest) GetName() OptNilString {
+	return s.Name
+}
+
+// GetDescription returns the value of Description.
+func (s *ArchiveTransferRequest) GetDescription() string {
+	return s.Description
+}
+
+// GetTags returns the value of Tags.
+func (s *ArchiveTransferRequest) GetTags() []string {
+	return s.Tags
+}
+
+// GetIcon returns the value of Icon.
+func (s *ArchiveTransferRequest) GetIcon() OptNilResourceRef {
+	return s.Icon
+}
+
+// GetSourceSharedKey returns the value of SourceSharedKey.
+func (s *ArchiveTransferRequest) GetSourceSharedKey() OptNilString {
+	return s.SourceSharedKey
+}
+
+// SetSizeMB sets the value of SizeMB.
+func (s *ArchiveTransferRequest) SetSizeMB(val OptNilInt32) {
+	s.SizeMB = val
+}
+
+// SetName sets the value of Name.
+func (s *ArchiveTransferRequest) SetName(val OptNilString) {
+	s.Name = val
+}
+
+// SetDescription sets the value of Description.
+func (s *ArchiveTransferRequest) SetDescription(val string) {
+	s.Description = val
+}
+
+// SetTags sets the value of Tags.
+func (s *ArchiveTransferRequest) SetTags(val []string) {
+	s.Tags = val
+}
+
+// SetIcon sets the value of Icon.
+func (s *ArchiveTransferRequest) SetIcon(val OptNilResourceRef) {
+	s.Icon = val
+}
+
+// SetSourceSharedKey sets the value of SourceSharedKey.
+func (s *ArchiveTransferRequest) SetSourceSharedKey(val OptNilString) {
+	s.SourceSharedKey = val
+}
+
 // Request envelope for archiveTransferRequestEnvelope.
 // Ref: #/components/schemas/ArchiveTransferRequestEnvelope
 type ArchiveTransferRequestEnvelope struct {
 	// Archive.
-	Archive ArchiveCreateRequestFromShared `json:"Archive"`
+	Archive ArchiveTransferRequest `json:"Archive"`
 }
 
 // GetArchive returns the value of Archive.
-func (s *ArchiveTransferRequestEnvelope) GetArchive() ArchiveCreateRequestFromShared {
+func (s *ArchiveTransferRequestEnvelope) GetArchive() ArchiveTransferRequest {
 	return s.Archive
 }
 
 // SetArchive sets the value of Archive.
-func (s *ArchiveTransferRequestEnvelope) SetArchive(val ArchiveCreateRequestFromShared) {
+func (s *ArchiveTransferRequestEnvelope) SetArchive(val ArchiveTransferRequest) {
 	s.Archive = val
 }
 

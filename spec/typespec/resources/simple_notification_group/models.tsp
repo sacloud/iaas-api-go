@@ -48,17 +48,6 @@ model SimpleNotificationGroupUpdateRequest {
 
 model SimpleNotificationGroupUpdateRequestSettings {
   Destinations: string[];
-  Disabled: boolean;
-  Sources: string[];
-}
-
-model SimpleNotificationGroupUpdateSettingsRequest {
-  Settings?: SimpleNotificationGroupUpdateSettingsRequestSettings | null;
-  SettingsHash?: string | null;
-}
-
-model SimpleNotificationGroupUpdateSettingsRequestSettings {
-  Disabled: boolean;
 }
 
 model SimpleNotificationHistories {

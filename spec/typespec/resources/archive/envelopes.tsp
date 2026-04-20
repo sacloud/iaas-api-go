@@ -109,14 +109,14 @@ model ArchiveUpdateResponseEnvelope {
  */
 model ArchiveShareRequestEnvelope {
   /**
-   * ChangePassword
-   */
-  ChangePassword?: boolean;
-
-  /**
    * Shared
    */
   Shared?: boolean;
+
+  /**
+   * ChangePassword
+   */
+  ChangePassword?: boolean;
 }
 /**
  * Response envelope for archiveShareResponseEnvelope
@@ -126,14 +126,14 @@ model ArchiveShareResponseEnvelope {
   is_ok: boolean;
 
   /**
-   * FTPServer
-   */
-  FTPServer?: FTPServer;
-
-  /**
    * ArchiveShareInfo
    */
   ArchiveShareInfo?: ArchiveShareInfo;
+
+  /**
+   * FTPServer
+   */
+  FTPServer?: FTPServer;
 }
 
 /**
@@ -143,7 +143,7 @@ model ArchiveTransferRequestEnvelope {
   /**
    * Archive
    */
-  Archive: ArchiveCreateRequestFromShared;
+  Archive: ArchiveTransferRequest;
 }
 /**
  * Response envelope for archiveTransferResponseEnvelope

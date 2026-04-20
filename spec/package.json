@@ -4,8 +4,9 @@
   "private": true,
   "description": "TypeSpec definitions for sacloud IaaS API",
   "scripts": {
-    "build": "pnpm run generate && pnpm run format && pnpm run lint && pnpm run generate:client",
+    "build": "pnpm run generate && pnpm run verify && pnpm run format && pnpm run lint && pnpm run generate:client",
     "generate": "cd .. && go run ./internal/tools/gen-typespec/",
+    "verify": "cd .. && go run ./internal/tools/verify-typespec/",
     "generate:client": "mkdir -p ../v2/client && find ../v2/client -name '*.go' -delete; ogen --target ../v2/client --package client --config ogen.yml tsp-output/@typespec/openapi3/openapi.yaml",
     "format": "tsp format typespec/",
     "lint": "tsp compile typespec/main.tsp --output-dir tsp-output",

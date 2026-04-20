@@ -516,6 +516,11 @@ func (s *ArchiveCreateRequest) SetFake() {
 			s.Icon.SetFake()
 		}
 	}
+	{
+		{
+			s.SizeMB.SetFake()
+		}
+	}
 }
 
 // SetFake set fake values.
@@ -523,42 +528,6 @@ func (s *ArchiveCreateRequestEnvelope) SetFake() {
 	{
 		{
 			s.Archive.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *ArchiveCreateRequestFromShared) SetFake() {
-	{
-		{
-			s.Name.SetFake()
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
-		}
-	}
-	{
-		{
-			s.Icon.SetFake()
-		}
-	}
-	{
-		{
-			s.SourceSharedKey.SetFake()
 		}
 	}
 }
@@ -707,12 +676,12 @@ func (s *ArchiveShareInfo) SetFake() {
 func (s *ArchiveShareRequestEnvelope) SetFake() {
 	{
 		{
-			s.ChangePassword.SetFake()
+			s.Shared.SetFake()
 		}
 	}
 	{
 		{
-			s.Shared.SetFake()
+			s.ChangePassword.SetFake()
 		}
 	}
 }
@@ -726,12 +695,12 @@ func (s *ArchiveShareResponseEnvelope) SetFake() {
 	}
 	{
 		{
-			s.FTPServer.SetFake()
+			s.ArchiveShareInfo.SetFake()
 		}
 	}
 	{
 		{
-			s.ArchiveShareInfo.SetFake()
+			s.FTPServer.SetFake()
 		}
 	}
 }
@@ -760,6 +729,47 @@ func (s *ArchiveSourceDisk) SetFake() {
 	{
 		{
 			s.Availability.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ArchiveTransferRequest) SetFake() {
+	{
+		{
+			s.SizeMB.SetFake()
+		}
+	}
+	{
+		{
+			s.Name.SetFake()
+		}
+	}
+	{
+		{
+			s.Description = "string"
+		}
+	}
+	{
+		{
+			s.Tags = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.Tags = append(s.Tags, elem)
+			}
+		}
+	}
+	{
+		{
+			s.Icon.SetFake()
+		}
+	}
+	{
+		{
+			s.SourceSharedKey.SetFake()
 		}
 	}
 }
