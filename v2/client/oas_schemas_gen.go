@@ -1026,9 +1026,6 @@ func (s *ArchiveCreateRequestFromShared) SetSourceSharedKey(val OptNilString) {
 type ArchiveCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 	// FTPServer.
@@ -1038,11 +1035,6 @@ type ArchiveCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ArchiveCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ArchiveCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetArchive returns the value of Archive.
@@ -1058,11 +1050,6 @@ func (s *ArchiveCreateResponseEnvelope) GetFTPServer() OptFTPServer {
 // SetIsOk sets the value of IsOk.
 func (s *ArchiveCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ArchiveCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetArchive sets the value of Archive.
@@ -1251,9 +1238,6 @@ func (s *ArchivePlan) SetStorageClass(val OptNilString) {
 type ArchiveReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1261,11 +1245,6 @@ type ArchiveReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ArchiveReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ArchiveReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetArchive returns the value of Archive.
@@ -1276,11 +1255,6 @@ func (s *ArchiveReadResponseEnvelope) GetArchive() Archive {
 // SetIsOk sets the value of IsOk.
 func (s *ArchiveReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ArchiveReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetArchive sets the value of Archive.
@@ -1337,9 +1311,6 @@ func (s *ArchiveShareRequestEnvelope) SetShared(val OptBool) {
 type ArchiveShareResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// FTPServer.
 	FTPServer OptFTPServer `json:"FTPServer"`
 	// ArchiveShareInfo.
@@ -1349,11 +1320,6 @@ type ArchiveShareResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ArchiveShareResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ArchiveShareResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetFTPServer returns the value of FTPServer.
@@ -1369,11 +1335,6 @@ func (s *ArchiveShareResponseEnvelope) GetArchiveShareInfo() OptArchiveShareInfo
 // SetIsOk sets the value of IsOk.
 func (s *ArchiveShareResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ArchiveShareResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetFTPServer sets the value of FTPServer.
@@ -1460,9 +1421,6 @@ func (s *ArchiveTransferRequestEnvelope) SetArchive(val ArchiveCreateRequestFrom
 type ArchiveTransferResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1470,11 +1428,6 @@ type ArchiveTransferResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ArchiveTransferResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ArchiveTransferResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetArchive returns the value of Archive.
@@ -1485,11 +1438,6 @@ func (s *ArchiveTransferResponseEnvelope) GetArchive() Archive {
 // SetIsOk sets the value of IsOk.
 func (s *ArchiveTransferResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ArchiveTransferResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetArchive sets the value of Archive.
@@ -1567,9 +1515,6 @@ func (s *ArchiveUpdateRequestEnvelope) SetArchive(val ArchiveUpdateRequest) {
 type ArchiveUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Archive.
 	Archive Archive `json:"Archive"`
 }
@@ -1577,11 +1522,6 @@ type ArchiveUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ArchiveUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ArchiveUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetArchive returns the value of Archive.
@@ -1592,11 +1532,6 @@ func (s *ArchiveUpdateResponseEnvelope) GetArchive() Archive {
 // SetIsOk sets the value of IsOk.
 func (s *ArchiveUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ArchiveUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetArchive sets the value of Archive.
@@ -1775,9 +1710,6 @@ func (s *AuthStatusMember) SetClass(val OptNilString) {
 type AuthStatusReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// AuthStatus.
 	AuthStatus AuthStatus `json:"AuthStatus"`
 }
@@ -1785,11 +1717,6 @@ type AuthStatusReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *AuthStatusReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *AuthStatusReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetAuthStatus returns the value of AuthStatus.
@@ -1800,11 +1727,6 @@ func (s *AuthStatusReadResponseEnvelope) GetAuthStatus() AuthStatus {
 // SetIsOk sets the value of IsOk.
 func (s *AuthStatusReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *AuthStatusReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetAuthStatus sets the value of AuthStatus.
@@ -1953,9 +1875,6 @@ func (s *AutoBackup) SetStatus(val OptNilAutoBackupStatus) {
 type AutoBackupCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
@@ -1963,11 +1882,6 @@ type AutoBackupCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *AutoBackupCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *AutoBackupCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCommonServiceItem returns the value of CommonServiceItem.
@@ -1978,11 +1892,6 @@ func (s *AutoBackupCreateResponseEnvelope) GetCommonServiceItem() AutoBackup {
 // SetIsOk sets the value of IsOk.
 func (s *AutoBackupCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *AutoBackupCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCommonServiceItem sets the value of CommonServiceItem.
@@ -2048,9 +1957,6 @@ func (s *AutoBackupFindResponseEnvelope) SetCommonServiceItems(val []AutoBackup)
 type AutoBackupReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
@@ -2058,11 +1964,6 @@ type AutoBackupReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *AutoBackupReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *AutoBackupReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCommonServiceItem returns the value of CommonServiceItem.
@@ -2073,11 +1974,6 @@ func (s *AutoBackupReadResponseEnvelope) GetCommonServiceItem() AutoBackup {
 // SetIsOk sets the value of IsOk.
 func (s *AutoBackupReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *AutoBackupReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCommonServiceItem sets the value of CommonServiceItem.
@@ -2138,9 +2034,6 @@ func (s *AutoBackupStatus) SetZoneName(val OptNilString) {
 type AutoBackupUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
@@ -2148,11 +2041,6 @@ type AutoBackupUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *AutoBackupUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *AutoBackupUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCommonServiceItem returns the value of CommonServiceItem.
@@ -2163,11 +2051,6 @@ func (s *AutoBackupUpdateResponseEnvelope) GetCommonServiceItem() AutoBackup {
 // SetIsOk sets the value of IsOk.
 func (s *AutoBackupUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *AutoBackupUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCommonServiceItem sets the value of CommonServiceItem.
@@ -2334,9 +2217,6 @@ func (s *AutoScaleStatus) SetResourcesText(val string) {
 type AutoScaleStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// AutoScale.
 	AutoScale AutoScaleStatus `json:"AutoScale"`
 }
@@ -2344,11 +2224,6 @@ type AutoScaleStatusResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *AutoScaleStatusResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *AutoScaleStatusResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetAutoScale returns the value of AutoScale.
@@ -2359,11 +2234,6 @@ func (s *AutoScaleStatusResponseEnvelope) GetAutoScale() AutoScaleStatus {
 // SetIsOk sets the value of IsOk.
 func (s *AutoScaleStatusResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *AutoScaleStatusResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetAutoScale sets the value of AutoScale.
@@ -2836,9 +2706,6 @@ func (s *BillDetailCSV) SetBodyRows(val [][]string) {
 type BillDetailsCSVResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CSV.
 	CSV BillDetailCSV `json:"CSV"`
 }
@@ -2846,11 +2713,6 @@ type BillDetailsCSVResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *BillDetailsCSVResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *BillDetailsCSVResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCSV returns the value of CSV.
@@ -2861,11 +2723,6 @@ func (s *BillDetailsCSVResponseEnvelope) GetCSV() BillDetailCSV {
 // SetIsOk sets the value of IsOk.
 func (s *BillDetailsCSVResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *BillDetailsCSVResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCSV sets the value of CSV.
@@ -3108,9 +2965,6 @@ func (s *BridgeCreateRequestEnvelope) SetBridge(val BridgeCreateRequest) {
 type BridgeCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Bridge.
 	Bridge Bridge `json:"Bridge"`
 }
@@ -3118,11 +2972,6 @@ type BridgeCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *BridgeCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *BridgeCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetBridge returns the value of Bridge.
@@ -3133,11 +2982,6 @@ func (s *BridgeCreateResponseEnvelope) GetBridge() Bridge {
 // SetIsOk sets the value of IsOk.
 func (s *BridgeCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *BridgeCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetBridge sets the value of Bridge.
@@ -3333,9 +3177,6 @@ func (s *BridgeOpDeleteOK) SetIsOk(val bool) {
 type BridgeReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Bridge.
 	Bridge Bridge `json:"Bridge"`
 }
@@ -3343,11 +3184,6 @@ type BridgeReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *BridgeReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *BridgeReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetBridge returns the value of Bridge.
@@ -3358,11 +3194,6 @@ func (s *BridgeReadResponseEnvelope) GetBridge() Bridge {
 // SetIsOk sets the value of IsOk.
 func (s *BridgeReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *BridgeReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetBridge sets the value of Bridge.
@@ -3477,9 +3308,6 @@ func (s *BridgeUpdateRequestEnvelope) SetBridge(val BridgeUpdateRequest) {
 type BridgeUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Bridge.
 	Bridge Bridge `json:"Bridge"`
 }
@@ -3487,11 +3315,6 @@ type BridgeUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *BridgeUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *BridgeUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetBridge returns the value of Bridge.
@@ -3502,11 +3325,6 @@ func (s *BridgeUpdateResponseEnvelope) GetBridge() Bridge {
 // SetIsOk sets the value of IsOk.
 func (s *BridgeUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *BridgeUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetBridge sets the value of Bridge.
@@ -3768,9 +3586,6 @@ func (s *CDROMCreateRequestEnvelope) SetCDROM(val CDROMCreateRequest) {
 type CDROMCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CDROM.
 	CDROM CDROM `json:"CDROM"`
 	// FTPServer.
@@ -3780,11 +3595,6 @@ type CDROMCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CDROMCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CDROMCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCDROM returns the value of CDROM.
@@ -3800,11 +3610,6 @@ func (s *CDROMCreateResponseEnvelope) GetFTPServer() FTPServer {
 // SetIsOk sets the value of IsOk.
 func (s *CDROMCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CDROMCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCDROM sets the value of CDROM.
@@ -3973,9 +3778,6 @@ func (s *CDROMOpenFTPRequestEnvelope) SetChangePassword(val bool) {
 type CDROMOpenFTPResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// FTPServer.
 	FTPServer FTPServer `json:"FTPServer"`
 }
@@ -3983,11 +3785,6 @@ type CDROMOpenFTPResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CDROMOpenFTPResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CDROMOpenFTPResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetFTPServer returns the value of FTPServer.
@@ -4000,11 +3797,6 @@ func (s *CDROMOpenFTPResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *CDROMOpenFTPResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetFTPServer sets the value of FTPServer.
 func (s *CDROMOpenFTPResponseEnvelope) SetFTPServer(val FTPServer) {
 	s.FTPServer = val
@@ -4015,9 +3807,6 @@ func (s *CDROMOpenFTPResponseEnvelope) SetFTPServer(val FTPServer) {
 type CDROMReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CDROM.
 	CDROM CDROM `json:"CDROM"`
 }
@@ -4025,11 +3814,6 @@ type CDROMReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CDROMReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CDROMReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCDROM returns the value of CDROM.
@@ -4040,11 +3824,6 @@ func (s *CDROMReadResponseEnvelope) GetCDROM() CDROM {
 // SetIsOk sets the value of IsOk.
 func (s *CDROMReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CDROMReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCDROM sets the value of CDROM.
@@ -4122,9 +3901,6 @@ func (s *CDROMUpdateRequestEnvelope) SetCDROM(val CDROMUpdateRequest) {
 type CDROMUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CDROM.
 	CDROM CDROM `json:"CDROM"`
 }
@@ -4132,11 +3908,6 @@ type CDROMUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CDROMUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CDROMUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCDROM returns the value of CDROM.
@@ -4147,11 +3918,6 @@ func (s *CDROMUpdateResponseEnvelope) GetCDROM() CDROM {
 // SetIsOk sets the value of IsOk.
 func (s *CDROMUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CDROMUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCDROM sets the value of CDROM.
@@ -4282,9 +4048,6 @@ func (s *CertificateAuthorityAddClientParam) SetPublicKey(val OptNilString) {
 type CertificateAuthorityAddClientResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityAddClientOrServerResult `json:"CertificateAuthority"`
 }
@@ -4292,11 +4055,6 @@ type CertificateAuthorityAddClientResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CertificateAuthorityAddClientResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CertificateAuthorityAddClientResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCertificateAuthority returns the value of CertificateAuthority.
@@ -4307,11 +4065,6 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) GetCertificateAuthority(
 // SetIsOk sets the value of IsOk.
 func (s *CertificateAuthorityAddClientResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CertificateAuthorityAddClientResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCertificateAuthority sets the value of CertificateAuthority.
@@ -4416,9 +4169,6 @@ func (s *CertificateAuthorityAddServerParam) SetPublicKey(val OptNilString) {
 type CertificateAuthorityAddServerResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityAddClientOrServerResult `json:"CertificateAuthority"`
 }
@@ -4426,11 +4176,6 @@ type CertificateAuthorityAddServerResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CertificateAuthorityAddServerResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CertificateAuthorityAddServerResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCertificateAuthority returns the value of CertificateAuthority.
@@ -4441,11 +4186,6 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) GetCertificateAuthority(
 // SetIsOk sets the value of IsOk.
 func (s *CertificateAuthorityAddServerResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CertificateAuthorityAddServerResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCertificateAuthority sets the value of CertificateAuthority.
@@ -4565,9 +4305,6 @@ func (s *CertificateAuthorityDetail) SetCertificateData(val OptNilCertificateDat
 type CertificateAuthorityDetailResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityDetail `json:"CertificateAuthority"`
 }
@@ -4575,11 +4312,6 @@ type CertificateAuthorityDetailResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CertificateAuthorityDetailResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CertificateAuthorityDetailResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCertificateAuthority returns the value of CertificateAuthority.
@@ -4590,11 +4322,6 @@ func (s *CertificateAuthorityDetailResponseEnvelope) GetCertificateAuthority() C
 // SetIsOk sets the value of IsOk.
 func (s *CertificateAuthorityDetailResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CertificateAuthorityDetailResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCertificateAuthority sets the value of CertificateAuthority.
@@ -4762,9 +4489,6 @@ type CertificateAuthorityOpRevokeServerNoContent struct{}
 type CertificateAuthorityReadClientResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityClient `json:"CertificateAuthority"`
 }
@@ -4772,11 +4496,6 @@ type CertificateAuthorityReadClientResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CertificateAuthorityReadClientResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CertificateAuthorityReadClientResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCertificateAuthority returns the value of CertificateAuthority.
@@ -4789,11 +4508,6 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *CertificateAuthorityReadClientResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetCertificateAuthority sets the value of CertificateAuthority.
 func (s *CertificateAuthorityReadClientResponseEnvelope) SetCertificateAuthority(val CertificateAuthorityClient) {
 	s.CertificateAuthority = val
@@ -4804,9 +4518,6 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) SetCertificateAuthority
 type CertificateAuthorityReadServerResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CertificateAuthority.
 	CertificateAuthority CertificateAuthorityServer `json:"CertificateAuthority"`
 }
@@ -4814,11 +4525,6 @@ type CertificateAuthorityReadServerResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *CertificateAuthorityReadServerResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *CertificateAuthorityReadServerResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCertificateAuthority returns the value of CertificateAuthority.
@@ -4829,11 +4535,6 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) GetCertificateAuthority
 // SetIsOk sets the value of IsOk.
 func (s *CertificateAuthorityReadServerResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *CertificateAuthorityReadServerResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetCertificateAuthority sets the value of CertificateAuthority.
@@ -6778,9 +6479,6 @@ func (s *ConnectedSwitch) SetScope(val OptNilEScope) {
 type ContainerRegistryListUsersResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ContainerRegistry.
 	ContainerRegistry ContainerRegistryUsers `json:"ContainerRegistry"`
 }
@@ -6788,11 +6486,6 @@ type ContainerRegistryListUsersResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ContainerRegistryListUsersResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ContainerRegistryListUsersResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetContainerRegistry returns the value of ContainerRegistry.
@@ -6803,11 +6496,6 @@ func (s *ContainerRegistryListUsersResponseEnvelope) GetContainerRegistry() Cont
 // SetIsOk sets the value of IsOk.
 func (s *ContainerRegistryListUsersResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ContainerRegistryListUsersResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetContainerRegistry sets the value of ContainerRegistry.
@@ -7514,9 +7202,6 @@ func (s *DatabaseBackupHistory) SetSize(val OptNilInt64) {
 type DatabaseCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Appliance.
 	Appliance Database `json:"Appliance"`
 }
@@ -7524,11 +7209,6 @@ type DatabaseCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetAppliance returns the value of Appliance.
@@ -7539,11 +7219,6 @@ func (s *DatabaseCreateResponseEnvelope) GetAppliance() Database {
 // SetIsOk sets the value of IsOk.
 func (s *DatabaseCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DatabaseCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetAppliance sets the value of Appliance.
@@ -7650,9 +7325,6 @@ func (s *DatabaseFindResponseEnvelope) SetAppliances(val []Database) {
 type DatabaseGetParameterResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Database.
 	Database DatabaseParameter `json:"Database"`
 }
@@ -7660,11 +7332,6 @@ type DatabaseGetParameterResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseGetParameterResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseGetParameterResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetDatabase returns the value of Database.
@@ -7675,11 +7342,6 @@ func (s *DatabaseGetParameterResponseEnvelope) GetDatabase() DatabaseParameter {
 // SetIsOk sets the value of IsOk.
 func (s *DatabaseGetParameterResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DatabaseGetParameterResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetDatabase sets the value of Database.
@@ -7755,9 +7417,6 @@ func (s *DatabaseLog) SetSize(val OptNilInt32) {
 type DatabaseMonitorCPUResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7765,11 +7424,6 @@ type DatabaseMonitorCPUResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseMonitorCPUResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseMonitorCPUResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -7782,11 +7436,6 @@ func (s *DatabaseMonitorCPUResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *DatabaseMonitorCPUResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetData sets the value of Data.
 func (s *DatabaseMonitorCPUResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
@@ -7797,9 +7446,6 @@ func (s *DatabaseMonitorCPUResponseEnvelope) SetData(val jx.Raw) {
 type DatabaseMonitorDatabaseResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7807,11 +7453,6 @@ type DatabaseMonitorDatabaseResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseMonitorDatabaseResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseMonitorDatabaseResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -7824,11 +7465,6 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *DatabaseMonitorDatabaseResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetData sets the value of Data.
 func (s *DatabaseMonitorDatabaseResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
@@ -7839,9 +7475,6 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) SetData(val jx.Raw) {
 type DatabaseMonitorDiskResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7849,11 +7482,6 @@ type DatabaseMonitorDiskResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseMonitorDiskResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseMonitorDiskResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -7866,11 +7494,6 @@ func (s *DatabaseMonitorDiskResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *DatabaseMonitorDiskResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetData sets the value of Data.
 func (s *DatabaseMonitorDiskResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
@@ -7881,9 +7504,6 @@ func (s *DatabaseMonitorDiskResponseEnvelope) SetData(val jx.Raw) {
 type DatabaseMonitorInterfaceResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -7891,11 +7511,6 @@ type DatabaseMonitorInterfaceResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseMonitorInterfaceResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseMonitorInterfaceResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -7906,11 +7521,6 @@ func (s *DatabaseMonitorInterfaceResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *DatabaseMonitorInterfaceResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DatabaseMonitorInterfaceResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -8135,9 +7745,6 @@ func (s *DatabaseParameterParameterAttr) init() DatabaseParameterParameterAttr {
 type DatabaseReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Appliance.
 	Appliance Database `json:"Appliance"`
 }
@@ -8145,11 +7752,6 @@ type DatabaseReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetAppliance returns the value of Appliance.
@@ -8160,11 +7762,6 @@ func (s *DatabaseReadResponseEnvelope) GetAppliance() Database {
 // SetIsOk sets the value of IsOk.
 func (s *DatabaseReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DatabaseReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetAppliance sets the value of Appliance.
@@ -8605,9 +8202,6 @@ func (s *DatabaseStatus) SetBackups(val []DatabaseBackupHistory) {
 type DatabaseStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Appliance.
 	Appliance DatabaseStatus `json:"Appliance"`
 }
@@ -8615,11 +8209,6 @@ type DatabaseStatusResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseStatusResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseStatusResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetAppliance returns the value of Appliance.
@@ -8630,11 +8219,6 @@ func (s *DatabaseStatusResponseEnvelope) GetAppliance() DatabaseStatus {
 // SetIsOk sets the value of IsOk.
 func (s *DatabaseStatusResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DatabaseStatusResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetAppliance sets the value of Appliance.
@@ -8673,9 +8257,6 @@ func (s *DatabaseStatusSettingsResponse) SetIsFatal(val bool) {
 type DatabaseUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Appliance.
 	Appliance Database `json:"Appliance"`
 }
@@ -8683,11 +8264,6 @@ type DatabaseUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DatabaseUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DatabaseUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetAppliance returns the value of Appliance.
@@ -8698,11 +8274,6 @@ func (s *DatabaseUpdateResponseEnvelope) GetAppliance() Database {
 // SetIsOk sets the value of IsOk.
 func (s *DatabaseUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DatabaseUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetAppliance sets the value of Appliance.
@@ -9359,9 +8930,6 @@ func (s *DiskCreateRequestEnvelope) SetBootAtAvailable(val OptBool) {
 type DiskCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Disk.
 	Disk Disk `json:"Disk"`
 }
@@ -9369,11 +8937,6 @@ type DiskCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DiskCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DiskCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetDisk returns the value of Disk.
@@ -9384,11 +8947,6 @@ func (s *DiskCreateResponseEnvelope) GetDisk() Disk {
 // SetIsOk sets the value of IsOk.
 func (s *DiskCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DiskCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetDisk sets the value of Disk.
@@ -9776,9 +9334,6 @@ func (s *DiskMonitorRequestEnvelope) SetEnd(val time.Time) {
 type DiskMonitorResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -9786,11 +9341,6 @@ type DiskMonitorResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DiskMonitorResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DiskMonitorResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -9801,11 +9351,6 @@ func (s *DiskMonitorResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *DiskMonitorResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DiskMonitorResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -10020,9 +9565,6 @@ func (s *DiskPlanFindResponseEnvelope) SetDiskPlans(val []DiskPlan) {
 type DiskPlanReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// DiskPlan.
 	DiskPlan DiskPlan `json:"DiskPlan"`
 }
@@ -10030,11 +9572,6 @@ type DiskPlanReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DiskPlanReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DiskPlanReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetDiskPlan returns the value of DiskPlan.
@@ -10045,11 +9582,6 @@ func (s *DiskPlanReadResponseEnvelope) GetDiskPlan() DiskPlan {
 // SetIsOk sets the value of IsOk.
 func (s *DiskPlanReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DiskPlanReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetDiskPlan sets the value of DiskPlan.
@@ -10110,9 +9642,6 @@ func (s *DiskPlanSizeInfo) SetSizeMB(val OptNilInt32) {
 type DiskReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Disk.
 	Disk Disk `json:"Disk"`
 }
@@ -10120,11 +9649,6 @@ type DiskReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DiskReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DiskReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetDisk returns the value of Disk.
@@ -10135,11 +9659,6 @@ func (s *DiskReadResponseEnvelope) GetDisk() Disk {
 // SetIsOk sets the value of IsOk.
 func (s *DiskReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DiskReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetDisk sets the value of Disk.
@@ -10323,9 +9842,6 @@ func (s *DiskUpdateRequestEnvelope) SetDisk(val DiskUpdateRequest) {
 type DiskUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Disk.
 	Disk Disk `json:"Disk"`
 }
@@ -10333,11 +9849,6 @@ type DiskUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *DiskUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *DiskUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetDisk returns the value of Disk.
@@ -10348,11 +9859,6 @@ func (s *DiskUpdateResponseEnvelope) GetDisk() Disk {
 // SetIsOk sets the value of IsOk.
 func (s *DiskUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *DiskUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetDisk sets the value of Disk.
@@ -10573,9 +10079,6 @@ func (s *ESMELogs) SetRetryCount(val OptNilInt32) {
 type ESMELogsResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ESME.
 	ESME ESMELogs `json:"ESME"`
 }
@@ -10583,11 +10086,6 @@ type ESMELogsResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ESMELogsResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ESMELogsResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetESME returns the value of ESME.
@@ -10598,11 +10096,6 @@ func (s *ESMELogsResponseEnvelope) GetESME() ESMELogs {
 // SetIsOk sets the value of IsOk.
 func (s *ESMELogsResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ESMELogsResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetESME sets the value of ESME.
@@ -10717,9 +10210,6 @@ func (s *ESMESendMessageWithGeneratedOTPRequest) SetDomainName(val OptNilString)
 type ESMESendMessageWithGeneratedOTPResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ESME.
 	ESME ESMESendMessageResult `json:"ESME"`
 }
@@ -10727,11 +10217,6 @@ type ESMESendMessageWithGeneratedOTPResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetESME returns the value of ESME.
@@ -10742,11 +10227,6 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) GetESME() ESMESendMess
 // SetIsOk sets the value of IsOk.
 func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetESME sets the value of ESME.
@@ -10807,9 +10287,6 @@ func (s *ESMESendMessageWithInputtedOTPRequest) SetOTP(val OptNilString) {
 type ESMESendMessageWithInputtedOTPResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ESME.
 	ESME ESMESendMessageResult `json:"ESME"`
 }
@@ -10817,11 +10294,6 @@ type ESMESendMessageWithInputtedOTPResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetESME returns the value of ESME.
@@ -10832,11 +10304,6 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) GetESME() ESMESendMessa
 // SetIsOk sets the value of IsOk.
 func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetESME sets the value of ESME.
@@ -10902,9 +10369,6 @@ func (s *EnhancedDBConfig) SetAllowedNetworks(val []string) {
 type EnhancedDBGetConfigResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// EnhancedDB.
 	EnhancedDB EnhancedDBConfig `json:"EnhancedDB"`
 }
@@ -10912,11 +10376,6 @@ type EnhancedDBGetConfigResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *EnhancedDBGetConfigResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *EnhancedDBGetConfigResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetEnhancedDB returns the value of EnhancedDB.
@@ -10927,11 +10386,6 @@ func (s *EnhancedDBGetConfigResponseEnvelope) GetEnhancedDB() EnhancedDBConfig {
 // SetIsOk sets the value of IsOk.
 func (s *EnhancedDBGetConfigResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *EnhancedDBGetConfigResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetEnhancedDB sets the value of EnhancedDB.
@@ -11337,9 +10791,6 @@ func (s *IPAddressListResponseEnvelope) SetIPAddress(val []IPAddress) {
 type IPAddressReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPAddress.
 	IPAddress IPAddress `json:"IPAddress"`
 }
@@ -11347,11 +10798,6 @@ type IPAddressReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IPAddressReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IPAddressReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPAddress returns the value of IPAddress.
@@ -11362,11 +10808,6 @@ func (s *IPAddressReadResponseEnvelope) GetIPAddress() IPAddress {
 // SetIsOk sets the value of IsOk.
 func (s *IPAddressReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IPAddressReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPAddress sets the value of IPAddress.
@@ -11396,9 +10837,6 @@ func (s *IPAddressUpdateHostNameRequestEnvelope) SetIPAddress(val IPAddress) {
 type IPAddressUpdateHostNameResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPAddress.
 	IPAddress IPAddress `json:"IPAddress"`
 }
@@ -11406,11 +10844,6 @@ type IPAddressUpdateHostNameResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IPAddressUpdateHostNameResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IPAddressUpdateHostNameResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPAddress returns the value of IPAddress.
@@ -11421,11 +10854,6 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) GetIPAddress() IPAddress {
 // SetIsOk sets the value of IsOk.
 func (s *IPAddressUpdateHostNameResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IPAddressUpdateHostNameResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPAddress sets the value of IPAddress.
@@ -11540,9 +10968,6 @@ func (s *IPv6AddrCreateRequestEnvelope) SetIPv6Addr(val IPv6AddrCreateRequest) {
 type IPv6AddrCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPv6Addr.
 	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
@@ -11550,11 +10975,6 @@ type IPv6AddrCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IPv6AddrCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IPv6AddrCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
@@ -11565,11 +10985,6 @@ func (s *IPv6AddrCreateResponseEnvelope) GetIPv6Addr() IPv6Addr {
 // SetIsOk sets the value of IsOk.
 func (s *IPv6AddrCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IPv6AddrCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPv6Addr sets the value of IPv6Addr.
@@ -11702,9 +11117,6 @@ func (s *IPv6AddrOpDeleteOK) SetIsOk(val bool) {
 type IPv6AddrReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPv6Addr.
 	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
@@ -11712,11 +11124,6 @@ type IPv6AddrReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IPv6AddrReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IPv6AddrReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
@@ -11727,11 +11134,6 @@ func (s *IPv6AddrReadResponseEnvelope) GetIPv6Addr() IPv6Addr {
 // SetIsOk sets the value of IsOk.
 func (s *IPv6AddrReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IPv6AddrReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPv6Addr sets the value of IPv6Addr.
@@ -11776,9 +11178,6 @@ func (s *IPv6AddrUpdateRequestEnvelope) SetIPv6Addr(val IPv6AddrUpdateRequest) {
 type IPv6AddrUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPv6Addr.
 	IPv6Addr IPv6Addr `json:"IPv6Addr"`
 }
@@ -11786,11 +11185,6 @@ type IPv6AddrUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IPv6AddrUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IPv6AddrUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
@@ -11801,11 +11195,6 @@ func (s *IPv6AddrUpdateResponseEnvelope) GetIPv6Addr() IPv6Addr {
 // SetIsOk sets the value of IsOk.
 func (s *IPv6AddrUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IPv6AddrUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPv6Addr sets the value of IPv6Addr.
@@ -12075,9 +11464,6 @@ func (s *IPv6NetListResponseEnvelope) SetIPv6Nets(val []IPv6Net) {
 type IPv6NetReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPv6Net.
 	IPv6Net IPv6Net `json:"IPv6Net"`
 }
@@ -12085,11 +11471,6 @@ type IPv6NetReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IPv6NetReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IPv6NetReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPv6Net returns the value of IPv6Net.
@@ -12100,11 +11481,6 @@ func (s *IPv6NetReadResponseEnvelope) GetIPv6Net() IPv6Net {
 // SetIsOk sets the value of IsOk.
 func (s *IPv6NetReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IPv6NetReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPv6Net sets the value of IPv6Net.
@@ -12263,9 +11639,6 @@ func (s *IconCreateRequestEnvelope) SetIcon(val IconCreateRequest) {
 type IconCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Icon.
 	Icon Icon `json:"Icon"`
 }
@@ -12273,11 +11646,6 @@ type IconCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IconCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IconCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIcon returns the value of Icon.
@@ -12288,11 +11656,6 @@ func (s *IconCreateResponseEnvelope) GetIcon() Icon {
 // SetIsOk sets the value of IsOk.
 func (s *IconCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IconCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIcon sets the value of Icon.
@@ -12425,9 +11788,6 @@ func (s *IconOpDeleteOK) SetIsOk(val bool) {
 type IconReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Icon.
 	Icon Icon `json:"Icon"`
 }
@@ -12435,11 +11795,6 @@ type IconReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IconReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IconReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIcon returns the value of Icon.
@@ -12450,11 +11805,6 @@ func (s *IconReadResponseEnvelope) GetIcon() Icon {
 // SetIsOk sets the value of IsOk.
 func (s *IconReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IconReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIcon sets the value of Icon.
@@ -12510,9 +11860,6 @@ func (s *IconUpdateRequestEnvelope) SetIcon(val IconUpdateRequest) {
 type IconUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Icon.
 	Icon Icon `json:"Icon"`
 }
@@ -12520,11 +11867,6 @@ type IconUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *IconUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *IconUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIcon returns the value of Icon.
@@ -12535,11 +11877,6 @@ func (s *IconUpdateResponseEnvelope) GetIcon() Icon {
 // SetIsOk sets the value of IsOk.
 func (s *IconUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *IconUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIcon sets the value of Icon.
@@ -12702,9 +12039,6 @@ func (s *InterfaceCreateRequestEnvelope) SetInterface(val InterfaceCreateRequest
 type InterfaceCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Interface.
 	Interface Interface `json:"Interface"`
 }
@@ -12712,11 +12046,6 @@ type InterfaceCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InterfaceCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InterfaceCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInterface returns the value of Interface.
@@ -12727,11 +12056,6 @@ func (s *InterfaceCreateResponseEnvelope) GetInterface() Interface {
 // SetIsOk sets the value of IsOk.
 func (s *InterfaceCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InterfaceCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetInterface sets the value of Interface.
@@ -12879,9 +12203,6 @@ func (s *InterfaceMonitorRequestEnvelope) SetEnd(val time.Time) {
 type InterfaceMonitorResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -12889,11 +12210,6 @@ type InterfaceMonitorResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InterfaceMonitorResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InterfaceMonitorResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -12904,11 +12220,6 @@ func (s *InterfaceMonitorResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *InterfaceMonitorResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InterfaceMonitorResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -12972,9 +12283,6 @@ func (s *InterfaceOpDisconnectFromSwitchOK) SetIsOk(val bool) {
 type InterfaceReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Interface.
 	Interface Interface `json:"Interface"`
 }
@@ -12982,11 +12290,6 @@ type InterfaceReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InterfaceReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InterfaceReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInterface returns the value of Interface.
@@ -12997,11 +12300,6 @@ func (s *InterfaceReadResponseEnvelope) GetInterface() Interface {
 // SetIsOk sets the value of IsOk.
 func (s *InterfaceReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InterfaceReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetInterface sets the value of Interface.
@@ -13072,9 +12370,6 @@ func (s *InterfaceUpdateRequestEnvelope) SetInterface(val InterfaceUpdateRequest
 type InterfaceUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Interface.
 	Interface Interface `json:"Interface"`
 }
@@ -13082,11 +12377,6 @@ type InterfaceUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InterfaceUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InterfaceUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInterface returns the value of Interface.
@@ -13097,11 +12387,6 @@ func (s *InterfaceUpdateResponseEnvelope) GetInterface() Interface {
 // SetIsOk sets the value of IsOk.
 func (s *InterfaceUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InterfaceUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetInterface sets the value of Interface.
@@ -13478,9 +12763,6 @@ func (s *InternetAddSubnetRequestEnvelope) SetNextHop(val string) {
 type InternetAddSubnetResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Subnet.
 	Subnet Subnet `json:"Subnet"`
 }
@@ -13488,11 +12770,6 @@ type InternetAddSubnetResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetAddSubnetResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetAddSubnetResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSubnet returns the value of Subnet.
@@ -13503,11 +12780,6 @@ func (s *InternetAddSubnetResponseEnvelope) GetSubnet() Subnet {
 // SetIsOk sets the value of IsOk.
 func (s *InternetAddSubnetResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetAddSubnetResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSubnet sets the value of Subnet.
@@ -13607,9 +12879,6 @@ func (s *InternetCreateRequestEnvelope) SetInternet(val InternetCreateRequest) {
 type InternetCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -13617,11 +12886,6 @@ type InternetCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInternet returns the value of Internet.
@@ -13634,11 +12898,6 @@ func (s *InternetCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *InternetCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetInternet sets the value of Internet.
 func (s *InternetCreateResponseEnvelope) SetInternet(val Internet) {
 	s.Internet = val
@@ -13649,9 +12908,6 @@ func (s *InternetCreateResponseEnvelope) SetInternet(val Internet) {
 type InternetEnableIPv6ResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// IPv6Net.
 	IPv6Net IPv6Net `json:"IPv6Net"`
 }
@@ -13659,11 +12915,6 @@ type InternetEnableIPv6ResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetEnableIPv6ResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetEnableIPv6ResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetIPv6Net returns the value of IPv6Net.
@@ -13674,11 +12925,6 @@ func (s *InternetEnableIPv6ResponseEnvelope) GetIPv6Net() IPv6Net {
 // SetIsOk sets the value of IsOk.
 func (s *InternetEnableIPv6ResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetEnableIPv6ResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetIPv6Net sets the value of IPv6Net.
@@ -13885,9 +13131,6 @@ func (s *InternetMonitorRequestEnvelope) SetEnd(val time.Time) {
 type InternetMonitorResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -13895,11 +13138,6 @@ type InternetMonitorResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetMonitorResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetMonitorResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -13910,11 +13148,6 @@ func (s *InternetMonitorResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *InternetMonitorResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetMonitorResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -14123,9 +13356,6 @@ func (s *InternetPlanFindResponseEnvelope) SetInternetPlans(val []InternetPlan) 
 type InternetPlanReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// InternetPlan.
 	InternetPlan InternetPlan `json:"InternetPlan"`
 }
@@ -14133,11 +13363,6 @@ type InternetPlanReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetPlanReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetPlanReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInternetPlan returns the value of InternetPlan.
@@ -14150,11 +13375,6 @@ func (s *InternetPlanReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *InternetPlanReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetInternetPlan sets the value of InternetPlan.
 func (s *InternetPlanReadResponseEnvelope) SetInternetPlan(val InternetPlan) {
 	s.InternetPlan = val
@@ -14165,9 +13385,6 @@ func (s *InternetPlanReadResponseEnvelope) SetInternetPlan(val InternetPlan) {
 type InternetReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -14175,11 +13392,6 @@ type InternetReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInternet returns the value of Internet.
@@ -14190,11 +13402,6 @@ func (s *InternetReadResponseEnvelope) GetInternet() Internet {
 // SetIsOk sets the value of IsOk.
 func (s *InternetReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetInternet sets the value of Internet.
@@ -14309,9 +13516,6 @@ func (s *InternetUpdateBandWidthRequestEnvelope) SetInternet(val InternetUpdateB
 type InternetUpdateBandWidthResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -14319,11 +13523,6 @@ type InternetUpdateBandWidthResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetUpdateBandWidthResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetUpdateBandWidthResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInternet returns the value of Internet.
@@ -14334,11 +13533,6 @@ func (s *InternetUpdateBandWidthResponseEnvelope) GetInternet() Internet {
 // SetIsOk sets the value of IsOk.
 func (s *InternetUpdateBandWidthResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetUpdateBandWidthResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetInternet sets the value of Internet.
@@ -14416,9 +13610,6 @@ func (s *InternetUpdateRequestEnvelope) SetInternet(val InternetUpdateRequest) {
 type InternetUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Internet.
 	Internet Internet `json:"Internet"`
 }
@@ -14426,11 +13617,6 @@ type InternetUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetInternet returns the value of Internet.
@@ -14441,11 +13627,6 @@ func (s *InternetUpdateResponseEnvelope) GetInternet() Internet {
 // SetIsOk sets the value of IsOk.
 func (s *InternetUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetInternet sets the value of Internet.
@@ -14475,9 +13656,6 @@ func (s *InternetUpdateSubnetRequestEnvelope) SetNextHop(val string) {
 type InternetUpdateSubnetResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Subnet.
 	Subnet Subnet `json:"Subnet"`
 }
@@ -14485,11 +13663,6 @@ type InternetUpdateSubnetResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *InternetUpdateSubnetResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *InternetUpdateSubnetResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSubnet returns the value of Subnet.
@@ -14500,11 +13673,6 @@ func (s *InternetUpdateSubnetResponseEnvelope) GetSubnet() Subnet {
 // SetIsOk sets the value of IsOk.
 func (s *InternetUpdateSubnetResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *InternetUpdateSubnetResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSubnet sets the value of Subnet.
@@ -14682,9 +13850,6 @@ func (s *LicenseCreateRequestEnvelope) SetLicense(val LicenseCreateRequest) {
 type LicenseCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// License.
 	License License `json:"License"`
 }
@@ -14692,11 +13857,6 @@ type LicenseCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *LicenseCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *LicenseCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetLicense returns the value of License.
@@ -14707,11 +13867,6 @@ func (s *LicenseCreateResponseEnvelope) GetLicense() License {
 // SetIsOk sets the value of IsOk.
 func (s *LicenseCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *LicenseCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetLicense sets the value of License.
@@ -14995,9 +14150,6 @@ func (s *LicenseInfoFindResponseEnvelope) SetLicenseInfo(val []LicenseInfo) {
 type LicenseInfoReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// LicenseInfo.
 	LicenseInfo LicenseInfo `json:"LicenseInfo"`
 }
@@ -15005,11 +14157,6 @@ type LicenseInfoReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *LicenseInfoReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *LicenseInfoReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetLicenseInfo returns the value of LicenseInfo.
@@ -15020,11 +14167,6 @@ func (s *LicenseInfoReadResponseEnvelope) GetLicenseInfo() LicenseInfo {
 // SetIsOk sets the value of IsOk.
 func (s *LicenseInfoReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *LicenseInfoReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetLicenseInfo sets the value of LicenseInfo.
@@ -15077,9 +14219,6 @@ func (s *LicenseOpDeleteOK) SetIsOk(val bool) {
 type LicenseReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// License.
 	License License `json:"License"`
 }
@@ -15087,11 +14226,6 @@ type LicenseReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *LicenseReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *LicenseReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetLicense returns the value of License.
@@ -15102,11 +14236,6 @@ func (s *LicenseReadResponseEnvelope) GetLicense() License {
 // SetIsOk sets the value of IsOk.
 func (s *LicenseReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *LicenseReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetLicense sets the value of License.
@@ -15151,9 +14280,6 @@ func (s *LicenseUpdateRequestEnvelope) SetLicense(val LicenseUpdateRequest) {
 type LicenseUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// License.
 	License License `json:"License"`
 }
@@ -15161,11 +14287,6 @@ type LicenseUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *LicenseUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *LicenseUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetLicense returns the value of License.
@@ -15176,11 +14297,6 @@ func (s *LicenseUpdateResponseEnvelope) GetLicense() License {
 // SetIsOk sets the value of IsOk.
 func (s *LicenseUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *LicenseUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetLicense sets the value of License.
@@ -15245,9 +14361,6 @@ func (s *LocalRouterHealthPeer) SetRoutes(val []string) {
 type LocalRouterHealthStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// LocalRouter.
 	LocalRouter LocalRouterHealth `json:"LocalRouter"`
 }
@@ -15255,11 +14368,6 @@ type LocalRouterHealthStatusResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *LocalRouterHealthStatusResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *LocalRouterHealthStatusResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetLocalRouter returns the value of LocalRouter.
@@ -15270,11 +14378,6 @@ func (s *LocalRouterHealthStatusResponseEnvelope) GetLocalRouter() LocalRouterHe
 // SetIsOk sets the value of IsOk.
 func (s *LocalRouterHealthStatusResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *LocalRouterHealthStatusResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetLocalRouter sets the value of LocalRouter.
@@ -15335,9 +14438,6 @@ func (s *LocalRouterInterface) SetVRID(val int32) {
 type LocalRouterMonitorLocalRouterResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -15345,11 +14445,6 @@ type LocalRouterMonitorLocalRouterResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *LocalRouterMonitorLocalRouterResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *LocalRouterMonitorLocalRouterResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -15360,11 +14455,6 @@ func (s *LocalRouterMonitorLocalRouterResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *LocalRouterMonitorLocalRouterResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *LocalRouterMonitorLocalRouterResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -15543,9 +14633,6 @@ func (s *MobileGatewayDNSSetting) SetDNS2(val OptNilString) {
 type MobileGatewayGetDNSResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SIMGroup.
 	SIMGroup MobileGatewayDNSSetting `json:"SIMGroup"`
 }
@@ -15553,11 +14640,6 @@ type MobileGatewayGetDNSResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayGetDNSResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayGetDNSResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSIMGroup returns the value of SIMGroup.
@@ -15570,11 +14652,6 @@ func (s *MobileGatewayGetDNSResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayGetDNSResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetSIMGroup sets the value of SIMGroup.
 func (s *MobileGatewayGetDNSResponseEnvelope) SetSIMGroup(val MobileGatewayDNSSetting) {
 	s.SIMGroup = val
@@ -15585,9 +14662,6 @@ func (s *MobileGatewayGetDNSResponseEnvelope) SetSIMGroup(val MobileGatewayDNSSe
 type MobileGatewayGetSIMRoutesResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SIMRoutes.
 	SIMRoutes []MobileGatewaySIMRoute `json:"SIMRoutes"`
 }
@@ -15595,11 +14669,6 @@ type MobileGatewayGetSIMRoutesResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayGetSIMRoutesResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayGetSIMRoutesResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSIMRoutes returns the value of SIMRoutes.
@@ -15612,11 +14681,6 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetSIMRoutes sets the value of SIMRoutes.
 func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetSIMRoutes(val []MobileGatewaySIMRoute) {
 	s.SIMRoutes = val
@@ -15627,9 +14691,6 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) SetSIMRoutes(val []MobileGat
 type MobileGatewayGetTrafficConfigResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// TrafficMonitoring.
 	TrafficMonitoring MobileGatewayTrafficControl `json:"TrafficMonitoring"`
 }
@@ -15637,11 +14698,6 @@ type MobileGatewayGetTrafficConfigResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayGetTrafficConfigResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayGetTrafficConfigResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetTrafficMonitoring returns the value of TrafficMonitoring.
@@ -15654,11 +14710,6 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetTrafficMonitoring sets the value of TrafficMonitoring.
 func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetTrafficMonitoring(val MobileGatewayTrafficControl) {
 	s.TrafficMonitoring = val
@@ -15669,9 +14720,6 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) SetTrafficMonitoring(val
 type MobileGatewayListSIMResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SIM.
 	SIM []SIMInfo `json:"SIM"`
 }
@@ -15679,11 +14727,6 @@ type MobileGatewayListSIMResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayListSIMResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayListSIMResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSIM returns the value of SIM.
@@ -15696,11 +14739,6 @@ func (s *MobileGatewayListSIMResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayListSIMResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetSIM sets the value of SIM.
 func (s *MobileGatewayListSIMResponseEnvelope) SetSIM(val []SIMInfo) {
 	s.SIM = val
@@ -15711,9 +14749,6 @@ func (s *MobileGatewayListSIMResponseEnvelope) SetSIM(val []SIMInfo) {
 type MobileGatewayLogsResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Logs.
 	Logs []SIMLog `json:"Logs"`
 }
@@ -15721,11 +14756,6 @@ type MobileGatewayLogsResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayLogsResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayLogsResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetLogs returns the value of Logs.
@@ -15738,11 +14768,6 @@ func (s *MobileGatewayLogsResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayLogsResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetLogs sets the value of Logs.
 func (s *MobileGatewayLogsResponseEnvelope) SetLogs(val []SIMLog) {
 	s.Logs = val
@@ -15753,9 +14778,6 @@ func (s *MobileGatewayLogsResponseEnvelope) SetLogs(val []SIMLog) {
 type MobileGatewayMonitorInterfaceResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -15763,11 +14785,6 @@ type MobileGatewayMonitorInterfaceResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayMonitorInterfaceResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayMonitorInterfaceResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -15778,11 +14795,6 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -16108,9 +15120,6 @@ func (s *MobileGatewayTrafficStatus) SetTrafficShaping(val bool) {
 type MobileGatewayTrafficStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// TrafficStatus.
 	TrafficStatus MobileGatewayTrafficStatus `json:"TrafficStatus"`
 }
@@ -16118,11 +15127,6 @@ type MobileGatewayTrafficStatusResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *MobileGatewayTrafficStatusResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *MobileGatewayTrafficStatusResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetTrafficStatus returns the value of TrafficStatus.
@@ -16133,11 +15137,6 @@ func (s *MobileGatewayTrafficStatusResponseEnvelope) GetTrafficStatus() MobileGa
 // SetIsOk sets the value of IsOk.
 func (s *MobileGatewayTrafficStatusResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *MobileGatewayTrafficStatusResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetTrafficStatus sets the value of TrafficStatus.
@@ -16407,9 +15406,6 @@ func (s *NoteCreateRequestEnvelope) SetNote(val NoteCreateRequest) {
 type NoteCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Note.
 	Note Note `json:"Note"`
 }
@@ -16417,11 +15413,6 @@ type NoteCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *NoteCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *NoteCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetNote returns the value of Note.
@@ -16432,11 +15423,6 @@ func (s *NoteCreateResponseEnvelope) GetNote() Note {
 // SetIsOk sets the value of IsOk.
 func (s *NoteCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *NoteCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetNote sets the value of Note.
@@ -16569,9 +15555,6 @@ func (s *NoteOpDeleteOK) SetIsOk(val bool) {
 type NoteReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Note.
 	Note Note `json:"Note"`
 }
@@ -16579,11 +15562,6 @@ type NoteReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *NoteReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *NoteReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetNote returns the value of Note.
@@ -16594,11 +15572,6 @@ func (s *NoteReadResponseEnvelope) GetNote() Note {
 // SetIsOk sets the value of IsOk.
 func (s *NoteReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *NoteReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetNote sets the value of Note.
@@ -16687,9 +15660,6 @@ func (s *NoteUpdateRequestEnvelope) SetNote(val NoteUpdateRequest) {
 type NoteUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Note.
 	Note Note `json:"Note"`
 }
@@ -16697,11 +15667,6 @@ type NoteUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *NoteUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *NoteUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetNote returns the value of Note.
@@ -16712,11 +15677,6 @@ func (s *NoteUpdateResponseEnvelope) GetNote() Note {
 // SetIsOk sets the value of IsOk.
 func (s *NoteUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *NoteUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetNote sets the value of Note.
@@ -25282,9 +24242,6 @@ func (s *PacketFilterCreateRequestEnvelope) SetPacketFilter(val PacketFilterCrea
 type PacketFilterCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PacketFilter.
 	PacketFilter PacketFilter `json:"PacketFilter"`
 }
@@ -25292,11 +24249,6 @@ type PacketFilterCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PacketFilterCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PacketFilterCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPacketFilter returns the value of PacketFilter.
@@ -25307,11 +24259,6 @@ func (s *PacketFilterCreateResponseEnvelope) GetPacketFilter() PacketFilter {
 // SetIsOk sets the value of IsOk.
 func (s *PacketFilterCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *PacketFilterCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetPacketFilter sets the value of PacketFilter.
@@ -25514,9 +24461,6 @@ func (s *PacketFilterOpDeleteOK) SetIsOk(val bool) {
 type PacketFilterReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PacketFilter.
 	PacketFilter PacketFilter `json:"PacketFilter"`
 }
@@ -25524,11 +24468,6 @@ type PacketFilterReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PacketFilterReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PacketFilterReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPacketFilter returns the value of PacketFilter.
@@ -25539,11 +24478,6 @@ func (s *PacketFilterReadResponseEnvelope) GetPacketFilter() PacketFilter {
 // SetIsOk sets the value of IsOk.
 func (s *PacketFilterReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *PacketFilterReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetPacketFilter sets the value of PacketFilter.
@@ -25622,9 +24556,6 @@ func (s *PacketFilterUpdateRequestEnvelope) SetOriginalExpressionHash(val string
 type PacketFilterUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PacketFilter.
 	PacketFilter PacketFilter `json:"PacketFilter"`
 }
@@ -25632,11 +24563,6 @@ type PacketFilterUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PacketFilterUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PacketFilterUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPacketFilter returns the value of PacketFilter.
@@ -25647,11 +24573,6 @@ func (s *PacketFilterUpdateResponseEnvelope) GetPacketFilter() PacketFilter {
 // SetIsOk sets the value of IsOk.
 func (s *PacketFilterUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *PacketFilterUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetPacketFilter sets the value of PacketFilter.
@@ -26002,9 +24923,6 @@ func (s *PrivateHostCreateRequestEnvelope) SetTargetDedicatedStorageContract(val
 type PrivateHostCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PrivateHost.
 	PrivateHost PrivateHost `json:"PrivateHost"`
 }
@@ -26012,11 +24930,6 @@ type PrivateHostCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PrivateHostCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PrivateHostCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPrivateHost returns the value of PrivateHost.
@@ -26027,11 +24940,6 @@ func (s *PrivateHostCreateResponseEnvelope) GetPrivateHost() PrivateHost {
 // SetIsOk sets the value of IsOk.
 func (s *PrivateHostCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *PrivateHostCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetPrivateHost sets the value of PrivateHost.
@@ -26377,9 +25285,6 @@ func (s *PrivateHostPlanFindResponseEnvelope) SetPrivateHostPlans(val []PrivateH
 type PrivateHostPlanReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PrivateHostPlan.
 	PrivateHostPlan PrivateHostPlan `json:"PrivateHostPlan"`
 }
@@ -26387,11 +25292,6 @@ type PrivateHostPlanReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PrivateHostPlanReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PrivateHostPlanReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPrivateHostPlan returns the value of PrivateHostPlan.
@@ -26404,11 +25304,6 @@ func (s *PrivateHostPlanReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *PrivateHostPlanReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetPrivateHostPlan sets the value of PrivateHostPlan.
 func (s *PrivateHostPlanReadResponseEnvelope) SetPrivateHostPlan(val PrivateHostPlan) {
 	s.PrivateHostPlan = val
@@ -26419,9 +25314,6 @@ func (s *PrivateHostPlanReadResponseEnvelope) SetPrivateHostPlan(val PrivateHost
 type PrivateHostReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PrivateHost.
 	PrivateHost PrivateHost `json:"PrivateHost"`
 }
@@ -26429,11 +25321,6 @@ type PrivateHostReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PrivateHostReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PrivateHostReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPrivateHost returns the value of PrivateHost.
@@ -26444,11 +25331,6 @@ func (s *PrivateHostReadResponseEnvelope) GetPrivateHost() PrivateHost {
 // SetIsOk sets the value of IsOk.
 func (s *PrivateHostReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *PrivateHostReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetPrivateHost sets the value of PrivateHost.
@@ -26526,9 +25408,6 @@ func (s *PrivateHostUpdateRequestEnvelope) SetPrivateHost(val PrivateHostUpdateR
 type PrivateHostUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// PrivateHost.
 	PrivateHost PrivateHost `json:"PrivateHost"`
 }
@@ -26536,11 +25415,6 @@ type PrivateHostUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *PrivateHostUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *PrivateHostUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetPrivateHost returns the value of PrivateHost.
@@ -26551,11 +25425,6 @@ func (s *PrivateHostUpdateResponseEnvelope) GetPrivateHost() PrivateHost {
 // SetIsOk sets the value of IsOk.
 func (s *PrivateHostUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *PrivateHostUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetPrivateHost sets the value of PrivateHost.
@@ -27071,9 +25940,6 @@ func (s *ProxyLBChangePlanRequest) SetServiceClass(val OptNilString) {
 type ProxyLBChangePlanResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// CommonServiceItem.
 	CommonServiceItem ProxyLB `json:"CommonServiceItem"`
 }
@@ -27081,11 +25947,6 @@ type ProxyLBChangePlanResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ProxyLBChangePlanResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ProxyLBChangePlanResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetCommonServiceItem returns the value of CommonServiceItem.
@@ -27098,11 +25959,6 @@ func (s *ProxyLBChangePlanResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *ProxyLBChangePlanResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetCommonServiceItem sets the value of CommonServiceItem.
 func (s *ProxyLBChangePlanResponseEnvelope) SetCommonServiceItem(val ProxyLB) {
 	s.CommonServiceItem = val
@@ -27113,9 +25969,6 @@ func (s *ProxyLBChangePlanResponseEnvelope) SetCommonServiceItem(val ProxyLB) {
 type ProxyLBGetCertificatesResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ProxyLB.
 	ProxyLB ProxyLBCertificates `json:"ProxyLB"`
 }
@@ -27123,11 +25976,6 @@ type ProxyLBGetCertificatesResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ProxyLBGetCertificatesResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ProxyLBGetCertificatesResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetProxyLB returns the value of ProxyLB.
@@ -27138,11 +25986,6 @@ func (s *ProxyLBGetCertificatesResponseEnvelope) GetProxyLB() ProxyLBCertificate
 // SetIsOk sets the value of IsOk.
 func (s *ProxyLBGetCertificatesResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ProxyLBGetCertificatesResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetProxyLB sets the value of ProxyLB.
@@ -27218,9 +26061,6 @@ func (s *ProxyLBHealthCheck) SetDelayLoop(val int32) {
 type ProxyLBMonitorConnectionResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -27228,11 +26068,6 @@ type ProxyLBMonitorConnectionResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ProxyLBMonitorConnectionResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ProxyLBMonitorConnectionResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -27243,11 +26078,6 @@ func (s *ProxyLBMonitorConnectionResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *ProxyLBMonitorConnectionResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ProxyLBMonitorConnectionResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -27673,9 +26503,6 @@ func (s *ProxyLBSetCertificatesRequest) SetAdditionalCerts(val []ProxyLBAddition
 type ProxyLBSetCertificatesResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ProxyLB.
 	ProxyLB ProxyLBCertificates `json:"ProxyLB"`
 }
@@ -27683,11 +26510,6 @@ type ProxyLBSetCertificatesResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ProxyLBSetCertificatesResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ProxyLBSetCertificatesResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetProxyLB returns the value of ProxyLB.
@@ -27698,11 +26520,6 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) GetProxyLB() ProxyLBCertificate
 // SetIsOk sets the value of IsOk.
 func (s *ProxyLBSetCertificatesResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ProxyLBSetCertificatesResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetProxyLB sets the value of ProxyLB.
@@ -28021,9 +26838,6 @@ func (s *RegionFindResponseEnvelope) SetRegions(val []Region) {
 type RegionReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Region.
 	Region Region `json:"Region"`
 }
@@ -28031,11 +26845,6 @@ type RegionReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *RegionReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *RegionReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetRegion returns the value of Region.
@@ -28046,11 +26855,6 @@ func (s *RegionReadResponseEnvelope) GetRegion() Region {
 // SetIsOk sets the value of IsOk.
 func (s *RegionReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *RegionReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetRegion sets the value of Region.
@@ -28093,9 +26897,6 @@ func (s *SIMAssignIPRequest) SetIP(val string) {
 type SIMGetNetworkOperatorResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// NetworkOperationConfigs.
 	NetworkOperationConfigs []SIMNetworkOperatorConfig `json:"NetworkOperationConfigs"`
 }
@@ -28103,11 +26904,6 @@ type SIMGetNetworkOperatorResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SIMGetNetworkOperatorResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SIMGetNetworkOperatorResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetNetworkOperationConfigs returns the value of NetworkOperationConfigs.
@@ -28118,11 +26914,6 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) GetNetworkOperationConfigs() []S
 // SetIsOk sets the value of IsOk.
 func (s *SIMGetNetworkOperatorResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SIMGetNetworkOperatorResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetNetworkOperationConfigs sets the value of NetworkOperationConfigs.
@@ -28431,9 +27222,6 @@ func (s *SIMLogsResponseEnvelope) SetLogs(val []SIMLog) {
 type SIMMonitorSIMResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -28441,11 +27229,6 @@ type SIMMonitorSIMResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SIMMonitorSIMResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SIMMonitorSIMResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -28456,11 +27239,6 @@ func (s *SIMMonitorSIMResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *SIMMonitorSIMResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SIMMonitorSIMResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -28609,9 +27387,6 @@ func (s *SIMOpSetNetworkOperatorReq) SetConfigs(val []SIMNetworkOperatorConfig) 
 type SIMStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SIM.
 	SIM SIMInfo `json:"SIM"`
 }
@@ -28619,11 +27394,6 @@ type SIMStatusResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SIMStatusResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SIMStatusResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSIM returns the value of SIM.
@@ -28634,11 +27404,6 @@ func (s *SIMStatusResponseEnvelope) GetSIM() SIMInfo {
 // SetIsOk sets the value of IsOk.
 func (s *SIMStatusResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SIMStatusResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSIM sets the value of SIM.
@@ -28801,9 +27566,6 @@ func (s *SSHKeyCreateRequestEnvelope) SetSSHKey(val SSHKeyCreateRequest) {
 type SSHKeyCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SSHKey.
 	SSHKey SSHKey `json:"SSHKey"`
 }
@@ -28811,11 +27573,6 @@ type SSHKeyCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SSHKeyCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SSHKeyCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSSHKey returns the value of SSHKey.
@@ -28826,11 +27583,6 @@ func (s *SSHKeyCreateResponseEnvelope) GetSSHKey() SSHKey {
 // SetIsOk sets the value of IsOk.
 func (s *SSHKeyCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SSHKeyCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSSHKey sets the value of SSHKey.
@@ -28963,9 +27715,6 @@ func (s *SSHKeyOpDeleteOK) SetIsOk(val bool) {
 type SSHKeyReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SSHKey.
 	SSHKey SSHKey `json:"SSHKey"`
 }
@@ -28973,11 +27722,6 @@ type SSHKeyReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SSHKeyReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SSHKeyReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSSHKey returns the value of SSHKey.
@@ -28988,11 +27732,6 @@ func (s *SSHKeyReadResponseEnvelope) GetSSHKey() SSHKey {
 // SetIsOk sets the value of IsOk.
 func (s *SSHKeyReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SSHKeyReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSSHKey sets the value of SSHKey.
@@ -29048,9 +27787,6 @@ func (s *SSHKeyUpdateRequestEnvelope) SetSSHKey(val SSHKeyUpdateRequest) {
 type SSHKeyUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SSHKey.
 	SSHKey SSHKey `json:"SSHKey"`
 }
@@ -29058,11 +27794,6 @@ type SSHKeyUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SSHKeyUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SSHKeyUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSSHKey returns the value of SSHKey.
@@ -29073,11 +27804,6 @@ func (s *SSHKeyUpdateResponseEnvelope) GetSSHKey() SSHKey {
 // SetIsOk sets the value of IsOk.
 func (s *SSHKeyUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SSHKeyUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSSHKey sets the value of SSHKey.
@@ -29450,9 +28176,6 @@ func (s *ServerChangePlanRequestEnvelope) SetCommitment(val ECommitment) {
 type ServerChangePlanResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -29460,11 +28183,6 @@ type ServerChangePlanResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerChangePlanResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerChangePlanResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetServer returns the value of Server.
@@ -29475,11 +28193,6 @@ func (s *ServerChangePlanResponseEnvelope) GetServer() Server {
 // SetIsOk sets the value of IsOk.
 func (s *ServerChangePlanResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerChangePlanResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetServer sets the value of Server.
@@ -29818,9 +28531,6 @@ func (s *ServerCreateRequestServerPlan) SetConfidentialVM(val bool) {
 type ServerCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -29828,11 +28538,6 @@ type ServerCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetServer returns the value of Server.
@@ -29843,11 +28548,6 @@ func (s *ServerCreateResponseEnvelope) GetServer() Server {
 // SetIsOk sets the value of IsOk.
 func (s *ServerCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetServer sets the value of Server.
@@ -30000,9 +28700,6 @@ func (s *ServerFindResponseEnvelope) SetServers(val []Server) {
 type ServerGetVNCProxyResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// VNCProxyInfo.
 	VNCProxyInfo VNCProxyInfo `json:"VNCProxyInfo"`
 }
@@ -30010,11 +28707,6 @@ type ServerGetVNCProxyResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerGetVNCProxyResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerGetVNCProxyResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetVNCProxyInfo returns the value of VNCProxyInfo.
@@ -30025,11 +28717,6 @@ func (s *ServerGetVNCProxyResponseEnvelope) GetVNCProxyInfo() VNCProxyInfo {
 // SetIsOk sets the value of IsOk.
 func (s *ServerGetVNCProxyResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerGetVNCProxyResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetVNCProxyInfo sets the value of VNCProxyInfo.
@@ -30147,9 +28834,6 @@ func (s *ServerMonitorRequestEnvelope) SetEnd(val time.Time) {
 type ServerMonitorResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -30157,11 +28841,6 @@ type ServerMonitorResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerMonitorResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerMonitorResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -30172,11 +28851,6 @@ func (s *ServerMonitorResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *ServerMonitorResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerMonitorResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -30477,9 +29151,6 @@ func (s *ServerPlanFindResponseEnvelope) SetServerPlans(val []ServerPlan) {
 type ServerPlanReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// ServerPlan.
 	ServerPlan ServerPlan `json:"ServerPlan"`
 }
@@ -30487,11 +29158,6 @@ type ServerPlanReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerPlanReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerPlanReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetServerPlan returns the value of ServerPlan.
@@ -30502,11 +29168,6 @@ func (s *ServerPlanReadResponseEnvelope) GetServerPlan() ServerPlan {
 // SetIsOk sets the value of IsOk.
 func (s *ServerPlanReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerPlanReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetServerPlan sets the value of ServerPlan.
@@ -30545,9 +29206,6 @@ func (s *ServerPrivateHost) SetName(val OptNilString) {
 type ServerReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -30555,11 +29213,6 @@ type ServerReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetServer returns the value of Server.
@@ -30570,11 +29223,6 @@ func (s *ServerReadResponseEnvelope) GetServer() Server {
 // SetIsOk sets the value of IsOk.
 func (s *ServerReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetServer sets the value of Server.
@@ -30834,9 +29482,6 @@ func (s *ServerUpdateRequestEnvelope) SetServer(val ServerUpdateRequest) {
 type ServerUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Server.
 	Server Server `json:"Server"`
 }
@@ -30844,11 +29489,6 @@ type ServerUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ServerUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ServerUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetServer returns the value of Server.
@@ -30859,11 +29499,6 @@ func (s *ServerUpdateResponseEnvelope) GetServer() Server {
 // SetIsOk sets the value of IsOk.
 func (s *ServerUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ServerUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetServer sets the value of Server.
@@ -31269,9 +29904,6 @@ func (s *SimpleMonitorHealthCheck) SetVerifySNI(val string) {
 type SimpleMonitorMonitorResponseTimeResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Data.
 	Data jx.Raw `json:"Data"`
 }
@@ -31279,11 +29911,6 @@ type SimpleMonitorMonitorResponseTimeResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetData returns the value of Data.
@@ -31294,11 +29921,6 @@ func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) GetData() jx.Raw {
 // SetIsOk sets the value of IsOk.
 func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetData sets the value of Data.
@@ -31351,9 +29973,6 @@ func (s *SimpleNotificationDestinationStatus) SetModifiedAt(val OptNilDateTime) 
 type SimpleNotificationDestinationStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// SimpleNotificationDestination.
 	SimpleNotificationDestination SimpleNotificationDestinationStatus `json:"SimpleNotificationDestination"`
 }
@@ -31361,11 +29980,6 @@ type SimpleNotificationDestinationStatusResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSimpleNotificationDestination returns the value of SimpleNotificationDestination.
@@ -31378,11 +29992,6 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetIsOk(val bool) 
 	s.IsOk = val
 }
 
-// SetSuccess sets the value of Success.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
-}
-
 // SetSimpleNotificationDestination sets the value of SimpleNotificationDestination.
 func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetSimpleNotificationDestination(val SimpleNotificationDestinationStatus) {
 	s.SimpleNotificationDestination = val
@@ -31393,9 +30002,6 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetSimpleNotificat
 type SimpleNotificationGroupHistoryResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// NotificationHistories.
 	NotificationHistories SimpleNotificationHistories `json:"NotificationHistories"`
 }
@@ -31403,11 +30009,6 @@ type SimpleNotificationGroupHistoryResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SimpleNotificationGroupHistoryResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SimpleNotificationGroupHistoryResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetNotificationHistories returns the value of NotificationHistories.
@@ -31418,11 +30019,6 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) GetNotificationHistorie
 // SetIsOk sets the value of IsOk.
 func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetNotificationHistories sets the value of NotificationHistories.
@@ -32019,9 +30615,6 @@ func (s *SubnetIPAddress) SetIPAddress(val OptNilString) {
 type SubnetReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Subnet.
 	Subnet Subnet `json:"Subnet"`
 }
@@ -32029,11 +30622,6 @@ type SubnetReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SubnetReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SubnetReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSubnet returns the value of Subnet.
@@ -32044,11 +30632,6 @@ func (s *SubnetReadResponseEnvelope) GetSubnet() Subnet {
 // SetIsOk sets the value of IsOk.
 func (s *SubnetReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SubnetReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSubnet sets the value of Subnet.
@@ -32310,9 +30893,6 @@ func (s *SwitchCreateRequestUserSubnet) SetDefaultRoute(val string) {
 type SwitchCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Switch.
 	Switch Switch `json:"Switch"`
 }
@@ -32320,11 +30900,6 @@ type SwitchCreateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SwitchCreateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SwitchCreateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSwitch returns the value of Switch.
@@ -32335,11 +30910,6 @@ func (s *SwitchCreateResponseEnvelope) GetSwitch() Switch {
 // SetIsOk sets the value of IsOk.
 func (s *SwitchCreateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SwitchCreateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSwitch sets the value of Switch.
@@ -32623,9 +31193,6 @@ func (s *SwitchOpDisconnectFromBridgeOK) SetIsOk(val bool) {
 type SwitchReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Switch.
 	Switch Switch `json:"Switch"`
 }
@@ -32633,11 +31200,6 @@ type SwitchReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SwitchReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SwitchReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSwitch returns the value of Switch.
@@ -32648,11 +31210,6 @@ func (s *SwitchReadResponseEnvelope) GetSwitch() Switch {
 // SetIsOk sets the value of IsOk.
 func (s *SwitchReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SwitchReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSwitch sets the value of Switch.
@@ -32885,9 +31442,6 @@ func (s *SwitchUpdateRequestUserSubnet) SetDefaultRoute(val string) {
 type SwitchUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Switch.
 	Switch Switch `json:"Switch"`
 }
@@ -32895,11 +31449,6 @@ type SwitchUpdateResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *SwitchUpdateResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *SwitchUpdateResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetSwitch returns the value of Switch.
@@ -32910,11 +31459,6 @@ func (s *SwitchUpdateResponseEnvelope) GetSwitch() Switch {
 // SetIsOk sets the value of IsOk.
 func (s *SwitchUpdateResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *SwitchUpdateResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetSwitch sets the value of Switch.
@@ -33064,9 +31608,6 @@ func (s *VPCRouterLog) SetLog(val string) {
 type VPCRouterLogsResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// VPCRouter.
 	VPCRouter VPCRouterLog `json:"VPCRouter"`
 }
@@ -33074,11 +31615,6 @@ type VPCRouterLogsResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *VPCRouterLogsResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *VPCRouterLogsResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetVPCRouter returns the value of VPCRouter.
@@ -33089,11 +31625,6 @@ func (s *VPCRouterLogsResponseEnvelope) GetVPCRouter() VPCRouterLog {
 // SetIsOk sets the value of IsOk.
 func (s *VPCRouterLogsResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *VPCRouterLogsResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetVPCRouter sets the value of VPCRouter.
@@ -33123,9 +31654,6 @@ func (s *VPCRouterOpDisconnectFromSwitchOK) SetIsOk(val bool) {
 type VPCRouterPingResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// VPCRouter.
 	VPCRouter VPCRouterPingResults `json:"VPCRouter"`
 }
@@ -33133,11 +31661,6 @@ type VPCRouterPingResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *VPCRouterPingResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *VPCRouterPingResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetVPCRouter returns the value of VPCRouter.
@@ -33148,11 +31671,6 @@ func (s *VPCRouterPingResponseEnvelope) GetVPCRouter() VPCRouterPingResults {
 // SetIsOk sets the value of IsOk.
 func (s *VPCRouterPingResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *VPCRouterPingResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetVPCRouter sets the value of VPCRouter.
@@ -33459,9 +31977,6 @@ func (s *ZoneInfo) SetRegion(val OptNilRegion) {
 type ZoneReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// API のレスポンス状態。多くのオペレーションでは boolean (true/false)
-	// が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で "Created"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で "Accepted"。成功判定には is_ok を用いること。.
-	Success jx.Raw `json:"Success"`
 	// Zone.
 	Zone Zone `json:"Zone"`
 }
@@ -33469,11 +31984,6 @@ type ZoneReadResponseEnvelope struct {
 // GetIsOk returns the value of IsOk.
 func (s *ZoneReadResponseEnvelope) GetIsOk() bool {
 	return s.IsOk
-}
-
-// GetSuccess returns the value of Success.
-func (s *ZoneReadResponseEnvelope) GetSuccess() jx.Raw {
-	return s.Success
 }
 
 // GetZone returns the value of Zone.
@@ -33484,11 +31994,6 @@ func (s *ZoneReadResponseEnvelope) GetZone() Zone {
 // SetIsOk sets the value of IsOk.
 func (s *ZoneReadResponseEnvelope) SetIsOk(val bool) {
 	s.IsOk = val
-}
-
-// SetSuccess sets the value of Success.
-func (s *ZoneReadResponseEnvelope) SetSuccess(val jx.Raw) {
-	s.Success = val
 }
 
 // SetZone sets the value of Zone.

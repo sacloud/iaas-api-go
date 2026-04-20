@@ -198,18 +198,19 @@ spec/typespec/
 
 ### レスポンスエンベロープの共通フィールド
 
-公式マニュアルは「インターフェース種別ごとにレスポンス形式が決まっている」と規定しているが、**実 API は仕様より多くのフィールドを返してくる**（特に POST で `Success` も含む）。v2 TypeSpec は実態に合わせている。
+公式マニュアルは「インターフェース種別ごとにレスポンス形式が決まっている」と規定しているが、**実 API は仕様より多くのフィールドを返してくる**（特に POST で `Success` も含む）。v2 TypeSpec は downstream コンシューマが実際に利用するフィールドのみに絞る方針。
 
 | インターフェース | 仕様上の形（公式）| 実 API で返るフィールド | v2 TypeSpec の扱い |
 |---|---|---|---|
 | Find | `{Total, From, Count, <Resource>s}` | 同左 | `Total/From/Count` を常に出力、`<Resource>s` を list で |
 | Get（read） | `{is_ok, <Resource>}` | 同左 | `is_ok: boolean`, `<Resource>` |
-| POST（create） | `{is_ok, ...}` | `{is_ok, Success, <Resource>}` が実測で返る | `is_ok: boolean`, `Success?: unknown`, `<Resource>` |
-| PUT（update） | `{Success}` | `{is_ok, Success, <Resource>}` が実測で返る | `is_ok: boolean`, `Success?: unknown`, `<Resource>` |
-| DELETE | `{Success, is_ok}` | 同左（`is_ok` のみの op もあり） | `{is_ok: boolean}` のみにしている |
+| POST（create） | `{is_ok, ...}` | `{is_ok, Success, <Resource>}` が実測で返る | `is_ok: boolean`, `<Resource>`（`Success` は未定義） |
+| PUT（update） | `{Success}` | `{is_ok, Success, <Resource>}` が実測で返る | `is_ok: boolean`, `<Resource>`（`Success` は未定義） |
+| DELETE | `{Success, is_ok}` | 同左（`is_ok` のみの op もあり） | `{is_ok: boolean}` のみ |
 
-**Success の型について**（重要）:
-公式仕様は「Success は boolean 限定」と明記しているが、**実 API は文字列も返す**（例: Disk create で `"Success":"Created"`、appliance 系で `"Success":"Accepted"`）。v1 は `types.APIResult` が `UnmarshalJSON` で bool/string 両対応しているが、v2 は TypeSpec が oneOf を使わない方針（このドキュメント冒頭参照）のため **`Success?: unknown` (ogen 上は `jx.Raw`)** にしている。利用者は基本 `is_ok` で成功判定すべき。
+**Success フィールドを TypeSpec から除外している件**:
+実 API はほぼ全オペレーションで `Success` を返すが、型が不安定（boolean のほか `"Created"` / `"Accepted"` などの文字列も返る — 公式仕様は boolean 限定と書きつつ実態は異なる）。一方で terraform-provider-sakuracloud（v2）・terraform-provider-sakura（v3）・usacloud を全 grep した結果、`Success` を読んでいる箇所は 0 件。v1 の `zz_envelopes.go` も定義だけで reader は無く、`types.APIResult` も `UnmarshalJSON` を実装しているが呼び元なし。
+よって「downstream が利用しないフィールドは TypeSpec に載せない」ルール（上記）に従い v2 TypeSpec では `Success` を定義していない。実 API のレスポンス JSON に `Success` キーが含まれていても ogen の decoder は未知フィールドを読み飛ばすため decode は失敗しない。成功判定は `is_ok` を用いる。
 
 ### リクエストエンベロープの型
 
