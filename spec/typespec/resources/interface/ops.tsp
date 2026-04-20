@@ -56,7 +56,10 @@ interface InterfaceOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/shared")
-  connectToSharedSegment(@path zone: string, @path id: string): void | ApiError;
+  connectToSharedSegment(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}")
@@ -64,7 +67,10 @@ interface InterfaceOp {
     @path zone: string,
     @path id: string,
     @path switchID: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
@@ -79,7 +85,10 @@ interface InterfaceOp {
     @path zone: string,
     @path id: string,
     @path packetFilterID: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter")

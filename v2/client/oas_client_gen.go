@@ -24,11 +24,11 @@ type Invoker interface {
 	// ApplianceOpBoot invokes ApplianceOp_boot operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/power
-	ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) error
+	ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (*ApplianceOpBootOK, error)
 	// ApplianceOpConfig invokes ApplianceOp_config operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/config
-	ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) error
+	ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (*ApplianceOpConfigOK, error)
 	// ApplianceOpCreate invokes ApplianceOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/appliance
@@ -64,7 +64,7 @@ type Invoker interface {
 	// ApplianceOpReset invokes ApplianceOp_reset operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/reset
-	ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) error
+	ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (*ApplianceOpResetOK, error)
 	// ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
@@ -116,11 +116,11 @@ type Invoker interface {
 	// AutoScaleOpScaleDown invokes AutoScaleOp_scaleDown operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down
-	AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) error
+	AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (*AutoScaleOpScaleDownOK, error)
 	// AutoScaleOpScaleUp invokes AutoScaleOp_scaleUp operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up
-	AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) error
+	AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (*AutoScaleOpScaleUpOK, error)
 	// AutoScaleOpStatus invokes AutoScaleOp_status operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status
@@ -208,7 +208,7 @@ type Invoker interface {
 	// CertificateAuthorityOpDenyClient invokes CertificateAuthorityOp_denyClient operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
-	CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) error
+	CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (*CertificateAuthorityOpDenyClientOK, error)
 	// CertificateAuthorityOpDetail invokes CertificateAuthorityOp_detail operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority
@@ -216,11 +216,11 @@ type Invoker interface {
 	// CertificateAuthorityOpHoldClient invokes CertificateAuthorityOp_holdClient operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
-	CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) error
+	CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (*CertificateAuthorityOpHoldClientOK, error)
 	// CertificateAuthorityOpHoldServer invokes CertificateAuthorityOp_holdServer operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
-	CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) error
+	CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (*CertificateAuthorityOpHoldServerOK, error)
 	// CertificateAuthorityOpListClients invokes CertificateAuthorityOp_listClients operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
@@ -240,19 +240,19 @@ type Invoker interface {
 	// CertificateAuthorityOpResumeClient invokes CertificateAuthorityOp_resumeClient operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
-	CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) error
+	CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (*CertificateAuthorityOpResumeClientOK, error)
 	// CertificateAuthorityOpResumeServer invokes CertificateAuthorityOp_resumeServer operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
-	CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) error
+	CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (*CertificateAuthorityOpResumeServerOK, error)
 	// CertificateAuthorityOpRevokeClient invokes CertificateAuthorityOp_revokeClient operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
-	CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) error
+	CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (*CertificateAuthorityOpRevokeClientOK, error)
 	// CertificateAuthorityOpRevokeServer invokes CertificateAuthorityOp_revokeServer operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
-	CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) error
+	CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (*CertificateAuthorityOpRevokeServerOK, error)
 	// CommonServiceItemOpCreate invokes CommonServiceItemOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem
@@ -280,7 +280,7 @@ type Invoker interface {
 	// ContainerRegistryOpAddUser invokes ContainerRegistryOp_addUser operation.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
-	ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) error
+	ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (*ContainerRegistryOpAddUserOK, error)
 	// ContainerRegistryOpDeleteUser invokes ContainerRegistryOp_deleteUser operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
@@ -292,7 +292,7 @@ type Invoker interface {
 	// ContainerRegistryOpUpdateUser invokes ContainerRegistryOp_updateUser operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
-	ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) error
+	ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (*ContainerRegistryOpUpdateUserOK, error)
 	// CouponOpFind invokes CouponOp_find operation.
 	//
 	// GET /{zone}/api/system/1.0/coupon/{accountID}
@@ -308,15 +308,15 @@ type Invoker interface {
 	// DatabaseOpSetParameter invokes DatabaseOp_setParameter operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
-	DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) error
+	DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (*DatabaseOpSetParameterOK, error)
 	// DiskOpConfig invokes DiskOp_config operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/config
-	DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) error
+	DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (*DiskOpConfigOK, error)
 	// DiskOpConnectToServer invokes DiskOp_connectToServer operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
-	DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) error
+	DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (*DiskOpConnectToServerOK, error)
 	// DiskOpCreate invokes DiskOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/disk
@@ -344,7 +344,7 @@ type Invoker interface {
 	// DiskOpResizePartition invokes DiskOp_resizePartition operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
-	DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) error
+	DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (*DiskOpResizePartitionOK, error)
 	// DiskOpUpdate invokes DiskOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}
@@ -376,11 +376,11 @@ type Invoker interface {
 	// EnhancedDBOpSetConfig invokes EnhancedDBOp_setConfig operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
-	EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) error
+	EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (*EnhancedDBOpSetConfigOK, error)
 	// EnhancedDBOpSetPassword invokes EnhancedDBOp_setPassword operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password
-	EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) error
+	EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (*EnhancedDBOpSetPasswordOK, error)
 	// IPAddressOpList invokes IPAddressOp_list operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipaddress
@@ -444,15 +444,15 @@ type Invoker interface {
 	// InterfaceOpConnectToPacketFilter invokes InterfaceOp_connectToPacketFilter operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
-	InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) error
+	InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (*InterfaceOpConnectToPacketFilterOK, error)
 	// InterfaceOpConnectToSharedSegment invokes InterfaceOp_connectToSharedSegment operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/shared
-	InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) error
+	InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (*InterfaceOpConnectToSharedSegmentOK, error)
 	// InterfaceOpConnectToSwitch invokes InterfaceOp_connectToSwitch operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}
-	InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) error
+	InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (*InterfaceOpConnectToSwitchOK, error)
 	// InterfaceOpCreate invokes InterfaceOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/interface
@@ -576,11 +576,11 @@ type Invoker interface {
 	// MobileGatewayOpAddSIM invokes MobileGatewayOp_addSIM operation.
 	//
 	// POST /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
-	MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) error
+	MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (*MobileGatewayOpAddSIMOK, error)
 	// MobileGatewayOpConnectToSwitch invokes MobileGatewayOp_connectToSwitch operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}
-	MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) error
+	MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (*MobileGatewayOpConnectToSwitchOK, error)
 	// MobileGatewayOpDeleteSIM invokes MobileGatewayOp_deleteSIM operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
@@ -616,15 +616,15 @@ type Invoker interface {
 	// MobileGatewayOpSetDNS invokes MobileGatewayOp_setDNS operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
-	MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) error
+	MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (*MobileGatewayOpSetDNSOK, error)
 	// MobileGatewayOpSetSIMRoutes invokes MobileGatewayOp_setSIMRoutes operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
-	MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) error
+	MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (*MobileGatewayOpSetSIMRoutesOK, error)
 	// MobileGatewayOpSetTrafficConfig invokes MobileGatewayOp_setTrafficConfig operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
-	MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) error
+	MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (*MobileGatewayOpSetTrafficConfigOK, error)
 	// MobileGatewayOpTrafficStatus invokes MobileGatewayOp_trafficStatus operation.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status
@@ -716,7 +716,7 @@ type Invoker interface {
 	// ProxyLBOpRenewLetsEncryptCert invokes ProxyLBOp_renewLetsEncryptCert operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew
-	ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) error
+	ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (*ProxyLBOpRenewLetsEncryptCertOK, error)
 	// ProxyLBOpSetCertificates invokes ProxyLBOp_setCertificates operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
@@ -732,11 +732,11 @@ type Invoker interface {
 	// SIMOpActivate invokes SIMOp_activate operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate
-	SIMOpActivate(ctx context.Context, params SIMOpActivateParams) error
+	SIMOpActivate(ctx context.Context, params SIMOpActivateParams) (*SIMOpActivateOK, error)
 	// SIMOpAssignIP invokes SIMOp_assignIP operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
-	SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) error
+	SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (*SIMOpAssignIPOK, error)
 	// SIMOpClearIP invokes SIMOp_clearIP operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
@@ -744,7 +744,7 @@ type Invoker interface {
 	// SIMOpDeactivate invokes SIMOp_deactivate operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
-	SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) error
+	SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (*SIMOpDeactivateOK, error)
 	// SIMOpGetNetworkOperator invokes SIMOp_getNetworkOperator operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
@@ -752,7 +752,7 @@ type Invoker interface {
 	// SIMOpImeiLock invokes SIMOp_imeiLock operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
-	SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) error
+	SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (*SIMOpImeiLockOK, error)
 	// SIMOpImeiUnlock invokes SIMOp_imeiUnlock operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
@@ -768,7 +768,7 @@ type Invoker interface {
 	// SIMOpSetNetworkOperator invokes SIMOp_setNetworkOperator operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
-	SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) error
+	SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error)
 	// SIMOpStatus invokes SIMOp_status operation.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status
@@ -796,7 +796,7 @@ type Invoker interface {
 	// ServerOpBoot invokes ServerOp_boot operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/power
-	ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) error
+	ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (*ServerOpBootOK, error)
 	// ServerOpChangePlan invokes ServerOp_changePlan operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/plan
@@ -824,7 +824,7 @@ type Invoker interface {
 	// ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
-	ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) error
+	ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (*ServerOpInsertCDROMOK, error)
 	// ServerOpMonitor invokes ServerOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/monitor
@@ -836,15 +836,15 @@ type Invoker interface {
 	// ServerOpReset invokes ServerOp_reset operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/reset
-	ServerOpReset(ctx context.Context, params ServerOpResetParams) error
+	ServerOpReset(ctx context.Context, params ServerOpResetParams) (*ServerOpResetOK, error)
 	// ServerOpSendKey invokes ServerOp_sendKey operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
-	ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) error
+	ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (*ServerOpSendKeyOK, error)
 	// ServerOpSendNMI invokes ServerOp_sendNMI operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
-	ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) error
+	ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (*ServerOpSendNMIOK, error)
 	// ServerOpShutdown invokes ServerOp_shutdown operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/power
@@ -880,7 +880,7 @@ type Invoker interface {
 	// SimpleNotificationGroupOpPostMessage invokes SimpleNotificationGroupOp_postMessage operation.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message
-	SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) error
+	SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (*SimpleNotificationGroupOpPostMessageOK, error)
 	// SubnetOpFind invokes SubnetOp_find operation.
 	//
 	// GET /{zone}/api/cloud/1.1/subnet
@@ -892,7 +892,7 @@ type Invoker interface {
 	// SwitchOpConnectToBridge invokes SwitchOp_connectToBridge operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}
-	SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) error
+	SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (*SwitchOpConnectToBridgeOK, error)
 	// SwitchOpCreate invokes SwitchOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/switch
@@ -924,7 +924,7 @@ type Invoker interface {
 	// VPCRouterOpConnectToSwitch invokes VPCRouterOp_connectToSwitch operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
-	VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) error
+	VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (*VPCRouterOpConnectToSwitchOK, error)
 	// VPCRouterOpDisconnectFromSwitch invokes VPCRouterOp_disconnectFromSwitch operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
@@ -991,12 +991,12 @@ func (c *Client) requestURL(ctx context.Context) *url.URL {
 // ApplianceOpBoot invokes ApplianceOp_boot operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/power
-func (c *Client) ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) error {
-	_, err := c.sendApplianceOpBoot(ctx, params)
-	return err
+func (c *Client) ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (*ApplianceOpBootOK, error) {
+	res, err := c.sendApplianceOpBoot(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (res *ApplianceOpBootNoContent, err error) {
+func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (res *ApplianceOpBootOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -1097,12 +1097,12 @@ func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBoot
 // ApplianceOpConfig invokes ApplianceOp_config operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/config
-func (c *Client) ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) error {
-	_, err := c.sendApplianceOpConfig(ctx, params)
-	return err
+func (c *Client) ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (*ApplianceOpConfigOK, error) {
+	res, err := c.sendApplianceOpConfig(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (res *ApplianceOpConfigNoContent, err error) {
+func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (res *ApplianceOpConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -2054,12 +2054,12 @@ func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpRead
 // ApplianceOpReset invokes ApplianceOp_reset operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/reset
-func (c *Client) ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) error {
-	_, err := c.sendApplianceOpReset(ctx, params)
-	return err
+func (c *Client) ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (*ApplianceOpResetOK, error) {
+	res, err := c.sendApplianceOpReset(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (res *ApplianceOpResetNoContent, err error) {
+func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (res *ApplianceOpResetOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -3446,12 +3446,12 @@ func (c *Client) sendAuthStatusOpRead(ctx context.Context, params AuthStatusOpRe
 // AutoScaleOpScaleDown invokes AutoScaleOp_scaleDown operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down
-func (c *Client) AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) error {
-	_, err := c.sendAutoScaleOpScaleDown(ctx, params)
-	return err
+func (c *Client) AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (*AutoScaleOpScaleDownOK, error) {
+	res, err := c.sendAutoScaleOpScaleDown(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (res *AutoScaleOpScaleDownNoContent, err error) {
+func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (res *AutoScaleOpScaleDownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -3552,12 +3552,12 @@ func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleO
 // AutoScaleOpScaleUp invokes AutoScaleOp_scaleUp operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up
-func (c *Client) AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) error {
-	_, err := c.sendAutoScaleOpScaleUp(ctx, params)
-	return err
+func (c *Client) AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (*AutoScaleOpScaleUpOK, error) {
+	res, err := c.sendAutoScaleOpScaleUp(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (res *AutoScaleOpScaleUpNoContent, err error) {
+func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (res *AutoScaleOpScaleUpOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -5955,12 +5955,12 @@ func (c *Client) sendCertificateAuthorityOpAddServer(ctx context.Context, reques
 // CertificateAuthorityOpDenyClient invokes CertificateAuthorityOp_denyClient operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
-func (c *Client) CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) error {
-	_, err := c.sendCertificateAuthorityOpDenyClient(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (*CertificateAuthorityOpDenyClientOK, error) {
+	res, err := c.sendCertificateAuthorityOpDenyClient(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (res *CertificateAuthorityOpDenyClientNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (res *CertificateAuthorityOpDenyClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -6186,12 +6186,12 @@ func (c *Client) sendCertificateAuthorityOpDetail(ctx context.Context, params Ce
 // CertificateAuthorityOpHoldClient invokes CertificateAuthorityOp_holdClient operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
-func (c *Client) CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) error {
-	_, err := c.sendCertificateAuthorityOpHoldClient(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (*CertificateAuthorityOpHoldClientOK, error) {
+	res, err := c.sendCertificateAuthorityOpHoldClient(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (res *CertificateAuthorityOpHoldClientNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (res *CertificateAuthorityOpHoldClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -6311,12 +6311,12 @@ func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, param
 // CertificateAuthorityOpHoldServer invokes CertificateAuthorityOp_holdServer operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
-func (c *Client) CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) error {
-	_, err := c.sendCertificateAuthorityOpHoldServer(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (*CertificateAuthorityOpHoldServerOK, error) {
+	res, err := c.sendCertificateAuthorityOpHoldServer(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (res *CertificateAuthorityOpHoldServerNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (res *CertificateAuthorityOpHoldServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -6896,12 +6896,12 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 // CertificateAuthorityOpResumeClient invokes CertificateAuthorityOp_resumeClient operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
-func (c *Client) CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) error {
-	_, err := c.sendCertificateAuthorityOpResumeClient(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (*CertificateAuthorityOpResumeClientOK, error) {
+	res, err := c.sendCertificateAuthorityOpResumeClient(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (res *CertificateAuthorityOpResumeClientNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (res *CertificateAuthorityOpResumeClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -7021,12 +7021,12 @@ func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, par
 // CertificateAuthorityOpResumeServer invokes CertificateAuthorityOp_resumeServer operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
-func (c *Client) CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) error {
-	_, err := c.sendCertificateAuthorityOpResumeServer(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (*CertificateAuthorityOpResumeServerOK, error) {
+	res, err := c.sendCertificateAuthorityOpResumeServer(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (res *CertificateAuthorityOpResumeServerNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (res *CertificateAuthorityOpResumeServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -7146,12 +7146,12 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 // CertificateAuthorityOpRevokeClient invokes CertificateAuthorityOp_revokeClient operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
-func (c *Client) CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) error {
-	_, err := c.sendCertificateAuthorityOpRevokeClient(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (*CertificateAuthorityOpRevokeClientOK, error) {
+	res, err := c.sendCertificateAuthorityOpRevokeClient(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (res *CertificateAuthorityOpRevokeClientNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (res *CertificateAuthorityOpRevokeClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -7271,12 +7271,12 @@ func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, par
 // CertificateAuthorityOpRevokeServer invokes CertificateAuthorityOp_revokeServer operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
-func (c *Client) CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) error {
-	_, err := c.sendCertificateAuthorityOpRevokeServer(ctx, params)
-	return err
+func (c *Client) CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (*CertificateAuthorityOpRevokeServerOK, error) {
+	res, err := c.sendCertificateAuthorityOpRevokeServer(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (res *CertificateAuthorityOpRevokeServerNoContent, err error) {
+func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (res *CertificateAuthorityOpRevokeServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [7]string
@@ -8018,12 +8018,12 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 // ContainerRegistryOpAddUser invokes ContainerRegistryOp_addUser operation.
 //
 // POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
-func (c *Client) ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) error {
-	_, err := c.sendContainerRegistryOpAddUser(ctx, request, params)
-	return err
+func (c *Client) ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (*ContainerRegistryOpAddUserOK, error) {
+	res, err := c.sendContainerRegistryOpAddUser(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (res *ContainerRegistryOpAddUserNoContent, err error) {
+func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (res *ContainerRegistryOpAddUserOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -8357,12 +8357,12 @@ func (c *Client) sendContainerRegistryOpListUsers(ctx context.Context, params Co
 // ContainerRegistryOpUpdateUser invokes ContainerRegistryOp_updateUser operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
-func (c *Client) ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) error {
-	_, err := c.sendContainerRegistryOpUpdateUser(ctx, request, params)
-	return err
+func (c *Client) ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (*ContainerRegistryOpUpdateUserOK, error) {
+	res, err := c.sendContainerRegistryOpUpdateUser(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (res *ContainerRegistryOpUpdateUserNoContent, err error) {
+func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (res *ContainerRegistryOpUpdateUserOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -8804,12 +8804,12 @@ func (c *Client) sendDatabaseOpMonitorDisk(ctx context.Context, request *Databas
 // DatabaseOpSetParameter invokes DatabaseOp_setParameter operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
-func (c *Client) DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) error {
-	_, err := c.sendDatabaseOpSetParameter(ctx, request, params)
-	return err
+func (c *Client) DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (*DatabaseOpSetParameterOK, error) {
+	res, err := c.sendDatabaseOpSetParameter(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (res *DatabaseOpSetParameterNoContent, err error) {
+func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (res *DatabaseOpSetParameterOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -8913,12 +8913,12 @@ func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *Databa
 // DiskOpConfig invokes DiskOp_config operation.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/config
-func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) error {
-	_, err := c.sendDiskOpConfig(ctx, request, params)
-	return err
+func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (*DiskOpConfigOK, error) {
+	res, err := c.sendDiskOpConfig(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (res *DiskOpConfigNoContent, err error) {
+func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (res *DiskOpConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -9022,12 +9022,12 @@ func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigReques
 // DiskOpConnectToServer invokes DiskOp_connectToServer operation.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
-func (c *Client) DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) error {
-	_, err := c.sendDiskOpConnectToServer(ctx, params)
-	return err
+func (c *Client) DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (*DiskOpConnectToServerOK, error) {
+	res, err := c.sendDiskOpConnectToServer(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (res *DiskOpConnectToServerNoContent, err error) {
+func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (res *DiskOpConnectToServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -9760,12 +9760,12 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 // DiskOpResizePartition invokes DiskOp_resizePartition operation.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
-func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) error {
-	_, err := c.sendDiskOpResizePartition(ctx, request, params)
-	return err
+func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (*DiskOpResizePartitionOK, error) {
+	res, err := c.sendDiskOpResizePartition(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (res *DiskOpResizePartitionNoContent, err error) {
+func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (res *DiskOpResizePartitionOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -10611,12 +10611,12 @@ func (c *Client) sendEnhancedDBOpGetConfig(ctx context.Context, params EnhancedD
 // EnhancedDBOpSetConfig invokes EnhancedDBOp_setConfig operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
-func (c *Client) EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) error {
-	_, err := c.sendEnhancedDBOpSetConfig(ctx, request, params)
-	return err
+func (c *Client) EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (*EnhancedDBOpSetConfigOK, error) {
+	res, err := c.sendEnhancedDBOpSetConfig(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (res *EnhancedDBOpSetConfigNoContent, err error) {
+func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (res *EnhancedDBOpSetConfigOK, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -10729,12 +10729,12 @@ func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *Enhance
 // EnhancedDBOpSetPassword invokes EnhancedDBOp_setPassword operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password
-func (c *Client) EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) error {
-	_, err := c.sendEnhancedDBOpSetPassword(ctx, request, params)
-	return err
+func (c *Client) EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (*EnhancedDBOpSetPasswordOK, error) {
+	res, err := c.sendEnhancedDBOpSetPassword(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (res *EnhancedDBOpSetPasswordNoContent, err error) {
+func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (res *EnhancedDBOpSetPasswordOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -12347,12 +12347,12 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateReques
 // InterfaceOpConnectToPacketFilter invokes InterfaceOp_connectToPacketFilter operation.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
-func (c *Client) InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) error {
-	_, err := c.sendInterfaceOpConnectToPacketFilter(ctx, params)
-	return err
+func (c *Client) InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (*InterfaceOpConnectToPacketFilterOK, error) {
+	res, err := c.sendInterfaceOpConnectToPacketFilter(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (res *InterfaceOpConnectToPacketFilterNoContent, err error) {
+func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (res *InterfaceOpConnectToPacketFilterOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -12471,12 +12471,12 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 // InterfaceOpConnectToSharedSegment invokes InterfaceOp_connectToSharedSegment operation.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/shared
-func (c *Client) InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) error {
-	_, err := c.sendInterfaceOpConnectToSharedSegment(ctx, params)
-	return err
+func (c *Client) InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (*InterfaceOpConnectToSharedSegmentOK, error) {
+	res, err := c.sendInterfaceOpConnectToSharedSegment(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (res *InterfaceOpConnectToSharedSegmentNoContent, err error) {
+func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (res *InterfaceOpConnectToSharedSegmentOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -12577,12 +12577,12 @@ func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, para
 // InterfaceOpConnectToSwitch invokes InterfaceOp_connectToSwitch operation.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}
-func (c *Client) InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) error {
-	_, err := c.sendInterfaceOpConnectToSwitch(ctx, params)
-	return err
+func (c *Client) InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (*InterfaceOpConnectToSwitchOK, error) {
+	res, err := c.sendInterfaceOpConnectToSwitch(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (res *InterfaceOpConnectToSwitchNoContent, err error) {
+func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (res *InterfaceOpConnectToSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -15841,12 +15841,12 @@ func (c *Client) sendLocalRouterOpMonitorLocalRouter(ctx context.Context, reques
 // MobileGatewayOpAddSIM invokes MobileGatewayOp_addSIM operation.
 //
 // POST /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
-func (c *Client) MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) error {
-	_, err := c.sendMobileGatewayOpAddSIM(ctx, request, params)
-	return err
+func (c *Client) MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (*MobileGatewayOpAddSIMOK, error) {
+	res, err := c.sendMobileGatewayOpAddSIM(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (res *MobileGatewayOpAddSIMNoContent, err error) {
+func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (res *MobileGatewayOpAddSIMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -15950,12 +15950,12 @@ func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileG
 // MobileGatewayOpConnectToSwitch invokes MobileGatewayOp_connectToSwitch operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}
-func (c *Client) MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) error {
-	_, err := c.sendMobileGatewayOpConnectToSwitch(ctx, params)
-	return err
+func (c *Client) MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (*MobileGatewayOpConnectToSwitchOK, error) {
+	res, err := c.sendMobileGatewayOpConnectToSwitch(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (res *MobileGatewayOpConnectToSwitchNoContent, err error) {
+func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (res *MobileGatewayOpConnectToSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -16940,12 +16940,12 @@ func (c *Client) sendMobileGatewayOpLogs(ctx context.Context, params MobileGatew
 // MobileGatewayOpSetDNS invokes MobileGatewayOp_setDNS operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
-func (c *Client) MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) error {
-	_, err := c.sendMobileGatewayOpSetDNS(ctx, request, params)
-	return err
+func (c *Client) MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (*MobileGatewayOpSetDNSOK, error) {
+	res, err := c.sendMobileGatewayOpSetDNS(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (res *MobileGatewayOpSetDNSNoContent, err error) {
+func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (res *MobileGatewayOpSetDNSOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -17049,12 +17049,12 @@ func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileG
 // MobileGatewayOpSetSIMRoutes invokes MobileGatewayOp_setSIMRoutes operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
-func (c *Client) MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) error {
-	_, err := c.sendMobileGatewayOpSetSIMRoutes(ctx, request, params)
-	return err
+func (c *Client) MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (*MobileGatewayOpSetSIMRoutesOK, error) {
+	res, err := c.sendMobileGatewayOpSetSIMRoutes(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (res *MobileGatewayOpSetSIMRoutesNoContent, err error) {
+func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (res *MobileGatewayOpSetSIMRoutesOK, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -17167,12 +17167,12 @@ func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *M
 // MobileGatewayOpSetTrafficConfig invokes MobileGatewayOp_setTrafficConfig operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
-func (c *Client) MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) error {
-	_, err := c.sendMobileGatewayOpSetTrafficConfig(ctx, request, params)
-	return err
+func (c *Client) MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (*MobileGatewayOpSetTrafficConfigOK, error) {
+	res, err := c.sendMobileGatewayOpSetTrafficConfig(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (res *MobileGatewayOpSetTrafficConfigNoContent, err error) {
+func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (res *MobileGatewayOpSetTrafficConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -19555,12 +19555,12 @@ func (c *Client) sendProxyLBOpMonitorConnection(ctx context.Context, request *Pr
 // ProxyLBOpRenewLetsEncryptCert invokes ProxyLBOp_renewLetsEncryptCert operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew
-func (c *Client) ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) error {
-	_, err := c.sendProxyLBOpRenewLetsEncryptCert(ctx, params)
-	return err
+func (c *Client) ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (*ProxyLBOpRenewLetsEncryptCertOK, error) {
+	res, err := c.sendProxyLBOpRenewLetsEncryptCert(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (res *ProxyLBOpRenewLetsEncryptCertNoContent, err error) {
+func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (res *ProxyLBOpRenewLetsEncryptCertOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -19974,12 +19974,12 @@ func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams
 // SIMOpActivate invokes SIMOp_activate operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate
-func (c *Client) SIMOpActivate(ctx context.Context, params SIMOpActivateParams) error {
-	_, err := c.sendSIMOpActivate(ctx, params)
-	return err
+func (c *Client) SIMOpActivate(ctx context.Context, params SIMOpActivateParams) (*SIMOpActivateOK, error) {
+	res, err := c.sendSIMOpActivate(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivateParams) (res *SIMOpActivateNoContent, err error) {
+func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivateParams) (res *SIMOpActivateOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -20080,12 +20080,12 @@ func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivatePara
 // SIMOpAssignIP invokes SIMOp_assignIP operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
-func (c *Client) SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) error {
-	_, err := c.sendSIMOpAssignIP(ctx, request, params)
-	return err
+func (c *Client) SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (*SIMOpAssignIPOK, error) {
+	res, err := c.sendSIMOpAssignIP(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (res *SIMOpAssignIPNoContent, err error) {
+func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (res *SIMOpAssignIPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -20295,12 +20295,12 @@ func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams
 // SIMOpDeactivate invokes SIMOp_deactivate operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
-func (c *Client) SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) error {
-	_, err := c.sendSIMOpDeactivate(ctx, params)
-	return err
+func (c *Client) SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (*SIMOpDeactivateOK, error) {
+	res, err := c.sendSIMOpDeactivate(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (res *SIMOpDeactivateNoContent, err error) {
+func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (res *SIMOpDeactivateOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -20507,12 +20507,12 @@ func (c *Client) sendSIMOpGetNetworkOperator(ctx context.Context, params SIMOpGe
 // SIMOpImeiLock invokes SIMOp_imeiLock operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
-func (c *Client) SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) error {
-	_, err := c.sendSIMOpImeiLock(ctx, request, params)
-	return err
+func (c *Client) SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (*SIMOpImeiLockOK, error) {
+	res, err := c.sendSIMOpImeiLock(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (res *SIMOpImeiLockNoContent, err error) {
+func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (res *SIMOpImeiLockOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -20937,12 +20937,12 @@ func (c *Client) sendSIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorS
 // SIMOpSetNetworkOperator invokes SIMOp_setNetworkOperator operation.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
-func (c *Client) SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) error {
-	_, err := c.sendSIMOpSetNetworkOperator(ctx, request, params)
-	return err
+func (c *Client) SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error) {
+	res, err := c.sendSIMOpSetNetworkOperator(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (res *SIMOpSetNetworkOperatorNoContent, err error) {
+func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (res *SIMOpSetNetworkOperatorOK, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -21659,12 +21659,12 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRe
 // ServerOpBoot invokes ServerOp_boot operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/power
-func (c *Client) ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) error {
-	_, err := c.sendServerOpBoot(ctx, request, params)
-	return err
+func (c *Client) ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (*ServerOpBootOK, error) {
+	res, err := c.sendServerOpBoot(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (res *ServerOpBootNoContent, err error) {
+func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (res *ServerOpBootOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -22389,12 +22389,12 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 // ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
-func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) error {
-	_, err := c.sendServerOpInsertCDROM(ctx, request, params)
-	return err
+func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (*ServerOpInsertCDROMOK, error) {
+	res, err := c.sendServerOpInsertCDROM(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (res *ServerOpInsertCDROMNoContent, err error) {
+func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (res *ServerOpInsertCDROMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -22712,12 +22712,12 @@ func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams
 // ServerOpReset invokes ServerOp_reset operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/reset
-func (c *Client) ServerOpReset(ctx context.Context, params ServerOpResetParams) error {
-	_, err := c.sendServerOpReset(ctx, params)
-	return err
+func (c *Client) ServerOpReset(ctx context.Context, params ServerOpResetParams) (*ServerOpResetOK, error) {
+	res, err := c.sendServerOpReset(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetParams) (res *ServerOpResetNoContent, err error) {
+func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetParams) (res *ServerOpResetOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -22818,12 +22818,12 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 // ServerOpSendKey invokes ServerOp_sendKey operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
-func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) error {
-	_, err := c.sendServerOpSendKey(ctx, request, params)
-	return err
+func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (*ServerOpSendKeyOK, error) {
+	res, err := c.sendServerOpSendKey(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (res *ServerOpSendKeyNoContent, err error) {
+func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (res *ServerOpSendKeyOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -22927,12 +22927,12 @@ func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKey
 // ServerOpSendNMI invokes ServerOp_sendNMI operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
-func (c *Client) ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) error {
-	_, err := c.sendServerOpSendNMI(ctx, params)
-	return err
+func (c *Client) ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (*ServerOpSendNMIOK, error) {
+	res, err := c.sendServerOpSendNMI(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (res *ServerOpSendNMINoContent, err error) {
+func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (res *ServerOpSendNMIOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -23846,12 +23846,12 @@ func (c *Client) sendSimpleNotificationGroupOpHistory(ctx context.Context, param
 // SimpleNotificationGroupOpPostMessage invokes SimpleNotificationGroupOp_postMessage operation.
 //
 // POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message
-func (c *Client) SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) error {
-	_, err := c.sendSimpleNotificationGroupOpPostMessage(ctx, request, params)
-	return err
+func (c *Client) SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (*SimpleNotificationGroupOpPostMessageOK, error) {
+	res, err := c.sendSimpleNotificationGroupOpPostMessage(ctx, request, params)
+	return res, err
 }
 
-func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (res *SimpleNotificationGroupOpPostMessageNoContent, err error) {
+func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (res *SimpleNotificationGroupOpPostMessageOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -24150,12 +24150,12 @@ func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams
 // SwitchOpConnectToBridge invokes SwitchOp_connectToBridge operation.
 //
 // PUT /{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}
-func (c *Client) SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) error {
-	_, err := c.sendSwitchOpConnectToBridge(ctx, params)
-	return err
+func (c *Client) SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (*SwitchOpConnectToBridgeOK, error) {
+	res, err := c.sendSwitchOpConnectToBridge(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (res *SwitchOpConnectToBridgeNoContent, err error) {
+func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (res *SwitchOpConnectToBridgeOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [6]string
@@ -25002,12 +25002,12 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRe
 // VPCRouterOpConnectToSwitch invokes VPCRouterOp_connectToSwitch operation.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
-func (c *Client) VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) error {
-	_, err := c.sendVPCRouterOpConnectToSwitch(ctx, params)
-	return err
+func (c *Client) VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (*VPCRouterOpConnectToSwitchOK, error) {
+	res, err := c.sendVPCRouterOpConnectToSwitch(ctx, params)
+	return res, err
 }
 
-func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (res *VPCRouterOpConnectToSwitchNoContent, err error) {
+func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (res *VPCRouterOpConnectToSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [8]string

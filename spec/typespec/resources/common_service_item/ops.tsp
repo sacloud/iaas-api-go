@@ -301,11 +301,17 @@ interface AutoScaleOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up")
-  scaleUp(@path zone: string, @path id: string): void | ApiError;
+  scaleUp(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down")
-  scaleDown(@path zone: string, @path id: string): void | ApiError;
+  scaleDown(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }
 
 @tag("CertificateAuthority")
@@ -345,35 +351,31 @@ interface CertificateAuthorityOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke")
-  revokeClient(
-    @path zone: string,
-    @path id: string,
-    @path clientID: string,
-  ): void | ApiError;
+  revokeClient(@path zone: string, @path id: string, @path clientID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold")
-  holdClient(
-    @path zone: string,
-    @path id: string,
-    @path clientID: string,
-  ): void | ApiError;
+  holdClient(@path zone: string, @path id: string, @path clientID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume")
-  resumeClient(
-    @path zone: string,
-    @path id: string,
-    @path clientID: string,
-  ): void | ApiError;
+  resumeClient(@path zone: string, @path id: string, @path clientID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny")
-  denyClient(
-    @path zone: string,
-    @path id: string,
-    @path clientID: string,
-  ): void | ApiError;
+  denyClient(@path zone: string, @path id: string, @path clientID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers")
@@ -403,27 +405,24 @@ interface CertificateAuthorityOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke")
-  revokeServer(
-    @path zone: string,
-    @path id: string,
-    @path serverID: string,
-  ): void | ApiError;
+  revokeServer(@path zone: string, @path id: string, @path serverID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold")
-  holdServer(
-    @path zone: string,
-    @path id: string,
-    @path serverID: string,
-  ): void | ApiError;
+  holdServer(@path zone: string, @path id: string, @path serverID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume")
-  resumeServer(
-    @path zone: string,
-    @path id: string,
-    @path serverID: string,
-  ): void | ApiError;
+  resumeServer(@path zone: string, @path id: string, @path serverID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }
 
 @tag("ContainerRegistry")
@@ -441,7 +440,10 @@ interface ContainerRegistryOp {
     @path zone: string,
     @path id: string,
     param: ContainerRegistryUserCreateRequest,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
@@ -450,7 +452,10 @@ interface ContainerRegistryOp {
     @path id: string,
     @path username: string,
     param: ContainerRegistryUserUpdateRequest,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
@@ -494,7 +499,10 @@ interface EnhancedDBOp {
     @path zone: string,
     @path id: string,
     param: EnhancedDBSetPasswordRequest,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config")
@@ -509,7 +517,10 @@ interface EnhancedDBOp {
     @path zone: string,
     @path id: string,
     param: EnhancedDBSetConfigRequest,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }
 
 @tag("LocalRouter")
@@ -557,7 +568,10 @@ interface ProxyLBOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew")
-  renewLetsEncryptCert(@path zone: string, @path id: string): void | ApiError;
+  renewLetsEncryptCert(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor")
@@ -572,19 +586,24 @@ interface ProxyLBOp {
 interface SIMOp {
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate")
-  activate(@path zone: string, @path id: string): void | ApiError;
+  activate(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate")
-  deactivate(@path zone: string, @path id: string): void | ApiError;
+  deactivate(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
-  assignIP(
-    @path zone: string,
-    @path id: string,
-    param: SIMAssignIPRequest,
-  ): void | ApiError;
+  assignIP(@path zone: string, @path id: string, param: SIMAssignIPRequest): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
@@ -595,11 +614,10 @@ interface SIMOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
-  imeiLock(
-    @path zone: string,
-    @path id: string,
-    param: SIMIMEILockRequest,
-  ): void | ApiError;
+  imeiLock(@path zone: string, @path id: string, param: SIMIMEILockRequest): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
@@ -628,7 +646,10 @@ interface SIMOp {
     @path zone: string,
     @path id: string,
     configs: SIMNetworkOperatorConfig[],
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor")
@@ -671,11 +692,10 @@ interface SimpleNotificationDestinationOp {
 interface SimpleNotificationGroupOp {
   @post
   @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message")
-  postMessage(
-    @path zone: string,
-    @path id: string,
-    message: string,
-  ): void | ApiError;
+  postMessage(@path zone: string, @path id: string, message: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history")

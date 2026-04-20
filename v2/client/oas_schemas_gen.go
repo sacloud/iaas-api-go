@@ -457,11 +457,33 @@ func (s *ApplianceCreateRequestRemarkVRRP) SetVRID(val int32) {
 	s.VRID = val
 }
 
-// ApplianceOpBootNoContent is response for ApplianceOpBoot operation.
-type ApplianceOpBootNoContent struct{}
+type ApplianceOpBootOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// ApplianceOpConfigNoContent is response for ApplianceOpConfig operation.
-type ApplianceOpConfigNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *ApplianceOpBootOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ApplianceOpBootOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type ApplianceOpConfigOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ApplianceOpConfigOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ApplianceOpConfigOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ApplianceOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
@@ -477,8 +499,19 @@ func (s *ApplianceOpDeleteOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// ApplianceOpResetNoContent is response for ApplianceOpReset operation.
-type ApplianceOpResetNoContent struct{}
+type ApplianceOpResetOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ApplianceOpResetOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ApplianceOpResetOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ApplianceOpShutdownOK struct {
 	IsOk bool `json:"is_ok"`
@@ -2068,11 +2101,33 @@ func (s *AutoScaleCPUThresholdScaling) SetDown(val OptNilInt32) {
 	s.Down = val
 }
 
-// AutoScaleOpScaleDownNoContent is response for AutoScaleOpScaleDown operation.
-type AutoScaleOpScaleDownNoContent struct{}
+type AutoScaleOpScaleDownOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// AutoScaleOpScaleUpNoContent is response for AutoScaleOpScaleUp operation.
-type AutoScaleOpScaleUpNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *AutoScaleOpScaleDownOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *AutoScaleOpScaleDownOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type AutoScaleOpScaleUpOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *AutoScaleOpScaleUpOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *AutoScaleOpScaleUpOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Ref: #/components/schemas/AutoScaleRouterThresholdScaling
 type AutoScaleRouterThresholdScaling struct {
@@ -4436,26 +4491,103 @@ func (s *CertificateAuthorityOpAddServerReq) SetParam(val CertificateAuthorityAd
 	s.Param = val
 }
 
-// CertificateAuthorityOpDenyClientNoContent is response for CertificateAuthorityOpDenyClient operation.
-type CertificateAuthorityOpDenyClientNoContent struct{}
+type CertificateAuthorityOpDenyClientOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// CertificateAuthorityOpHoldClientNoContent is response for CertificateAuthorityOpHoldClient operation.
-type CertificateAuthorityOpHoldClientNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpDenyClientOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// CertificateAuthorityOpHoldServerNoContent is response for CertificateAuthorityOpHoldServer operation.
-type CertificateAuthorityOpHoldServerNoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpDenyClientOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
-// CertificateAuthorityOpResumeClientNoContent is response for CertificateAuthorityOpResumeClient operation.
-type CertificateAuthorityOpResumeClientNoContent struct{}
+type CertificateAuthorityOpHoldClientOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// CertificateAuthorityOpResumeServerNoContent is response for CertificateAuthorityOpResumeServer operation.
-type CertificateAuthorityOpResumeServerNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpHoldClientOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// CertificateAuthorityOpRevokeClientNoContent is response for CertificateAuthorityOpRevokeClient operation.
-type CertificateAuthorityOpRevokeClientNoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpHoldClientOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
-// CertificateAuthorityOpRevokeServerNoContent is response for CertificateAuthorityOpRevokeServer operation.
-type CertificateAuthorityOpRevokeServerNoContent struct{}
+type CertificateAuthorityOpHoldServerOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpHoldServerOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpHoldServerOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type CertificateAuthorityOpResumeClientOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpResumeClientOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpResumeClientOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type CertificateAuthorityOpResumeServerOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpResumeServerOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpResumeServerOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type CertificateAuthorityOpRevokeClientOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpRevokeClientOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpRevokeClientOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type CertificateAuthorityOpRevokeServerOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *CertificateAuthorityOpRevokeServerOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *CertificateAuthorityOpRevokeServerOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Response envelope for certificateAuthorityReadClientResponseEnvelope.
 // Ref: #/components/schemas/CertificateAuthorityReadClientResponseEnvelope
@@ -6464,8 +6596,19 @@ func (s *ContainerRegistryListUsersResponseEnvelope) SetContainerRegistry(val Co
 	s.ContainerRegistry = val
 }
 
-// ContainerRegistryOpAddUserNoContent is response for ContainerRegistryOpAddUser operation.
-type ContainerRegistryOpAddUserNoContent struct{}
+type ContainerRegistryOpAddUserOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ContainerRegistryOpAddUserOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ContainerRegistryOpAddUserOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ContainerRegistryOpAddUserReq struct {
 	Param ContainerRegistryUserCreateRequest `json:"param"`
@@ -6495,8 +6638,19 @@ func (s *ContainerRegistryOpDeleteUserOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// ContainerRegistryOpUpdateUserNoContent is response for ContainerRegistryOpUpdateUser operation.
-type ContainerRegistryOpUpdateUserNoContent struct{}
+type ContainerRegistryOpUpdateUserOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ContainerRegistryOpUpdateUserOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ContainerRegistryOpUpdateUserOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ContainerRegistryOpUpdateUserReq struct {
 	Param ContainerRegistryUserUpdateRequest `json:"param"`
@@ -7408,8 +7562,19 @@ func (s *DatabaseOpMonitorDiskReq) SetCondition(val MonitorCondition) {
 	s.Condition = val
 }
 
-// DatabaseOpSetParameterNoContent is response for DatabaseOpSetParameter operation.
-type DatabaseOpSetParameterNoContent struct{}
+type DatabaseOpSetParameterOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *DatabaseOpSetParameterOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *DatabaseOpSetParameterOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type DatabaseOpSetParameterReq struct {
 	Param DatabaseOpSetParameterReqParam `json:"param"`
@@ -9406,11 +9571,33 @@ func (s *DiskMonitorResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
 }
 
-// DiskOpConfigNoContent is response for DiskOpConfig operation.
-type DiskOpConfigNoContent struct{}
+type DiskOpConfigOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// DiskOpConnectToServerNoContent is response for DiskOpConnectToServer operation.
-type DiskOpConnectToServerNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *DiskOpConfigOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *DiskOpConfigOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type DiskOpConnectToServerOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *DiskOpConnectToServerOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *DiskOpConnectToServerOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type DiskOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
@@ -9440,8 +9627,19 @@ func (s *DiskOpDisconnectFromServerOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// DiskOpResizePartitionNoContent is response for DiskOpResizePartition operation.
-type DiskOpResizePartitionNoContent struct{}
+type DiskOpResizePartitionOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *DiskOpResizePartitionOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *DiskOpResizePartitionOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 // Ref: #/components/schemas/DiskPlan
 type DiskPlan struct {
@@ -10439,8 +10637,19 @@ func (s *EnhancedDBGetConfigResponseEnvelope) SetEnhancedDB(val EnhancedDBConfig
 	s.EnhancedDB = val
 }
 
-// EnhancedDBOpSetConfigNoContent is response for EnhancedDBOpSetConfig operation.
-type EnhancedDBOpSetConfigNoContent struct{}
+type EnhancedDBOpSetConfigOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *EnhancedDBOpSetConfigOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *EnhancedDBOpSetConfigOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type EnhancedDBOpSetConfigReq struct {
 	Param EnhancedDBSetConfigRequest `json:"param"`
@@ -10456,8 +10665,19 @@ func (s *EnhancedDBOpSetConfigReq) SetParam(val EnhancedDBSetConfigRequest) {
 	s.Param = val
 }
 
-// EnhancedDBOpSetPasswordNoContent is response for EnhancedDBOpSetPassword operation.
-type EnhancedDBOpSetPasswordNoContent struct{}
+type EnhancedDBOpSetPasswordOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *EnhancedDBOpSetPasswordOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *EnhancedDBOpSetPasswordOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type EnhancedDBOpSetPasswordReq struct {
 	Param EnhancedDBSetPasswordRequest `json:"param"`
@@ -12288,14 +12508,47 @@ func (s *InterfaceMonitorResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
 }
 
-// InterfaceOpConnectToPacketFilterNoContent is response for InterfaceOpConnectToPacketFilter operation.
-type InterfaceOpConnectToPacketFilterNoContent struct{}
+type InterfaceOpConnectToPacketFilterOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// InterfaceOpConnectToSharedSegmentNoContent is response for InterfaceOpConnectToSharedSegment operation.
-type InterfaceOpConnectToSharedSegmentNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *InterfaceOpConnectToPacketFilterOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// InterfaceOpConnectToSwitchNoContent is response for InterfaceOpConnectToSwitch operation.
-type InterfaceOpConnectToSwitchNoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *InterfaceOpConnectToPacketFilterOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type InterfaceOpConnectToSharedSegmentOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *InterfaceOpConnectToSharedSegmentOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *InterfaceOpConnectToSharedSegmentOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type InterfaceOpConnectToSwitchOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *InterfaceOpConnectToSwitchOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *InterfaceOpConnectToSwitchOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type InterfaceOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
@@ -14897,8 +15150,19 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
 }
 
-// MobileGatewayOpAddSIMNoContent is response for MobileGatewayOpAddSIM operation.
-type MobileGatewayOpAddSIMNoContent struct{}
+type MobileGatewayOpAddSIMOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpAddSIMOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpAddSIMOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type MobileGatewayOpAddSIMReq struct {
 	Param MobileGatewayAddSIMRequest `json:"param"`
@@ -14914,8 +15178,19 @@ func (s *MobileGatewayOpAddSIMReq) SetParam(val MobileGatewayAddSIMRequest) {
 	s.Param = val
 }
 
-// MobileGatewayOpConnectToSwitchNoContent is response for MobileGatewayOpConnectToSwitch operation.
-type MobileGatewayOpConnectToSwitchNoContent struct{}
+type MobileGatewayOpConnectToSwitchOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpConnectToSwitchOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpConnectToSwitchOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type MobileGatewayOpDeleteSIMOK struct {
 	IsOk bool `json:"is_ok"`
@@ -14959,8 +15234,19 @@ func (s *MobileGatewayOpDisconnectFromSwitchOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// MobileGatewayOpSetDNSNoContent is response for MobileGatewayOpSetDNS operation.
-type MobileGatewayOpSetDNSNoContent struct{}
+type MobileGatewayOpSetDNSOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpSetDNSOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpSetDNSOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type MobileGatewayOpSetDNSReq struct {
 	Param MobileGatewayDNSSetting `json:"param"`
@@ -14976,8 +15262,19 @@ func (s *MobileGatewayOpSetDNSReq) SetParam(val MobileGatewayDNSSetting) {
 	s.Param = val
 }
 
-// MobileGatewayOpSetSIMRoutesNoContent is response for MobileGatewayOpSetSIMRoutes operation.
-type MobileGatewayOpSetSIMRoutesNoContent struct{}
+type MobileGatewayOpSetSIMRoutesOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpSetSIMRoutesOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpSetSIMRoutesOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type MobileGatewayOpSetSIMRoutesReq struct {
 	Param []MobileGatewaySIMRouteParam `json:"param"`
@@ -14993,8 +15290,19 @@ func (s *MobileGatewayOpSetSIMRoutesReq) SetParam(val []MobileGatewaySIMRoutePar
 	s.Param = val
 }
 
-// MobileGatewayOpSetTrafficConfigNoContent is response for MobileGatewayOpSetTrafficConfig operation.
-type MobileGatewayOpSetTrafficConfigNoContent struct{}
+type MobileGatewayOpSetTrafficConfigOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *MobileGatewayOpSetTrafficConfigOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *MobileGatewayOpSetTrafficConfigOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type MobileGatewayOpSetTrafficConfigReq struct {
 	Param MobileGatewayTrafficControl `json:"param"`
@@ -28095,8 +28403,19 @@ func (s *ProxyLBOpMonitorConnectionReq) SetCondition(val MonitorCondition) {
 	s.Condition = val
 }
 
-// ProxyLBOpRenewLetsEncryptCertNoContent is response for ProxyLBOpRenewLetsEncryptCert operation.
-type ProxyLBOpRenewLetsEncryptCertNoContent struct{}
+type ProxyLBOpRenewLetsEncryptCertOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ProxyLBOpRenewLetsEncryptCertOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ProxyLBOpRenewLetsEncryptCertOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ProxyLBOpSetCertificatesReq struct {
 	Param ProxyLBSetCertificatesRequest `json:"param"`
@@ -29380,11 +29699,33 @@ func (s *SIMNetworkOperatorConfig) SetName(val OptNilString) {
 	s.Name = val
 }
 
-// SIMOpActivateNoContent is response for SIMOpActivate operation.
-type SIMOpActivateNoContent struct{}
+type SIMOpActivateOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// SIMOpAssignIPNoContent is response for SIMOpAssignIP operation.
-type SIMOpAssignIPNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpActivateOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpActivateOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type SIMOpAssignIPOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpAssignIPOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpAssignIPOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type SIMOpAssignIPReq struct {
 	Param SIMAssignIPRequest `json:"param"`
@@ -29414,11 +29755,33 @@ func (s *SIMOpClearIPOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// SIMOpDeactivateNoContent is response for SIMOpDeactivate operation.
-type SIMOpDeactivateNoContent struct{}
+type SIMOpDeactivateOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// SIMOpImeiLockNoContent is response for SIMOpImeiLock operation.
-type SIMOpImeiLockNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpDeactivateOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpDeactivateOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type SIMOpImeiLockOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpImeiLockOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpImeiLockOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type SIMOpImeiLockReq struct {
 	Param SIMIMEILockRequest `json:"param"`
@@ -29462,8 +29825,19 @@ func (s *SIMOpMonitorSIMReq) SetCondition(val MonitorCondition) {
 	s.Condition = val
 }
 
-// SIMOpSetNetworkOperatorNoContent is response for SIMOpSetNetworkOperator operation.
-type SIMOpSetNetworkOperatorNoContent struct{}
+type SIMOpSetNetworkOperatorOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SIMOpSetNetworkOperatorOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SIMOpSetNetworkOperatorOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type SIMOpSetNetworkOperatorReq struct {
 	Configs []SIMNetworkOperatorConfig `json:"configs"`
@@ -30959,8 +31333,19 @@ func (s *ServerMonitorResponseEnvelope) SetData(val jx.Raw) {
 	s.Data = val
 }
 
-// ServerOpBootNoContent is response for ServerOpBoot operation.
-type ServerOpBootNoContent struct{}
+type ServerOpBootOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpBootOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpBootOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ServerOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
@@ -30990,17 +31375,61 @@ func (s *ServerOpEjectCDROMOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// ServerOpInsertCDROMNoContent is response for ServerOpInsertCDROM operation.
-type ServerOpInsertCDROMNoContent struct{}
+type ServerOpInsertCDROMOK struct {
+	IsOk bool `json:"is_ok"`
+}
 
-// ServerOpResetNoContent is response for ServerOpReset operation.
-type ServerOpResetNoContent struct{}
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpInsertCDROMOK) GetIsOk() bool {
+	return s.IsOk
+}
 
-// ServerOpSendKeyNoContent is response for ServerOpSendKey operation.
-type ServerOpSendKeyNoContent struct{}
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpInsertCDROMOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
-// ServerOpSendNMINoContent is response for ServerOpSendNMI operation.
-type ServerOpSendNMINoContent struct{}
+type ServerOpResetOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpResetOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpResetOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type ServerOpSendKeyOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpSendKeyOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpSendKeyOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
+
+type ServerOpSendNMIOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *ServerOpSendNMIOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *ServerOpSendNMIOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type ServerOpShutdownOK struct {
 	IsOk bool `json:"is_ok"`
@@ -32127,8 +32556,19 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetNotificationHistorie
 	s.NotificationHistories = val
 }
 
-// SimpleNotificationGroupOpPostMessageNoContent is response for SimpleNotificationGroupOpPostMessage operation.
-type SimpleNotificationGroupOpPostMessageNoContent struct{}
+type SimpleNotificationGroupOpPostMessageOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SimpleNotificationGroupOpPostMessageOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SimpleNotificationGroupOpPostMessageOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type SimpleNotificationGroupOpPostMessageReq struct {
 	Message string `json:"message"`
@@ -33225,8 +33665,19 @@ func (s *SwitchInfo) SetIPv6Nets(val OptNilIPv6NetInfoArray) {
 	s.IPv6Nets = val
 }
 
-// SwitchOpConnectToBridgeNoContent is response for SwitchOpConnectToBridge operation.
-type SwitchOpConnectToBridgeNoContent struct{}
+type SwitchOpConnectToBridgeOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *SwitchOpConnectToBridgeOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *SwitchOpConnectToBridgeOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type SwitchOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
@@ -33700,8 +34151,19 @@ func (s *VPCRouterLogsResponseEnvelope) SetVPCRouter(val VPCRouterLog) {
 	s.VPCRouter = val
 }
 
-// VPCRouterOpConnectToSwitchNoContent is response for VPCRouterOpConnectToSwitch operation.
-type VPCRouterOpConnectToSwitchNoContent struct{}
+type VPCRouterOpConnectToSwitchOK struct {
+	IsOk bool `json:"is_ok"`
+}
+
+// GetIsOk returns the value of IsOk.
+func (s *VPCRouterOpConnectToSwitchOK) GetIsOk() bool {
+	return s.IsOk
+}
+
+// SetIsOk sets the value of IsOk.
+func (s *VPCRouterOpConnectToSwitchOK) SetIsOk(val bool) {
+	s.IsOk = val
+}
 
 type VPCRouterOpDisconnectFromSwitchOK struct {
 	IsOk bool `json:"is_ok"`

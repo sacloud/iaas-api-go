@@ -30,7 +30,10 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     @body body: DiskConfigRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/resize-partition")
@@ -38,7 +41,10 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     @body body: DiskResizePartitionRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}")
@@ -46,7 +52,10 @@ interface DiskOp {
     @path zone: string,
     @path id: string,
     @path serverID: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server")

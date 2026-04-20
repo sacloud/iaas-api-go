@@ -129,11 +129,17 @@ interface ApplianceOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/config")
-  config(@path zone: string, @path id: string): void | ApiError;
+  config(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  boot(@path zone: string, @path id: string): void | ApiError;
+  boot(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
@@ -144,7 +150,10 @@ interface ApplianceOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/reset")
-  reset(@path zone: string, @path id: string): void | ApiError;
+  reset(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor")
@@ -205,11 +214,10 @@ interface DatabaseOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
-  setParameter(
-    @path zone: string,
-    @path id: string,
-    param: Record<unknown>,
-  ): void | ApiError;
+  setParameter(@path zone: string, @path id: string, param: Record<unknown>): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }
 
 @tag("MobileGateway")
@@ -220,7 +228,10 @@ interface MobileGatewayOp {
     @path zone: string,
     @path id: string,
     @path switchID: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch")
@@ -242,7 +253,10 @@ interface MobileGatewayOp {
     @path zone: string,
     @path id: string,
     param: MobileGatewayDNSSetting,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
@@ -257,7 +271,10 @@ interface MobileGatewayOp {
     @path zone: string,
     @path id: string,
     param: MobileGatewaySIMRouteParam[],
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
@@ -272,7 +289,10 @@ interface MobileGatewayOp {
     @path zone: string,
     @path id: string,
     param: MobileGatewayAddSIMRequest,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}")
@@ -301,7 +321,10 @@ interface MobileGatewayOp {
     @path zone: string,
     @path id: string,
     param: MobileGatewayTrafficControl,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
@@ -327,7 +350,10 @@ interface VPCRouterOp {
     @path id: string,
     @path nicIndex: string,
     @path switchID: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch")

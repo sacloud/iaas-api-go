@@ -64,7 +64,10 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     @body body: ServerInsertCDROMRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
@@ -83,7 +86,10 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     @body body: ServerBootRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
@@ -98,7 +104,10 @@ interface ServerOp {
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/reset")
-  reset(@path zone: string, @path id: string): void | ApiError;
+  reset(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/keyboard")
@@ -106,11 +115,17 @@ interface ServerOp {
     @path zone: string,
     @path id: string,
     @body body: ServerSendKeyRequestEnvelope,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/qemu/nmi")
-  sendNMI(@path zone: string, @path id: string): void | ApiError;
+  sendNMI(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/vnc/proxy")

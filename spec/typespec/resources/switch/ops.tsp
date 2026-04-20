@@ -52,7 +52,10 @@ interface SwitchOp {
     @path zone: string,
     @path id: string,
     @path bridgeID: string,
-  ): void | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge")

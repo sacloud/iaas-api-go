@@ -796,7 +796,7 @@ interface {{ .TypeName }}Op {
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
-  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 `
@@ -830,7 +830,7 @@ interface {{ .GroupName }}Op {
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
-  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ range .ResourceInterfaces }}
@@ -839,7 +839,7 @@ interface {{ .TypeName }}Op {
 {{ range .Operations }}
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
-  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ end }}`

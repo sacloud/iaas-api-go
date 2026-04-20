@@ -250,7 +250,34 @@ func (s *ApplianceCreateRequestRemarkVRRP) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ApplianceOpBootOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ApplianceOpConfigOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ApplianceOpDeleteOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ApplianceOpResetOK) SetFake() {
 	{
 		{
 			s.IsOk = true
@@ -1098,6 +1125,24 @@ func (s *AutoScaleCPUThresholdScaling) SetFake() {
 	{
 		{
 			s.Down.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *AutoScaleOpScaleDownOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *AutoScaleOpScaleUpOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -2379,6 +2424,69 @@ func (s *CertificateAuthorityOpAddServerReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *CertificateAuthorityOpDenyClientOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CertificateAuthorityOpHoldClientOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CertificateAuthorityOpHoldServerOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CertificateAuthorityOpResumeClientOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CertificateAuthorityOpResumeServerOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CertificateAuthorityOpRevokeClientOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *CertificateAuthorityOpRevokeServerOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *CertificateAuthorityReadClientResponseEnvelope) SetFake() {
 	{
 		{
@@ -3539,6 +3647,15 @@ func (s *ContainerRegistryListUsersResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ContainerRegistryOpAddUserOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ContainerRegistryOpAddUserReq) SetFake() {
 	{
 		{
@@ -3549,6 +3666,15 @@ func (s *ContainerRegistryOpAddUserReq) SetFake() {
 
 // SetFake set fake values.
 func (s *ContainerRegistryOpDeleteUserOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ContainerRegistryOpUpdateUserOK) SetFake() {
 	{
 		{
 			s.IsOk = true
@@ -4025,6 +4151,15 @@ func (s *DatabaseOpMonitorDiskReq) SetFake() {
 	{
 		{
 			s.Condition.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseOpSetParameterOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -5088,6 +5223,24 @@ func (s *DiskMonitorResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *DiskOpConfigOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskOpConnectToServerOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *DiskOpDeleteOK) SetFake() {
 	{
 		{
@@ -5098,6 +5251,15 @@ func (s *DiskOpDeleteOK) SetFake() {
 
 // SetFake set fake values.
 func (s *DiskOpDisconnectFromServerOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *DiskOpResizePartitionOK) SetFake() {
 	{
 		{
 			s.IsOk = true
@@ -5838,10 +6000,28 @@ func (s *EnhancedDBGetConfigResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *EnhancedDBOpSetConfigOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *EnhancedDBOpSetConfigReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *EnhancedDBOpSetPasswordOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -6841,6 +7021,33 @@ func (s *InterfaceMonitorResponseEnvelope) SetFake() {
 	{
 		{
 			s.Data = []byte("null")
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceOpConnectToPacketFilterOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceOpConnectToSharedSegmentOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *InterfaceOpConnectToSwitchOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -8258,10 +8465,28 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *MobileGatewayOpAddSIMOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *MobileGatewayOpAddSIMReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *MobileGatewayOpConnectToSwitchOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -8294,10 +8519,28 @@ func (s *MobileGatewayOpDisconnectFromSwitchOK) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *MobileGatewayOpSetDNSOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *MobileGatewayOpSetDNSReq) SetFake() {
 	{
 		{
 			s.Param.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *MobileGatewayOpSetSIMRoutesOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -8314,6 +8557,15 @@ func (s *MobileGatewayOpSetSIMRoutesReq) SetFake() {
 				}
 				s.Param = append(s.Param, elem)
 			}
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *MobileGatewayOpSetTrafficConfigOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -11125,6 +11377,15 @@ func (s *ProxyLBOpMonitorConnectionReq) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ProxyLBOpRenewLetsEncryptCertOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ProxyLBOpSetCertificatesReq) SetFake() {
 	{
 		{
@@ -11791,6 +12052,24 @@ func (s *SIMNetworkOperatorConfig) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SIMOpActivateOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SIMOpAssignIPOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SIMOpAssignIPReq) SetFake() {
 	{
 		{
@@ -11801,6 +12080,24 @@ func (s *SIMOpAssignIPReq) SetFake() {
 
 // SetFake set fake values.
 func (s *SIMOpClearIPOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SIMOpDeactivateOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SIMOpImeiLockOK) SetFake() {
 	{
 		{
 			s.IsOk = true
@@ -11831,6 +12128,15 @@ func (s *SIMOpMonitorSIMReq) SetFake() {
 	{
 		{
 			s.Condition.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SIMOpSetNetworkOperatorOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
@@ -12615,6 +12921,15 @@ func (s *ServerMonitorResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *ServerOpBootOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *ServerOpDeleteOK) SetFake() {
 	{
 		{
@@ -12625,6 +12940,42 @@ func (s *ServerOpDeleteOK) SetFake() {
 
 // SetFake set fake values.
 func (s *ServerOpEjectCDROMOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerOpInsertCDROMOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerOpResetOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerOpSendKeyOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *ServerOpSendNMIOK) SetFake() {
 	{
 		{
 			s.IsOk = true
@@ -13215,6 +13566,15 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SimpleNotificationGroupOpPostMessageOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SimpleNotificationGroupOpPostMessageReq) SetFake() {
 	{
 		{
@@ -13798,6 +14158,15 @@ func (s *SwitchInfo) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *SwitchOpConnectToBridgeOK) SetFake() {
+	{
+		{
+			s.IsOk = true
+		}
+	}
+}
+
+// SetFake set fake values.
 func (s *SwitchOpDeleteOK) SetFake() {
 	{
 		{
@@ -14041,6 +14410,15 @@ func (s *VPCRouterLogsResponseEnvelope) SetFake() {
 	{
 		{
 			s.VPCRouter.SetFake()
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *VPCRouterOpConnectToSwitchOK) SetFake() {
+	{
+		{
+			s.IsOk = true
 		}
 	}
 }
