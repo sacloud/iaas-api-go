@@ -63,6 +63,37 @@ func TestCleanupInternet(t *testing.T) {
 	}
 }
 
+// TestCleanupCDROM は "test" タグが付いた CDROM リソースを一括削除する。
+// FTP 共有中（uploading）の CDROM は先に CloseFTP してから削除する。
+func TestCleanupCDROM(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	findResp, err := c.CDROMOpFind(ctx, &client.CDROMFindRequestEnvelope{}, client.CDROMOpFindParams{Zone: zone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, cd := range findResp.CDROMs {
+		if !hasTestTag(cd.Tags) && !strings.HasPrefix(cd.Name.Value, "test-cdrom") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", cd.ID.Value)
+		t.Logf("Deleting cdrom %s (name=%s avail=%s)", idStr, cd.Name.Value, cd.Availability.Value)
+		if cd.Availability.Value == "uploading" {
+			if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{Zone: zone, ID: idStr}); err != nil {
+				t.Logf("close FTP on cdrom %s failed: %v", idStr, err)
+			}
+		}
+		if _, err := c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+			t.Logf("delete cdrom %s failed: %v", idStr, err)
+		}
+	}
+}
+
 // TestCleanupSSHKey は test-sshkey* 系の SSHKey リソースを一括削除する。
 // SSHKey には Tags が無いので Name prefix で対象を判定する。
 func TestCleanupSSHKey(t *testing.T) {
