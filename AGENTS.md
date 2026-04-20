@@ -340,6 +340,88 @@ v2 のテストは **実 API を使用した統合テストのみ** を実施す
 
 URL の `switch` 部分を対応するリソース名に置き換えれば、他リソースのマニュアル/docs も同じ構造で辿れる。
 
+### テストカバレッジ監査
+
+さくらのクラウド API マニュアル（https://manual.sakura.ad.jp/cloud-api/1.1/index.html）のサイドバー全ページに対する v2 インテグレーションテストの網羅状況。
+
+**カバー済み（v2/integration/ にテスト実装済）**
+
+| マニュアルページ | リソース | テストファイル |
+|---|---|---|
+| server | Server | `server_test.go` |
+| disk | Disk | `disk_test.go` |
+| switch | Switch, Switch-Bridge | `switch_test.go`, `bridge_test.go` |
+| archive | Archive | `archive_test.go` |
+| cdrom | CDROM | `cdrom_test.go` |
+| bridge | Bridge | `bridge_test.go` |
+| internet | Internet（Router）| `internet_test.go` |
+| interface | Interface | `interface_test.go` |
+| appliance | NFS / Database / LoadBalancer / VPCRouter / MobileGateway | `nfs_test.go`, `database_appliance_test.go`, `load_balancer_test.go`, `vpc_router_test.go`, `mobile_gateway_test.go`（MG は SIM 契約環境で skip） |
+| icon | Icon | `icon_test.go` |
+| note | Note（Script）| `note_test.go` |
+| sshkey | SSHKey | `ssh_key_test.go` |
+| facility | Region, Zone | `facility_test.go` |
+| product | DiskPlan, InternetPlan, ServerPlan, LicenseInfo, PrivateHostPlan | `product_test.go`, `private_host_test.go` |
+| account | License | `account_test.go` |
+
+**テスト未実装（downstream 使用実績あり — 今後実装候補）**
+
+サイドバーに独立ページは無いが、他ページからリンクされている or v1 DSL にあるリソース：
+
+| リソース | マニュアル所在 | downstream 利用 | 優先度の目安 |
+|---|---|---|---|
+| DNS | commonserviceitem（appliance 系）| terraform-sakura / usacloud | 高 |
+| GSLB | commonserviceitem | terraform-sakura / usacloud | 高 |
+| ProxyLB（EnhancedLB）| commonserviceitem | terraform-sakura (enhanced_lb) / usacloud | 高 |
+| PacketFilter | interface ページ | terraform-sakura / usacloud | 高 |
+| SimpleMonitor | commonserviceitem | terraform-sakura / usacloud | 高 |
+| LocalRouter | commonserviceitem | terraform-sakura / usacloud | 高 |
+| EnhancedDB | commonserviceitem | terraform-sakura / usacloud | 中 |
+| AutoBackup | commonserviceitem | terraform-sakura / usacloud | 中 |
+| AutoScale | commonserviceitem | terraform-sakura / usacloud | 中 |
+| ContainerRegistry | commonserviceitem | terraform-sakura / usacloud | 中 |
+| Subnet | internet ページ | terraform-sakura / usacloud | 中 |
+| IPAddress | internet ページ | terraform-sakura (ipv4_ptr) / usacloud | 中 |
+| CertificateAuthority | commonserviceitem | usacloud / sakuracloud(old) | 中 |
+| SimpleNotification（Group / Destination）| commonserviceitem | terraform-sakura | 中 |
+| SIM | commonserviceitem | usacloud / sakuracloud(old) | 低（法人 SIM 契約必須）|
+| ESME | commonserviceitem | usacloud | 低 |
+| IPv6Addr | internet ページ | usacloud | 低 |
+| IPv6Net | internet ページ | usacloud | 低 |
+| Bill | bill ページ | usacloud | 低（課金情報、書き込み不可の read-only）|
+| Coupon | bill ページ | usacloud | 低 |
+
+**v2 ジェネレータ未対応として意図的にスキップ**
+
+| リソース | 理由 | 状況 |
+|---|---|---|
+| AuthStatus | 実 API のレスポンスがフラット構造（envelope 直下にフィールド展開）で v2 TypeSpec の wrap envelope と不整合 | 「実装しないエンドポイント」表を参照 |
+| ServiceClass | `ID` ↔ `ServiceClassID` の JSON name remapping と `Price` の polymorphic（`{}` / `[]`）を v2 ジェネレータが扱えない | 「実装しないエンドポイント」表を参照 |
+
+**マニュアルページ単位の扱い（一覧）**
+
+| サイドバー項目 | 状況 |
+|---|---|
+| はじめに | N/A（ドキュメント） |
+| サーバ関連の API | ✓ カバー |
+| ディスク関連の API | ✓ カバー |
+| スイッチ関連の API | ✓ カバー |
+| アーカイブ関連の API | ✓ カバー |
+| ISO イメージ関連の API | ✓ カバー |
+| ブリッジ関連の API | ✓ カバー |
+| ルータ関連の API | ✓（Internet カバー。同ページの Subnet / IPAddress / IPv6Addr / IPv6Net は未実装） |
+| インタフェース関連の API | ✓（Interface カバー。同ページの PacketFilter は未実装） |
+| アプライアンス関連の API | ✓（NFS/DB/LB/VPCR カバー、MG は SIM env で skip。commonserviceitem 系は個別で未実装多数） |
+| アイコン関連の API | ✓ カバー |
+| スクリプト関連の API | ✓ カバー |
+| SSH キー関連の API | ✓ カバー |
+| 設備関連の API | ✓ カバー |
+| 商品関連の API | ✓ カバー（`/public/price` ServiceClass は v2 非対応） |
+| ユーザ・プロジェクト関連の API | △ License はカバー、AuthStatus は非対応 |
+| 請求関連の API | ❌ Bill / Coupon 共に未実装（usacloud read-only のみ利用） |
+| 列挙型一覧 | N/A（型定義） |
+| 変更履歴 | N/A（changelog） |
+
 ### テスト保留中のエンドポイント（複数リソース連携が必要）
 
 単一リソースの CRUD だけでは検証できず、他リソースと組み合わせた setup/teardown が必要なエンドポイントは、
