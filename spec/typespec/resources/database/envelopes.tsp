@@ -49,7 +49,7 @@ model DatabaseCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: DatabaseCreateRequest;
+  Appliance?: DatabaseCreateRequest;
 }
 /**
  * Response envelope for databaseCreateResponseEnvelope
@@ -84,7 +84,7 @@ model DatabaseUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: DatabaseUpdateRequest;
+  Appliance?: DatabaseUpdateRequest;
 }
 /**
  * Response envelope for databaseUpdateResponseEnvelope
@@ -250,5 +250,5 @@ model DatabaseSetParameterRequestEnvelope {
   /**
    * Parameter
    */
-  Parameter: DatabaseParameter;
+  Parameter?: DatabaseParameter;
 }

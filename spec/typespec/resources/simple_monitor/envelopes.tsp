@@ -49,7 +49,7 @@ model SimpleMonitorCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleMonitorCreateRequest;
+  CommonServiceItem?: SimpleMonitorCreateRequest;
 }
 /**
  * Response envelope for simpleMonitorCreateResponseEnvelope
@@ -84,7 +84,7 @@ model SimpleMonitorUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleMonitorUpdateRequest;
+  CommonServiceItem?: SimpleMonitorUpdateRequest;
 }
 /**
  * Response envelope for simpleMonitorUpdateResponseEnvelope

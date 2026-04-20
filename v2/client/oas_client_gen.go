@@ -8919,15 +8919,6 @@ func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnv
 }
 
 func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (res *DiskOpConfigNoContent, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -22833,15 +22824,6 @@ func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequ
 }
 
 func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (res *ServerOpSendKeyNoContent, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string

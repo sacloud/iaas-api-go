@@ -168,7 +168,7 @@ model ServerInsertCDROMRequestEnvelope {
   /**
    * CDROM
    */
-  CDROM: InsertCDROMRequest;
+  CDROM?: InsertCDROMRequest;
 }
 
 /**
@@ -178,7 +178,7 @@ model ServerEjectCDROMRequestEnvelope {
   /**
    * CDROM
    */
-  CDROM: EjectCDROMRequest;
+  CDROM?: EjectCDROMRequest;
 }
 
 /**
@@ -213,7 +213,7 @@ model ServerSendKeyRequestEnvelope {
   /**
    * Keys
    */
-  Keys: string[];
+  Keys?: string[];
 }
 
 /**

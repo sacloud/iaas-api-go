@@ -49,7 +49,7 @@ model MobileGatewayCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: MobileGatewayCreateRequest;
+  Appliance?: MobileGatewayCreateRequest;
 }
 /**
  * Response envelope for mobileGatewayCreateResponseEnvelope
@@ -84,7 +84,7 @@ model MobileGatewayUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: MobileGatewayUpdateRequest;
+  Appliance?: MobileGatewayUpdateRequest;
 }
 /**
  * Response envelope for mobileGatewayUpdateResponseEnvelope
@@ -129,7 +129,7 @@ model MobileGatewaySetDNSRequestEnvelope {
   /**
    * SIMGroup
    */
-  SIMGroup: MobileGatewayDNSSetting;
+  SIMGroup?: MobileGatewayDNSSetting;
 }
 
 /**
@@ -152,7 +152,7 @@ model MobileGatewaySetSIMRoutesRequestEnvelope {
   /**
    * SIMRoutes
    */
-  SIMRoutes: MobileGatewaySIMRoute[];
+  SIMRoutes?: MobileGatewaySIMRoute[];
 }
 
 /**
@@ -175,7 +175,7 @@ model MobileGatewayAddSIMRequestEnvelope {
   /**
    * SIM
    */
-  SIM: MobileGatewayAddSIMRequest;
+  SIM?: MobileGatewayAddSIMRequest;
 }
 
 /**
@@ -211,7 +211,7 @@ model MobileGatewaySetTrafficConfigRequestEnvelope {
   /**
    * TrafficMonitoring
    */
-  TrafficMonitoring: MobileGatewayTrafficControl;
+  TrafficMonitoring?: MobileGatewayTrafficControl;
 }
 
 /**

@@ -54,12 +54,12 @@ model DiskCreateRequestEnvelope {
   /**
    * DistantFrom
    */
-  DistantFrom: ID[];
+  DistantFrom?: ID[];
 
   /**
    * KMSKey
    */
-  KMSKey: unknown;
+  KMSKey?: unknown;
 
   /**
    * TargetDedicatedStorageContract
@@ -106,12 +106,12 @@ model DiskConfigRequestEnvelope {
   /**
    * SSHKey
    */
-  SSHKey: DiskEditSSHKey;
+  SSHKey?: DiskEditSSHKey;
 
   /**
    * SSHKeys
    */
-  SSHKeys: DiskEditSSHKey[];
+  SSHKeys?: DiskEditSSHKey[];
 
   /**
    * DisablePWAuth
@@ -136,7 +136,7 @@ model DiskConfigRequestEnvelope {
   /**
    * Notes
    */
-  Notes: DiskEditNote[];
+  Notes?: DiskEditNote[];
 
   /**
    * UserIPAddress
@@ -146,7 +146,7 @@ model DiskConfigRequestEnvelope {
   /**
    * UserSubnet
    */
-  UserSubnet: DiskEditUserSubnet;
+  UserSubnet?: DiskEditUserSubnet;
 }
 
 /**

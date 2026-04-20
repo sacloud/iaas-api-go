@@ -49,7 +49,7 @@ model SIMCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SIMCreateRequest;
+  CommonServiceItem?: SIMCreateRequest;
 }
 /**
  * Response envelope for sIMCreateResponseEnvelope
@@ -84,7 +84,7 @@ model SIMUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SIMUpdateRequest;
+  CommonServiceItem?: SIMUpdateRequest;
 }
 /**
  * Response envelope for sIMUpdateResponseEnvelope
@@ -158,7 +158,7 @@ model SIMSetNetworkOperatorRequestEnvelope {
   /**
    * NetworkOperatorConfigs
    */
-  NetworkOperatorConfigs: SIMNetworkOperatorConfig[];
+  NetworkOperatorConfigs?: SIMNetworkOperatorConfig[];
 }
 
 /**

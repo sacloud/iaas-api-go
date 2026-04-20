@@ -49,7 +49,7 @@ model AutoScaleCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoScaleCreateRequest;
+  CommonServiceItem?: AutoScaleCreateRequest;
 }
 /**
  * Response envelope for autoScaleCreateResponseEnvelope
@@ -84,7 +84,7 @@ model AutoScaleUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoScaleUpdateRequest;
+  CommonServiceItem?: AutoScaleUpdateRequest;
 }
 /**
  * Response envelope for autoScaleUpdateResponseEnvelope

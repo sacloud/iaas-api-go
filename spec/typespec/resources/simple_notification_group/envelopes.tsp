@@ -49,7 +49,7 @@ model SimpleNotificationGroupCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationGroupCreateRequest;
+  CommonServiceItem?: SimpleNotificationGroupCreateRequest;
 }
 /**
  * Response envelope for simpleNotificationGroupCreateResponseEnvelope
@@ -84,7 +84,7 @@ model SimpleNotificationGroupUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationGroupUpdateRequest;
+  CommonServiceItem?: SimpleNotificationGroupUpdateRequest;
 }
 /**
  * Response envelope for simpleNotificationGroupUpdateResponseEnvelope

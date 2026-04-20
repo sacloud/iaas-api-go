@@ -21,7 +21,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-faster/jx"
 	"github.com/sacloud/iaas-api-go/v2/client"
 	"github.com/stretchr/testify/require"
 )
@@ -55,6 +54,7 @@ func TestDiskCRUD(t *testing.T) {
 	zone := getZone()
 
 	// 1. Create - ブランクディスク（OS なし、20GiB SSD）を作成
+	// KMSKey / DistantFrom は optional のため省略（暗号化なし・distant from 指定なしでディスク作成）
 	createReq := &client.DiskCreateRequestEnvelope{
 		Disk: client.DiskCreateRequest{
 			Plan:        client.NewOptNilResourceRef(client.ResourceRef{ID: diskPlanSSD}),
@@ -63,9 +63,6 @@ func TestDiskCRUD(t *testing.T) {
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
 		},
-		DistantFrom: []client.ID{},
-		// KMSKey は envelope 必須フィールド。暗号化なしのディスクでも空オブジェクトを送る必要がある。
-		KMSKey: jx.Raw(`{}`),
 	}
 
 	createResp, err := c.DiskOpCreate(ctx, createReq, client.DiskOpCreateParams{Zone: zone})

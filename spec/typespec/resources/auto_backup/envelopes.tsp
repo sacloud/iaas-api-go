@@ -49,7 +49,7 @@ model AutoBackupCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoBackupCreateRequest;
+  CommonServiceItem?: AutoBackupCreateRequest;
 }
 /**
  * Response envelope for autoBackupCreateResponseEnvelope
@@ -84,7 +84,7 @@ model AutoBackupUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: AutoBackupUpdateRequest;
+  CommonServiceItem?: AutoBackupUpdateRequest;
 }
 /**
  * Response envelope for autoBackupUpdateResponseEnvelope

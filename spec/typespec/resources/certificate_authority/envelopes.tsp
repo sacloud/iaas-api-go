@@ -49,7 +49,7 @@ model CertificateAuthorityCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: CertificateAuthorityCreateRequest;
+  CommonServiceItem?: CertificateAuthorityCreateRequest;
 }
 /**
  * Response envelope for certificateAuthorityCreateResponseEnvelope
@@ -84,7 +84,7 @@ model CertificateAuthorityUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: CertificateAuthorityUpdateRequest;
+  CommonServiceItem?: CertificateAuthorityUpdateRequest;
 }
 /**
  * Response envelope for certificateAuthorityUpdateResponseEnvelope

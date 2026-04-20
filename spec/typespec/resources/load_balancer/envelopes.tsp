@@ -49,7 +49,7 @@ model LoadBalancerCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: LoadBalancerCreateRequest;
+  Appliance?: LoadBalancerCreateRequest;
 }
 /**
  * Response envelope for loadBalancerCreateResponseEnvelope
@@ -84,7 +84,7 @@ model LoadBalancerUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: LoadBalancerUpdateRequest;
+  Appliance?: LoadBalancerUpdateRequest;
 }
 /**
  * Response envelope for loadBalancerUpdateResponseEnvelope

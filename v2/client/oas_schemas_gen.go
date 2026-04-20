@@ -8616,7 +8616,7 @@ type DiskConfigRequestEnvelope struct {
 	// Password.
 	Password string `json:"Password"`
 	// SSHKey.
-	SSHKey DiskEditSSHKey `json:"SSHKey"`
+	SSHKey OptDiskEditSSHKey `json:"SSHKey"`
 	// SSHKeys.
 	SSHKeys []DiskEditSSHKey `json:"SSHKeys"`
 	// DisablePWAuth.
@@ -8632,7 +8632,7 @@ type DiskConfigRequestEnvelope struct {
 	// UserIPAddress.
 	UserIPAddress string `json:"UserIPAddress"`
 	// UserSubnet.
-	UserSubnet DiskEditUserSubnet `json:"UserSubnet"`
+	UserSubnet OptDiskEditUserSubnet `json:"UserSubnet"`
 }
 
 // GetBackground returns the value of Background.
@@ -8646,7 +8646,7 @@ func (s *DiskConfigRequestEnvelope) GetPassword() string {
 }
 
 // GetSSHKey returns the value of SSHKey.
-func (s *DiskConfigRequestEnvelope) GetSSHKey() DiskEditSSHKey {
+func (s *DiskConfigRequestEnvelope) GetSSHKey() OptDiskEditSSHKey {
 	return s.SSHKey
 }
 
@@ -8686,7 +8686,7 @@ func (s *DiskConfigRequestEnvelope) GetUserIPAddress() string {
 }
 
 // GetUserSubnet returns the value of UserSubnet.
-func (s *DiskConfigRequestEnvelope) GetUserSubnet() DiskEditUserSubnet {
+func (s *DiskConfigRequestEnvelope) GetUserSubnet() OptDiskEditUserSubnet {
 	return s.UserSubnet
 }
 
@@ -8701,7 +8701,7 @@ func (s *DiskConfigRequestEnvelope) SetPassword(val string) {
 }
 
 // SetSSHKey sets the value of SSHKey.
-func (s *DiskConfigRequestEnvelope) SetSSHKey(val DiskEditSSHKey) {
+func (s *DiskConfigRequestEnvelope) SetSSHKey(val OptDiskEditSSHKey) {
 	s.SSHKey = val
 }
 
@@ -8741,7 +8741,7 @@ func (s *DiskConfigRequestEnvelope) SetUserIPAddress(val string) {
 }
 
 // SetUserSubnet sets the value of UserSubnet.
-func (s *DiskConfigRequestEnvelope) SetUserSubnet(val DiskEditUserSubnet) {
+func (s *DiskConfigRequestEnvelope) SetUserSubnet(val OptDiskEditUserSubnet) {
 	s.UserSubnet = val
 }
 
@@ -17224,6 +17224,98 @@ func (o OptDiskEditRequest) Or(d DiskEditRequest) DiskEditRequest {
 	return d
 }
 
+// NewOptDiskEditSSHKey returns new OptDiskEditSSHKey with value set to v.
+func NewOptDiskEditSSHKey(v DiskEditSSHKey) OptDiskEditSSHKey {
+	return OptDiskEditSSHKey{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptDiskEditSSHKey is optional DiskEditSSHKey.
+type OptDiskEditSSHKey struct {
+	Value DiskEditSSHKey
+	Set   bool
+}
+
+// IsSet returns true if OptDiskEditSSHKey was set.
+func (o OptDiskEditSSHKey) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptDiskEditSSHKey) Reset() {
+	var v DiskEditSSHKey
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptDiskEditSSHKey) SetTo(v DiskEditSSHKey) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptDiskEditSSHKey) Get() (v DiskEditSSHKey, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptDiskEditSSHKey) Or(d DiskEditSSHKey) DiskEditSSHKey {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptDiskEditUserSubnet returns new OptDiskEditUserSubnet with value set to v.
+func NewOptDiskEditUserSubnet(v DiskEditUserSubnet) OptDiskEditUserSubnet {
+	return OptDiskEditUserSubnet{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptDiskEditUserSubnet is optional DiskEditUserSubnet.
+type OptDiskEditUserSubnet struct {
+	Value DiskEditUserSubnet
+	Set   bool
+}
+
+// IsSet returns true if OptDiskEditUserSubnet was set.
+func (o OptDiskEditUserSubnet) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptDiskEditUserSubnet) Reset() {
+	var v DiskEditUserSubnet
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptDiskEditUserSubnet) SetTo(v DiskEditUserSubnet) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptDiskEditUserSubnet) Get() (v DiskEditUserSubnet, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptDiskEditUserSubnet) Or(d DiskEditUserSubnet) DiskEditUserSubnet {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
 // NewOptEAutoScaleTriggerType returns new OptEAutoScaleTriggerType with value set to v.
 func NewOptEAutoScaleTriggerType(v EAutoScaleTriggerType) OptEAutoScaleTriggerType {
 	return OptEAutoScaleTriggerType{
@@ -17408,6 +17500,52 @@ func (o OptESimpleNotificationDestinationTypes) Or(d ESimpleNotificationDestinat
 	return d
 }
 
+// NewOptEjectCDROMRequest returns new OptEjectCDROMRequest with value set to v.
+func NewOptEjectCDROMRequest(v EjectCDROMRequest) OptEjectCDROMRequest {
+	return OptEjectCDROMRequest{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptEjectCDROMRequest is optional EjectCDROMRequest.
+type OptEjectCDROMRequest struct {
+	Value EjectCDROMRequest
+	Set   bool
+}
+
+// IsSet returns true if OptEjectCDROMRequest was set.
+func (o OptEjectCDROMRequest) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptEjectCDROMRequest) Reset() {
+	var v EjectCDROMRequest
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptEjectCDROMRequest) SetTo(v EjectCDROMRequest) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptEjectCDROMRequest) Get() (v EjectCDROMRequest, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptEjectCDROMRequest) Or(d EjectCDROMRequest) EjectCDROMRequest {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
 // NewOptFTPServer returns new OptFTPServer with value set to v.
 func NewOptFTPServer(v FTPServer) OptFTPServer {
 	return OptFTPServer{
@@ -17540,6 +17678,52 @@ func (o OptIPv6NetListRequestEnvelopeFilter) Get() (v IPv6NetListRequestEnvelope
 
 // Or returns value if set, or given parameter if does not.
 func (o OptIPv6NetListRequestEnvelopeFilter) Or(d IPv6NetListRequestEnvelopeFilter) IPv6NetListRequestEnvelopeFilter {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptInsertCDROMRequest returns new OptInsertCDROMRequest with value set to v.
+func NewOptInsertCDROMRequest(v InsertCDROMRequest) OptInsertCDROMRequest {
+	return OptInsertCDROMRequest{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptInsertCDROMRequest is optional InsertCDROMRequest.
+type OptInsertCDROMRequest struct {
+	Value InsertCDROMRequest
+	Set   bool
+}
+
+// IsSet returns true if OptInsertCDROMRequest was set.
+func (o OptInsertCDROMRequest) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptInsertCDROMRequest) Reset() {
+	var v InsertCDROMRequest
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptInsertCDROMRequest) SetTo(v InsertCDROMRequest) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptInsertCDROMRequest) Get() (v InsertCDROMRequest, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptInsertCDROMRequest) Or(d InsertCDROMRequest) InsertCDROMRequest {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -28598,16 +28782,16 @@ func (s *ServerDeleteRequestEnvelope) SetWithDisk(val []ID) {
 // Ref: #/components/schemas/ServerEjectCDROMRequestEnvelope
 type ServerEjectCDROMRequestEnvelope struct {
 	// CDROM.
-	CDROM EjectCDROMRequest `json:"CDROM"`
+	CDROM OptEjectCDROMRequest `json:"CDROM"`
 }
 
 // GetCDROM returns the value of CDROM.
-func (s *ServerEjectCDROMRequestEnvelope) GetCDROM() EjectCDROMRequest {
+func (s *ServerEjectCDROMRequestEnvelope) GetCDROM() OptEjectCDROMRequest {
 	return s.CDROM
 }
 
 // SetCDROM sets the value of CDROM.
-func (s *ServerEjectCDROMRequestEnvelope) SetCDROM(val EjectCDROMRequest) {
+func (s *ServerEjectCDROMRequestEnvelope) SetCDROM(val OptEjectCDROMRequest) {
 	s.CDROM = val
 }
 
@@ -28750,16 +28934,16 @@ func (s *ServerGetVNCProxyResponseEnvelope) SetVNCProxyInfo(val VNCProxyInfo) {
 // Ref: #/components/schemas/ServerInsertCDROMRequestEnvelope
 type ServerInsertCDROMRequestEnvelope struct {
 	// CDROM.
-	CDROM InsertCDROMRequest `json:"CDROM"`
+	CDROM OptInsertCDROMRequest `json:"CDROM"`
 }
 
 // GetCDROM returns the value of CDROM.
-func (s *ServerInsertCDROMRequestEnvelope) GetCDROM() InsertCDROMRequest {
+func (s *ServerInsertCDROMRequestEnvelope) GetCDROM() OptInsertCDROMRequest {
 	return s.CDROM
 }
 
 // SetCDROM sets the value of CDROM.
-func (s *ServerInsertCDROMRequestEnvelope) SetCDROM(val InsertCDROMRequest) {
+func (s *ServerInsertCDROMRequestEnvelope) SetCDROM(val OptInsertCDROMRequest) {
 	s.CDROM = val
 }
 

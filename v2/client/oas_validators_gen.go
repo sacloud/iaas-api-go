@@ -2551,40 +2551,6 @@ func (s *Disk) Validate() error {
 	return nil
 }
 
-func (s *DiskConfigRequestEnvelope) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if s.SSHKeys == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "SSHKeys",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if s.Notes == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "Notes",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *DiskCreateRequest) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer
@@ -2622,17 +2588,6 @@ func (s *DiskCreateRequestEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Disk",
-			Error: err,
-		})
-	}
-	if err := func() error {
-		if s.DistantFrom == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "DistantFrom",
 			Error: err,
 		})
 	}
@@ -5526,29 +5481,6 @@ func (s *ServerReadResponseEnvelope) Validate() error {
 	}(); err != nil {
 		failures = append(failures, validate.FieldError{
 			Name:  "Server",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
-func (s *ServerSendKeyRequestEnvelope) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if s.Keys == nil {
-			return errors.New("nil is invalid value")
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "Keys",
 			Error: err,
 		})
 	}

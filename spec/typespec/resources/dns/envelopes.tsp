@@ -49,7 +49,7 @@ model DNSCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: DNSCreateRequest;
+  CommonServiceItem?: DNSCreateRequest;
 }
 /**
  * Response envelope for dNSCreateResponseEnvelope
@@ -84,7 +84,7 @@ model DNSUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: DNSUpdateRequest;
+  CommonServiceItem?: DNSUpdateRequest;
 }
 /**
  * Response envelope for dNSUpdateResponseEnvelope

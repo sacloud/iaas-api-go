@@ -172,6 +172,15 @@ func envelopePayloadTypeToTS(goType string) string {
 // 現時点では使用エントリなし（将来の追加用に仕組みのみ保持）。
 var nakedInlineModels = map[string]fatModelDef{}
 
+// payloadTypeIsNullable は envelope payload の Go 型表記がポインタ / スライス / マップかを返す。
+// v1 DSL が unconditionally 送っているだけで実 API 上は省略可な payload（例: KMSKey, DistantFrom）を
+// TypeSpec 側で optional として記述するための判定。
+func payloadTypeIsNullable(goType string) bool {
+	return strings.HasPrefix(goType, "*") ||
+		strings.HasPrefix(goType, "[]") ||
+		strings.HasPrefix(goType, "map[")
+}
+
 // stripNakedTypeName は Go の完全修飾型名からパッケージ名を除いた裸の型名を返す。
 // 例: "*naked.MobileGatewaySIMGroup" → "MobileGatewaySIMGroup"
 func stripNakedTypeName(goType string) string {
@@ -373,6 +382,7 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 		total := len(g.ops)
 		reqIndex := map[string]*resolvedPayload{}
 		reqCount := map[string]int{}
+		reqNullable := map[string]bool{} // payload の Go 型がポインタ/スライス/マップなら true
 		var reqOrder []string
 		for _, op := range visitOrder {
 			for _, p := range op.RequestPayloads() {
@@ -385,14 +395,23 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 						TSType: resolveRequestPayloadTSType(op, p),
 					}
 					reqOrder = append(reqOrder, p.Name)
+					reqNullable[p.Name] = payloadTypeIsNullable(p.TypeName())
 				}
 				reqCount[p.Name]++
 			}
 		}
+		// payload 名がリソース名に一致するもの（create/update の本体ペイロード）は API 仕様上必須なので
+		// required を維持する。例: Disk create の `Disk`、Archive create の `Archive`。
+		primaryPayloadName := api.TypeName()
 		var reqPayloads []resolvedPayload
 		for _, name := range reqOrder {
 			p := *reqIndex[name]
-			p.Optional = reqCount[name] < total
+			// optional 条件:
+			//   - 一部 op にしか存在しない（envelope 合成の optional 化）
+			//   - Go 型がポインタ/スライス/マップで、かつ本体ペイロードではない
+			//     （v1 DSL で unconditionally 渡される側次 payload でも実 API 上は省略可なため。
+			//      例: Disk create の KMSKey, DistantFrom）
+			p.Optional = reqCount[name] < total || (reqNullable[name] && name != primaryPayloadName)
 			reqPayloads = append(reqPayloads, p)
 		}
 

@@ -49,7 +49,7 @@ model ESMECreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ESMECreateRequest;
+  CommonServiceItem?: ESMECreateRequest;
 }
 /**
  * Response envelope for eSMECreateResponseEnvelope
@@ -84,7 +84,7 @@ model ESMEUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ESMEUpdateRequest;
+  CommonServiceItem?: ESMEUpdateRequest;
 }
 /**
  * Response envelope for eSMEUpdateResponseEnvelope

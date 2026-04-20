@@ -49,7 +49,7 @@ model ContainerRegistryCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ContainerRegistryCreateRequest;
+  CommonServiceItem?: ContainerRegistryCreateRequest;
 }
 /**
  * Response envelope for containerRegistryCreateResponseEnvelope
@@ -84,7 +84,7 @@ model ContainerRegistryUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ContainerRegistryUpdateRequest;
+  CommonServiceItem?: ContainerRegistryUpdateRequest;
 }
 /**
  * Response envelope for containerRegistryUpdateResponseEnvelope

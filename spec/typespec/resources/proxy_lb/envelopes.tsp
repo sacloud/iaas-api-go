@@ -49,7 +49,7 @@ model ProxyLBCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ProxyLBCreateRequest;
+  CommonServiceItem?: ProxyLBCreateRequest;
 }
 /**
  * Response envelope for proxyLBCreateResponseEnvelope
@@ -84,7 +84,7 @@ model ProxyLBUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ProxyLBUpdateRequest;
+  CommonServiceItem?: ProxyLBUpdateRequest;
 }
 /**
  * Response envelope for proxyLBUpdateResponseEnvelope
@@ -106,7 +106,7 @@ model ProxyLBChangePlanRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: ProxyLBChangePlanRequest;
+  CommonServiceItem?: ProxyLBChangePlanRequest;
 }
 /**
  * Response envelope for proxyLBChangePlanResponseEnvelope

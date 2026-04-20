@@ -49,7 +49,7 @@ model GSLBCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: GSLBCreateRequest;
+  CommonServiceItem?: GSLBCreateRequest;
 }
 /**
  * Response envelope for gSLBCreateResponseEnvelope
@@ -84,7 +84,7 @@ model GSLBUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: GSLBUpdateRequest;
+  CommonServiceItem?: GSLBUpdateRequest;
 }
 /**
  * Response envelope for gSLBUpdateResponseEnvelope

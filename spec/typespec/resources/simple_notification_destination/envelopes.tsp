@@ -49,7 +49,7 @@ model SimpleNotificationDestinationCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationDestinationCreateRequest;
+  CommonServiceItem?: SimpleNotificationDestinationCreateRequest;
 }
 /**
  * Response envelope for simpleNotificationDestinationCreateResponseEnvelope
@@ -84,7 +84,7 @@ model SimpleNotificationDestinationUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: SimpleNotificationDestinationUpdateRequest;
+  CommonServiceItem?: SimpleNotificationDestinationUpdateRequest;
 }
 /**
  * Response envelope for simpleNotificationDestinationUpdateResponseEnvelope

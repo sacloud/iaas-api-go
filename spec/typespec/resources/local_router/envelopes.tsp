@@ -49,7 +49,7 @@ model LocalRouterCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: LocalRouterCreateRequest;
+  CommonServiceItem?: LocalRouterCreateRequest;
 }
 /**
  * Response envelope for localRouterCreateResponseEnvelope
@@ -84,7 +84,7 @@ model LocalRouterUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: LocalRouterUpdateRequest;
+  CommonServiceItem?: LocalRouterUpdateRequest;
 }
 /**
  * Response envelope for localRouterUpdateResponseEnvelope

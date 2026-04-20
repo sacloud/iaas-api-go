@@ -55,6 +55,8 @@ type check struct {
 	notPresent         bool
 	payloadFieldName   string // 例: "Switch"
 	payloadType        string // 例: "Switch"（"BridgeInfo" を期待してしまう退行を防ぐ）
+	fieldOptionalName  string // 指定フィールドが optional / required のどちらで宣言されているかを検証するときに使う
+	fieldOptionalWant  bool   // true = optional であること (`X?:` or `X?:`)、false = required (`X:`)
 }
 
 var checks = []check{
@@ -100,6 +102,28 @@ var checks = []check{
 		tsp:            "spec/typespec/resources/disk/envelopes.tsp",
 		model:          "DiskCreateRequestEnvelope",
 		fieldsIncluded: []string{"Disk", "DistantFrom", "KMSKey", "Config", "BootAtAvailable", "TargetDedicatedStorageContract"},
+	},
+	// Disk: 本体 payload Disk は required、側次 payload（KMSKey/DistantFrom）は optional
+	{
+		label:             "Disk envelope: Disk payload required",
+		tsp:               "spec/typespec/resources/disk/envelopes.tsp",
+		model:             "DiskCreateRequestEnvelope",
+		fieldOptionalName: "Disk",
+		fieldOptionalWant: false,
+	},
+	{
+		label:             "Disk envelope: KMSKey payload optional (not unconditionally sent by v1)",
+		tsp:               "spec/typespec/resources/disk/envelopes.tsp",
+		model:             "DiskCreateRequestEnvelope",
+		fieldOptionalName: "KMSKey",
+		fieldOptionalWant: true,
+	},
+	{
+		label:             "Disk envelope: DistantFrom payload optional",
+		tsp:               "spec/typespec/resources/disk/envelopes.tsp",
+		model:             "DiskCreateRequestEnvelope",
+		fieldOptionalName: "DistantFrom",
+		fieldOptionalWant: true,
 	},
 
 	// Server: DELETE /server/:id で Delete + DeleteWithDisks を統合（WithDisk が optional 追加される）
@@ -181,12 +205,41 @@ func run(c check) error {
 		}
 	}
 
+	if c.fieldOptionalName != "" {
+		got, ok := fieldOptional(block, c.fieldOptionalName)
+		if !ok {
+			return fmt.Errorf("model %q has no field %q", c.model, c.fieldOptionalName)
+		}
+		if got != c.fieldOptionalWant {
+			want := "required"
+			if c.fieldOptionalWant {
+				want = "optional"
+			}
+			actual := "required"
+			if got {
+				actual = "optional"
+			}
+			return fmt.Errorf("model %q field %q is %s, expected %s", c.model, c.fieldOptionalName, actual, want)
+		}
+	}
+
 	for _, f := range c.fieldsIncluded {
 		if !fieldInBlock(block, f) {
 			return fmt.Errorf("model %q missing field %q in %s", c.model, f, c.tsp)
 		}
 	}
 	return nil
+}
+
+// fieldOptional は model block から指定フィールドを探し、optional (`X?:`) なら true、required (`X:`) なら false を返す。
+// フィールドが見つからなければ ok=false。
+func fieldOptional(block, fieldName string) (bool, bool) {
+	re := regexp.MustCompile(`(?m)^\s*` + regexp.QuoteMeta(fieldName) + `(\??):\s`)
+	m := re.FindStringSubmatch(block)
+	if m == nil {
+		return false, false
+	}
+	return m[1] == "?", true
 }
 
 // modelExists は tsp 本文に `model <Name> {` の宣言があるかを返す。

@@ -49,7 +49,7 @@ model EnhancedDBCreateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: EnhancedDBCreateRequest;
+  CommonServiceItem?: EnhancedDBCreateRequest;
 }
 /**
  * Response envelope for enhancedDBCreateResponseEnvelope
@@ -84,7 +84,7 @@ model EnhancedDBUpdateRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: EnhancedDBUpdateRequest;
+  CommonServiceItem?: EnhancedDBUpdateRequest;
 }
 /**
  * Response envelope for enhancedDBUpdateResponseEnvelope
@@ -106,7 +106,7 @@ model EnhancedDBSetPasswordRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: EnhancedDBSetPasswordRequest;
+  CommonServiceItem?: EnhancedDBSetPasswordRequest;
 }
 
 /**
@@ -129,5 +129,5 @@ model EnhancedDBSetConfigRequestEnvelope {
   /**
    * CommonServiceItem
    */
-  CommonServiceItem: EnhancedDBSetConfigRequest;
+  CommonServiceItem?: EnhancedDBSetConfigRequest;
 }

@@ -25528,16 +25528,20 @@ func (s *DiskConfigRequestEnvelope) encodeFields(e *jx.Encoder) {
 		e.Str(s.Password)
 	}
 	{
-		e.FieldStart("SSHKey")
-		s.SSHKey.Encode(e)
+		if s.SSHKey.Set {
+			e.FieldStart("SSHKey")
+			s.SSHKey.Encode(e)
+		}
 	}
 	{
-		e.FieldStart("SSHKeys")
-		e.ArrStart()
-		for _, elem := range s.SSHKeys {
-			elem.Encode(e)
+		if s.SSHKeys != nil {
+			e.FieldStart("SSHKeys")
+			e.ArrStart()
+			for _, elem := range s.SSHKeys {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
-		e.ArrEnd()
 	}
 	{
 		e.FieldStart("DisablePWAuth")
@@ -25556,20 +25560,24 @@ func (s *DiskConfigRequestEnvelope) encodeFields(e *jx.Encoder) {
 		e.Str(s.HostName)
 	}
 	{
-		e.FieldStart("Notes")
-		e.ArrStart()
-		for _, elem := range s.Notes {
-			elem.Encode(e)
+		if s.Notes != nil {
+			e.FieldStart("Notes")
+			e.ArrStart()
+			for _, elem := range s.Notes {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
-		e.ArrEnd()
 	}
 	{
 		e.FieldStart("UserIPAddress")
 		e.Str(s.UserIPAddress)
 	}
 	{
-		e.FieldStart("UserSubnet")
-		s.UserSubnet.Encode(e)
+		if s.UserSubnet.Set {
+			e.FieldStart("UserSubnet")
+			s.UserSubnet.Encode(e)
+		}
 	}
 }
 
@@ -25621,8 +25629,8 @@ func (s *DiskConfigRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Password\"")
 			}
 		case "SSHKey":
-			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
+				s.SSHKey.Reset()
 				if err := s.SSHKey.Decode(d); err != nil {
 					return err
 				}
@@ -25631,7 +25639,6 @@ func (s *DiskConfigRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"SSHKey\"")
 			}
 		case "SSHKeys":
-			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
 				s.SSHKeys = make([]DiskEditSSHKey, 0)
 				if err := d.Arr(func(d *jx.Decoder) error {
@@ -25697,7 +25704,6 @@ func (s *DiskConfigRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"HostName\"")
 			}
 		case "Notes":
-			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
 				s.Notes = make([]DiskEditNote, 0)
 				if err := d.Arr(func(d *jx.Decoder) error {
@@ -25727,8 +25733,8 @@ func (s *DiskConfigRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"UserIPAddress\"")
 			}
 		case "UserSubnet":
-			requiredBitSet[1] |= 1 << 2
 			if err := func() error {
+				s.UserSubnet.Reset()
 				if err := s.UserSubnet.Decode(d); err != nil {
 					return err
 				}
@@ -25746,8 +25752,8 @@ func (s *DiskConfigRequestEnvelope) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [2]uint8{
-		0b11111111,
-		0b00000111,
+		0b11110011,
+		0b00000010,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -26086,12 +26092,14 @@ func (s *DiskCreateRequestEnvelope) encodeFields(e *jx.Encoder) {
 		s.Disk.Encode(e)
 	}
 	{
-		e.FieldStart("DistantFrom")
-		e.ArrStart()
-		for _, elem := range s.DistantFrom {
-			elem.Encode(e)
+		if s.DistantFrom != nil {
+			e.FieldStart("DistantFrom")
+			e.ArrStart()
+			for _, elem := range s.DistantFrom {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
-		e.ArrEnd()
 	}
 	{
 		if len(s.KMSKey) != 0 {
@@ -26148,7 +26156,6 @@ func (s *DiskCreateRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Disk\"")
 			}
 		case "DistantFrom":
-			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				s.DistantFrom = make([]ID, 0)
 				if err := d.Arr(func(d *jx.Decoder) error {
@@ -26166,7 +26173,6 @@ func (s *DiskCreateRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"DistantFrom\"")
 			}
 		case "KMSKey":
-			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
 				v, err := d.RawAppend(nil)
 				s.KMSKey = jx.Raw(v)
@@ -26218,7 +26224,7 @@ func (s *DiskCreateRequestEnvelope) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000111,
+		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -51842,6 +51848,72 @@ func (s *OptDiskEditRequest) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes DiskEditSSHKey as json.
+func (o OptDiskEditSSHKey) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes DiskEditSSHKey from json.
+func (o *OptDiskEditSSHKey) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptDiskEditSSHKey to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptDiskEditSSHKey) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptDiskEditSSHKey) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes DiskEditUserSubnet as json.
+func (o OptDiskEditUserSubnet) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes DiskEditUserSubnet from json.
+func (o *OptDiskEditUserSubnet) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptDiskEditUserSubnet to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptDiskEditUserSubnet) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptDiskEditUserSubnet) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes EAutoScaleTriggerType as json.
 func (o OptEAutoScaleTriggerType) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -51974,6 +52046,39 @@ func (s *OptESimpleNotificationDestinationTypes) UnmarshalJSON(data []byte) erro
 	return s.Decode(d)
 }
 
+// Encode encodes EjectCDROMRequest as json.
+func (o OptEjectCDROMRequest) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EjectCDROMRequest from json.
+func (o *OptEjectCDROMRequest) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEjectCDROMRequest to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEjectCDROMRequest) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEjectCDROMRequest) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes FTPServer as json.
 func (o OptFTPServer) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -52070,6 +52175,39 @@ func (s OptIPv6NetListRequestEnvelopeFilter) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptIPv6NetListRequestEnvelopeFilter) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes InsertCDROMRequest as json.
+func (o OptInsertCDROMRequest) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes InsertCDROMRequest from json.
+func (o *OptInsertCDROMRequest) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptInsertCDROMRequest to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptInsertCDROMRequest) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptInsertCDROMRequest) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -71551,8 +71689,10 @@ func (s *ServerEjectCDROMRequestEnvelope) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *ServerEjectCDROMRequestEnvelope) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("CDROM")
-		s.CDROM.Encode(e)
+		if s.CDROM.Set {
+			e.FieldStart("CDROM")
+			s.CDROM.Encode(e)
+		}
 	}
 }
 
@@ -71565,13 +71705,12 @@ func (s *ServerEjectCDROMRequestEnvelope) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ServerEjectCDROMRequestEnvelope to nil")
 	}
-	var requiredBitSet [1]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
 		case "CDROM":
-			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
+				s.CDROM.Reset()
 				if err := s.CDROM.Decode(d); err != nil {
 					return err
 				}
@@ -71585,38 +71724,6 @@ func (s *ServerEjectCDROMRequestEnvelope) Decode(d *jx.Decoder) error {
 		return nil
 	}); err != nil {
 		return errors.Wrap(err, "decode ServerEjectCDROMRequestEnvelope")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfServerEjectCDROMRequestEnvelope) {
-					name = jsonFieldsNameOfServerEjectCDROMRequestEnvelope[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
 	}
 
 	return nil
@@ -72099,8 +72206,10 @@ func (s *ServerInsertCDROMRequestEnvelope) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *ServerInsertCDROMRequestEnvelope) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("CDROM")
-		s.CDROM.Encode(e)
+		if s.CDROM.Set {
+			e.FieldStart("CDROM")
+			s.CDROM.Encode(e)
+		}
 	}
 }
 
@@ -72113,13 +72222,12 @@ func (s *ServerInsertCDROMRequestEnvelope) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ServerInsertCDROMRequestEnvelope to nil")
 	}
-	var requiredBitSet [1]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
 		case "CDROM":
-			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
+				s.CDROM.Reset()
 				if err := s.CDROM.Decode(d); err != nil {
 					return err
 				}
@@ -72133,38 +72241,6 @@ func (s *ServerInsertCDROMRequestEnvelope) Decode(d *jx.Decoder) error {
 		return nil
 	}); err != nil {
 		return errors.Wrap(err, "decode ServerInsertCDROMRequestEnvelope")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfServerInsertCDROMRequestEnvelope) {
-					name = jsonFieldsNameOfServerInsertCDROMRequestEnvelope[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
 	}
 
 	return nil
@@ -73789,12 +73865,14 @@ func (s *ServerSendKeyRequestEnvelope) encodeFields(e *jx.Encoder) {
 		e.Str(s.Key)
 	}
 	{
-		e.FieldStart("Keys")
-		e.ArrStart()
-		for _, elem := range s.Keys {
-			e.Str(elem)
+		if s.Keys != nil {
+			e.FieldStart("Keys")
+			e.ArrStart()
+			for _, elem := range s.Keys {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
-		e.ArrEnd()
 	}
 }
 
@@ -73825,7 +73903,6 @@ func (s *ServerSendKeyRequestEnvelope) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Key\"")
 			}
 		case "Keys":
-			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
 				s.Keys = make([]string, 0)
 				if err := d.Arr(func(d *jx.Decoder) error {
@@ -73854,7 +73931,7 @@ func (s *ServerSendKeyRequestEnvelope) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000011,
+		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.

@@ -9033,6 +9033,24 @@ func (s *OptDiskEditRequest) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptDiskEditSSHKey) SetFake() {
+	var elem DiskEditSSHKey
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptDiskEditUserSubnet) SetFake() {
+	var elem DiskEditUserSubnet
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptEAutoScaleTriggerType) SetFake() {
 	var elem EAutoScaleTriggerType
 	{
@@ -9069,6 +9087,15 @@ func (s *OptESimpleNotificationDestinationTypes) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptEjectCDROMRequest) SetFake() {
+	var elem EjectCDROMRequest
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptFTPServer) SetFake() {
 	var elem FTPServer
 	{
@@ -9089,6 +9116,15 @@ func (s *OptGSLBHealthCheck) SetFake() {
 // SetFake set fake values.
 func (s *OptIPv6NetListRequestEnvelopeFilter) SetFake() {
 	var elem IPv6NetListRequestEnvelopeFilter
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptInsertCDROMRequest) SetFake() {
+	var elem InsertCDROMRequest
 	{
 		elem.SetFake()
 	}

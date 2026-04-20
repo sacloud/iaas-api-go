@@ -49,7 +49,7 @@ model VPCRouterCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: VPCRouterCreateRequest;
+  Appliance?: VPCRouterCreateRequest;
 }
 /**
  * Response envelope for vPCRouterCreateResponseEnvelope
@@ -84,7 +84,7 @@ model VPCRouterUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: VPCRouterUpdateRequest;
+  Appliance?: VPCRouterUpdateRequest;
 }
 /**
  * Response envelope for vPCRouterUpdateResponseEnvelope

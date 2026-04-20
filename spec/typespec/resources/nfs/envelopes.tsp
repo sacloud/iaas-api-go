@@ -49,7 +49,7 @@ model NFSCreateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: NFSCreateRequest;
+  Appliance?: NFSCreateRequest;
 }
 /**
  * Response envelope for nFSCreateResponseEnvelope
@@ -84,7 +84,7 @@ model NFSUpdateRequestEnvelope {
   /**
    * Appliance
    */
-  Appliance: NFSUpdateRequest;
+  Appliance?: NFSUpdateRequest;
 }
 /**
  * Response envelope for nFSUpdateResponseEnvelope
