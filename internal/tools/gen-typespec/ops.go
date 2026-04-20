@@ -73,6 +73,30 @@ type opEntry struct {
 	HttpMethodLower string
 	Params          []opParam
 	ReturnType      string // TypeSpec の戻り値型名。envelope なしの場合は "void"
+	SuccessStatus   int    // POST のときの成功 status code（200/201/202）。POST 以外では未使用
+}
+
+// postSuccessStatus は POST エンドポイントが返す HTTP ステータスコードを解決する。
+// 実 API を観測して判明したものを個別に登録する。未登録の POST は 201 Created を想定。
+// 実 API が異なるコードを返すようになったら、統合テストで decode が失敗して発覚するので
+// そのときにこの表を更新する。
+//
+// キー = 解決済みの TypeSpec ルート文字列（`@route("...")` の値と同じ）。
+func postSuccessStatus(resolvedPath string) int {
+	if code, ok := postStatusCodeOverrides[resolvedPath]; ok {
+		return code
+	}
+	return 201
+}
+
+// postStatusCodeOverrides は POST ステータスコードの個別上書きマップ。
+// 観測済みエンドポイントのみ登録し、未登録は 201 にフォールバックする。
+var postStatusCodeOverrides = map[string]int{
+	// 202 Accepted（非同期受付完了）を返すエンドポイント
+	"/{zone}/api/cloud/1.1/internet": 202,
+
+	// 200 OK を返す sub-action 系 POST（既存リソースに対する操作で「新規リソース作成」では無い）
+	"/{zone}/api/cloud/1.1/internet/{id}/ipv6net": 200,
 }
 
 // fatField は fat model の1フィールドを表す。
@@ -325,6 +349,7 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 			HttpMethodLower: g.key.method,
 			Params:          params,
 			ReturnType:      responseTypeForOp(primary),
+			SuccessStatus:   postSuccessStatus(path),
 		})
 	}
 
@@ -533,6 +558,7 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 			HttpMethodLower: k.method,
 			Params:          params,
 			ReturnType:      responseTypeForOp(repOp),
+			SuccessStatus:   postSuccessStatus(resolvedPath),
 		})
 	}
 
@@ -563,6 +589,7 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 				HttpMethodLower: k.method,
 				Params:          buildOpParams(op, path),
 				ReturnType:      responseTypeForOp(op),
+				SuccessStatus:   postSuccessStatus(path),
 			})
 		}
 
@@ -705,7 +732,7 @@ interface {{ .TypeName }}Op {
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
-  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: 201; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 `
@@ -739,7 +766,7 @@ interface {{ .GroupName }}Op {
   op {{ .MethodNameLower }}(
     {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
-  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: 201; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ range .ResourceInterfaces }}
@@ -748,7 +775,7 @@ interface {{ .TypeName }}Op {
 {{ range .Operations }}
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
-  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: 201; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ end }}`

@@ -374,6 +374,12 @@ var fieldNullabilityOverrides = map[string]map[string]bool{
 		"DefaultRoute":   true,
 		"NetworkMaskLen": true,
 	},
+	// Internet レスポンス下にネストされる Switch の情報は {ID, (場合により IPv6Nets)} のみ返る。
+	// Description/Tags は API 実レスポンスに含まれないため nullable にする。
+	"SwitchInfo": {
+		"Description": true,
+		"Tags":        true,
+	},
 }
 
 // fieldNode は DSL モデルのフィールドを mapconv 経路でツリー化したノード。

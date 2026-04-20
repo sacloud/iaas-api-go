@@ -32922,8 +32922,8 @@ func (s *SwitchGetServersResponseEnvelope) SetServers(val []Server) {
 type SwitchInfo struct {
 	ID          OptNilInt64               `json:"ID"`
 	Name        OptNilString              `json:"Name"`
-	Description string                    `json:"Description"`
-	Tags        []string                  `json:"Tags"`
+	Description OptNilString              `json:"Description"`
+	Tags        OptNilStringArray         `json:"Tags"`
 	Scope       OptNilEScope              `json:"Scope"`
 	Subnets     OptNilInternetSubnetArray `json:"Subnets"`
 	IPv6Nets    OptNilIPv6NetInfoArray    `json:"IPv6Nets"`
@@ -32940,12 +32940,12 @@ func (s *SwitchInfo) GetName() OptNilString {
 }
 
 // GetDescription returns the value of Description.
-func (s *SwitchInfo) GetDescription() string {
+func (s *SwitchInfo) GetDescription() OptNilString {
 	return s.Description
 }
 
 // GetTags returns the value of Tags.
-func (s *SwitchInfo) GetTags() []string {
+func (s *SwitchInfo) GetTags() OptNilStringArray {
 	return s.Tags
 }
 
@@ -32975,12 +32975,12 @@ func (s *SwitchInfo) SetName(val OptNilString) {
 }
 
 // SetDescription sets the value of Description.
-func (s *SwitchInfo) SetDescription(val string) {
+func (s *SwitchInfo) SetDescription(val OptNilString) {
 	s.Description = val
 }
 
 // SetTags sets the value of Tags.
-func (s *SwitchInfo) SetTags(val []string) {
+func (s *SwitchInfo) SetTags(val OptNilStringArray) {
 	s.Tags = val
 }
 

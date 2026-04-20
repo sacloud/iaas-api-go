@@ -13802,19 +13802,12 @@ func (s *SwitchInfo) SetFake() {
 	}
 	{
 		{
-			s.Description = "string"
+			s.Description.SetFake()
 		}
 	}
 	{
 		{
-			s.Tags = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.Tags = append(s.Tags, elem)
-			}
+			s.Tags.SetFake()
 		}
 	}
 	{

@@ -240,6 +240,20 @@ var checks = []check{
 		fieldOptionalName: "NetworkMaskLen",
 		fieldOptionalWant: true,
 	},
+	{
+		label:             "SwitchInfo.Description is optional (Internet のレスポンス下で返らない)",
+		tsp:               "spec/typespec/resources/internet/models.tsp",
+		model:             "SwitchInfo",
+		fieldOptionalName: "Description",
+		fieldOptionalWant: true,
+	},
+	{
+		label:             "SwitchInfo.Tags is optional (Internet のレスポンス下で返らない)",
+		tsp:               "spec/typespec/resources/internet/models.tsp",
+		model:             "SwitchInfo",
+		fieldOptionalName: "Tags",
+		fieldOptionalWant: true,
+	},
 
 	// UpstreamType は client-side 仮想フィールドなので API 定義から除外する
 	{

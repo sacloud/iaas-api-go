@@ -19,8 +19,8 @@ model Internet {
 model SwitchInfo {
   ID?: int64 | null;
   Name?: string | null;
-  Description: string;
-  Tags: string[];
+  Description?: string | null;
+  Tags?: string[] | null;
   Scope?: EScope | null;
   Subnets?: InternetSubnet[] | null;
   IPv6Nets?: IPv6NetInfo[] | null;

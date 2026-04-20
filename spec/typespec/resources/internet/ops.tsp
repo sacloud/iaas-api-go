@@ -20,7 +20,7 @@ interface InternetOp {
   @post
   @route("/{zone}/api/cloud/1.1/internet")
   create(@path zone: string, @body body: InternetCreateRequestEnvelope): {
-    @statusCode _: 201;
+    @statusCode _: 202;
     ...InternetCreateResponseEnvelope;
   } | ApiError;
 
@@ -92,7 +92,7 @@ interface InternetOp {
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net")
   enableIPv6(@path zone: string, @path id: string): {
-    @statusCode _: 201;
+    @statusCode _: 200;
     ...InternetEnableIPv6ResponseEnvelope;
   } | ApiError;
 

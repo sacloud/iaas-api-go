@@ -6180,8 +6180,15 @@ func (s *SwitchInfo) Validate() error {
 
 	var failures []validate.FieldError
 	if err := func() error {
-		if s.Tags == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.Tags.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {
