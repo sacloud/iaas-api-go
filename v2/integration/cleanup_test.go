@@ -63,6 +63,32 @@ func TestCleanupInternet(t *testing.T) {
 	}
 }
 
+// TestCleanupSSHKey は test-sshkey* 系の SSHKey リソースを一括削除する。
+// SSHKey には Tags が無いので Name prefix で対象を判定する。
+func TestCleanupSSHKey(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	findResp, err := c.SSHKeyOpFind(ctx, &client.SSHKeyFindRequestEnvelope{}, client.SSHKeyOpFindParams{Zone: zone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, k := range findResp.SSHKeys {
+		if !strings.HasPrefix(k.Name.Value, "test-sshkey") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", k.ID.Value)
+		t.Logf("Deleting sshkey %s (name=%s)", idStr, k.Name.Value)
+		if _, err := c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+			t.Logf("delete sshkey %s failed: %v", idStr, err)
+		}
+	}
+}
+
 func hasTestTag(tags []string) bool {
 	for _, tag := range tags {
 		if tag == "test" || tag == "integration" {
