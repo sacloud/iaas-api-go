@@ -27,13 +27,13 @@ model ESMEFindRequestEnvelope {
  * Response envelope for eSMEFindResponseEnvelope
  */
 model ESMEFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -55,11 +55,11 @@ model ESMECreateRequestEnvelope {
  * Response envelope for eSMECreateResponseEnvelope
  */
 model ESMECreateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -71,11 +71,11 @@ model ESMECreateResponseEnvelope {
  * Response envelope for eSMEReadResponseEnvelope
  */
 model ESMEReadResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -96,11 +96,11 @@ model ESMEUpdateRequestEnvelope {
  * Response envelope for eSMEUpdateResponseEnvelope
  */
 model ESMEUpdateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -121,11 +121,11 @@ model ESMESendMessageWithGeneratedOTPRequestEnvelope {
  * Response envelope for eSMESendMessageWithGeneratedOTPResponseEnvelope
  */
 model ESMESendMessageWithGeneratedOTPResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * ESME
@@ -146,11 +146,11 @@ model ESMESendMessageWithInputtedOTPRequestEnvelope {
  * Response envelope for eSMESendMessageWithInputtedOTPResponseEnvelope
  */
 model ESMESendMessageWithInputtedOTPResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * ESME
@@ -162,11 +162,11 @@ model ESMESendMessageWithInputtedOTPResponseEnvelope {
  * Response envelope for eSMELogsResponseEnvelope
  */
 model ESMELogsResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * ESME

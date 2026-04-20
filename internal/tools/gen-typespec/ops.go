@@ -254,7 +254,7 @@ func generateOps() {
 
 // generateIndividualFile は単一リソース API の TypeSpec ファイルを生成する。
 // 同一 method+path のオペレーション群は @sharedRoute を使わず 1つに統合する。
-// ボディ引数は全オペレーションに共通なら required、一部にのみ存在する場合は optional にする。
+// エンベロープを持つ op はすべて統合エンベロープ（buildMergedEnvelopeInfos で生成）を @body として参照する。
 func generateIndividualFile(api *dsl.Resource, outputPath string) {
 	// opKey ごとにオペレーションをグループ化（元の順序を保持）
 	type opGroup struct {
@@ -275,6 +275,9 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 		}
 	}
 
+	// opKey -> 統合エンベロープ名（envelopes.go の generateEnvelopes と同じ基準）
+	_, envelopeNameByKey := buildMergedEnvelopeInfos(api)
+
 	var ops []opEntry
 	for _, g := range groups {
 		path := g.key.path
@@ -291,30 +294,26 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 			params = append(params, opParam{Decorator: "@path", Name: p, TSType: "string"})
 		}
 
-		if len(g.ops) == 1 {
-			// 重複なし: エンベロープがあれば @body でラップして使用
-			if primary.HasRequestEnvelope() {
-				// リクエストエンベロープを使用（例: IconCreateRequestEnvelope → {"Icon": {...}}）
-				params = append(params, opParam{
-					Decorator: "@body",
-					Name:      "body",
-					TSType:    upperFirst(primary.RequestEnvelopeStructName()),
-				})
-			} else {
-				for _, arg := range primary.Arguments {
-					if pathParamSet[arg.PathFormatName()] {
-						continue
-					}
-					params = append(params, opParam{
-						Name:   arg.ArgName(),
-						TSType: goArgTypeToTS(arg.TypeName()),
-					})
-				}
-			}
+		if envelopeName, ok := envelopeNameByKey[g.key]; ok && envelopeName != "" {
+			// グループのいずれかにリクエストエンベロープがある → 統合エンベロープを @body で使用
+			// （単一 op の場合は従来通り、そのエンベロープ名。複数 op の場合は primary のエンベロープ名に
+			// 全バリアントの payload が union でマージ済み）
+			params = append(params, opParam{
+				Decorator: "@body",
+				Name:      "body",
+				TSType:    envelopeName,
+			})
 		} else {
-			// 重複あり: 全オペレーションのボディ引数をマージ
-			// 全オペレーションに存在する引数は required、一部のみは optional
-			params = append(params, mergeBodyArgs(g.ops, pathParamSet)...)
+			// エンベロープなし: primary op の引数をボディ引数として出力
+			for _, arg := range primary.Arguments {
+				if pathParamSet[arg.PathFormatName()] {
+					continue
+				}
+				params = append(params, opParam{
+					Name:   arg.ArgName(),
+					TSType: goArgTypeToTS(arg.TypeName()),
+				})
+			}
 		}
 
 		ops = append(ops, opEntry{

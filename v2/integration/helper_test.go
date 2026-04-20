@@ -113,10 +113,14 @@ func newClient(t *testing.T) *client.Client {
 		password: accessTokenSecret,
 	}
 
-	transport := http.RoundTripper(&baseTransport{base: http.DefaultTransport})
+	// 合成順: baseTransport を最外で走らせ（ヘッダ付与）→ dumpTransport がヘッダ付与後の state をダンプ → DefaultTransport で実送信。
+	// こうしないと dump が「baseTransport 適用前」の request を吐いてしまい、User-Agent や X-Sakura-Bigint-As-Int が
+	// トレースに出てこなくなる。
+	var transport http.RoundTripper = http.DefaultTransport
 	if os.Getenv("SAKURA_TRACE") == "1" {
 		transport = &dumpTransport{base: transport}
 	}
+	transport = &baseTransport{base: transport}
 	opts := []client.ClientOption{
 		client.WithClient(&http.Client{Transport: transport}),
 	}

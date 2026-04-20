@@ -19,12 +19,7 @@ interface PrivateHostOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/privatehost")
-  create(
-    @path zone: string,
-    param?: PrivateHostCreateRequest,
-    createParam?: PrivateHostCreateRequest,
-    dedicatedStorageContractID?: ID,
-  ): {
+  create(@path zone: string, @body body: PrivateHostCreateRequestEnvelope): {
     @statusCode _: 201;
     ...PrivateHostCreateResponseEnvelope;
   } | ApiError;

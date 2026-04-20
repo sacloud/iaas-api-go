@@ -189,9 +189,11 @@ func stripNakedTypeName(goType string) string {
 }
 
 // resolvedPayload はエンベロープ内の1フィールド分の情報（TypeSpec型名解決済み）。
+// 同一 method+path の op 群を合成したエンベロープでは、一部 op のみに存在する payload は Optional になる。
 type resolvedPayload struct {
-	Name   string
-	TSType string
+	Name     string
+	TSType   string
+	Optional bool
 }
 
 // resolveRequestPayloadTSType はオペレーションの引数からリクエストペイロードの TypeSpec 型名を解決する。
@@ -210,10 +212,10 @@ func resolveRequestPayloadTSType(op *dsl.Operation, payload *dsl.EnvelopePayload
 	return envelopePayloadTypeToTS(payload.TypeName())
 }
 
-// envelopeInfo は1オペレーション分のエンベロープ情報を保持する。
+// envelopeInfo は1エンベロープ分の情報を保持する（単一 op または合成 op 群）。
 type envelopeInfo struct {
 	HasRequestEnvelope           bool
-	HasResponseEnvelope          bool
+	HasResponseEnvelope           bool
 	RequestEnvelopeStructName    string
 	ResponseEnvelopeStructName   string
 	RequestEnvelopeTypeSpecName  string
@@ -223,7 +225,7 @@ type envelopeInfo struct {
 	IsResponseSingular           bool
 	IsResponsePlural             bool
 	RequestPayloads              []resolvedPayload
-	ResponsePayloads             []*dsl.EnvelopePayloadDesc
+	ResponsePayloads             []resolvedPayload
 }
 
 // resourceEnvelopes は1リソース分の全エンベロープをまとめたテンプレートパラメータ。
@@ -258,7 +260,7 @@ model {{ .RequestEnvelopeTypeSpecName }} {
 	/**
 	 * {{ .Name }}
 	 */
-	{{ .Name }}: {{ .TSType }}{{ if $isPlural }}[]{{ end }};
+	{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}{{ if $isPlural }}[]{{ end }};
 {{- end }}
 }
 {{- end }}
@@ -269,82 +271,180 @@ model {{ .RequestEnvelopeTypeSpecName }} {
 {{- $isPlural := .IsResponsePlural }}
 model {{ .ResponseEnvelopeTypeSpecName }} {
 {{- if .IsResponsePlural }}
-	@doc("Total count of target resources")
+	@doc("対象リソースの総件数")
 	Total: int32;
 
-	@doc("Current page number")
+	@doc("現在のページ番号")
 	From: int32;
 
-	@doc("Count of current page")
+	@doc("現在のページの件数")
 	Count: int32;
 
 {{- range .ResponsePayloads }}
 	/**
 	 * {{ .Name }}
 	 */
-	{{ .Name }}: {{ goTypeToTypeSpec .TypeName }}{{ if $isPlural }}[]{{ end }};
+	{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}{{ if $isPlural }}[]{{ end }};
 {{- end }}
 {{- else }}
-	@doc("is_ok - Operation result indicator")
+	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
 	is_ok: boolean;
 
-	@doc("success - API result status")
-	Success?: boolean;
+	@doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+	Success?: unknown;
 
 {{- range .ResponsePayloads }}
 	/**
 	 * {{ .Name }}
 	 */
-	{{ .Name }}: {{ goTypeToTypeSpec .TypeName }};
+	{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }};
 {{- end }}
 {{- end }}
 }
 {{- end }}
 {{ end }}`
 
-func generateEnvelopes() {
-	for _, api := range define.APIs {
-		var envelopes []envelopeInfo
+// buildMergedEnvelopeInfos は api の全オペレーションを (method, path) でグループ化し、
+// グループ単位でマージされた envelopeInfo のリストを返す。
+// 複数 op が同一 method+path を共有する場合（例: Disk の Create/CreateWithConfig/...）、
+// 各 op の request/response payload を union でマージする:
+//   - 全 op に存在する payload は required
+//   - 一部 op のみに存在する payload は optional
+//
+// エンベロープ名は primaryOpForKey（最短名の op）のものを採用する。
+// 出力順は最初に現れたグループの順を維持する。
+// ops.go からも同じ仕組みで「このグループの統合エンベロープ名」を参照するため、同じ関数を使う。
+func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]string) {
+	type opGroup struct {
+		key opKey
+		ops []*dsl.Operation
+	}
+	var groups []opGroup
+	groupIdx := map[opKey]int{}
+	for _, op := range api.Operations {
+		path := resolveOpPath(op, api)
+		k := opKey{strings.ToLower(op.Method), path}
+		if idx, ok := groupIdx[k]; ok {
+			groups[idx].ops = append(groups[idx].ops, op)
+		} else {
+			groupIdx[k] = len(groups)
+			groups = append(groups, opGroup{key: k, ops: []*dsl.Operation{op}})
+		}
+	}
 
-		for _, op := range api.Operations {
-			hasRequestEnvelope := op.HasRequestEnvelope()
-			hasResponseEnvelope := op.HasResponseEnvelope()
+	// Sort/Include/Exclude は定義しない（AGENTS.md: 複雑性が高すぎる）
+	skipFields := map[string]bool{"Sort": true, "Include": true, "Exclude": true}
 
-			if !hasRequestEnvelope && !hasResponseEnvelope {
-				continue
+	var envelopes []envelopeInfo
+	envelopeNameByKey := map[opKey]string{}
+	seenEnvelope := map[string]bool{}
+
+	for _, g := range groups {
+		primary := primaryOpForKey(g.ops)
+		hasReq, hasResp := false, false
+		for _, op := range g.ops {
+			if op.HasRequestEnvelope() {
+				hasReq = true
 			}
+			if op.HasResponseEnvelope() {
+				hasResp = true
+			}
+		}
+		if !hasReq && !hasResp {
+			continue
+		}
 
-			reqStructName := op.RequestEnvelopeStructName()
-			respStructName := op.ResponseEnvelopeStructName()
+		reqName := primary.RequestEnvelopeStructName()
+		respName := primary.ResponseEnvelopeStructName()
+		if hasReq {
+			envelopeNameByKey[g.key] = upperFirst(reqName)
+		}
 
-			// Sort/Include/Exclude は定義しない（AGENTS.md: 複雑性が高すぎる）
-			skipFields := map[string]bool{"Sort": true, "Include": true, "Exclude": true}
-			var reqPayloads []resolvedPayload
+		// リクエスト payload を union でマージ
+		total := len(g.ops)
+		reqIndex := map[string]*resolvedPayload{}
+		reqCount := map[string]int{}
+		var reqOrder []string
+		for _, op := range g.ops {
 			for _, p := range op.RequestPayloads() {
 				if skipFields[p.Name] {
 					continue
 				}
-				reqPayloads = append(reqPayloads, resolvedPayload{
-					Name:   p.Name,
-					TSType: resolveRequestPayloadTSType(op, p),
-				})
+				if _, exists := reqIndex[p.Name]; !exists {
+					reqIndex[p.Name] = &resolvedPayload{
+						Name:   p.Name,
+						TSType: resolveRequestPayloadTSType(op, p),
+					}
+					reqOrder = append(reqOrder, p.Name)
+				}
+				reqCount[p.Name]++
 			}
-
-			envelopes = append(envelopes, envelopeInfo{
-				HasRequestEnvelope:           hasRequestEnvelope,
-				HasResponseEnvelope:          hasResponseEnvelope,
-				RequestEnvelopeStructName:    reqStructName,
-				ResponseEnvelopeStructName:   respStructName,
-				RequestEnvelopeTypeSpecName:  upperFirst(reqStructName),
-				ResponseEnvelopeTypeSpecName: upperFirst(respStructName),
-				IsRequestSingular:            op.IsRequestSingular(),
-				IsRequestPlural:              op.IsRequestPlural(),
-				IsResponseSingular:           op.IsResponseSingular(),
-				IsResponsePlural:             op.IsResponsePlural(),
-				RequestPayloads:              reqPayloads,
-				ResponsePayloads:             op.ResponsePayloads(),
-			})
 		}
+		var reqPayloads []resolvedPayload
+		for _, name := range reqOrder {
+			p := *reqIndex[name]
+			p.Optional = reqCount[name] < total
+			reqPayloads = append(reqPayloads, p)
+		}
+
+		// レスポンス payload を union でマージ
+		respIndex := map[string]*resolvedPayload{}
+		respCount := map[string]int{}
+		var respOrder []string
+		for _, op := range g.ops {
+			for _, p := range op.ResponsePayloads() {
+				if _, exists := respIndex[p.Name]; !exists {
+					respIndex[p.Name] = &resolvedPayload{
+						Name:   p.Name,
+						TSType: envelopePayloadTypeToTS(p.TypeName()),
+					}
+					respOrder = append(respOrder, p.Name)
+				}
+				respCount[p.Name]++
+			}
+		}
+		var respPayloads []resolvedPayload
+		for _, name := range respOrder {
+			p := *respIndex[name]
+			p.Optional = respCount[name] < total
+			respPayloads = append(respPayloads, p)
+		}
+
+		reqTS := upperFirst(reqName)
+		respTS := upperFirst(respName)
+		// 同名エンベロープが既に登録されていればスキップ（複数グループで primary が同じ名前になる稀ケース）
+		if (hasReq && seenEnvelope[reqTS]) || (hasResp && seenEnvelope[respTS]) {
+			continue
+		}
+		if hasReq {
+			seenEnvelope[reqTS] = true
+		}
+		if hasResp {
+			seenEnvelope[respTS] = true
+		}
+
+		envelopes = append(envelopes, envelopeInfo{
+			HasRequestEnvelope:           hasReq,
+			HasResponseEnvelope:          hasResp,
+			RequestEnvelopeStructName:    reqName,
+			ResponseEnvelopeStructName:   respName,
+			RequestEnvelopeTypeSpecName:  reqTS,
+			ResponseEnvelopeTypeSpecName: respTS,
+			IsRequestSingular:            primary.IsRequestSingular(),
+			IsRequestPlural:              primary.IsRequestPlural(),
+			IsResponseSingular:           primary.IsResponseSingular(),
+			IsResponsePlural:             primary.IsResponsePlural(),
+			RequestPayloads:              reqPayloads,
+			ResponsePayloads:             respPayloads,
+		})
+	}
+
+	return envelopes, envelopeNameByKey
+}
+
+func generateEnvelopes() {
+	for _, api := range define.APIs {
+		envelopes, _ := buildMergedEnvelopeInfos(api)
 
 		if len(envelopes) == 0 {
 			// エンベロープがなければスキップ
@@ -353,10 +453,11 @@ func generateEnvelopes() {
 
 		// nakedInlineModels に対応する naked 型が使われている場合、ExtraModels に収集する
 		// レスポンスペイロードのみ対象（リクエストペイロードは引数モデルから解決済み）
+		// envelopeInfo は TypeSpec 型名しか持たないため、naked 型名の取得には元の DSL op を直接辿る。
 		usedInlineModels := map[string]bool{}
 		var extraModels []fatModelDef
-		for _, env := range envelopes {
-			for _, p := range env.ResponsePayloads {
+		for _, op := range api.Operations {
+			for _, p := range op.ResponsePayloads() {
 				name := stripNakedTypeName(p.TypeName())
 				if def, ok := nakedInlineModels[name]; ok && !usedInlineModels[def.Name] {
 					usedInlineModels[def.Name] = true

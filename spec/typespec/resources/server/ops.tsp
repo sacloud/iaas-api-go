@@ -44,7 +44,7 @@ interface ServerOp {
   delete(
     @path zone: string,
     @path id: string,
-    disks?: ServerDeleteWithDisksRequest,
+    @body body: ServerDeleteRequestEnvelope,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -82,7 +82,7 @@ interface ServerOp {
   boot(
     @path zone: string,
     @path id: string,
-    param?: ServerBootVariables,
+    @body body: ServerBootRequestEnvelope,
   ): void | ApiError;
 
   @delete
@@ -124,6 +124,6 @@ interface ServerOp {
   monitor(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: ServerMonitorRequestEnvelope,
   ): ServerMonitorResponseEnvelope | ApiError;
 }

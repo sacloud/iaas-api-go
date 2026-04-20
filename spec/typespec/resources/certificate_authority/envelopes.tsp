@@ -27,13 +27,13 @@ model CertificateAuthorityFindRequestEnvelope {
  * Response envelope for certificateAuthorityFindResponseEnvelope
  */
 model CertificateAuthorityFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -55,11 +55,11 @@ model CertificateAuthorityCreateRequestEnvelope {
  * Response envelope for certificateAuthorityCreateResponseEnvelope
  */
 model CertificateAuthorityCreateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -71,11 +71,11 @@ model CertificateAuthorityCreateResponseEnvelope {
  * Response envelope for certificateAuthorityReadResponseEnvelope
  */
 model CertificateAuthorityReadResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -96,11 +96,11 @@ model CertificateAuthorityUpdateRequestEnvelope {
  * Response envelope for certificateAuthorityUpdateResponseEnvelope
  */
 model CertificateAuthorityUpdateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -112,11 +112,11 @@ model CertificateAuthorityUpdateResponseEnvelope {
  * Response envelope for certificateAuthorityDetailResponseEnvelope
  */
 model CertificateAuthorityDetailResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CertificateAuthority
@@ -137,11 +137,11 @@ model CertificateAuthorityAddClientRequestEnvelope {
  * Response envelope for certificateAuthorityAddClientResponseEnvelope
  */
 model CertificateAuthorityAddClientResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CertificateAuthority
@@ -153,13 +153,13 @@ model CertificateAuthorityAddClientResponseEnvelope {
  * Response envelope for certificateAuthorityListClientsResponseEnvelope
  */
 model CertificateAuthorityListClientsResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -172,11 +172,11 @@ model CertificateAuthorityListClientsResponseEnvelope {
  * Response envelope for certificateAuthorityReadClientResponseEnvelope
  */
 model CertificateAuthorityReadClientResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CertificateAuthority
@@ -197,11 +197,11 @@ model CertificateAuthorityAddServerRequestEnvelope {
  * Response envelope for certificateAuthorityAddServerResponseEnvelope
  */
 model CertificateAuthorityAddServerResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CertificateAuthority
@@ -213,13 +213,13 @@ model CertificateAuthorityAddServerResponseEnvelope {
  * Response envelope for certificateAuthorityListServersResponseEnvelope
  */
 model CertificateAuthorityListServersResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -232,11 +232,11 @@ model CertificateAuthorityListServersResponseEnvelope {
  * Response envelope for certificateAuthorityReadServerResponseEnvelope
  */
 model CertificateAuthorityReadServerResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CertificateAuthority

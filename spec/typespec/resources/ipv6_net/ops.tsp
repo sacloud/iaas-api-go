@@ -14,7 +14,7 @@ interface IPv6NetOp {
   @route("/{zone}/api/cloud/1.1/ipv6net")
   list(
     @path zone: string,
-    conditions?: FindCondition,
+    @body body: IPv6NetListRequestEnvelope,
   ): IPv6NetListResponseEnvelope | ApiError;
 
   @get

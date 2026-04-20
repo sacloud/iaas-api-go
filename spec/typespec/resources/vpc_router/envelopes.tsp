@@ -27,13 +27,13 @@ model VPCRouterFindRequestEnvelope {
  * Response envelope for vPCRouterFindResponseEnvelope
  */
 model VPCRouterFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -55,11 +55,11 @@ model VPCRouterCreateRequestEnvelope {
  * Response envelope for vPCRouterCreateResponseEnvelope
  */
 model VPCRouterCreateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Appliance
@@ -71,11 +71,11 @@ model VPCRouterCreateResponseEnvelope {
  * Response envelope for vPCRouterReadResponseEnvelope
  */
 model VPCRouterReadResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Appliance
@@ -96,36 +96,11 @@ model VPCRouterUpdateRequestEnvelope {
  * Response envelope for vPCRouterUpdateResponseEnvelope
  */
 model VPCRouterUpdateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
-
-  /**
-   * Appliance
-   */
-  Appliance: VPCRouter;
-}
-
-/**
- * Request envelope for vPCRouterUpdateSettingsRequestEnvelope
- */
-model VPCRouterUpdateSettingsRequestEnvelope {
-  /**
-   * Appliance
-   */
-  Appliance: VPCRouterUpdateSettingsRequest;
-}
-/**
- * Response envelope for vPCRouterUpdateSettingsResponseEnvelope
- */
-model VPCRouterUpdateSettingsResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
-  is_ok: boolean;
-
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Appliance
@@ -161,11 +136,11 @@ model VPCRouterMonitorCPURequestEnvelope {
  * Response envelope for vPCRouterMonitorCPUResponseEnvelope
  */
 model VPCRouterMonitorCPUResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Data
@@ -191,11 +166,11 @@ model VPCRouterMonitorInterfaceRequestEnvelope {
  * Response envelope for vPCRouterMonitorInterfaceResponseEnvelope
  */
 model VPCRouterMonitorInterfaceResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Data
@@ -207,11 +182,11 @@ model VPCRouterMonitorInterfaceResponseEnvelope {
  * Response envelope for vPCRouterStatusResponseEnvelope
  */
 model VPCRouterStatusResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Router
@@ -223,11 +198,11 @@ model VPCRouterStatusResponseEnvelope {
  * Response envelope for vPCRouterLogsResponseEnvelope
  */
 model VPCRouterLogsResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * VPCRouter
@@ -239,11 +214,11 @@ model VPCRouterLogsResponseEnvelope {
  * Response envelope for vPCRouterPingResponseEnvelope
  */
 model VPCRouterPingResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * VPCRouter

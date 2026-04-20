@@ -86,7 +86,7 @@ interface InternetOp {
   monitor(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: InternetMonitorRequestEnvelope,
   ): InternetMonitorResponseEnvelope | ApiError;
 
   @post

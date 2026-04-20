@@ -27,13 +27,13 @@ model ServerFindRequestEnvelope {
  * Response envelope for serverFindResponseEnvelope
  */
 model ServerFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -55,11 +55,11 @@ model ServerCreateRequestEnvelope {
  * Response envelope for serverCreateResponseEnvelope
  */
 model ServerCreateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Server
@@ -71,11 +71,11 @@ model ServerCreateResponseEnvelope {
  * Response envelope for serverReadResponseEnvelope
  */
 model ServerReadResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Server
@@ -96,11 +96,11 @@ model ServerUpdateRequestEnvelope {
  * Response envelope for serverUpdateResponseEnvelope
  */
 model ServerUpdateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Server
@@ -109,13 +109,13 @@ model ServerUpdateResponseEnvelope {
 }
 
 /**
- * Request envelope for serverDeleteWithDisksRequestEnvelope
+ * Request envelope for serverDeleteRequestEnvelope
  */
-model ServerDeleteWithDisksRequestEnvelope {
+model ServerDeleteRequestEnvelope {
   /**
    * WithDisk
    */
-  WithDisk: ID[];
+  WithDisk?: ID[];
 }
 
 /**
@@ -161,11 +161,11 @@ model ServerChangePlanRequestEnvelope {
  * Response envelope for serverChangePlanResponseEnvelope
  */
 model ServerChangePlanResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Server
@@ -194,6 +194,16 @@ model ServerEjectCDROMRequestEnvelope {
 }
 
 /**
+ * Request envelope for serverBootRequestEnvelope
+ */
+model ServerBootRequestEnvelope {
+  /**
+   * UserBootVariables
+   */
+  UserBootVariables?: ServerBootVariables;
+}
+
+/**
  * Request envelope for serverShutdownRequestEnvelope
  */
 model ServerShutdownRequestEnvelope {
@@ -201,16 +211,6 @@ model ServerShutdownRequestEnvelope {
    * Force
    */
   Force: boolean;
-}
-
-/**
- * Request envelope for serverBootWithVariablesRequestEnvelope
- */
-model ServerBootWithVariablesRequestEnvelope {
-  /**
-   * UserBootVariables
-   */
-  UserBootVariables: ServerBootVariables;
 }
 
 /**
@@ -232,11 +232,11 @@ model ServerSendKeyRequestEnvelope {
  * Response envelope for serverGetVNCProxyResponseEnvelope
  */
 model ServerGetVNCProxyResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * VNCProxyInfo
@@ -262,41 +262,11 @@ model ServerMonitorRequestEnvelope {
  * Response envelope for serverMonitorResponseEnvelope
  */
 model ServerMonitorResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
-
-  /**
-   * Data
-   */
-  Data: unknown;
-}
-
-/**
- * Request envelope for serverMonitorCPURequestEnvelope
- */
-model ServerMonitorCPURequestEnvelope {
-  /**
-   * Start
-   */
-  Start: utcDateTime;
-
-  /**
-   * End
-   */
-  End: utcDateTime;
-}
-/**
- * Response envelope for serverMonitorCPUResponseEnvelope
- */
-model ServerMonitorCPUResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
-  is_ok: boolean;
-
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Data

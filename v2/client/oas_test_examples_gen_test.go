@@ -323,6 +323,18 @@ func TestArchiveCreateRequest_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveCreateRequest
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestArchiveCreateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ArchiveCreateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ArchiveCreateRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestArchiveCreateRequestFromShared_EncodeDecode(t *testing.T) {
 	var typ ArchiveCreateRequestFromShared
 	typ.SetFake()
@@ -397,18 +409,6 @@ func TestArchiveOpCloseFTPOK_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveOpCloseFTPOK
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestArchiveOpCreateReq_EncodeDecode(t *testing.T) {
-	var typ ArchiveOpCreateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveOpCreateReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestArchiveOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ ArchiveOpDeleteOK
 	typ.SetFake()
@@ -419,30 +419,6 @@ func TestArchiveOpDeleteOK_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ArchiveOpDeleteOK
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestArchiveOpShareReq_EncodeDecode(t *testing.T) {
-	var typ ArchiveOpShareReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveOpShareReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestArchiveOpTransferReq_EncodeDecode(t *testing.T) {
-	var typ ArchiveOpTransferReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveOpTransferReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestArchivePlan_EncodeDecode(t *testing.T) {
@@ -481,6 +457,18 @@ func TestArchiveShareInfo_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveShareInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestArchiveShareRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ArchiveShareRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ArchiveShareRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestArchiveShareResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ArchiveShareResponseEnvelope
 	typ.SetFake()
@@ -515,6 +503,18 @@ func TestArchiveSourceDisk_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ArchiveSourceDisk
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestArchiveTransferRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ArchiveTransferRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ArchiveTransferRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestArchiveTransferResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -2373,6 +2373,18 @@ func TestDiskCreateRequest_EncodeDecode(t *testing.T) {
 	var typ2 DiskCreateRequest
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestDiskCreateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ DiskCreateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DiskCreateRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestDiskCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DiskCreateResponseEnvelope
 	typ.SetFake()
@@ -2497,6 +2509,18 @@ func TestDiskFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DiskFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestDiskMonitorRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ DiskMonitorRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DiskMonitorRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestDiskMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DiskMonitorResponseEnvelope
 	typ.SetFake()
@@ -2507,18 +2531,6 @@ func TestDiskMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 DiskMonitorResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestDiskOpCreateReq_EncodeDecode(t *testing.T) {
-	var typ DiskOpCreateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 DiskOpCreateReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestDiskOpDeleteOK_EncodeDecode(t *testing.T) {
@@ -2543,18 +2555,6 @@ func TestDiskOpDisconnectFromServerOK_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 DiskOpDisconnectFromServerOK
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestDiskOpMonitorReq_EncodeDecode(t *testing.T) {
-	var typ DiskOpMonitorReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 DiskOpMonitorReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestDiskPlan_EncodeDecode(t *testing.T) {
@@ -3629,6 +3629,32 @@ func TestIPv6NetInfo_EncodeDecode(t *testing.T) {
 	var typ2 IPv6NetInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestIPv6NetListRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ IPv6NetListRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 IPv6NetListRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestIPv6NetListRequestEnvelopeFilter_EncodeDecode(t *testing.T) {
+	var typ IPv6NetListRequestEnvelopeFilter
+	typ = make(IPv6NetListRequestEnvelopeFilter)
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 IPv6NetListRequestEnvelopeFilter
+	typ2 = make(IPv6NetListRequestEnvelopeFilter)
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestIPv6NetListResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ IPv6NetListResponseEnvelope
 	typ.SetFake()
@@ -3639,18 +3665,6 @@ func TestIPv6NetListResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 IPv6NetListResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestIPv6NetOpListReq_EncodeDecode(t *testing.T) {
-	var typ IPv6NetOpListReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 IPv6NetOpListReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestIPv6NetReadResponseEnvelope_EncodeDecode(t *testing.T) {
@@ -4199,6 +4213,18 @@ func TestInternetInfo_EncodeDecode(t *testing.T) {
 	var typ2 InternetInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestInternetMonitorRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ InternetMonitorRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 InternetMonitorRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestInternetMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetMonitorResponseEnvelope
 	typ.SetFake()
@@ -4245,18 +4271,6 @@ func TestInternetOpDisableIPv6OK_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 InternetOpDisableIPv6OK
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestInternetOpMonitorReq_EncodeDecode(t *testing.T) {
-	var typ InternetOpMonitorReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 InternetOpMonitorReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestInternetPlan_EncodeDecode(t *testing.T) {
@@ -5239,18 +5253,6 @@ func TestNoteUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 NoteUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestOpenFTPRequest_EncodeDecode(t *testing.T) {
-	var typ OpenFTPRequest
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 OpenFTPRequest
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestPacketFilter_EncodeDecode(t *testing.T) {
 	var typ PacketFilter
 	typ.SetFake()
@@ -5445,6 +5447,18 @@ func TestPrivateHostCreateRequest_EncodeDecode(t *testing.T) {
 	var typ2 PrivateHostCreateRequest
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestPrivateHostCreateRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ PrivateHostCreateRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 PrivateHostCreateRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestPrivateHostCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ PrivateHostCreateResponseEnvelope
 	typ.SetFake()
@@ -5505,18 +5519,6 @@ func TestPrivateHostHost_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 PrivateHostHost
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestPrivateHostOpCreateReq_EncodeDecode(t *testing.T) {
-	var typ PrivateHostOpCreateReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 PrivateHostOpCreateReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestPrivateHostOpDeleteOK_EncodeDecode(t *testing.T) {
@@ -6413,6 +6415,18 @@ func TestServer_EncodeDecode(t *testing.T) {
 	var typ2 Server
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestServerBootRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ServerBootRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ServerBootRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestServerBootVariables_EncodeDecode(t *testing.T) {
 	var typ ServerBootVariables
 	typ.SetFake()
@@ -6521,8 +6535,8 @@ func TestServerCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestServerDeleteWithDisksRequest_EncodeDecode(t *testing.T) {
-	var typ ServerDeleteWithDisksRequest
+func TestServerDeleteRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ServerDeleteRequestEnvelope
 	typ.SetFake()
 
 	e := jx.Encoder{}
@@ -6530,7 +6544,7 @@ func TestServerDeleteWithDisksRequest_EncodeDecode(t *testing.T) {
 	data := e.Bytes()
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
-	var typ2 ServerDeleteWithDisksRequest
+	var typ2 ServerDeleteRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestServerEjectCDROMRequestEnvelope_EncodeDecode(t *testing.T) {
@@ -6619,6 +6633,18 @@ func TestServerInstance_EncodeDecode(t *testing.T) {
 	var typ2 ServerInstance
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+func TestServerMonitorRequestEnvelope_EncodeDecode(t *testing.T) {
+	var typ ServerMonitorRequestEnvelope
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 ServerMonitorRequestEnvelope
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
 func TestServerMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerMonitorResponseEnvelope
 	typ.SetFake()
@@ -6629,18 +6655,6 @@ func TestServerMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ServerMonitorResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestServerOpBootReq_EncodeDecode(t *testing.T) {
-	var typ ServerOpBootReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerOpBootReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestServerOpDeleteOK_EncodeDecode(t *testing.T) {
@@ -6655,18 +6669,6 @@ func TestServerOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ2 ServerOpDeleteOK
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestServerOpDeleteReq_EncodeDecode(t *testing.T) {
-	var typ ServerOpDeleteReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerOpDeleteReq
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestServerOpEjectCDROMOK_EncodeDecode(t *testing.T) {
 	var typ ServerOpEjectCDROMOK
 	typ.SetFake()
@@ -6677,18 +6679,6 @@ func TestServerOpEjectCDROMOK_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ServerOpEjectCDROMOK
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestServerOpMonitorReq_EncodeDecode(t *testing.T) {
-	var typ ServerOpMonitorReq
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ServerOpMonitorReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestServerOpShutdownOK_EncodeDecode(t *testing.T) {

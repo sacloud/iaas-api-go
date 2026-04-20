@@ -3216,6 +3216,100 @@ func (s *ArchiveCreateRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *ArchiveCreateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ArchiveCreateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Archive")
+		s.Archive.Encode(e)
+	}
+}
+
+var jsonFieldsNameOfArchiveCreateRequestEnvelope = [1]string{
+	0: "Archive",
+}
+
+// Decode decodes ArchiveCreateRequestEnvelope from json.
+func (s *ArchiveCreateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ArchiveCreateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Archive":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.Archive.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Archive\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ArchiveCreateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfArchiveCreateRequestEnvelope) {
+					name = jsonFieldsNameOfArchiveCreateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ArchiveCreateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ArchiveCreateRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *ArchiveCreateRequestFromShared) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -3405,21 +3499,28 @@ func (s *ArchiveCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
 		e.FieldStart("Archive")
 		s.Archive.Encode(e)
 	}
+	{
+		if s.FTPServer.Set {
+			e.FieldStart("FTPServer")
+			s.FTPServer.Encode(e)
+		}
+	}
 }
 
-var jsonFieldsNameOfArchiveCreateResponseEnvelope = [3]string{
+var jsonFieldsNameOfArchiveCreateResponseEnvelope = [4]string{
 	0: "is_ok",
 	1: "Success",
 	2: "Archive",
+	3: "FTPServer",
 }
 
 // Decode decodes ArchiveCreateResponseEnvelope from json.
@@ -3445,8 +3546,9 @@ func (s *ArchiveCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -3462,6 +3564,16 @@ func (s *ArchiveCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Archive\"")
+			}
+		case "FTPServer":
+			if err := func() error {
+				s.FTPServer.Reset()
+				if err := s.FTPServer.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"FTPServer\"")
 			}
 		default:
 			return d.Skip()
@@ -3959,100 +4071,6 @@ func (s *ArchiveOpCloseFTPOK) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *ArchiveOpCreateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ArchiveOpCreateReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("param")
-		s.Param.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfArchiveOpCreateReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes ArchiveOpCreateReq from json.
-func (s *ArchiveOpCreateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ArchiveOpCreateReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ArchiveOpCreateReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfArchiveOpCreateReq) {
-					name = jsonFieldsNameOfArchiveOpCreateReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ArchiveOpCreateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ArchiveOpCreateReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *ArchiveOpDeleteOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -4144,163 +4162,6 @@ func (s *ArchiveOpDeleteOK) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ArchiveOpDeleteOK) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ArchiveOpShareReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ArchiveOpShareReq) encodeFields(e *jx.Encoder) {
-	{
-		if s.OpenOption.Set {
-			e.FieldStart("openOption")
-			s.OpenOption.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfArchiveOpShareReq = [1]string{
-	0: "openOption",
-}
-
-// Decode decodes ArchiveOpShareReq from json.
-func (s *ArchiveOpShareReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ArchiveOpShareReq to nil")
-	}
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "openOption":
-			if err := func() error {
-				s.OpenOption.Reset()
-				if err := s.OpenOption.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"openOption\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ArchiveOpShareReq")
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ArchiveOpShareReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ArchiveOpShareReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ArchiveOpTransferReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ArchiveOpTransferReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("param")
-		s.Param.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfArchiveOpTransferReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes ArchiveOpTransferReq from json.
-func (s *ArchiveOpTransferReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ArchiveOpTransferReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ArchiveOpTransferReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfArchiveOpTransferReq) {
-					name = jsonFieldsNameOfArchiveOpTransferReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ArchiveOpTransferReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ArchiveOpTransferReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -4416,9 +4277,9 @@ func (s *ArchiveReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -4456,8 +4317,9 @@ func (s *ArchiveReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -4627,6 +4489,86 @@ func (s *ArchiveShareInfo) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *ArchiveShareRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ArchiveShareRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		if s.ChangePassword.Set {
+			e.FieldStart("ChangePassword")
+			s.ChangePassword.Encode(e)
+		}
+	}
+	{
+		if s.Shared.Set {
+			e.FieldStart("Shared")
+			s.Shared.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfArchiveShareRequestEnvelope = [2]string{
+	0: "ChangePassword",
+	1: "Shared",
+}
+
+// Decode decodes ArchiveShareRequestEnvelope from json.
+func (s *ArchiveShareRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ArchiveShareRequestEnvelope to nil")
+	}
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "ChangePassword":
+			if err := func() error {
+				s.ChangePassword.Reset()
+				if err := s.ChangePassword.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"ChangePassword\"")
+			}
+		case "Shared":
+			if err := func() error {
+				s.Shared.Reset()
+				if err := s.Shared.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Shared\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ArchiveShareRequestEnvelope")
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ArchiveShareRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ArchiveShareRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *ArchiveShareResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -4640,21 +4582,30 @@ func (s *ArchiveShareResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
-		e.FieldStart("ArchiveShareInfo")
-		s.ArchiveShareInfo.Encode(e)
+		if s.FTPServer.Set {
+			e.FieldStart("FTPServer")
+			s.FTPServer.Encode(e)
+		}
+	}
+	{
+		if s.ArchiveShareInfo.Set {
+			e.FieldStart("ArchiveShareInfo")
+			s.ArchiveShareInfo.Encode(e)
+		}
 	}
 }
 
-var jsonFieldsNameOfArchiveShareResponseEnvelope = [3]string{
+var jsonFieldsNameOfArchiveShareResponseEnvelope = [4]string{
 	0: "is_ok",
 	1: "Success",
-	2: "ArchiveShareInfo",
+	2: "FTPServer",
+	3: "ArchiveShareInfo",
 }
 
 // Decode decodes ArchiveShareResponseEnvelope from json.
@@ -4680,17 +4631,28 @@ func (s *ArchiveShareResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Success\"")
 			}
-		case "ArchiveShareInfo":
-			requiredBitSet[0] |= 1 << 2
+		case "FTPServer":
 			if err := func() error {
+				s.FTPServer.Reset()
+				if err := s.FTPServer.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"FTPServer\"")
+			}
+		case "ArchiveShareInfo":
+			if err := func() error {
+				s.ArchiveShareInfo.Reset()
 				if err := s.ArchiveShareInfo.Decode(d); err != nil {
 					return err
 				}
@@ -4708,7 +4670,7 @@ func (s *ArchiveShareResponseEnvelope) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00000101,
+		0b00000001,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -4915,6 +4877,100 @@ func (s *ArchiveSourceDisk) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *ArchiveTransferRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ArchiveTransferRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Archive")
+		s.Archive.Encode(e)
+	}
+}
+
+var jsonFieldsNameOfArchiveTransferRequestEnvelope = [1]string{
+	0: "Archive",
+}
+
+// Decode decodes ArchiveTransferRequestEnvelope from json.
+func (s *ArchiveTransferRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ArchiveTransferRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Archive":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.Archive.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Archive\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ArchiveTransferRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfArchiveTransferRequestEnvelope) {
+					name = jsonFieldsNameOfArchiveTransferRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ArchiveTransferRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ArchiveTransferRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *ArchiveTransferResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -4928,9 +4984,9 @@ func (s *ArchiveTransferResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -4968,8 +5024,9 @@ func (s *ArchiveTransferResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -5309,9 +5366,9 @@ func (s *ArchiveUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -5349,8 +5406,9 @@ func (s *ArchiveUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -5846,9 +5904,9 @@ func (s *AuthStatusReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -5886,8 +5944,9 @@ func (s *AuthStatusReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -6280,9 +6339,9 @@ func (s *AutoBackupCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -6320,8 +6379,9 @@ func (s *AutoBackupCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -6565,9 +6625,9 @@ func (s *AutoBackupReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -6605,8 +6665,9 @@ func (s *AutoBackupReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -6807,9 +6868,9 @@ func (s *AutoBackupUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -6847,8 +6908,9 @@ func (s *AutoBackupUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -7409,9 +7471,9 @@ func (s *AutoScaleStatusResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -7449,8 +7511,9 @@ func (s *AutoScaleStatusResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -8673,9 +8736,9 @@ func (s *BillDetailsCSVResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -8713,8 +8776,9 @@ func (s *BillDetailsCSVResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -9530,9 +9594,9 @@ func (s *BridgeCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -9570,8 +9634,9 @@ func (s *BridgeCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -10274,9 +10339,9 @@ func (s *BridgeReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -10314,8 +10379,9 @@ func (s *BridgeReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -10740,9 +10806,9 @@ func (s *BridgeUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -10780,8 +10846,9 @@ func (s *BridgeUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -11531,9 +11598,9 @@ func (s *CDROMCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -11576,8 +11643,9 @@ func (s *CDROMCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -12305,9 +12373,9 @@ func (s *CDROMOpenFTPResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -12345,8 +12413,9 @@ func (s *CDROMOpenFTPResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -12433,9 +12502,9 @@ func (s *CDROMReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -12473,8 +12542,9 @@ func (s *CDROMReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -12814,9 +12884,9 @@ func (s *CDROMUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -12854,8 +12924,9 @@ func (s *CDROMUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -13204,9 +13275,9 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) encodeFields(e *jx.Encod
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -13244,8 +13315,9 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) Decode(d *jx.Decoder) er
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -13559,9 +13631,9 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) encodeFields(e *jx.Encod
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -13599,8 +13671,9 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) Decode(d *jx.Decoder) er
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -13932,9 +14005,9 @@ func (s *CertificateAuthorityDetailResponseEnvelope) encodeFields(e *jx.Encoder)
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -13972,8 +14045,9 @@ func (s *CertificateAuthorityDetailResponseEnvelope) Decode(d *jx.Decoder) error
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -14562,9 +14636,9 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) encodeFields(e *jx.Enco
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -14602,8 +14676,9 @@ func (s *CertificateAuthorityReadClientResponseEnvelope) Decode(d *jx.Decoder) e
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -14690,9 +14765,9 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) encodeFields(e *jx.Enco
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -14730,8 +14805,9 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) Decode(d *jx.Decoder) e
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -19731,9 +19807,9 @@ func (s *ContainerRegistryListUsersResponseEnvelope) encodeFields(e *jx.Encoder)
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -19771,8 +19847,9 @@ func (s *ContainerRegistryListUsersResponseEnvelope) Decode(d *jx.Decoder) error
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -21719,9 +21796,9 @@ func (s *DatabaseCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -21759,8 +21836,9 @@ func (s *DatabaseCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -22147,9 +22225,9 @@ func (s *DatabaseGetParameterResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -22187,8 +22265,9 @@ func (s *DatabaseGetParameterResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -22452,9 +22531,9 @@ func (s *DatabaseMonitorCPUResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -22494,8 +22573,9 @@ func (s *DatabaseMonitorCPUResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -22584,9 +22664,9 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -22626,8 +22706,9 @@ func (s *DatabaseMonitorDatabaseResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -22716,9 +22797,9 @@ func (s *DatabaseMonitorDiskResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -22758,8 +22839,9 @@ func (s *DatabaseMonitorDiskResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -22848,9 +22930,9 @@ func (s *DatabaseMonitorInterfaceResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -22890,8 +22972,9 @@ func (s *DatabaseMonitorInterfaceResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -23798,9 +23881,9 @@ func (s *DatabaseReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -23838,8 +23921,9 @@ func (s *DatabaseReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -25033,9 +25117,9 @@ func (s *DatabaseStatusResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -25073,8 +25157,9 @@ func (s *DatabaseStatusResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -25272,9 +25357,9 @@ func (s *DatabaseUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -25312,8 +25397,9 @@ func (s *DatabaseUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -26547,6 +26633,198 @@ func (s *DiskCreateRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *DiskCreateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *DiskCreateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Disk")
+		s.Disk.Encode(e)
+	}
+	{
+		e.FieldStart("DistantFrom")
+		e.ArrStart()
+		for _, elem := range s.DistantFrom {
+			elem.Encode(e)
+		}
+		e.ArrEnd()
+	}
+	{
+		if len(s.KMSKey) != 0 {
+			e.FieldStart("KMSKey")
+			e.Raw(s.KMSKey)
+		}
+	}
+	{
+		if len(s.TargetDedicatedStorageContract) != 0 {
+			e.FieldStart("TargetDedicatedStorageContract")
+			e.Raw(s.TargetDedicatedStorageContract)
+		}
+	}
+	{
+		if s.Config.Set {
+			e.FieldStart("Config")
+			s.Config.Encode(e)
+		}
+	}
+	{
+		if s.BootAtAvailable.Set {
+			e.FieldStart("BootAtAvailable")
+			s.BootAtAvailable.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfDiskCreateRequestEnvelope = [6]string{
+	0: "Disk",
+	1: "DistantFrom",
+	2: "KMSKey",
+	3: "TargetDedicatedStorageContract",
+	4: "Config",
+	5: "BootAtAvailable",
+}
+
+// Decode decodes DiskCreateRequestEnvelope from json.
+func (s *DiskCreateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode DiskCreateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Disk":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.Disk.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Disk\"")
+			}
+		case "DistantFrom":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				s.DistantFrom = make([]ID, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem ID
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.DistantFrom = append(s.DistantFrom, elem)
+					return nil
+				}); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"DistantFrom\"")
+			}
+		case "KMSKey":
+			requiredBitSet[0] |= 1 << 2
+			if err := func() error {
+				v, err := d.RawAppend(nil)
+				s.KMSKey = jx.Raw(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"KMSKey\"")
+			}
+		case "TargetDedicatedStorageContract":
+			if err := func() error {
+				v, err := d.RawAppend(nil)
+				s.TargetDedicatedStorageContract = jx.Raw(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"TargetDedicatedStorageContract\"")
+			}
+		case "Config":
+			if err := func() error {
+				s.Config.Reset()
+				if err := s.Config.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Config\"")
+			}
+		case "BootAtAvailable":
+			if err := func() error {
+				s.BootAtAvailable.Reset()
+				if err := s.BootAtAvailable.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"BootAtAvailable\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode DiskCreateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000111,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfDiskCreateRequestEnvelope) {
+					name = jsonFieldsNameOfDiskCreateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *DiskCreateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *DiskCreateRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *DiskCreateResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -26560,9 +26838,9 @@ func (s *DiskCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -26600,8 +26878,9 @@ func (s *DiskCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -27695,6 +27974,119 @@ func (s *DiskFindResponseEnvelope) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *DiskMonitorRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *DiskMonitorRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Start")
+		json.EncodeDateTime(e, s.Start)
+	}
+	{
+		e.FieldStart("End")
+		json.EncodeDateTime(e, s.End)
+	}
+}
+
+var jsonFieldsNameOfDiskMonitorRequestEnvelope = [2]string{
+	0: "Start",
+	1: "End",
+}
+
+// Decode decodes DiskMonitorRequestEnvelope from json.
+func (s *DiskMonitorRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode DiskMonitorRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Start":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.Start = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Start\"")
+			}
+		case "End":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.End = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"End\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode DiskMonitorRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000011,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfDiskMonitorRequestEnvelope) {
+					name = jsonFieldsNameOfDiskMonitorRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *DiskMonitorRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *DiskMonitorRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *DiskMonitorResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -27708,9 +28100,9 @@ func (s *DiskMonitorResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -27750,8 +28142,9 @@ func (s *DiskMonitorResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -27822,193 +28215,6 @@ func (s *DiskMonitorResponseEnvelope) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *DiskMonitorResponseEnvelope) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *DiskOpCreateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *DiskOpCreateReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("createParam")
-		s.CreateParam.Encode(e)
-	}
-	{
-		e.FieldStart("distantFrom")
-		e.ArrStart()
-		for _, elem := range s.DistantFrom {
-			elem.Encode(e)
-		}
-		e.ArrEnd()
-	}
-	{
-		e.FieldStart("kmeKeyID")
-		s.KmeKeyID.Encode(e)
-	}
-	{
-		if s.DedicatedStorageContractID.Set {
-			e.FieldStart("dedicatedStorageContractID")
-			s.DedicatedStorageContractID.Encode(e)
-		}
-	}
-	{
-		if s.EditParam.Set {
-			e.FieldStart("editParam")
-			s.EditParam.Encode(e)
-		}
-	}
-	{
-		if s.BootAtAvailable.Set {
-			e.FieldStart("bootAtAvailable")
-			s.BootAtAvailable.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfDiskOpCreateReq = [6]string{
-	0: "createParam",
-	1: "distantFrom",
-	2: "kmeKeyID",
-	3: "dedicatedStorageContractID",
-	4: "editParam",
-	5: "bootAtAvailable",
-}
-
-// Decode decodes DiskOpCreateReq from json.
-func (s *DiskOpCreateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode DiskOpCreateReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "createParam":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.CreateParam.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"createParam\"")
-			}
-		case "distantFrom":
-			requiredBitSet[0] |= 1 << 1
-			if err := func() error {
-				s.DistantFrom = make([]ID, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem ID
-					if err := elem.Decode(d); err != nil {
-						return err
-					}
-					s.DistantFrom = append(s.DistantFrom, elem)
-					return nil
-				}); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"distantFrom\"")
-			}
-		case "kmeKeyID":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				if err := s.KmeKeyID.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"kmeKeyID\"")
-			}
-		case "dedicatedStorageContractID":
-			if err := func() error {
-				s.DedicatedStorageContractID.Reset()
-				if err := s.DedicatedStorageContractID.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dedicatedStorageContractID\"")
-			}
-		case "editParam":
-			if err := func() error {
-				s.EditParam.Reset()
-				if err := s.EditParam.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"editParam\"")
-			}
-		case "bootAtAvailable":
-			if err := func() error {
-				s.BootAtAvailable.Reset()
-				if err := s.BootAtAvailable.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"bootAtAvailable\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode DiskOpCreateReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000111,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfDiskOpCreateReq) {
-					name = jsonFieldsNameOfDiskOpCreateReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *DiskOpCreateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *DiskOpCreateReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -28201,100 +28407,6 @@ func (s *DiskOpDisconnectFromServerOK) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *DiskOpDisconnectFromServerOK) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *DiskOpMonitorReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *DiskOpMonitorReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("condition")
-		s.Condition.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfDiskOpMonitorReq = [1]string{
-	0: "condition",
-}
-
-// Decode decodes DiskOpMonitorReq from json.
-func (s *DiskOpMonitorReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode DiskOpMonitorReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "condition":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Condition.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"condition\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode DiskOpMonitorReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfDiskOpMonitorReq) {
-					name = jsonFieldsNameOfDiskOpMonitorReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *DiskOpMonitorReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *DiskOpMonitorReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -28787,9 +28899,9 @@ func (s *DiskPlanReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -28827,8 +28939,9 @@ func (s *DiskPlanReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -29029,9 +29142,9 @@ func (s *DiskReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -29069,8 +29182,9 @@ func (s *DiskReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -29763,9 +29877,9 @@ func (s *DiskUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -29803,8 +29917,9 @@ func (s *DiskUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -31106,9 +31221,9 @@ func (s *ESMELogsResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -31146,8 +31261,9 @@ func (s *ESMELogsResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -31616,9 +31732,9 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) encodeFields(e *jx.Enc
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -31656,8 +31772,9 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) Decode(d *jx.Decoder) 
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -31858,9 +31975,9 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) encodeFields(e *jx.Enco
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -31898,8 +32015,9 @@ func (s *ESMESendMessageWithInputtedOTPResponseEnvelope) Decode(d *jx.Decoder) e
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -32414,9 +32532,9 @@ func (s *EnhancedDBGetConfigResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -32454,8 +32572,9 @@ func (s *EnhancedDBGetConfigResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -34036,9 +34155,9 @@ func (s *IPAddressReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -34076,8 +34195,9 @@ func (s *IPAddressReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -34258,9 +34378,9 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -34298,8 +34418,9 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -34757,9 +34878,9 @@ func (s *IPv6AddrCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -34797,8 +34918,9 @@ func (s *IPv6AddrCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -35324,9 +35446,9 @@ func (s *IPv6AddrReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -35364,8 +35486,9 @@ func (s *IPv6AddrReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -35642,9 +35765,9 @@ func (s *IPv6AddrUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -35682,8 +35805,9 @@ func (s *IPv6AddrUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -36070,6 +36194,161 @@ func (s *IPv6NetInfo) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *IPv6NetListRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *IPv6NetListRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		if s.Count.Set {
+			e.FieldStart("Count")
+			s.Count.Encode(e)
+		}
+	}
+	{
+		if s.From.Set {
+			e.FieldStart("From")
+			s.From.Encode(e)
+		}
+	}
+	{
+		if s.Filter.Set {
+			e.FieldStart("Filter")
+			s.Filter.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfIPv6NetListRequestEnvelope = [3]string{
+	0: "Count",
+	1: "From",
+	2: "Filter",
+}
+
+// Decode decodes IPv6NetListRequestEnvelope from json.
+func (s *IPv6NetListRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode IPv6NetListRequestEnvelope to nil")
+	}
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Count":
+			if err := func() error {
+				s.Count.Reset()
+				if err := s.Count.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Count\"")
+			}
+		case "From":
+			if err := func() error {
+				s.From.Reset()
+				if err := s.From.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"From\"")
+			}
+		case "Filter":
+			if err := func() error {
+				s.Filter.Reset()
+				if err := s.Filter.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Filter\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode IPv6NetListRequestEnvelope")
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *IPv6NetListRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *IPv6NetListRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
+func (s IPv6NetListRequestEnvelopeFilter) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields implements json.Marshaler.
+func (s IPv6NetListRequestEnvelopeFilter) encodeFields(e *jx.Encoder) {
+	for k, elem := range s {
+		e.FieldStart(k)
+
+		if len(elem) != 0 {
+			e.Raw(elem)
+		}
+	}
+}
+
+// Decode decodes IPv6NetListRequestEnvelopeFilter from json.
+func (s *IPv6NetListRequestEnvelopeFilter) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode IPv6NetListRequestEnvelopeFilter to nil")
+	}
+	m := s.init()
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		var elem jx.Raw
+		if err := func() error {
+			v, err := d.RawAppend(nil)
+			elem = jx.Raw(v)
+			if err != nil {
+				return err
+			}
+			return nil
+		}(); err != nil {
+			return errors.Wrapf(err, "decode field %q", k)
+		}
+		m[string(k)] = elem
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode IPv6NetListRequestEnvelopeFilter")
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s IPv6NetListRequestEnvelopeFilter) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *IPv6NetListRequestEnvelopeFilter) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *IPv6NetListResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -36227,69 +36506,6 @@ func (s *IPv6NetListResponseEnvelope) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *IPv6NetOpListReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *IPv6NetOpListReq) encodeFields(e *jx.Encoder) {
-	{
-		if s.Conditions.Set {
-			e.FieldStart("conditions")
-			s.Conditions.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfIPv6NetOpListReq = [1]string{
-	0: "conditions",
-}
-
-// Decode decodes IPv6NetOpListReq from json.
-func (s *IPv6NetOpListReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode IPv6NetOpListReq to nil")
-	}
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "conditions":
-			if err := func() error {
-				s.Conditions.Reset()
-				if err := s.Conditions.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"conditions\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode IPv6NetOpListReq")
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *IPv6NetOpListReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *IPv6NetOpListReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *IPv6NetReadResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -36303,9 +36519,9 @@ func (s *IPv6NetReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -36343,8 +36559,9 @@ func (s *IPv6NetReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -36894,9 +37111,9 @@ func (s *IconCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -36934,8 +37151,9 @@ func (s *IconCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -37461,9 +37679,9 @@ func (s *IconReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -37501,8 +37719,9 @@ func (s *IconReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -37808,9 +38027,9 @@ func (s *IconUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -37848,8 +38067,9 @@ func (s *IconUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -38389,9 +38609,9 @@ func (s *InterfaceCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -38429,8 +38649,9 @@ func (s *InterfaceCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -38973,9 +39194,9 @@ func (s *InterfaceMonitorResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -39015,8 +39236,9 @@ func (s *InterfaceMonitorResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -39393,9 +39615,9 @@ func (s *InterfaceReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -39433,8 +39655,9 @@ func (s *InterfaceReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -39758,9 +39981,9 @@ func (s *InterfaceUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -39798,8 +40021,9 @@ func (s *InterfaceUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -40787,9 +41011,9 @@ func (s *InternetAddSubnetResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -40827,8 +41051,9 @@ func (s *InternetAddSubnetResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -41202,9 +41427,9 @@ func (s *InternetCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -41242,8 +41467,9 @@ func (s *InternetCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -41330,9 +41556,9 @@ func (s *InternetEnableIPv6ResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -41370,8 +41596,9 @@ func (s *InternetEnableIPv6ResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -41919,6 +42146,119 @@ func (s *InternetInfo) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *InternetMonitorRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *InternetMonitorRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Start")
+		json.EncodeDateTime(e, s.Start)
+	}
+	{
+		e.FieldStart("End")
+		json.EncodeDateTime(e, s.End)
+	}
+}
+
+var jsonFieldsNameOfInternetMonitorRequestEnvelope = [2]string{
+	0: "Start",
+	1: "End",
+}
+
+// Decode decodes InternetMonitorRequestEnvelope from json.
+func (s *InternetMonitorRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode InternetMonitorRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Start":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.Start = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Start\"")
+			}
+		case "End":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.End = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"End\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode InternetMonitorRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000011,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfInternetMonitorRequestEnvelope) {
+					name = jsonFieldsNameOfInternetMonitorRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *InternetMonitorRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *InternetMonitorRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *InternetMonitorResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -41932,9 +42272,9 @@ func (s *InternetMonitorResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -41974,8 +42314,9 @@ func (s *InternetMonitorResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -42334,100 +42675,6 @@ func (s *InternetOpDisableIPv6OK) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *InternetOpDisableIPv6OK) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *InternetOpMonitorReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *InternetOpMonitorReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("condition")
-		s.Condition.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfInternetOpMonitorReq = [1]string{
-	0: "condition",
-}
-
-// Decode decodes InternetOpMonitorReq from json.
-func (s *InternetOpMonitorReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode InternetOpMonitorReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "condition":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Condition.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"condition\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode InternetOpMonitorReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfInternetOpMonitorReq) {
-					name = jsonFieldsNameOfInternetOpMonitorReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *InternetOpMonitorReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *InternetOpMonitorReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -42903,9 +43150,9 @@ func (s *InternetPlanReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -42943,8 +43190,9 @@ func (s *InternetPlanReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -43031,9 +43279,9 @@ func (s *InternetReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -43071,8 +43319,9 @@ func (s *InternetReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -43464,9 +43713,9 @@ func (s *InternetUpdateBandWidthResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -43504,8 +43753,9 @@ func (s *InternetUpdateBandWidthResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -43845,9 +44095,9 @@ func (s *InternetUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -43885,8 +44135,9 @@ func (s *InternetUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -44069,9 +44320,9 @@ func (s *InternetUpdateSubnetResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -44109,8 +44360,9 @@ func (s *InternetUpdateSubnetResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -44679,9 +44931,9 @@ func (s *LicenseCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -44719,8 +44971,9 @@ func (s *LicenseCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -45624,9 +45877,9 @@ func (s *LicenseInfoReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -45664,8 +45917,9 @@ func (s *LicenseInfoReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -45928,9 +46182,9 @@ func (s *LicenseReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -45968,8 +46222,9 @@ func (s *LicenseReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -46213,9 +46468,9 @@ func (s *LicenseUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -46253,8 +46508,9 @@ func (s *LicenseUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -46587,9 +46843,9 @@ func (s *LocalRouterHealthStatusResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -46627,8 +46883,9 @@ func (s *LocalRouterHealthStatusResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -46874,9 +47131,9 @@ func (s *LocalRouterMonitorLocalRouterResponseEnvelope) encodeFields(e *jx.Encod
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -46916,8 +47173,9 @@ func (s *LocalRouterMonitorLocalRouterResponseEnvelope) Decode(d *jx.Decoder) er
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -47666,9 +47924,9 @@ func (s *MobileGatewayGetDNSResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -47706,8 +47964,9 @@ func (s *MobileGatewayGetDNSResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -47794,9 +48053,9 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) encodeFields(e *jx.Encoder) 
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -47838,8 +48097,9 @@ func (s *MobileGatewayGetSIMRoutesResponseEnvelope) Decode(d *jx.Decoder) error 
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -47934,9 +48194,9 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) encodeFields(e *jx.Encod
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -47974,8 +48234,9 @@ func (s *MobileGatewayGetTrafficConfigResponseEnvelope) Decode(d *jx.Decoder) er
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -48062,9 +48323,9 @@ func (s *MobileGatewayListSIMResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -48106,8 +48367,9 @@ func (s *MobileGatewayListSIMResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -48202,9 +48464,9 @@ func (s *MobileGatewayLogsResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -48246,8 +48508,9 @@ func (s *MobileGatewayLogsResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -48342,9 +48605,9 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) encodeFields(e *jx.Encod
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -48384,8 +48647,9 @@ func (s *MobileGatewayMonitorInterfaceResponseEnvelope) Decode(d *jx.Decoder) er
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -49826,9 +50090,9 @@ func (s *MobileGatewayTrafficStatusResponseEnvelope) encodeFields(e *jx.Encoder)
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -49866,8 +50130,9 @@ func (s *MobileGatewayTrafficStatusResponseEnvelope) Decode(d *jx.Decoder) error
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -50808,9 +51073,9 @@ func (s *NoteCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -50848,8 +51113,9 @@ func (s *NoteCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -51375,9 +51641,9 @@ func (s *NoteReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -51415,8 +51681,9 @@ func (s *NoteReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -51773,9 +52040,9 @@ func (s *NoteUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -51813,8 +52080,9 @@ func (s *NoteUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -51883,102 +52151,6 @@ func (s *NoteUpdateResponseEnvelope) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *NoteUpdateResponseEnvelope) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *OpenFTPRequest) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *OpenFTPRequest) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("ChangePassword")
-		e.Bool(s.ChangePassword)
-	}
-}
-
-var jsonFieldsNameOfOpenFTPRequest = [1]string{
-	0: "ChangePassword",
-}
-
-// Decode decodes OpenFTPRequest from json.
-func (s *OpenFTPRequest) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode OpenFTPRequest to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "ChangePassword":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				v, err := d.Bool()
-				s.ChangePassword = bool(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"ChangePassword\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode OpenFTPRequest")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfOpenFTPRequest) {
-					name = jsonFieldsNameOfOpenFTPRequest[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *OpenFTPRequest) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OpenFTPRequest) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -52210,6 +52382,39 @@ func (s OptApplianceCreateRequestRemarkVRRP) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptApplianceCreateRequestRemarkVRRP) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes ArchiveShareInfo as json.
+func (o OptArchiveShareInfo) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes ArchiveShareInfo from json.
+func (o *OptArchiveShareInfo) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptArchiveShareInfo to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptArchiveShareInfo) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptArchiveShareInfo) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -53175,18 +53380,18 @@ func (s *OptESimpleNotificationDestinationTypes) UnmarshalJSON(data []byte) erro
 	return s.Decode(d)
 }
 
-// Encode encodes FindCondition as json.
-func (o OptFindCondition) Encode(e *jx.Encoder) {
+// Encode encodes FTPServer as json.
+func (o OptFTPServer) Encode(e *jx.Encoder) {
 	if !o.Set {
 		return
 	}
 	o.Value.Encode(e)
 }
 
-// Decode decodes FindCondition from json.
-func (o *OptFindCondition) Decode(d *jx.Decoder) error {
+// Decode decodes FTPServer from json.
+func (o *OptFTPServer) Decode(d *jx.Decoder) error {
 	if o == nil {
-		return errors.New("invalid: unable to decode OptFindCondition to nil")
+		return errors.New("invalid: unable to decode OptFTPServer to nil")
 	}
 	o.Set = true
 	if err := o.Value.Decode(d); err != nil {
@@ -53196,14 +53401,14 @@ func (o *OptFindCondition) Decode(d *jx.Decoder) error {
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s OptFindCondition) MarshalJSON() ([]byte, error) {
+func (s OptFTPServer) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptFindCondition) UnmarshalJSON(data []byte) error {
+func (s *OptFTPServer) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -53241,20 +53446,21 @@ func (s *OptGSLBHealthCheck) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes ID as json.
-func (o OptID) Encode(e *jx.Encoder) {
+// Encode encodes IPv6NetListRequestEnvelopeFilter as json.
+func (o OptIPv6NetListRequestEnvelopeFilter) Encode(e *jx.Encoder) {
 	if !o.Set {
 		return
 	}
 	o.Value.Encode(e)
 }
 
-// Decode decodes ID from json.
-func (o *OptID) Decode(d *jx.Decoder) error {
+// Decode decodes IPv6NetListRequestEnvelopeFilter from json.
+func (o *OptIPv6NetListRequestEnvelopeFilter) Decode(d *jx.Decoder) error {
 	if o == nil {
-		return errors.New("invalid: unable to decode OptID to nil")
+		return errors.New("invalid: unable to decode OptIPv6NetListRequestEnvelopeFilter to nil")
 	}
 	o.Set = true
+	o.Value = make(IPv6NetListRequestEnvelopeFilter)
 	if err := o.Value.Decode(d); err != nil {
 		return err
 	}
@@ -53262,14 +53468,14 @@ func (o *OptID) Decode(d *jx.Decoder) error {
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s OptID) MarshalJSON() ([]byte, error) {
+func (s OptIPv6NetListRequestEnvelopeFilter) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptID) UnmarshalJSON(data []byte) error {
+func (s *OptIPv6NetListRequestEnvelopeFilter) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -58133,72 +58339,6 @@ func (s *OptNilZoneInfo) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes OpenFTPRequest as json.
-func (o OptOpenFTPRequest) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes OpenFTPRequest from json.
-func (o *OptOpenFTPRequest) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptOpenFTPRequest to nil")
-	}
-	o.Set = true
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptOpenFTPRequest) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptOpenFTPRequest) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes PrivateHostCreateRequest as json.
-func (o OptPrivateHostCreateRequest) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes PrivateHostCreateRequest from json.
-func (o *OptPrivateHostCreateRequest) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptPrivateHostCreateRequest to nil")
-	}
-	o.Set = true
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptPrivateHostCreateRequest) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptPrivateHostCreateRequest) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes ProxyLBACMESetting as json.
 func (o OptProxyLBACMESetting) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -58525,39 +58665,6 @@ func (s OptServerBootVariables) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptServerBootVariables) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes ServerDeleteWithDisksRequest as json.
-func (o OptServerDeleteWithDisksRequest) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes ServerDeleteWithDisksRequest from json.
-func (o *OptServerDeleteWithDisksRequest) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptServerDeleteWithDisksRequest to nil")
-	}
-	o.Set = true
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptServerDeleteWithDisksRequest) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptServerDeleteWithDisksRequest) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -59086,9 +59193,9 @@ func (s *PacketFilterCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -59126,8 +59233,9 @@ func (s *PacketFilterCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -59830,9 +59938,9 @@ func (s *PacketFilterReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -59870,8 +59978,9 @@ func (s *PacketFilterReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -60209,9 +60318,9 @@ func (s *PacketFilterUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -60249,8 +60358,9 @@ func (s *PacketFilterUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -61046,6 +61156,118 @@ func (s *PrivateHostCreateRequest) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *PrivateHostCreateRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *PrivateHostCreateRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("PrivateHost")
+		s.PrivateHost.Encode(e)
+	}
+	{
+		if len(s.TargetDedicatedStorageContract) != 0 {
+			e.FieldStart("TargetDedicatedStorageContract")
+			e.Raw(s.TargetDedicatedStorageContract)
+		}
+	}
+}
+
+var jsonFieldsNameOfPrivateHostCreateRequestEnvelope = [2]string{
+	0: "PrivateHost",
+	1: "TargetDedicatedStorageContract",
+}
+
+// Decode decodes PrivateHostCreateRequestEnvelope from json.
+func (s *PrivateHostCreateRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode PrivateHostCreateRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "PrivateHost":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				if err := s.PrivateHost.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"PrivateHost\"")
+			}
+		case "TargetDedicatedStorageContract":
+			if err := func() error {
+				v, err := d.RawAppend(nil)
+				s.TargetDedicatedStorageContract = jx.Raw(v)
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"TargetDedicatedStorageContract\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode PrivateHostCreateRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000001,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfPrivateHostCreateRequestEnvelope) {
+					name = jsonFieldsNameOfPrivateHostCreateRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *PrivateHostCreateRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *PrivateHostCreateRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *PrivateHostCreateResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -61059,9 +61281,9 @@ func (s *PrivateHostCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -61099,8 +61321,9 @@ func (s *PrivateHostCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -61575,103 +61798,6 @@ func (s *PrivateHostHost) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *PrivateHostHost) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *PrivateHostOpCreateReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *PrivateHostOpCreateReq) encodeFields(e *jx.Encoder) {
-	{
-		if s.Param.Set {
-			e.FieldStart("param")
-			s.Param.Encode(e)
-		}
-	}
-	{
-		if s.CreateParam.Set {
-			e.FieldStart("createParam")
-			s.CreateParam.Encode(e)
-		}
-	}
-	{
-		if s.DedicatedStorageContractID.Set {
-			e.FieldStart("dedicatedStorageContractID")
-			s.DedicatedStorageContractID.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfPrivateHostOpCreateReq = [3]string{
-	0: "param",
-	1: "createParam",
-	2: "dedicatedStorageContractID",
-}
-
-// Decode decodes PrivateHostOpCreateReq from json.
-func (s *PrivateHostOpCreateReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode PrivateHostOpCreateReq to nil")
-	}
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			if err := func() error {
-				s.Param.Reset()
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		case "createParam":
-			if err := func() error {
-				s.CreateParam.Reset()
-				if err := s.CreateParam.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"createParam\"")
-			}
-		case "dedicatedStorageContractID":
-			if err := func() error {
-				s.DedicatedStorageContractID.Reset()
-				if err := s.DedicatedStorageContractID.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"dedicatedStorageContractID\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode PrivateHostOpCreateReq")
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *PrivateHostOpCreateReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *PrivateHostOpCreateReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -62344,9 +62470,9 @@ func (s *PrivateHostPlanReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -62384,8 +62510,9 @@ func (s *PrivateHostPlanReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -62472,9 +62599,9 @@ func (s *PrivateHostReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -62512,8 +62639,9 @@ func (s *PrivateHostReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -62853,9 +62981,9 @@ func (s *PrivateHostUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -62893,8 +63021,9 @@ func (s *PrivateHostUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -64322,9 +64451,9 @@ func (s *ProxyLBChangePlanResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -64362,8 +64491,9 @@ func (s *ProxyLBChangePlanResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -64450,9 +64580,9 @@ func (s *ProxyLBGetCertificatesResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -64490,8 +64620,9 @@ func (s *ProxyLBGetCertificatesResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -64819,9 +64950,9 @@ func (s *ProxyLBMonitorConnectionResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -64861,8 +64992,9 @@ func (s *ProxyLBMonitorConnectionResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -66318,9 +66450,9 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -66358,8 +66490,9 @@ func (s *ProxyLBSetCertificatesResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -67504,9 +67637,9 @@ func (s *RegionReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -67544,8 +67677,9 @@ func (s *RegionReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -67824,9 +67958,9 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -67868,8 +68002,9 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -68683,9 +68818,9 @@ func (s *SIMMonitorSIMResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -68725,8 +68860,9 @@ func (s *SIMMonitorSIMResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -69525,9 +69661,9 @@ func (s *SIMStatusResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -69565,8 +69701,9 @@ func (s *SIMStatusResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -70171,9 +70308,9 @@ func (s *SSHKeyCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -70211,8 +70348,9 @@ func (s *SSHKeyCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -70738,9 +70876,9 @@ func (s *SSHKeyReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -70778,8 +70916,9 @@ func (s *SSHKeyReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -71073,9 +71212,9 @@ func (s *SSHKeyUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -71113,8 +71252,9 @@ func (s *SSHKeyUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -71619,6 +71759,69 @@ func (s *Server) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *ServerBootRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ServerBootRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		if s.UserBootVariables.Set {
+			e.FieldStart("UserBootVariables")
+			s.UserBootVariables.Encode(e)
+		}
+	}
+}
+
+var jsonFieldsNameOfServerBootRequestEnvelope = [1]string{
+	0: "UserBootVariables",
+}
+
+// Decode decodes ServerBootRequestEnvelope from json.
+func (s *ServerBootRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ServerBootRequestEnvelope to nil")
+	}
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "UserBootVariables":
+			if err := func() error {
+				s.UserBootVariables.Reset()
+				if err := s.UserBootVariables.Decode(d); err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"UserBootVariables\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ServerBootRequestEnvelope")
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ServerBootRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ServerBootRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *ServerBootVariables) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -72016,9 +72219,9 @@ func (s *ServerChangePlanResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -72056,8 +72259,9 @@ func (s *ServerChangePlanResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -72914,9 +73118,9 @@ func (s *ServerCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -72954,8 +73158,9 @@ func (s *ServerCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -73029,109 +73234,75 @@ func (s *ServerCreateResponseEnvelope) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *ServerDeleteWithDisksRequest) Encode(e *jx.Encoder) {
+func (s *ServerDeleteRequestEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
 	e.ObjEnd()
 }
 
 // encodeFields encodes fields.
-func (s *ServerDeleteWithDisksRequest) encodeFields(e *jx.Encoder) {
+func (s *ServerDeleteRequestEnvelope) encodeFields(e *jx.Encoder) {
 	{
-		e.FieldStart("IDs")
-		e.ArrStart()
-		for _, elem := range s.IDs {
-			e.Int64(elem)
+		if s.WithDisk != nil {
+			e.FieldStart("WithDisk")
+			e.ArrStart()
+			for _, elem := range s.WithDisk {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
-		e.ArrEnd()
 	}
 }
 
-var jsonFieldsNameOfServerDeleteWithDisksRequest = [1]string{
-	0: "IDs",
+var jsonFieldsNameOfServerDeleteRequestEnvelope = [1]string{
+	0: "WithDisk",
 }
 
-// Decode decodes ServerDeleteWithDisksRequest from json.
-func (s *ServerDeleteWithDisksRequest) Decode(d *jx.Decoder) error {
+// Decode decodes ServerDeleteRequestEnvelope from json.
+func (s *ServerDeleteRequestEnvelope) Decode(d *jx.Decoder) error {
 	if s == nil {
-		return errors.New("invalid: unable to decode ServerDeleteWithDisksRequest to nil")
+		return errors.New("invalid: unable to decode ServerDeleteRequestEnvelope to nil")
 	}
-	var requiredBitSet [1]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
-		case "IDs":
-			requiredBitSet[0] |= 1 << 0
+		case "WithDisk":
 			if err := func() error {
-				s.IDs = make([]int64, 0)
+				s.WithDisk = make([]ID, 0)
 				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem int64
-					v, err := d.Int64()
-					elem = int64(v)
-					if err != nil {
+					var elem ID
+					if err := elem.Decode(d); err != nil {
 						return err
 					}
-					s.IDs = append(s.IDs, elem)
+					s.WithDisk = append(s.WithDisk, elem)
 					return nil
 				}); err != nil {
 					return err
 				}
 				return nil
 			}(); err != nil {
-				return errors.Wrap(err, "decode field \"IDs\"")
+				return errors.Wrap(err, "decode field \"WithDisk\"")
 			}
 		default:
 			return d.Skip()
 		}
 		return nil
 	}); err != nil {
-		return errors.Wrap(err, "decode ServerDeleteWithDisksRequest")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfServerDeleteWithDisksRequest) {
-					name = jsonFieldsNameOfServerDeleteWithDisksRequest[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
+		return errors.Wrap(err, "decode ServerDeleteRequestEnvelope")
 	}
 
 	return nil
 }
 
 // MarshalJSON implements stdjson.Marshaler.
-func (s *ServerDeleteWithDisksRequest) MarshalJSON() ([]byte, error) {
+func (s *ServerDeleteRequestEnvelope) MarshalJSON() ([]byte, error) {
 	e := jx.Encoder{}
 	s.Encode(&e)
 	return e.Bytes(), nil
 }
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ServerDeleteWithDisksRequest) UnmarshalJSON(data []byte) error {
+func (s *ServerDeleteRequestEnvelope) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -73587,9 +73758,9 @@ func (s *ServerGetVNCProxyResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -73627,8 +73798,9 @@ func (s *ServerGetVNCProxyResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -73927,6 +74099,119 @@ func (s *ServerInstance) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
+func (s *ServerMonitorRequestEnvelope) Encode(e *jx.Encoder) {
+	e.ObjStart()
+	s.encodeFields(e)
+	e.ObjEnd()
+}
+
+// encodeFields encodes fields.
+func (s *ServerMonitorRequestEnvelope) encodeFields(e *jx.Encoder) {
+	{
+		e.FieldStart("Start")
+		json.EncodeDateTime(e, s.Start)
+	}
+	{
+		e.FieldStart("End")
+		json.EncodeDateTime(e, s.End)
+	}
+}
+
+var jsonFieldsNameOfServerMonitorRequestEnvelope = [2]string{
+	0: "Start",
+	1: "End",
+}
+
+// Decode decodes ServerMonitorRequestEnvelope from json.
+func (s *ServerMonitorRequestEnvelope) Decode(d *jx.Decoder) error {
+	if s == nil {
+		return errors.New("invalid: unable to decode ServerMonitorRequestEnvelope to nil")
+	}
+	var requiredBitSet [1]uint8
+
+	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
+		switch string(k) {
+		case "Start":
+			requiredBitSet[0] |= 1 << 0
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.Start = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"Start\"")
+			}
+		case "End":
+			requiredBitSet[0] |= 1 << 1
+			if err := func() error {
+				v, err := json.DecodeDateTime(d)
+				s.End = v
+				if err != nil {
+					return err
+				}
+				return nil
+			}(); err != nil {
+				return errors.Wrap(err, "decode field \"End\"")
+			}
+		default:
+			return d.Skip()
+		}
+		return nil
+	}); err != nil {
+		return errors.Wrap(err, "decode ServerMonitorRequestEnvelope")
+	}
+	// Validate required fields.
+	var failures []validate.FieldError
+	for i, mask := range [1]uint8{
+		0b00000011,
+	} {
+		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
+			// Mask only required fields and check equality to mask using XOR.
+			//
+			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
+			// Bits of fields which would be set are actually bits of missed fields.
+			missed := bits.OnesCount8(result)
+			for bitN := 0; bitN < missed; bitN++ {
+				bitIdx := bits.TrailingZeros8(result)
+				fieldIdx := i*8 + bitIdx
+				var name string
+				if fieldIdx < len(jsonFieldsNameOfServerMonitorRequestEnvelope) {
+					name = jsonFieldsNameOfServerMonitorRequestEnvelope[fieldIdx]
+				} else {
+					name = strconv.Itoa(fieldIdx)
+				}
+				failures = append(failures, validate.FieldError{
+					Name:  name,
+					Error: validate.ErrFieldRequired,
+				})
+				// Reset bit.
+				result &^= 1 << bitIdx
+			}
+		}
+	}
+	if len(failures) > 0 {
+		return &validate.Error{Fields: failures}
+	}
+
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s *ServerMonitorRequestEnvelope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *ServerMonitorRequestEnvelope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode implements json.Marshaler.
 func (s *ServerMonitorResponseEnvelope) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -73940,9 +74225,9 @@ func (s *ServerMonitorResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -73982,8 +74267,9 @@ func (s *ServerMonitorResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -74054,69 +74340,6 @@ func (s *ServerMonitorResponseEnvelope) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ServerMonitorResponseEnvelope) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ServerOpBootReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ServerOpBootReq) encodeFields(e *jx.Encoder) {
-	{
-		if s.Param.Set {
-			e.FieldStart("param")
-			s.Param.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfServerOpBootReq = [1]string{
-	0: "param",
-}
-
-// Decode decodes ServerOpBootReq from json.
-func (s *ServerOpBootReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ServerOpBootReq to nil")
-	}
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "param":
-			if err := func() error {
-				s.Param.Reset()
-				if err := s.Param.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"param\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ServerOpBootReq")
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ServerOpBootReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ServerOpBootReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -74218,69 +74441,6 @@ func (s *ServerOpDeleteOK) UnmarshalJSON(data []byte) error {
 }
 
 // Encode implements json.Marshaler.
-func (s *ServerOpDeleteReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ServerOpDeleteReq) encodeFields(e *jx.Encoder) {
-	{
-		if s.Disks.Set {
-			e.FieldStart("disks")
-			s.Disks.Encode(e)
-		}
-	}
-}
-
-var jsonFieldsNameOfServerOpDeleteReq = [1]string{
-	0: "disks",
-}
-
-// Decode decodes ServerOpDeleteReq from json.
-func (s *ServerOpDeleteReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ServerOpDeleteReq to nil")
-	}
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "disks":
-			if err := func() error {
-				s.Disks.Reset()
-				if err := s.Disks.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"disks\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ServerOpDeleteReq")
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ServerOpDeleteReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ServerOpDeleteReq) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
 func (s *ServerOpEjectCDROMOK) Encode(e *jx.Encoder) {
 	e.ObjStart()
 	s.encodeFields(e)
@@ -74372,100 +74532,6 @@ func (s *ServerOpEjectCDROMOK) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *ServerOpEjectCDROMOK) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode implements json.Marshaler.
-func (s *ServerOpMonitorReq) Encode(e *jx.Encoder) {
-	e.ObjStart()
-	s.encodeFields(e)
-	e.ObjEnd()
-}
-
-// encodeFields encodes fields.
-func (s *ServerOpMonitorReq) encodeFields(e *jx.Encoder) {
-	{
-		e.FieldStart("condition")
-		s.Condition.Encode(e)
-	}
-}
-
-var jsonFieldsNameOfServerOpMonitorReq = [1]string{
-	0: "condition",
-}
-
-// Decode decodes ServerOpMonitorReq from json.
-func (s *ServerOpMonitorReq) Decode(d *jx.Decoder) error {
-	if s == nil {
-		return errors.New("invalid: unable to decode ServerOpMonitorReq to nil")
-	}
-	var requiredBitSet [1]uint8
-
-	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
-		switch string(k) {
-		case "condition":
-			requiredBitSet[0] |= 1 << 0
-			if err := func() error {
-				if err := s.Condition.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"condition\"")
-			}
-		default:
-			return d.Skip()
-		}
-		return nil
-	}); err != nil {
-		return errors.Wrap(err, "decode ServerOpMonitorReq")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000001,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfServerOpMonitorReq) {
-					name = jsonFieldsNameOfServerOpMonitorReq[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s *ServerOpMonitorReq) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *ServerOpMonitorReq) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -75190,9 +75256,9 @@ func (s *ServerPlanReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -75230,8 +75296,9 @@ func (s *ServerPlanReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -75431,9 +75498,9 @@ func (s *ServerReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -75471,8 +75538,9 @@ func (s *ServerReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -76317,9 +76385,9 @@ func (s *ServerUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -76357,8 +76425,9 @@ func (s *ServerUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -77448,9 +77517,9 @@ func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) encodeFields(e *jx.En
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -77490,8 +77559,9 @@ func (s *SimpleMonitorMonitorResponseTimeResponseEnvelope) Decode(d *jx.Decoder)
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -77787,9 +77857,9 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) encodeFields(e *jx
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -77827,8 +77897,9 @@ func (s *SimpleNotificationDestinationStatusResponseEnvelope) Decode(d *jx.Decod
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -77915,9 +77986,9 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) encodeFields(e *jx.Enco
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -77955,8 +78026,9 @@ func (s *SimpleNotificationGroupHistoryResponseEnvelope) Decode(d *jx.Decoder) e
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -79722,9 +79794,9 @@ func (s *SubnetReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -79762,8 +79834,9 @@ func (s *SubnetReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -80546,9 +80619,9 @@ func (s *SwitchCreateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -80586,8 +80659,9 @@ func (s *SwitchCreateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -81576,9 +81650,9 @@ func (s *SwitchReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -81616,8 +81690,9 @@ func (s *SwitchReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -82382,9 +82457,9 @@ func (s *SwitchUpdateResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -82422,8 +82497,9 @@ func (s *SwitchUpdateResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -82947,9 +83023,9 @@ func (s *VPCRouterLogsResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -82987,8 +83063,9 @@ func (s *VPCRouterLogsResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -83171,9 +83248,9 @@ func (s *VPCRouterPingResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -83211,8 +83288,9 @@ func (s *VPCRouterPingResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil
@@ -84163,9 +84241,9 @@ func (s *ZoneReadResponseEnvelope) encodeFields(e *jx.Encoder) {
 		e.Bool(s.IsOk)
 	}
 	{
-		if s.Success.Set {
+		if len(s.Success) != 0 {
 			e.FieldStart("Success")
-			s.Success.Encode(e)
+			e.Raw(s.Success)
 		}
 	}
 	{
@@ -84203,8 +84281,9 @@ func (s *ZoneReadResponseEnvelope) Decode(d *jx.Decoder) error {
 			}
 		case "Success":
 			if err := func() error {
-				s.Success.Reset()
-				if err := s.Success.Decode(d); err != nil {
+				v, err := d.RawAppend(nil)
+				s.Success = jx.Raw(v)
+				if err != nil {
 					return err
 				}
 				return nil

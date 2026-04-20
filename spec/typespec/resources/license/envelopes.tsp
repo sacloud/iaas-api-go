@@ -27,13 +27,13 @@ model LicenseFindRequestEnvelope {
  * Response envelope for licenseFindResponseEnvelope
  */
 model LicenseFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -55,11 +55,11 @@ model LicenseCreateRequestEnvelope {
  * Response envelope for licenseCreateResponseEnvelope
  */
 model LicenseCreateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * License
@@ -71,11 +71,11 @@ model LicenseCreateResponseEnvelope {
  * Response envelope for licenseReadResponseEnvelope
  */
 model LicenseReadResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * License
@@ -96,11 +96,11 @@ model LicenseUpdateRequestEnvelope {
  * Response envelope for licenseUpdateResponseEnvelope
  */
 model LicenseUpdateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * License

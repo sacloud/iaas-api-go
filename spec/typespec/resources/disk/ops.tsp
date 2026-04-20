@@ -19,15 +19,7 @@ interface DiskOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/disk")
-  create(
-    @path zone: string,
-    createParam: DiskCreateRequest,
-    distantFrom: ID[],
-    kmeKeyID: ID,
-    dedicatedStorageContractID?: ID,
-    editParam?: DiskEditRequest,
-    bootAtAvailable?: boolean,
-  ): {
+  create(@path zone: string, @body body: DiskCreateRequestEnvelope): {
     @statusCode _: 201;
     ...DiskCreateResponseEnvelope;
   } | ApiError;
@@ -90,6 +82,6 @@ interface DiskOp {
   monitor(
     @path zone: string,
     @path id: string,
-    condition: MonitorCondition,
+    @body body: DiskMonitorRequestEnvelope,
   ): DiskMonitorResponseEnvelope | ApiError;
 }

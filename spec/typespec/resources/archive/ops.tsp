@@ -19,7 +19,7 @@ interface ArchiveOp {
 
   @post
   @route("/{zone}/api/cloud/1.1/archive")
-  create(@path zone: string, param: ArchiveCreateRequest): {
+  create(@path zone: string, @body body: ArchiveCreateRequestEnvelope): {
     @statusCode _: 201;
     ...ArchiveCreateResponseEnvelope;
   } | ApiError;
@@ -51,7 +51,7 @@ interface ArchiveOp {
   share(
     @path zone: string,
     @path id: string,
-    openOption?: OpenFTPRequest,
+    @body body: ArchiveShareRequestEnvelope,
   ): ArchiveShareResponseEnvelope | ApiError;
 
   @delete
@@ -67,7 +67,7 @@ interface ArchiveOp {
     @path zone: string,
     @path sourceArchiveID: string,
     @path destZoneID: string,
-    param: ArchiveCreateRequestFromShared,
+    @body body: ArchiveTransferRequestEnvelope,
   ): {
     @statusCode _: 201;
     ...ArchiveTransferResponseEnvelope;

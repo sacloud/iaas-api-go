@@ -27,13 +27,13 @@ model SimpleMonitorFindRequestEnvelope {
  * Response envelope for simpleMonitorFindResponseEnvelope
  */
 model SimpleMonitorFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**
@@ -55,11 +55,11 @@ model SimpleMonitorCreateRequestEnvelope {
  * Response envelope for simpleMonitorCreateResponseEnvelope
  */
 model SimpleMonitorCreateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -71,11 +71,11 @@ model SimpleMonitorCreateResponseEnvelope {
  * Response envelope for simpleMonitorReadResponseEnvelope
  */
 model SimpleMonitorReadResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -96,36 +96,11 @@ model SimpleMonitorUpdateRequestEnvelope {
  * Response envelope for simpleMonitorUpdateResponseEnvelope
  */
 model SimpleMonitorUpdateResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
-
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: SimpleMonitor;
-}
-
-/**
- * Request envelope for simpleMonitorUpdateSettingsRequestEnvelope
- */
-model SimpleMonitorUpdateSettingsRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
-  CommonServiceItem: SimpleMonitorUpdateSettingsRequest;
-}
-/**
- * Response envelope for simpleMonitorUpdateSettingsResponseEnvelope
- */
-model SimpleMonitorUpdateSettingsResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
-  is_ok: boolean;
-
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * CommonServiceItem
@@ -151,11 +126,11 @@ model SimpleMonitorMonitorResponseTimeRequestEnvelope {
  * Response envelope for simpleMonitorMonitorResponseTimeResponseEnvelope
  */
 model SimpleMonitorMonitorResponseTimeResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * Data
@@ -167,11 +142,11 @@ model SimpleMonitorMonitorResponseTimeResponseEnvelope {
  * Response envelope for simpleMonitorHealthStatusResponseEnvelope
  */
 model SimpleMonitorHealthStatusResponseEnvelope {
-  @doc("is_ok - Operation result indicator")
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  @doc("success - API result status")
-  Success?: boolean;
+  @doc("API のレスポンス状態。多くのオペレーションでは boolean (true/false) が返るが、一部のオペレーションでは文字列が返ることがあるため型を固定していない。確認されている例: POST /disk で \"Created\"、appliance 系（Database / LoadBalancer / MobileGateway / NFS / VPCRouter）で \"Accepted\"。成功判定には is_ok を用いること。")
+  Success?: unknown;
 
   /**
    * SimpleMonitor

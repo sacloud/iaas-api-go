@@ -27,13 +27,13 @@ model ServiceClassFindRequestEnvelope {
  * Response envelope for serviceClassFindResponseEnvelope
  */
 model ServiceClassFindResponseEnvelope {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
   /**

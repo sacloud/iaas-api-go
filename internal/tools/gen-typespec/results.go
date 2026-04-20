@@ -44,21 +44,21 @@ namespace Sacloud.IaaS;
 {{ range .Results }}
 model {{ .ResultTypeName }} {
 {{ if .IsResponsePlural }}
-	@doc("Total count of target resources")
+	@doc("対象リソースの総件数")
 	Total: int32;
 
-	@doc("Current page number")
+	@doc("現在のページ番号")
 	From: int32;
 
-	@doc("Count of current page")
+	@doc("現在のページの件数")
 	Count: int32;
 
 	{{- range .Results }}
-	@doc("Results")
+	@doc("検索結果")
 	{{ .DestField }}: {{ .Model.Name }}[];
 	{{- end }}
 {{ else }}
-	@doc("is_ok")
+	@doc("オペレーションが成功したかどうかを示すフラグ")
 	is_ok: boolean;
 
 	{{- range .Results }}

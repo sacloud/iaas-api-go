@@ -5,29 +5,29 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6NetListResult {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
-  @doc("Results")
+  @doc("検索結果")
   IPv6Nets: IPv6Net[];
 }
 
 model IPv6NetFindResult {
-  @doc("Total count of target resources")
+  @doc("対象リソースの総件数")
   Total: int32;
 
-  @doc("Current page number")
+  @doc("現在のページ番号")
   From: int32;
 
-  @doc("Count of current page")
+  @doc("現在のページの件数")
   Count: int32;
 
-  @doc("Results")
+  @doc("検索結果")
   IPv6Nets: IPv6Net[];
 }

@@ -84,7 +84,7 @@ type Invoker interface {
 	// ArchiveOpCreate invokes ArchiveOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/archive
-	ArchiveOpCreate(ctx context.Context, request *ArchiveOpCreateReq, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error)
+	ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error)
 	// ArchiveOpDelete invokes ArchiveOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/archive/{id}
@@ -100,11 +100,11 @@ type Invoker interface {
 	// ArchiveOpShare invokes ArchiveOp_share operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/archive/{id}/ftp
-	ArchiveOpShare(ctx context.Context, request *ArchiveOpShareReq, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error)
+	ArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error)
 	// ArchiveOpTransfer invokes ArchiveOp_transfer operation.
 	//
 	// POST /{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}
-	ArchiveOpTransfer(ctx context.Context, request *ArchiveOpTransferReq, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error)
+	ArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error)
 	// ArchiveOpUpdate invokes ArchiveOp_update operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/archive/{id}
@@ -320,7 +320,7 @@ type Invoker interface {
 	// DiskOpCreate invokes DiskOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/disk
-	DiskOpCreate(ctx context.Context, request *DiskOpCreateReq, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error)
+	DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error)
 	// DiskOpDelete invokes DiskOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/disk/{id}
@@ -336,7 +336,7 @@ type Invoker interface {
 	// DiskOpMonitor invokes DiskOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk/{id}/monitor
-	DiskOpMonitor(ctx context.Context, request *DiskOpMonitorReq, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error)
+	DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error)
 	// DiskOpRead invokes DiskOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/disk/{id}
@@ -416,7 +416,7 @@ type Invoker interface {
 	// IPv6NetOpList invokes IPv6NetOp_list operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6net
-	IPv6NetOpList(ctx context.Context, request *IPv6NetOpListReq, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error)
+	IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error)
 	// IPv6NetOpRead invokes IPv6NetOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6net/{id}
@@ -516,7 +516,7 @@ type Invoker interface {
 	// InternetOpMonitor invokes InternetOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/internet/{id}/monitor
-	InternetOpMonitor(ctx context.Context, request *InternetOpMonitorReq, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error)
+	InternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error)
 	// InternetOpRead invokes InternetOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/internet/{id}
@@ -672,7 +672,7 @@ type Invoker interface {
 	// PrivateHostOpCreate invokes PrivateHostOp_create operation.
 	//
 	// POST /{zone}/api/cloud/1.1/privatehost
-	PrivateHostOpCreate(ctx context.Context, request *PrivateHostOpCreateReq, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error)
+	PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error)
 	// PrivateHostOpDelete invokes PrivateHostOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/privatehost/{id}
@@ -796,7 +796,7 @@ type Invoker interface {
 	// ServerOpBoot invokes ServerOp_boot operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/power
-	ServerOpBoot(ctx context.Context, request *ServerOpBootReq, params ServerOpBootParams) error
+	ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) error
 	// ServerOpChangePlan invokes ServerOp_changePlan operation.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/plan
@@ -808,7 +808,7 @@ type Invoker interface {
 	// ServerOpDelete invokes ServerOp_delete operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}
-	ServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (*ServerOpDeleteOK, error)
+	ServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (*ServerOpDeleteOK, error)
 	// ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
@@ -828,7 +828,7 @@ type Invoker interface {
 	// ServerOpMonitor invokes ServerOp_monitor operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/monitor
-	ServerOpMonitor(ctx context.Context, request *ServerOpMonitorReq, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error)
+	ServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error)
 	// ServerOpRead invokes ServerOp_read operation.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}
@@ -2598,12 +2598,12 @@ func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpClos
 // ArchiveOpCreate invokes ArchiveOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/archive
-func (c *Client) ArchiveOpCreate(ctx context.Context, request *ArchiveOpCreateReq, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error) {
+func (c *Client) ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error) {
 	res, err := c.sendArchiveOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveOpCreateReq, params ArchiveOpCreateParams) (res *ArchiveCreateResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (res *ArchiveCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -2997,12 +2997,12 @@ func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadPara
 // ArchiveOpShare invokes ArchiveOp_share operation.
 //
 // PUT /{zone}/api/cloud/1.1/archive/{id}/ftp
-func (c *Client) ArchiveOpShare(ctx context.Context, request *ArchiveOpShareReq, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error) {
+func (c *Client) ArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error) {
 	res, err := c.sendArchiveOpShare(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveOpShareReq, params ArchiveOpShareParams) (res *ArchiveShareResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (res *ArchiveShareResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -3106,12 +3106,12 @@ func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveOpShare
 // ArchiveOpTransfer invokes ArchiveOp_transfer operation.
 //
 // POST /{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}
-func (c *Client) ArchiveOpTransfer(ctx context.Context, request *ArchiveOpTransferReq, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error) {
+func (c *Client) ArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error) {
 	res, err := c.sendArchiveOpTransfer(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveOpTransferReq, params ArchiveOpTransferParams) (res *ArchiveTransferResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (res *ArchiveTransferResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -9155,12 +9155,12 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 // DiskOpCreate invokes DiskOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/disk
-func (c *Client) DiskOpCreate(ctx context.Context, request *DiskOpCreateReq, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error) {
+func (c *Client) DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error) {
 	res, err := c.sendDiskOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskOpCreateReq, params DiskOpCreateParams) (res *DiskCreateResponseEnvelope, err error) {
+func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (res *DiskCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -9555,12 +9555,12 @@ func (c *Client) sendDiskOpFind(ctx context.Context, request *DiskFindRequestEnv
 // DiskOpMonitor invokes DiskOp_monitor operation.
 //
 // GET /{zone}/api/cloud/1.1/disk/{id}/monitor
-func (c *Client) DiskOpMonitor(ctx context.Context, request *DiskOpMonitorReq, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error) {
+func (c *Client) DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error) {
 	res, err := c.sendDiskOpMonitor(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskOpMonitorReq, params DiskOpMonitorParams) (res *DiskMonitorResponseEnvelope, err error) {
+func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (res *DiskMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -11645,12 +11645,12 @@ func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpda
 // IPv6NetOpList invokes IPv6NetOp_list operation.
 //
 // GET /{zone}/api/cloud/1.1/ipv6net
-func (c *Client) IPv6NetOpList(ctx context.Context, request *IPv6NetOpListReq, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error) {
+func (c *Client) IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error) {
 	res, err := c.sendIPv6NetOpList(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetOpListReq, params IPv6NetOpListParams) (res *IPv6NetListResponseEnvelope, err error) {
+func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (res *IPv6NetListResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [3]string
@@ -14286,12 +14286,12 @@ func (c *Client) sendInternetOpFind(ctx context.Context, request *InternetFindRe
 // InternetOpMonitor invokes InternetOp_monitor operation.
 //
 // GET /{zone}/api/cloud/1.1/internet/{id}/monitor
-func (c *Client) InternetOpMonitor(ctx context.Context, request *InternetOpMonitorReq, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error) {
+func (c *Client) InternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error) {
 	res, err := c.sendInternetOpMonitor(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetOpMonitorReq, params InternetOpMonitorParams) (res *InternetMonitorResponseEnvelope, err error) {
+func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (res *InternetMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -18423,12 +18423,12 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 // PrivateHostOpCreate invokes PrivateHostOp_create operation.
 //
 // POST /{zone}/api/cloud/1.1/privatehost
-func (c *Client) PrivateHostOpCreate(ctx context.Context, request *PrivateHostOpCreateReq, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error) {
+func (c *Client) PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpCreate(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHostOpCreateReq, params PrivateHostOpCreateParams) (res *PrivateHostCreateResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (res *PrivateHostCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -21668,12 +21668,12 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRe
 // ServerOpBoot invokes ServerOp_boot operation.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/power
-func (c *Client) ServerOpBoot(ctx context.Context, request *ServerOpBootReq, params ServerOpBootParams) error {
+func (c *Client) ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) error {
 	_, err := c.sendServerOpBoot(ctx, request, params)
 	return err
 }
 
-func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerOpBootReq, params ServerOpBootParams) (res *ServerOpBootNoContent, err error) {
+func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (res *ServerOpBootNoContent, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
@@ -21985,21 +21985,12 @@ func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRe
 // ServerOpDelete invokes ServerOp_delete operation.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}
-func (c *Client) ServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (*ServerOpDeleteOK, error) {
+func (c *Client) ServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (*ServerOpDeleteOK, error) {
 	res, err := c.sendServerOpDelete(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerOpDeleteReq, params ServerOpDeleteParams) (res *ServerOpDeleteOK, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
+func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (res *ServerOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [4]string
@@ -22516,12 +22507,12 @@ func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerIns
 // ServerOpMonitor invokes ServerOp_monitor operation.
 //
 // GET /{zone}/api/cloud/1.1/server/{id}/monitor
-func (c *Client) ServerOpMonitor(ctx context.Context, request *ServerOpMonitorReq, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error) {
+func (c *Client) ServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error) {
 	res, err := c.sendServerOpMonitor(ctx, request, params)
 	return res, err
 }
 
-func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerOpMonitorReq, params ServerOpMonitorParams) (res *ServerMonitorResponseEnvelope, err error) {
+func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (res *ServerMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string
