@@ -921,8 +921,15 @@ func (s *Bridge) Validate() error {
 		})
 	}
 	if err := func() error {
-		if s.BridgeInfo == nil {
-			return errors.New("nil is invalid value")
+		if value, ok := s.BridgeInfo.Get(); ok {
+			if err := func() error {
+				if value == nil {
+					return errors.New("nil is invalid value")
+				}
+				return nil
+			}(); err != nil {
+				return err
+			}
 		}
 		return nil
 	}(); err != nil {

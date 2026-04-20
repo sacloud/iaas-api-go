@@ -9150,12 +9150,10 @@ func (s *Bridge) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		e.FieldStart("BridgeInfo")
-		e.ArrStart()
-		for _, elem := range s.BridgeInfo {
-			elem.Encode(e)
+		if s.BridgeInfo.Set {
+			e.FieldStart("BridgeInfo")
+			s.BridgeInfo.Encode(e)
 		}
-		e.ArrEnd()
 	}
 	{
 		if s.SwitchInZone.Set {
@@ -9237,17 +9235,9 @@ func (s *Bridge) Decode(d *jx.Decoder) error {
 				return errors.Wrap(err, "decode field \"Region\"")
 			}
 		case "BridgeInfo":
-			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				s.BridgeInfo = make([]BridgeInfo, 0)
-				if err := d.Arr(func(d *jx.Decoder) error {
-					var elem BridgeInfo
-					if err := elem.Decode(d); err != nil {
-						return err
-					}
-					s.BridgeInfo = append(s.BridgeInfo, elem)
-					return nil
-				}); err != nil {
+				s.BridgeInfo.Reset()
+				if err := s.BridgeInfo.Decode(d); err != nil {
 					return err
 				}
 				return nil
@@ -9274,7 +9264,7 @@ func (s *Bridge) Decode(d *jx.Decoder) error {
 	// Validate required fields.
 	var failures []validate.FieldError
 	for i, mask := range [1]uint8{
-		0b00100100,
+		0b00000100,
 	} {
 		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
 			// Mask only required fields and check equality to mask using XOR.
@@ -55835,6 +55825,67 @@ func (s OptNilBool) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilBool) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes []BridgeInfo as json.
+func (o OptNilBridgeInfoArray) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	if o.Null {
+		e.Null()
+		return
+	}
+	e.ArrStart()
+	for _, elem := range o.Value {
+		elem.Encode(e)
+	}
+	e.ArrEnd()
+}
+
+// Decode decodes []BridgeInfo from json.
+func (o *OptNilBridgeInfoArray) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptNilBridgeInfoArray to nil")
+	}
+	if d.Next() == jx.Null {
+		if err := d.Null(); err != nil {
+			return err
+		}
+
+		var v []BridgeInfo
+		o.Value = v
+		o.Set = true
+		o.Null = true
+		return nil
+	}
+	o.Set = true
+	o.Null = false
+	o.Value = make([]BridgeInfo, 0)
+	if err := d.Arr(func(d *jx.Decoder) error {
+		var elem BridgeInfo
+		if err := elem.Decode(d); err != nil {
+			return err
+		}
+		o.Value = append(o.Value, elem)
+		return nil
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptNilBridgeInfoArray) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptNilBridgeInfoArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }

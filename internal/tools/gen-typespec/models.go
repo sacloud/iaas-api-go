@@ -394,6 +394,11 @@ var fieldNullabilityOverrides = map[string]map[string]bool{
 		"Description": true,
 		"Tags":        true,
 	},
+	// Bridge.BridgeInfo は別ゾーンに接続された Bridge のみが値を持つ（単一ゾーン時は API が返さない）。
+	// required のままだと Create 直後の response decode が `invalid: BridgeInfo (field required)` で失敗する。
+	"Bridge": {
+		"BridgeInfo": true,
+	},
 	// Database 型は共有 Appliance endpoint の代表レスポンス型として使われるため、
 	// Database 固有の InterfaceSettings / IPAddresses は他 Appliance（NFS/LB/VPCR 等）のレスポンスには
 	// 含まれない。required のままだと NFS などを decode するときに失敗するので optional 化する。

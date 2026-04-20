@@ -1578,14 +1578,7 @@ func (s *Bridge) SetFake() {
 	}
 	{
 		{
-			s.BridgeInfo = nil
-			for i := 0; i < 0; i++ {
-				var elem BridgeInfo
-				{
-					elem.SetFake()
-				}
-				s.BridgeInfo = append(s.BridgeInfo, elem)
-			}
+			s.BridgeInfo.SetFake()
 		}
 	}
 	{
@@ -9542,6 +9535,12 @@ func (s *OptNilAutoBackupStatus) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilBool) SetFake() {
+	s.Null = true
+	s.Set = true
+}
+
+// SetFake set fake values.
+func (s *OptNilBridgeInfoArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }

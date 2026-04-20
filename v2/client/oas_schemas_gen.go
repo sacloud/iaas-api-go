@@ -2871,7 +2871,7 @@ type Bridge struct {
 	Description  string                 `json:"Description"`
 	CreatedAt    OptNilDateTime         `json:"CreatedAt"`
 	Region       OptNilRegion           `json:"Region"`
-	BridgeInfo   []BridgeInfo           `json:"BridgeInfo"`
+	BridgeInfo   OptNilBridgeInfoArray  `json:"BridgeInfo"`
 	SwitchInZone OptNilBridgeSwitchInfo `json:"SwitchInZone"`
 }
 
@@ -2901,7 +2901,7 @@ func (s *Bridge) GetRegion() OptNilRegion {
 }
 
 // GetBridgeInfo returns the value of BridgeInfo.
-func (s *Bridge) GetBridgeInfo() []BridgeInfo {
+func (s *Bridge) GetBridgeInfo() OptNilBridgeInfoArray {
 	return s.BridgeInfo
 }
 
@@ -2936,7 +2936,7 @@ func (s *Bridge) SetRegion(val OptNilRegion) {
 }
 
 // SetBridgeInfo sets the value of BridgeInfo.
-func (s *Bridge) SetBridgeInfo(val []BridgeInfo) {
+func (s *Bridge) SetBridgeInfo(val OptNilBridgeInfoArray) {
 	s.BridgeInfo = val
 }
 
@@ -19178,6 +19178,69 @@ func (o OptNilBool) Get() (v bool, ok bool) {
 
 // Or returns value if set, or given parameter if does not.
 func (o OptNilBool) Or(d bool) bool {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptNilBridgeInfoArray returns new OptNilBridgeInfoArray with value set to v.
+func NewOptNilBridgeInfoArray(v []BridgeInfo) OptNilBridgeInfoArray {
+	return OptNilBridgeInfoArray{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptNilBridgeInfoArray is optional nullable []BridgeInfo.
+type OptNilBridgeInfoArray struct {
+	Value []BridgeInfo
+	Set   bool
+	Null  bool
+}
+
+// IsSet returns true if OptNilBridgeInfoArray was set.
+func (o OptNilBridgeInfoArray) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptNilBridgeInfoArray) Reset() {
+	var v []BridgeInfo
+	o.Value = v
+	o.Set = false
+	o.Null = false
+}
+
+// SetTo sets value to v.
+func (o *OptNilBridgeInfoArray) SetTo(v []BridgeInfo) {
+	o.Set = true
+	o.Null = false
+	o.Value = v
+}
+
+// IsNull returns true if value is Null.
+func (o OptNilBridgeInfoArray) IsNull() bool { return o.Null }
+
+// SetToNull sets value to null.
+func (o *OptNilBridgeInfoArray) SetToNull() {
+	o.Set = true
+	o.Null = true
+	var v []BridgeInfo
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptNilBridgeInfoArray) Get() (v []BridgeInfo, ok bool) {
+	if o.Null {
+		return v, false
+	}
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptNilBridgeInfoArray) Or(d []BridgeInfo) []BridgeInfo {
 	if v, ok := o.Get(); ok {
 		return v
 	}

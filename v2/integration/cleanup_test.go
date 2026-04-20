@@ -64,6 +64,57 @@ func TestCleanupInternet(t *testing.T) {
 	}
 }
 
+// TestCleanupSwitchTK1a は tk1a に取り残された test switch を削除する。
+// Bridge 連携テスト（TestSwitchBridgeConnect）が tk1a で動くため。
+func TestCleanupSwitchTK1a(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+
+	findResp, err := c.SwitchOpFind(ctx, &client.SwitchFindRequestEnvelope{}, client.SwitchOpFindParams{Zone: bridgeTestZone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, sw := range findResp.Switches {
+		if !hasTestTag(sw.Tags) && !strings.HasPrefix(sw.Name.Value, "test-switch") && !strings.HasPrefix(sw.Name.Value, "switch-for-") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", sw.ID.Value)
+		t.Logf("Deleting switch %s (name=%s)", idStr, sw.Name.Value)
+		if _, err := c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{Zone: bridgeTestZone, ID: idStr}); err != nil {
+			t.Logf("delete switch %s failed: %v", idStr, err)
+		}
+	}
+}
+
+// TestCleanupBridge は test-bridge* の Bridge を tk1a 固定で一括削除する。
+// Bridge 自体は Tags を持たないので Name prefix で判定する。
+func TestCleanupBridge(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+
+	findResp, err := c.BridgeOpFind(ctx, &client.BridgeFindRequestEnvelope{}, client.BridgeOpFindParams{Zone: bridgeTestZone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, b := range findResp.Bridges {
+		if !strings.HasPrefix(b.Name.Value, "test-bridge") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", b.ID.Value)
+		t.Logf("Deleting bridge %s (name=%s)", idStr, b.Name.Value)
+		// 接続中の Switch があれば先に disconnect する必要があるが、このテストでは defer で済ませているので不要
+		if _, err := c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{Zone: bridgeTestZone, ID: idStr}); err != nil {
+			t.Logf("delete bridge %s failed: %v", idStr, err)
+		}
+	}
+}
+
 // TestCleanupAppliance は "test" タグが付いた Appliance（NFS / DB / LB / VPC Router 等）を一括削除する。
 // shutdown が必要な状態なら force shutdown してから削除する。
 func TestCleanupAppliance(t *testing.T) {

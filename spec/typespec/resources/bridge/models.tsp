@@ -10,7 +10,7 @@ model Bridge {
   Description: string;
   CreatedAt?: utcDateTime | null;
   Region?: Region | null;
-  BridgeInfo: BridgeInfo[];
+  BridgeInfo?: BridgeInfo[] | null;
   SwitchInZone?: BridgeSwitchInfo | null;
 }
 
