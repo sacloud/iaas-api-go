@@ -470,11 +470,6 @@ func (s *Archive) SetFake() {
 			s.OriginalArchive.SetFake()
 		}
 	}
-	{
-		{
-			s.SourceInfo.SetFake()
-		}
-	}
 }
 
 // SetFake set fake values.
@@ -5889,15 +5884,6 @@ func (s *ESimpleNotificationDestinationTypes) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *EUpstreamNetworkType) SetFake() {
-	var unwrapped string
-	{
-		unwrapped = "string"
-	}
-	*s = EUpstreamNetworkType(unwrapped)
-}
-
-// SetFake set fake values.
 func (s *EjectCDROMRequest) SetFake() {
 	{
 		{
@@ -7071,11 +7057,6 @@ func (s *InterfaceView) SetFake() {
 	{
 		{
 			s.PacketFilter.SetFake()
-		}
-	}
-	{
-		{
-			s.UpstreamType.SetFake()
 		}
 	}
 }
@@ -9908,12 +9889,6 @@ func (s *OptNilSimpleNotificationHistoryMessage) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilSourceArchiveInfo) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilStorage) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -12207,11 +12182,6 @@ func (s *Server) SetFake() {
 	}
 	{
 		{
-			s.BundleInfo.SetFake()
-		}
-	}
-	{
-		{
 			s.Icon.SetFake()
 		}
 	}
@@ -13397,48 +13367,6 @@ func (s *SimpleNotificationHistoryStatus) SetFake() {
 	{
 		{
 			s.UpdatedAt = time.Now()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SourceArchiveInfo) SetFake() {
-	{
-		{
-			s.ArchiveUnderZone.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SourceArchiveInfoArchiveUnderZone) SetFake() {
-	{
-		{
-			s.ID = int64(0)
-		}
-	}
-	{
-		{
-			s.Account.SetFake()
-		}
-	}
-	{
-		{
-			s.Zone.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SourceArchiveInfoArchiveUnderZoneZone) SetFake() {
-	{
-		{
-			s.ID = int64(0)
-		}
-	}
-	{
-		{
-			s.Name = "string"
 		}
 	}
 }

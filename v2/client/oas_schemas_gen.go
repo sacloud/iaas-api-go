@@ -682,7 +682,6 @@ type Archive struct {
 	CreatedAt       OptNilDateTime             `json:"CreatedAt"`
 	ModifiedAt      OptNilDateTime             `json:"ModifiedAt"`
 	OriginalArchive OptNilResourceRef          `json:"OriginalArchive"`
-	SourceInfo      OptNilSourceArchiveInfo    `json:"SourceInfo"`
 }
 
 // GetID returns the value of ID.
@@ -775,11 +774,6 @@ func (s *Archive) GetOriginalArchive() OptNilResourceRef {
 	return s.OriginalArchive
 }
 
-// GetSourceInfo returns the value of SourceInfo.
-func (s *Archive) GetSourceInfo() OptNilSourceArchiveInfo {
-	return s.SourceInfo
-}
-
 // SetID sets the value of ID.
 func (s *Archive) SetID(val OptNilInt64) {
 	s.ID = val
@@ -868,11 +862,6 @@ func (s *Archive) SetModifiedAt(val OptNilDateTime) {
 // SetOriginalArchive sets the value of OriginalArchive.
 func (s *Archive) SetOriginalArchive(val OptNilResourceRef) {
 	s.OriginalArchive = val
-}
-
-// SetSourceInfo sets the value of SourceInfo.
-func (s *Archive) SetSourceInfo(val OptNilSourceArchiveInfo) {
-	s.SourceInfo = val
 }
 
 // Ref: #/components/schemas/ArchiveCreateRequest
@@ -10493,8 +10482,6 @@ type ESimpleMonitorProtocol string
 
 type ESimpleNotificationDestinationTypes string
 
-type EUpstreamNetworkType string
-
 // Ref: #/components/schemas/EjectCDROMRequest
 type EjectCDROMRequest struct {
 	ID OptNilInt64 `json:"ID"`
@@ -12590,7 +12577,6 @@ type InterfaceView struct {
 	HostName      OptNilString                    `json:"HostName"`
 	Switch        OptNilInterfaceViewSwitch       `json:"Switch"`
 	PacketFilter  OptNilInterfaceViewPacketFilter `json:"PacketFilter"`
-	UpstreamType  EUpstreamNetworkType            `json:"UpstreamType"`
 }
 
 // GetID returns the value of ID.
@@ -12628,11 +12614,6 @@ func (s *InterfaceView) GetPacketFilter() OptNilInterfaceViewPacketFilter {
 	return s.PacketFilter
 }
 
-// GetUpstreamType returns the value of UpstreamType.
-func (s *InterfaceView) GetUpstreamType() EUpstreamNetworkType {
-	return s.UpstreamType
-}
-
 // SetID sets the value of ID.
 func (s *InterfaceView) SetID(val OptNilInt64) {
 	s.ID = val
@@ -12666,11 +12647,6 @@ func (s *InterfaceView) SetSwitch(val OptNilInterfaceViewSwitch) {
 // SetPacketFilter sets the value of PacketFilter.
 func (s *InterfaceView) SetPacketFilter(val OptNilInterfaceViewPacketFilter) {
 	s.PacketFilter = val
-}
-
-// SetUpstreamType sets the value of UpstreamType.
-func (s *InterfaceView) SetUpstreamType(val EUpstreamNetworkType) {
-	s.UpstreamType = val
 }
 
 // Ref: #/components/schemas/InterfaceViewPacketFilter
@@ -24596,69 +24572,6 @@ func (o OptNilSimpleNotificationHistoryMessage) Or(d SimpleNotificationHistoryMe
 	return d
 }
 
-// NewOptNilSourceArchiveInfo returns new OptNilSourceArchiveInfo with value set to v.
-func NewOptNilSourceArchiveInfo(v SourceArchiveInfo) OptNilSourceArchiveInfo {
-	return OptNilSourceArchiveInfo{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilSourceArchiveInfo is optional nullable SourceArchiveInfo.
-type OptNilSourceArchiveInfo struct {
-	Value SourceArchiveInfo
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilSourceArchiveInfo was set.
-func (o OptNilSourceArchiveInfo) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilSourceArchiveInfo) Reset() {
-	var v SourceArchiveInfo
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilSourceArchiveInfo) SetTo(v SourceArchiveInfo) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilSourceArchiveInfo) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilSourceArchiveInfo) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v SourceArchiveInfo
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilSourceArchiveInfo) Get() (v SourceArchiveInfo, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilSourceArchiveInfo) Or(d SourceArchiveInfo) SourceArchiveInfo {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptNilStorage returns new OptNilStorage with value set to v.
 func NewOptNilStorage(v Storage) OptNilStorage {
 	return OptNilStorage{
@@ -29784,7 +29697,6 @@ type Server struct {
 	Disks           OptNilServerConnectedDiskArray `json:"Disks"`
 	Interfaces      OptNilInterfaceViewArray       `json:"Interfaces"`
 	PrivateHost     OptNilServerPrivateHost        `json:"PrivateHost"`
-	BundleInfo      BundleInfo                     `json:"BundleInfo"`
 	Icon            OptNilResourceRef              `json:"Icon"`
 	CreatedAt       OptNilDateTime                 `json:"CreatedAt"`
 	ModifiedAt      OptNilDateTime                 `json:"ModifiedAt"`
@@ -29853,11 +29765,6 @@ func (s *Server) GetInterfaces() OptNilInterfaceViewArray {
 // GetPrivateHost returns the value of PrivateHost.
 func (s *Server) GetPrivateHost() OptNilServerPrivateHost {
 	return s.PrivateHost
-}
-
-// GetBundleInfo returns the value of BundleInfo.
-func (s *Server) GetBundleInfo() BundleInfo {
-	return s.BundleInfo
 }
 
 // GetIcon returns the value of Icon.
@@ -29938,11 +29845,6 @@ func (s *Server) SetInterfaces(val OptNilInterfaceViewArray) {
 // SetPrivateHost sets the value of PrivateHost.
 func (s *Server) SetPrivateHost(val OptNilServerPrivateHost) {
 	s.PrivateHost = val
-}
-
-// SetBundleInfo sets the value of BundleInfo.
-func (s *Server) SetBundleInfo(val BundleInfo) {
-	s.BundleInfo = val
 }
 
 // SetIcon sets the value of Icon.
@@ -32239,84 +32141,6 @@ func (s *SimpleNotificationHistoryStatus) SetCreatedAt(val time.Time) {
 // SetUpdatedAt sets the value of UpdatedAt.
 func (s *SimpleNotificationHistoryStatus) SetUpdatedAt(val time.Time) {
 	s.UpdatedAt = val
-}
-
-// Ref: #/components/schemas/SourceArchiveInfo
-type SourceArchiveInfo struct {
-	ArchiveUnderZone SourceArchiveInfoArchiveUnderZone `json:"ArchiveUnderZone"`
-}
-
-// GetArchiveUnderZone returns the value of ArchiveUnderZone.
-func (s *SourceArchiveInfo) GetArchiveUnderZone() SourceArchiveInfoArchiveUnderZone {
-	return s.ArchiveUnderZone
-}
-
-// SetArchiveUnderZone sets the value of ArchiveUnderZone.
-func (s *SourceArchiveInfo) SetArchiveUnderZone(val SourceArchiveInfoArchiveUnderZone) {
-	s.ArchiveUnderZone = val
-}
-
-// Ref: #/components/schemas/SourceArchiveInfoArchiveUnderZone
-type SourceArchiveInfoArchiveUnderZone struct {
-	ID      int64                                 `json:"ID"`
-	Account OptNilResourceRef                     `json:"Account"`
-	Zone    SourceArchiveInfoArchiveUnderZoneZone `json:"Zone"`
-}
-
-// GetID returns the value of ID.
-func (s *SourceArchiveInfoArchiveUnderZone) GetID() int64 {
-	return s.ID
-}
-
-// GetAccount returns the value of Account.
-func (s *SourceArchiveInfoArchiveUnderZone) GetAccount() OptNilResourceRef {
-	return s.Account
-}
-
-// GetZone returns the value of Zone.
-func (s *SourceArchiveInfoArchiveUnderZone) GetZone() SourceArchiveInfoArchiveUnderZoneZone {
-	return s.Zone
-}
-
-// SetID sets the value of ID.
-func (s *SourceArchiveInfoArchiveUnderZone) SetID(val int64) {
-	s.ID = val
-}
-
-// SetAccount sets the value of Account.
-func (s *SourceArchiveInfoArchiveUnderZone) SetAccount(val OptNilResourceRef) {
-	s.Account = val
-}
-
-// SetZone sets the value of Zone.
-func (s *SourceArchiveInfoArchiveUnderZone) SetZone(val SourceArchiveInfoArchiveUnderZoneZone) {
-	s.Zone = val
-}
-
-// Ref: #/components/schemas/SourceArchiveInfoArchiveUnderZoneZone
-type SourceArchiveInfoArchiveUnderZoneZone struct {
-	ID   int64  `json:"ID"`
-	Name string `json:"Name"`
-}
-
-// GetID returns the value of ID.
-func (s *SourceArchiveInfoArchiveUnderZoneZone) GetID() int64 {
-	return s.ID
-}
-
-// GetName returns the value of Name.
-func (s *SourceArchiveInfoArchiveUnderZoneZone) GetName() string {
-	return s.Name
-}
-
-// SetID sets the value of ID.
-func (s *SourceArchiveInfoArchiveUnderZoneZone) SetID(val int64) {
-	s.ID = val
-}
-
-// SetName sets the value of Name.
-func (s *SourceArchiveInfoArchiveUnderZoneZone) SetName(val string) {
-	s.Name = val
 }
 
 // Ref: #/components/schemas/Storage

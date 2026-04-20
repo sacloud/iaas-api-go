@@ -217,8 +217,6 @@ model VPCRouterInterface {
   HostName?: string | null;
   Switch?: VPCRouterInterfaceSwitch | null;
   PacketFilter?: VPCRouterInterfacePacketFilter | null;
-  UpstreamType: EUpstreamNetworkType;
-  Index: int32;
 }
 
 model VPCRouterInterfaceSwitch {
@@ -230,8 +228,8 @@ model VPCRouterInterfaceSwitch {
 }
 
 model VPCRouterInterfaceSwitchUserSubnet {
-  DefaultRoute: string;
-  NetworkMaskLen: int32;
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
 }
 
 model VPCRouterInterfaceSwitchSubnet {

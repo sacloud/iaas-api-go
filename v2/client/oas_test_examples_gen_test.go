@@ -3327,18 +3327,6 @@ func TestESimpleNotificationDestinationTypes_EncodeDecode(t *testing.T) {
 	var typ2 ESimpleNotificationDestinationTypes
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestEUpstreamNetworkType_EncodeDecode(t *testing.T) {
-	var typ EUpstreamNetworkType
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 EUpstreamNetworkType
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestEjectCDROMRequest_EncodeDecode(t *testing.T) {
 	var typ EjectCDROMRequest
 	typ.SetFake()
@@ -7247,42 +7235,6 @@ func TestSimpleNotificationHistoryStatus_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 SimpleNotificationHistoryStatus
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSourceArchiveInfo_EncodeDecode(t *testing.T) {
-	var typ SourceArchiveInfo
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SourceArchiveInfo
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSourceArchiveInfoArchiveUnderZone_EncodeDecode(t *testing.T) {
-	var typ SourceArchiveInfoArchiveUnderZone
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SourceArchiveInfoArchiveUnderZone
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSourceArchiveInfoArchiveUnderZoneZone_EncodeDecode(t *testing.T) {
-	var typ SourceArchiveInfoArchiveUnderZoneZone
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SourceArchiveInfoArchiveUnderZoneZone
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestStorage_EncodeDecode(t *testing.T) {

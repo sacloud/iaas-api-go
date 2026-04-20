@@ -23,7 +23,6 @@ model Archive {
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
   OriginalArchive?: ResourceRef | null;
-  SourceInfo?: SourceArchiveInfo | null;
 }
 
 model ArchivePlan {

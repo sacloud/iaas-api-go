@@ -289,6 +289,20 @@ var modelFieldExclusions = map[string]map[string]bool{
 	// Sort/Filter は型が未定義（unknown/Record<unknown>）になるためドキュメントから除外する
 	// Include/Exclude は今後非推奨・廃止予定のためドキュメントから除外する
 	"FindCondition": {"Sort": true, "Filter": true, "Include": true, "Exclude": true},
+	// naked.Interface の client-side 仮想フィールド。API レスポンスには含まれず、v1 の
+	// UnmarshalJSON が Switch 情報から算出している。API 定義を記述する v2 TypeSpec には載せない。
+	// 表示用にこの値が必要な downstream（usacloud 等）は上位層で算出する必要がある。
+	"InterfaceView":          {"UpstreamType": true},
+	"VPCRouterInterface":     {"UpstreamType": true, "Index": true},
+	"MobileGatewayInterface": {"UpstreamType": true, "Index": true},
+	// naked.Server には BundleInfo フィールドが存在せず（Disk/Archive にのみ定義）、実 API レスポンス
+	// にも含まれない。downstream からの参照も無いため除外する。DSL 側の `fields.BundleInfo()` 登録
+	// は過去の名残と思われる。
+	"Server": {"BundleInfo": true},
+	// SourceInfo は他ゾーンから転送されたアーカイブにのみ含まれる。ArchiveUnderZone.ID は
+	// `X-Sakura-Bigint-As-Int: 1` ヘッダに反して文字列で返ってくる仕様で decode が困難。
+	// usacloud / terraform いずれも参照していないため除外する。
+	"Archive": {"SourceInfo": true},
 }
 
 // tsModelField はテンプレートに渡す TypeSpec フィールド情報。
@@ -348,6 +362,10 @@ type resolvedModel struct {
 var fieldNullabilityOverrides = map[string]map[string]bool{
 	// Server response の Interfaces[].Switch.UserSubnet は DefaultRoute が null で返ることがある
 	"InterfaceViewSwitchUserSubnet": {
+		"DefaultRoute":   true,
+		"NetworkMaskLen": true,
+	},
+	"VPCRouterInterfaceSwitchUserSubnet": {
 		"DefaultRoute":   true,
 		"NetworkMaskLen": true,
 	},

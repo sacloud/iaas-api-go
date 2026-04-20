@@ -240,6 +240,38 @@ var checks = []check{
 		fieldOptionalName: "NetworkMaskLen",
 		fieldOptionalWant: true,
 	},
+
+	// UpstreamType は client-side 仮想フィールドなので API 定義から除外する
+	{
+		label:        "InterfaceView must not expose UpstreamType (client-side virtual field)",
+		tsp:          "spec/typespec/resources/database/models.tsp",
+		model:        "InterfaceView",
+		fieldsAbsent: []string{"UpstreamType"},
+	},
+	{
+		label:        "VPCRouterInterface must not expose UpstreamType / Index (client-side virtual fields)",
+		tsp:          "spec/typespec/resources/vpc_router/models.tsp",
+		model:        "VPCRouterInterface",
+		fieldsAbsent: []string{"UpstreamType", "Index"},
+	},
+	{
+		label:        "MobileGatewayInterface must not expose UpstreamType / Index (client-side virtual fields)",
+		tsp:          "spec/typespec/resources/mobile_gateway/models.tsp",
+		model:        "MobileGatewayInterface",
+		fieldsAbsent: []string{"UpstreamType", "Index"},
+	},
+	{
+		label:        "Server must not expose BundleInfo (not in naked.Server, not in API response)",
+		tsp:          "spec/typespec/resources/server/models.tsp",
+		model:        "Server",
+		fieldsAbsent: []string{"BundleInfo"},
+	},
+	{
+		label:        "Archive must not expose SourceInfo (no downstream reference; nested ID type is inconsistent with X-Sakura-Bigint-As-Int)",
+		tsp:          "spec/typespec/resources/archive/models.tsp",
+		model:        "Archive",
+		fieldsAbsent: []string{"SourceInfo"},
+	},
 }
 
 func main() {

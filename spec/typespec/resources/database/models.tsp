@@ -123,7 +123,6 @@ model InterfaceView {
   HostName?: string | null;
   Switch?: InterfaceViewSwitch | null;
   PacketFilter?: InterfaceViewPacketFilter | null;
-  UpstreamType: EUpstreamNetworkType;
 }
 
 model InterfaceViewSwitch {

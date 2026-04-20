@@ -67,8 +67,6 @@ model MobileGatewayInterface {
   HostName?: string | null;
   Switch?: MobileGatewayInterfaceSwitch | null;
   PacketFilter?: MobileGatewayInterfacePacketFilter | null;
-  UpstreamType: EUpstreamNetworkType;
-  Index: int32;
 }
 
 model MobileGatewayInterfaceSwitch {

@@ -21,7 +21,6 @@ model Server {
   Disks?: ServerConnectedDisk[] | null;
   Interfaces?: InterfaceView[] | null;
   PrivateHost?: ServerPrivateHost | null;
-  BundleInfo: BundleInfo;
   Icon?: ResourceRef | null;
   CreatedAt?: utcDateTime | null;
   ModifiedAt?: utcDateTime | null;
