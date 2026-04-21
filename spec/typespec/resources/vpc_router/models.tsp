@@ -209,10 +209,7 @@ model VPCRouterScheduledMaintenance {
 
 model VPCRouterInterface {
   ID?: int64 | null;
-  MACAddress?: string | null;
   IPAddress?: string | null;
-  UserIPAddress?: string | null;
-  HostName?: string | null;
   Switch?: VPCRouterInterfaceSwitch | null;
   PacketFilter?: VPCRouterInterfacePacketFilter | null;
 }
@@ -243,8 +240,6 @@ model VPCRouterInterfaceSwitchSubnetInternet {
 
 model VPCRouterInterfacePacketFilter {
   ID?: int64 | null;
-  Name?: string | null;
-  RequiredHostVersionn: int32;
 }
 
 model VPCRouterCreateRequest {

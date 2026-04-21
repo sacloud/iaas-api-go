@@ -37753,12 +37753,6 @@ func (s *InterfaceView) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.HostName.Set {
-			e.FieldStart("HostName")
-			s.HostName.Encode(e)
-		}
-	}
-	{
 		if s.Switch.Set {
 			e.FieldStart("Switch")
 			s.Switch.Encode(e)
@@ -37772,14 +37766,13 @@ func (s *InterfaceView) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfInterfaceView = [7]string{
+var jsonFieldsNameOfInterfaceView = [6]string{
 	0: "ID",
 	1: "MACAddress",
 	2: "IPAddress",
 	3: "UserIPAddress",
-	4: "HostName",
-	5: "Switch",
-	6: "PacketFilter",
+	4: "Switch",
+	5: "PacketFilter",
 }
 
 // Decode decodes InterfaceView from json.
@@ -37829,16 +37822,6 @@ func (s *InterfaceView) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"UserIPAddress\"")
-			}
-		case "HostName":
-			if err := func() error {
-				s.HostName.Reset()
-				if err := s.HostName.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"HostName\"")
 			}
 		case "Switch":
 			if err := func() error {
@@ -37899,22 +37882,10 @@ func (s *InterfaceViewPacketFilter) encodeFields(e *jx.Encoder) {
 			s.ID.Encode(e)
 		}
 	}
-	{
-		if s.Name.Set {
-			e.FieldStart("Name")
-			s.Name.Encode(e)
-		}
-	}
-	{
-		e.FieldStart("RequiredHostVersionn")
-		e.Int32(s.RequiredHostVersionn)
-	}
 }
 
-var jsonFieldsNameOfInterfaceViewPacketFilter = [3]string{
+var jsonFieldsNameOfInterfaceViewPacketFilter = [1]string{
 	0: "ID",
-	1: "Name",
-	2: "RequiredHostVersionn",
 }
 
 // Decode decodes InterfaceViewPacketFilter from json.
@@ -37922,7 +37893,6 @@ func (s *InterfaceViewPacketFilter) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode InterfaceViewPacketFilter to nil")
 	}
-	var requiredBitSet [1]uint8
 
 	if err := d.ObjBytes(func(d *jx.Decoder, k []byte) error {
 		switch string(k) {
@@ -37936,66 +37906,12 @@ func (s *InterfaceViewPacketFilter) Decode(d *jx.Decoder) error {
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"ID\"")
 			}
-		case "Name":
-			if err := func() error {
-				s.Name.Reset()
-				if err := s.Name.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Name\"")
-			}
-		case "RequiredHostVersionn":
-			requiredBitSet[0] |= 1 << 2
-			if err := func() error {
-				v, err := d.Int32()
-				s.RequiredHostVersionn = int32(v)
-				if err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"RequiredHostVersionn\"")
-			}
 		default:
 			return d.Skip()
 		}
 		return nil
 	}); err != nil {
 		return errors.Wrap(err, "decode InterfaceViewPacketFilter")
-	}
-	// Validate required fields.
-	var failures []validate.FieldError
-	for i, mask := range [1]uint8{
-		0b00000100,
-	} {
-		if result := (requiredBitSet[i] & mask) ^ mask; result != 0 {
-			// Mask only required fields and check equality to mask using XOR.
-			//
-			// If XOR result is not zero, result is not equal to expected, so some fields are missed.
-			// Bits of fields which would be set are actually bits of missed fields.
-			missed := bits.OnesCount8(result)
-			for bitN := 0; bitN < missed; bitN++ {
-				bitIdx := bits.TrailingZeros8(result)
-				fieldIdx := i*8 + bitIdx
-				var name string
-				if fieldIdx < len(jsonFieldsNameOfInterfaceViewPacketFilter) {
-					name = jsonFieldsNameOfInterfaceViewPacketFilter[fieldIdx]
-				} else {
-					name = strconv.Itoa(fieldIdx)
-				}
-				failures = append(failures, validate.FieldError{
-					Name:  name,
-					Error: validate.ErrFieldRequired,
-				})
-				// Reset bit.
-				result &^= 1 << bitIdx
-			}
-		}
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
 	}
 
 	return nil

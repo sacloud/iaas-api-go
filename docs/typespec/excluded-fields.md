@@ -206,6 +206,19 @@ allowlist に含まれず TypeSpec / OpenAPI / v2 Go client に emit されな�
 | MACAddress |
 | PacketFilter |
 
+## InterfaceView
+
+| Field |
+|---|
+| HostName |
+
+## InterfaceViewPacketFilter
+
+| Field |
+|---|
+| Name |
+| RequiredHostVersionn |
+
 ## Internet
 
 | Field |
@@ -381,6 +394,21 @@ allowlist に含まれず TypeSpec / OpenAPI / v2 Go client に emit されな�
 | Field |
 |---|
 | CreatedAt |
+
+## VPCRouterInterface
+
+| Field |
+|---|
+| HostName |
+| MACAddress |
+| UserIPAddress |
+
+## VPCRouterInterfacePacketFilter
+
+| Field |
+|---|
+| Name |
+| RequiredHostVersionn |
 
 ## Zone
 

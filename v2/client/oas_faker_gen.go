@@ -6399,11 +6399,6 @@ func (s *InterfaceView) SetFake() {
 	}
 	{
 		{
-			s.HostName.SetFake()
-		}
-	}
-	{
-		{
 			s.Switch.SetFake()
 		}
 	}
@@ -6419,16 +6414,6 @@ func (s *InterfaceViewPacketFilter) SetFake() {
 	{
 		{
 			s.ID.SetFake()
-		}
-	}
-	{
-		{
-			s.Name.SetFake()
-		}
-	}
-	{
-		{
-			s.RequiredHostVersionn = int32(0)
 		}
 	}
 }

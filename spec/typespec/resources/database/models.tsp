@@ -115,7 +115,6 @@ model InterfaceView {
   MACAddress?: string | null;
   IPAddress?: string | null;
   UserIPAddress?: string | null;
-  HostName?: string | null;
   Switch?: InterfaceViewSwitch | null;
   PacketFilter?: InterfaceViewPacketFilter | null;
 }
@@ -146,8 +145,6 @@ model InterfaceViewSwitchSubnetInternet {
 
 model InterfaceViewPacketFilter {
   ID?: int64 | null;
-  Name?: string | null;
-  RequiredHostVersionn: int32;
 }
 
 model DatabaseDisk {

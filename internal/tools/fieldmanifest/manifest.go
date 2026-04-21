@@ -805,6 +805,44 @@ var Manifest = map[string]map[string]bool{
 		"Member":   true,
 		"IsAPIKey": true,
 	},
+
+	// ========== Sub-model pruning ==========
+	// Appliance 等の Interface 関連サブモデルで、downstream で参照されないフィールドを除外する。
+
+	// ----- InterfaceView -----
+	// Server.Interfaces[] / Database.Interfaces[] 等で使われる共有モデル。
+	// HostName は v2/v3/iaas-service-go いずれも未参照 (getter のみ zz_models.go に存在)。
+	"InterfaceView": {
+		"ID":            true,
+		"IPAddress":     true,
+		"MACAddress":    true, // v2 structure_server.go
+		"UserIPAddress": true, // v2/iaas-service-go
+		"Switch":        true, // Switch.ID / Switch.Scope (SwitchID/SwitchScope accessor)
+		"PacketFilter":  true, // PacketFilter.ID (PacketFilterID accessor)
+	},
+
+	// ----- InterfaceViewPacketFilter -----
+	// downstream は ID のみ読む。Name は未参照、RequiredHostVersionn は DSL 側の typo (double n)。
+	"InterfaceViewPacketFilter": {
+		"ID": true,
+	},
+
+	// ----- VPCRouterInterface -----
+	// v2/v3 structure_vpc_router.go は IPAddress / SwitchID / SubnetNetworkMaskLen 経由で参照。
+	// iaas-service-go builder は iface.Index (modelFieldExclusions 済) と iface.SwitchID のみ参照。
+	// MACAddress, UserIPAddress, HostName は未参照。
+	"VPCRouterInterface": {
+		"ID":           true,
+		"IPAddress":    true,
+		"Switch":       true,
+		"PacketFilter": true,
+	},
+
+	// ----- VPCRouterInterfacePacketFilter -----
+	// 同じく ID のみ。
+	"VPCRouterInterfacePacketFilter": {
+		"ID": true,
+	},
 }
 
 // IsRegistered は modelName が allowlist を持つかを返す。

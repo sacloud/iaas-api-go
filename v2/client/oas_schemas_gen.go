@@ -11267,7 +11267,6 @@ type InterfaceView struct {
 	MACAddress    OptNilString                    `json:"MACAddress"`
 	IPAddress     OptNilString                    `json:"IPAddress"`
 	UserIPAddress OptNilString                    `json:"UserIPAddress"`
-	HostName      OptNilString                    `json:"HostName"`
 	Switch        OptNilInterfaceViewSwitch       `json:"Switch"`
 	PacketFilter  OptNilInterfaceViewPacketFilter `json:"PacketFilter"`
 }
@@ -11290,11 +11289,6 @@ func (s *InterfaceView) GetIPAddress() OptNilString {
 // GetUserIPAddress returns the value of UserIPAddress.
 func (s *InterfaceView) GetUserIPAddress() OptNilString {
 	return s.UserIPAddress
-}
-
-// GetHostName returns the value of HostName.
-func (s *InterfaceView) GetHostName() OptNilString {
-	return s.HostName
 }
 
 // GetSwitch returns the value of Switch.
@@ -11327,11 +11321,6 @@ func (s *InterfaceView) SetUserIPAddress(val OptNilString) {
 	s.UserIPAddress = val
 }
 
-// SetHostName sets the value of HostName.
-func (s *InterfaceView) SetHostName(val OptNilString) {
-	s.HostName = val
-}
-
 // SetSwitch sets the value of Switch.
 func (s *InterfaceView) SetSwitch(val OptNilInterfaceViewSwitch) {
 	s.Switch = val
@@ -11344,9 +11333,7 @@ func (s *InterfaceView) SetPacketFilter(val OptNilInterfaceViewPacketFilter) {
 
 // Ref: #/components/schemas/InterfaceViewPacketFilter
 type InterfaceViewPacketFilter struct {
-	ID                   OptNilInt64  `json:"ID"`
-	Name                 OptNilString `json:"Name"`
-	RequiredHostVersionn int32        `json:"RequiredHostVersionn"`
+	ID OptNilInt64 `json:"ID"`
 }
 
 // GetID returns the value of ID.
@@ -11354,29 +11341,9 @@ func (s *InterfaceViewPacketFilter) GetID() OptNilInt64 {
 	return s.ID
 }
 
-// GetName returns the value of Name.
-func (s *InterfaceViewPacketFilter) GetName() OptNilString {
-	return s.Name
-}
-
-// GetRequiredHostVersionn returns the value of RequiredHostVersionn.
-func (s *InterfaceViewPacketFilter) GetRequiredHostVersionn() int32 {
-	return s.RequiredHostVersionn
-}
-
 // SetID sets the value of ID.
 func (s *InterfaceViewPacketFilter) SetID(val OptNilInt64) {
 	s.ID = val
-}
-
-// SetName sets the value of Name.
-func (s *InterfaceViewPacketFilter) SetName(val OptNilString) {
-	s.Name = val
-}
-
-// SetRequiredHostVersionn sets the value of RequiredHostVersionn.
-func (s *InterfaceViewPacketFilter) SetRequiredHostVersionn(val int32) {
-	s.RequiredHostVersionn = val
 }
 
 // Ref: #/components/schemas/InterfaceViewSwitch
