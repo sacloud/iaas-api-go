@@ -9,10 +9,45 @@ import "./types.tsp";
 
 @service(#{ title: "Sakura Cloud IaaS API" })
 @doc("""
-  この API を呼び出す際は、すべてのリクエストに以下のヘッダーを付与してください:
-  - X-Sakura-Bigint-As-Int: 1
+  # さくらのクラウド IaaS API
   
-  このヘッダーにより、bigint 型の値が JSON 数値ではなく整数として返却されます。
+  ## 必須リクエストヘッダ
+  
+  この API を呼び出す際は、すべてのリクエストに以下のヘッダーを付与してください。
+  
+  - `X-Sakura-Bigint-As-Int: 1`
+  
+  このヘッダーにより、bigint 型の値が JSON 文字列ではなく整数として返却されます。
+  
+  ## Find 系エンドポイントのクエリ形式
+  
+  本定義書では Find 系エンドポイントの検索条件を `?q={JSON}` 形式のクエリパラメータとして記述している。
+  しかし **現行サーバー実装は `q=` キーを受け付けず、
+  `?{JSON}`（クエリ文字列の先頭に `?` を置き、続けて生の JSON オブジェクトを書く形。`q=` というキー名は無い）形式を要求する**。
+  
+  ### 表現の違い
+  
+  本定義書（および生成された OpenAPI）上の表現:
+  
+  ```
+  GET /is1a/api/cloud/1.1/bridge?q=%7B%22Count%22%3A3%7D
+  ```
+  
+  実サーバーが受理する表現:
+  
+  ```
+  GET /is1a/api/cloud/1.1/bridge?{"Count":3}
+  ```
+  
+  ### クライアント実装が取るべき対応
+  
+  以下のいずれかで辻褄合わせを行う必要がある。
+  
+  - HTTP 送信直前に URL の `q=<urlencoded-json>` を `<rawjson>` に書き換える
+    （参考実装: `v2/client/find_transport.go` の `findQueryRewriteTransport`）
+  - あるいは独自に検索条件を組み立てて `?{JSON}` を直接生成する
+  
+  将来サーバー側が本定義どおり `?q={JSON}` を受理するようになれば、書き換え層は不要になる。
   """)
 @useAuth(BasicAuth)
 namespace Sacloud.IaaS;

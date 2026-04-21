@@ -38,6 +38,8 @@ import (
 	"sort"
 	"strings"
 	"text/template"
+
+	"github.com/sacloud/iaas-api-go/internal/tools/findmanifest"
 )
 
 func init() {
@@ -45,86 +47,14 @@ func init() {
 	log.SetPrefix("gen-find-request: ")
 }
 
-// filterFields はリソースがサポートするフィルタフィールドを表す。
-type filterFields struct {
-	Name          bool
-	Tags          bool
-	Scope         bool
-	Class         bool // Appliance 個別リソース用
-	ProviderClass bool // CommonServiceItem 系
-}
-
-// manifest はリソース名（TypeName）→ フィルタサポートフィールド。
-// ここに列挙されたリソースのみ FindRequest/FindFilter が生成される。
-//
-// ※ 追加時の指針:
-//   - Name: ほぼ全リソースが対応。プランや Region/Zone 等は部分一致で検索できる
-//   - Tags: Name+Tags セットで検索可能なユーザー作成リソースのみ
-//   - Scope: Archive/CDROM/Disk/Icon/Note/Switch 等の shared/user スコープ分岐があるもの
-//   - Class: Appliance 個別リソース (DB/LB/MGW/NFS/VPC) の絞り込み用
-//   - ProviderClass: CommonServiceItem 系 (DNS/GSLB/ProxyLB/SIM/etc)
-var manifest = map[string]filterFields{
-	// ユーザー作成リソース (Name+Tags)
-	"Archive":              {Name: true, Tags: true, Scope: true},
-	"Bridge":               {Name: true},
-	"CDROM":                {Name: true, Tags: true, Scope: true},
-	"Disk":                 {Name: true, Tags: true, Scope: true},
-	"Icon":                 {Name: true, Tags: true, Scope: true},
-	"Interface":            {Name: true},
-	"Internet":             {Name: true, Tags: true},
-	"License":              {Name: true},
-	"Note":                 {Name: true, Tags: true, Scope: true},
-	"PacketFilter":         {Name: true},
-	"PrivateHost":          {Name: true, Tags: true},
-	"Server":               {Name: true, Tags: true},
-	"SSHKey":               {Name: true},
-	"Subnet":               {Name: true},
-	"Switch":               {Name: true, Tags: true, Scope: true},
-
-	// プラン系 (Name のみ。Class を持つ PrivateHostPlan は別扱い)
-	"DiskPlan":             {Name: true},
-	"InternetPlan":         {Name: true},
-	"LicenseInfo":          {Name: true},
-	"PrivateHostPlan":      {Name: true, Class: true},
-	"ServerPlan":           {Name: true},
-	"ServiceClass":         {Name: true},
-
-	// Appliance 個別 (Name+Tags+Class)
-	"Database":             {Name: true, Tags: true, Class: true},
-	"LoadBalancer":         {Name: true, Tags: true, Class: true},
-	"MobileGateway":        {Name: true, Tags: true, Class: true},
-	"NFS":                  {Name: true, Tags: true, Class: true},
-	"VPCRouter":            {Name: true, Tags: true, Class: true},
-
-	// CommonServiceItem 系 (Name+Tags+ProviderClass)
-	"AutoBackup":                    {Name: true, Tags: true, ProviderClass: true},
-	"AutoScale":                     {Name: true, Tags: true, ProviderClass: true},
-	"CertificateAuthority":          {Name: true, Tags: true, ProviderClass: true},
-	"ContainerRegistry":             {Name: true, Tags: true, ProviderClass: true},
-	"DNS":                           {Name: true, Tags: true, ProviderClass: true},
-	"EnhancedDB":                    {Name: true, Tags: true, ProviderClass: true},
-	"ESME":                          {Name: true, Tags: true, ProviderClass: true},
-	"GSLB":                          {Name: true, Tags: true, ProviderClass: true},
-	"LocalRouter":                   {Name: true, Tags: true, ProviderClass: true},
-	"ProxyLB":                       {Name: true, Tags: true, ProviderClass: true},
-	"SIM":                           {Name: true, Tags: true, ProviderClass: true},
-	"SimpleMonitor":                 {Name: true, Tags: true, ProviderClass: true},
-	"SimpleNotificationDestination": {Name: true, Tags: true, ProviderClass: true},
-	"SimpleNotificationGroup":       {Name: true, Tags: true, ProviderClass: true},
-
-	// Facility (IDで問い合わせが普通だが Name 部分一致もサポート)
-	"Region": {Name: true},
-	"Zone":   {Name: true},
-}
-
 type resourceGen struct {
 	TypeName string
-	Fields   filterFields
+	Fields   findmanifest.FilterFields
 }
 
 // HasFilter は Filter struct に載せるフィールドが存在するかどうか。
 func (r resourceGen) HasFilter() bool {
-	return r.Fields.Name || r.Fields.Tags || r.Fields.Scope || r.Fields.Class || r.Fields.ProviderClass
+	return r.Fields.HasAny()
 }
 
 const fileHeader = `// Copyright 2022-2025 The sacloud/iaas-api-go Authors
@@ -209,8 +139,8 @@ const emptyFilterNote = `// メモ: Filter struct にフィールドが無いリ
 `
 
 func main() {
-	resources := make([]resourceGen, 0, len(manifest))
-	for name, fields := range manifest {
+	resources := make([]resourceGen, 0, len(findmanifest.Manifest))
+	for name, fields := range findmanifest.Manifest {
 		resources = append(resources, resourceGen{TypeName: name, Fields: fields})
 	}
 	sort.Slice(resources, func(i, j int) bool { return resources[i].TypeName < resources[j].TypeName })

@@ -15,7 +15,24 @@ interface NoteOp {
   @route("/{zone}/api/cloud/1.1/note")
   find(
     @path zone: string,
-    @query q?: string,
+
+    @doc("""
+      Find 検索条件をシリアライズした JSON 文字列を渡す。
+      
+      **指定可能なトップレベルフィールド:**
+      
+      - `Count` (int): 取得件数の上限
+      - `From` (int): 開始オフセット
+      - `Filter` (object): このエンドポイントで指定可能なフィルタキーは以下
+          - `Name` (string): 部分一致。スペース区切りで AND 結合
+          - `Tags` (string[]): タグ完全一致の AND 結合
+          - `Scope` (string): `"shared"` または `"user"` の部分一致
+      """)
+    @example("""
+      {"Count":10,"From":0,"Filter":{"Name":"foo"}}
+      """)
+    @query
+    q?: string,
   ): NoteFindResponseEnvelope | ApiError;
 
   @summary("Note 作成")

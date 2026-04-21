@@ -24,6 +24,7 @@ import (
 
 	"github.com/sacloud/iaas-api-go/internal/define"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
+	"github.com/sacloud/iaas-api-go/internal/tools/findmanifest"
 )
 
 // typeNameToClass は DSL の TypeName をさくらクラウド API の "Class" フィールド値にマッピングする。
@@ -63,7 +64,90 @@ type opParam struct {
 	Decorator string // "@path"、"" など
 	Name      string
 	TSType    string
-	Optional  bool // true のとき TypeSpec で `name?: type` と出力する
+	Optional  bool   // true のとき TypeSpec で `name?: type` と出力する
+	Doc       string // non-empty のとき @doc("""...""") をパラメータに付与する（例: Find の q パラメータ）
+	Example   string // non-empty のとき @example("...") をパラメータに付与する。Doc と独立
+}
+
+// opTemplateFuncs はパラメータの @doc 出力などで使う共通 FuncMap。
+//
+// indent はテンプレート内で複数行文字列を TypeSpec のトリプル引用符内に埋めるために使う。
+// TypeSpec の `"""..."""` は閉じる `"""` の行頭インデントを基準に各行のインデントを剥がす仕様。
+// 各行に n スペースを前置することで、閉じ `"""` と揃えて正しく dedent させる。
+var opTemplateFuncs = template.FuncMap{
+	"trimSpace": strings.TrimSpace,
+	"indent": func(n int, s string) string {
+		pad := strings.Repeat(" ", n)
+		return pad + strings.ReplaceAll(s, "\n", "\n"+pad)
+	},
+}
+
+// buildFindQDoc は Find 系エンドポイントの q パラメータに付ける @doc 内容（Markdown）を返す。
+// typeName は manifest のキー（個別リソース TypeName もしくは "Appliance" / "CommonServiceItem"）。
+// manifest にエントリが無い／Filter を持たないリソースでは Filter 節を省略する。
+//
+// 例示文は @example 側で行うのでここには書かない。ワイヤー形式（`?q=` → `?{JSON}`）や
+// Sort / Include / Exclude 非サポートは本 API 全体の @doc（main.tsp）で説明済みなので触れない。
+func buildFindQDoc(typeName string) string {
+	f, ok := findmanifest.Manifest[typeName]
+	if !ok {
+		f = findmanifest.GroupManifest[typeName]
+	}
+
+	var b strings.Builder
+	b.WriteString("Find 検索条件をシリアライズした JSON 文字列を渡す。\n\n")
+	b.WriteString("**指定可能なトップレベルフィールド:**\n\n")
+	b.WriteString("- `Count` (int): 取得件数の上限\n")
+	b.WriteString("- `From` (int): 開始オフセット")
+
+	if f.HasAny() {
+		b.WriteString("\n- `Filter` (object): このエンドポイントで指定可能なフィルタキーは以下\n")
+		if f.Name {
+			b.WriteString("    - `Name` (string): 部分一致。スペース区切りで AND 結合\n")
+		}
+		if f.Tags {
+			b.WriteString("    - `Tags` (string[]): タグ完全一致の AND 結合\n")
+		}
+		if f.Scope {
+			b.WriteString("    - `Scope` (string): `\"shared\"` または `\"user\"` の部分一致\n")
+		}
+		if f.Class {
+			b.WriteString("    - `Class` (string): Appliance のサブクラス（例 `database` / `loadbalancer`）の部分一致\n")
+		}
+		if f.ProviderClass {
+			b.WriteString("    - `Provider.Class` (string): CommonServiceItem のプロバイダ種別の部分一致\n")
+		}
+		return strings.TrimRight(b.String(), "\n")
+	}
+	return b.String()
+}
+
+// buildFindQExample は q パラメータの @example に渡す JSON 文字列を返す。
+// manifest から代表的なフィルタ 1 つを選んで例示する。
+//
+// 注意: @typespec/openapi3 v1.11 時点では、parameter に付けた @example は
+// OpenAPI YAML の `example` フィールドに変換されない（compile はエラー無く通る）。
+// それでも TypeSpec ファイル自体が公開ドキュメントとなる運用のため、ソース側に
+// 例示を残す価値はある。将来 emitter が対応した時点で自動的に反映される。
+func buildFindQExample(typeName string) string {
+	f, ok := findmanifest.Manifest[typeName]
+	if !ok {
+		f = findmanifest.GroupManifest[typeName]
+	}
+	switch {
+	case f.Name:
+		return `{"Count":10,"From":0,"Filter":{"Name":"foo"}}`
+	case f.Tags:
+		return `{"Count":10,"From":0,"Filter":{"Tags":["foo"]}}`
+	case f.Scope:
+		return `{"Count":10,"From":0,"Filter":{"Scope":"user"}}`
+	case f.Class:
+		return `{"Count":10,"From":0,"Filter":{"Class":"database"}}`
+	case f.ProviderClass:
+		return `{"Count":10,"From":0,"Filter":{"Provider.Class":"dns"}}`
+	default:
+		return `{"Count":10,"From":0}`
+	}
 }
 
 // opEntry は TypeSpec interface に出力する単一オペレーションの情報を保持する。
@@ -343,6 +427,8 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 					Name:      "q",
 					TSType:    "string",
 					Optional:  true,
+					Doc:       buildFindQDoc(api.TypeName()),
+					Example:   buildFindQExample(api.TypeName()),
 				})
 			} else {
 				// グループのいずれかにリクエストエンベロープがある → 統合エンベロープを @body で使用
@@ -382,7 +468,7 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 		TypeName   string
 		Operations []opEntry
 	}
-	writeFile(individualOpTmpl, fileParam{TypeName: api.TypeName(), Operations: ops}, outputPath, template.FuncMap{"trimSpace": strings.TrimSpace})
+	writeFile(individualOpTmpl, fileParam{TypeName: api.TypeName(), Operations: ops}, outputPath, opTemplateFuncs)
 }
 
 // mergeBodyArgs は同一 method+path を持つ複数オペレーションのボディ引数をマージする。
@@ -576,7 +662,14 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 				// Find 系共有グループ (GET + FindCondition) は @query q?: string に差し替え。
 				// 詳細は generateIndividualFile 側の同種分岐コメント参照。
 				if strings.ToLower(k.method) == "get" && tsType == "FindCondition" {
-					params = append(params, opParam{Decorator: "@query", Name: "q", TSType: "string", Optional: true})
+					params = append(params, opParam{
+						Decorator: "@query",
+						Name:      "q",
+						TSType:    "string",
+						Optional:  true,
+						Doc:       buildFindQDoc(groupName),
+						Example:   buildFindQExample(groupName),
+					})
 					continue
 				}
 				if shouldWrap && len(firstArgs) == 1 {
@@ -719,7 +812,7 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 		FatModels:          fatModels,
 		SharedOps:          sharedOps,
 		ResourceInterfaces: resourceInterfaces,
-	}, outputPath, template.FuncMap{"trimSpace": strings.TrimSpace})
+	}, outputPath, opTemplateFuncs)
 }
 
 // --- パス・テンプレートユーティリティ ---
@@ -817,7 +910,13 @@ interface {{ .TypeName }}Op {
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}(
-    {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
+    {{ range .Params }}{{ if .Doc }}@doc("""
+{{ indent 4 .Doc }}
+    """)
+    {{ end }}{{ if .Example }}@example("""
+    {{ .Example }}
+    """)
+    {{ end }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
   ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
@@ -852,7 +951,13 @@ interface {{ .GroupName }}Op {
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}(
-    {{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
+    {{ range .Params }}{{ if .Doc }}@doc("""
+{{ indent 4 .Doc }}
+    """)
+    {{ end }}{{ if .Example }}@example("""
+    {{ .Example }}
+    """)
+    {{ end }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }},
     {{ end }}
   ): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
@@ -864,7 +969,11 @@ interface {{ .TypeName }}Op {
   @summary("{{ .Summary }}")
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
-  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
+  op {{ .MethodNameLower }}({{ range .Params }}{{ if .Doc }}@doc("""
+{{ indent 4 .Doc }}
+    """) {{ end }}{{ if .Example }}@example("""
+    {{ .Example }}
+    """) {{ end }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;
 {{ end }}
 }
 {{ end }}`

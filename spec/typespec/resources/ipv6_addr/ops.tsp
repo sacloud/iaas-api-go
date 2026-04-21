@@ -15,7 +15,20 @@ interface IPv6AddrOp {
   @route("/{zone}/api/cloud/1.1/ipv6addr")
   find(
     @path zone: string,
-    @query q?: string,
+
+    @doc("""
+      Find 検索条件をシリアライズした JSON 文字列を渡す。
+      
+      **指定可能なトップレベルフィールド:**
+      
+      - `Count` (int): 取得件数の上限
+      - `From` (int): 開始オフセット
+      """)
+    @example("""
+      {"Count":10,"From":0}
+      """)
+    @query
+    q?: string,
   ): IPv6AddrFindResponseEnvelope | ApiError;
 
   @summary("IPv6Addr 作成")
