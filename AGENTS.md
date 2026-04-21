@@ -644,7 +644,7 @@ TEST_ACC=1 go test -v ./integration/...
 
 ## v2 ラッパー層の設計方針（参考: saclient-go / simple-notification-api-go）
 
-現状の `v2/client/` は ogen 生成物そのままで、認証ヘッダ付与・Find クエリ書き換え・エラーラップ等は `v2/integration/helper_test.go` に手書きで散らばっている。将来 v2 を公開クライアントにするにあたり、`simple-notification-api-go` と同じ使用感（`saclient.Client` を渡して `NewClient` → リソースごとに `NewFooOp` で CRUD）になるようラッパー層を編成する。
+`v2/client/` は ogen 生成物そのまま。認証・ヘッダ付与・Find クエリ書き換え・エラーラップは `v2/client.go` と `v2/middleware.go` に集約し、saclient-go のミドルウェア機構に乗せている。公開クライアントとしての使用感は `simple-notification-api-go` と同じ（`saclient.Client` を渡して `iaas.NewClient` → リソースごとに `NewFooOp` で CRUD）。
 
 ここでは参考実装の構造と v2 に取り込むべきパターンを整理する。具体の配置・生成方式は「要実装判断」節に切り出してあり、本決まりではない。
 
@@ -674,7 +674,7 @@ saclient-go 内蔵ミドルウェアの標準順序（上から実行）:
 
 `WithMiddleware` で渡したカスタムミドルウェアは先頭に **prepend** される（ユーザ定義が最上位で走る）。simple-notification では `modifiyMiddleware()` が request 前に `Provider.Class` クエリ注入、response 後に icon の null→{} 変換を行っている（ogen の required バリデーションを通すための応急処置）。
 
-v2 整合: 現在 `helper_test.go` に手書きされている `baseTransport`（ヘッダ付与）と `findQueryRewriteTransport`（`?q=...` 書き換え）は saclient-go ミドルウェアまたは Transport の上で再構成することになる。認証ヘッダは saclient-go 任せにできるので、`helper_test.go` の `securitySource` 手書き分は消える見込み。
+v2 整合: `iaas.NewClient` が `stripOgenAuthMiddleware`（ogen が入れる空 Basic 認証を剥がす）と `findQueryRewriteMiddleware`（`?q=...` → `?{json}` の書き換え）を saclient の `WithMiddleware` 経由でチェーンに差し込む。`baseTransport` / `securitySource` / `findQueryRewriteTransport` は不要になり、`v2/integration/helper_test.go` は saclient + `iaas.NewClient` 経由でクライアントを生成するだけのシンプルな構成に簡素化された。`SAKURA_TRACE=1` は saclient 内蔵 tracer (`WithTraceMode("all")`) に委譲する。
 
 ### Op 層のパターン
 
@@ -720,6 +720,6 @@ var _ DestinationAPI = (*DestinationOp)(nil)
 - **配置**: トップレベル手書きファイルを `v2/` 直下に置くか、`v2/iaas/` のようなサブパッケージに置くか。`v2/client/` は ogen 出力専用のまま維持する。
 - **生成方式**: リソースは 41 個あり全量手書きは非現実的。`internal/tools/gen-v2-op/`（仮称）で Op を自動生成する方向が自然（v1 の `gen-api-op` 相当）。テンプレートの形を先に 1〜2 リソース分手書きで固めてから生成器化するのが安全。
 - **zone / id**: simple-notification はゾーン概念が無いため純粋移植はできない。zone を第二引数に、id を第三引数に取る形へ変形する必要がある。`types.ID` を v2 に再導入するか `string` のままかは別途決定。
-- **saclient-go 依存**: `v2/go.mod` に `github.com/sacloud/saclient-go` を追加する。これに伴い `integration/helper_test.go` の認証・ヘッダ付与を saclient-go に寄せるため統合テストの構築コードも書き直しになる。
+- **saclient-go 依存**: `v2/go.mod` に `github.com/sacloud/saclient-go` を追加済み。`integration/helper_test.go` の認証・ヘッダ付与・find query 書き換え・trace dump は `iaas.NewClient` 経由の saclient-go ミドルウェアに移行済み。
 - **既存資産の再利用**: `v2/client/find_transport.go` / `find_request_gen.go` は Op 層からも引き続き使う（saclient-go の `WithMiddleware` または `http.Client` Transport として Op 経由で注入）。
 

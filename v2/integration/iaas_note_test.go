@@ -22,39 +22,18 @@ import (
 
 	iaas "github.com/sacloud/iaas-api-go/v2"
 	"github.com/sacloud/iaas-api-go/v2/client"
-	"github.com/sacloud/saclient-go"
 	"github.com/stretchr/testify/require"
 )
 
-// newIaasClient は iaas.NewClient 経由で ogen クライアントを組み立てる。
-// saclient-go のプロファイル/環境変数解決をそのまま使う。
-func newIaasClient(t *testing.T) *client.Client {
-	t.Helper()
-
-	if os.Getenv("SAKURA_ACCESS_TOKEN") == "" || os.Getenv("SAKURA_ACCESS_TOKEN_SECRET") == "" {
-		t.Skip("SAKURA_ACCESS_TOKEN and SAKURA_ACCESS_TOKEN_SECRET must be set")
-	}
-
-	var sc saclient.Client
-	if err := sc.SetEnviron(os.Environ()); err != nil {
-		t.Fatalf("failed to set environment: %v", err)
-	}
-
-	c, err := iaas.NewClient(&sc)
-	if err != nil {
-		t.Fatalf("failed to create iaas client: %v", err)
-	}
-	return c
-}
-
 // TestIaasNoteCRUD はラッパー層（iaas.NewNoteOp）経由で Note の CRUD を通す。
-// 比較用に integration/note_test.go は直接 ogen クライアントを使っている。
+// integration/note_test.go が raw ogen メソッドを直接呼ぶのに対し、本テストは
+// Op インターフェース経由での CRUD を検証する wrapper 層のスモークテスト。
 func TestIaasNoteCRUD(t *testing.T) {
 	if os.Getenv("TEST_ACC") == "" {
 		t.Skip("TEST_ACC=1 env var required")
 	}
 
-	c := newIaasClient(t)
+	c := newClient(t)
 	ctx := context.Background()
 	zone := getZone()
 
