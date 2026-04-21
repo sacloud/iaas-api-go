@@ -752,6 +752,9 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 		seenUniqueKey := map[opKey]bool{}
 		var ops []opEntry
 		for _, op := range rm.resource.Operations {
+			if opIsExcluded(rm.resource, op) {
+				continue // excludedOps で明示的に除外された op はスキップ
+			}
 			path := resolveOpPath(op, rm.resource)
 			k := opKey{strings.ToLower(op.Method), path}
 			if isShared[k] {

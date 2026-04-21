@@ -187,16 +187,3 @@ model SIMMonitorSIMResponseEnvelope {
    */
   Data: unknown;
 }
-
-/**
- * Response envelope for sIMStatusResponseEnvelope
- */
-model SIMStatusResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * SIM
-   */
-  SIM: SIMInfo;
-}

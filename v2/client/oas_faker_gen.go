@@ -10870,20 +10870,6 @@ func (s *SIMOpSetNetworkOperatorReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SIMStatusResponseEnvelope) SetFake() {
-	{
-		{
-			s.IsOk = true
-		}
-	}
-	{
-		{
-			s.SIM.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *SIMTrafficBytes) SetFake() {
 	{
 		{
@@ -12091,34 +12077,6 @@ func (s *SimpleMonitorOpMonitorResponseTimeReq) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SimpleNotificationDestinationStatus) SetFake() {
-	{
-		{
-			s.Disabled = true
-		}
-	}
-	{
-		{
-			s.ModifiedAt.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetFake() {
-	{
-		{
-			s.IsOk = true
-		}
-	}
-	{
-		{
-			s.SimpleNotificationDestination.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *SimpleNotificationGroupHistoryResponseEnvelope) SetFake() {
 	{
 		{
@@ -12807,29 +12765,6 @@ func (s *VNCProxyInfo) SetFake() {
 	{
 		{
 			s.VNCFile.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *VPCRouterLog) SetFake() {
-	{
-		{
-			s.Log = "string"
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *VPCRouterLogsResponseEnvelope) SetFake() {
-	{
-		{
-			s.IsOk = true
-		}
-	}
-	{
-		{
-			s.VPCRouter.SetFake()
 		}
 	}
 }

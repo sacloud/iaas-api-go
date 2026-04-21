@@ -26583,35 +26583,6 @@ func (s *SIMOpSetNetworkOperatorReq) SetConfigs(val []SIMNetworkOperatorConfig) 
 	s.Configs = val
 }
 
-// Response envelope for sIMStatusResponseEnvelope.
-// Ref: #/components/schemas/SIMStatusResponseEnvelope
-type SIMStatusResponseEnvelope struct {
-	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
-	IsOk bool `json:"is_ok"`
-	// SIM.
-	SIM SIMInfo `json:"SIM"`
-}
-
-// GetIsOk returns the value of IsOk.
-func (s *SIMStatusResponseEnvelope) GetIsOk() bool {
-	return s.IsOk
-}
-
-// GetSIM returns the value of SIM.
-func (s *SIMStatusResponseEnvelope) GetSIM() SIMInfo {
-	return s.SIM
-}
-
-// SetIsOk sets the value of IsOk.
-func (s *SIMStatusResponseEnvelope) SetIsOk(val bool) {
-	s.IsOk = val
-}
-
-// SetSIM sets the value of SIM.
-func (s *SIMStatusResponseEnvelope) SetSIM(val SIMInfo) {
-	s.SIM = val
-}
-
 // Ref: #/components/schemas/SIMTrafficBytes
 type SIMTrafficBytes struct {
 	UplinkBytes   int64 `json:"UplinkBytes"`
@@ -28935,61 +28906,6 @@ func (s *SimpleMonitorOpMonitorResponseTimeReq) SetCondition(val MonitorConditio
 	s.Condition = val
 }
 
-// Ref: #/components/schemas/SimpleNotificationDestinationStatus
-type SimpleNotificationDestinationStatus struct {
-	Disabled   bool           `json:"Disabled"`
-	ModifiedAt OptNilDateTime `json:"ModifiedAt"`
-}
-
-// GetDisabled returns the value of Disabled.
-func (s *SimpleNotificationDestinationStatus) GetDisabled() bool {
-	return s.Disabled
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *SimpleNotificationDestinationStatus) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
-}
-
-// SetDisabled sets the value of Disabled.
-func (s *SimpleNotificationDestinationStatus) SetDisabled(val bool) {
-	s.Disabled = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *SimpleNotificationDestinationStatus) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
-}
-
-// Response envelope for simpleNotificationDestinationStatusResponseEnvelope.
-// Ref: #/components/schemas/SimpleNotificationDestinationStatusResponseEnvelope
-type SimpleNotificationDestinationStatusResponseEnvelope struct {
-	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
-	IsOk bool `json:"is_ok"`
-	// SimpleNotificationDestination.
-	SimpleNotificationDestination SimpleNotificationDestinationStatus `json:"SimpleNotificationDestination"`
-}
-
-// GetIsOk returns the value of IsOk.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetIsOk() bool {
-	return s.IsOk
-}
-
-// GetSimpleNotificationDestination returns the value of SimpleNotificationDestination.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) GetSimpleNotificationDestination() SimpleNotificationDestinationStatus {
-	return s.SimpleNotificationDestination
-}
-
-// SetIsOk sets the value of IsOk.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetIsOk(val bool) {
-	s.IsOk = val
-}
-
-// SetSimpleNotificationDestination sets the value of SimpleNotificationDestination.
-func (s *SimpleNotificationDestinationStatusResponseEnvelope) SetSimpleNotificationDestination(val SimpleNotificationDestinationStatus) {
-	s.SimpleNotificationDestination = val
-}
-
 // Response envelope for simpleNotificationGroupHistoryResponseEnvelope.
 // Ref: #/components/schemas/SimpleNotificationGroupHistoryResponseEnvelope
 type SimpleNotificationGroupHistoryResponseEnvelope struct {
@@ -30285,50 +30201,6 @@ func (s *VNCProxyInfo) SetPassword(val OptNilString) {
 // SetVNCFile sets the value of VNCFile.
 func (s *VNCProxyInfo) SetVNCFile(val OptNilString) {
 	s.VNCFile = val
-}
-
-// Ref: #/components/schemas/VPCRouterLog
-type VPCRouterLog struct {
-	Log string `json:"Log"`
-}
-
-// GetLog returns the value of Log.
-func (s *VPCRouterLog) GetLog() string {
-	return s.Log
-}
-
-// SetLog sets the value of Log.
-func (s *VPCRouterLog) SetLog(val string) {
-	s.Log = val
-}
-
-// Response envelope for vPCRouterLogsResponseEnvelope.
-// Ref: #/components/schemas/VPCRouterLogsResponseEnvelope
-type VPCRouterLogsResponseEnvelope struct {
-	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
-	IsOk bool `json:"is_ok"`
-	// VPCRouter.
-	VPCRouter VPCRouterLog `json:"VPCRouter"`
-}
-
-// GetIsOk returns the value of IsOk.
-func (s *VPCRouterLogsResponseEnvelope) GetIsOk() bool {
-	return s.IsOk
-}
-
-// GetVPCRouter returns the value of VPCRouter.
-func (s *VPCRouterLogsResponseEnvelope) GetVPCRouter() VPCRouterLog {
-	return s.VPCRouter
-}
-
-// SetIsOk sets the value of IsOk.
-func (s *VPCRouterLogsResponseEnvelope) SetIsOk(val bool) {
-	s.IsOk = val
-}
-
-// SetVPCRouter sets the value of VPCRouter.
-func (s *VPCRouterLogsResponseEnvelope) SetVPCRouter(val VPCRouterLog) {
-	s.VPCRouter = val
 }
 
 type VPCRouterOpConnectToSwitchOK struct {

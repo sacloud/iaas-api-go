@@ -110,33 +110,6 @@ model LoadBalancerShutdownRequestEnvelope {
 }
 
 /**
- * Request envelope for loadBalancerMonitorCPURequestEnvelope
- */
-model LoadBalancerMonitorCPURequestEnvelope {
-  /**
-   * Start
-   */
-  Start: utcDateTime;
-
-  /**
-   * End
-   */
-  End: utcDateTime;
-}
-/**
- * Response envelope for loadBalancerMonitorCPUResponseEnvelope
- */
-model LoadBalancerMonitorCPUResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Data
-   */
-  Data: unknown;
-}
-
-/**
  * Request envelope for loadBalancerMonitorInterfaceRequestEnvelope
  */
 model LoadBalancerMonitorInterfaceRequestEnvelope {
@@ -161,23 +134,4 @@ model LoadBalancerMonitorInterfaceResponseEnvelope {
    * Data
    */
   Data: unknown;
-}
-
-/**
- * Response envelope for loadBalancerStatusResponseEnvelope
- */
-model LoadBalancerStatusResponseEnvelope {
-  @doc("対象リソースの総件数")
-  Total: int32;
-
-  @doc("現在のページ番号")
-  From: int32;
-
-  @doc("現在のページの件数")
-  Count: int32;
-
-  /**
-   * LoadBalancer
-   */
-  LoadBalancer: LoadBalancerStatus[];
 }

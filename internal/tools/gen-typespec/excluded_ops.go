@@ -22,9 +22,24 @@ import "github.com/sacloud/iaas-api-go/internal/dsl"
 // 除外基準: v1 DSL が同一エンドポイントに対して複数の Go メソッドを用意しているケースは、
 // 通常 `buildMergedEnvelopeInfos` と `computeRequestModelMerges` で primary に合流させて
 // 1 API 定義にまとめるため、このマップへ載せる必要はない。
-// このマップは、単純な合流では API 仕様と整合が取れない op（wire 形式が根本的に違うなど）を
-// 例外的に除外したい場合の最終手段として残している。現時点で除外対象なし。
-var excludedOps = map[string]map[string]bool{}
+//
+// さらに、downstream (usacloud / terraform-provider-sakuracloud / terraform-provider-sakura) と
+// iaas-service-go いずれからも呼ばれていない Monitor/Log/Status 系オペレーションをここで除外する。
+// 除外するとそのオペレーションに紐づくリクエスト/レスポンスモデル (例: VPCRouterLog, DatabaseLog) も
+// 他オペレーションから参照されない限り emit されなくなる。
+var excludedOps = map[string]map[string]bool{
+	// 未使用 Monitor 系 (iaas-service-go に対応する monitor_*_service.go が存在しない)
+	"NFS":          {"MonitorCPU": true},
+	"LoadBalancer": {"MonitorCPU": true, "Status": true},
+
+	// 未使用 Logs 系 (iaas-service-go に対応する logs_service.go が存在せず、downstream も呼ばない)
+	"Database":  {"Logs": true},
+	"VPCRouter": {"Logs": true},
+
+	// 未使用 Status 系
+	"SIM":                           {"Status": true},
+	"SimpleNotificationDestination": {"Status": true},
+}
 
 func opIsExcluded(api *dsl.Resource, op *dsl.Operation) bool {
 	if s, ok := excludedOps[api.Name]; ok {

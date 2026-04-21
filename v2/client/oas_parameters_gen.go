@@ -1264,12 +1264,6 @@ type SIMOpSetNetworkOperatorParams struct {
 	ID   string
 }
 
-// SIMOpStatusParams is parameters of SIMOp_status operation.
-type SIMOpStatusParams struct {
-	Zone string
-	ID   string
-}
-
 // SSHKeyOpCreateParams is parameters of SSHKeyOp_create operation.
 type SSHKeyOpCreateParams struct {
 	Zone string
@@ -1437,12 +1431,6 @@ type SimpleMonitorOpMonitorResponseTimeParams struct {
 	ID   string
 }
 
-// SimpleNotificationDestinationOpStatusParams is parameters of SimpleNotificationDestinationOp_status operation.
-type SimpleNotificationDestinationOpStatusParams struct {
-	Zone string
-	ID   string
-}
-
 // SimpleNotificationGroupOpHistoryParams is parameters of SimpleNotificationGroupOp_history operation.
 type SimpleNotificationGroupOpHistoryParams struct {
 	Zone string
@@ -1541,12 +1529,6 @@ type VPCRouterOpDisconnectFromSwitchParams struct {
 	Zone     string
 	ID       string
 	NicIndex string
-}
-
-// VPCRouterOpLogsParams is parameters of VPCRouterOp_logs operation.
-type VPCRouterOpLogsParams struct {
-	Zone string
-	ID   string
 }
 
 // VPCRouterOpPingParams is parameters of VPCRouterOp_ping operation.

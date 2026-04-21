@@ -218,6 +218,14 @@ model ProxyLBHealth {
   Servers?: LoadBalancerServerStatus[] | null;
 }
 
+model LoadBalancerServerStatus {
+  ActiveConn: int32;
+  Status: EServerInstanceStatus;
+  IPAddress: string;
+  Port: int32;
+  CPS: float64;
+}
+
 model ConnectionActivity {
   Values: MonitorConnectionValue[];
 }

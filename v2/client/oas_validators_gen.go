@@ -5276,29 +5276,6 @@ func (s *SIMOpSetNetworkOperatorReq) Validate() error {
 	return nil
 }
 
-func (s *SIMStatusResponseEnvelope) Validate() error {
-	if s == nil {
-		return validate.ErrNilPointer
-	}
-
-	var failures []validate.FieldError
-	if err := func() error {
-		if err := s.SIM.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		failures = append(failures, validate.FieldError{
-			Name:  "SIM",
-			Error: err,
-		})
-	}
-	if len(failures) > 0 {
-		return &validate.Error{Fields: failures}
-	}
-	return nil
-}
-
 func (s *SSHKeyFindResponseEnvelope) Validate() error {
 	if s == nil {
 		return validate.ErrNilPointer

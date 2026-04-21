@@ -89,6 +89,7 @@ func main() {
 	sort.Strings(buckets)
 
 	total := 0
+	generatedFiles := map[string]bool{}
 	for _, b := range buckets {
 		bucketOps := byBucket[b]
 		sort.Slice(bucketOps, func(i, j int) bool { return bucketOps[i].Action < bucketOps[j].Action })
@@ -102,8 +103,31 @@ func main() {
 		if err := os.WriteFile(outPath, src, 0o644); err != nil {
 			log.Fatalf("write %s: %v", outPath, err)
 		}
+		generatedFiles[filepath.Base(outPath)] = true
 		total += len(bucketOps)
 		log.Printf("generated: %s (%d ops)", filepath.Base(outPath), len(bucketOps))
+	}
+
+	// 既存の <bucket>_gen.go のうち今回生成対象外になったものを削除する。
+	// excludedOps による op 除去で bucket が空になった場合、stale なラッパーファイルが残って
+	// 未定義シンボル参照のビルド失敗を起こすため。
+	entries, err := os.ReadDir(outDir)
+	if err == nil {
+		for _, e := range entries {
+			name := e.Name()
+			if !strings.HasSuffix(name, "_gen.go") {
+				continue
+			}
+			if generatedFiles[name] {
+				continue
+			}
+			p := filepath.Join(outDir, name)
+			if err := os.Remove(p); err != nil {
+				log.Printf("warning: failed to remove stale %s: %v", name, err)
+			} else {
+				log.Printf("removed stale: %s", name)
+			}
+		}
 	}
 
 	log.Printf("done: %d buckets, %d operations", len(buckets), total)

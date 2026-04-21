@@ -416,14 +416,6 @@ interface VPCRouterOp {
     is_ok: boolean;
   } | ApiError;
 
-  @summary("VPCRouter ログ取得")
-  @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs")
-  logs(
-    @path zone: string,
-    @path id: string,
-  ): VPCRouterLogsResponseEnvelope | ApiError;
-
   @summary("VPCRouter Ping")
   @post
   @route("/{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}")

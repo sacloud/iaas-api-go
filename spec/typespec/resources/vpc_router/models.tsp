@@ -328,10 +328,6 @@ model VPCRouterStatisticsValue {
   Count?: int32 | null;
 }
 
-model VPCRouterLog {
-  Log: string;
-}
-
 model VPCRouterPingResults {
   Result: string[];
 }

@@ -46,8 +46,3 @@ model SimpleNotificationDestinationUpdateRequest {
 model SimpleNotificationDestinationUpdateRequestSettings {
   Disabled: boolean;
 }
-
-model SimpleNotificationDestinationStatus {
-  Disabled: boolean;
-  ModifiedAt?: utcDateTime | null;
-}

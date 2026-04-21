@@ -98,16 +98,3 @@ model SimpleNotificationDestinationUpdateResponseEnvelope {
    */
   CommonServiceItem: SimpleNotificationDestination;
 }
-
-/**
- * Response envelope for simpleNotificationDestinationStatusResponseEnvelope
- */
-model SimpleNotificationDestinationStatusResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * SimpleNotificationDestination
-   */
-  SimpleNotificationDestination: SimpleNotificationDestinationStatus;
-}

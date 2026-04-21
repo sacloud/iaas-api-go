@@ -177,19 +177,6 @@ model VPCRouterStatusResponseEnvelope {
 }
 
 /**
- * Response envelope for vPCRouterLogsResponseEnvelope
- */
-model VPCRouterLogsResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * VPCRouter
-   */
-  VPCRouter: VPCRouterLog;
-}
-
-/**
  * Response envelope for vPCRouterPingResponseEnvelope
  */
 model VPCRouterPingResponseEnvelope {

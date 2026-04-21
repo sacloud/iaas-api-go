@@ -104,18 +104,3 @@ model LoadBalancerUpdateRequest {
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
   SettingsHash?: string | null;
 }
-
-model LoadBalancerStatus {
-  VirtualIPAddress?: string | null;
-  Port?: int32 | null;
-  CPS?: int32 | null;
-  Servers?: LoadBalancerServerStatus[] | null;
-}
-
-model LoadBalancerServerStatus {
-  ActiveConn: int32;
-  Status: EServerInstanceStatus;
-  IPAddress: string;
-  Port: int32;
-  CPS: int32;
-}

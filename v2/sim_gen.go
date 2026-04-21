@@ -34,7 +34,6 @@ type SIMAPI interface {
 	Logs(ctx context.Context, zone string, id string) (*client.SIMLogsResponseEnvelope, error)
 	MonitorSIM(ctx context.Context, zone string, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error)
 	SetNetworkOperator(ctx context.Context, zone string, id string, request *client.SIMOpSetNetworkOperatorReq) error
-	Status(ctx context.Context, zone string, id string) (*client.SIMStatusResponseEnvelope, error)
 }
 
 var _ SIMAPI = (*simOp)(nil)
@@ -136,13 +135,4 @@ func (op *simOp) SetNetworkOperator(ctx context.Context, zone string, id string,
 		return wrapOpErr("SIM.SetNetworkOperator", err)
 	}
 	return nil
-}
-
-func (op *simOp) Status(ctx context.Context, zone string, id string) (*client.SIMStatusResponseEnvelope, error) {
-	params := client.SIMOpStatusParams{Zone: zone, ID: id}
-	resp, err := op.client.SIMOpStatus(ctx, params)
-	if err != nil {
-		return nil, wrapOpErr("SIM.Status", err)
-	}
-	return resp, nil
 }

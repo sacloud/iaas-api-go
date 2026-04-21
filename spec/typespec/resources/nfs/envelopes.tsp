@@ -110,33 +110,6 @@ model NFSShutdownRequestEnvelope {
 }
 
 /**
- * Request envelope for nFSMonitorCPURequestEnvelope
- */
-model NFSMonitorCPURequestEnvelope {
-  /**
-   * Start
-   */
-  Start: utcDateTime;
-
-  /**
-   * End
-   */
-  End: utcDateTime;
-}
-/**
- * Response envelope for nFSMonitorCPUResponseEnvelope
- */
-model NFSMonitorCPUResponseEnvelope {
-  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-  is_ok: boolean;
-
-  /**
-   * Data
-   */
-  Data: unknown;
-}
-
-/**
  * Request envelope for nFSMonitorFreeDiskSizeRequestEnvelope
  */
 model NFSMonitorFreeDiskSizeRequestEnvelope {

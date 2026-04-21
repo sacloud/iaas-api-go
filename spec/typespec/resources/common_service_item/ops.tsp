@@ -725,14 +725,6 @@ interface SIMOp {
     @path id: string,
     condition: MonitorCondition,
   ): SIMMonitorSIMResponseEnvelope | ApiError;
-
-  @summary("SIM ステータス取得")
-  @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status")
-  status(
-    @path zone: string,
-    @path id: string,
-  ): SIMStatusResponseEnvelope | ApiError;
 }
 
 @tag("SimpleMonitor")
@@ -745,17 +737,6 @@ interface SimpleMonitorOp {
     @path id: string,
     condition: MonitorCondition,
   ): SimpleMonitorMonitorResponseTimeResponseEnvelope | ApiError;
-}
-
-@tag("SimpleNotificationDestination")
-interface SimpleNotificationDestinationOp {
-  @summary("SimpleNotificationDestination ステータス取得")
-  @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/status")
-  status(
-    @path zone: string,
-    @path id: string,
-  ): SimpleNotificationDestinationStatusResponseEnvelope | ApiError;
 }
 
 @tag("SimpleNotificationGroup")

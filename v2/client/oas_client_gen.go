@@ -1143,12 +1143,6 @@ type Invoker interface {
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
 	SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error)
-	// SIMOpStatus invokes SIMOp_status operation.
-	//
-	// SIM ステータス取得.
-	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status
-	SIMOpStatus(ctx context.Context, params SIMOpStatusParams) (*SIMStatusResponseEnvelope, error)
 	// SSHKeyOpCreate invokes SSHKeyOp_create operation.
 	//
 	// SSHKey 作成.
@@ -1293,12 +1287,6 @@ type Invoker interface {
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
 	SimpleMonitorOpMonitorResponseTime(ctx context.Context, request *SimpleMonitorOpMonitorResponseTimeReq, params SimpleMonitorOpMonitorResponseTimeParams) (*SimpleMonitorMonitorResponseTimeResponseEnvelope, error)
-	// SimpleNotificationDestinationOpStatus invokes SimpleNotificationDestinationOp_status operation.
-	//
-	// SimpleNotificationDestination ステータス取得.
-	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/status
-	SimpleNotificationDestinationOpStatus(ctx context.Context, params SimpleNotificationDestinationOpStatusParams) (*SimpleNotificationDestinationStatusResponseEnvelope, error)
 	// SimpleNotificationGroupOpHistory invokes SimpleNotificationGroupOp_history operation.
 	//
 	// SimpleNotificationGroup 履歴取得.
@@ -1383,12 +1371,6 @@ type Invoker interface {
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
 	VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error)
-	// VPCRouterOpLogs invokes VPCRouterOp_logs operation.
-	//
-	// VPCRouter ログ取得.
-	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs
-	VPCRouterOpLogs(ctx context.Context, params VPCRouterOpLogsParams) (*VPCRouterLogsResponseEnvelope, error)
 	// VPCRouterOpPing invokes VPCRouterOp_ping operation.
 	//
 	// VPCRouter Ping.
@@ -22211,114 +22193,6 @@ func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOp
 	return result, nil
 }
 
-// SIMOpStatus invokes SIMOp_status operation.
-//
-// SIM ステータス取得.
-//
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status
-func (c *Client) SIMOpStatus(ctx context.Context, params SIMOpStatusParams) (*SIMStatusResponseEnvelope, error) {
-	res, err := c.sendSIMOpStatus(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendSIMOpStatus(ctx context.Context, params SIMOpStatusParams) (res *SIMStatusResponseEnvelope, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/sim/status"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	{
-		type bitset = [1]uint8
-		var satisfied bitset
-		{
-
-			switch err := c.securityBasicAuth(ctx, SIMOpStatusOperation, r); {
-			case err == nil: // if NO error
-				satisfied[0] |= 1 << 0
-			case errors.Is(err, ogenerrors.ErrSkipClientSecurity):
-				// Skip this security.
-			default:
-				return res, errors.Wrap(err, "security \"BasicAuth\"")
-			}
-		}
-
-		if ok := func() bool {
-		nextRequirement:
-			for _, requirement := range []bitset{
-				{0b00000001},
-			} {
-				for i, mask := range requirement {
-					if satisfied[i]&mask != mask {
-						continue nextRequirement
-					}
-				}
-				return true
-			}
-			return false
-		}(); !ok {
-			return res, ogenerrors.ErrSecurityRequirementIsNotSatisfied
-		}
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	body := resp.Body
-	defer body.Close()
-
-	result, err := decodeSIMOpStatusResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
 // SSHKeyOpCreate invokes SSHKeyOp_create operation.
 //
 // SSHKey 作成.
@@ -24927,114 +24801,6 @@ func (c *Client) sendSimpleMonitorOpMonitorResponseTime(ctx context.Context, req
 	return result, nil
 }
 
-// SimpleNotificationDestinationOpStatus invokes SimpleNotificationDestinationOp_status operation.
-//
-// SimpleNotificationDestination ステータス取得.
-//
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/status
-func (c *Client) SimpleNotificationDestinationOpStatus(ctx context.Context, params SimpleNotificationDestinationOpStatusParams) (*SimpleNotificationDestinationStatusResponseEnvelope, error) {
-	res, err := c.sendSimpleNotificationDestinationOpStatus(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendSimpleNotificationDestinationOpStatus(ctx context.Context, params SimpleNotificationDestinationOpStatusParams) (res *SimpleNotificationDestinationStatusResponseEnvelope, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/simplenotification/status"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	{
-		type bitset = [1]uint8
-		var satisfied bitset
-		{
-
-			switch err := c.securityBasicAuth(ctx, SimpleNotificationDestinationOpStatusOperation, r); {
-			case err == nil: // if NO error
-				satisfied[0] |= 1 << 0
-			case errors.Is(err, ogenerrors.ErrSkipClientSecurity):
-				// Skip this security.
-			default:
-				return res, errors.Wrap(err, "security \"BasicAuth\"")
-			}
-		}
-
-		if ok := func() bool {
-		nextRequirement:
-			for _, requirement := range []bitset{
-				{0b00000001},
-			} {
-				for i, mask := range requirement {
-					if satisfied[i]&mask != mask {
-						continue nextRequirement
-					}
-				}
-				return true
-			}
-			return false
-		}(); !ok {
-			return res, ogenerrors.ErrSecurityRequirementIsNotSatisfied
-		}
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	body := resp.Body
-	defer body.Close()
-
-	result, err := decodeSimpleNotificationDestinationOpStatusResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
 // SimpleNotificationGroupOpHistory invokes SimpleNotificationGroupOp_history operation.
 //
 // SimpleNotificationGroup 履歴取得.
@@ -26601,114 +26367,6 @@ func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params
 	defer body.Close()
 
 	result, err := decodeVPCRouterOpDisconnectFromSwitchResponse(resp)
-	if err != nil {
-		return res, errors.Wrap(err, "decode response")
-	}
-
-	return result, nil
-}
-
-// VPCRouterOpLogs invokes VPCRouterOp_logs operation.
-//
-// VPCRouter ログ取得.
-//
-// GET /{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs
-func (c *Client) VPCRouterOpLogs(ctx context.Context, params VPCRouterOpLogsParams) (*VPCRouterLogsResponseEnvelope, error) {
-	res, err := c.sendVPCRouterOpLogs(ctx, params)
-	return res, err
-}
-
-func (c *Client) sendVPCRouterOpLogs(ctx context.Context, params VPCRouterOpLogsParams) (res *VPCRouterLogsResponseEnvelope, err error) {
-
-	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
-	{
-		// Encode "id" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "id",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[3] = encoded
-	}
-	pathParts[4] = "/download/log/VPNLogs"
-	uri.AddPathParts(u, pathParts[:]...)
-
-	r, err := ht.NewRequest(ctx, "GET", u)
-	if err != nil {
-		return res, errors.Wrap(err, "create request")
-	}
-
-	{
-		type bitset = [1]uint8
-		var satisfied bitset
-		{
-
-			switch err := c.securityBasicAuth(ctx, VPCRouterOpLogsOperation, r); {
-			case err == nil: // if NO error
-				satisfied[0] |= 1 << 0
-			case errors.Is(err, ogenerrors.ErrSkipClientSecurity):
-				// Skip this security.
-			default:
-				return res, errors.Wrap(err, "security \"BasicAuth\"")
-			}
-		}
-
-		if ok := func() bool {
-		nextRequirement:
-			for _, requirement := range []bitset{
-				{0b00000001},
-			} {
-				for i, mask := range requirement {
-					if satisfied[i]&mask != mask {
-						continue nextRequirement
-					}
-				}
-				return true
-			}
-			return false
-		}(); !ok {
-			return res, ogenerrors.ErrSecurityRequirementIsNotSatisfied
-		}
-	}
-
-	resp, err := c.cfg.Client.Do(r)
-	if err != nil {
-		return res, errors.Wrap(err, "do request")
-	}
-	body := resp.Body
-	defer body.Close()
-
-	result, err := decodeVPCRouterOpLogsResponse(resp)
 	if err != nil {
 		return res, errors.Wrap(err, "decode response")
 	}

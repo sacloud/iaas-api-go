@@ -6127,18 +6127,6 @@ func TestSIMOpSetNetworkOperatorReq_EncodeDecode(t *testing.T) {
 	var typ2 SIMOpSetNetworkOperatorReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSIMStatusResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ SIMStatusResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SIMStatusResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSIMTrafficBytes_EncodeDecode(t *testing.T) {
 	var typ SIMTrafficBytes
 	typ.SetFake()
@@ -6811,30 +6799,6 @@ func TestSimpleMonitorOpMonitorResponseTimeReq_EncodeDecode(t *testing.T) {
 	var typ2 SimpleMonitorOpMonitorResponseTimeReq
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSimpleNotificationDestinationStatus_EncodeDecode(t *testing.T) {
-	var typ SimpleNotificationDestinationStatus
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SimpleNotificationDestinationStatus
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSimpleNotificationDestinationStatusResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ SimpleNotificationDestinationStatusResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SimpleNotificationDestinationStatusResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSimpleNotificationGroupHistoryResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SimpleNotificationGroupHistoryResponseEnvelope
 	typ.SetFake()
@@ -7205,30 +7169,6 @@ func TestVNCProxyInfo_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 VNCProxyInfo
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestVPCRouterLog_EncodeDecode(t *testing.T) {
-	var typ VPCRouterLog
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 VPCRouterLog
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestVPCRouterLogsResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ VPCRouterLogsResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 VPCRouterLogsResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestVPCRouterOpConnectToSwitchOK_EncodeDecode(t *testing.T) {
