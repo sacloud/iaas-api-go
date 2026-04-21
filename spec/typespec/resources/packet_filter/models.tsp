@@ -5,32 +5,32 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PacketFilter {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	RequiredHostVersion?: int32 | null;
-	Expression: PacketFilterExpression[];
-	ExpressionHash?: string | null;
-	CreatedAt?: utcDateTime | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  RequiredHostVersion?: int32 | null;
+  Expression: PacketFilterExpression[];
+  ExpressionHash?: string | null;
+  CreatedAt?: utcDateTime | null;
 }
 
 model PacketFilterExpression {
-	Protocol: Protocol;
-	SourceNetwork: string;
-	SourcePort: string;
-	DestinationPort: string;
-	Action: Action;
-	Description: string;
+  Protocol: Protocol;
+  SourceNetwork: string;
+  SourcePort: string;
+  DestinationPort: string;
+  Action: Action;
+  Description: string;
 }
 
 model PacketFilterCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Expression: PacketFilterExpression[];
+  Name?: string | null;
+  Description: string;
+  Expression: PacketFilterExpression[];
 }
 
 model PacketFilterUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Expression: PacketFilterExpression[];
+  Name?: string | null;
+  Description: string;
+  Expression: PacketFilterExpression[];
 }

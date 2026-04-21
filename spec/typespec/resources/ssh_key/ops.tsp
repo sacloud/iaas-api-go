@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("SSHKey")
 interface SSHKeyOp {
-
+  @summary("SSHKey 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/sshkey")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): SSHKeyFindResponseEnvelope | ApiError;
 
+  @summary("SSHKey 作成")
   @post
   @route("/{zone}/api/cloud/1.1/sshkey")
-  op create(
-    @path zone: string,
-    @body body: SSHKeyCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...SSHKeyCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: SSHKeyCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...SSHKeyCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("SSHKey 取得")
   @get
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): SSHKeyReadResponseEnvelope | ApiError;
 
+  @summary("SSHKey 更新")
   @put
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: SSHKeyUpdateRequestEnvelope,
-    
   ): SSHKeyUpdateResponseEnvelope | ApiError;
 
+  @summary("SSHKey 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

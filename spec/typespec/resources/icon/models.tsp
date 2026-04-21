@@ -5,23 +5,23 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Icon {
-	ID: int64;
-	Name?: string | null;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Scope?: EScope | null;
-	URL?: string | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
+  ID: int64;
+  Name?: string | null;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Scope?: EScope | null;
+  URL?: string | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model IconCreateRequest {
-	Name?: string | null;
-	Tags: string[];
-	Image?: string | null;
+  Name?: string | null;
+  Tags: string[];
+  Image?: string | null;
 }
 
 model IconUpdateRequest {
-	Name?: string | null;
-	Tags: string[];
+  Name?: string | null;
+  Tags: string[];
 }

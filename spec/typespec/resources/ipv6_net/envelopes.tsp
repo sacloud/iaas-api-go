@@ -4,50 +4,53 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for iPv6NetListRequestEnvelope
  */
 model IPv6NetListRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count?: int32;
-	/**
-	 * From
-	 */
-	From?: int32;
-	/**
-	 * Filter
-	 */
-	Filter?: Record<unknown>;
+  /**
+   * Count
+   */
+  Count?: int32;
+
+  /**
+   * From
+   */
+  From?: int32;
+
+  /**
+   * Filter
+   */
+  Filter?: Record<unknown>;
 }
 /**
  * Response envelope for iPv6NetListResponseEnvelope
  */
 model IPv6NetListResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * IPv6Nets
-	 */
-	IPv6Nets: IPv6Net[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * IPv6Nets
+   */
+  IPv6Nets: IPv6Net[];
 }
 
 /**
  * Response envelope for iPv6NetReadResponseEnvelope
  */
 model IPv6NetReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * IPv6Net
-	 */
-	IPv6Net: IPv6Net;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * IPv6Net
+   */
+  IPv6Net: IPv6Net;
 }

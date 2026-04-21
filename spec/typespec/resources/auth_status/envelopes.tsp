@@ -4,15 +4,15 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Response envelope for authStatusReadResponseEnvelope
  */
 model AuthStatusReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * AuthStatus
-	 */
-	AuthStatus: AuthStatus;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * AuthStatus
+   */
+  AuthStatus: AuthStatus;
 }

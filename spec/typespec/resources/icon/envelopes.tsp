@@ -4,92 +4,97 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for iconFindRequestEnvelope
  */
 model IconFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for iconFindResponseEnvelope
  */
 model IconFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Icons
-	 */
-	Icons: Icon[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Icons
+   */
+  Icons: Icon[];
 }
 
 /**
  * Request envelope for iconCreateRequestEnvelope
  */
 model IconCreateRequestEnvelope {
-	/**
-	 * Icon
-	 */
-	Icon: IconCreateRequest;
+  /**
+   * Icon
+   */
+  Icon: IconCreateRequest;
 }
 /**
  * Response envelope for iconCreateResponseEnvelope
  */
 model IconCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Icon
-	 */
-	Icon: Icon;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Icon
+   */
+  Icon: Icon;
 }
 
 /**
  * Response envelope for iconReadResponseEnvelope
  */
 model IconReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Icon
-	 */
-	Icon: Icon;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Icon
+   */
+  Icon: Icon;
 }
 
 /**
  * Request envelope for iconUpdateRequestEnvelope
  */
 model IconUpdateRequestEnvelope {
-	/**
-	 * Icon
-	 */
-	Icon: IconUpdateRequest;
+  /**
+   * Icon
+   */
+  Icon: IconUpdateRequest;
 }
 /**
  * Response envelope for iconUpdateResponseEnvelope
  */
 model IconUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Icon
-	 */
-	Icon: Icon;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Icon
+   */
+  Icon: Icon;
 }

@@ -5,14 +5,14 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6Net {
-	ID?: int64 | null;
-	ServiceID?: int64 | null;
-	IPv6Prefix?: string | null;
-	IPv6PrefixLen?: int32 | null;
-	IPv6PrefixTail?: string | null;
-	ServiceClass?: string | null;
-	IPv6Table?: ResourceRef | null;
-	NamedIPv6AddrCount?: int32 | null;
-	CreatedAt?: utcDateTime | null;
-	Switch?: ResourceRef | null;
+  ID?: int64 | null;
+  ServiceID?: int64 | null;
+  IPv6Prefix?: string | null;
+  IPv6PrefixLen?: int32 | null;
+  IPv6PrefixTail?: string | null;
+  ServiceClass?: string | null;
+  IPv6Table?: ResourceRef | null;
+  NamedIPv6AddrCount?: int32 | null;
+  CreatedAt?: utcDateTime | null;
+  Switch?: ResourceRef | null;
 }

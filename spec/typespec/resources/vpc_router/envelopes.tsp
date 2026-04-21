@@ -4,188 +4,200 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for vPCRouterFindRequestEnvelope
  */
 model VPCRouterFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for vPCRouterFindResponseEnvelope
  */
 model VPCRouterFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Appliances
-	 */
-	Appliances: VPCRouter[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Appliances
+   */
+  Appliances: VPCRouter[];
 }
 
 /**
  * Request envelope for vPCRouterCreateRequestEnvelope
  */
 model VPCRouterCreateRequestEnvelope {
-	/**
-	 * Appliance
-	 */
-	Appliance?: VPCRouterCreateRequest;
+  /**
+   * Appliance
+   */
+  Appliance?: VPCRouterCreateRequest;
 }
 /**
  * Response envelope for vPCRouterCreateResponseEnvelope
  */
 model VPCRouterCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: VPCRouter;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: VPCRouter;
 }
 
 /**
  * Response envelope for vPCRouterReadResponseEnvelope
  */
 model VPCRouterReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: VPCRouter;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: VPCRouter;
 }
 
 /**
  * Request envelope for vPCRouterUpdateRequestEnvelope
  */
 model VPCRouterUpdateRequestEnvelope {
-	/**
-	 * Appliance
-	 */
-	Appliance?: VPCRouterUpdateRequest;
+  /**
+   * Appliance
+   */
+  Appliance?: VPCRouterUpdateRequest;
 }
 /**
  * Response envelope for vPCRouterUpdateResponseEnvelope
  */
 model VPCRouterUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: VPCRouter;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: VPCRouter;
 }
 
 /**
  * Request envelope for vPCRouterShutdownRequestEnvelope
  */
 model VPCRouterShutdownRequestEnvelope {
-	/**
-	 * Force
-	 */
-	Force: boolean;
+  /**
+   * Force
+   */
+  Force: boolean;
 }
 
 /**
  * Request envelope for vPCRouterMonitorCPURequestEnvelope
  */
 model VPCRouterMonitorCPURequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for vPCRouterMonitorCPUResponseEnvelope
  */
 model VPCRouterMonitorCPUResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Request envelope for vPCRouterMonitorInterfaceRequestEnvelope
  */
 model VPCRouterMonitorInterfaceRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for vPCRouterMonitorInterfaceResponseEnvelope
  */
 model VPCRouterMonitorInterfaceResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Response envelope for vPCRouterStatusResponseEnvelope
  */
 model VPCRouterStatusResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Router
-	 */
-	Router: VPCRouterStatus;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Router
+   */
+  Router: VPCRouterStatus;
 }
 
 /**
  * Response envelope for vPCRouterLogsResponseEnvelope
  */
 model VPCRouterLogsResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * VPCRouter
-	 */
-	VPCRouter: VPCRouterLog;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * VPCRouter
+   */
+  VPCRouter: VPCRouterLog;
 }
 
 /**
  * Response envelope for vPCRouterPingResponseEnvelope
  */
 model VPCRouterPingResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * VPCRouter
-	 */
-	VPCRouter: VPCRouterPingResults;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * VPCRouter
+   */
+  VPCRouter: VPCRouterPingResults;
 }

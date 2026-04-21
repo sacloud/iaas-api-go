@@ -10,73 +10,74 @@ namespace Sacloud.IaaS;
 
 @tag("Archive")
 interface ArchiveOp {
-
+  @summary("Archive 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/archive")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): ArchiveFindResponseEnvelope | ApiError;
 
+  @summary("Archive 作成")
   @post
   @route("/{zone}/api/cloud/1.1/archive")
-  op create(
-    @path zone: string,
-    @body body: ArchiveCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...ArchiveCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: ArchiveCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...ArchiveCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Archive 取得")
   @get
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): ArchiveReadResponseEnvelope | ApiError;
 
+  @summary("Archive 更新")
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: ArchiveUpdateRequestEnvelope,
-    
   ): ArchiveUpdateResponseEnvelope | ApiError;
 
+  @summary("Archive 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Archive 共有")
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  op share(
+  share(
     @path zone: string,
     @path id: string,
     @body body: ArchiveShareRequestEnvelope,
-    
   ): ArchiveShareResponseEnvelope | ApiError;
 
+  @summary("Archive FTP クローズ")
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  op closeFTP(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  closeFTP(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Archive 移管")
   @post
   @route("/{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}")
-  op transfer(
+  transfer(
     @path zone: string,
     @path sourceArchiveID: string,
     @path destZoneID: string,
     @body body: ArchiveTransferRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...ArchiveTransferResponseEnvelope} | ApiError;
-
+  ): {
+    @statusCode _: 201;
+    ...ArchiveTransferResponseEnvelope;
+  } | ApiError;
 }

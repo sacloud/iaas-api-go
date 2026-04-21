@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("Bridge")
 interface BridgeOp {
-
+  @summary("Bridge 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/bridge")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): BridgeFindResponseEnvelope | ApiError;
 
+  @summary("Bridge 作成")
   @post
   @route("/{zone}/api/cloud/1.1/bridge")
-  op create(
-    @path zone: string,
-    @body body: BridgeCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...BridgeCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: BridgeCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...BridgeCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Bridge 取得")
   @get
   @route("/{zone}/api/cloud/1.1/bridge/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): BridgeReadResponseEnvelope | ApiError;
 
+  @summary("Bridge 更新")
   @put
   @route("/{zone}/api/cloud/1.1/bridge/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: BridgeUpdateRequestEnvelope,
-    
   ): BridgeUpdateResponseEnvelope | ApiError;
 
+  @summary("Bridge 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/bridge/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

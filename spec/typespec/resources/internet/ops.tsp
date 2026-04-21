@@ -10,109 +10,108 @@ namespace Sacloud.IaaS;
 
 @tag("Internet")
 interface InternetOp {
-
+  @summary("Internet 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/internet")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): InternetFindResponseEnvelope | ApiError;
 
+  @summary("Internet 作成")
   @post
   @route("/{zone}/api/cloud/1.1/internet")
-  op create(
-    @path zone: string,
-    @body body: InternetCreateRequestEnvelope,
-    
-  ): {@statusCode _: 202; ...InternetCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: InternetCreateRequestEnvelope): {
+    @statusCode _: 202;
+    ...InternetCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Internet 取得")
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): InternetReadResponseEnvelope | ApiError;
 
+  @summary("Internet 更新")
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: InternetUpdateRequestEnvelope,
-    
   ): InternetUpdateResponseEnvelope | ApiError;
 
+  @summary("Internet 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Internet 帯域更新")
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/bandwidth")
-  op updateBandWidth(
+  updateBandWidth(
     @path zone: string,
     @path id: string,
     @body body: InternetUpdateBandWidthRequestEnvelope,
-    
   ): InternetUpdateBandWidthResponseEnvelope | ApiError;
 
+  @summary("Internet サブネット追加")
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet")
-  op addSubnet(
+  addSubnet(
     @path zone: string,
     @path id: string,
     @body body: InternetAddSubnetRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...InternetAddSubnetResponseEnvelope} | ApiError;
+  ): {
+    @statusCode _: 201;
+    ...InternetAddSubnetResponseEnvelope;
+  } | ApiError;
 
+  @summary("Internet サブネット更新")
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
-  op updateSubnet(
+  updateSubnet(
     @path zone: string,
     @path id: string,
     @path subnetID: string,
     @body body: InternetUpdateSubnetRequestEnvelope,
-    
   ): InternetUpdateSubnetResponseEnvelope | ApiError;
 
+  @summary("Internet サブネット削除")
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
-  op deleteSubnet(
-    @path zone: string,
-    @path id: string,
-    @path subnetID: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  deleteSubnet(@path zone: string, @path id: string, @path subnetID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Internet モニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}/monitor")
-  op monitor(
+  monitor(
     @path zone: string,
     @path id: string,
     @body body: InternetMonitorRequestEnvelope,
-    
   ): InternetMonitorResponseEnvelope | ApiError;
 
+  @summary("Internet IPv6 有効化")
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net")
-  op enableIPv6(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; ...InternetEnableIPv6ResponseEnvelope} | ApiError;
+  enableIPv6(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    ...InternetEnableIPv6ResponseEnvelope;
+  } | ApiError;
 
+  @summary("Internet IPv6 無効化")
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}")
-  op disableIPv6(
-    @path zone: string,
-    @path id: string,
-    @path ipv6netID: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  disableIPv6(@path zone: string, @path id: string, @path ipv6netID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

@@ -5,85 +5,85 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoScale {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Settings?: AutoScaleSettings | null;
-	SettingsHash?: string | null;
-	Status?: AutoScaleStatus | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Settings?: AutoScaleSettings | null;
+  SettingsHash?: string | null;
+  Status?: AutoScaleStatus | null;
 }
 
 model AutoScaleSettings {
-	Disabled: boolean;
-	Zones: string[];
-	Config?: string | null;
-	TriggerType: EAutoScaleTriggerType;
-	CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
-	RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
-	ScheduleScaling: AutoScaleScheduleScaling[];
+  Disabled: boolean;
+  Zones: string[];
+  Config?: string | null;
+  TriggerType: EAutoScaleTriggerType;
+  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
+  ScheduleScaling: AutoScaleScheduleScaling[];
 }
 
 model AutoScaleCPUThresholdScaling {
-	ServerPrefix?: string | null;
-	Up?: int32 | null;
-	Down?: int32 | null;
+  ServerPrefix?: string | null;
+  Up?: int32 | null;
+  Down?: int32 | null;
 }
 
 model AutoScaleRouterThresholdScaling {
-	RouterPrefix?: string | null;
-	Direction?: string | null;
-	Mbps?: int32 | null;
+  RouterPrefix?: string | null;
+  Direction?: string | null;
+  Mbps?: int32 | null;
 }
 
 model AutoScaleScheduleScaling {
-	Action: EAutoScaleAction;
-	Hour: int32;
-	Minute: int32;
-	DayOfWeek: EDayOfTheWeek[];
+  Action: EAutoScaleAction;
+  Hour: int32;
+  Minute: int32;
+  DayOfWeek: EDayOfTheWeek[];
 }
 
 model AutoScaleCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: AutoScaleCreateRequestSettings | null;
-	Status?: AutoScaleCreateRequestStatus | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: AutoScaleCreateRequestSettings | null;
+  Status?: AutoScaleCreateRequestStatus | null;
 }
 
 model AutoScaleCreateRequestSettings {
-	Disabled: boolean;
-	Zones: string[];
-	Config?: string | null;
-	TriggerType: EAutoScaleTriggerType;
-	CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
-	RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
-	ScheduleScaling: AutoScaleScheduleScaling[];
+  Disabled: boolean;
+  Zones: string[];
+  Config?: string | null;
+  TriggerType: EAutoScaleTriggerType;
+  CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+  RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
+  ScheduleScaling: AutoScaleScheduleScaling[];
 }
 
 model AutoScaleCreateRequestStatus {
-	APIKey?: ResourceRef | null;
+  APIKey?: ResourceRef | null;
 }
 
 model AutoScaleUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: AutoScaleUpdateRequestSettings | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: AutoScaleUpdateRequestSettings | null;
+  SettingsHash?: string | null;
 }
 
 model AutoScaleUpdateRequestSettings {
-	Disabled: boolean;
+  Disabled: boolean;
 }
 
 model AutoScaleStatus {
-	LatestLogs: string[];
-	ResourcesText: string;
+  LatestLogs: string[];
+  ResourcesText: string;
 }

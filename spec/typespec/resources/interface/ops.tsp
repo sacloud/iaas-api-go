@@ -10,97 +10,101 @@ namespace Sacloud.IaaS;
 
 @tag("Interface")
 interface InterfaceOp {
-
+  @summary("Interface 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/interface")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): InterfaceFindResponseEnvelope | ApiError;
 
+  @summary("Interface 作成")
   @post
   @route("/{zone}/api/cloud/1.1/interface")
-  op create(
-    @path zone: string,
-    @body body: InterfaceCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...InterfaceCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: InterfaceCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...InterfaceCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Interface 取得")
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): InterfaceReadResponseEnvelope | ApiError;
 
+  @summary("Interface 更新")
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: InterfaceUpdateRequestEnvelope,
-    
   ): InterfaceUpdateResponseEnvelope | ApiError;
 
+  @summary("Interface 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Interface モニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}/monitor")
-  op monitor(
+  monitor(
     @path zone: string,
     @path id: string,
     @body body: InterfaceMonitorRequestEnvelope,
-    
   ): InterfaceMonitorResponseEnvelope | ApiError;
 
+  @summary("Interface 共有セグメント接続")
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/shared")
-  op connectToSharedSegment(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  connectToSharedSegment(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Interface スイッチ接続")
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}")
-  op connectToSwitch(
+  connectToSwitch(
     @path zone: string,
     @path id: string,
     @path switchID: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Interface スイッチ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
-  op disconnectFromSwitch(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  disconnectFromSwitch(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Interface パケットフィルタ接続")
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}")
-  op connectToPacketFilter(
+  connectToPacketFilter(
     @path zone: string,
     @path id: string,
     @path packetFilterID: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Interface パケットフィルタ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter")
-  op disconnectFromPacketFilter(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  disconnectFromPacketFilter(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

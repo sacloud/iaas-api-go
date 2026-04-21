@@ -5,47 +5,47 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Bridge {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	CreatedAt?: utcDateTime | null;
-	Region?: Region | null;
-	BridgeInfo?: BridgeInfo[] | null;
-	SwitchInZone?: BridgeSwitchInfo | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  CreatedAt?: utcDateTime | null;
+  Region?: Region | null;
+  BridgeInfo?: BridgeInfo[] | null;
+  SwitchInZone?: BridgeSwitchInfo | null;
 }
 
 model Region {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description?: string | null;
-	NameServers?: string[] | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description?: string | null;
+  NameServers?: string[] | null;
 }
 
 model BridgeInfo {
-	ID?: int64 | null;
-	Name?: string | null;
-	Zone?: BridgeInfoZone | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Zone?: BridgeInfoZone | null;
 }
 
 model BridgeInfoZone {
-	ID?: int64 | null;
-	Name?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
 }
 
 model BridgeSwitchInfo {
-	ID?: int64 | null;
-	Name?: string | null;
-	Scope?: EScope | null;
-	ServerCount?: int32 | null;
-	ApplianceCount?: int32 | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+  ServerCount?: int32 | null;
+  ApplianceCount?: int32 | null;
 }
 
 model BridgeCreateRequest {
-	Name?: string | null;
-	Description: string;
+  Name?: string | null;
+  Description: string;
 }
 
 model BridgeUpdateRequest {
-	Name?: string | null;
-	Description: string;
+  Name?: string | null;
+  Description: string;
 }

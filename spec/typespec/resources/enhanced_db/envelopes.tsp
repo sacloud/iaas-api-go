@@ -4,124 +4,130 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for enhancedDBFindRequestEnvelope
  */
 model EnhancedDBFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for enhancedDBFindResponseEnvelope
  */
 model EnhancedDBFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * CommonServiceItems
-	 */
-	CommonServiceItems: EnhancedDB[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * CommonServiceItems
+   */
+  CommonServiceItems: EnhancedDB[];
 }
 
 /**
  * Request envelope for enhancedDBCreateRequestEnvelope
  */
 model EnhancedDBCreateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: EnhancedDBCreateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: EnhancedDBCreateRequest;
 }
 /**
  * Response envelope for enhancedDBCreateResponseEnvelope
  */
 model EnhancedDBCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: EnhancedDB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: EnhancedDB;
 }
 
 /**
  * Response envelope for enhancedDBReadResponseEnvelope
  */
 model EnhancedDBReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: EnhancedDB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: EnhancedDB;
 }
 
 /**
  * Request envelope for enhancedDBUpdateRequestEnvelope
  */
 model EnhancedDBUpdateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: EnhancedDBUpdateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: EnhancedDBUpdateRequest;
 }
 /**
  * Response envelope for enhancedDBUpdateResponseEnvelope
  */
 model EnhancedDBUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: EnhancedDB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: EnhancedDB;
 }
 
 /**
  * Request envelope for enhancedDBSetPasswordRequestEnvelope
  */
 model EnhancedDBSetPasswordRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: EnhancedDBSetPasswordRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: EnhancedDBSetPasswordRequest;
 }
 
 /**
  * Response envelope for enhancedDBGetConfigResponseEnvelope
  */
 model EnhancedDBGetConfigResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * EnhancedDB
-	 */
-	EnhancedDB: EnhancedDBConfig;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * EnhancedDB
+   */
+  EnhancedDB: EnhancedDBConfig;
 }
 
 /**
  * Request envelope for enhancedDBSetConfigRequestEnvelope
  */
 model EnhancedDBSetConfigRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: EnhancedDBSetConfigRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: EnhancedDBSetConfigRequest;
 }

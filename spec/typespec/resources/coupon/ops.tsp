@@ -10,13 +10,11 @@ namespace Sacloud.IaaS;
 
 @tag("Coupon")
 interface CouponOp {
-
+  @summary("クーポン情報取得")
   @get
   @route("/{zone}/api/system/1.0/coupon/{accountID}")
-  op find(
+  find(
     @path zone: string,
     @path accountID: string,
-    
   ): CouponFindResponseEnvelope | ApiError;
-
 }

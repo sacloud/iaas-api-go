@@ -74,6 +74,7 @@ type opEntry struct {
 	Params          []opParam
 	ReturnType      string // TypeSpec の戻り値型名。envelope なしの場合は "void"
 	SuccessStatus   int    // POST のときの成功 status code（200/201/202）。POST 以外では未使用
+	Summary         string // @summary("...") に出力する日本語文字列。buildSummary() で合成
 }
 
 // postSuccessStatus は POST エンドポイントが返す HTTP ステータスコードを解決する。
@@ -373,6 +374,7 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 			Params:          params,
 			ReturnType:      responseTypeForOp(primary),
 			SuccessStatus:   postSuccessStatus(path),
+			Summary:         buildSummary(api.TypeName(), lowerFirst(primary.Name)),
 		})
 	}
 
@@ -641,6 +643,7 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 			Params:          params,
 			ReturnType:      responseTypeForOp(repOp),
 			SuccessStatus:   postSuccessStatus(resolvedPath),
+			Summary:         buildSummary(groupName, lowerFirst(repOp.Name)),
 		})
 	}
 
@@ -672,6 +675,7 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 				Params:          buildOpParams(op, path),
 				ReturnType:      responseTypeForOp(op),
 				SuccessStatus:   postSuccessStatus(path),
+				Summary:         buildSummary(rm.resource.TypeName(), lowerFirst(op.Name)),
 			})
 		}
 
@@ -809,6 +813,7 @@ namespace Sacloud.IaaS;
 @tag("{{ .TypeName }}")
 interface {{ .TypeName }}Op {
 {{ range .Operations }}
+  @summary("{{ .Summary }}")
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}(
@@ -843,6 +848,7 @@ model {{ .Name }} {
 @tag("{{ .GroupName }}")
 interface {{ .GroupName }}Op {
 {{ range .SharedOps }}
+  @summary("{{ .Summary }}")
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}(
@@ -855,6 +861,7 @@ interface {{ .GroupName }}Op {
 @tag("{{ .TypeName }}")
 interface {{ .TypeName }}Op {
 {{ range .Operations }}
+  @summary("{{ .Summary }}")
   @{{ .HttpMethodLower }}
   @route("{{ .PathFormat }}")
   op {{ .MethodNameLower }}({{ range .Params }}{{ if .Decorator }}{{ .Decorator }} {{ end }}{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}, {{ end }}): {{ if and (eq .HttpMethodLower "post") (ne .ReturnType "void") }}{@statusCode _: {{ .SuccessStatus }}; ...{{ .ReturnType }}}{{ else if eq .HttpMethodLower "delete" }}{@statusCode _: 200; is_ok: boolean}{{ else if and (eq .ReturnType "void") (ne .HttpMethodLower "get") }}{@statusCode _: 200; is_ok: boolean}{{ else }}{{ .ReturnType }}{{ end }} | ApiError;

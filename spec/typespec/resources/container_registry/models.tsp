@@ -5,88 +5,88 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ContainerRegistry {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Settings?: ContainerRegistrySettings | null;
-	SettingsHash?: string | null;
-	Status?: ContainerRegistryStatus | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Settings?: ContainerRegistrySettings | null;
+  SettingsHash?: string | null;
+  Status?: ContainerRegistryStatus | null;
 }
 
 model ContainerRegistrySettings {
-	ContainerRegistry?: ContainerRegistrySettingsContainerRegistry | null;
+  ContainerRegistry?: ContainerRegistrySettingsContainerRegistry | null;
 }
 
 model ContainerRegistrySettingsContainerRegistry {
-	Public: EContainerRegistryAccessLevel;
-	VirtualDomain: string;
+  Public: EContainerRegistryAccessLevel;
+  VirtualDomain: string;
 }
 
 model ContainerRegistryStatus {
-	RegistryName: string;
-	FQDN?: string | null;
+  RegistryName: string;
+  FQDN?: string | null;
 }
 
 model ContainerRegistryCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: ContainerRegistryCreateRequestSettings | null;
-	Status?: ContainerRegistryCreateRequestStatus | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: ContainerRegistryCreateRequestSettings | null;
+  Status?: ContainerRegistryCreateRequestStatus | null;
 }
 
 model ContainerRegistryCreateRequestSettings {
-	ContainerRegistry?: ContainerRegistryCreateRequestSettingsContainerRegistry | null;
+  ContainerRegistry?: ContainerRegistryCreateRequestSettingsContainerRegistry | null;
 }
 
 model ContainerRegistryCreateRequestSettingsContainerRegistry {
-	Public: EContainerRegistryAccessLevel;
-	VirtualDomain: string;
+  Public: EContainerRegistryAccessLevel;
+  VirtualDomain: string;
 }
 
 model ContainerRegistryCreateRequestStatus {
-	RegistryName: string;
+  RegistryName: string;
 }
 
 model ContainerRegistryUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: ContainerRegistryUpdateRequestSettings | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: ContainerRegistryUpdateRequestSettings | null;
+  SettingsHash?: string | null;
 }
 
 model ContainerRegistryUpdateRequestSettings {
-	ContainerRegistry?: ContainerRegistryUpdateRequestSettingsContainerRegistry | null;
+  ContainerRegistry?: ContainerRegistryUpdateRequestSettingsContainerRegistry | null;
 }
 
 model ContainerRegistryUpdateRequestSettingsContainerRegistry {
-	Public: EContainerRegistryAccessLevel;
+  Public: EContainerRegistryAccessLevel;
 }
 
 model ContainerRegistryUsers {
-	Users?: ContainerRegistryUser[] | null;
+  Users?: ContainerRegistryUser[] | null;
 }
 
 model ContainerRegistryUser {
-	UserName?: string | null;
-	Permission: EContainerRegistryPermission;
+  UserName?: string | null;
+  Permission: EContainerRegistryPermission;
 }
 
 model ContainerRegistryUserCreateRequest {
-	UserName?: string | null;
-	Password: string;
-	Permission: EContainerRegistryPermission;
+  UserName?: string | null;
+  Password: string;
+  Permission: EContainerRegistryPermission;
 }
 
 model ContainerRegistryUserUpdateRequest {
-	Password: string;
-	Permission: EContainerRegistryPermission;
+  Password: string;
+  Permission: EContainerRegistryPermission;
 }

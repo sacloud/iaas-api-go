@@ -5,78 +5,78 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationGroup {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Settings?: SimpleNotificationGroupSettings | null;
-	SettingsHash?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Settings?: SimpleNotificationGroupSettings | null;
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationGroupSettings {
-	Destinations: string[];
-	Disabled: boolean;
-	Sources: string[];
+  Destinations: string[];
+  Disabled: boolean;
+  Sources: string[];
 }
 
 model SimpleNotificationGroupCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: SimpleNotificationGroupCreateRequestSettings | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: SimpleNotificationGroupCreateRequestSettings | null;
 }
 
 model SimpleNotificationGroupCreateRequestSettings {
-	Destinations: string[];
-	Disabled: boolean;
-	Sources: string[];
+  Destinations: string[];
+  Disabled: boolean;
+  Sources: string[];
 }
 
 model SimpleNotificationGroupUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: SimpleNotificationGroupUpdateRequestSettings | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: SimpleNotificationGroupUpdateRequestSettings | null;
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationGroupUpdateRequestSettings {
-	Destinations: string[];
+  Destinations: string[];
 }
 
 model SimpleNotificationHistories {
-	NotificationHistories?: SimpleNotificationHistory[] | null;
+  NotificationHistories?: SimpleNotificationHistory[] | null;
 }
 
 model SimpleNotificationHistory {
-	RequestID: string;
-	SourceID: string;
-	ReceivedAt: utcDateTime;
-	Message?: SimpleNotificationHistoryMessage | null;
-	Statuses: SimpleNotificationHistoryStatus[];
+  RequestID: string;
+  SourceID: string;
+  ReceivedAt: utcDateTime;
+  Message?: SimpleNotificationHistoryMessage | null;
+  Statuses: SimpleNotificationHistoryStatus[];
 }
 
 model SimpleNotificationHistoryMessage {
-	Body: string;
-	Color: string;
-	ColorCode: string;
-	IconURL: string;
-	ImageURL: string;
-	Title: string;
+  Body: string;
+  Color: string;
+  ColorCode: string;
+  IconURL: string;
+  ImageURL: string;
+  Title: string;
 }
 
 model SimpleNotificationHistoryStatus {
-	ID: string;
-	Status: int32;
-	ErrorInfo: string;
-	NotificationRequestID: string;
-	GroupID: string;
-	CreatedAt: utcDateTime;
-	UpdatedAt: utcDateTime;
+  ID: string;
+  Status: int32;
+  ErrorInfo: string;
+  NotificationRequestID: string;
+  GroupID: string;
+  CreatedAt: utcDateTime;
+  UpdatedAt: utcDateTime;
 }

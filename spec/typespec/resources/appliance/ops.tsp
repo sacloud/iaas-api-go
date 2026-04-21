@@ -91,222 +91,327 @@ model ApplianceUpdateRequestEnvelope {
 
 @tag("Appliance")
 interface ApplianceOp {
-
+  @summary("Appliance 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): DatabaseFindResponseEnvelope | ApiError;
 
+  @summary("Appliance 作成")
   @post
   @route("/{zone}/api/cloud/1.1/appliance")
-  op create(
-    @path zone: string,
-    @body body: ApplianceCreateRequestEnvelope,
-    
-  ): {@statusCode _: 202; ...DatabaseCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: ApplianceCreateRequestEnvelope): {
+    @statusCode _: 202;
+    ...DatabaseCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Appliance 取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): DatabaseReadResponseEnvelope | ApiError;
 
+  @summary("Appliance 更新")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: ApplianceUpdateRequestEnvelope,
-    
   ): DatabaseUpdateResponseEnvelope | ApiError;
 
+  @summary("Appliance 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Appliance 設定反映")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/config")
-  op config(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  config(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Appliance 起動")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  op boot(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  boot(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Appliance シャットダウン")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  op shutdown(
-    @path zone: string,
-    @path id: string,
-    @body body: ShutdownOption,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  shutdown(@path zone: string, @path id: string, @body body: ShutdownOption): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Appliance リセット")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/reset")
-  op reset(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  reset(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Appliance CPU モニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor")
-  op monitorCPU(
+  monitorCPU(
     @path zone: string,
     @path id: string,
     @body body: MonitorCondition,
-    
   ): DatabaseMonitorCPUResponseEnvelope | ApiError;
 
+  @summary("Appliance インターフェイスモニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/monitor")
-  op monitorInterface(
+  monitorInterface(
     @path zone: string,
     @path id: string,
     @body body: MonitorCondition,
-    
   ): DatabaseMonitorInterfaceResponseEnvelope | ApiError;
 
+  @summary("Appliance データベースモニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/monitor")
-  op monitorDatabase(
+  monitorDatabase(
     @path zone: string,
     @path id: string,
     @body body: MonitorCondition,
-    
   ): DatabaseMonitorDatabaseResponseEnvelope | ApiError;
 
+  @summary("Appliance ステータス取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/status")
-  op status(
+  status(
     @path zone: string,
     @path id: string,
-    
   ): DatabaseStatusResponseEnvelope | ApiError;
 
+  @summary("Appliance インターフェイスモニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor")
-  op monitorInterfaceByIndex(
+  monitorInterfaceByIndex(
     @path zone: string,
     @path id: string,
     @path index: string,
-    
   ): MobileGatewayMonitorInterfaceResponseEnvelope | ApiError;
-
 }
 
 @tag("Database")
 interface DatabaseOp {
-
+  @summary("Database ディスクモニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor")
-  op monitorDisk(@path zone: string, @path id: string, condition: MonitorCondition, ): DatabaseMonitorDiskResponseEnvelope | ApiError;
+  monitorDisk(
+    @path zone: string,
+    @path id: string,
+    condition: MonitorCondition,
+  ): DatabaseMonitorDiskResponseEnvelope | ApiError;
 
+  @summary("Database パラメータ取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
-  op getParameter(@path zone: string, @path id: string, ): DatabaseGetParameterResponseEnvelope | ApiError;
+  getParameter(
+    @path zone: string,
+    @path id: string,
+  ): DatabaseGetParameterResponseEnvelope | ApiError;
 
+  @summary("Database パラメータ設定")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
-  op setParameter(@path zone: string, @path id: string, param: Record<unknown>, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  setParameter(@path zone: string, @path id: string, param: Record<unknown>): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }
 
 @tag("MobileGateway")
 interface MobileGatewayOp {
-
+  @summary("MobileGateway スイッチ接続")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}")
-  op connectToSwitch(@path zone: string, @path id: string, @path switchID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  connectToSwitch(
+    @path zone: string,
+    @path id: string,
+    @path switchID: string,
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway スイッチ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch")
-  op disconnectFromSwitch(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  disconnectFromSwitch(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway DNS 取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
-  op getDNS(@path zone: string, @path id: string, ): MobileGatewayGetDNSResponseEnvelope | ApiError;
+  getDNS(
+    @path zone: string,
+    @path id: string,
+  ): MobileGatewayGetDNSResponseEnvelope | ApiError;
 
+  @summary("MobileGateway DNS 設定")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
-  op setDNS(@path zone: string, @path id: string, param: MobileGatewayDNSSetting, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  setDNS(
+    @path zone: string,
+    @path id: string,
+    param: MobileGatewayDNSSetting,
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway SIM ルート取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
-  op getSIMRoutes(@path zone: string, @path id: string, ): MobileGatewayGetSIMRoutesResponseEnvelope | ApiError;
+  getSIMRoutes(
+    @path zone: string,
+    @path id: string,
+  ): MobileGatewayGetSIMRoutesResponseEnvelope | ApiError;
 
+  @summary("MobileGateway SIM ルート設定")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
-  op setSIMRoutes(@path zone: string, @path id: string, param: MobileGatewaySIMRouteParam[], ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  setSIMRoutes(
+    @path zone: string,
+    @path id: string,
+    param: MobileGatewaySIMRouteParam[],
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway SIM 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
-  op listSIM(@path zone: string, @path id: string, ): MobileGatewayListSIMResponseEnvelope | ApiError;
+  listSIM(
+    @path zone: string,
+    @path id: string,
+  ): MobileGatewayListSIMResponseEnvelope | ApiError;
 
+  @summary("MobileGateway SIM 追加")
   @post
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
-  op addSIM(@path zone: string, @path id: string, param: MobileGatewayAddSIMRequest, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  addSIM(
+    @path zone: string,
+    @path id: string,
+    param: MobileGatewayAddSIMRequest,
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway SIM 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}")
-  op deleteSIM(@path zone: string, @path id: string, @path simID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  deleteSIM(@path zone: string, @path id: string, @path simID: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway ログ取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog")
-  op logs(@path zone: string, @path id: string, ): MobileGatewayLogsResponseEnvelope | ApiError;
+  logs(
+    @path zone: string,
+    @path id: string,
+  ): MobileGatewayLogsResponseEnvelope | ApiError;
 
+  @summary("MobileGateway トラフィック設定取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
-  op getTrafficConfig(@path zone: string, @path id: string, ): MobileGatewayGetTrafficConfigResponseEnvelope | ApiError;
+  getTrafficConfig(
+    @path zone: string,
+    @path id: string,
+  ): MobileGatewayGetTrafficConfigResponseEnvelope | ApiError;
 
+  @summary("MobileGateway トラフィック設定更新")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
-  op setTrafficConfig(@path zone: string, @path id: string, param: MobileGatewayTrafficControl, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  setTrafficConfig(
+    @path zone: string,
+    @path id: string,
+    param: MobileGatewayTrafficControl,
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway トラフィック設定削除")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
-  op deleteTrafficConfig(@path zone: string, @path id: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  deleteTrafficConfig(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("MobileGateway トラフィック状況取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status")
-  op trafficStatus(@path zone: string, @path id: string, ): MobileGatewayTrafficStatusResponseEnvelope | ApiError;
-
+  trafficStatus(
+    @path zone: string,
+    @path id: string,
+  ): MobileGatewayTrafficStatusResponseEnvelope | ApiError;
 }
 
 @tag("VPCRouter")
 interface VPCRouterOp {
-
+  @summary("VPCRouter スイッチ接続")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}")
-  op connectToSwitch(@path zone: string, @path id: string, @path nicIndex: string, @path switchID: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  connectToSwitch(
+    @path zone: string,
+    @path id: string,
+    @path nicIndex: string,
+    @path switchID: string,
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("VPCRouter スイッチ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch")
-  op disconnectFromSwitch(@path zone: string, @path id: string, @path nicIndex: string, ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  disconnectFromSwitch(
+    @path zone: string,
+    @path id: string,
+    @path nicIndex: string,
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("VPCRouter ログ取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs")
-  op logs(@path zone: string, @path id: string, ): VPCRouterLogsResponseEnvelope | ApiError;
+  logs(
+    @path zone: string,
+    @path id: string,
+  ): VPCRouterLogsResponseEnvelope | ApiError;
 
+  @summary("VPCRouter Ping")
   @post
   @route("/{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}")
-  op ping(@path zone: string, @path id: string, @path destination: string, ): {@statusCode _: 201; ...VPCRouterPingResponseEnvelope} | ApiError;
-
+  ping(@path zone: string, @path id: string, @path destination: string): {
+    @statusCode _: 201;
+    ...VPCRouterPingResponseEnvelope;
+  } | ApiError;
 }

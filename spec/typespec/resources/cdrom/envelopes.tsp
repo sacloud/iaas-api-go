@@ -4,117 +4,124 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for cDROMFindRequestEnvelope
  */
 model CDROMFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for cDROMFindResponseEnvelope
  */
 model CDROMFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * CDROMs
-	 */
-	CDROMs: CDROM[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * CDROMs
+   */
+  CDROMs: CDROM[];
 }
 
 /**
  * Request envelope for cDROMCreateRequestEnvelope
  */
 model CDROMCreateRequestEnvelope {
-	/**
-	 * CDROM
-	 */
-	CDROM: CDROMCreateRequest;
+  /**
+   * CDROM
+   */
+  CDROM: CDROMCreateRequest;
 }
 /**
  * Response envelope for cDROMCreateResponseEnvelope
  */
 model CDROMCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CDROM
-	 */
-	CDROM: CDROM;
-	/**
-	 * FTPServer
-	 */
-	FTPServer: FTPServer;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CDROM
+   */
+  CDROM: CDROM;
+
+  /**
+   * FTPServer
+   */
+  FTPServer: FTPServer;
 }
 
 /**
  * Response envelope for cDROMReadResponseEnvelope
  */
 model CDROMReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CDROM
-	 */
-	CDROM: CDROM;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CDROM
+   */
+  CDROM: CDROM;
 }
 
 /**
  * Request envelope for cDROMUpdateRequestEnvelope
  */
 model CDROMUpdateRequestEnvelope {
-	/**
-	 * CDROM
-	 */
-	CDROM: CDROMUpdateRequest;
+  /**
+   * CDROM
+   */
+  CDROM: CDROMUpdateRequest;
 }
 /**
  * Response envelope for cDROMUpdateResponseEnvelope
  */
 model CDROMUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CDROM
-	 */
-	CDROM: CDROM;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CDROM
+   */
+  CDROM: CDROM;
 }
 
 /**
  * Request envelope for cDROMOpenFTPRequestEnvelope
  */
 model CDROMOpenFTPRequestEnvelope {
-	/**
-	 * ChangePassword
-	 */
-	ChangePassword: boolean;
+  /**
+   * ChangePassword
+   */
+  ChangePassword: boolean;
 }
 /**
  * Response envelope for cDROMOpenFTPResponseEnvelope
  */
 model CDROMOpenFTPResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * FTPServer
-	 */
-	FTPServer: FTPServer;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * FTPServer
+   */
+  FTPServer: FTPServer;
 }

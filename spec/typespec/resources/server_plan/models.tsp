@@ -5,15 +5,15 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ServerPlan {
-	ID?: int64 | null;
-	Name?: string | null;
-	CPU?: int32 | null;
-	MemoryMB?: int32 | null;
-	GPU?: int32 | null;
-	GPUModel?: string | null;
-	CPUModel?: string | null;
-	Commitment?: ECommitment | null;
-	Generation?: EPlanGeneration | null;
-	ConfidentialVM: boolean;
-	Availability?: EAvailability | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  CPU?: int32 | null;
+  MemoryMB?: int32 | null;
+  GPU?: int32 | null;
+  GPUModel?: string | null;
+  CPUModel?: string | null;
+  Commitment?: ECommitment | null;
+  Generation?: EPlanGeneration | null;
+  ConfidentialVM: boolean;
+  Availability?: EAvailability | null;
 }

@@ -5,21 +5,21 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SSHKey {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	CreatedAt?: utcDateTime | null;
-	PublicKey?: string | null;
-	Fingerprint?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  CreatedAt?: utcDateTime | null;
+  PublicKey?: string | null;
+  Fingerprint?: string | null;
 }
 
 model SSHKeyCreateRequest {
-	Name?: string | null;
-	Description: string;
-	PublicKey?: string | null;
+  Name?: string | null;
+  Description: string;
+  PublicKey?: string | null;
 }
 
 model SSHKeyUpdateRequest {
-	Name?: string | null;
-	Description: string;
+  Name?: string | null;
+  Description: string;
 }

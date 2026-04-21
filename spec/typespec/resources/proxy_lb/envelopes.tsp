@@ -4,183 +4,194 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for proxyLBFindRequestEnvelope
  */
 model ProxyLBFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for proxyLBFindResponseEnvelope
  */
 model ProxyLBFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * CommonServiceItems
-	 */
-	CommonServiceItems: ProxyLB[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * CommonServiceItems
+   */
+  CommonServiceItems: ProxyLB[];
 }
 
 /**
  * Request envelope for proxyLBCreateRequestEnvelope
  */
 model ProxyLBCreateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: ProxyLBCreateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: ProxyLBCreateRequest;
 }
 /**
  * Response envelope for proxyLBCreateResponseEnvelope
  */
 model ProxyLBCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ProxyLB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ProxyLB;
 }
 
 /**
  * Response envelope for proxyLBReadResponseEnvelope
  */
 model ProxyLBReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ProxyLB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ProxyLB;
 }
 
 /**
  * Request envelope for proxyLBUpdateRequestEnvelope
  */
 model ProxyLBUpdateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: ProxyLBUpdateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: ProxyLBUpdateRequest;
 }
 /**
  * Response envelope for proxyLBUpdateResponseEnvelope
  */
 model ProxyLBUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ProxyLB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ProxyLB;
 }
 
 /**
  * Request envelope for proxyLBChangePlanRequestEnvelope
  */
 model ProxyLBChangePlanRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: ProxyLBChangePlanRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: ProxyLBChangePlanRequest;
 }
 /**
  * Response envelope for proxyLBChangePlanResponseEnvelope
  */
 model ProxyLBChangePlanResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ProxyLB;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ProxyLB;
 }
 
 /**
  * Response envelope for proxyLBGetCertificatesResponseEnvelope
  */
 model ProxyLBGetCertificatesResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * ProxyLB
-	 */
-	ProxyLB: ProxyLBCertificates;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * ProxyLB
+   */
+  ProxyLB: ProxyLBCertificates;
 }
 
 /**
  * Request envelope for proxyLBSetCertificatesRequestEnvelope
  */
 model ProxyLBSetCertificatesRequestEnvelope {
-	/**
-	 * ProxyLB
-	 */
-	ProxyLB: ProxyLBSetCertificatesRequest;
+  /**
+   * ProxyLB
+   */
+  ProxyLB: ProxyLBSetCertificatesRequest;
 }
 /**
  * Response envelope for proxyLBSetCertificatesResponseEnvelope
  */
 model ProxyLBSetCertificatesResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * ProxyLB
-	 */
-	ProxyLB: ProxyLBCertificates;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * ProxyLB
+   */
+  ProxyLB: ProxyLBCertificates;
 }
 
 /**
  * Response envelope for proxyLBHealthStatusResponseEnvelope
  */
 model ProxyLBHealthStatusResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * ProxyLB
-	 */
-	ProxyLB: ProxyLBHealth;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * ProxyLB
+   */
+  ProxyLB: ProxyLBHealth;
 }
 
 /**
  * Request envelope for proxyLBMonitorConnectionRequestEnvelope
  */
 model ProxyLBMonitorConnectionRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for proxyLBMonitorConnectionResponseEnvelope
  */
 model ProxyLBMonitorConnectionResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }

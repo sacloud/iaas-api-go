@@ -10,29 +10,25 @@ namespace Sacloud.IaaS;
 
 @tag("IPAddress")
 interface IPAddressOp {
-
+  @summary("IPAddress 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/ipaddress")
-  op list(
-    @path zone: string,
-    
-  ): IPAddressListResponseEnvelope | ApiError;
+  list(@path zone: string): IPAddressListResponseEnvelope | ApiError;
 
+  @summary("IPAddress 取得")
   @get
   @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
-  op read(
+  read(
     @path zone: string,
     @path ipAddress: string,
-    
   ): IPAddressReadResponseEnvelope | ApiError;
 
+  @summary("IPAddress ホスト名更新")
   @put
   @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
-  op updateHostName(
+  updateHostName(
     @path zone: string,
     @path ipAddress: string,
     @body body: IPAddressUpdateHostNameRequestEnvelope,
-    
   ): IPAddressUpdateHostNameResponseEnvelope | ApiError;
-
 }

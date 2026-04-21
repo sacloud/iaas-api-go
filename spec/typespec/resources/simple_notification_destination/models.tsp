@@ -5,52 +5,52 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationDestination {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Settings?: SimpleNotificationDestinationSettings | null;
-	SettingsHash?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Settings?: SimpleNotificationDestinationSettings | null;
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationDestinationSettings {
-	Type?: ESimpleNotificationDestinationTypes | null;
-	Disabled: boolean;
-	Value?: string | null;
+  Type?: ESimpleNotificationDestinationTypes | null;
+  Disabled: boolean;
+  Value?: string | null;
 }
 
 model SimpleNotificationDestinationCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: SimpleNotificationDestinationCreateRequestSettings | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: SimpleNotificationDestinationCreateRequestSettings | null;
 }
 
 model SimpleNotificationDestinationCreateRequestSettings {
-	Type?: ESimpleNotificationDestinationTypes | null;
-	Disabled: boolean;
-	Value?: string | null;
+  Type?: ESimpleNotificationDestinationTypes | null;
+  Disabled: boolean;
+  Value?: string | null;
 }
 
 model SimpleNotificationDestinationUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: SimpleNotificationDestinationUpdateRequestSettings | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: SimpleNotificationDestinationUpdateRequestSettings | null;
+  SettingsHash?: string | null;
 }
 
 model SimpleNotificationDestinationUpdateRequestSettings {
-	Disabled: boolean;
+  Disabled: boolean;
 }
 
 model SimpleNotificationDestinationStatus {
-	Disabled: boolean;
-	ModifiedAt?: utcDateTime | null;
+  Disabled: boolean;
+  ModifiedAt?: utcDateTime | null;
 }

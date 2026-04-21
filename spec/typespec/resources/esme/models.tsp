@@ -5,55 +5,55 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ESME {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model ESMECreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model ESMEUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model ESMESendMessageResult {
-	MessageID?: string | null;
-	Status?: string | null;
-	OTP?: string | null;
+  MessageID?: string | null;
+  Status?: string | null;
+  OTP?: string | null;
 }
 
 model ESMESendMessageWithGeneratedOTPRequest {
-	Destination?: string | null;
-	Sender?: string | null;
-	DomainName?: string | null;
+  Destination?: string | null;
+  Sender?: string | null;
+  DomainName?: string | null;
 }
 
 model ESMESendMessageWithInputtedOTPRequest {
-	Destination?: string | null;
-	Sender?: string | null;
-	DomainName?: string | null;
-	OTP?: string | null;
+  Destination?: string | null;
+  Sender?: string | null;
+  DomainName?: string | null;
+  OTP?: string | null;
 }
 
 model ESMELogs {
-	MessageID?: string | null;
-	Status?: string | null;
-	OTP?: string | null;
-	Destination?: string | null;
-	SentAt?: utcDateTime | null;
-	DoneAt?: utcDateTime | null;
-	RetryCount?: int32 | null;
+  MessageID?: string | null;
+  Status?: string | null;
+  OTP?: string | null;
+  Destination?: string | null;
+  SentAt?: utcDateTime | null;
+  DoneAt?: utcDateTime | null;
+  RetryCount?: int32 | null;
 }

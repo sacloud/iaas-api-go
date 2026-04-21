@@ -10,71 +10,72 @@ namespace Sacloud.IaaS;
 
 @tag("Switch")
 interface SwitchOp {
-
+  @summary("Switch 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/switch")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): SwitchFindResponseEnvelope | ApiError;
 
+  @summary("Switch 作成")
   @post
   @route("/{zone}/api/cloud/1.1/switch")
-  op create(
-    @path zone: string,
-    @body body: SwitchCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...SwitchCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: SwitchCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...SwitchCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Switch 取得")
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): SwitchReadResponseEnvelope | ApiError;
 
+  @summary("Switch 更新")
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: SwitchUpdateRequestEnvelope,
-    
   ): SwitchUpdateResponseEnvelope | ApiError;
 
+  @summary("Switch 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("ブリッジ接続")
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}")
-  op connectToBridge(
+  connectToBridge(
     @path zone: string,
     @path id: string,
     @path bridgeID: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("ブリッジ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge")
-  op disconnectFromBridge(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  disconnectFromBridge(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Switch サーバー一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}/server")
-  op getServers(
+  getServers(
     @path zone: string,
     @path id: string,
-    
   ): SwitchGetServersResponseEnvelope | ApiError;
-
 }

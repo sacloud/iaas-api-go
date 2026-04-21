@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("License")
 interface LicenseOp {
-
+  @summary("License 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/license")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): LicenseFindResponseEnvelope | ApiError;
 
+  @summary("License 作成")
   @post
   @route("/{zone}/api/cloud/1.1/license")
-  op create(
-    @path zone: string,
-    @body body: LicenseCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...LicenseCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: LicenseCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...LicenseCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("License 取得")
   @get
   @route("/{zone}/api/cloud/1.1/license/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): LicenseReadResponseEnvelope | ApiError;
 
+  @summary("License 更新")
   @put
   @route("/{zone}/api/cloud/1.1/license/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: LicenseUpdateRequestEnvelope,
-    
   ): LicenseUpdateResponseEnvelope | ApiError;
 
+  @summary("License 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/license/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

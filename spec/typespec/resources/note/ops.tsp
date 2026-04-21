@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("Note")
 interface NoteOp {
-
+  @summary("Note 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/note")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): NoteFindResponseEnvelope | ApiError;
 
+  @summary("Note 作成")
   @post
   @route("/{zone}/api/cloud/1.1/note")
-  op create(
-    @path zone: string,
-    @body body: NoteCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...NoteCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: NoteCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...NoteCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Note 取得")
   @get
   @route("/{zone}/api/cloud/1.1/note/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): NoteReadResponseEnvelope | ApiError;
 
+  @summary("Note 更新")
   @put
   @route("/{zone}/api/cloud/1.1/note/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: NoteUpdateRequestEnvelope,
-    
   ): NoteUpdateResponseEnvelope | ApiError;
 
+  @summary("Note 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/note/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

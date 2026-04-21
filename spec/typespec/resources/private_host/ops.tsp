@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("PrivateHost")
 interface PrivateHostOp {
-
+  @summary("PrivateHost 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/privatehost")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): PrivateHostFindResponseEnvelope | ApiError;
 
+  @summary("PrivateHost 作成")
   @post
   @route("/{zone}/api/cloud/1.1/privatehost")
-  op create(
-    @path zone: string,
-    @body body: PrivateHostCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...PrivateHostCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: PrivateHostCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...PrivateHostCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("PrivateHost 取得")
   @get
   @route("/{zone}/api/cloud/1.1/privatehost/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): PrivateHostReadResponseEnvelope | ApiError;
 
+  @summary("PrivateHost 更新")
   @put
   @route("/{zone}/api/cloud/1.1/privatehost/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: PrivateHostUpdateRequestEnvelope,
-    
   ): PrivateHostUpdateResponseEnvelope | ApiError;
 
+  @summary("PrivateHost 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/privatehost/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

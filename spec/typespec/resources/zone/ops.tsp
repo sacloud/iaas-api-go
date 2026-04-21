@@ -10,21 +10,19 @@ namespace Sacloud.IaaS;
 
 @tag("Zone")
 interface ZoneOp {
-
+  @summary("ゾーン一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/zone")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): ZoneFindResponseEnvelope | ApiError;
 
+  @summary("ゾーン情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/zone/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): ZoneReadResponseEnvelope | ApiError;
-
 }

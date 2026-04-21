@@ -5,351 +5,352 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Database {
-	ID?: int64 | null;
-	Class?: string | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Settings?: DatabaseSettings | null;
-	InterfaceSettings?: DatabaseSettingsInterface[] | null;
-	SettingsHash?: string | null;
-	Instance?: DatabaseInstance | null;
-	Remark?: DatabaseRemark | null;
-	IPAddresses?: string[] | null;
-	Disk?: DatabaseDisk | null;
+  ID?: int64 | null;
+  Class?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Settings?: DatabaseSettings | null;
+  InterfaceSettings?: DatabaseSettingsInterface[] | null;
+  SettingsHash?: string | null;
+  Instance?: DatabaseInstance | null;
+  Remark?: DatabaseRemark | null;
+  IPAddresses?: string[] | null;
+  Disk?: DatabaseDisk | null;
 }
 
 model DatabaseSettings {
-	DBConf?: DatabaseSettingsDBConf | null;
-	MonitoringSuite?: MonitoringSuite | null;
+  DBConf?: DatabaseSettingsDBConf | null;
+  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model DatabaseSettingsDBConf {
-	Common?: DatabaseSettingCommon | null;
-	Backup?: DatabaseSettingBackup | null;
-	Backupv2?: DatabaseSettingBackupv2View | null;
-	Replication?: DatabaseReplicationSetting | null;
+  Common?: DatabaseSettingCommon | null;
+  Backup?: DatabaseSettingBackup | null;
+  Backupv2?: DatabaseSettingBackupv2View | null;
+  Replication?: DatabaseReplicationSetting | null;
 }
 
 model DatabaseInstance {
-	Host?: DatabaseInstanceHost | null;
-	Status?: EServerInstanceStatus | null;
-	StatusChangedAt?: utcDateTime | null;
+  Host?: DatabaseInstanceHost | null;
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
 }
 
 model DatabaseInstanceHost {
-	Name?: string | null;
-	InfoURL?: string | null;
+  Name?: string | null;
+  InfoURL?: string | null;
 }
 
 model DatabaseRemark {
-	Plan?: ResourceRef | null;
-	DBConf?: DatabaseRemarkDBConf | null;
-	Network?: DatabaseRemarkNetwork | null;
+  Plan?: ResourceRef | null;
+  DBConf?: DatabaseRemarkDBConf | null;
+  Network?: DatabaseRemarkNetwork | null;
 }
 
 model DatabaseRemarkDBConf {
-	Common?: DatabaseRemarkDBConfCommon | null;
+  Common?: DatabaseRemarkDBConfCommon | null;
 }
 
 model DatabaseRemarkNetwork {
-	DefaultRoute?: string | null;
-	NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
 }
 
 model DatabaseSettingCommon {
-	WebUI?: string | null;
-	ServicePort?: int32 | null;
-	SourceNetwork?: string[] | null;
-	DefaultUser?: string | null;
-	UserPassword?: string | null;
-	ReplicaUser?: string | null;
-	ReplicaPassword?: string | null;
+  WebUI?: string | null;
+  ServicePort?: int32 | null;
+  SourceNetwork?: string[] | null;
+  DefaultUser?: string | null;
+  UserPassword?: string | null;
+  ReplicaUser?: string | null;
+  ReplicaPassword?: string | null;
 }
 
 model DatabaseSettingBackup {
-	Rotate?: int32 | null;
-	Time?: string | null;
-	DayOfWeek?: EDayOfTheWeek[] | null;
-	Connect?: string | null;
+  Rotate?: int32 | null;
+  Time?: string | null;
+  DayOfWeek?: EDayOfTheWeek[] | null;
+  Connect?: string | null;
 }
 
 model DatabaseSettingBackupv2View {
-	Rotate?: int32 | null;
-	Time?: string | null;
-	DayOfWeek?: EDayOfTheWeek[] | null;
-	Connect?: string | null;
-	FirstEnabledAt?: utcDateTime | null;
+  Rotate?: int32 | null;
+  Time?: string | null;
+  DayOfWeek?: EDayOfTheWeek[] | null;
+  Connect?: string | null;
+  FirstEnabledAt?: utcDateTime | null;
 }
 
 model DatabaseReplicationSetting {
-	Model?: EDatabaseReplicationModel | null;
-	IPAddress?: string | null;
-	Port?: int32 | null;
-	User?: string | null;
-	Password?: string | null;
-	Appliance?: ResourceRef | null;
+  Model?: EDatabaseReplicationModel | null;
+  IPAddress?: string | null;
+  Port?: int32 | null;
+  User?: string | null;
+  Password?: string | null;
+  Appliance?: ResourceRef | null;
 }
 
 model DatabaseSettingsInterface {
-	VirtualIPAddress?: string | null;
-	Index: int32;
+  VirtualIPAddress?: string | null;
+  Index: int32;
 }
 
 model MonitoringSuite {
-	Enabled: boolean;
+  Enabled: boolean;
 }
 
 model DatabaseRemarkDBConfCommon {
-	DatabaseName?: string | null;
-	DatabaseVersion?: string | null;
-	DatabaseRevision?: string | null;
-	DefaultUser?: string | null;
-	UserPassword?: string | null;
+  DatabaseName?: string | null;
+  DatabaseVersion?: string | null;
+  DatabaseRevision?: string | null;
+  DefaultUser?: string | null;
+  UserPassword?: string | null;
 }
 
 model InterfaceView {
-	ID?: int64 | null;
-	MACAddress?: string | null;
-	IPAddress?: string | null;
-	UserIPAddress?: string | null;
-	HostName?: string | null;
-	Switch?: InterfaceViewSwitch | null;
-	PacketFilter?: InterfaceViewPacketFilter | null;
+  ID?: int64 | null;
+  MACAddress?: string | null;
+  IPAddress?: string | null;
+  UserIPAddress?: string | null;
+  HostName?: string | null;
+  Switch?: InterfaceViewSwitch | null;
+  PacketFilter?: InterfaceViewPacketFilter | null;
 }
 
 model InterfaceViewSwitch {
-	ID?: int64 | null;
-	Name?: string | null;
-	Scope?: EScope | null;
-	UserSubnet?: InterfaceViewSwitchUserSubnet | null;
-	Subnet?: InterfaceViewSwitchSubnet | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+  UserSubnet?: InterfaceViewSwitchUserSubnet | null;
+  Subnet?: InterfaceViewSwitchSubnet | null;
 }
 
 model InterfaceViewSwitchUserSubnet {
-	DefaultRoute?: string | null;
-	NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
 }
 
 model InterfaceViewSwitchSubnet {
-	DefaultRoute?: string | null;
-	NetworkMaskLen?: int32 | null;
-	NetworkAddress?: string | null;
-	Internet?: InterfaceViewSwitchSubnetInternet | null;
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string | null;
+  Internet?: InterfaceViewSwitchSubnetInternet | null;
 }
 
 model InterfaceViewSwitchSubnetInternet {
-	BandWidthMbps?: int32 | null;
+  BandWidthMbps?: int32 | null;
 }
 
 model InterfaceViewPacketFilter {
-	ID?: int64 | null;
-	Name?: string | null;
-	RequiredHostVersionn: int32;
+  ID?: int64 | null;
+  Name?: string | null;
+  RequiredHostVersionn: int32;
 }
 
 model DatabaseDisk {
-	EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
-	EncryptionKey?: DatabaseDiskEncryptionKey | null;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+  EncryptionKey?: DatabaseDiskEncryptionKey | null;
 }
 
 model DatabaseDiskEncryptionKey {
-	KMSKeyID?: int64 | null;
+  KMSKeyID?: int64 | null;
 }
 
 model DatabaseCreateRequest {
-	Remark?: DatabaseCreateRequestRemark | null;
-	IPAddresses: string[];
-	Settings?: DatabaseCreateRequestSettings | null;
-	InterfaceSettings: DatabaseSettingsInterface[];
-	Disk?: DatabaseDisk | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Remark?: DatabaseCreateRequestRemark | null;
+  IPAddresses: string[];
+  Settings?: DatabaseCreateRequestSettings | null;
+  InterfaceSettings: DatabaseSettingsInterface[];
+  Disk?: DatabaseDisk | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model DatabaseCreateRequestRemark {
-	Plan?: ResourceRef | null;
-	Switch?: ResourceRef | null;
-	Network?: DatabaseCreateRequestRemarkNetwork | null;
-	DBConf?: DatabaseCreateRequestRemarkDBConf | null;
-	SourceAppliance?: ResourceRef | null;
+  Plan?: ResourceRef | null;
+  Switch?: ResourceRef | null;
+  Network?: DatabaseCreateRequestRemarkNetwork | null;
+  DBConf?: DatabaseCreateRequestRemarkDBConf | null;
+  SourceAppliance?: ResourceRef | null;
 }
 
 model DatabaseCreateRequestRemarkNetwork {
-	NetworkMaskLen?: int32 | null;
-	DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string | null;
 }
 
 model DatabaseCreateRequestRemarkDBConf {
-	Common?: DatabaseRemarkDBConfCommon | null;
+  Common?: DatabaseRemarkDBConfCommon | null;
 }
 
 model DatabaseCreateRequestSettings {
-	DBConf?: DatabaseCreateRequestSettingsDBConf | null;
-	MonitoringSuite?: MonitoringSuite | null;
+  DBConf?: DatabaseCreateRequestSettingsDBConf | null;
+  MonitoringSuite?: MonitoringSuite | null;
 }
 
 model DatabaseCreateRequestSettingsDBConf {
-	Common?: DatabaseSettingCommon | null;
-	Backup?: DatabaseSettingBackup | null;
-	Backupv2?: DatabaseSettingBackupv2 | null;
-	Replication?: DatabaseReplicationSetting | null;
+  Common?: DatabaseSettingCommon | null;
+  Backup?: DatabaseSettingBackup | null;
+  Backupv2?: DatabaseSettingBackupv2 | null;
+  Replication?: DatabaseReplicationSetting | null;
 }
 
 model DatabaseSettingBackupv2 {
-	Rotate?: int32 | null;
-	Time?: string | null;
-	DayOfWeek?: EDayOfTheWeek[] | null;
-	Connect?: string | null;
+  Rotate?: int32 | null;
+  Time?: string | null;
+  DayOfWeek?: EDayOfTheWeek[] | null;
+  Connect?: string | null;
 }
 
 model DatabaseUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: DatabaseUpdateRequestSettings | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: DatabaseUpdateRequestSettings | null;
+  SettingsHash?: string | null;
 }
 
 model DatabaseUpdateRequestSettings {
-	DBConf?: DatabaseUpdateRequestSettingsDBConf | null;
+  DBConf?: DatabaseUpdateRequestSettingsDBConf | null;
 }
 
 model DatabaseUpdateRequestSettingsDBConf {
-	Common?: DatabaseSettingCommon | null;
+  Common?: DatabaseSettingCommon | null;
 }
 
 model ShutdownOption {
-	Force: boolean;
+  Force: boolean;
 }
 
 model CPUTimeActivity {
-	Values: MonitorCPUTimeValue[];
+  Values: MonitorCPUTimeValue[];
 }
 
 model MonitorCPUTimeValue {
-	Time: utcDateTime;
-	CPUTime: float64;
+  Time: utcDateTime;
+  CPUTime: float64;
 }
 
 model MonitorCondition {
-	// Default value: time.Now().Truncate(time.Second).Add(-time.Hour)
-	Start: utcDateTime;
-	// Default value: time.Now().Truncate(time.Second)
-	End: utcDateTime;
+  // Default value: time.Now().Truncate(time.Second).Add(-time.Hour)
+  Start: utcDateTime;
+
+  // Default value: time.Now().Truncate(time.Second)
+  End: utcDateTime;
 }
 
 model DiskActivity {
-	Values: MonitorDiskValue[];
+  Values: MonitorDiskValue[];
 }
 
 model MonitorDiskValue {
-	Time: utcDateTime;
-	Read: float64;
-	Write: float64;
+  Time: utcDateTime;
+  Read: float64;
+  Write: float64;
 }
 
 model InterfaceActivity {
-	Values: MonitorInterfaceValue[];
+  Values: MonitorInterfaceValue[];
 }
 
 model MonitorInterfaceValue {
-	Time: utcDateTime;
-	Receive: float64;
-	Send: float64;
+  Time: utcDateTime;
+  Receive: float64;
+  Send: float64;
 }
 
 model DatabaseActivity {
-	Values: MonitorDatabaseValue[];
+  Values: MonitorDatabaseValue[];
 }
 
 model MonitorDatabaseValue {
-	Time: utcDateTime;
-	TotalMemorySize : float64;
-	UsedMemorySize: float64;
-	TotalDisk1Size: float64;
-	UsedDisk1Size: float64;
-	TotalDisk2Size: float64;
-	UsedDisk2Size: float64;
-	BinlogUsedSizeKiB: float64;
-	DelayTimeSec: float64;
+  Time: utcDateTime;
+  TotalMemorySize: float64;
+  UsedMemorySize: float64;
+  TotalDisk1Size: float64;
+  UsedDisk1Size: float64;
+  TotalDisk2Size: float64;
+  UsedDisk2Size: float64;
+  BinlogUsedSizeKiB: float64;
+  DelayTimeSec: float64;
 }
 
 model DatabaseStatus {
-	SettingsResponse: DatabaseStatusSettingsResponse;
-	Logs: DatabaseLog[];
-	Backups: DatabaseBackupHistory[];
+  SettingsResponse: DatabaseStatusSettingsResponse;
+  Logs: DatabaseLog[];
+  Backups: DatabaseBackupHistory[];
 }
 
 model DatabaseStatusSettingsResponse {
-	Status: EServerInstanceStatus;
-	DBConf: DatabaseStatusSettingsResponseDBConf;
-	IsFatal: boolean;
+  Status: EServerInstanceStatus;
+  DBConf: DatabaseStatusSettingsResponseDBConf;
+  IsFatal: boolean;
 }
 
 model DatabaseStatusSettingsResponseDBConf {
-	MariaDB: DatabaseStatusSettingsResponseDBConfMariaDB;
-	Postgres: DatabaseStatusSettingsResponseDBConfPostgres;
-	Version: DatabaseVersionInfo;
+  MariaDB: DatabaseStatusSettingsResponseDBConfMariaDB;
+  Postgres: DatabaseStatusSettingsResponseDBConfPostgres;
+  Version: DatabaseVersionInfo;
 }
 
 model DatabaseStatusSettingsResponseDBConfMariaDB {
-	Status: string;
+  Status: string;
 }
 
 model DatabaseStatusSettingsResponseDBConfPostgres {
-	Status: string;
+  Status: string;
 }
 
 model DatabaseVersionInfo {
-	LastModified?: string | null;
-	CommitHash?: string | null;
-	Status?: string | null;
-	Tag?: string | null;
-	Expire?: string | null;
+  LastModified?: string | null;
+  CommitHash?: string | null;
+  Status?: string | null;
+  Tag?: string | null;
+  Expire?: string | null;
 }
 
 model DatabaseLog {
-	Name?: string | null;
-	Data?: string | null;
-	Size?: int32 | null;
+  Name?: string | null;
+  Data?: string | null;
+  Size?: int32 | null;
 }
 
 model DatabaseBackupHistory {
-	CreatedAt?: utcDateTime | null;
-	Availability?: string | null;
-	RecoveredAt?: utcDateTime | null;
-	Size?: int64 | null;
+  CreatedAt?: utcDateTime | null;
+  Availability?: string | null;
+  RecoveredAt?: utcDateTime | null;
+  Size?: int64 | null;
 }
 
 model DatabaseParameter {
-	Parameter?: DatabaseParameterParameter | null;
-	MetaInfo: DatabaseParameterMeta[];
+  Parameter?: DatabaseParameterParameter | null;
+  MetaInfo: DatabaseParameterMeta[];
 }
 
 model DatabaseParameterParameter {
-	Attr?: Record<unknown> | null;
+  Attr?: Record<unknown> | null;
 }
 
 model DatabaseParameterMeta {
-	Options?: DatabaseParameterMetaOptions | null;
-	Name: string;
-	Label: string;
+  Options?: DatabaseParameterMetaOptions | null;
+  Name: string;
+  Label: string;
 }
 
 model DatabaseParameterMetaOptions {
-	Type: string;
-	Text: string;
-	Example: string;
-	Min: float64;
-	Max: float64;
-	MaxLen: int32;
-	Reboot: string;
+  Type: string;
+  Text: string;
+  Example: string;
+  Min: float64;
+  Max: float64;
+  MaxLen: int32;
+  Reboot: string;
 }

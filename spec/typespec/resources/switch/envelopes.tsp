@@ -4,110 +4,116 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for switchFindRequestEnvelope
  */
 model SwitchFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for switchFindResponseEnvelope
  */
 model SwitchFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Switches
-	 */
-	Switches: Switch[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Switches
+   */
+  Switches: Switch[];
 }
 
 /**
  * Request envelope for switchCreateRequestEnvelope
  */
 model SwitchCreateRequestEnvelope {
-	/**
-	 * Switch
-	 */
-	Switch: SwitchCreateRequest;
+  /**
+   * Switch
+   */
+  Switch: SwitchCreateRequest;
 }
 /**
  * Response envelope for switchCreateResponseEnvelope
  */
 model SwitchCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Switch
-	 */
-	Switch: Switch;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Switch
+   */
+  Switch: Switch;
 }
 
 /**
  * Response envelope for switchReadResponseEnvelope
  */
 model SwitchReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Switch
-	 */
-	Switch: Switch;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Switch
+   */
+  Switch: Switch;
 }
 
 /**
  * Request envelope for switchUpdateRequestEnvelope
  */
 model SwitchUpdateRequestEnvelope {
-	/**
-	 * Switch
-	 */
-	Switch: SwitchUpdateRequest;
+  /**
+   * Switch
+   */
+  Switch: SwitchUpdateRequest;
 }
 /**
  * Response envelope for switchUpdateResponseEnvelope
  */
 model SwitchUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Switch
-	 */
-	Switch: Switch;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Switch
+   */
+  Switch: Switch;
 }
 
 /**
  * Response envelope for switchGetServersResponseEnvelope
  */
 model SwitchGetServersResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Servers
-	 */
-	Servers: Server[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Servers
+   */
+  Servers: Server[];
 }

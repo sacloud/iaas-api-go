@@ -4,189 +4,199 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for sIMFindRequestEnvelope
  */
 model SIMFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for sIMFindResponseEnvelope
  */
 model SIMFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * CommonServiceItems
-	 */
-	CommonServiceItems: SIM[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * CommonServiceItems
+   */
+  CommonServiceItems: SIM[];
 }
 
 /**
  * Request envelope for sIMCreateRequestEnvelope
  */
 model SIMCreateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: SIMCreateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: SIMCreateRequest;
 }
 /**
  * Response envelope for sIMCreateResponseEnvelope
  */
 model SIMCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: SIM;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: SIM;
 }
 
 /**
  * Response envelope for sIMReadResponseEnvelope
  */
 model SIMReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: SIM;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: SIM;
 }
 
 /**
  * Request envelope for sIMUpdateRequestEnvelope
  */
 model SIMUpdateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: SIMUpdateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: SIMUpdateRequest;
 }
 /**
  * Response envelope for sIMUpdateResponseEnvelope
  */
 model SIMUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: SIM;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: SIM;
 }
 
 /**
  * Request envelope for sIMAssignIPRequestEnvelope
  */
 model SIMAssignIPRequestEnvelope {
-	/**
-	 * SIM
-	 */
-	SIM: SIMAssignIPRequest;
+  /**
+   * SIM
+   */
+  SIM: SIMAssignIPRequest;
 }
 
 /**
  * Request envelope for sIMIMEILockRequestEnvelope
  */
 model SIMIMEILockRequestEnvelope {
-	/**
-	 * SIM
-	 */
-	SIM: SIMIMEILockRequest;
+  /**
+   * SIM
+   */
+  SIM: SIMIMEILockRequest;
 }
 
 /**
  * Response envelope for sIMLogsResponseEnvelope
  */
 model SIMLogsResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Logs
-	 */
-	Logs: SIMLog[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Logs
+   */
+  Logs: SIMLog[];
 }
 
 /**
  * Response envelope for sIMGetNetworkOperatorResponseEnvelope
  */
 model SIMGetNetworkOperatorResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * NetworkOperationConfigs
-	 */
-	NetworkOperationConfigs: SIMNetworkOperatorConfig[];
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * NetworkOperationConfigs
+   */
+  NetworkOperationConfigs: SIMNetworkOperatorConfig[];
 }
 
 /**
  * Request envelope for sIMSetNetworkOperatorRequestEnvelope
  */
 model SIMSetNetworkOperatorRequestEnvelope {
-	/**
-	 * NetworkOperatorConfigs
-	 */
-	NetworkOperatorConfigs?: SIMNetworkOperatorConfig[];
+  /**
+   * NetworkOperatorConfigs
+   */
+  NetworkOperatorConfigs?: SIMNetworkOperatorConfig[];
 }
 
 /**
  * Request envelope for sIMMonitorSIMRequestEnvelope
  */
 model SIMMonitorSIMRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for sIMMonitorSIMResponseEnvelope
  */
 model SIMMonitorSIMResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Response envelope for sIMStatusResponseEnvelope
  */
 model SIMStatusResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * SIM
-	 */
-	SIM: SIMInfo;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * SIM
+   */
+  SIM: SIMInfo;
 }

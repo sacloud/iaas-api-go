@@ -4,92 +4,97 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for licenseFindRequestEnvelope
  */
 model LicenseFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for licenseFindResponseEnvelope
  */
 model LicenseFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Licenses
-	 */
-	Licenses: License[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Licenses
+   */
+  Licenses: License[];
 }
 
 /**
  * Request envelope for licenseCreateRequestEnvelope
  */
 model LicenseCreateRequestEnvelope {
-	/**
-	 * License
-	 */
-	License: LicenseCreateRequest;
+  /**
+   * License
+   */
+  License: LicenseCreateRequest;
 }
 /**
  * Response envelope for licenseCreateResponseEnvelope
  */
 model LicenseCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * License
-	 */
-	License: License;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * License
+   */
+  License: License;
 }
 
 /**
  * Response envelope for licenseReadResponseEnvelope
  */
 model LicenseReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * License
-	 */
-	License: License;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * License
+   */
+  License: License;
 }
 
 /**
  * Request envelope for licenseUpdateRequestEnvelope
  */
 model LicenseUpdateRequestEnvelope {
-	/**
-	 * License
-	 */
-	License: LicenseUpdateRequest;
+  /**
+   * License
+   */
+  License: LicenseUpdateRequest;
 }
 /**
  * Response envelope for licenseUpdateResponseEnvelope
  */
 model LicenseUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * License
-	 */
-	License: License;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * License
+   */
+  License: License;
 }

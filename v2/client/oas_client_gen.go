@@ -23,925 +23,1387 @@ func trimTrailingSlashes(u *url.URL) {
 type Invoker interface {
 	// ApplianceOpBoot invokes ApplianceOp_boot operation.
 	//
+	// Appliance 起動.
+	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/power
 	ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (*ApplianceOpBootOK, error)
 	// ApplianceOpConfig invokes ApplianceOp_config operation.
+	//
+	// Appliance 設定反映.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/config
 	ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (*ApplianceOpConfigOK, error)
 	// ApplianceOpCreate invokes ApplianceOp_create operation.
 	//
+	// Appliance 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/appliance
 	ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error)
 	// ApplianceOpDelete invokes ApplianceOp_delete operation.
+	//
+	// Appliance 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}
 	ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (*ApplianceOpDeleteOK, error)
 	// ApplianceOpFind invokes ApplianceOp_find operation.
 	//
+	// Appliance 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance
 	ApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error)
 	// ApplianceOpMonitorCPU invokes ApplianceOp_monitorCPU operation.
+	//
+	// Appliance CPU モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
 	ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error)
 	// ApplianceOpMonitorDatabase invokes ApplianceOp_monitorDatabase operation.
 	//
+	// Appliance データベースモニター情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/database/monitor
 	ApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error)
 	// ApplianceOpMonitorInterface invokes ApplianceOp_monitorInterface operation.
+	//
+	// Appliance インターフェイスモニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/monitor
 	ApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error)
 	// ApplianceOpMonitorInterfaceByIndex invokes ApplianceOp_monitorInterfaceByIndex operation.
 	//
+	// Appliance インターフェイスモニター情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor
 	ApplianceOpMonitorInterfaceByIndex(ctx context.Context, params ApplianceOpMonitorInterfaceByIndexParams) (*MobileGatewayMonitorInterfaceResponseEnvelope, error)
 	// ApplianceOpRead invokes ApplianceOp_read operation.
+	//
+	// Appliance 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}
 	ApplianceOpRead(ctx context.Context, params ApplianceOpReadParams) (*DatabaseReadResponseEnvelope, error)
 	// ApplianceOpReset invokes ApplianceOp_reset operation.
 	//
+	// Appliance リセット.
+	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/reset
 	ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (*ApplianceOpResetOK, error)
 	// ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
+	//
+	// Appliance シャットダウン.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
 	ApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error)
 	// ApplianceOpStatus invokes ApplianceOp_status operation.
 	//
+	// Appliance ステータス取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/status
 	ApplianceOpStatus(ctx context.Context, params ApplianceOpStatusParams) (*DatabaseStatusResponseEnvelope, error)
 	// ApplianceOpUpdate invokes ApplianceOp_update operation.
+	//
+	// Appliance 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}
 	ApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error)
 	// ArchiveOpCloseFTP invokes ArchiveOp_closeFTP operation.
 	//
+	// Archive FTP クローズ.
+	//
 	// DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
 	ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (*ArchiveOpCloseFTPOK, error)
 	// ArchiveOpCreate invokes ArchiveOp_create operation.
+	//
+	// Archive 作成.
 	//
 	// POST /{zone}/api/cloud/1.1/archive
 	ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error)
 	// ArchiveOpDelete invokes ArchiveOp_delete operation.
 	//
+	// Archive 削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/archive/{id}
 	ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (*ArchiveOpDeleteOK, error)
 	// ArchiveOpFind invokes ArchiveOp_find operation.
+	//
+	// Archive 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/archive
 	ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error)
 	// ArchiveOpRead invokes ArchiveOp_read operation.
 	//
+	// Archive 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/archive/{id}
 	ArchiveOpRead(ctx context.Context, params ArchiveOpReadParams) (*ArchiveReadResponseEnvelope, error)
 	// ArchiveOpShare invokes ArchiveOp_share operation.
+	//
+	// Archive 共有.
 	//
 	// PUT /{zone}/api/cloud/1.1/archive/{id}/ftp
 	ArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error)
 	// ArchiveOpTransfer invokes ArchiveOp_transfer operation.
 	//
+	// Archive 移管.
+	//
 	// POST /{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}
 	ArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error)
 	// ArchiveOpUpdate invokes ArchiveOp_update operation.
+	//
+	// Archive 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/archive/{id}
 	ArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error)
 	// AuthStatusOpRead invokes AuthStatusOp_read operation.
 	//
+	// 認証情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/auth-status
 	AuthStatusOpRead(ctx context.Context, params AuthStatusOpReadParams) (*AuthStatusReadResponseEnvelope, error)
 	// AutoScaleOpScaleDown invokes AutoScaleOp_scaleDown operation.
+	//
+	// AutoScale スケールダウン.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down
 	AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (*AutoScaleOpScaleDownOK, error)
 	// AutoScaleOpScaleUp invokes AutoScaleOp_scaleUp operation.
 	//
+	// AutoScale スケールアップ.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up
 	AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (*AutoScaleOpScaleUpOK, error)
 	// AutoScaleOpStatus invokes AutoScaleOp_status operation.
+	//
+	// AutoScale ステータス取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status
 	AutoScaleOpStatus(ctx context.Context, params AutoScaleOpStatusParams) (*AutoScaleStatusResponseEnvelope, error)
 	// BillOpByContract invokes BillOp_byContract operation.
 	//
+	// 契約別請求情報取得.
+	//
 	// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}
 	BillOpByContract(ctx context.Context, params BillOpByContractParams) (*BillByContractResponseEnvelope, error)
 	// BillOpByContractYear invokes BillOp_byContractYear operation.
+	//
+	// 契約・年別請求情報取得.
 	//
 	// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}
 	BillOpByContractYear(ctx context.Context, params BillOpByContractYearParams) (*BillByContractYearResponseEnvelope, error)
 	// BillOpByContractYearMonth invokes BillOp_byContractYearMonth operation.
 	//
+	// 契約・年月別請求情報取得.
+	//
 	// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}
 	BillOpByContractYearMonth(ctx context.Context, params BillOpByContractYearMonthParams) (*BillByContractYearMonthResponseEnvelope, error)
 	// BillOpDetails invokes BillOp_details operation.
+	//
+	// 請求明細取得.
 	//
 	// GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}
 	BillOpDetails(ctx context.Context, params BillOpDetailsParams) (*BillDetailsResponseEnvelope, error)
 	// BillOpDetailsCSV invokes BillOp_detailsCSV operation.
 	//
+	// 請求明細 CSV 取得.
+	//
 	// GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv
 	BillOpDetailsCSV(ctx context.Context, params BillOpDetailsCSVParams) (*BillDetailsCSVResponseEnvelope, error)
 	// BillOpRead invokes BillOp_read operation.
+	//
+	// 請求情報取得.
 	//
 	// GET /{zone}/api/system/1.0/bill/id/{id}
 	BillOpRead(ctx context.Context, params BillOpReadParams) (*BillReadResponseEnvelope, error)
 	// BridgeOpCreate invokes BridgeOp_create operation.
 	//
+	// Bridge 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/bridge
 	BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error)
 	// BridgeOpDelete invokes BridgeOp_delete operation.
+	//
+	// Bridge 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/bridge/{id}
 	BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (*BridgeOpDeleteOK, error)
 	// BridgeOpFind invokes BridgeOp_find operation.
 	//
+	// Bridge 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/bridge
 	BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error)
 	// BridgeOpRead invokes BridgeOp_read operation.
+	//
+	// Bridge 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/bridge/{id}
 	BridgeOpRead(ctx context.Context, params BridgeOpReadParams) (*BridgeReadResponseEnvelope, error)
 	// BridgeOpUpdate invokes BridgeOp_update operation.
 	//
+	// Bridge 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/bridge/{id}
 	BridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error)
 	// CDROMOpCloseFTP invokes CDROMOp_closeFTP operation.
+	//
+	// CDROM FTP クローズ.
 	//
 	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
 	CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (*CDROMOpCloseFTPOK, error)
 	// CDROMOpCreate invokes CDROMOp_create operation.
 	//
+	// CDROM 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/cdrom
 	CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error)
 	// CDROMOpDelete invokes CDROMOp_delete operation.
+	//
+	// CDROM 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}
 	CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (*CDROMOpDeleteOK, error)
 	// CDROMOpFind invokes CDROMOp_find operation.
 	//
+	// CDROM 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/cdrom
 	CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error)
 	// CDROMOpOpenFTP invokes CDROMOp_openFTP operation.
+	//
+	// CDROM FTP オープン.
 	//
 	// PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
 	CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error)
 	// CDROMOpRead invokes CDROMOp_read operation.
 	//
+	// CDROM 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/cdrom/{id}
 	CDROMOpRead(ctx context.Context, params CDROMOpReadParams) (*CDROMReadResponseEnvelope, error)
 	// CDROMOpUpdate invokes CDROMOp_update operation.
+	//
+	// CDROM 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/cdrom/{id}
 	CDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error)
 	// CertificateAuthorityOpAddClient invokes CertificateAuthorityOp_addClient operation.
 	//
+	// CertificateAuthority クライアント追加.
+	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
 	CertificateAuthorityOpAddClient(ctx context.Context, request *CertificateAuthorityOpAddClientReq, params CertificateAuthorityOpAddClientParams) (*CertificateAuthorityAddClientResponseEnvelope, error)
 	// CertificateAuthorityOpAddServer invokes CertificateAuthorityOp_addServer operation.
+	//
+	// CertificateAuthority サーバー追加.
 	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
 	CertificateAuthorityOpAddServer(ctx context.Context, request *CertificateAuthorityOpAddServerReq, params CertificateAuthorityOpAddServerParams) (*CertificateAuthorityAddServerResponseEnvelope, error)
 	// CertificateAuthorityOpDenyClient invokes CertificateAuthorityOp_denyClient operation.
 	//
+	// CertificateAuthority クライアント拒否.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
 	CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (*CertificateAuthorityOpDenyClientOK, error)
 	// CertificateAuthorityOpDetail invokes CertificateAuthorityOp_detail operation.
+	//
+	// CertificateAuthority 詳細取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority
 	CertificateAuthorityOpDetail(ctx context.Context, params CertificateAuthorityOpDetailParams) (*CertificateAuthorityDetailResponseEnvelope, error)
 	// CertificateAuthorityOpHoldClient invokes CertificateAuthorityOp_holdClient operation.
 	//
+	// CertificateAuthority クライアント保留.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
 	CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (*CertificateAuthorityOpHoldClientOK, error)
 	// CertificateAuthorityOpHoldServer invokes CertificateAuthorityOp_holdServer operation.
+	//
+	// CertificateAuthority サーバー保留.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
 	CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (*CertificateAuthorityOpHoldServerOK, error)
 	// CertificateAuthorityOpListClients invokes CertificateAuthorityOp_listClients operation.
 	//
+	// CertificateAuthority クライアント一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
 	CertificateAuthorityOpListClients(ctx context.Context, params CertificateAuthorityOpListClientsParams) (*CertificateAuthorityListClientsResponseEnvelope, error)
 	// CertificateAuthorityOpListServers invokes CertificateAuthorityOp_listServers operation.
+	//
+	// CertificateAuthority サーバー一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
 	CertificateAuthorityOpListServers(ctx context.Context, params CertificateAuthorityOpListServersParams) (*CertificateAuthorityListServersResponseEnvelope, error)
 	// CertificateAuthorityOpReadClient invokes CertificateAuthorityOp_readClient operation.
 	//
+	// CertificateAuthority クライアント取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}
 	CertificateAuthorityOpReadClient(ctx context.Context, params CertificateAuthorityOpReadClientParams) (*CertificateAuthorityReadClientResponseEnvelope, error)
 	// CertificateAuthorityOpReadServer invokes CertificateAuthorityOp_readServer operation.
+	//
+	// CertificateAuthority サーバー取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}
 	CertificateAuthorityOpReadServer(ctx context.Context, params CertificateAuthorityOpReadServerParams) (*CertificateAuthorityReadServerResponseEnvelope, error)
 	// CertificateAuthorityOpResumeClient invokes CertificateAuthorityOp_resumeClient operation.
 	//
+	// CertificateAuthority クライアント再開.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
 	CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (*CertificateAuthorityOpResumeClientOK, error)
 	// CertificateAuthorityOpResumeServer invokes CertificateAuthorityOp_resumeServer operation.
+	//
+	// CertificateAuthority サーバー再開.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
 	CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (*CertificateAuthorityOpResumeServerOK, error)
 	// CertificateAuthorityOpRevokeClient invokes CertificateAuthorityOp_revokeClient operation.
 	//
+	// CertificateAuthority クライアント破棄.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
 	CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (*CertificateAuthorityOpRevokeClientOK, error)
 	// CertificateAuthorityOpRevokeServer invokes CertificateAuthorityOp_revokeServer operation.
+	//
+	// CertificateAuthority サーバー破棄.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
 	CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (*CertificateAuthorityOpRevokeServerOK, error)
 	// CommonServiceItemOpCreate invokes CommonServiceItemOp_create operation.
 	//
+	// CommonServiceItem 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem
 	CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error)
 	// CommonServiceItemOpDelete invokes CommonServiceItemOp_delete operation.
+	//
+	// CommonServiceItem 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
 	CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (*CommonServiceItemOpDeleteOK, error)
 	// CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 	//
+	// CommonServiceItem 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem
 	CommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error)
 	// CommonServiceItemOpHealthStatus invokes CommonServiceItemOp_healthStatus operation.
+	//
+	// CommonServiceItem ヘルスステータス取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/health
 	CommonServiceItemOpHealthStatus(ctx context.Context, params CommonServiceItemOpHealthStatusParams) (*LocalRouterHealthStatusResponseEnvelope, error)
 	// CommonServiceItemOpRead invokes CommonServiceItemOp_read operation.
 	//
+	// CommonServiceItem 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}
 	CommonServiceItemOpRead(ctx context.Context, params CommonServiceItemOpReadParams) (*AutoBackupReadResponseEnvelope, error)
 	// CommonServiceItemOpUpdate invokes CommonServiceItemOp_update operation.
+	//
+	// CommonServiceItem 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}
 	CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error)
 	// ContainerRegistryOpAddUser invokes ContainerRegistryOp_addUser operation.
 	//
+	// ContainerRegistry ユーザー追加.
+	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
 	ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (*ContainerRegistryOpAddUserOK, error)
 	// ContainerRegistryOpDeleteUser invokes ContainerRegistryOp_deleteUser operation.
+	//
+	// ContainerRegistry ユーザー削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
 	ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (*ContainerRegistryOpDeleteUserOK, error)
 	// ContainerRegistryOpListUsers invokes ContainerRegistryOp_listUsers operation.
 	//
+	// ContainerRegistry ユーザー一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
 	ContainerRegistryOpListUsers(ctx context.Context, params ContainerRegistryOpListUsersParams) (*ContainerRegistryListUsersResponseEnvelope, error)
 	// ContainerRegistryOpUpdateUser invokes ContainerRegistryOp_updateUser operation.
+	//
+	// ContainerRegistry ユーザー更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
 	ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (*ContainerRegistryOpUpdateUserOK, error)
 	// CouponOpFind invokes CouponOp_find operation.
 	//
+	// クーポン情報取得.
+	//
 	// GET /{zone}/api/system/1.0/coupon/{accountID}
 	CouponOpFind(ctx context.Context, params CouponOpFindParams) (*CouponFindResponseEnvelope, error)
 	// DatabaseOpGetParameter invokes DatabaseOp_getParameter operation.
+	//
+	// Database パラメータ取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
 	DatabaseOpGetParameter(ctx context.Context, params DatabaseOpGetParameterParams) (*DatabaseGetParameterResponseEnvelope, error)
 	// DatabaseOpMonitorDisk invokes DatabaseOp_monitorDisk operation.
 	//
+	// Database ディスクモニター情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor
 	DatabaseOpMonitorDisk(ctx context.Context, request *DatabaseOpMonitorDiskReq, params DatabaseOpMonitorDiskParams) (*DatabaseMonitorDiskResponseEnvelope, error)
 	// DatabaseOpSetParameter invokes DatabaseOp_setParameter operation.
+	//
+	// Database パラメータ設定.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
 	DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (*DatabaseOpSetParameterOK, error)
 	// DiskOpConfig invokes DiskOp_config operation.
 	//
+	// ディスクの修正反映.
+	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/config
 	DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (*DiskOpConfigOK, error)
 	// DiskOpConnectToServer invokes DiskOp_connectToServer operation.
+	//
+	// Disk サーバー接続.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
 	DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (*DiskOpConnectToServerOK, error)
 	// DiskOpCreate invokes DiskOp_create operation.
 	//
+	// Disk 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/disk
 	DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error)
 	// DiskOpDelete invokes DiskOp_delete operation.
+	//
+	// Disk 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/disk/{id}
 	DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*DiskOpDeleteOK, error)
 	// DiskOpDisconnectFromServer invokes DiskOp_disconnectFromServer operation.
 	//
+	// Disk サーバー切断.
+	//
 	// DELETE /{zone}/api/cloud/1.1/disk/{id}/to/server
 	DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (*DiskOpDisconnectFromServerOK, error)
 	// DiskOpFind invokes DiskOp_find operation.
+	//
+	// Disk 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/disk
 	DiskOpFind(ctx context.Context, params DiskOpFindParams) (*DiskFindResponseEnvelope, error)
 	// DiskOpMonitor invokes DiskOp_monitor operation.
 	//
+	// Disk モニター情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/disk/{id}/monitor
 	DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error)
 	// DiskOpRead invokes DiskOp_read operation.
+	//
+	// Disk 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/disk/{id}
 	DiskOpRead(ctx context.Context, params DiskOpReadParams) (*DiskReadResponseEnvelope, error)
 	// DiskOpResizePartition invokes DiskOp_resizePartition operation.
 	//
+	// Disk パーティションリサイズ.
+	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
 	DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (*DiskOpResizePartitionOK, error)
 	// DiskOpUpdate invokes DiskOp_update operation.
+	//
+	// Disk 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/disk/{id}
 	DiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error)
 	// DiskPlanOpFind invokes DiskPlanOp_find operation.
 	//
+	// DiskPlan 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/product/disk
 	DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error)
 	// DiskPlanOpRead invokes DiskPlanOp_read operation.
+	//
+	// DiskPlan 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/product/disk/{id}
 	DiskPlanOpRead(ctx context.Context, params DiskPlanOpReadParams) (*DiskPlanReadResponseEnvelope, error)
 	// ESMEOpLogs invokes ESMEOp_logs operation.
 	//
+	// SMS 送信ログ取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/logs
 	ESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (*ESMELogsResponseEnvelope, error)
 	// ESMEOpSendMessageWithGeneratedOTP invokes ESMEOp_sendMessageWithGeneratedOTP operation.
+	//
+	// 自動生成 OTP 付き SMS メッセージ送信.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa/otp
 	ESMEOpSendMessageWithGeneratedOTP(ctx context.Context, request *ESMEOpSendMessageWithGeneratedOTPReq, params ESMEOpSendMessageWithGeneratedOTPParams) (*ESMESendMessageWithGeneratedOTPResponseEnvelope, error)
 	// ESMEOpSendMessageWithInputtedOTP invokes ESMEOp_sendMessageWithInputtedOTP operation.
 	//
+	// 指定 OTP 付き SMS メッセージ送信.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa
 	ESMEOpSendMessageWithInputtedOTP(ctx context.Context, request *ESMEOpSendMessageWithInputtedOTPReq, params ESMEOpSendMessageWithInputtedOTPParams) (*ESMESendMessageWithInputtedOTPResponseEnvelope, error)
 	// EnhancedDBOpGetConfig invokes EnhancedDBOp_getConfig operation.
+	//
+	// EnhancedDB 設定取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
 	EnhancedDBOpGetConfig(ctx context.Context, params EnhancedDBOpGetConfigParams) (*EnhancedDBGetConfigResponseEnvelope, error)
 	// EnhancedDBOpSetConfig invokes EnhancedDBOp_setConfig operation.
 	//
+	// EnhancedDB 設定更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
 	EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (*EnhancedDBOpSetConfigOK, error)
 	// EnhancedDBOpSetPassword invokes EnhancedDBOp_setPassword operation.
+	//
+	// EnhancedDB パスワード設定.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password
 	EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (*EnhancedDBOpSetPasswordOK, error)
 	// IPAddressOpList invokes IPAddressOp_list operation.
 	//
+	// IPAddress 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/ipaddress
 	IPAddressOpList(ctx context.Context, params IPAddressOpListParams) (*IPAddressListResponseEnvelope, error)
 	// IPAddressOpRead invokes IPAddressOp_read operation.
+	//
+	// IPAddress 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
 	IPAddressOpRead(ctx context.Context, params IPAddressOpReadParams) (*IPAddressReadResponseEnvelope, error)
 	// IPAddressOpUpdateHostName invokes IPAddressOp_updateHostName operation.
 	//
+	// IPAddress ホスト名更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
 	IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error)
 	// IPv6AddrOpCreate invokes IPv6AddrOp_create operation.
+	//
+	// IPv6Addr 作成.
 	//
 	// POST /{zone}/api/cloud/1.1/ipv6addr
 	IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error)
 	// IPv6AddrOpDelete invokes IPv6AddrOp_delete operation.
 	//
+	// IPv6Addr 削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
 	IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (*IPv6AddrOpDeleteOK, error)
 	// IPv6AddrOpFind invokes IPv6AddrOp_find operation.
+	//
+	// IPv6Addr 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr
 	IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error)
 	// IPv6AddrOpRead invokes IPv6AddrOp_read operation.
 	//
+	// IPv6Addr 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/ipv6addr/{id}
 	IPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadParams) (*IPv6AddrReadResponseEnvelope, error)
 	// IPv6AddrOpUpdate invokes IPv6AddrOp_update operation.
+	//
+	// IPv6Addr 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/ipv6addr/{id}
 	IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error)
 	// IPv6NetOpList invokes IPv6NetOp_list operation.
 	//
+	// IPv6Net 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/ipv6net
 	IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error)
 	// IPv6NetOpRead invokes IPv6NetOp_read operation.
+	//
+	// IPv6Net 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/ipv6net/{id}
 	IPv6NetOpRead(ctx context.Context, params IPv6NetOpReadParams) (*IPv6NetReadResponseEnvelope, error)
 	// IconOpCreate invokes IconOp_create operation.
 	//
+	// Icon 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/icon
 	IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (*IconCreateResponseEnvelope, error)
 	// IconOpDelete invokes IconOp_delete operation.
+	//
+	// Icon 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/icon/{id}
 	IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*IconOpDeleteOK, error)
 	// IconOpFind invokes IconOp_find operation.
 	//
+	// Icon 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/icon
 	IconOpFind(ctx context.Context, params IconOpFindParams) (*IconFindResponseEnvelope, error)
 	// IconOpRead invokes IconOp_read operation.
+	//
+	// Icon 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/icon/{id}
 	IconOpRead(ctx context.Context, params IconOpReadParams) (*IconReadResponseEnvelope, error)
 	// IconOpUpdate invokes IconOp_update operation.
 	//
+	// Icon 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/icon/{id}
 	IconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error)
 	// InterfaceOpConnectToPacketFilter invokes InterfaceOp_connectToPacketFilter operation.
+	//
+	// Interface パケットフィルタ接続.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
 	InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (*InterfaceOpConnectToPacketFilterOK, error)
 	// InterfaceOpConnectToSharedSegment invokes InterfaceOp_connectToSharedSegment operation.
 	//
+	// Interface 共有セグメント接続.
+	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/shared
 	InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (*InterfaceOpConnectToSharedSegmentOK, error)
 	// InterfaceOpConnectToSwitch invokes InterfaceOp_connectToSwitch operation.
+	//
+	// Interface スイッチ接続.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}
 	InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (*InterfaceOpConnectToSwitchOK, error)
 	// InterfaceOpCreate invokes InterfaceOp_create operation.
 	//
+	// Interface 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/interface
 	InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error)
 	// InterfaceOpDelete invokes InterfaceOp_delete operation.
+	//
+	// Interface 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}
 	InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (*InterfaceOpDeleteOK, error)
 	// InterfaceOpDisconnectFromPacketFilter invokes InterfaceOp_disconnectFromPacketFilter operation.
 	//
+	// Interface パケットフィルタ切断.
+	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter
 	InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (*InterfaceOpDisconnectFromPacketFilterOK, error)
 	// InterfaceOpDisconnectFromSwitch invokes InterfaceOp_disconnectFromSwitch operation.
+	//
+	// Interface スイッチ切断.
 	//
 	// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/switch
 	InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (*InterfaceOpDisconnectFromSwitchOK, error)
 	// InterfaceOpFind invokes InterfaceOp_find operation.
 	//
+	// Interface 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/interface
 	InterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error)
 	// InterfaceOpMonitor invokes InterfaceOp_monitor operation.
+	//
+	// Interface モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/interface/{id}/monitor
 	InterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error)
 	// InterfaceOpRead invokes InterfaceOp_read operation.
 	//
+	// Interface 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/interface/{id}
 	InterfaceOpRead(ctx context.Context, params InterfaceOpReadParams) (*InterfaceReadResponseEnvelope, error)
 	// InterfaceOpUpdate invokes InterfaceOp_update operation.
+	//
+	// Interface 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/interface/{id}
 	InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error)
 	// InternetOpAddSubnet invokes InternetOp_addSubnet operation.
 	//
+	// Internet サブネット追加.
+	//
 	// POST /{zone}/api/cloud/1.1/internet/{id}/subnet
 	InternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error)
 	// InternetOpCreate invokes InternetOp_create operation.
+	//
+	// Internet 作成.
 	//
 	// POST /{zone}/api/cloud/1.1/internet
 	InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error)
 	// InternetOpDelete invokes InternetOp_delete operation.
 	//
+	// Internet 削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}
 	InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (*InternetOpDeleteOK, error)
 	// InternetOpDeleteSubnet invokes InternetOp_deleteSubnet operation.
+	//
+	// Internet サブネット削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
 	InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (*InternetOpDeleteSubnetOK, error)
 	// InternetOpDisableIPv6 invokes InternetOp_disableIPv6 operation.
 	//
+	// Internet IPv6 無効化.
+	//
 	// DELETE /{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}
 	InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (*InternetOpDisableIPv6OK, error)
 	// InternetOpEnableIPv6 invokes InternetOp_enableIPv6 operation.
+	//
+	// Internet IPv6 有効化.
 	//
 	// POST /{zone}/api/cloud/1.1/internet/{id}/ipv6net
 	InternetOpEnableIPv6(ctx context.Context, params InternetOpEnableIPv6Params) (*InternetEnableIPv6ResponseEnvelope, error)
 	// InternetOpFind invokes InternetOp_find operation.
 	//
+	// Internet 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/internet
 	InternetOpFind(ctx context.Context, params InternetOpFindParams) (*InternetFindResponseEnvelope, error)
 	// InternetOpMonitor invokes InternetOp_monitor operation.
+	//
+	// Internet モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/internet/{id}/monitor
 	InternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error)
 	// InternetOpRead invokes InternetOp_read operation.
 	//
+	// Internet 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/internet/{id}
 	InternetOpRead(ctx context.Context, params InternetOpReadParams) (*InternetReadResponseEnvelope, error)
 	// InternetOpUpdate invokes InternetOp_update operation.
+	//
+	// Internet 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/internet/{id}
 	InternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error)
 	// InternetOpUpdateBandWidth invokes InternetOp_updateBandWidth operation.
 	//
+	// Internet 帯域更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/internet/{id}/bandwidth
 	InternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error)
 	// InternetOpUpdateSubnet invokes InternetOp_updateSubnet operation.
+	//
+	// Internet サブネット更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
 	InternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error)
 	// InternetPlanOpFind invokes InternetPlanOp_find operation.
 	//
+	// InternetPlan 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/product/internet
 	InternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error)
 	// InternetPlanOpRead invokes InternetPlanOp_read operation.
+	//
+	// InternetPlan 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/product/internet/{id}
 	InternetPlanOpRead(ctx context.Context, params InternetPlanOpReadParams) (*InternetPlanReadResponseEnvelope, error)
 	// LicenseInfoOpFind invokes LicenseInfoOp_find operation.
 	//
+	// LicenseInfo 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/product/license
 	LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error)
 	// LicenseInfoOpRead invokes LicenseInfoOp_read operation.
+	//
+	// LicenseInfo 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/product/license/{id}
 	LicenseInfoOpRead(ctx context.Context, params LicenseInfoOpReadParams) (*LicenseInfoReadResponseEnvelope, error)
 	// LicenseOpCreate invokes LicenseOp_create operation.
 	//
+	// License 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/license
 	LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error)
 	// LicenseOpDelete invokes LicenseOp_delete operation.
+	//
+	// License 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/license/{id}
 	LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (*LicenseOpDeleteOK, error)
 	// LicenseOpFind invokes LicenseOp_find operation.
 	//
+	// License 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/license
 	LicenseOpFind(ctx context.Context, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error)
 	// LicenseOpRead invokes LicenseOp_read operation.
+	//
+	// License 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/license/{id}
 	LicenseOpRead(ctx context.Context, params LicenseOpReadParams) (*LicenseReadResponseEnvelope, error)
 	// LicenseOpUpdate invokes LicenseOp_update operation.
 	//
+	// License 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/license/{id}
 	LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error)
 	// LocalRouterOpMonitorLocalRouter invokes LocalRouterOp_monitorLocalRouter operation.
+	//
+	// LocalRouter モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor
 	LocalRouterOpMonitorLocalRouter(ctx context.Context, request *LocalRouterOpMonitorLocalRouterReq, params LocalRouterOpMonitorLocalRouterParams) (*LocalRouterMonitorLocalRouterResponseEnvelope, error)
 	// MobileGatewayOpAddSIM invokes MobileGatewayOp_addSIM operation.
 	//
+	// MobileGateway SIM 追加.
+	//
 	// POST /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
 	MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (*MobileGatewayOpAddSIMOK, error)
 	// MobileGatewayOpConnectToSwitch invokes MobileGatewayOp_connectToSwitch operation.
+	//
+	// MobileGateway スイッチ接続.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}
 	MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (*MobileGatewayOpConnectToSwitchOK, error)
 	// MobileGatewayOpDeleteSIM invokes MobileGatewayOp_deleteSIM operation.
 	//
+	// MobileGateway SIM 削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
 	MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (*MobileGatewayOpDeleteSIMOK, error)
 	// MobileGatewayOpDeleteTrafficConfig invokes MobileGatewayOp_deleteTrafficConfig operation.
+	//
+	// MobileGateway トラフィック設定削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
 	MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (*MobileGatewayOpDeleteTrafficConfigOK, error)
 	// MobileGatewayOpDisconnectFromSwitch invokes MobileGatewayOp_disconnectFromSwitch operation.
 	//
+	// MobileGateway スイッチ切断.
+	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch
 	MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (*MobileGatewayOpDisconnectFromSwitchOK, error)
 	// MobileGatewayOpGetDNS invokes MobileGatewayOp_getDNS operation.
+	//
+	// MobileGateway DNS 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
 	MobileGatewayOpGetDNS(ctx context.Context, params MobileGatewayOpGetDNSParams) (*MobileGatewayGetDNSResponseEnvelope, error)
 	// MobileGatewayOpGetSIMRoutes invokes MobileGatewayOp_getSIMRoutes operation.
 	//
+	// MobileGateway SIM ルート取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
 	MobileGatewayOpGetSIMRoutes(ctx context.Context, params MobileGatewayOpGetSIMRoutesParams) (*MobileGatewayGetSIMRoutesResponseEnvelope, error)
 	// MobileGatewayOpGetTrafficConfig invokes MobileGatewayOp_getTrafficConfig operation.
+	//
+	// MobileGateway トラフィック設定取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
 	MobileGatewayOpGetTrafficConfig(ctx context.Context, params MobileGatewayOpGetTrafficConfigParams) (*MobileGatewayGetTrafficConfigResponseEnvelope, error)
 	// MobileGatewayOpListSIM invokes MobileGatewayOp_listSIM operation.
 	//
+	// MobileGateway SIM 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
 	MobileGatewayOpListSIM(ctx context.Context, params MobileGatewayOpListSIMParams) (*MobileGatewayListSIMResponseEnvelope, error)
 	// MobileGatewayOpLogs invokes MobileGatewayOp_logs operation.
+	//
+	// MobileGateway ログ取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog
 	MobileGatewayOpLogs(ctx context.Context, params MobileGatewayOpLogsParams) (*MobileGatewayLogsResponseEnvelope, error)
 	// MobileGatewayOpSetDNS invokes MobileGatewayOp_setDNS operation.
 	//
+	// MobileGateway DNS 設定.
+	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
 	MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (*MobileGatewayOpSetDNSOK, error)
 	// MobileGatewayOpSetSIMRoutes invokes MobileGatewayOp_setSIMRoutes operation.
+	//
+	// MobileGateway SIM ルート設定.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
 	MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (*MobileGatewayOpSetSIMRoutesOK, error)
 	// MobileGatewayOpSetTrafficConfig invokes MobileGatewayOp_setTrafficConfig operation.
 	//
+	// MobileGateway トラフィック設定更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
 	MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (*MobileGatewayOpSetTrafficConfigOK, error)
 	// MobileGatewayOpTrafficStatus invokes MobileGatewayOp_trafficStatus operation.
+	//
+	// MobileGateway トラフィック状況取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status
 	MobileGatewayOpTrafficStatus(ctx context.Context, params MobileGatewayOpTrafficStatusParams) (*MobileGatewayTrafficStatusResponseEnvelope, error)
 	// NoteOpCreate invokes NoteOp_create operation.
 	//
+	// Note 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/note
 	NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error)
 	// NoteOpDelete invokes NoteOp_delete operation.
+	//
+	// Note 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/note/{id}
 	NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*NoteOpDeleteOK, error)
 	// NoteOpFind invokes NoteOp_find operation.
 	//
+	// Note 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/note
 	NoteOpFind(ctx context.Context, params NoteOpFindParams) (*NoteFindResponseEnvelope, error)
 	// NoteOpRead invokes NoteOp_read operation.
+	//
+	// Note 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/note/{id}
 	NoteOpRead(ctx context.Context, params NoteOpReadParams) (*NoteReadResponseEnvelope, error)
 	// NoteOpUpdate invokes NoteOp_update operation.
 	//
+	// Note 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/note/{id}
 	NoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error)
 	// PacketFilterOpCreate invokes PacketFilterOp_create operation.
+	//
+	// PacketFilter 作成.
 	//
 	// POST /{zone}/api/cloud/1.1/packetfilter
 	PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error)
 	// PacketFilterOpDelete invokes PacketFilterOp_delete operation.
 	//
+	// PacketFilter 削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
 	PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (*PacketFilterOpDeleteOK, error)
 	// PacketFilterOpFind invokes PacketFilterOp_find operation.
+	//
+	// PacketFilter 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/packetfilter
 	PacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error)
 	// PacketFilterOpRead invokes PacketFilterOp_read operation.
 	//
+	// PacketFilter 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/packetfilter/{id}
 	PacketFilterOpRead(ctx context.Context, params PacketFilterOpReadParams) (*PacketFilterReadResponseEnvelope, error)
 	// PacketFilterOpUpdate invokes PacketFilterOp_update operation.
+	//
+	// PacketFilter 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/packetfilter/{id}
 	PacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error)
 	// PrivateHostOpCreate invokes PrivateHostOp_create operation.
 	//
+	// PrivateHost 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/privatehost
 	PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error)
 	// PrivateHostOpDelete invokes PrivateHostOp_delete operation.
+	//
+	// PrivateHost 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/privatehost/{id}
 	PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (*PrivateHostOpDeleteOK, error)
 	// PrivateHostOpFind invokes PrivateHostOp_find operation.
 	//
+	// PrivateHost 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/privatehost
 	PrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error)
 	// PrivateHostOpRead invokes PrivateHostOp_read operation.
+	//
+	// PrivateHost 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/privatehost/{id}
 	PrivateHostOpRead(ctx context.Context, params PrivateHostOpReadParams) (*PrivateHostReadResponseEnvelope, error)
 	// PrivateHostOpUpdate invokes PrivateHostOp_update operation.
 	//
+	// PrivateHost 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/privatehost/{id}
 	PrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error)
 	// PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
+	//
+	// PrivateHostPlan 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/product/privatehost
 	PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error)
 	// PrivateHostPlanOpRead invokes PrivateHostPlanOp_read operation.
 	//
+	// PrivateHostPlan 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/product/privatehost/{id}
 	PrivateHostPlanOpRead(ctx context.Context, params PrivateHostPlanOpReadParams) (*PrivateHostPlanReadResponseEnvelope, error)
 	// ProxyLBOpChangePlan invokes ProxyLBOp_changePlan operation.
+	//
+	// ProxyLB プラン変更.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/plan
 	ProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOpChangePlanReq, params ProxyLBOpChangePlanParams) (*ProxyLBChangePlanResponseEnvelope, error)
 	// ProxyLBOpDeleteCertificates invokes ProxyLBOp_deleteCertificates operation.
 	//
+	// ProxyLB 証明書削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
 	ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (*ProxyLBOpDeleteCertificatesOK, error)
 	// ProxyLBOpGetCertificates invokes ProxyLBOp_getCertificates operation.
+	//
+	// ProxyLB 証明書取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
 	ProxyLBOpGetCertificates(ctx context.Context, params ProxyLBOpGetCertificatesParams) (*ProxyLBGetCertificatesResponseEnvelope, error)
 	// ProxyLBOpMonitorConnection invokes ProxyLBOp_monitorConnection operation.
 	//
+	// ProxyLB コネクションモニター情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor
 	ProxyLBOpMonitorConnection(ctx context.Context, request *ProxyLBOpMonitorConnectionReq, params ProxyLBOpMonitorConnectionParams) (*ProxyLBMonitorConnectionResponseEnvelope, error)
 	// ProxyLBOpRenewLetsEncryptCert invokes ProxyLBOp_renewLetsEncryptCert operation.
+	//
+	// ProxyLB Let's Encrypt 証明書更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew
 	ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (*ProxyLBOpRenewLetsEncryptCertOK, error)
 	// ProxyLBOpSetCertificates invokes ProxyLBOp_setCertificates operation.
 	//
+	// ProxyLB 証明書設定.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
 	ProxyLBOpSetCertificates(ctx context.Context, request *ProxyLBOpSetCertificatesReq, params ProxyLBOpSetCertificatesParams) (*ProxyLBSetCertificatesResponseEnvelope, error)
 	// RegionOpFind invokes RegionOp_find operation.
+	//
+	// リージョン一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/region
 	RegionOpFind(ctx context.Context, params RegionOpFindParams) (*RegionFindResponseEnvelope, error)
 	// RegionOpRead invokes RegionOp_read operation.
 	//
+	// リージョン情報取得.
+	//
 	// GET /{zone}/api/cloud/1.1/region/{id}
 	RegionOpRead(ctx context.Context, params RegionOpReadParams) (*RegionReadResponseEnvelope, error)
 	// SIMOpActivate invokes SIMOp_activate operation.
+	//
+	// SIM 有効化.
 	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate
 	SIMOpActivate(ctx context.Context, params SIMOpActivateParams) (*SIMOpActivateOK, error)
 	// SIMOpAssignIP invokes SIMOp_assignIP operation.
 	//
+	// SIM への IP アドレス割り当て.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
 	SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (*SIMOpAssignIPOK, error)
 	// SIMOpClearIP invokes SIMOp_clearIP operation.
+	//
+	// SIM の IP アドレス割り当て解除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
 	SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*SIMOpClearIPOK, error)
 	// SIMOpDeactivate invokes SIMOp_deactivate operation.
 	//
+	// SIM 無効化.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
 	SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (*SIMOpDeactivateOK, error)
 	// SIMOpGetNetworkOperator invokes SIMOp_getNetworkOperator operation.
+	//
+	// SIM 通信キャリア取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
 	SIMOpGetNetworkOperator(ctx context.Context, params SIMOpGetNetworkOperatorParams) (*SIMGetNetworkOperatorResponseEnvelope, error)
 	// SIMOpImeiLock invokes SIMOp_imeiLock operation.
 	//
+	// SIM の IMEI ロック設定.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
 	SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (*SIMOpImeiLockOK, error)
 	// SIMOpImeiUnlock invokes SIMOp_imeiUnlock operation.
+	//
+	// SIM の IMEI ロック解除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
 	SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (*SIMOpImeiUnlockOK, error)
 	// SIMOpLogs invokes SIMOp_logs operation.
 	//
+	// SIM セッションログ取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog
 	SIMOpLogs(ctx context.Context, params SIMOpLogsParams) (*SIMLogsResponseEnvelope, error)
 	// SIMOpMonitorSIM invokes SIMOp_monitorSIM operation.
+	//
+	// SIM モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor
 	SIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorSIMReq, params SIMOpMonitorSIMParams) (*SIMMonitorSIMResponseEnvelope, error)
 	// SIMOpSetNetworkOperator invokes SIMOp_setNetworkOperator operation.
 	//
+	// SIM 通信キャリア設定.
+	//
 	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
 	SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error)
 	// SIMOpStatus invokes SIMOp_status operation.
+	//
+	// SIM ステータス取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status
 	SIMOpStatus(ctx context.Context, params SIMOpStatusParams) (*SIMStatusResponseEnvelope, error)
 	// SSHKeyOpCreate invokes SSHKeyOp_create operation.
 	//
+	// SSHKey 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/sshkey
 	SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error)
 	// SSHKeyOpDelete invokes SSHKeyOp_delete operation.
+	//
+	// SSHKey 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/sshkey/{id}
 	SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (*SSHKeyOpDeleteOK, error)
 	// SSHKeyOpFind invokes SSHKeyOp_find operation.
 	//
+	// SSHKey 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/sshkey
 	SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error)
 	// SSHKeyOpRead invokes SSHKeyOp_read operation.
+	//
+	// SSHKey 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/sshkey/{id}
 	SSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams) (*SSHKeyReadResponseEnvelope, error)
 	// SSHKeyOpUpdate invokes SSHKeyOp_update operation.
 	//
+	// SSHKey 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/sshkey/{id}
 	SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error)
 	// ServerOpBoot invokes ServerOp_boot operation.
+	//
+	// Server 起動.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/power
 	ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (*ServerOpBootOK, error)
 	// ServerOpChangePlan invokes ServerOp_changePlan operation.
 	//
+	// Server プラン変更.
+	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/plan
 	ServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error)
 	// ServerOpCreate invokes ServerOp_create operation.
+	//
+	// Server 作成.
 	//
 	// POST /{zone}/api/cloud/1.1/server
 	ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error)
 	// ServerOpDelete invokes ServerOp_delete operation.
 	//
+	// Server 削除.
+	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}
 	ServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (*ServerOpDeleteOK, error)
 	// ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
+	//
+	// Server CD-ROM 取り出し.
 	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
 	ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (*ServerOpEjectCDROMOK, error)
 	// ServerOpFind invokes ServerOp_find operation.
 	//
+	// Server 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/server
 	ServerOpFind(ctx context.Context, params ServerOpFindParams) (*ServerFindResponseEnvelope, error)
 	// ServerOpGetVNCProxy invokes ServerOp_getVNCProxy operation.
+	//
+	// Server VNC プロキシ取得.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/vnc/proxy
 	ServerOpGetVNCProxy(ctx context.Context, params ServerOpGetVNCProxyParams) (*ServerGetVNCProxyResponseEnvelope, error)
 	// ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
 	//
+	// Server CD-ROM 挿入.
+	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
 	ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (*ServerOpInsertCDROMOK, error)
 	// ServerOpMonitor invokes ServerOp_monitor operation.
+	//
+	// Server モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/server/{id}/monitor
 	ServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error)
 	// ServerOpRead invokes ServerOp_read operation.
 	//
+	// Server 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/server/{id}
 	ServerOpRead(ctx context.Context, params ServerOpReadParams) (*ServerReadResponseEnvelope, error)
 	// ServerOpReset invokes ServerOp_reset operation.
+	//
+	// Server リセット.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/reset
 	ServerOpReset(ctx context.Context, params ServerOpResetParams) (*ServerOpResetOK, error)
 	// ServerOpSendKey invokes ServerOp_sendKey operation.
 	//
+	// Server キー送信.
+	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
 	ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (*ServerOpSendKeyOK, error)
 	// ServerOpSendNMI invokes ServerOp_sendNMI operation.
+	//
+	// Server NMI 送信.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
 	ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (*ServerOpSendNMIOK, error)
 	// ServerOpShutdown invokes ServerOp_shutdown operation.
 	//
+	// Server シャットダウン.
+	//
 	// DELETE /{zone}/api/cloud/1.1/server/{id}/power
 	ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (*ServerOpShutdownOK, error)
 	// ServerOpUpdate invokes ServerOp_update operation.
+	//
+	// Server 更新.
 	//
 	// PUT /{zone}/api/cloud/1.1/server/{id}
 	ServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error)
 	// ServerPlanOpFind invokes ServerPlanOp_find operation.
 	//
+	// ServerPlan 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/product/server
 	ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error)
 	// ServerPlanOpRead invokes ServerPlanOp_read operation.
+	//
+	// ServerPlan 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/product/server/{id}
 	ServerPlanOpRead(ctx context.Context, params ServerPlanOpReadParams) (*ServerPlanReadResponseEnvelope, error)
 	// ServiceClassOpFind invokes ServiceClassOp_find operation.
 	//
+	// ServiceClass 一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/public/price
 	ServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error)
 	// SimpleMonitorOpMonitorResponseTime invokes SimpleMonitorOp_monitorResponseTime operation.
+	//
+	// SimpleMonitor 応答時間モニター情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
 	SimpleMonitorOpMonitorResponseTime(ctx context.Context, request *SimpleMonitorOpMonitorResponseTimeReq, params SimpleMonitorOpMonitorResponseTimeParams) (*SimpleMonitorMonitorResponseTimeResponseEnvelope, error)
 	// SimpleNotificationDestinationOpStatus invokes SimpleNotificationDestinationOp_status operation.
 	//
+	// SimpleNotificationDestination ステータス取得.
+	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/status
 	SimpleNotificationDestinationOpStatus(ctx context.Context, params SimpleNotificationDestinationOpStatusParams) (*SimpleNotificationDestinationStatusResponseEnvelope, error)
 	// SimpleNotificationGroupOpHistory invokes SimpleNotificationGroupOp_history operation.
+	//
+	// SimpleNotificationGroup 履歴取得.
 	//
 	// GET /{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history
 	SimpleNotificationGroupOpHistory(ctx context.Context, params SimpleNotificationGroupOpHistoryParams) (*SimpleNotificationGroupHistoryResponseEnvelope, error)
 	// SimpleNotificationGroupOpPostMessage invokes SimpleNotificationGroupOp_postMessage operation.
 	//
+	// SimpleNotificationGroup メッセージ送信.
+	//
 	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message
 	SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (*SimpleNotificationGroupOpPostMessageOK, error)
 	// SubnetOpFind invokes SubnetOp_find operation.
+	//
+	// Subnet 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/subnet
 	SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error)
 	// SubnetOpRead invokes SubnetOp_read operation.
 	//
+	// Subnet 取得.
+	//
 	// GET /{zone}/api/cloud/1.1/subnet/{id}
 	SubnetOpRead(ctx context.Context, params SubnetOpReadParams) (*SubnetReadResponseEnvelope, error)
 	// SwitchOpConnectToBridge invokes SwitchOp_connectToBridge operation.
+	//
+	// ブリッジ接続.
 	//
 	// PUT /{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}
 	SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (*SwitchOpConnectToBridgeOK, error)
 	// SwitchOpCreate invokes SwitchOp_create operation.
 	//
+	// Switch 作成.
+	//
 	// POST /{zone}/api/cloud/1.1/switch
 	SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error)
 	// SwitchOpDelete invokes SwitchOp_delete operation.
+	//
+	// Switch 削除.
 	//
 	// DELETE /{zone}/api/cloud/1.1/switch/{id}
 	SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (*SwitchOpDeleteOK, error)
 	// SwitchOpDisconnectFromBridge invokes SwitchOp_disconnectFromBridge operation.
 	//
+	// ブリッジ切断.
+	//
 	// DELETE /{zone}/api/cloud/1.1/switch/{id}/to/bridge
 	SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (*SwitchOpDisconnectFromBridgeOK, error)
 	// SwitchOpFind invokes SwitchOp_find operation.
+	//
+	// Switch 一覧取得.
 	//
 	// GET /{zone}/api/cloud/1.1/switch
 	SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error)
 	// SwitchOpGetServers invokes SwitchOp_getServers operation.
 	//
+	// Switch サーバー一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/switch/{id}/server
 	SwitchOpGetServers(ctx context.Context, params SwitchOpGetServersParams) (*SwitchGetServersResponseEnvelope, error)
 	// SwitchOpRead invokes SwitchOp_read operation.
+	//
+	// Switch 取得.
 	//
 	// GET /{zone}/api/cloud/1.1/switch/{id}
 	SwitchOpRead(ctx context.Context, params SwitchOpReadParams) (*SwitchReadResponseEnvelope, error)
 	// SwitchOpUpdate invokes SwitchOp_update operation.
 	//
+	// Switch 更新.
+	//
 	// PUT /{zone}/api/cloud/1.1/switch/{id}
 	SwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error)
 	// VPCRouterOpConnectToSwitch invokes VPCRouterOp_connectToSwitch operation.
+	//
+	// VPCRouter スイッチ接続.
 	//
 	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
 	VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (*VPCRouterOpConnectToSwitchOK, error)
 	// VPCRouterOpDisconnectFromSwitch invokes VPCRouterOp_disconnectFromSwitch operation.
 	//
+	// VPCRouter スイッチ切断.
+	//
 	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
 	VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error)
 	// VPCRouterOpLogs invokes VPCRouterOp_logs operation.
+	//
+	// VPCRouter ログ取得.
 	//
 	// GET /{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs
 	VPCRouterOpLogs(ctx context.Context, params VPCRouterOpLogsParams) (*VPCRouterLogsResponseEnvelope, error)
 	// VPCRouterOpPing invokes VPCRouterOp_ping operation.
 	//
+	// VPCRouter Ping.
+	//
 	// POST /{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}
 	VPCRouterOpPing(ctx context.Context, params VPCRouterOpPingParams) (*VPCRouterPingResponseEnvelope, error)
 	// ZoneOpFind invokes ZoneOp_find operation.
 	//
+	// ゾーン一覧取得.
+	//
 	// GET /{zone}/api/cloud/1.1/zone
 	ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error)
 	// ZoneOpRead invokes ZoneOp_read operation.
+	//
+	// ゾーン情報取得.
 	//
 	// GET /{zone}/api/cloud/1.1/zone/{id}
 	ZoneOpRead(ctx context.Context, params ZoneOpReadParams) (*ZoneReadResponseEnvelope, error)
@@ -989,6 +1451,8 @@ func (c *Client) requestURL(ctx context.Context) *url.URL {
 }
 
 // ApplianceOpBoot invokes ApplianceOp_boot operation.
+//
+// Appliance 起動.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/power
 func (c *Client) ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (*ApplianceOpBootOK, error) {
@@ -1096,6 +1560,8 @@ func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBoot
 
 // ApplianceOpConfig invokes ApplianceOp_config operation.
 //
+// Appliance 設定反映.
+//
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/config
 func (c *Client) ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (*ApplianceOpConfigOK, error) {
 	res, err := c.sendApplianceOpConfig(ctx, params)
@@ -1202,6 +1668,8 @@ func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpCo
 
 // ApplianceOpCreate invokes ApplianceOp_create operation.
 //
+// Appliance 作成.
+//
 // POST /{zone}/api/cloud/1.1/appliance
 func (c *Client) ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error) {
 	res, err := c.sendApplianceOpCreate(ctx, request, params)
@@ -1300,6 +1768,8 @@ func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceCr
 }
 
 // ApplianceOpDelete invokes ApplianceOp_delete operation.
+//
+// Appliance 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}
 func (c *Client) ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (*ApplianceOpDeleteOK, error) {
@@ -1405,6 +1875,8 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 }
 
 // ApplianceOpFind invokes ApplianceOp_find operation.
+//
+// Appliance 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance
 func (c *Client) ApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error) {
@@ -1512,6 +1984,8 @@ func (c *Client) sendApplianceOpFind(ctx context.Context, params ApplianceOpFind
 }
 
 // ApplianceOpMonitorCPU invokes ApplianceOp_monitorCPU operation.
+//
+// Appliance CPU モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
 func (c *Client) ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error) {
@@ -1622,6 +2096,8 @@ func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *Monitor
 
 // ApplianceOpMonitorDatabase invokes ApplianceOp_monitorDatabase operation.
 //
+// Appliance データベースモニター情報取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/database/monitor
 func (c *Client) ApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorDatabase(ctx, request, params)
@@ -1731,6 +2207,8 @@ func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *Mo
 
 // ApplianceOpMonitorInterface invokes ApplianceOp_monitorInterface operation.
 //
+// Appliance インターフェイスモニター情報取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/interface/monitor
 func (c *Client) ApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorInterface(ctx, request, params)
@@ -1839,6 +2317,8 @@ func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *M
 }
 
 // ApplianceOpMonitorInterfaceByIndex invokes ApplianceOp_monitorInterfaceByIndex operation.
+//
+// Appliance インターフェイスモニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor
 func (c *Client) ApplianceOpMonitorInterfaceByIndex(ctx context.Context, params ApplianceOpMonitorInterfaceByIndexParams) (*MobileGatewayMonitorInterfaceResponseEnvelope, error) {
@@ -1965,6 +2445,8 @@ func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, par
 
 // ApplianceOpRead invokes ApplianceOp_read operation.
 //
+// Appliance 取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}
 func (c *Client) ApplianceOpRead(ctx context.Context, params ApplianceOpReadParams) (*DatabaseReadResponseEnvelope, error) {
 	res, err := c.sendApplianceOpRead(ctx, params)
@@ -2069,6 +2551,8 @@ func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpRead
 }
 
 // ApplianceOpReset invokes ApplianceOp_reset operation.
+//
+// Appliance リセット.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/reset
 func (c *Client) ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (*ApplianceOpResetOK, error) {
@@ -2175,6 +2659,8 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 }
 
 // ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
+//
+// Appliance シャットダウン.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
 func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error) {
@@ -2285,6 +2771,8 @@ func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ShutdownO
 
 // ApplianceOpStatus invokes ApplianceOp_status operation.
 //
+// Appliance ステータス取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/status
 func (c *Client) ApplianceOpStatus(ctx context.Context, params ApplianceOpStatusParams) (*DatabaseStatusResponseEnvelope, error) {
 	res, err := c.sendApplianceOpStatus(ctx, params)
@@ -2390,6 +2878,8 @@ func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpSt
 }
 
 // ApplianceOpUpdate invokes ApplianceOp_update operation.
+//
+// Appliance 更新.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}
 func (c *Client) ApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error) {
@@ -2508,6 +2998,8 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceUp
 
 // ArchiveOpCloseFTP invokes ArchiveOp_closeFTP operation.
 //
+// Archive FTP クローズ.
+//
 // DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
 func (c *Client) ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (*ArchiveOpCloseFTPOK, error) {
 	res, err := c.sendArchiveOpCloseFTP(ctx, params)
@@ -2614,6 +3106,8 @@ func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpClos
 
 // ArchiveOpCreate invokes ArchiveOp_create operation.
 //
+// Archive 作成.
+//
 // POST /{zone}/api/cloud/1.1/archive
 func (c *Client) ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error) {
 	res, err := c.sendArchiveOpCreate(ctx, request, params)
@@ -2712,6 +3206,8 @@ func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveCreate
 }
 
 // ArchiveOpDelete invokes ArchiveOp_delete operation.
+//
+// Archive 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/archive/{id}
 func (c *Client) ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (*ArchiveOpDeleteOK, error) {
@@ -2817,6 +3313,8 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 }
 
 // ArchiveOpFind invokes ArchiveOp_find operation.
+//
+// Archive 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/archive
 func (c *Client) ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error) {
@@ -2925,6 +3423,8 @@ func (c *Client) sendArchiveOpFind(ctx context.Context, params ArchiveOpFindPara
 
 // ArchiveOpRead invokes ArchiveOp_read operation.
 //
+// Archive 取得.
+//
 // GET /{zone}/api/cloud/1.1/archive/{id}
 func (c *Client) ArchiveOpRead(ctx context.Context, params ArchiveOpReadParams) (*ArchiveReadResponseEnvelope, error) {
 	res, err := c.sendArchiveOpRead(ctx, params)
@@ -3029,6 +3529,8 @@ func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadPara
 }
 
 // ArchiveOpShare invokes ArchiveOp_share operation.
+//
+// Archive 共有.
 //
 // PUT /{zone}/api/cloud/1.1/archive/{id}/ftp
 func (c *Client) ArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error) {
@@ -3138,6 +3640,8 @@ func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveShareRe
 }
 
 // ArchiveOpTransfer invokes ArchiveOp_transfer operation.
+//
+// Archive 移管.
 //
 // POST /{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}
 func (c *Client) ArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error) {
@@ -3275,6 +3779,8 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 
 // ArchiveOpUpdate invokes ArchiveOp_update operation.
 //
+// Archive 更新.
+//
 // PUT /{zone}/api/cloud/1.1/archive/{id}
 func (c *Client) ArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error) {
 	res, err := c.sendArchiveOpUpdate(ctx, request, params)
@@ -3392,6 +3898,8 @@ func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveUpdate
 
 // AuthStatusOpRead invokes AuthStatusOp_read operation.
 //
+// 認証情報取得.
+//
 // GET /{zone}/api/cloud/1.1/auth-status
 func (c *Client) AuthStatusOpRead(ctx context.Context, params AuthStatusOpReadParams) (*AuthStatusReadResponseEnvelope, error) {
 	res, err := c.sendAuthStatusOpRead(ctx, params)
@@ -3478,6 +3986,8 @@ func (c *Client) sendAuthStatusOpRead(ctx context.Context, params AuthStatusOpRe
 }
 
 // AutoScaleOpScaleDown invokes AutoScaleOp_scaleDown operation.
+//
+// AutoScale スケールダウン.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down
 func (c *Client) AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (*AutoScaleOpScaleDownOK, error) {
@@ -3585,6 +4095,8 @@ func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleO
 
 // AutoScaleOpScaleUp invokes AutoScaleOp_scaleUp operation.
 //
+// AutoScale スケールアップ.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up
 func (c *Client) AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (*AutoScaleOpScaleUpOK, error) {
 	res, err := c.sendAutoScaleOpScaleUp(ctx, params)
@@ -3690,6 +4202,8 @@ func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpS
 }
 
 // AutoScaleOpStatus invokes AutoScaleOp_status operation.
+//
+// AutoScale ステータス取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status
 func (c *Client) AutoScaleOpStatus(ctx context.Context, params AutoScaleOpStatusParams) (*AutoScaleStatusResponseEnvelope, error) {
@@ -3797,6 +4311,8 @@ func (c *Client) sendAutoScaleOpStatus(ctx context.Context, params AutoScaleOpSt
 
 // BillOpByContract invokes BillOp_byContract operation.
 //
+// 契約別請求情報取得.
+//
 // GET /{zone}/api/system/1.0/bill/by-contract/{accountID}
 func (c *Client) BillOpByContract(ctx context.Context, params BillOpByContractParams) (*BillByContractResponseEnvelope, error) {
 	res, err := c.sendBillOpByContract(ctx, params)
@@ -3901,6 +4417,8 @@ func (c *Client) sendBillOpByContract(ctx context.Context, params BillOpByContra
 }
 
 // BillOpByContractYear invokes BillOp_byContractYear operation.
+//
+// 契約・年別請求情報取得.
 //
 // GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}
 func (c *Client) BillOpByContractYear(ctx context.Context, params BillOpByContractYearParams) (*BillByContractYearResponseEnvelope, error) {
@@ -4025,6 +4543,8 @@ func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByCo
 }
 
 // BillOpByContractYearMonth invokes BillOp_byContractYearMonth operation.
+//
+// 契約・年月別請求情報取得.
 //
 // GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}
 func (c *Client) BillOpByContractYearMonth(ctx context.Context, params BillOpByContractYearMonthParams) (*BillByContractYearMonthResponseEnvelope, error) {
@@ -4169,6 +4689,8 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 
 // BillOpDetails invokes BillOp_details operation.
 //
+// 請求明細取得.
+//
 // GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}
 func (c *Client) BillOpDetails(ctx context.Context, params BillOpDetailsParams) (*BillDetailsResponseEnvelope, error) {
 	res, err := c.sendBillOpDetails(ctx, params)
@@ -4292,6 +4814,8 @@ func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsPara
 }
 
 // BillOpDetailsCSV invokes BillOp_detailsCSV operation.
+//
+// 請求明細 CSV 取得.
 //
 // GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv
 func (c *Client) BillOpDetailsCSV(ctx context.Context, params BillOpDetailsCSVParams) (*BillDetailsCSVResponseEnvelope, error) {
@@ -4418,6 +4942,8 @@ func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsC
 
 // BillOpRead invokes BillOp_read operation.
 //
+// 請求情報取得.
+//
 // GET /{zone}/api/system/1.0/bill/id/{id}
 func (c *Client) BillOpRead(ctx context.Context, params BillOpReadParams) (*BillReadResponseEnvelope, error) {
 	res, err := c.sendBillOpRead(ctx, params)
@@ -4523,6 +5049,8 @@ func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (r
 
 // BridgeOpCreate invokes BridgeOp_create operation.
 //
+// Bridge 作成.
+//
 // POST /{zone}/api/cloud/1.1/bridge
 func (c *Client) BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error) {
 	res, err := c.sendBridgeOpCreate(ctx, request, params)
@@ -4612,6 +5140,8 @@ func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRe
 }
 
 // BridgeOpDelete invokes BridgeOp_delete operation.
+//
+// Bridge 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/bridge/{id}
 func (c *Client) BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (*BridgeOpDeleteOK, error) {
@@ -4717,6 +5247,8 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 }
 
 // BridgeOpFind invokes BridgeOp_find operation.
+//
+// Bridge 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/bridge
 func (c *Client) BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error) {
@@ -4825,6 +5357,8 @@ func (c *Client) sendBridgeOpFind(ctx context.Context, params BridgeOpFindParams
 
 // BridgeOpRead invokes BridgeOp_read operation.
 //
+// Bridge 取得.
+//
 // GET /{zone}/api/cloud/1.1/bridge/{id}
 func (c *Client) BridgeOpRead(ctx context.Context, params BridgeOpReadParams) (*BridgeReadResponseEnvelope, error) {
 	res, err := c.sendBridgeOpRead(ctx, params)
@@ -4929,6 +5463,8 @@ func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams
 }
 
 // BridgeOpUpdate invokes BridgeOp_update operation.
+//
+// Bridge 更新.
 //
 // PUT /{zone}/api/cloud/1.1/bridge/{id}
 func (c *Client) BridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error) {
@@ -5038,6 +5574,8 @@ func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRe
 
 // CDROMOpCloseFTP invokes CDROMOp_closeFTP operation.
 //
+// CDROM FTP クローズ.
+//
 // DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
 func (c *Client) CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (*CDROMOpCloseFTPOK, error) {
 	res, err := c.sendCDROMOpCloseFTP(ctx, params)
@@ -5144,6 +5682,8 @@ func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTP
 
 // CDROMOpCreate invokes CDROMOp_create operation.
 //
+// CDROM 作成.
+//
 // POST /{zone}/api/cloud/1.1/cdrom
 func (c *Client) CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error) {
 	res, err := c.sendCDROMOpCreate(ctx, request, params)
@@ -5242,6 +5782,8 @@ func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequ
 }
 
 // CDROMOpDelete invokes CDROMOp_delete operation.
+//
+// CDROM 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/cdrom/{id}
 func (c *Client) CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (*CDROMOpDeleteOK, error) {
@@ -5347,6 +5889,8 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 }
 
 // CDROMOpFind invokes CDROMOp_find operation.
+//
+// CDROM 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/cdrom
 func (c *Client) CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error) {
@@ -5454,6 +5998,8 @@ func (c *Client) sendCDROMOpFind(ctx context.Context, params CDROMOpFindParams) 
 }
 
 // CDROMOpOpenFTP invokes CDROMOp_openFTP operation.
+//
+// CDROM FTP オープン.
 //
 // PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
 func (c *Client) CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error) {
@@ -5564,6 +6110,8 @@ func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRe
 
 // CDROMOpRead invokes CDROMOp_read operation.
 //
+// CDROM 取得.
+//
 // GET /{zone}/api/cloud/1.1/cdrom/{id}
 func (c *Client) CDROMOpRead(ctx context.Context, params CDROMOpReadParams) (*CDROMReadResponseEnvelope, error) {
 	res, err := c.sendCDROMOpRead(ctx, params)
@@ -5668,6 +6216,8 @@ func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) 
 }
 
 // CDROMOpUpdate invokes CDROMOp_update operation.
+//
+// CDROM 更新.
 //
 // PUT /{zone}/api/cloud/1.1/cdrom/{id}
 func (c *Client) CDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error) {
@@ -5785,6 +6335,8 @@ func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequ
 }
 
 // CertificateAuthorityOpAddClient invokes CertificateAuthorityOp_addClient operation.
+//
+// CertificateAuthority クライアント追加.
 //
 // POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
 func (c *Client) CertificateAuthorityOpAddClient(ctx context.Context, request *CertificateAuthorityOpAddClientReq, params CertificateAuthorityOpAddClientParams) (*CertificateAuthorityAddClientResponseEnvelope, error) {
@@ -5904,6 +6456,8 @@ func (c *Client) sendCertificateAuthorityOpAddClient(ctx context.Context, reques
 
 // CertificateAuthorityOpAddServer invokes CertificateAuthorityOp_addServer operation.
 //
+// CertificateAuthority サーバー追加.
+//
 // POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
 func (c *Client) CertificateAuthorityOpAddServer(ctx context.Context, request *CertificateAuthorityOpAddServerReq, params CertificateAuthorityOpAddServerParams) (*CertificateAuthorityAddServerResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpAddServer(ctx, request, params)
@@ -6021,6 +6575,8 @@ func (c *Client) sendCertificateAuthorityOpAddServer(ctx context.Context, reques
 }
 
 // CertificateAuthorityOpDenyClient invokes CertificateAuthorityOp_denyClient operation.
+//
+// CertificateAuthority クライアント拒否.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
 func (c *Client) CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (*CertificateAuthorityOpDenyClientOK, error) {
@@ -6147,6 +6703,8 @@ func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, param
 
 // CertificateAuthorityOpDetail invokes CertificateAuthorityOp_detail operation.
 //
+// CertificateAuthority 詳細取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority
 func (c *Client) CertificateAuthorityOpDetail(ctx context.Context, params CertificateAuthorityOpDetailParams) (*CertificateAuthorityDetailResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpDetail(ctx, params)
@@ -6252,6 +6810,8 @@ func (c *Client) sendCertificateAuthorityOpDetail(ctx context.Context, params Ce
 }
 
 // CertificateAuthorityOpHoldClient invokes CertificateAuthorityOp_holdClient operation.
+//
+// CertificateAuthority クライアント保留.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
 func (c *Client) CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (*CertificateAuthorityOpHoldClientOK, error) {
@@ -6378,6 +6938,8 @@ func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, param
 
 // CertificateAuthorityOpHoldServer invokes CertificateAuthorityOp_holdServer operation.
 //
+// CertificateAuthority サーバー保留.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
 func (c *Client) CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (*CertificateAuthorityOpHoldServerOK, error) {
 	res, err := c.sendCertificateAuthorityOpHoldServer(ctx, params)
@@ -6503,6 +7065,8 @@ func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, param
 
 // CertificateAuthorityOpListClients invokes CertificateAuthorityOp_listClients operation.
 //
+// CertificateAuthority クライアント一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
 func (c *Client) CertificateAuthorityOpListClients(ctx context.Context, params CertificateAuthorityOpListClientsParams) (*CertificateAuthorityListClientsResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpListClients(ctx, params)
@@ -6609,6 +7173,8 @@ func (c *Client) sendCertificateAuthorityOpListClients(ctx context.Context, para
 
 // CertificateAuthorityOpListServers invokes CertificateAuthorityOp_listServers operation.
 //
+// CertificateAuthority サーバー一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
 func (c *Client) CertificateAuthorityOpListServers(ctx context.Context, params CertificateAuthorityOpListServersParams) (*CertificateAuthorityListServersResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpListServers(ctx, params)
@@ -6714,6 +7280,8 @@ func (c *Client) sendCertificateAuthorityOpListServers(ctx context.Context, para
 }
 
 // CertificateAuthorityOpReadClient invokes CertificateAuthorityOp_readClient operation.
+//
+// CertificateAuthority クライアント取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}
 func (c *Client) CertificateAuthorityOpReadClient(ctx context.Context, params CertificateAuthorityOpReadClientParams) (*CertificateAuthorityReadClientResponseEnvelope, error) {
@@ -6839,6 +7407,8 @@ func (c *Client) sendCertificateAuthorityOpReadClient(ctx context.Context, param
 
 // CertificateAuthorityOpReadServer invokes CertificateAuthorityOp_readServer operation.
 //
+// CertificateAuthority サーバー取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}
 func (c *Client) CertificateAuthorityOpReadServer(ctx context.Context, params CertificateAuthorityOpReadServerParams) (*CertificateAuthorityReadServerResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpReadServer(ctx, params)
@@ -6962,6 +7532,8 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 }
 
 // CertificateAuthorityOpResumeClient invokes CertificateAuthorityOp_resumeClient operation.
+//
+// CertificateAuthority クライアント再開.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
 func (c *Client) CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (*CertificateAuthorityOpResumeClientOK, error) {
@@ -7088,6 +7660,8 @@ func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, par
 
 // CertificateAuthorityOpResumeServer invokes CertificateAuthorityOp_resumeServer operation.
 //
+// CertificateAuthority サーバー再開.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
 func (c *Client) CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (*CertificateAuthorityOpResumeServerOK, error) {
 	res, err := c.sendCertificateAuthorityOpResumeServer(ctx, params)
@@ -7212,6 +7786,8 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 }
 
 // CertificateAuthorityOpRevokeClient invokes CertificateAuthorityOp_revokeClient operation.
+//
+// CertificateAuthority クライアント破棄.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
 func (c *Client) CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (*CertificateAuthorityOpRevokeClientOK, error) {
@@ -7338,6 +7914,8 @@ func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, par
 
 // CertificateAuthorityOpRevokeServer invokes CertificateAuthorityOp_revokeServer operation.
 //
+// CertificateAuthority サーバー破棄.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
 func (c *Client) CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (*CertificateAuthorityOpRevokeServerOK, error) {
 	res, err := c.sendCertificateAuthorityOpRevokeServer(ctx, params)
@@ -7463,6 +8041,8 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 
 // CommonServiceItemOpCreate invokes CommonServiceItemOp_create operation.
 //
+// CommonServiceItem 作成.
+//
 // POST /{zone}/api/cloud/1.1/commonserviceitem
 func (c *Client) CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpCreate(ctx, request, params)
@@ -7561,6 +8141,8 @@ func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *Com
 }
 
 // CommonServiceItemOpDelete invokes CommonServiceItemOp_delete operation.
+//
+// CommonServiceItem 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
 func (c *Client) CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (*CommonServiceItemOpDeleteOK, error) {
@@ -7666,6 +8248,8 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 }
 
 // CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
+//
+// CommonServiceItem 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem
 func (c *Client) CommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error) {
@@ -7774,6 +8358,8 @@ func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, params CommonS
 
 // CommonServiceItemOpHealthStatus invokes CommonServiceItemOp_healthStatus operation.
 //
+// CommonServiceItem ヘルスステータス取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/health
 func (c *Client) CommonServiceItemOpHealthStatus(ctx context.Context, params CommonServiceItemOpHealthStatusParams) (*LocalRouterHealthStatusResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpHealthStatus(ctx, params)
@@ -7880,6 +8466,8 @@ func (c *Client) sendCommonServiceItemOpHealthStatus(ctx context.Context, params
 
 // CommonServiceItemOpRead invokes CommonServiceItemOp_read operation.
 //
+// CommonServiceItem 取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}
 func (c *Client) CommonServiceItemOpRead(ctx context.Context, params CommonServiceItemOpReadParams) (*AutoBackupReadResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpRead(ctx, params)
@@ -7984,6 +8572,8 @@ func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonS
 }
 
 // CommonServiceItemOpUpdate invokes CommonServiceItemOp_update operation.
+//
+// CommonServiceItem 更新.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}
 func (c *Client) CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error) {
@@ -8102,6 +8692,8 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 
 // ContainerRegistryOpAddUser invokes ContainerRegistryOp_addUser operation.
 //
+// ContainerRegistry ユーザー追加.
+//
 // POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
 func (c *Client) ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (*ContainerRegistryOpAddUserOK, error) {
 	res, err := c.sendContainerRegistryOpAddUser(ctx, request, params)
@@ -8210,6 +8802,8 @@ func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *Co
 }
 
 // ContainerRegistryOpDeleteUser invokes ContainerRegistryOp_deleteUser operation.
+//
+// ContainerRegistry ユーザー削除.
 //
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
 func (c *Client) ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (*ContainerRegistryOpDeleteUserOK, error) {
@@ -8335,6 +8929,8 @@ func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params C
 
 // ContainerRegistryOpListUsers invokes ContainerRegistryOp_listUsers operation.
 //
+// ContainerRegistry ユーザー一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
 func (c *Client) ContainerRegistryOpListUsers(ctx context.Context, params ContainerRegistryOpListUsersParams) (*ContainerRegistryListUsersResponseEnvelope, error) {
 	res, err := c.sendContainerRegistryOpListUsers(ctx, params)
@@ -8440,6 +9036,8 @@ func (c *Client) sendContainerRegistryOpListUsers(ctx context.Context, params Co
 }
 
 // ContainerRegistryOpUpdateUser invokes ContainerRegistryOp_updateUser operation.
+//
+// ContainerRegistry ユーザー更新.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
 func (c *Client) ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (*ContainerRegistryOpUpdateUserOK, error) {
@@ -8568,6 +9166,8 @@ func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request 
 
 // CouponOpFind invokes CouponOp_find operation.
 //
+// クーポン情報取得.
+//
 // GET /{zone}/api/system/1.0/coupon/{accountID}
 func (c *Client) CouponOpFind(ctx context.Context, params CouponOpFindParams) (*CouponFindResponseEnvelope, error) {
 	res, err := c.sendCouponOpFind(ctx, params)
@@ -8672,6 +9272,8 @@ func (c *Client) sendCouponOpFind(ctx context.Context, params CouponOpFindParams
 }
 
 // DatabaseOpGetParameter invokes DatabaseOp_getParameter operation.
+//
+// Database パラメータ取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
 func (c *Client) DatabaseOpGetParameter(ctx context.Context, params DatabaseOpGetParameterParams) (*DatabaseGetParameterResponseEnvelope, error) {
@@ -8778,6 +9380,8 @@ func (c *Client) sendDatabaseOpGetParameter(ctx context.Context, params Database
 }
 
 // DatabaseOpMonitorDisk invokes DatabaseOp_monitorDisk operation.
+//
+// Database ディスクモニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor
 func (c *Client) DatabaseOpMonitorDisk(ctx context.Context, request *DatabaseOpMonitorDiskReq, params DatabaseOpMonitorDiskParams) (*DatabaseMonitorDiskResponseEnvelope, error) {
@@ -8888,6 +9492,8 @@ func (c *Client) sendDatabaseOpMonitorDisk(ctx context.Context, request *Databas
 
 // DatabaseOpSetParameter invokes DatabaseOp_setParameter operation.
 //
+// Database パラメータ設定.
+//
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
 func (c *Client) DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (*DatabaseOpSetParameterOK, error) {
 	res, err := c.sendDatabaseOpSetParameter(ctx, request, params)
@@ -8997,6 +9603,8 @@ func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *Databa
 
 // DiskOpConfig invokes DiskOp_config operation.
 //
+// ディスクの修正反映.
+//
 // PUT /{zone}/api/cloud/1.1/disk/{id}/config
 func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (*DiskOpConfigOK, error) {
 	res, err := c.sendDiskOpConfig(ctx, request, params)
@@ -9105,6 +9713,8 @@ func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigReques
 }
 
 // DiskOpConnectToServer invokes DiskOp_connectToServer operation.
+//
+// Disk サーバー接続.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
 func (c *Client) DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (*DiskOpConnectToServerOK, error) {
@@ -9230,6 +9840,8 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 
 // DiskOpCreate invokes DiskOp_create operation.
 //
+// Disk 作成.
+//
 // POST /{zone}/api/cloud/1.1/disk
 func (c *Client) DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error) {
 	res, err := c.sendDiskOpCreate(ctx, request, params)
@@ -9328,6 +9940,8 @@ func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskCreateReques
 }
 
 // DiskOpDelete invokes DiskOp_delete operation.
+//
+// Disk 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/disk/{id}
 func (c *Client) DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*DiskOpDeleteOK, error) {
@@ -9433,6 +10047,8 @@ func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams
 }
 
 // DiskOpDisconnectFromServer invokes DiskOp_disconnectFromServer operation.
+//
+// Disk サーバー切断.
 //
 // DELETE /{zone}/api/cloud/1.1/disk/{id}/to/server
 func (c *Client) DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (*DiskOpDisconnectFromServerOK, error) {
@@ -9540,6 +10156,8 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 
 // DiskOpFind invokes DiskOp_find operation.
 //
+// Disk 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/disk
 func (c *Client) DiskOpFind(ctx context.Context, params DiskOpFindParams) (*DiskFindResponseEnvelope, error) {
 	res, err := c.sendDiskOpFind(ctx, params)
@@ -9646,6 +10264,8 @@ func (c *Client) sendDiskOpFind(ctx context.Context, params DiskOpFindParams) (r
 }
 
 // DiskOpMonitor invokes DiskOp_monitor operation.
+//
+// Disk モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/disk/{id}/monitor
 func (c *Client) DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error) {
@@ -9756,6 +10376,8 @@ func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskMonitorRequ
 
 // DiskOpRead invokes DiskOp_read operation.
 //
+// Disk 取得.
+//
 // GET /{zone}/api/cloud/1.1/disk/{id}
 func (c *Client) DiskOpRead(ctx context.Context, params DiskOpReadParams) (*DiskReadResponseEnvelope, error) {
 	res, err := c.sendDiskOpRead(ctx, params)
@@ -9860,6 +10482,8 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 }
 
 // DiskOpResizePartition invokes DiskOp_resizePartition operation.
+//
+// Disk パーティションリサイズ.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
 func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (*DiskOpResizePartitionOK, error) {
@@ -9969,6 +10593,8 @@ func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskRes
 }
 
 // DiskOpUpdate invokes DiskOp_update operation.
+//
+// Disk 更新.
 //
 // PUT /{zone}/api/cloud/1.1/disk/{id}
 func (c *Client) DiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error) {
@@ -10087,6 +10713,8 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateReques
 
 // DiskPlanOpFind invokes DiskPlanOp_find operation.
 //
+// DiskPlan 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/product/disk
 func (c *Client) DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error) {
 	res, err := c.sendDiskPlanOpFind(ctx, params)
@@ -10194,6 +10822,8 @@ func (c *Client) sendDiskPlanOpFind(ctx context.Context, params DiskPlanOpFindPa
 
 // DiskPlanOpRead invokes DiskPlanOp_read operation.
 //
+// DiskPlan 取得.
+//
 // GET /{zone}/api/cloud/1.1/product/disk/{id}
 func (c *Client) DiskPlanOpRead(ctx context.Context, params DiskPlanOpReadParams) (*DiskPlanReadResponseEnvelope, error) {
 	res, err := c.sendDiskPlanOpRead(ctx, params)
@@ -10298,6 +10928,8 @@ func (c *Client) sendDiskPlanOpRead(ctx context.Context, params DiskPlanOpReadPa
 }
 
 // ESMEOpLogs invokes ESMEOp_logs operation.
+//
+// SMS 送信ログ取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/logs
 func (c *Client) ESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (*ESMELogsResponseEnvelope, error) {
@@ -10404,6 +11036,8 @@ func (c *Client) sendESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (r
 }
 
 // ESMEOpSendMessageWithGeneratedOTP invokes ESMEOp_sendMessageWithGeneratedOTP operation.
+//
+// 自動生成 OTP 付き SMS メッセージ送信.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa/otp
 func (c *Client) ESMEOpSendMessageWithGeneratedOTP(ctx context.Context, request *ESMEOpSendMessageWithGeneratedOTPReq, params ESMEOpSendMessageWithGeneratedOTPParams) (*ESMESendMessageWithGeneratedOTPResponseEnvelope, error) {
@@ -10514,6 +11148,8 @@ func (c *Client) sendESMEOpSendMessageWithGeneratedOTP(ctx context.Context, requ
 
 // ESMEOpSendMessageWithInputtedOTP invokes ESMEOp_sendMessageWithInputtedOTP operation.
 //
+// 指定 OTP 付き SMS メッセージ送信.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa
 func (c *Client) ESMEOpSendMessageWithInputtedOTP(ctx context.Context, request *ESMEOpSendMessageWithInputtedOTPReq, params ESMEOpSendMessageWithInputtedOTPParams) (*ESMESendMessageWithInputtedOTPResponseEnvelope, error) {
 	res, err := c.sendESMEOpSendMessageWithInputtedOTP(ctx, request, params)
@@ -10623,6 +11259,8 @@ func (c *Client) sendESMEOpSendMessageWithInputtedOTP(ctx context.Context, reque
 
 // EnhancedDBOpGetConfig invokes EnhancedDBOp_getConfig operation.
 //
+// EnhancedDB 設定取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
 func (c *Client) EnhancedDBOpGetConfig(ctx context.Context, params EnhancedDBOpGetConfigParams) (*EnhancedDBGetConfigResponseEnvelope, error) {
 	res, err := c.sendEnhancedDBOpGetConfig(ctx, params)
@@ -10728,6 +11366,8 @@ func (c *Client) sendEnhancedDBOpGetConfig(ctx context.Context, params EnhancedD
 }
 
 // EnhancedDBOpSetConfig invokes EnhancedDBOp_setConfig operation.
+//
+// EnhancedDB 設定更新.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
 func (c *Client) EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (*EnhancedDBOpSetConfigOK, error) {
@@ -10847,6 +11487,8 @@ func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *Enhance
 
 // EnhancedDBOpSetPassword invokes EnhancedDBOp_setPassword operation.
 //
+// EnhancedDB パスワード設定.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password
 func (c *Client) EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (*EnhancedDBOpSetPasswordOK, error) {
 	res, err := c.sendEnhancedDBOpSetPassword(ctx, request, params)
@@ -10956,6 +11598,8 @@ func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *Enhan
 
 // IPAddressOpList invokes IPAddressOp_list operation.
 //
+// IPAddress 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/ipaddress
 func (c *Client) IPAddressOpList(ctx context.Context, params IPAddressOpListParams) (*IPAddressListResponseEnvelope, error) {
 	res, err := c.sendIPAddressOpList(ctx, params)
@@ -11042,6 +11686,8 @@ func (c *Client) sendIPAddressOpList(ctx context.Context, params IPAddressOpList
 }
 
 // IPAddressOpRead invokes IPAddressOp_read operation.
+//
+// IPAddress 取得.
 //
 // GET /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
 func (c *Client) IPAddressOpRead(ctx context.Context, params IPAddressOpReadParams) (*IPAddressReadResponseEnvelope, error) {
@@ -11147,6 +11793,8 @@ func (c *Client) sendIPAddressOpRead(ctx context.Context, params IPAddressOpRead
 }
 
 // IPAddressOpUpdateHostName invokes IPAddressOp_updateHostName operation.
+//
+// IPAddress ホスト名更新.
 //
 // PUT /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
 func (c *Client) IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error) {
@@ -11256,6 +11904,8 @@ func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPA
 
 // IPv6AddrOpCreate invokes IPv6AddrOp_create operation.
 //
+// IPv6Addr 作成.
+//
 // POST /{zone}/api/cloud/1.1/ipv6addr
 func (c *Client) IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpCreate(ctx, request, params)
@@ -11345,6 +11995,8 @@ func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCrea
 }
 
 // IPv6AddrOpDelete invokes IPv6AddrOp_delete operation.
+//
+// IPv6Addr 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
 func (c *Client) IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (*IPv6AddrOpDeleteOK, error) {
@@ -11450,6 +12102,8 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 }
 
 // IPv6AddrOpFind invokes IPv6AddrOp_find operation.
+//
+// IPv6Addr 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/ipv6addr
 func (c *Client) IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error) {
@@ -11558,6 +12212,8 @@ func (c *Client) sendIPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindPa
 
 // IPv6AddrOpRead invokes IPv6AddrOp_read operation.
 //
+// IPv6Addr 取得.
+//
 // GET /{zone}/api/cloud/1.1/ipv6addr/{id}
 func (c *Client) IPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadParams) (*IPv6AddrReadResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpRead(ctx, params)
@@ -11662,6 +12318,8 @@ func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadPa
 }
 
 // IPv6AddrOpUpdate invokes IPv6AddrOp_update operation.
+//
+// IPv6Addr 更新.
 //
 // PUT /{zone}/api/cloud/1.1/ipv6addr/{id}
 func (c *Client) IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error) {
@@ -11771,6 +12429,8 @@ func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpda
 
 // IPv6NetOpList invokes IPv6NetOp_list operation.
 //
+// IPv6Net 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/ipv6net
 func (c *Client) IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error) {
 	res, err := c.sendIPv6NetOpList(ctx, request, params)
@@ -11860,6 +12520,8 @@ func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetListRequ
 }
 
 // IPv6NetOpRead invokes IPv6NetOp_read operation.
+//
+// IPv6Net 取得.
 //
 // GET /{zone}/api/cloud/1.1/ipv6net/{id}
 func (c *Client) IPv6NetOpRead(ctx context.Context, params IPv6NetOpReadParams) (*IPv6NetReadResponseEnvelope, error) {
@@ -11966,6 +12628,8 @@ func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadPara
 
 // IconOpCreate invokes IconOp_create operation.
 //
+// Icon 作成.
+//
 // POST /{zone}/api/cloud/1.1/icon
 func (c *Client) IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (*IconCreateResponseEnvelope, error) {
 	res, err := c.sendIconOpCreate(ctx, request, params)
@@ -12064,6 +12728,8 @@ func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateReques
 }
 
 // IconOpDelete invokes IconOp_delete operation.
+//
+// Icon 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/icon/{id}
 func (c *Client) IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*IconOpDeleteOK, error) {
@@ -12169,6 +12835,8 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 }
 
 // IconOpFind invokes IconOp_find operation.
+//
+// Icon 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/icon
 func (c *Client) IconOpFind(ctx context.Context, params IconOpFindParams) (*IconFindResponseEnvelope, error) {
@@ -12277,6 +12945,8 @@ func (c *Client) sendIconOpFind(ctx context.Context, params IconOpFindParams) (r
 
 // IconOpRead invokes IconOp_read operation.
 //
+// Icon 取得.
+//
 // GET /{zone}/api/cloud/1.1/icon/{id}
 func (c *Client) IconOpRead(ctx context.Context, params IconOpReadParams) (*IconReadResponseEnvelope, error) {
 	res, err := c.sendIconOpRead(ctx, params)
@@ -12381,6 +13051,8 @@ func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (r
 }
 
 // IconOpUpdate invokes IconOp_update operation.
+//
+// Icon 更新.
 //
 // PUT /{zone}/api/cloud/1.1/icon/{id}
 func (c *Client) IconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error) {
@@ -12498,6 +13170,8 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateReques
 }
 
 // InterfaceOpConnectToPacketFilter invokes InterfaceOp_connectToPacketFilter operation.
+//
+// Interface パケットフィルタ接続.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
 func (c *Client) InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (*InterfaceOpConnectToPacketFilterOK, error) {
@@ -12623,6 +13297,8 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 
 // InterfaceOpConnectToSharedSegment invokes InterfaceOp_connectToSharedSegment operation.
 //
+// Interface 共有セグメント接続.
+//
 // PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/shared
 func (c *Client) InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (*InterfaceOpConnectToSharedSegmentOK, error) {
 	res, err := c.sendInterfaceOpConnectToSharedSegment(ctx, params)
@@ -12728,6 +13404,8 @@ func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, para
 }
 
 // InterfaceOpConnectToSwitch invokes InterfaceOp_connectToSwitch operation.
+//
+// Interface スイッチ接続.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}
 func (c *Client) InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (*InterfaceOpConnectToSwitchOK, error) {
@@ -12853,6 +13531,8 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 
 // InterfaceOpCreate invokes InterfaceOp_create operation.
 //
+// Interface 作成.
+//
 // POST /{zone}/api/cloud/1.1/interface
 func (c *Client) InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpCreate(ctx, request, params)
@@ -12942,6 +13622,8 @@ func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceCr
 }
 
 // InterfaceOpDelete invokes InterfaceOp_delete operation.
+//
+// Interface 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/interface/{id}
 func (c *Client) InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (*InterfaceOpDeleteOK, error) {
@@ -13047,6 +13729,8 @@ func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDe
 }
 
 // InterfaceOpDisconnectFromPacketFilter invokes InterfaceOp_disconnectFromPacketFilter operation.
+//
+// Interface パケットフィルタ切断.
 //
 // DELETE /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter
 func (c *Client) InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (*InterfaceOpDisconnectFromPacketFilterOK, error) {
@@ -13154,6 +13838,8 @@ func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, 
 
 // InterfaceOpDisconnectFromSwitch invokes InterfaceOp_disconnectFromSwitch operation.
 //
+// Interface スイッチ切断.
+//
 // DELETE /{zone}/api/cloud/1.1/interface/{id}/to/switch
 func (c *Client) InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (*InterfaceOpDisconnectFromSwitchOK, error) {
 	res, err := c.sendInterfaceOpDisconnectFromSwitch(ctx, params)
@@ -13259,6 +13945,8 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 }
 
 // InterfaceOpFind invokes InterfaceOp_find operation.
+//
+// Interface 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/interface
 func (c *Client) InterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error) {
@@ -13366,6 +14054,8 @@ func (c *Client) sendInterfaceOpFind(ctx context.Context, params InterfaceOpFind
 }
 
 // InterfaceOpMonitor invokes InterfaceOp_monitor operation.
+//
+// Interface モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/interface/{id}/monitor
 func (c *Client) InterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error) {
@@ -13476,6 +14166,8 @@ func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceM
 
 // InterfaceOpRead invokes InterfaceOp_read operation.
 //
+// Interface 取得.
+//
 // GET /{zone}/api/cloud/1.1/interface/{id}
 func (c *Client) InterfaceOpRead(ctx context.Context, params InterfaceOpReadParams) (*InterfaceReadResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpRead(ctx, params)
@@ -13580,6 +14272,8 @@ func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpRead
 }
 
 // InterfaceOpUpdate invokes InterfaceOp_update operation.
+//
+// Interface 更新.
 //
 // PUT /{zone}/api/cloud/1.1/interface/{id}
 func (c *Client) InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error) {
@@ -13688,6 +14382,8 @@ func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceUp
 }
 
 // InternetOpAddSubnet invokes InternetOp_addSubnet operation.
+//
+// Internet サブネット追加.
 //
 // POST /{zone}/api/cloud/1.1/internet/{id}/subnet
 func (c *Client) InternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error) {
@@ -13798,6 +14494,8 @@ func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetA
 
 // InternetOpCreate invokes InternetOp_create operation.
 //
+// Internet 作成.
+//
 // POST /{zone}/api/cloud/1.1/internet
 func (c *Client) InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error) {
 	res, err := c.sendInternetOpCreate(ctx, request, params)
@@ -13896,6 +14594,8 @@ func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCrea
 }
 
 // InternetOpDelete invokes InternetOp_delete operation.
+//
+// Internet 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/internet/{id}
 func (c *Client) InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (*InternetOpDeleteOK, error) {
@@ -14001,6 +14701,8 @@ func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDele
 }
 
 // InternetOpDeleteSubnet invokes InternetOp_deleteSubnet operation.
+//
+// Internet サブネット削除.
 //
 // DELETE /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
 func (c *Client) InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (*InternetOpDeleteSubnetOK, error) {
@@ -14126,6 +14828,8 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 
 // InternetOpDisableIPv6 invokes InternetOp_disableIPv6 operation.
 //
+// Internet IPv6 無効化.
+//
 // DELETE /{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}
 func (c *Client) InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (*InternetOpDisableIPv6OK, error) {
 	res, err := c.sendInternetOpDisableIPv6(ctx, params)
@@ -14250,6 +14954,8 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 
 // InternetOpEnableIPv6 invokes InternetOp_enableIPv6 operation.
 //
+// Internet IPv6 有効化.
+//
 // POST /{zone}/api/cloud/1.1/internet/{id}/ipv6net
 func (c *Client) InternetOpEnableIPv6(ctx context.Context, params InternetOpEnableIPv6Params) (*InternetEnableIPv6ResponseEnvelope, error) {
 	res, err := c.sendInternetOpEnableIPv6(ctx, params)
@@ -14355,6 +15061,8 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 }
 
 // InternetOpFind invokes InternetOp_find operation.
+//
+// Internet 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/internet
 func (c *Client) InternetOpFind(ctx context.Context, params InternetOpFindParams) (*InternetFindResponseEnvelope, error) {
@@ -14462,6 +15170,8 @@ func (c *Client) sendInternetOpFind(ctx context.Context, params InternetOpFindPa
 }
 
 // InternetOpMonitor invokes InternetOp_monitor operation.
+//
+// Internet モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/internet/{id}/monitor
 func (c *Client) InternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error) {
@@ -14572,6 +15282,8 @@ func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetMon
 
 // InternetOpRead invokes InternetOp_read operation.
 //
+// Internet 取得.
+//
 // GET /{zone}/api/cloud/1.1/internet/{id}
 func (c *Client) InternetOpRead(ctx context.Context, params InternetOpReadParams) (*InternetReadResponseEnvelope, error) {
 	res, err := c.sendInternetOpRead(ctx, params)
@@ -14676,6 +15388,8 @@ func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadPa
 }
 
 // InternetOpUpdate invokes InternetOp_update operation.
+//
+// Internet 更新.
 //
 // PUT /{zone}/api/cloud/1.1/internet/{id}
 func (c *Client) InternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error) {
@@ -14794,6 +15508,8 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetUpda
 
 // InternetOpUpdateBandWidth invokes InternetOp_updateBandWidth operation.
 //
+// Internet 帯域更新.
+//
 // PUT /{zone}/api/cloud/1.1/internet/{id}/bandwidth
 func (c *Client) InternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdateBandWidth(ctx, request, params)
@@ -14902,6 +15618,8 @@ func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *Int
 }
 
 // InternetOpUpdateSubnet invokes InternetOp_updateSubnet operation.
+//
+// Internet サブネット更新.
 //
 // PUT /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
 func (c *Client) InternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error) {
@@ -15030,6 +15748,8 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 
 // InternetPlanOpFind invokes InternetPlanOp_find operation.
 //
+// InternetPlan 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/product/internet
 func (c *Client) InternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error) {
 	res, err := c.sendInternetPlanOpFind(ctx, params)
@@ -15137,6 +15857,8 @@ func (c *Client) sendInternetPlanOpFind(ctx context.Context, params InternetPlan
 
 // InternetPlanOpRead invokes InternetPlanOp_read operation.
 //
+// InternetPlan 取得.
+//
 // GET /{zone}/api/cloud/1.1/product/internet/{id}
 func (c *Client) InternetPlanOpRead(ctx context.Context, params InternetPlanOpReadParams) (*InternetPlanReadResponseEnvelope, error) {
 	res, err := c.sendInternetPlanOpRead(ctx, params)
@@ -15241,6 +15963,8 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 }
 
 // LicenseInfoOpFind invokes LicenseInfoOp_find operation.
+//
+// LicenseInfo 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/product/license
 func (c *Client) LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error) {
@@ -15349,6 +16073,8 @@ func (c *Client) sendLicenseInfoOpFind(ctx context.Context, params LicenseInfoOp
 
 // LicenseInfoOpRead invokes LicenseInfoOp_read operation.
 //
+// LicenseInfo 取得.
+//
 // GET /{zone}/api/cloud/1.1/product/license/{id}
 func (c *Client) LicenseInfoOpRead(ctx context.Context, params LicenseInfoOpReadParams) (*LicenseInfoReadResponseEnvelope, error) {
 	res, err := c.sendLicenseInfoOpRead(ctx, params)
@@ -15454,6 +16180,8 @@ func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOp
 
 // LicenseOpCreate invokes LicenseOp_create operation.
 //
+// License 作成.
+//
 // POST /{zone}/api/cloud/1.1/license
 func (c *Client) LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error) {
 	res, err := c.sendLicenseOpCreate(ctx, request, params)
@@ -15543,6 +16271,8 @@ func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseCreate
 }
 
 // LicenseOpDelete invokes LicenseOp_delete operation.
+//
+// License 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/license/{id}
 func (c *Client) LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (*LicenseOpDeleteOK, error) {
@@ -15648,6 +16378,8 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 }
 
 // LicenseOpFind invokes LicenseOp_find operation.
+//
+// License 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/license
 func (c *Client) LicenseOpFind(ctx context.Context, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error) {
@@ -15756,6 +16488,8 @@ func (c *Client) sendLicenseOpFind(ctx context.Context, params LicenseOpFindPara
 
 // LicenseOpRead invokes LicenseOp_read operation.
 //
+// License 取得.
+//
 // GET /{zone}/api/cloud/1.1/license/{id}
 func (c *Client) LicenseOpRead(ctx context.Context, params LicenseOpReadParams) (*LicenseReadResponseEnvelope, error) {
 	res, err := c.sendLicenseOpRead(ctx, params)
@@ -15860,6 +16594,8 @@ func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadPara
 }
 
 // LicenseOpUpdate invokes LicenseOp_update operation.
+//
+// License 更新.
 //
 // PUT /{zone}/api/cloud/1.1/license/{id}
 func (c *Client) LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error) {
@@ -15968,6 +16704,8 @@ func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseUpdate
 }
 
 // LocalRouterOpMonitorLocalRouter invokes LocalRouterOp_monitorLocalRouter operation.
+//
+// LocalRouter モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor
 func (c *Client) LocalRouterOpMonitorLocalRouter(ctx context.Context, request *LocalRouterOpMonitorLocalRouterReq, params LocalRouterOpMonitorLocalRouterParams) (*LocalRouterMonitorLocalRouterResponseEnvelope, error) {
@@ -16078,6 +16816,8 @@ func (c *Client) sendLocalRouterOpMonitorLocalRouter(ctx context.Context, reques
 
 // MobileGatewayOpAddSIM invokes MobileGatewayOp_addSIM operation.
 //
+// MobileGateway SIM 追加.
+//
 // POST /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
 func (c *Client) MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (*MobileGatewayOpAddSIMOK, error) {
 	res, err := c.sendMobileGatewayOpAddSIM(ctx, request, params)
@@ -16186,6 +16926,8 @@ func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileG
 }
 
 // MobileGatewayOpConnectToSwitch invokes MobileGatewayOp_connectToSwitch operation.
+//
+// MobileGateway スイッチ接続.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}
 func (c *Client) MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (*MobileGatewayOpConnectToSwitchOK, error) {
@@ -16311,6 +17053,8 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 
 // MobileGatewayOpDeleteSIM invokes MobileGatewayOp_deleteSIM operation.
 //
+// MobileGateway SIM 削除.
+//
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
 func (c *Client) MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (*MobileGatewayOpDeleteSIMOK, error) {
 	res, err := c.sendMobileGatewayOpDeleteSIM(ctx, params)
@@ -16435,6 +17179,8 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 
 // MobileGatewayOpDeleteTrafficConfig invokes MobileGatewayOp_deleteTrafficConfig operation.
 //
+// MobileGateway トラフィック設定削除.
+//
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
 func (c *Client) MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (*MobileGatewayOpDeleteTrafficConfigOK, error) {
 	res, err := c.sendMobileGatewayOpDeleteTrafficConfig(ctx, params)
@@ -16540,6 +17286,8 @@ func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, par
 }
 
 // MobileGatewayOpDisconnectFromSwitch invokes MobileGatewayOp_disconnectFromSwitch operation.
+//
+// MobileGateway スイッチ切断.
 //
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch
 func (c *Client) MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (*MobileGatewayOpDisconnectFromSwitchOK, error) {
@@ -16647,6 +17395,8 @@ func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, pa
 
 // MobileGatewayOpGetDNS invokes MobileGatewayOp_getDNS operation.
 //
+// MobileGateway DNS 取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
 func (c *Client) MobileGatewayOpGetDNS(ctx context.Context, params MobileGatewayOpGetDNSParams) (*MobileGatewayGetDNSResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpGetDNS(ctx, params)
@@ -16752,6 +17502,8 @@ func (c *Client) sendMobileGatewayOpGetDNS(ctx context.Context, params MobileGat
 }
 
 // MobileGatewayOpGetSIMRoutes invokes MobileGatewayOp_getSIMRoutes operation.
+//
+// MobileGateway SIM ルート取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
 func (c *Client) MobileGatewayOpGetSIMRoutes(ctx context.Context, params MobileGatewayOpGetSIMRoutesParams) (*MobileGatewayGetSIMRoutesResponseEnvelope, error) {
@@ -16859,6 +17611,8 @@ func (c *Client) sendMobileGatewayOpGetSIMRoutes(ctx context.Context, params Mob
 
 // MobileGatewayOpGetTrafficConfig invokes MobileGatewayOp_getTrafficConfig operation.
 //
+// MobileGateway トラフィック設定取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
 func (c *Client) MobileGatewayOpGetTrafficConfig(ctx context.Context, params MobileGatewayOpGetTrafficConfigParams) (*MobileGatewayGetTrafficConfigResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpGetTrafficConfig(ctx, params)
@@ -16964,6 +17718,8 @@ func (c *Client) sendMobileGatewayOpGetTrafficConfig(ctx context.Context, params
 }
 
 // MobileGatewayOpListSIM invokes MobileGatewayOp_listSIM operation.
+//
+// MobileGateway SIM 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
 func (c *Client) MobileGatewayOpListSIM(ctx context.Context, params MobileGatewayOpListSIMParams) (*MobileGatewayListSIMResponseEnvelope, error) {
@@ -17071,6 +17827,8 @@ func (c *Client) sendMobileGatewayOpListSIM(ctx context.Context, params MobileGa
 
 // MobileGatewayOpLogs invokes MobileGatewayOp_logs operation.
 //
+// MobileGateway ログ取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog
 func (c *Client) MobileGatewayOpLogs(ctx context.Context, params MobileGatewayOpLogsParams) (*MobileGatewayLogsResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpLogs(ctx, params)
@@ -17176,6 +17934,8 @@ func (c *Client) sendMobileGatewayOpLogs(ctx context.Context, params MobileGatew
 }
 
 // MobileGatewayOpSetDNS invokes MobileGatewayOp_setDNS operation.
+//
+// MobileGateway DNS 設定.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
 func (c *Client) MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (*MobileGatewayOpSetDNSOK, error) {
@@ -17285,6 +18045,8 @@ func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileG
 }
 
 // MobileGatewayOpSetSIMRoutes invokes MobileGatewayOp_setSIMRoutes operation.
+//
+// MobileGateway SIM ルート設定.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
 func (c *Client) MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (*MobileGatewayOpSetSIMRoutesOK, error) {
@@ -17404,6 +18166,8 @@ func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *M
 
 // MobileGatewayOpSetTrafficConfig invokes MobileGatewayOp_setTrafficConfig operation.
 //
+// MobileGateway トラフィック設定更新.
+//
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
 func (c *Client) MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (*MobileGatewayOpSetTrafficConfigOK, error) {
 	res, err := c.sendMobileGatewayOpSetTrafficConfig(ctx, request, params)
@@ -17513,6 +18277,8 @@ func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, reques
 
 // MobileGatewayOpTrafficStatus invokes MobileGatewayOp_trafficStatus operation.
 //
+// MobileGateway トラフィック状況取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status
 func (c *Client) MobileGatewayOpTrafficStatus(ctx context.Context, params MobileGatewayOpTrafficStatusParams) (*MobileGatewayTrafficStatusResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpTrafficStatus(ctx, params)
@@ -17619,6 +18385,8 @@ func (c *Client) sendMobileGatewayOpTrafficStatus(ctx context.Context, params Mo
 
 // NoteOpCreate invokes NoteOp_create operation.
 //
+// Note 作成.
+//
 // POST /{zone}/api/cloud/1.1/note
 func (c *Client) NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error) {
 	res, err := c.sendNoteOpCreate(ctx, request, params)
@@ -17717,6 +18485,8 @@ func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateReques
 }
 
 // NoteOpDelete invokes NoteOp_delete operation.
+//
+// Note 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/note/{id}
 func (c *Client) NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*NoteOpDeleteOK, error) {
@@ -17822,6 +18592,8 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 }
 
 // NoteOpFind invokes NoteOp_find operation.
+//
+// Note 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/note
 func (c *Client) NoteOpFind(ctx context.Context, params NoteOpFindParams) (*NoteFindResponseEnvelope, error) {
@@ -17930,6 +18702,8 @@ func (c *Client) sendNoteOpFind(ctx context.Context, params NoteOpFindParams) (r
 
 // NoteOpRead invokes NoteOp_read operation.
 //
+// Note 取得.
+//
 // GET /{zone}/api/cloud/1.1/note/{id}
 func (c *Client) NoteOpRead(ctx context.Context, params NoteOpReadParams) (*NoteReadResponseEnvelope, error) {
 	res, err := c.sendNoteOpRead(ctx, params)
@@ -18034,6 +18808,8 @@ func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (r
 }
 
 // NoteOpUpdate invokes NoteOp_update operation.
+//
+// Note 更新.
 //
 // PUT /{zone}/api/cloud/1.1/note/{id}
 func (c *Client) NoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error) {
@@ -18152,6 +18928,8 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteUpdateReques
 
 // PacketFilterOpCreate invokes PacketFilterOp_create operation.
 //
+// PacketFilter 作成.
+//
 // POST /{zone}/api/cloud/1.1/packetfilter
 func (c *Client) PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpCreate(ctx, request, params)
@@ -18250,6 +19028,8 @@ func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFi
 }
 
 // PacketFilterOpDelete invokes PacketFilterOp_delete operation.
+//
+// PacketFilter 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
 func (c *Client) PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (*PacketFilterOpDeleteOK, error) {
@@ -18355,6 +19135,8 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 }
 
 // PacketFilterOpFind invokes PacketFilterOp_find operation.
+//
+// PacketFilter 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/packetfilter
 func (c *Client) PacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error) {
@@ -18463,6 +19245,8 @@ func (c *Client) sendPacketFilterOpFind(ctx context.Context, params PacketFilter
 
 // PacketFilterOpRead invokes PacketFilterOp_read operation.
 //
+// PacketFilter 取得.
+//
 // GET /{zone}/api/cloud/1.1/packetfilter/{id}
 func (c *Client) PacketFilterOpRead(ctx context.Context, params PacketFilterOpReadParams) (*PacketFilterReadResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpRead(ctx, params)
@@ -18567,6 +19351,8 @@ func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilter
 }
 
 // PacketFilterOpUpdate invokes PacketFilterOp_update operation.
+//
+// PacketFilter 更新.
 //
 // PUT /{zone}/api/cloud/1.1/packetfilter/{id}
 func (c *Client) PacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error) {
@@ -18685,6 +19471,8 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 
 // PrivateHostOpCreate invokes PrivateHostOp_create operation.
 //
+// PrivateHost 作成.
+//
 // POST /{zone}/api/cloud/1.1/privatehost
 func (c *Client) PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpCreate(ctx, request, params)
@@ -18783,6 +19571,8 @@ func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHo
 }
 
 // PrivateHostOpDelete invokes PrivateHostOp_delete operation.
+//
+// PrivateHost 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/privatehost/{id}
 func (c *Client) PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (*PrivateHostOpDeleteOK, error) {
@@ -18888,6 +19678,8 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 }
 
 // PrivateHostOpFind invokes PrivateHostOp_find operation.
+//
+// PrivateHost 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/privatehost
 func (c *Client) PrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error) {
@@ -18996,6 +19788,8 @@ func (c *Client) sendPrivateHostOpFind(ctx context.Context, params PrivateHostOp
 
 // PrivateHostOpRead invokes PrivateHostOp_read operation.
 //
+// PrivateHost 取得.
+//
 // GET /{zone}/api/cloud/1.1/privatehost/{id}
 func (c *Client) PrivateHostOpRead(ctx context.Context, params PrivateHostOpReadParams) (*PrivateHostReadResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpRead(ctx, params)
@@ -19100,6 +19894,8 @@ func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOp
 }
 
 // PrivateHostOpUpdate invokes PrivateHostOp_update operation.
+//
+// PrivateHost 更新.
 //
 // PUT /{zone}/api/cloud/1.1/privatehost/{id}
 func (c *Client) PrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error) {
@@ -19218,6 +20014,8 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 
 // PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
 //
+// PrivateHostPlan 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/product/privatehost
 func (c *Client) PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error) {
 	res, err := c.sendPrivateHostPlanOpFind(ctx, params)
@@ -19325,6 +20123,8 @@ func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, params PrivateHo
 
 // PrivateHostPlanOpRead invokes PrivateHostPlanOp_read operation.
 //
+// PrivateHostPlan 取得.
+//
 // GET /{zone}/api/cloud/1.1/product/privatehost/{id}
 func (c *Client) PrivateHostPlanOpRead(ctx context.Context, params PrivateHostPlanOpReadParams) (*PrivateHostPlanReadResponseEnvelope, error) {
 	res, err := c.sendPrivateHostPlanOpRead(ctx, params)
@@ -19429,6 +20229,8 @@ func (c *Client) sendPrivateHostPlanOpRead(ctx context.Context, params PrivateHo
 }
 
 // ProxyLBOpChangePlan invokes ProxyLBOp_changePlan operation.
+//
+// ProxyLB プラン変更.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/plan
 func (c *Client) ProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOpChangePlanReq, params ProxyLBOpChangePlanParams) (*ProxyLBChangePlanResponseEnvelope, error) {
@@ -19539,6 +20341,8 @@ func (c *Client) sendProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOp
 
 // ProxyLBOpDeleteCertificates invokes ProxyLBOp_deleteCertificates operation.
 //
+// ProxyLB 証明書削除.
+//
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
 func (c *Client) ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (*ProxyLBOpDeleteCertificatesOK, error) {
 	res, err := c.sendProxyLBOpDeleteCertificates(ctx, params)
@@ -19645,6 +20449,8 @@ func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params Pro
 
 // ProxyLBOpGetCertificates invokes ProxyLBOp_getCertificates operation.
 //
+// ProxyLB 証明書取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
 func (c *Client) ProxyLBOpGetCertificates(ctx context.Context, params ProxyLBOpGetCertificatesParams) (*ProxyLBGetCertificatesResponseEnvelope, error) {
 	res, err := c.sendProxyLBOpGetCertificates(ctx, params)
@@ -19750,6 +20556,8 @@ func (c *Client) sendProxyLBOpGetCertificates(ctx context.Context, params ProxyL
 }
 
 // ProxyLBOpMonitorConnection invokes ProxyLBOp_monitorConnection operation.
+//
+// ProxyLB コネクションモニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor
 func (c *Client) ProxyLBOpMonitorConnection(ctx context.Context, request *ProxyLBOpMonitorConnectionReq, params ProxyLBOpMonitorConnectionParams) (*ProxyLBMonitorConnectionResponseEnvelope, error) {
@@ -19860,6 +20668,8 @@ func (c *Client) sendProxyLBOpMonitorConnection(ctx context.Context, request *Pr
 
 // ProxyLBOpRenewLetsEncryptCert invokes ProxyLBOp_renewLetsEncryptCert operation.
 //
+// ProxyLB Let's Encrypt 証明書更新.
+//
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew
 func (c *Client) ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (*ProxyLBOpRenewLetsEncryptCertOK, error) {
 	res, err := c.sendProxyLBOpRenewLetsEncryptCert(ctx, params)
@@ -19965,6 +20775,8 @@ func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params P
 }
 
 // ProxyLBOpSetCertificates invokes ProxyLBOp_setCertificates operation.
+//
+// ProxyLB 証明書設定.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
 func (c *Client) ProxyLBOpSetCertificates(ctx context.Context, request *ProxyLBOpSetCertificatesReq, params ProxyLBOpSetCertificatesParams) (*ProxyLBSetCertificatesResponseEnvelope, error) {
@@ -20084,6 +20896,8 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 
 // RegionOpFind invokes RegionOp_find operation.
 //
+// リージョン一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/region
 func (c *Client) RegionOpFind(ctx context.Context, params RegionOpFindParams) (*RegionFindResponseEnvelope, error) {
 	res, err := c.sendRegionOpFind(ctx, params)
@@ -20191,6 +21005,8 @@ func (c *Client) sendRegionOpFind(ctx context.Context, params RegionOpFindParams
 
 // RegionOpRead invokes RegionOp_read operation.
 //
+// リージョン情報取得.
+//
 // GET /{zone}/api/cloud/1.1/region/{id}
 func (c *Client) RegionOpRead(ctx context.Context, params RegionOpReadParams) (*RegionReadResponseEnvelope, error) {
 	res, err := c.sendRegionOpRead(ctx, params)
@@ -20295,6 +21111,8 @@ func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams
 }
 
 // SIMOpActivate invokes SIMOp_activate operation.
+//
+// SIM 有効化.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate
 func (c *Client) SIMOpActivate(ctx context.Context, params SIMOpActivateParams) (*SIMOpActivateOK, error) {
@@ -20401,6 +21219,8 @@ func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivatePara
 }
 
 // SIMOpAssignIP invokes SIMOp_assignIP operation.
+//
+// SIM への IP アドレス割り当て.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
 func (c *Client) SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (*SIMOpAssignIPOK, error) {
@@ -20511,6 +21331,8 @@ func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPRe
 
 // SIMOpClearIP invokes SIMOp_clearIP operation.
 //
+// SIM の IP アドレス割り当て解除.
+//
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
 func (c *Client) SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*SIMOpClearIPOK, error) {
 	res, err := c.sendSIMOpClearIP(ctx, params)
@@ -20616,6 +21438,8 @@ func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams
 }
 
 // SIMOpDeactivate invokes SIMOp_deactivate operation.
+//
+// SIM 無効化.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
 func (c *Client) SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (*SIMOpDeactivateOK, error) {
@@ -20723,6 +21547,8 @@ func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivate
 
 // SIMOpGetNetworkOperator invokes SIMOp_getNetworkOperator operation.
 //
+// SIM 通信キャリア取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
 func (c *Client) SIMOpGetNetworkOperator(ctx context.Context, params SIMOpGetNetworkOperatorParams) (*SIMGetNetworkOperatorResponseEnvelope, error) {
 	res, err := c.sendSIMOpGetNetworkOperator(ctx, params)
@@ -20828,6 +21654,8 @@ func (c *Client) sendSIMOpGetNetworkOperator(ctx context.Context, params SIMOpGe
 }
 
 // SIMOpImeiLock invokes SIMOp_imeiLock operation.
+//
+// SIM の IMEI ロック設定.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
 func (c *Client) SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (*SIMOpImeiLockOK, error) {
@@ -20938,6 +21766,8 @@ func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockRe
 
 // SIMOpImeiUnlock invokes SIMOp_imeiUnlock operation.
 //
+// SIM の IMEI ロック解除.
+//
 // DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
 func (c *Client) SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (*SIMOpImeiUnlockOK, error) {
 	res, err := c.sendSIMOpImeiUnlock(ctx, params)
@@ -21044,6 +21874,8 @@ func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlock
 
 // SIMOpLogs invokes SIMOp_logs operation.
 //
+// SIM セッションログ取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog
 func (c *Client) SIMOpLogs(ctx context.Context, params SIMOpLogsParams) (*SIMLogsResponseEnvelope, error) {
 	res, err := c.sendSIMOpLogs(ctx, params)
@@ -21149,6 +21981,8 @@ func (c *Client) sendSIMOpLogs(ctx context.Context, params SIMOpLogsParams) (res
 }
 
 // SIMOpMonitorSIM invokes SIMOp_monitorSIM operation.
+//
+// SIM モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor
 func (c *Client) SIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorSIMReq, params SIMOpMonitorSIMParams) (*SIMMonitorSIMResponseEnvelope, error) {
@@ -21258,6 +22092,8 @@ func (c *Client) sendSIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorS
 }
 
 // SIMOpSetNetworkOperator invokes SIMOp_setNetworkOperator operation.
+//
+// SIM 通信キャリア設定.
 //
 // PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
 func (c *Client) SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error) {
@@ -21377,6 +22213,8 @@ func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOp
 
 // SIMOpStatus invokes SIMOp_status operation.
 //
+// SIM ステータス取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/status
 func (c *Client) SIMOpStatus(ctx context.Context, params SIMOpStatusParams) (*SIMStatusResponseEnvelope, error) {
 	res, err := c.sendSIMOpStatus(ctx, params)
@@ -21483,6 +22321,8 @@ func (c *Client) sendSIMOpStatus(ctx context.Context, params SIMOpStatusParams) 
 
 // SSHKeyOpCreate invokes SSHKeyOp_create operation.
 //
+// SSHKey 作成.
+//
 // POST /{zone}/api/cloud/1.1/sshkey
 func (c *Client) SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpCreate(ctx, request, params)
@@ -21572,6 +22412,8 @@ func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRe
 }
 
 // SSHKeyOpDelete invokes SSHKeyOp_delete operation.
+//
+// SSHKey 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/sshkey/{id}
 func (c *Client) SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (*SSHKeyOpDeleteOK, error) {
@@ -21677,6 +22519,8 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 }
 
 // SSHKeyOpFind invokes SSHKeyOp_find operation.
+//
+// SSHKey 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/sshkey
 func (c *Client) SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error) {
@@ -21785,6 +22629,8 @@ func (c *Client) sendSSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams
 
 // SSHKeyOpRead invokes SSHKeyOp_read operation.
 //
+// SSHKey 取得.
+//
 // GET /{zone}/api/cloud/1.1/sshkey/{id}
 func (c *Client) SSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams) (*SSHKeyReadResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpRead(ctx, params)
@@ -21889,6 +22735,8 @@ func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams
 }
 
 // SSHKeyOpUpdate invokes SSHKeyOp_update operation.
+//
+// SSHKey 更新.
 //
 // PUT /{zone}/api/cloud/1.1/sshkey/{id}
 func (c *Client) SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error) {
@@ -21997,6 +22845,8 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRe
 }
 
 // ServerOpBoot invokes ServerOp_boot operation.
+//
+// Server 起動.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/power
 func (c *Client) ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (*ServerOpBootOK, error) {
@@ -22107,6 +22957,8 @@ func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootReques
 
 // ServerOpChangePlan invokes ServerOp_changePlan operation.
 //
+// Server プラン変更.
+//
 // PUT /{zone}/api/cloud/1.1/server/{id}/plan
 func (c *Client) ServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error) {
 	res, err := c.sendServerOpChangePlan(ctx, request, params)
@@ -22216,6 +23068,8 @@ func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerChan
 
 // ServerOpCreate invokes ServerOp_create operation.
 //
+// Server 作成.
+//
 // POST /{zone}/api/cloud/1.1/server
 func (c *Client) ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error) {
 	res, err := c.sendServerOpCreate(ctx, request, params)
@@ -22314,6 +23168,8 @@ func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRe
 }
 
 // ServerOpDelete invokes ServerOp_delete operation.
+//
+// Server 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}
 func (c *Client) ServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (*ServerOpDeleteOK, error) {
@@ -22422,6 +23278,8 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerDeleteRe
 }
 
 // ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
+//
+// Server CD-ROM 取り出し.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
 func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (*ServerOpEjectCDROMOK, error) {
@@ -22532,6 +23390,8 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjec
 
 // ServerOpFind invokes ServerOp_find operation.
 //
+// Server 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/server
 func (c *Client) ServerOpFind(ctx context.Context, params ServerOpFindParams) (*ServerFindResponseEnvelope, error) {
 	res, err := c.sendServerOpFind(ctx, params)
@@ -22639,6 +23499,8 @@ func (c *Client) sendServerOpFind(ctx context.Context, params ServerOpFindParams
 
 // ServerOpGetVNCProxy invokes ServerOp_getVNCProxy operation.
 //
+// Server VNC プロキシ取得.
+//
 // GET /{zone}/api/cloud/1.1/server/{id}/vnc/proxy
 func (c *Client) ServerOpGetVNCProxy(ctx context.Context, params ServerOpGetVNCProxyParams) (*ServerGetVNCProxyResponseEnvelope, error) {
 	res, err := c.sendServerOpGetVNCProxy(ctx, params)
@@ -22744,6 +23606,8 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 }
 
 // ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
+//
+// Server CD-ROM 挿入.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
 func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (*ServerOpInsertCDROMOK, error) {
@@ -22854,6 +23718,8 @@ func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerIns
 
 // ServerOpMonitor invokes ServerOp_monitor operation.
 //
+// Server モニター情報取得.
+//
 // GET /{zone}/api/cloud/1.1/server/{id}/monitor
 func (c *Client) ServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error) {
 	res, err := c.sendServerOpMonitor(ctx, request, params)
@@ -22963,6 +23829,8 @@ func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerMonitor
 
 // ServerOpRead invokes ServerOp_read operation.
 //
+// Server 取得.
+//
 // GET /{zone}/api/cloud/1.1/server/{id}
 func (c *Client) ServerOpRead(ctx context.Context, params ServerOpReadParams) (*ServerReadResponseEnvelope, error) {
 	res, err := c.sendServerOpRead(ctx, params)
@@ -23067,6 +23935,8 @@ func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams
 }
 
 // ServerOpReset invokes ServerOp_reset operation.
+//
+// Server リセット.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/reset
 func (c *Client) ServerOpReset(ctx context.Context, params ServerOpResetParams) (*ServerOpResetOK, error) {
@@ -23173,6 +24043,8 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 }
 
 // ServerOpSendKey invokes ServerOp_sendKey operation.
+//
+// Server キー送信.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
 func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (*ServerOpSendKeyOK, error) {
@@ -23283,6 +24155,8 @@ func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKey
 
 // ServerOpSendNMI invokes ServerOp_sendNMI operation.
 //
+// Server NMI 送信.
+//
 // PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
 func (c *Client) ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (*ServerOpSendNMIOK, error) {
 	res, err := c.sendServerOpSendNMI(ctx, params)
@@ -23388,6 +24262,8 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 }
 
 // ServerOpShutdown invokes ServerOp_shutdown operation.
+//
+// Server シャットダウン.
 //
 // DELETE /{zone}/api/cloud/1.1/server/{id}/power
 func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (*ServerOpShutdownOK, error) {
@@ -23497,6 +24373,8 @@ func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdo
 }
 
 // ServerOpUpdate invokes ServerOp_update operation.
+//
+// Server 更新.
 //
 // PUT /{zone}/api/cloud/1.1/server/{id}
 func (c *Client) ServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error) {
@@ -23615,6 +24493,8 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRe
 
 // ServerPlanOpFind invokes ServerPlanOp_find operation.
 //
+// ServerPlan 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/product/server
 func (c *Client) ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error) {
 	res, err := c.sendServerPlanOpFind(ctx, params)
@@ -23722,6 +24602,8 @@ func (c *Client) sendServerPlanOpFind(ctx context.Context, params ServerPlanOpFi
 
 // ServerPlanOpRead invokes ServerPlanOp_read operation.
 //
+// ServerPlan 取得.
+//
 // GET /{zone}/api/cloud/1.1/product/server/{id}
 func (c *Client) ServerPlanOpRead(ctx context.Context, params ServerPlanOpReadParams) (*ServerPlanReadResponseEnvelope, error) {
 	res, err := c.sendServerPlanOpRead(ctx, params)
@@ -23826,6 +24708,8 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 }
 
 // ServiceClassOpFind invokes ServiceClassOp_find operation.
+//
+// ServiceClass 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/public/price
 func (c *Client) ServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error) {
@@ -23933,6 +24817,8 @@ func (c *Client) sendServiceClassOpFind(ctx context.Context, params ServiceClass
 }
 
 // SimpleMonitorOpMonitorResponseTime invokes SimpleMonitorOp_monitorResponseTime operation.
+//
+// SimpleMonitor 応答時間モニター情報取得.
 //
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
 func (c *Client) SimpleMonitorOpMonitorResponseTime(ctx context.Context, request *SimpleMonitorOpMonitorResponseTimeReq, params SimpleMonitorOpMonitorResponseTimeParams) (*SimpleMonitorMonitorResponseTimeResponseEnvelope, error) {
@@ -24043,6 +24929,8 @@ func (c *Client) sendSimpleMonitorOpMonitorResponseTime(ctx context.Context, req
 
 // SimpleNotificationDestinationOpStatus invokes SimpleNotificationDestinationOp_status operation.
 //
+// SimpleNotificationDestination ステータス取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/status
 func (c *Client) SimpleNotificationDestinationOpStatus(ctx context.Context, params SimpleNotificationDestinationOpStatusParams) (*SimpleNotificationDestinationStatusResponseEnvelope, error) {
 	res, err := c.sendSimpleNotificationDestinationOpStatus(ctx, params)
@@ -24149,6 +25037,8 @@ func (c *Client) sendSimpleNotificationDestinationOpStatus(ctx context.Context, 
 
 // SimpleNotificationGroupOpHistory invokes SimpleNotificationGroupOp_history operation.
 //
+// SimpleNotificationGroup 履歴取得.
+//
 // GET /{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history
 func (c *Client) SimpleNotificationGroupOpHistory(ctx context.Context, params SimpleNotificationGroupOpHistoryParams) (*SimpleNotificationGroupHistoryResponseEnvelope, error) {
 	res, err := c.sendSimpleNotificationGroupOpHistory(ctx, params)
@@ -24235,6 +25125,8 @@ func (c *Client) sendSimpleNotificationGroupOpHistory(ctx context.Context, param
 }
 
 // SimpleNotificationGroupOpPostMessage invokes SimpleNotificationGroupOp_postMessage operation.
+//
+// SimpleNotificationGroup メッセージ送信.
 //
 // POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message
 func (c *Client) SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (*SimpleNotificationGroupOpPostMessageOK, error) {
@@ -24345,6 +25237,8 @@ func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, r
 
 // SubnetOpFind invokes SubnetOp_find operation.
 //
+// Subnet 一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/subnet
 func (c *Client) SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error) {
 	res, err := c.sendSubnetOpFind(ctx, params)
@@ -24452,6 +25346,8 @@ func (c *Client) sendSubnetOpFind(ctx context.Context, params SubnetOpFindParams
 
 // SubnetOpRead invokes SubnetOp_read operation.
 //
+// Subnet 取得.
+//
 // GET /{zone}/api/cloud/1.1/subnet/{id}
 func (c *Client) SubnetOpRead(ctx context.Context, params SubnetOpReadParams) (*SubnetReadResponseEnvelope, error) {
 	res, err := c.sendSubnetOpRead(ctx, params)
@@ -24556,6 +25452,8 @@ func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams
 }
 
 // SwitchOpConnectToBridge invokes SwitchOp_connectToBridge operation.
+//
+// ブリッジ接続.
 //
 // PUT /{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}
 func (c *Client) SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (*SwitchOpConnectToBridgeOK, error) {
@@ -24681,6 +25579,8 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 
 // SwitchOpCreate invokes SwitchOp_create operation.
 //
+// Switch 作成.
+//
 // POST /{zone}/api/cloud/1.1/switch
 func (c *Client) SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error) {
 	res, err := c.sendSwitchOpCreate(ctx, request, params)
@@ -24779,6 +25679,8 @@ func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRe
 }
 
 // SwitchOpDelete invokes SwitchOp_delete operation.
+//
+// Switch 削除.
 //
 // DELETE /{zone}/api/cloud/1.1/switch/{id}
 func (c *Client) SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (*SwitchOpDeleteOK, error) {
@@ -24885,6 +25787,8 @@ func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeletePa
 
 // SwitchOpDisconnectFromBridge invokes SwitchOp_disconnectFromBridge operation.
 //
+// ブリッジ切断.
+//
 // DELETE /{zone}/api/cloud/1.1/switch/{id}/to/bridge
 func (c *Client) SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (*SwitchOpDisconnectFromBridgeOK, error) {
 	res, err := c.sendSwitchOpDisconnectFromBridge(ctx, params)
@@ -24990,6 +25894,8 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 }
 
 // SwitchOpFind invokes SwitchOp_find operation.
+//
+// Switch 一覧取得.
 //
 // GET /{zone}/api/cloud/1.1/switch
 func (c *Client) SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error) {
@@ -25098,6 +26004,8 @@ func (c *Client) sendSwitchOpFind(ctx context.Context, params SwitchOpFindParams
 
 // SwitchOpGetServers invokes SwitchOp_getServers operation.
 //
+// Switch サーバー一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/switch/{id}/server
 func (c *Client) SwitchOpGetServers(ctx context.Context, params SwitchOpGetServersParams) (*SwitchGetServersResponseEnvelope, error) {
 	res, err := c.sendSwitchOpGetServers(ctx, params)
@@ -25204,6 +26112,8 @@ func (c *Client) sendSwitchOpGetServers(ctx context.Context, params SwitchOpGetS
 
 // SwitchOpRead invokes SwitchOp_read operation.
 //
+// Switch 取得.
+//
 // GET /{zone}/api/cloud/1.1/switch/{id}
 func (c *Client) SwitchOpRead(ctx context.Context, params SwitchOpReadParams) (*SwitchReadResponseEnvelope, error) {
 	res, err := c.sendSwitchOpRead(ctx, params)
@@ -25308,6 +26218,8 @@ func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams
 }
 
 // SwitchOpUpdate invokes SwitchOp_update operation.
+//
+// Switch 更新.
 //
 // PUT /{zone}/api/cloud/1.1/switch/{id}
 func (c *Client) SwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error) {
@@ -25425,6 +26337,8 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRe
 }
 
 // VPCRouterOpConnectToSwitch invokes VPCRouterOp_connectToSwitch operation.
+//
+// VPCRouter スイッチ接続.
 //
 // PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
 func (c *Client) VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (*VPCRouterOpConnectToSwitchOK, error) {
@@ -25569,6 +26483,8 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 
 // VPCRouterOpDisconnectFromSwitch invokes VPCRouterOp_disconnectFromSwitch operation.
 //
+// VPCRouter スイッチ切断.
+//
 // DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
 func (c *Client) VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error) {
 	res, err := c.sendVPCRouterOpDisconnectFromSwitch(ctx, params)
@@ -25694,6 +26610,8 @@ func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params
 
 // VPCRouterOpLogs invokes VPCRouterOp_logs operation.
 //
+// VPCRouter ログ取得.
+//
 // GET /{zone}/api/cloud/1.1/appliance/{id}/download/log/VPNLogs
 func (c *Client) VPCRouterOpLogs(ctx context.Context, params VPCRouterOpLogsParams) (*VPCRouterLogsResponseEnvelope, error) {
 	res, err := c.sendVPCRouterOpLogs(ctx, params)
@@ -25799,6 +26717,8 @@ func (c *Client) sendVPCRouterOpLogs(ctx context.Context, params VPCRouterOpLogs
 }
 
 // VPCRouterOpPing invokes VPCRouterOp_ping operation.
+//
+// VPCRouter Ping.
 //
 // POST /{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}
 func (c *Client) VPCRouterOpPing(ctx context.Context, params VPCRouterOpPingParams) (*VPCRouterPingResponseEnvelope, error) {
@@ -25924,6 +26844,8 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 
 // ZoneOpFind invokes ZoneOp_find operation.
 //
+// ゾーン一覧取得.
+//
 // GET /{zone}/api/cloud/1.1/zone
 func (c *Client) ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error) {
 	res, err := c.sendZoneOpFind(ctx, params)
@@ -26030,6 +26952,8 @@ func (c *Client) sendZoneOpFind(ctx context.Context, params ZoneOpFindParams) (r
 }
 
 // ZoneOpRead invokes ZoneOp_read operation.
+//
+// ゾーン情報取得.
 //
 // GET /{zone}/api/cloud/1.1/zone/{id}
 func (c *Client) ZoneOpRead(ctx context.Context, params ZoneOpReadParams) (*ZoneReadResponseEnvelope, error) {

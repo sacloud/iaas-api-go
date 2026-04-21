@@ -10,63 +10,61 @@ namespace Sacloud.IaaS;
 
 @tag("CDROM")
 interface CDROMOp {
-
+  @summary("CDROM 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/cdrom")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): CDROMFindResponseEnvelope | ApiError;
 
+  @summary("CDROM 作成")
   @post
   @route("/{zone}/api/cloud/1.1/cdrom")
-  op create(
-    @path zone: string,
-    @body body: CDROMCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...CDROMCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: CDROMCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...CDROMCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("CDROM 取得")
   @get
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): CDROMReadResponseEnvelope | ApiError;
 
+  @summary("CDROM 更新")
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: CDROMUpdateRequestEnvelope,
-    
   ): CDROMUpdateResponseEnvelope | ApiError;
 
+  @summary("CDROM 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("CDROM FTP オープン")
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
-  op openFTP(
+  openFTP(
     @path zone: string,
     @path id: string,
     @body body: CDROMOpenFTPRequestEnvelope,
-    
   ): CDROMOpenFTPResponseEnvelope | ApiError;
 
+  @summary("CDROM FTP クローズ")
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
-  op closeFTP(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  closeFTP(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

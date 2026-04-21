@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("PacketFilter")
 interface PacketFilterOp {
-
+  @summary("PacketFilter 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/packetfilter")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): PacketFilterFindResponseEnvelope | ApiError;
 
+  @summary("PacketFilter 作成")
   @post
   @route("/{zone}/api/cloud/1.1/packetfilter")
-  op create(
-    @path zone: string,
-    @body body: PacketFilterCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...PacketFilterCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: PacketFilterCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...PacketFilterCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("PacketFilter 取得")
   @get
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): PacketFilterReadResponseEnvelope | ApiError;
 
+  @summary("PacketFilter 更新")
   @put
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: PacketFilterUpdateRequestEnvelope,
-    
   ): PacketFilterUpdateResponseEnvelope | ApiError;
 
+  @summary("PacketFilter 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/packetfilter/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

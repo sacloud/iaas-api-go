@@ -10,21 +10,19 @@ namespace Sacloud.IaaS;
 
 @tag("Region")
 interface RegionOp {
-
+  @summary("リージョン一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/region")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): RegionFindResponseEnvelope | ApiError;
 
+  @summary("リージョン情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/region/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): RegionReadResponseEnvelope | ApiError;
-
 }

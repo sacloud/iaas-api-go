@@ -272,6 +272,7 @@ resp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{
    * Go 実装詳細、ogen・jx 等のライブラリ名、本プロジェクトの内部方針（oneOf 不使用など）、v1 DSL の型名や挙動といった「利用者が知る必要のない事情」は書かない。
    * 「仕様上はこうだが実 API の挙動はこう」という API 利用者に関係する情報は書いてよい（例: Success フィールドの型が複数ありうる説明）。
    * プロジェクト内部の判断理由・背景は AGENTS.md 側に書く。
+   * **op の `@summary` は `internal/tools/gen-typespec/summaries.go` の `actionSummaries` による機械合成（`<Resource> <動詞>` 形式）で自動付与される**。合成結果が日本語として不自然・不正確なときは同ファイルの `summaryOverrides` マップ（キー: `<ResourceName>.<actionName>`）にエントリを追加して再生成する。追加時は [さくらのクラウド マニュアル](https://manual.sakura.ad.jp/cloud/) の該当ページ URL をコメントで残すこと。未登録のアクションは fallback で英語のまま出力され、`gen-typespec` 実行時に stderr で警告が出るので拾って `actionSummaries` に追記する。
  * GET の sort/include/exclude は定義しない。ページングとフィルタは定義する。
    * ページングはサーバー側で行った方が良いため。
    * include/exclude は複雑性が高すぎる。

@@ -4,170 +4,180 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for loadBalancerFindRequestEnvelope
  */
 model LoadBalancerFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for loadBalancerFindResponseEnvelope
  */
 model LoadBalancerFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Appliances
-	 */
-	Appliances: LoadBalancer[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Appliances
+   */
+  Appliances: LoadBalancer[];
 }
 
 /**
  * Request envelope for loadBalancerCreateRequestEnvelope
  */
 model LoadBalancerCreateRequestEnvelope {
-	/**
-	 * Appliance
-	 */
-	Appliance?: LoadBalancerCreateRequest;
+  /**
+   * Appliance
+   */
+  Appliance?: LoadBalancerCreateRequest;
 }
 /**
  * Response envelope for loadBalancerCreateResponseEnvelope
  */
 model LoadBalancerCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: LoadBalancer;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: LoadBalancer;
 }
 
 /**
  * Response envelope for loadBalancerReadResponseEnvelope
  */
 model LoadBalancerReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: LoadBalancer;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: LoadBalancer;
 }
 
 /**
  * Request envelope for loadBalancerUpdateRequestEnvelope
  */
 model LoadBalancerUpdateRequestEnvelope {
-	/**
-	 * Appliance
-	 */
-	Appliance?: LoadBalancerUpdateRequest;
+  /**
+   * Appliance
+   */
+  Appliance?: LoadBalancerUpdateRequest;
 }
 /**
  * Response envelope for loadBalancerUpdateResponseEnvelope
  */
 model LoadBalancerUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: LoadBalancer;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: LoadBalancer;
 }
 
 /**
  * Request envelope for loadBalancerShutdownRequestEnvelope
  */
 model LoadBalancerShutdownRequestEnvelope {
-	/**
-	 * Force
-	 */
-	Force: boolean;
+  /**
+   * Force
+   */
+  Force: boolean;
 }
 
 /**
  * Request envelope for loadBalancerMonitorCPURequestEnvelope
  */
 model LoadBalancerMonitorCPURequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for loadBalancerMonitorCPUResponseEnvelope
  */
 model LoadBalancerMonitorCPUResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Request envelope for loadBalancerMonitorInterfaceRequestEnvelope
  */
 model LoadBalancerMonitorInterfaceRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for loadBalancerMonitorInterfaceResponseEnvelope
  */
 model LoadBalancerMonitorInterfaceResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Response envelope for loadBalancerStatusResponseEnvelope
  */
 model LoadBalancerStatusResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * LoadBalancer
-	 */
-	LoadBalancer: LoadBalancerStatus[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * LoadBalancer
+   */
+  LoadBalancer: LoadBalancerStatus[];
 }

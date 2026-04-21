@@ -5,24 +5,24 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AuthStatus {
-	Account?: AuthStatusAccount | null;
-	Member?: AuthStatusMember | null;
-	AuthClass?: EAuthClass | null;
-	AuthMethod?: EAuthMethod | null;
-	IsAPIKey: boolean;
-	ExternalPermission?: string | null;
-	OperationPenalty?: EOperationPenalty | null;
-	Permission?: EPermission | null;
+  Account?: AuthStatusAccount | null;
+  Member?: AuthStatusMember | null;
+  AuthClass?: EAuthClass | null;
+  AuthMethod?: EAuthMethod | null;
+  IsAPIKey: boolean;
+  ExternalPermission?: string | null;
+  OperationPenalty?: EOperationPenalty | null;
+  Permission?: EPermission | null;
 }
 
 model AuthStatusAccount {
-	ID?: int64 | null;
-	Name?: string | null;
-	Code?: string | null;
-	Class?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Code?: string | null;
+  Class?: string | null;
 }
 
 model AuthStatusMember {
-	Code?: string | null;
-	Class?: string | null;
+  Code?: string | null;
+  Class?: string | null;
 }

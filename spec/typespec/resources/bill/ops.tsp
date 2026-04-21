@@ -10,58 +10,56 @@ namespace Sacloud.IaaS;
 
 @tag("Bill")
 interface BillOp {
-
+  @summary("契約別請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}")
-  op byContract(
+  byContract(
     @path zone: string,
     @path accountID: string,
-    
   ): BillByContractResponseEnvelope | ApiError;
 
+  @summary("契約・年別請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}")
-  op byContractYear(
+  byContractYear(
     @path zone: string,
     @path accountID: string,
     @path year: string,
-    
   ): BillByContractYearResponseEnvelope | ApiError;
 
+  @summary("契約・年月別請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}")
-  op byContractYearMonth(
+  byContractYearMonth(
     @path zone: string,
     @path accountID: string,
     @path year: string,
     @path month: string,
-    
   ): BillByContractYearMonthResponseEnvelope | ApiError;
 
+  @summary("請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/id/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): BillReadResponseEnvelope | ApiError;
 
+  @summary("請求明細取得")
   @get
   @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}")
-  op details(
+  details(
     @path zone: string,
     @path MemberCode: string,
     @path id: string,
-    
   ): BillDetailsResponseEnvelope | ApiError;
 
+  @summary("請求明細 CSV 取得")
   @get
   @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv")
-  op detailsCSV(
+  detailsCSV(
     @path zone: string,
     @path MemberCode: string,
     @path id: string,
-    
   ): BillDetailsCSVResponseEnvelope | ApiError;
-
 }

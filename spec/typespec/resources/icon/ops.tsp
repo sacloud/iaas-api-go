@@ -10,46 +10,44 @@ namespace Sacloud.IaaS;
 
 @tag("Icon")
 interface IconOp {
-
+  @summary("Icon 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/icon")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): IconFindResponseEnvelope | ApiError;
 
+  @summary("Icon 作成")
   @post
   @route("/{zone}/api/cloud/1.1/icon")
-  op create(
-    @path zone: string,
-    @body body: IconCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...IconCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: IconCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...IconCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Icon 取得")
   @get
   @route("/{zone}/api/cloud/1.1/icon/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): IconReadResponseEnvelope | ApiError;
 
+  @summary("Icon 更新")
   @put
   @route("/{zone}/api/cloud/1.1/icon/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: IconUpdateRequestEnvelope,
-    
   ): IconUpdateResponseEnvelope | ApiError;
 
+  @summary("Icon 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/icon/{id}")
-  op delete(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
-
+  delete(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 }

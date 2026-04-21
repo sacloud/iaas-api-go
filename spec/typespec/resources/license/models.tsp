@@ -5,23 +5,23 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model License {
-	ID?: int64 | null;
-	Name?: string | null;
-	LicenseInfo?: LicenseLicenseInfo | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  LicenseInfo?: LicenseLicenseInfo | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model LicenseLicenseInfo {
-	ID?: int64 | null;
-	Name?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
 }
 
 model LicenseCreateRequest {
-	Name?: string | null;
-	LicenseInfo?: ResourceRef | null;
+  Name?: string | null;
+  LicenseInfo?: ResourceRef | null;
 }
 
 model LicenseUpdateRequest {
-	Name?: string | null;
+  Name?: string | null;
 }

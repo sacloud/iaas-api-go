@@ -5,65 +5,65 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model EnhancedDB {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	SettingsHash?: string | null;
-	Status?: EnhancedDBStatus | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  SettingsHash?: string | null;
+  Status?: EnhancedDBStatus | null;
 }
 
 model EnhancedDBStatus {
-	DatabaseName?: string | null;
-	DatabaseType?: string | null;
-	Region?: string | null;
-	HostName?: string | null;
-	Port?: int32 | null;
+  DatabaseName?: string | null;
+  DatabaseType?: string | null;
+  Region?: string | null;
+  HostName?: string | null;
+  Port?: int32 | null;
 }
 
 model EnhancedDBCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Status?: EnhancedDBCreateRequestStatus | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Status?: EnhancedDBCreateRequestStatus | null;
 }
 
 model EnhancedDBCreateRequestStatus {
-	DatabaseName?: string | null;
-	DatabaseType?: string | null;
-	Region?: string | null;
+  DatabaseName?: string | null;
+  DatabaseType?: string | null;
+  Region?: string | null;
 }
 
 model EnhancedDBUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  SettingsHash?: string | null;
 }
 
 model EnhancedDBSetPasswordRequest {
-	EnhancedDB: EnhancedDBSetPasswordRequestEnhancedDB;
+  EnhancedDB: EnhancedDBSetPasswordRequestEnhancedDB;
 }
 
 model EnhancedDBSetPasswordRequestEnhancedDB {
-	Password: string;
+  Password: string;
 }
 
 model EnhancedDBConfig {
-	MaxConnections?: int32 | null;
-	AllowedNetworks: string[];
+  MaxConnections?: int32 | null;
+  AllowedNetworks: string[];
 }
 
 model EnhancedDBSetConfigRequest {
-	EnhancedDB?: EnhancedDBSetConfigRequestEnhancedDB | null;
+  EnhancedDB?: EnhancedDBSetConfigRequestEnhancedDB | null;
 }
 
 model EnhancedDBSetConfigRequestEnhancedDB {
-	AllowedNetworks: string[];
+  AllowedNetworks: string[];
 }

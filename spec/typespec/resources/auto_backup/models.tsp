@@ -5,70 +5,70 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoBackup {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Settings?: AutoBackupSettings | null;
-	SettingsHash?: string | null;
-	Status?: AutoBackupStatus | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Settings?: AutoBackupSettings | null;
+  SettingsHash?: string | null;
+  Status?: AutoBackupStatus | null;
 }
 
 model AutoBackupSettings {
-	Autobackup?: AutoBackupSettingsAutobackup | null;
+  Autobackup?: AutoBackupSettingsAutobackup | null;
 }
 
 model AutoBackupSettingsAutobackup {
-	BackupSpanWeekdays?: EDayOfTheWeek[] | null;
-	MaximumNumberOfArchives?: int32 | null;
+  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
+  MaximumNumberOfArchives?: int32 | null;
 }
 
 model AutoBackupStatus {
-	DiskID?: int64 | null;
-	AccountID?: int64 | null;
-	ZoneID?: int64 | null;
-	ZoneName?: string | null;
+  DiskID?: int64 | null;
+  AccountID?: int64 | null;
+  ZoneID?: int64 | null;
+  ZoneName?: string | null;
 }
 
 model AutoBackupCreateRequest {
-	Status?: AutoBackupCreateRequestStatus | null;
-	Settings?: AutoBackupCreateRequestSettings | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Status?: AutoBackupCreateRequestStatus | null;
+  Settings?: AutoBackupCreateRequestSettings | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model AutoBackupCreateRequestStatus {
-	DiskID?: int64 | null;
+  DiskID?: int64 | null;
 }
 
 model AutoBackupCreateRequestSettings {
-	Autobackup?: AutoBackupCreateRequestSettingsAutobackup | null;
+  Autobackup?: AutoBackupCreateRequestSettingsAutobackup | null;
 }
 
 model AutoBackupCreateRequestSettingsAutobackup {
-	BackupSpanWeekdays?: EDayOfTheWeek[] | null;
-	MaximumNumberOfArchives?: int32 | null;
+  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
+  MaximumNumberOfArchives?: int32 | null;
 }
 
 model AutoBackupUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Settings?: AutoBackupUpdateRequestSettings | null;
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Settings?: AutoBackupUpdateRequestSettings | null;
+  SettingsHash?: string | null;
 }
 
 model AutoBackupUpdateRequestSettings {
-	Autobackup?: AutoBackupUpdateRequestSettingsAutobackup | null;
+  Autobackup?: AutoBackupUpdateRequestSettingsAutobackup | null;
 }
 
 model AutoBackupUpdateRequestSettingsAutobackup {
-	BackupSpanWeekdays?: EDayOfTheWeek[] | null;
+  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
 }

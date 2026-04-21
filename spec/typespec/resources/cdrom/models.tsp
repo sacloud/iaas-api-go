@@ -5,31 +5,31 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model CDROM {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	DisplayOrder?: int64 | null;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Scope?: EScope | null;
-	Storage?: Storage | null;
-	SizeMB?: int32 | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  DisplayOrder?: int64 | null;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Scope?: EScope | null;
+  Storage?: Storage | null;
+  SizeMB?: int32 | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model CDROMCreateRequest {
-	SizeMB?: int32 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  SizeMB?: int32 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model CDROMUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }

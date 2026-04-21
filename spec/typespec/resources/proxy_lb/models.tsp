@@ -5,228 +5,228 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ProxyLB {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
-	Plan: EProxyLBPlan;
-	Settings?: ProxyLBSettings | null;
-	BindPorts: ProxyLBBindPort[];
-	Servers: ProxyLBServer[];
-	Rules: ProxyLBRule[];
-	SettingsHash?: string | null;
-	Status?: ProxyLBStatus | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
+  Plan: EProxyLBPlan;
+  Settings?: ProxyLBSettings | null;
+  BindPorts: ProxyLBBindPort[];
+  Servers: ProxyLBServer[];
+  Rules: ProxyLBRule[];
+  SettingsHash?: string | null;
+  Status?: ProxyLBStatus | null;
 }
 
 model ProxyLBSettings {
-	ProxyLB?: ProxyLBSettingsProxyLB | null;
+  ProxyLB?: ProxyLBSettingsProxyLB | null;
 }
 
 model ProxyLBSettingsProxyLB {
-	HealthCheck: ProxyLBHealthCheck;
-	SorryServer: ProxyLBSorryServer;
-	LetsEncrypt?: ProxyLBACMESetting | null;
-	StickySession: ProxyLBStickySession;
-	Gzip: ProxyLBGzip;
-	BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
-	MonitoringSuiteLog?: MonitoringSuiteLog | null;
-	ProxyProtocol: ProxyLBProxyProtocol;
-	Syslog: ProxyLBSyslog;
-	Timeout?: ProxyLBTimeout | null;
+  HealthCheck: ProxyLBHealthCheck;
+  SorryServer: ProxyLBSorryServer;
+  LetsEncrypt?: ProxyLBACMESetting | null;
+  StickySession: ProxyLBStickySession;
+  Gzip: ProxyLBGzip;
+  BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+  ProxyProtocol: ProxyLBProxyProtocol;
+  Syslog: ProxyLBSyslog;
+  Timeout?: ProxyLBTimeout | null;
 }
 
 model ProxyLBStatus {
-	UseVIPFailover: boolean;
-	Region?: EProxyLBRegion | null;
-	ProxyNetworks?: string[] | null;
-	FQDN?: string | null;
-	VirtualIPAddress?: string | null;
+  UseVIPFailover: boolean;
+  Region?: EProxyLBRegion | null;
+  ProxyNetworks?: string[] | null;
+  FQDN?: string | null;
+  VirtualIPAddress?: string | null;
 }
 
 model ProxyLBHealthCheck {
-	Protocol: EProxyLBHealthCheckProtocol;
-	Path: string;
-	Host: string;
-	DelayLoop: int32;
+  Protocol: EProxyLBHealthCheckProtocol;
+  Path: string;
+  Host: string;
+  DelayLoop: int32;
 }
 
 model ProxyLBSorryServer {
-	IPAddress: string;
-	Port: int32;
+  IPAddress: string;
+  Port: int32;
 }
 
 model ProxyLBBindPort {
-	ProxyMode: EProxyLBProxyMode;
-	Port: int32;
-	RedirectToHTTPS: boolean;
-	SupportHTTP2: boolean;
-	AddResponseHeader: ProxyLBResponseHeader[];
-	SSLPolicy: string;
+  ProxyMode: EProxyLBProxyMode;
+  Port: int32;
+  RedirectToHTTPS: boolean;
+  SupportHTTP2: boolean;
+  AddResponseHeader: ProxyLBResponseHeader[];
+  SSLPolicy: string;
 }
 
 model ProxyLBResponseHeader {
-	Header: string;
-	Value: string;
+  Header: string;
+  Value: string;
 }
 
 model ProxyLBServer {
-	IPAddress: string;
-	Port: int32;
-	ServerGroup: string;
-	Enabled: boolean;
-	ProxySSL: boolean;
+  IPAddress: string;
+  Port: int32;
+  ServerGroup: string;
+  Enabled: boolean;
+  ProxySSL: boolean;
 }
 
 model ProxyLBRule {
-	Host: string;
-	Path: string;
-	SourceIPs: string;
-	RequestHeaderName: string;
-	RequestHeaderValue: string;
-	RequestHeaderValueIgnoreCase: boolean;
-	RequestHeaderValueNotMatch: boolean;
-	ServerGroup: string;
-	Action: EProxyLBRuleAction;
-	RedirectLocation: string;
-	RedirectStatusCode: int32;
-	FixedStatusCode: int32;
-	FixedContentType: EProxyLBFixedContentType;
-	FixedMessageBody: string;
+  Host: string;
+  Path: string;
+  SourceIPs: string;
+  RequestHeaderName: string;
+  RequestHeaderValue: string;
+  RequestHeaderValueIgnoreCase: boolean;
+  RequestHeaderValueNotMatch: boolean;
+  ServerGroup: string;
+  Action: EProxyLBRuleAction;
+  RedirectLocation: string;
+  RedirectStatusCode: int32;
+  FixedStatusCode: int32;
+  FixedContentType: EProxyLBFixedContentType;
+  FixedMessageBody: string;
 }
 
 model ProxyLBACMESetting {
-	CommonName: string;
-	Enabled: boolean;
-	SubjectAltNames: string[];
+  CommonName: string;
+  Enabled: boolean;
+  SubjectAltNames: string[];
 }
 
 model ProxyLBStickySession {
-	Method: string;
-	Enabled: boolean;
+  Method: string;
+  Enabled: boolean;
 }
 
 model ProxyLBGzip {
-	Enabled: boolean;
+  Enabled: boolean;
 }
 
 model ProxyLBBackendHttpKeepAlive {
-	Mode: EProxyLBBackendHttpKeepAlive;
+  Mode: EProxyLBBackendHttpKeepAlive;
 }
 
 model ProxyLBProxyProtocol {
-	Enabled: boolean;
+  Enabled: boolean;
 }
 
 model ProxyLBSyslog {
-	Server: string;
-	Port: int32 = 514;
+  Server: string;
+  Port: int32 = 514;
 }
 
 model ProxyLBTimeout {
-	InactiveSec: int32 = 10;
+  InactiveSec: int32 = 10;
 }
 
 model ProxyLBCreateRequest {
-	Plan: EProxyLBPlan;
-	Settings?: ProxyLBCreateRequestSettings | null;
-	BindPorts: ProxyLBBindPort[];
-	Servers: ProxyLBServer[];
-	Rules: ProxyLBRule[];
-	Status?: ProxyLBCreateRequestStatus | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Plan: EProxyLBPlan;
+  Settings?: ProxyLBCreateRequestSettings | null;
+  BindPorts: ProxyLBBindPort[];
+  Servers: ProxyLBServer[];
+  Rules: ProxyLBRule[];
+  Status?: ProxyLBCreateRequestStatus | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model ProxyLBCreateRequestSettings {
-	ProxyLB?: ProxyLBCreateRequestSettingsProxyLB | null;
+  ProxyLB?: ProxyLBCreateRequestSettingsProxyLB | null;
 }
 
 model ProxyLBCreateRequestSettingsProxyLB {
-	HealthCheck: ProxyLBHealthCheck;
-	SorryServer: ProxyLBSorryServer;
-	LetsEncrypt?: ProxyLBACMESetting | null;
-	StickySession: ProxyLBStickySession;
-	Timeout?: ProxyLBTimeout | null;
-	Gzip: ProxyLBGzip;
-	BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
-	MonitoringSuiteLog?: MonitoringSuiteLog | null;
-	ProxyProtocol: ProxyLBProxyProtocol;
-	Syslog: ProxyLBSyslog;
+  HealthCheck: ProxyLBHealthCheck;
+  SorryServer: ProxyLBSorryServer;
+  LetsEncrypt?: ProxyLBACMESetting | null;
+  StickySession: ProxyLBStickySession;
+  Timeout?: ProxyLBTimeout | null;
+  Gzip: ProxyLBGzip;
+  BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
+  MonitoringSuiteLog?: MonitoringSuiteLog | null;
+  ProxyProtocol: ProxyLBProxyProtocol;
+  Syslog: ProxyLBSyslog;
 }
 
 model ProxyLBCreateRequestStatus {
-	UseVIPFailover: boolean;
-	Region?: EProxyLBRegion | null;
+  UseVIPFailover: boolean;
+  Region?: EProxyLBRegion | null;
 }
 
 model ProxyLBUpdateRequest {
-	Settings?: ProxyLBUpdateRequestSettings | null;
-	SettingsHash?: string | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Settings?: ProxyLBUpdateRequestSettings | null;
+  SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model ProxyLBUpdateRequestSettings {
-	ProxyLB?: ProxyLBUpdateRequestSettingsProxyLB | null;
+  ProxyLB?: ProxyLBUpdateRequestSettingsProxyLB | null;
 }
 
 model ProxyLBUpdateRequestSettingsProxyLB {
-	HealthCheck: ProxyLBHealthCheck;
+  HealthCheck: ProxyLBHealthCheck;
 }
 
 model ProxyLBChangePlanRequest {
-	ServiceClass?: string | null;
+  ServiceClass?: string | null;
 }
 
 model ProxyLBCertificates {
-	PrimaryCert?: ProxyLBPrimaryCert | null;
-	AdditionalCerts: ProxyLBAdditionalCert[];
+  PrimaryCert?: ProxyLBPrimaryCert | null;
+  AdditionalCerts: ProxyLBAdditionalCert[];
 }
 
 model ProxyLBPrimaryCert {
-	ServerCertificate: string;
-	IntermediateCertificate: string;
-	PrivateKey: string;
-	CertificateEndDate: utcDateTime;
-	CertificateCommonName: string;
-	CertificateAltNames: string;
+  ServerCertificate: string;
+  IntermediateCertificate: string;
+  PrivateKey: string;
+  CertificateEndDate: utcDateTime;
+  CertificateCommonName: string;
+  CertificateAltNames: string;
 }
 
 model ProxyLBAdditionalCert {
-	ServerCertificate: string;
-	IntermediateCertificate: string;
-	PrivateKey: string;
-	CertificateEndDate: utcDateTime;
-	CertificateCommonName: string;
-	CertificateAltNames: string;
+  ServerCertificate: string;
+  IntermediateCertificate: string;
+  PrivateKey: string;
+  CertificateEndDate: utcDateTime;
+  CertificateCommonName: string;
+  CertificateAltNames: string;
 }
 
 model ProxyLBSetCertificatesRequest {
-	PrimaryCert?: ProxyLBPrimaryCert | null;
-	AdditionalCerts: ProxyLBAdditionalCert[];
+  PrimaryCert?: ProxyLBPrimaryCert | null;
+  AdditionalCerts: ProxyLBAdditionalCert[];
 }
 
 model ProxyLBHealth {
-	ActiveConn?: int32 | null;
-	CPS?: float64 | null;
-	CurrentVIP?: string | null;
-	Servers?: LoadBalancerServerStatus[] | null;
+  ActiveConn?: int32 | null;
+  CPS?: float64 | null;
+  CurrentVIP?: string | null;
+  Servers?: LoadBalancerServerStatus[] | null;
 }
 
 model ConnectionActivity {
-	Values: MonitorConnectionValue[];
+  Values: MonitorConnectionValue[];
 }
 
 model MonitorConnectionValue {
-	Time: utcDateTime;
-	ActiveConnections: float64;
-	ConnectionsPerSec: float64;
+  Time: utcDateTime;
+  ActiveConnections: float64;
+  ConnectionsPerSec: float64;
 }

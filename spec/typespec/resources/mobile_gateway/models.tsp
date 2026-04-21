@@ -5,215 +5,215 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model MobileGateway {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Class?: string | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	Instance?: MobileGatewayInstance | null;
-	Interfaces?: MobileGatewayInterface[] | null;
-	Remark?: MobileGatewayRemark | null;
-	InterfaceSettings: MobileGatewayInterfaceSetting[];
-	StaticRoutes: MobileGatewayStaticRoute[];
-	Settings?: MobileGatewaySettings | null;
-	SettingsHash?: string | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Class?: string | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  Instance?: MobileGatewayInstance | null;
+  Interfaces?: MobileGatewayInterface[] | null;
+  Remark?: MobileGatewayRemark | null;
+  InterfaceSettings: MobileGatewayInterfaceSetting[];
+  StaticRoutes: MobileGatewayStaticRoute[];
+  Settings?: MobileGatewaySettings | null;
+  SettingsHash?: string | null;
 }
 
 model MobileGatewayInstance {
-	Host?: MobileGatewayInstanceHost | null;
-	Status?: EServerInstanceStatus | null;
-	StatusChangedAt?: utcDateTime | null;
+  Host?: MobileGatewayInstanceHost | null;
+  Status?: EServerInstanceStatus | null;
+  StatusChangedAt?: utcDateTime | null;
 }
 
 model MobileGatewayInstanceHost {
-	Name?: string | null;
-	InfoURL?: string | null;
+  Name?: string | null;
+  InfoURL?: string | null;
 }
 
 model MobileGatewayRemark {
-	MobileGateway?: MobileGatewayRemarkMobileGateway | null;
+  MobileGateway?: MobileGatewayRemarkMobileGateway | null;
 }
 
 model MobileGatewayRemarkMobileGateway {
-	GlobalAddress: string;
+  GlobalAddress: string;
 }
 
 model MobileGatewaySettings {
-	MobileGateway?: MobileGatewaySettingsMobileGateway | null;
+  MobileGateway?: MobileGatewaySettingsMobileGateway | null;
 }
 
 model MobileGatewaySettingsMobileGateway {
-	InternetConnection?: MobileGatewaySettingsMobileGatewayInternetConnection | null;
-	InterDeviceCommunication?: MobileGatewaySettingsMobileGatewayInterDeviceCommunication | null;
+  InternetConnection?: MobileGatewaySettingsMobileGatewayInternetConnection | null;
+  InterDeviceCommunication?: MobileGatewaySettingsMobileGatewayInterDeviceCommunication | null;
 }
 
 model MobileGatewaySettingsMobileGatewayInternetConnection {
-	Enabled: string;
+  Enabled: string;
 }
 
 model MobileGatewaySettingsMobileGatewayInterDeviceCommunication {
-	Enabled: string;
+  Enabled: string;
 }
 
 model MobileGatewayInterface {
-	ID?: int64 | null;
-	MACAddress?: string | null;
-	IPAddress?: string | null;
-	UserIPAddress?: string | null;
-	HostName?: string | null;
-	Switch?: MobileGatewayInterfaceSwitch | null;
-	PacketFilter?: MobileGatewayInterfacePacketFilter | null;
+  ID?: int64 | null;
+  MACAddress?: string | null;
+  IPAddress?: string | null;
+  UserIPAddress?: string | null;
+  HostName?: string | null;
+  Switch?: MobileGatewayInterfaceSwitch | null;
+  PacketFilter?: MobileGatewayInterfacePacketFilter | null;
 }
 
 model MobileGatewayInterfaceSwitch {
-	ID?: int64 | null;
-	Name?: string | null;
-	Scope?: EScope | null;
-	UserSubnet?: MobileGatewayInterfaceSwitchUserSubnet | null;
-	Subnet?: MobileGatewayInterfaceSwitchSubnet | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Scope?: EScope | null;
+  UserSubnet?: MobileGatewayInterfaceSwitchUserSubnet | null;
+  Subnet?: MobileGatewayInterfaceSwitchSubnet | null;
 }
 
 model MobileGatewayInterfaceSwitchUserSubnet {
-	DefaultRoute: string;
-	NetworkMaskLen: int32;
+  DefaultRoute: string;
+  NetworkMaskLen: int32;
 }
 
 model MobileGatewayInterfaceSwitchSubnet {
-	DefaultRoute?: string | null;
-	NetworkMaskLen?: int32 | null;
-	NetworkAddress?: string | null;
-	Internet?: MobileGatewayInterfaceSwitchSubnetInternet | null;
+  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string | null;
+  Internet?: MobileGatewayInterfaceSwitchSubnetInternet | null;
 }
 
 model MobileGatewayInterfaceSwitchSubnetInternet {
-	BandWidthMbps?: int32 | null;
+  BandWidthMbps?: int32 | null;
 }
 
 model MobileGatewayInterfacePacketFilter {
-	ID?: int64 | null;
-	Name?: string | null;
-	RequiredHostVersionn: int32;
+  ID?: int64 | null;
+  Name?: string | null;
+  RequiredHostVersionn: int32;
 }
 
 model MobileGatewayInterfaceSetting {
-	IPAddress?: string[] | null;
-	NetworkMaskLen?: int32 | null;
-	Index: int32;
+  IPAddress?: string[] | null;
+  NetworkMaskLen?: int32 | null;
+  Index: int32;
 }
 
 model MobileGatewayStaticRoute {
-	Prefix?: string | null;
-	NextHop?: string | null;
+  Prefix?: string | null;
+  NextHop?: string | null;
 }
 
 model MobileGatewayCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	StaticRoutes: MobileGatewayStaticRoute[];
-	Settings?: MobileGatewayCreateRequestSettings | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  StaticRoutes: MobileGatewayStaticRoute[];
+  Settings?: MobileGatewayCreateRequestSettings | null;
 }
 
 model MobileGatewayCreateRequestSettings {
-	MobileGateway?: MobileGatewayCreateRequestSettingsMobileGateway | null;
+  MobileGateway?: MobileGatewayCreateRequestSettingsMobileGateway | null;
 }
 
 model MobileGatewayCreateRequestSettingsMobileGateway {
-	InternetConnection?: MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection | null;
-	InterDeviceCommunication?: MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication | null;
+  InternetConnection?: MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection | null;
+  InterDeviceCommunication?: MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication | null;
 }
 
 model MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection {
-	Enabled: string;
+  Enabled: string;
 }
 
 model MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication {
-	Enabled: string;
+  Enabled: string;
 }
 
 model MobileGatewayUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	InterfaceSettings: MobileGatewayInterfaceSetting[];
-	SettingsHash?: string | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  InterfaceSettings: MobileGatewayInterfaceSetting[];
+  SettingsHash?: string | null;
 }
 
 model MobileGatewayDNSSetting {
-	DNS1?: string | null;
-	DNS2?: string | null;
+  DNS1?: string | null;
+  DNS2?: string | null;
 }
 
 model MobileGatewaySIMRoute {
-	ResourceID?: string | null;
-	Prefix?: string | null;
-	ICCID?: string | null;
+  ResourceID?: string | null;
+  Prefix?: string | null;
+  ICCID?: string | null;
 }
 
 model MobileGatewaySIMRouteParam {
-	ResourceID?: string | null;
-	Prefix?: string | null;
+  ResourceID?: string | null;
+  Prefix?: string | null;
 }
 
 model MobileGatewaySIMInfo {
-	ICCID?: string | null;
-	IMSI?: string[] | null;
-	IMEI?: string | null;
-	IP?: string | null;
-	SessionStatus?: string | null;
-	IMEILock: boolean;
-	Registered: boolean;
-	Activated: boolean;
-	ResourceID?: string | null;
-	RegisteredDate?: utcDateTime | null;
-	ActivatedDate?: utcDateTime | null;
-	DeactivatedDate?: utcDateTime | null;
-	SIMGroupID?: string | null;
-	TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
-	ConnectedIMEI?: string | null;
+  ICCID?: string | null;
+  IMSI?: string[] | null;
+  IMEI?: string | null;
+  IP?: string | null;
+  SessionStatus?: string | null;
+  IMEILock: boolean;
+  Registered: boolean;
+  Activated: boolean;
+  ResourceID?: string | null;
+  RegisteredDate?: utcDateTime | null;
+  ActivatedDate?: utcDateTime | null;
+  DeactivatedDate?: utcDateTime | null;
+  SIMGroupID?: string | null;
+  TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
+  ConnectedIMEI?: string | null;
 }
 
 model SIMTrafficBytes {
-	UplinkBytes: int64;
-	DownlinkBytes: int64;
+  UplinkBytes: int64;
+  DownlinkBytes: int64;
 }
 
 model MobileGatewayAddSIMRequest {
-	ResourceID?: string | null;
+  ResourceID?: string | null;
 }
 
 model MobileGatewaySIMLogs {
-	Date?: utcDateTime | null;
-	SessionStatus?: string | null;
-	ResourceID?: string | null;
-	IMEI?: string | null;
-	IMSI?: string | null;
+  Date?: utcDateTime | null;
+  SessionStatus?: string | null;
+  ResourceID?: string | null;
+  IMEI?: string | null;
+  IMSI?: string | null;
 }
 
 model MobileGatewayTrafficControl {
-	TrafficQuotaInMB: int32;
-	BandWidthLimitInKbps: int32;
-	EMailConfig: MobileGatewayTrafficControlEMailConfig;
-	SlackConfig: MobileGatewayTrafficControlSlackConfig;
-	AutoTrafficShaping: boolean;
+  TrafficQuotaInMB: int32;
+  BandWidthLimitInKbps: int32;
+  EMailConfig: MobileGatewayTrafficControlEMailConfig;
+  SlackConfig: MobileGatewayTrafficControlSlackConfig;
+  AutoTrafficShaping: boolean;
 }
 
 model MobileGatewayTrafficControlEMailConfig {
-	Enabled: boolean;
+  Enabled: boolean;
 }
 
 model MobileGatewayTrafficControlSlackConfig {
-	Enabled: boolean;
-	IncomingWebhooksURL?: string | null;
+  Enabled: boolean;
+  IncomingWebhooksURL?: string | null;
 }
 
 model MobileGatewayTrafficStatus {
-	UplinkBytes?: int32 | null;
-	DownlinkBytes?: int32 | null;
-	TrafficShaping: boolean;
+  UplinkBytes?: int32 | null;
+  DownlinkBytes?: int32 | null;
+  TrafficShaping: boolean;
 }

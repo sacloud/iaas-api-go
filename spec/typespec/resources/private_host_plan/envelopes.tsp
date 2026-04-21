@@ -4,50 +4,53 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for privateHostPlanFindRequestEnvelope
  */
 model PrivateHostPlanFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for privateHostPlanFindResponseEnvelope
  */
 model PrivateHostPlanFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * PrivateHostPlans
-	 */
-	PrivateHostPlans: PrivateHostPlan[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * PrivateHostPlans
+   */
+  PrivateHostPlans: PrivateHostPlan[];
 }
 
 /**
  * Response envelope for privateHostPlanReadResponseEnvelope
  */
 model PrivateHostPlanReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * PrivateHostPlan
-	 */
-	PrivateHostPlan: PrivateHostPlan;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * PrivateHostPlan
+   */
+  PrivateHostPlan: PrivateHostPlan;
 }

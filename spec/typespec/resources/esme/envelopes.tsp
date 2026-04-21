@@ -4,146 +4,154 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for eSMEFindRequestEnvelope
  */
 model ESMEFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for eSMEFindResponseEnvelope
  */
 model ESMEFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * CommonServiceItems
-	 */
-	CommonServiceItems: ESME[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * CommonServiceItems
+   */
+  CommonServiceItems: ESME[];
 }
 
 /**
  * Request envelope for eSMECreateRequestEnvelope
  */
 model ESMECreateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: ESMECreateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: ESMECreateRequest;
 }
 /**
  * Response envelope for eSMECreateResponseEnvelope
  */
 model ESMECreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ESME;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ESME;
 }
 
 /**
  * Response envelope for eSMEReadResponseEnvelope
  */
 model ESMEReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ESME;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ESME;
 }
 
 /**
  * Request envelope for eSMEUpdateRequestEnvelope
  */
 model ESMEUpdateRequestEnvelope {
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem?: ESMEUpdateRequest;
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem?: ESMEUpdateRequest;
 }
 /**
  * Response envelope for eSMEUpdateResponseEnvelope
  */
 model ESMEUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * CommonServiceItem
-	 */
-	CommonServiceItem: ESME;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * CommonServiceItem
+   */
+  CommonServiceItem: ESME;
 }
 
 /**
  * Request envelope for eSMESendMessageWithGeneratedOTPRequestEnvelope
  */
 model ESMESendMessageWithGeneratedOTPRequestEnvelope {
-	/**
-	 * ESME
-	 */
-	ESME: ESMESendMessageWithGeneratedOTPRequest;
+  /**
+   * ESME
+   */
+  ESME: ESMESendMessageWithGeneratedOTPRequest;
 }
 /**
  * Response envelope for eSMESendMessageWithGeneratedOTPResponseEnvelope
  */
 model ESMESendMessageWithGeneratedOTPResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * ESME
-	 */
-	ESME: ESMESendMessageResult;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * ESME
+   */
+  ESME: ESMESendMessageResult;
 }
 
 /**
  * Request envelope for eSMESendMessageWithInputtedOTPRequestEnvelope
  */
 model ESMESendMessageWithInputtedOTPRequestEnvelope {
-	/**
-	 * ESME
-	 */
-	ESME: ESMESendMessageWithInputtedOTPRequest;
+  /**
+   * ESME
+   */
+  ESME: ESMESendMessageWithInputtedOTPRequest;
 }
 /**
  * Response envelope for eSMESendMessageWithInputtedOTPResponseEnvelope
  */
 model ESMESendMessageWithInputtedOTPResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * ESME
-	 */
-	ESME: ESMESendMessageResult;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * ESME
+   */
+  ESME: ESMESendMessageResult;
 }
 
 /**
  * Response envelope for eSMELogsResponseEnvelope
  */
 model ESMELogsResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * ESME
-	 */
-	ESME: ESMELogs;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * ESME
+   */
+  ESME: ESMELogs;
 }

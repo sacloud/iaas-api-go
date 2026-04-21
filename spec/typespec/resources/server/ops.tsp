@@ -10,134 +10,150 @@ namespace Sacloud.IaaS;
 
 @tag("Server")
 interface ServerOp {
-
+  @summary("Server 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/server")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): ServerFindResponseEnvelope | ApiError;
 
+  @summary("Server 作成")
   @post
   @route("/{zone}/api/cloud/1.1/server")
-  op create(
-    @path zone: string,
-    @body body: ServerCreateRequestEnvelope,
-    
-  ): {@statusCode _: 201; ...ServerCreateResponseEnvelope} | ApiError;
+  create(@path zone: string, @body body: ServerCreateRequestEnvelope): {
+    @statusCode _: 201;
+    ...ServerCreateResponseEnvelope;
+  } | ApiError;
 
+  @summary("Server 取得")
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): ServerReadResponseEnvelope | ApiError;
 
+  @summary("Server 更新")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}")
-  op update(
+  update(
     @path zone: string,
     @path id: string,
     @body body: ServerUpdateRequestEnvelope,
-    
   ): ServerUpdateResponseEnvelope | ApiError;
 
+  @summary("Server 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}")
-  op delete(
+  delete(
     @path zone: string,
     @path id: string,
     @body body: ServerDeleteRequestEnvelope,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server プラン変更")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/plan")
-  op changePlan(
+  changePlan(
     @path zone: string,
     @path id: string,
     @body body: ServerChangePlanRequestEnvelope,
-    
   ): ServerChangePlanResponseEnvelope | ApiError;
 
+  @summary("Server CD-ROM 挿入")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
-  op insertCDROM(
+  insertCDROM(
     @path zone: string,
     @path id: string,
     @body body: ServerInsertCDROMRequestEnvelope,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server CD-ROM 取り出し")
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
-  op ejectCDROM(
+  ejectCDROM(
     @path zone: string,
     @path id: string,
     @body body: ServerEjectCDROMRequestEnvelope,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server 起動")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
-  op boot(
+  boot(
     @path zone: string,
     @path id: string,
     @body body: ServerBootRequestEnvelope,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server シャットダウン")
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
-  op shutdown(
+  shutdown(
     @path zone: string,
     @path id: string,
     @body body: ServerShutdownRequestEnvelope,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server リセット")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/reset")
-  op reset(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  reset(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server キー送信")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/keyboard")
-  op sendKey(
+  sendKey(
     @path zone: string,
     @path id: string,
     @body body: ServerSendKeyRequestEnvelope,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  ): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server NMI 送信")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/qemu/nmi")
-  op sendNMI(
-    @path zone: string,
-    @path id: string,
-    
-  ): {@statusCode _: 200; is_ok: boolean} | ApiError;
+  sendNMI(@path zone: string, @path id: string): {
+    @statusCode _: 200;
+    is_ok: boolean;
+  } | ApiError;
 
+  @summary("Server VNC プロキシ取得")
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/vnc/proxy")
-  op getVNCProxy(
+  getVNCProxy(
     @path zone: string,
     @path id: string,
-    
   ): ServerGetVNCProxyResponseEnvelope | ApiError;
 
+  @summary("Server モニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/monitor")
-  op monitor(
+  monitor(
     @path zone: string,
     @path id: string,
     @body body: ServerMonitorRequestEnvelope,
-    
   ): ServerMonitorResponseEnvelope | ApiError;
-
 }

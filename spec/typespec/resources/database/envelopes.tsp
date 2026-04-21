@@ -4,236 +4,251 @@ import "@typespec/http";
 
 namespace Sacloud.IaaS;
 
-
 /**
  * Request envelope for databaseFindRequestEnvelope
  */
 model DatabaseFindRequestEnvelope {
-	/**
-	 * Count
-	 */
-	Count: int32;
-	/**
-	 * From
-	 */
-	From: int32;
-	/**
-	 * Filter
-	 */
-	Filter: Record<unknown>;
+  /**
+   * Count
+   */
+  Count: int32;
+
+  /**
+   * From
+   */
+  From: int32;
+
+  /**
+   * Filter
+   */
+  Filter: Record<unknown>;
 }
 /**
  * Response envelope for databaseFindResponseEnvelope
  */
 model DatabaseFindResponseEnvelope {
-	@doc("対象リソースの総件数")
-	Total: int32;
+  @doc("対象リソースの総件数")
+  Total: int32;
 
-	@doc("現在のページ番号")
-	From: int32;
+  @doc("現在のページ番号")
+  From: int32;
 
-	@doc("現在のページの件数")
-	Count: int32;
-	/**
-	 * Appliances
-	 */
-	Appliances: Database[];
+  @doc("現在のページの件数")
+  Count: int32;
+
+  /**
+   * Appliances
+   */
+  Appliances: Database[];
 }
 
 /**
  * Request envelope for databaseCreateRequestEnvelope
  */
 model DatabaseCreateRequestEnvelope {
-	/**
-	 * Appliance
-	 */
-	Appliance?: DatabaseCreateRequest;
+  /**
+   * Appliance
+   */
+  Appliance?: DatabaseCreateRequest;
 }
 /**
  * Response envelope for databaseCreateResponseEnvelope
  */
 model DatabaseCreateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: Database;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: Database;
 }
 
 /**
  * Response envelope for databaseReadResponseEnvelope
  */
 model DatabaseReadResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: Database;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: Database;
 }
 
 /**
  * Request envelope for databaseUpdateRequestEnvelope
  */
 model DatabaseUpdateRequestEnvelope {
-	/**
-	 * Appliance
-	 */
-	Appliance?: DatabaseUpdateRequest;
+  /**
+   * Appliance
+   */
+  Appliance?: DatabaseUpdateRequest;
 }
 /**
  * Response envelope for databaseUpdateResponseEnvelope
  */
 model DatabaseUpdateResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: Database;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: Database;
 }
 
 /**
  * Request envelope for databaseShutdownRequestEnvelope
  */
 model DatabaseShutdownRequestEnvelope {
-	/**
-	 * Force
-	 */
-	Force: boolean;
+  /**
+   * Force
+   */
+  Force: boolean;
 }
 
 /**
  * Request envelope for databaseMonitorCPURequestEnvelope
  */
 model DatabaseMonitorCPURequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for databaseMonitorCPUResponseEnvelope
  */
 model DatabaseMonitorCPUResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Request envelope for databaseMonitorDiskRequestEnvelope
  */
 model DatabaseMonitorDiskRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for databaseMonitorDiskResponseEnvelope
  */
 model DatabaseMonitorDiskResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Request envelope for databaseMonitorInterfaceRequestEnvelope
  */
 model DatabaseMonitorInterfaceRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for databaseMonitorInterfaceResponseEnvelope
  */
 model DatabaseMonitorInterfaceResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Request envelope for databaseMonitorDatabaseRequestEnvelope
  */
 model DatabaseMonitorDatabaseRequestEnvelope {
-	/**
-	 * Start
-	 */
-	Start: utcDateTime;
-	/**
-	 * End
-	 */
-	End: utcDateTime;
+  /**
+   * Start
+   */
+  Start: utcDateTime;
+
+  /**
+   * End
+   */
+  End: utcDateTime;
 }
 /**
  * Response envelope for databaseMonitorDatabaseResponseEnvelope
  */
 model DatabaseMonitorDatabaseResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Data
-	 */
-	Data: unknown;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Data
+   */
+  Data: unknown;
 }
 
 /**
  * Response envelope for databaseStatusResponseEnvelope
  */
 model DatabaseStatusResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Appliance
-	 */
-	Appliance: DatabaseStatus;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Appliance
+   */
+  Appliance: DatabaseStatus;
 }
 
 /**
  * Response envelope for databaseGetParameterResponseEnvelope
  */
 model DatabaseGetParameterResponseEnvelope {
-	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
-	is_ok: boolean;
-	/**
-	 * Database
-	 */
-	Database: DatabaseParameter;
+  @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
+  is_ok: boolean;
+
+  /**
+   * Database
+   */
+  Database: DatabaseParameter;
 }
 
 /**
  * Request envelope for databaseSetParameterRequestEnvelope
  */
 model DatabaseSetParameterRequestEnvelope {
-	/**
-	 * Parameter
-	 */
-	Parameter?: DatabaseParameter;
+  /**
+   * Parameter
+   */
+  Parameter?: DatabaseParameter;
 }

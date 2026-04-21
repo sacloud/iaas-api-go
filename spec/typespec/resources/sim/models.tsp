@@ -5,93 +5,93 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SIM {
-	ID?: int64 | null;
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Availability?: EAvailability | null;
-	Class: string;
-	Status?: SIMStatus | null;
-	Icon?: ResourceRef | null;
-	CreatedAt?: utcDateTime | null;
-	ModifiedAt?: utcDateTime | null;
+  ID?: int64 | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Availability?: EAvailability | null;
+  Class: string;
+  Status?: SIMStatus | null;
+  Icon?: ResourceRef | null;
+  CreatedAt?: utcDateTime | null;
+  ModifiedAt?: utcDateTime | null;
 }
 
 model SIMStatus {
-	ICCID?: string | null;
-	SIMInfo?: SIMInfo | null;
+  ICCID?: string | null;
+  SIMInfo?: SIMInfo | null;
 }
 
 model SIMInfo {
-	ICCID?: string | null;
-	IMSI?: string[] | null;
-	IMEI?: string | null;
-	IP?: string | null;
-	SessionStatus?: string | null;
-	IMEILock: boolean;
-	Registered: boolean;
-	Activated: boolean;
-	ResourceID?: string | null;
-	RegisteredDate?: utcDateTime | null;
-	ActivatedDate?: utcDateTime | null;
-	DeactivatedDate?: utcDateTime | null;
-	SIMGroupID?: string | null;
-	TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
-	ConnectedIMEI?: string | null;
+  ICCID?: string | null;
+  IMSI?: string[] | null;
+  IMEI?: string | null;
+  IP?: string | null;
+  SessionStatus?: string | null;
+  IMEILock: boolean;
+  Registered: boolean;
+  Activated: boolean;
+  ResourceID?: string | null;
+  RegisteredDate?: utcDateTime | null;
+  ActivatedDate?: utcDateTime | null;
+  DeactivatedDate?: utcDateTime | null;
+  SIMGroupID?: string | null;
+  TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
+  ConnectedIMEI?: string | null;
 }
 
 model SIMCreateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
-	Status?: SIMCreateRequestStatus | null;
-	Remark?: SIMCreateRequestRemark | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
+  Status?: SIMCreateRequestStatus | null;
+  Remark?: SIMCreateRequestRemark | null;
 }
 
 model SIMCreateRequestStatus {
-	ICCID?: string | null;
+  ICCID?: string | null;
 }
 
 model SIMCreateRequestRemark {
-	PassCode?: string | null;
+  PassCode?: string | null;
 }
 
 model SIMUpdateRequest {
-	Name?: string | null;
-	Description: string;
-	Tags: string[];
-	Icon?: ResourceRef | null;
+  Name?: string | null;
+  Description: string;
+  Tags: string[];
+  Icon?: ResourceRef | null;
 }
 
 model SIMAssignIPRequest {
-	IP: string;
+  IP: string;
 }
 
 model SIMIMEILockRequest {
-	IMEI: string;
+  IMEI: string;
 }
 
 model SIMLog {
-	Date?: utcDateTime | null;
-	SessionStatus?: string | null;
-	ResourceID?: string | null;
-	IMEI?: string | null;
-	IMSI?: string | null;
+  Date?: utcDateTime | null;
+  SessionStatus?: string | null;
+  ResourceID?: string | null;
+  IMEI?: string | null;
+  IMSI?: string | null;
 }
 
 model SIMNetworkOperatorConfig {
-	Allow: boolean;
-	CountryCode?: string | null;
-	Name?: string | null;
+  Allow: boolean;
+  CountryCode?: string | null;
+  Name?: string | null;
 }
 
 model LinkActivity {
-	Values: MonitorLinkValue[];
+  Values: MonitorLinkValue[];
 }
 
 model MonitorLinkValue {
-	Time: utcDateTime;
-	UplinkBPS: float64;
-	DownlinkBPS: float64;
+  Time: utcDateTime;
+  UplinkBPS: float64;
+  DownlinkBPS: float64;
 }

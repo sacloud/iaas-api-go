@@ -10,21 +10,19 @@ namespace Sacloud.IaaS;
 
 @tag("Subnet")
 interface SubnetOp {
-
+  @summary("Subnet 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/subnet")
-  op find(
+  find(
     @path zone: string,
     @query q?: string,
-    
   ): SubnetFindResponseEnvelope | ApiError;
 
+  @summary("Subnet 取得")
   @get
   @route("/{zone}/api/cloud/1.1/subnet/{id}")
-  op read(
+  read(
     @path zone: string,
     @path id: string,
-    
   ): SubnetReadResponseEnvelope | ApiError;
-
 }
