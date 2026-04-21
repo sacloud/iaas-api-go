@@ -4,6 +4,14 @@
 
 現在、v2 を開発中。
 
+## 関連ドキュメント
+
+- [`docs/v2-issues.md`](./docs/v2-issues.md) — v2 の既知課題・改善項目一覧（downstream 移行前提の
+  ergonomics、生成器保守性、運用ポリシーなど）。新しい課題が見えたら追記する
+- [`docs/typespec/excluded-fields.md`](./docs/typespec/excluded-fields.md) — fieldmanifest で
+  TypeSpec 出力から除外されたフィールドの自動レポート（`gen-typespec` が生成、手編集不可）
+- [`docs/design/overview.md`](./docs/design/overview.md) — v1 設計のアーキテクチャ概要
+
 ## v1 と v2 の違い
 
 v1 では Go の DSL 定義からクライアントを生成していた。
