@@ -13,22 +13,47 @@ interface IPAddressOp {
   @summary("IPAddress 一覧取得")
   @get
   @route("/{zone}/api/cloud/1.1/ipaddress")
-  list(@path zone: string): IPAddressListResponseEnvelope | ApiError;
+  list(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+  ): IPAddressListResponseEnvelope | ApiError;
 
   @summary("IPAddress 取得")
   @get
   @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
   read(
-    @path zone: string,
-    @path ipAddress: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象の IPv4 アドレス。
+      """)
+    @path
+    ipAddress: string,
   ): IPAddressReadResponseEnvelope | ApiError;
 
   @summary("IPAddress ホスト名更新")
   @put
   @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
   updateHostName(
-    @path zone: string,
-    @path ipAddress: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象の IPv4 アドレス。
+      """)
+    @path
+    ipAddress: string,
+
     @body body: IPAddressUpdateHostNameRequestEnvelope,
   ): IPAddressUpdateHostNameResponseEnvelope | ApiError;
 }

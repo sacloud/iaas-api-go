@@ -14,7 +14,11 @@ interface ServerOp {
   @get
   @route("/{zone}/api/cloud/1.1/server")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -37,7 +41,15 @@ interface ServerOp {
   @summary("Server 作成")
   @post
   @route("/{zone}/api/cloud/1.1/server")
-  create(@path zone: string, @body body: ServerCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: ServerCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...ServerCreateResponseEnvelope;
   } | ApiError;
@@ -46,16 +58,35 @@ interface ServerOp {
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): ServerReadResponseEnvelope | ApiError;
 
   @summary("Server 更新")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerUpdateRequestEnvelope,
   ): ServerUpdateResponseEnvelope | ApiError;
 
@@ -63,8 +94,18 @@ interface ServerOp {
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}")
   delete(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerDeleteRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -75,8 +116,18 @@ interface ServerOp {
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/plan")
   changePlan(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerChangePlanRequestEnvelope,
   ): ServerChangePlanResponseEnvelope | ApiError;
 
@@ -84,8 +135,18 @@ interface ServerOp {
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
   insertCDROM(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerInsertCDROMRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -96,8 +157,18 @@ interface ServerOp {
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
   ejectCDROM(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerEjectCDROMRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -108,8 +179,18 @@ interface ServerOp {
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
   boot(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerBootRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -120,8 +201,18 @@ interface ServerOp {
   @delete
   @route("/{zone}/api/cloud/1.1/server/{id}/power")
   shutdown(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerShutdownRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -131,7 +222,19 @@ interface ServerOp {
   @summary("Server リセット")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/reset")
-  reset(@path zone: string, @path id: string): {
+  reset(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -140,8 +243,18 @@ interface ServerOp {
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/keyboard")
   sendKey(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerSendKeyRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -151,7 +264,19 @@ interface ServerOp {
   @summary("Server NMI 送信")
   @put
   @route("/{zone}/api/cloud/1.1/server/{id}/qemu/nmi")
-  sendNMI(@path zone: string, @path id: string): {
+  sendNMI(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -160,16 +285,35 @@ interface ServerOp {
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/vnc/proxy")
   getVNCProxy(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): ServerGetVNCProxyResponseEnvelope | ApiError;
 
   @summary("Server モニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/server/{id}/monitor")
   monitor(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ServerMonitorRequestEnvelope,
   ): ServerMonitorResponseEnvelope | ApiError;
 }

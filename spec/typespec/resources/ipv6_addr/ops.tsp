@@ -14,7 +14,11 @@ interface IPv6AddrOp {
   @get
   @route("/{zone}/api/cloud/1.1/ipv6addr")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -34,7 +38,15 @@ interface IPv6AddrOp {
   @summary("IPv6Addr 作成")
   @post
   @route("/{zone}/api/cloud/1.1/ipv6addr")
-  create(@path zone: string, @body body: IPv6AddrCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: IPv6AddrCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...IPv6AddrCreateResponseEnvelope;
   } | ApiError;
@@ -43,23 +55,54 @@ interface IPv6AddrOp {
   @get
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): IPv6AddrReadResponseEnvelope | ApiError;
 
   @summary("IPv6Addr 更新")
   @put
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: IPv6AddrUpdateRequestEnvelope,
   ): IPv6AddrUpdateResponseEnvelope | ApiError;
 
   @summary("IPv6Addr 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/ipv6addr/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;

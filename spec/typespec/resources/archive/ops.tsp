@@ -14,7 +14,11 @@ interface ArchiveOp {
   @get
   @route("/{zone}/api/cloud/1.1/archive")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -38,7 +42,15 @@ interface ArchiveOp {
   @summary("Archive 作成")
   @post
   @route("/{zone}/api/cloud/1.1/archive")
-  create(@path zone: string, @body body: ArchiveCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: ArchiveCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...ArchiveCreateResponseEnvelope;
   } | ApiError;
@@ -47,23 +59,54 @@ interface ArchiveOp {
   @get
   @route("/{zone}/api/cloud/1.1/archive/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): ArchiveReadResponseEnvelope | ApiError;
 
   @summary("Archive 更新")
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ArchiveUpdateRequestEnvelope,
   ): ArchiveUpdateResponseEnvelope | ApiError;
 
   @summary("Archive 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -72,15 +115,37 @@ interface ArchiveOp {
   @put
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
   share(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ArchiveShareRequestEnvelope,
   ): ArchiveShareResponseEnvelope | ApiError;
 
   @summary("Archive FTP クローズ")
   @delete
   @route("/{zone}/api/cloud/1.1/archive/{id}/ftp")
-  closeFTP(@path zone: string, @path id: string): {
+  closeFTP(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -89,9 +154,24 @@ interface ArchiveOp {
   @post
   @route("/{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}")
   transfer(
-    @path zone: string,
-    @path sourceArchiveID: string,
-    @path destZoneID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      コピー元アーカイブ ID。
+      """)
+    @path
+    sourceArchiveID: string,
+
+    @doc("""
+      転送先ゾーンの ID。
+      """)
+    @path
+    destZoneID: string,
+
     @body body: ArchiveTransferRequestEnvelope,
   ): {
     @statusCode _: 201;

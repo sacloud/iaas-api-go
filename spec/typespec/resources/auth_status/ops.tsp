@@ -13,5 +13,11 @@ interface AuthStatusOp {
   @summary("認証情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/auth-status")
-  read(@path zone: string): AuthStatusReadResponseEnvelope | ApiError;
+  read(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+  ): AuthStatusReadResponseEnvelope | ApiError;
 }

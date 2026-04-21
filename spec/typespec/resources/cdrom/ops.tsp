@@ -14,7 +14,11 @@ interface CDROMOp {
   @get
   @route("/{zone}/api/cloud/1.1/cdrom")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -38,7 +42,15 @@ interface CDROMOp {
   @summary("CDROM 作成")
   @post
   @route("/{zone}/api/cloud/1.1/cdrom")
-  create(@path zone: string, @body body: CDROMCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: CDROMCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...CDROMCreateResponseEnvelope;
   } | ApiError;
@@ -47,23 +59,54 @@ interface CDROMOp {
   @get
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): CDROMReadResponseEnvelope | ApiError;
 
   @summary("CDROM 更新")
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: CDROMUpdateRequestEnvelope,
   ): CDROMUpdateResponseEnvelope | ApiError;
 
   @summary("CDROM 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -72,15 +115,37 @@ interface CDROMOp {
   @put
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
   openFTP(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: CDROMOpenFTPRequestEnvelope,
   ): CDROMOpenFTPResponseEnvelope | ApiError;
 
   @summary("CDROM FTP クローズ")
   @delete
   @route("/{zone}/api/cloud/1.1/cdrom/{id}/ftp")
-  closeFTP(@path zone: string, @path id: string): {
+  closeFTP(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;

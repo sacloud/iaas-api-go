@@ -95,7 +95,11 @@ interface ApplianceOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -119,7 +123,15 @@ interface ApplianceOp {
   @summary("Appliance 作成")
   @post
   @route("/{zone}/api/cloud/1.1/appliance")
-  create(@path zone: string, @body body: ApplianceCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: ApplianceCreateRequestEnvelope,
+  ): {
     @statusCode _: 202;
     ...DatabaseCreateResponseEnvelope;
   } | ApiError;
@@ -128,23 +140,54 @@ interface ApplianceOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): DatabaseReadResponseEnvelope | ApiError;
 
   @summary("Appliance 更新")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: ApplianceUpdateRequestEnvelope,
   ): DatabaseUpdateResponseEnvelope | ApiError;
 
   @summary("Appliance 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -152,7 +195,19 @@ interface ApplianceOp {
   @summary("Appliance 設定反映")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/config")
-  config(@path zone: string, @path id: string): {
+  config(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -160,7 +215,19 @@ interface ApplianceOp {
   @summary("Appliance 起動")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  boot(@path zone: string, @path id: string): {
+  boot(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -168,7 +235,21 @@ interface ApplianceOp {
   @summary("Appliance シャットダウン")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
-  shutdown(@path zone: string, @path id: string, @body body: ShutdownOption): {
+  shutdown(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @body body: ShutdownOption,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -176,7 +257,19 @@ interface ApplianceOp {
   @summary("Appliance リセット")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/reset")
-  reset(@path zone: string, @path id: string): {
+  reset(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -185,8 +278,18 @@ interface ApplianceOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor")
   monitorCPU(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: MonitorCondition,
   ): DatabaseMonitorCPUResponseEnvelope | ApiError;
 
@@ -194,8 +297,18 @@ interface ApplianceOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/monitor")
   monitorInterface(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: MonitorCondition,
   ): DatabaseMonitorInterfaceResponseEnvelope | ApiError;
 
@@ -203,8 +316,18 @@ interface ApplianceOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/monitor")
   monitorDatabase(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: MonitorCondition,
   ): DatabaseMonitorDatabaseResponseEnvelope | ApiError;
 
@@ -212,17 +335,40 @@ interface ApplianceOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/status")
   status(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): DatabaseStatusResponseEnvelope | ApiError;
 
   @summary("Appliance インターフェイスモニター情報取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor")
   monitorInterfaceByIndex(
-    @path zone: string,
-    @path id: string,
-    @path index: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      インターフェースのインデックス（0 始まり）。
+      """)
+    @path
+    index: string,
   ): MobileGatewayMonitorInterfaceResponseEnvelope | ApiError;
 }
 
@@ -232,8 +378,16 @@ interface DatabaseOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor")
   monitorDisk(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
     condition: MonitorCondition,
   ): DatabaseMonitorDiskResponseEnvelope | ApiError;
 
@@ -241,14 +395,34 @@ interface DatabaseOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
   getParameter(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): DatabaseGetParameterResponseEnvelope | ApiError;
 
   @summary("Database パラメータ設定")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
-  setParameter(@path zone: string, @path id: string, param: Record<unknown>): {
+  setParameter(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+    param: Record<unknown>,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -260,9 +434,21 @@ interface MobileGatewayOp {
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}")
   connectToSwitch(
-    @path zone: string,
-    @path id: string,
-    @path switchID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+    @doc("""
+      スイッチ ID。
+      """)
+    @path
+    switchID: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -271,7 +457,18 @@ interface MobileGatewayOp {
   @summary("MobileGateway スイッチ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch")
-  disconnectFromSwitch(@path zone: string, @path id: string): {
+  disconnectFromSwitch(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -280,16 +477,32 @@ interface MobileGatewayOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
   getDNS(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): MobileGatewayGetDNSResponseEnvelope | ApiError;
 
   @summary("MobileGateway DNS 設定")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
   setDNS(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
     param: MobileGatewayDNSSetting,
   ): {
     @statusCode _: 200;
@@ -300,16 +513,32 @@ interface MobileGatewayOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
   getSIMRoutes(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): MobileGatewayGetSIMRoutesResponseEnvelope | ApiError;
 
   @summary("MobileGateway SIM ルート設定")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
   setSIMRoutes(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
     param: MobileGatewaySIMRouteParam[],
   ): {
     @statusCode _: 200;
@@ -320,16 +549,32 @@ interface MobileGatewayOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
   listSIM(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): MobileGatewayListSIMResponseEnvelope | ApiError;
 
   @summary("MobileGateway SIM 追加")
   @post
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
   addSIM(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
     param: MobileGatewayAddSIMRequest,
   ): {
     @statusCode _: 200;
@@ -339,7 +584,23 @@ interface MobileGatewayOp {
   @summary("MobileGateway SIM 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}")
-  deleteSIM(@path zone: string, @path id: string, @path simID: string): {
+  deleteSIM(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+    @doc("""
+      SIM ID。
+      """)
+    @path
+    simID: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -348,24 +609,48 @@ interface MobileGatewayOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog")
   logs(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): MobileGatewayLogsResponseEnvelope | ApiError;
 
   @summary("MobileGateway トラフィック設定取得")
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
   getTrafficConfig(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): MobileGatewayGetTrafficConfigResponseEnvelope | ApiError;
 
   @summary("MobileGateway トラフィック設定更新")
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
   setTrafficConfig(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
     param: MobileGatewayTrafficControl,
   ): {
     @statusCode _: 200;
@@ -375,7 +660,18 @@ interface MobileGatewayOp {
   @summary("MobileGateway トラフィック設定削除")
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
-  deleteTrafficConfig(@path zone: string, @path id: string): {
+  deleteTrafficConfig(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -384,8 +680,16 @@ interface MobileGatewayOp {
   @get
   @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status")
   trafficStatus(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): MobileGatewayTrafficStatusResponseEnvelope | ApiError;
 }
 
@@ -395,10 +699,26 @@ interface VPCRouterOp {
   @put
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}")
   connectToSwitch(
-    @path zone: string,
-    @path id: string,
-    @path nicIndex: string,
-    @path switchID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+    @doc("""
+      NIC のインデックス（0 始まり）。
+      """)
+    @path
+    nicIndex: string,
+    @doc("""
+      スイッチ ID。
+      """)
+    @path
+    switchID: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -408,9 +728,21 @@ interface VPCRouterOp {
   @delete
   @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch")
   disconnectFromSwitch(
-    @path zone: string,
-    @path id: string,
-    @path nicIndex: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+    @doc("""
+      NIC のインデックス（0 始まり）。
+      """)
+    @path
+    nicIndex: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -419,7 +751,23 @@ interface VPCRouterOp {
   @summary("VPCRouter Ping")
   @post
   @route("/{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}")
-  ping(@path zone: string, @path id: string, @path destination: string): {
+  ping(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+    @doc("""
+      ping の宛先 IP アドレスまたはホスト名。
+      """)
+    @path
+    destination: string,
+  ): {
     @statusCode _: 201;
     ...VPCRouterPingResponseEnvelope;
   } | ApiError;

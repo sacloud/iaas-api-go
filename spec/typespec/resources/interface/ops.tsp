@@ -14,7 +14,11 @@ interface InterfaceOp {
   @get
   @route("/{zone}/api/cloud/1.1/interface")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -36,7 +40,15 @@ interface InterfaceOp {
   @summary("Interface 作成")
   @post
   @route("/{zone}/api/cloud/1.1/interface")
-  create(@path zone: string, @body body: InterfaceCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: InterfaceCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...InterfaceCreateResponseEnvelope;
   } | ApiError;
@@ -45,23 +57,54 @@ interface InterfaceOp {
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): InterfaceReadResponseEnvelope | ApiError;
 
   @summary("Interface 更新")
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: InterfaceUpdateRequestEnvelope,
   ): InterfaceUpdateResponseEnvelope | ApiError;
 
   @summary("Interface 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -70,15 +113,37 @@ interface InterfaceOp {
   @get
   @route("/{zone}/api/cloud/1.1/interface/{id}/monitor")
   monitor(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: InterfaceMonitorRequestEnvelope,
   ): InterfaceMonitorResponseEnvelope | ApiError;
 
   @summary("Interface 共有セグメント接続")
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/shared")
-  connectToSharedSegment(@path zone: string, @path id: string): {
+  connectToSharedSegment(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -87,9 +152,23 @@ interface InterfaceOp {
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}")
   connectToSwitch(
-    @path zone: string,
-    @path id: string,
-    @path switchID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      スイッチ ID。
+      """)
+    @path
+    switchID: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -98,7 +177,19 @@ interface InterfaceOp {
   @summary("Interface スイッチ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
-  disconnectFromSwitch(@path zone: string, @path id: string): {
+  disconnectFromSwitch(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -107,9 +198,23 @@ interface InterfaceOp {
   @put
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}")
   connectToPacketFilter(
-    @path zone: string,
-    @path id: string,
-    @path packetFilterID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      パケットフィルタ ID。
+      """)
+    @path
+    packetFilterID: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -118,7 +223,19 @@ interface InterfaceOp {
   @summary("Interface パケットフィルタ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter")
-  disconnectFromPacketFilter(@path zone: string, @path id: string): {
+  disconnectFromPacketFilter(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;

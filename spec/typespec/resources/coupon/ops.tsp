@@ -14,7 +14,16 @@ interface CouponOp {
   @get
   @route("/{zone}/api/system/1.0/coupon/{accountID}")
   find(
-    @path zone: string,
-    @path accountID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      契約（アカウント）の ID。
+      """)
+    @path
+    accountID: string,
   ): CouponFindResponseEnvelope | ApiError;
 }

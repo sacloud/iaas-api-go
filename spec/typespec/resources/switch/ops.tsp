@@ -14,7 +14,11 @@ interface SwitchOp {
   @get
   @route("/{zone}/api/cloud/1.1/switch")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -38,7 +42,15 @@ interface SwitchOp {
   @summary("Switch 作成")
   @post
   @route("/{zone}/api/cloud/1.1/switch")
-  create(@path zone: string, @body body: SwitchCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: SwitchCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...SwitchCreateResponseEnvelope;
   } | ApiError;
@@ -47,23 +59,54 @@ interface SwitchOp {
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): SwitchReadResponseEnvelope | ApiError;
 
   @summary("Switch 更新")
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: SwitchUpdateRequestEnvelope,
   ): SwitchUpdateResponseEnvelope | ApiError;
 
   @summary("Switch 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -72,9 +115,23 @@ interface SwitchOp {
   @put
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}")
   connectToBridge(
-    @path zone: string,
-    @path id: string,
-    @path bridgeID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      ブリッジ ID。
+      """)
+    @path
+    bridgeID: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -83,7 +140,19 @@ interface SwitchOp {
   @summary("ブリッジ切断")
   @delete
   @route("/{zone}/api/cloud/1.1/switch/{id}/to/bridge")
-  disconnectFromBridge(@path zone: string, @path id: string): {
+  disconnectFromBridge(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -92,7 +161,16 @@ interface SwitchOp {
   @get
   @route("/{zone}/api/cloud/1.1/switch/{id}/server")
   getServers(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): SwitchGetServersResponseEnvelope | ApiError;
 }

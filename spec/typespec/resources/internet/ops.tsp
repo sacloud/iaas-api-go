@@ -14,7 +14,11 @@ interface InternetOp {
   @get
   @route("/{zone}/api/cloud/1.1/internet")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -37,7 +41,15 @@ interface InternetOp {
   @summary("Internet 作成")
   @post
   @route("/{zone}/api/cloud/1.1/internet")
-  create(@path zone: string, @body body: InternetCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: InternetCreateRequestEnvelope,
+  ): {
     @statusCode _: 202;
     ...InternetCreateResponseEnvelope;
   } | ApiError;
@@ -46,23 +58,54 @@ interface InternetOp {
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): InternetReadResponseEnvelope | ApiError;
 
   @summary("Internet 更新")
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: InternetUpdateRequestEnvelope,
   ): InternetUpdateResponseEnvelope | ApiError;
 
   @summary("Internet 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -71,8 +114,18 @@ interface InternetOp {
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/bandwidth")
   updateBandWidth(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: InternetUpdateBandWidthRequestEnvelope,
   ): InternetUpdateBandWidthResponseEnvelope | ApiError;
 
@@ -80,8 +133,18 @@ interface InternetOp {
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet")
   addSubnet(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: InternetAddSubnetRequestEnvelope,
   ): {
     @statusCode _: 201;
@@ -92,16 +155,49 @@ interface InternetOp {
   @put
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
   updateSubnet(
-    @path zone: string,
-    @path id: string,
-    @path subnetID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      サブネット ID。
+      """)
+    @path
+    subnetID: string,
+
     @body body: InternetUpdateSubnetRequestEnvelope,
   ): InternetUpdateSubnetResponseEnvelope | ApiError;
 
   @summary("Internet サブネット削除")
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
-  deleteSubnet(@path zone: string, @path id: string, @path subnetID: string): {
+  deleteSubnet(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      サブネット ID。
+      """)
+    @path
+    subnetID: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -110,15 +206,37 @@ interface InternetOp {
   @get
   @route("/{zone}/api/cloud/1.1/internet/{id}/monitor")
   monitor(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: InternetMonitorRequestEnvelope,
   ): InternetMonitorResponseEnvelope | ApiError;
 
   @summary("Internet IPv6 有効化")
   @post
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net")
-  enableIPv6(@path zone: string, @path id: string): {
+  enableIPv6(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     ...InternetEnableIPv6ResponseEnvelope;
   } | ApiError;
@@ -126,7 +244,21 @@ interface InternetOp {
   @summary("Internet IPv6 無効化")
   @delete
   @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}")
-  disableIPv6(@path zone: string, @path id: string, @path ipv6netID: string): {
+  disableIPv6(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @path ipv6netID: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;

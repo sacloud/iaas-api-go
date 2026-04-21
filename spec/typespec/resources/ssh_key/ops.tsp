@@ -14,7 +14,11 @@ interface SSHKeyOp {
   @get
   @route("/{zone}/api/cloud/1.1/sshkey")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -36,7 +40,15 @@ interface SSHKeyOp {
   @summary("SSHKey 作成")
   @post
   @route("/{zone}/api/cloud/1.1/sshkey")
-  create(@path zone: string, @body body: SSHKeyCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: SSHKeyCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...SSHKeyCreateResponseEnvelope;
   } | ApiError;
@@ -45,23 +57,54 @@ interface SSHKeyOp {
   @get
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): SSHKeyReadResponseEnvelope | ApiError;
 
   @summary("SSHKey 更新")
   @put
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: SSHKeyUpdateRequestEnvelope,
   ): SSHKeyUpdateResponseEnvelope | ApiError;
 
   @summary("SSHKey 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/sshkey/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;

@@ -14,52 +14,131 @@ interface BillOp {
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}")
   byContract(
-    @path zone: string,
-    @path accountID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      契約（アカウント）の ID。
+      """)
+    @path
+    accountID: string,
   ): BillByContractResponseEnvelope | ApiError;
 
   @summary("契約・年別請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}")
   byContractYear(
-    @path zone: string,
-    @path accountID: string,
-    @path year: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      契約（アカウント）の ID。
+      """)
+    @path
+    accountID: string,
+
+    @doc("""
+      対象年（西暦 4 桁）。
+      """)
+    @path
+    year: string,
   ): BillByContractYearResponseEnvelope | ApiError;
 
   @summary("契約・年月別請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}")
   byContractYearMonth(
-    @path zone: string,
-    @path accountID: string,
-    @path year: string,
-    @path month: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      契約（アカウント）の ID。
+      """)
+    @path
+    accountID: string,
+
+    @doc("""
+      対象年（西暦 4 桁）。
+      """)
+    @path
+    year: string,
+
+    @doc("""
+      対象月（1〜12）。
+      """)
+    @path
+    month: string,
   ): BillByContractYearMonthResponseEnvelope | ApiError;
 
   @summary("請求情報取得")
   @get
   @route("/{zone}/api/system/1.0/bill/id/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): BillReadResponseEnvelope | ApiError;
 
   @summary("請求明細取得")
   @get
   @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}")
   details(
-    @path zone: string,
-    @path MemberCode: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      会員コード。
+      """)
+    @path
+    MemberCode: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): BillDetailsResponseEnvelope | ApiError;
 
   @summary("請求明細 CSV 取得")
   @get
   @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv")
   detailsCSV(
-    @path zone: string,
-    @path MemberCode: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      会員コード。
+      """)
+    @path
+    MemberCode: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): BillDetailsCSVResponseEnvelope | ApiError;
 }

@@ -14,7 +14,12 @@ interface IPv6NetOp {
   @get
   @route("/{zone}/api/cloud/1.1/ipv6net")
   list(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
     @body body: IPv6NetListRequestEnvelope,
   ): IPv6NetListResponseEnvelope | ApiError;
 
@@ -22,7 +27,16 @@ interface IPv6NetOp {
   @get
   @route("/{zone}/api/cloud/1.1/ipv6net/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): IPv6NetReadResponseEnvelope | ApiError;
 }

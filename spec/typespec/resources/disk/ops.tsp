@@ -14,7 +14,11 @@ interface DiskOp {
   @get
   @route("/{zone}/api/cloud/1.1/disk")
   find(
-    @path zone: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
 
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
@@ -38,7 +42,15 @@ interface DiskOp {
   @summary("Disk 作成")
   @post
   @route("/{zone}/api/cloud/1.1/disk")
-  create(@path zone: string, @body body: DiskCreateRequestEnvelope): {
+  create(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @body body: DiskCreateRequestEnvelope,
+  ): {
     @statusCode _: 201;
     ...DiskCreateResponseEnvelope;
   } | ApiError;
@@ -47,8 +59,18 @@ interface DiskOp {
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/config")
   config(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: DiskConfigRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -59,8 +81,18 @@ interface DiskOp {
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/resize-partition")
   resizePartition(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: DiskResizePartitionRequestEnvelope,
   ): {
     @statusCode _: 200;
@@ -71,9 +103,23 @@ interface DiskOp {
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}")
   connectToServer(
-    @path zone: string,
-    @path id: string,
-    @path serverID: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
+    @doc("""
+      サーバ ID。
+      """)
+    @path
+    serverID: string,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -82,7 +128,19 @@ interface DiskOp {
   @summary("Disk サーバー切断")
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}/to/server")
-  disconnectFromServer(@path zone: string, @path id: string): {
+  disconnectFromServer(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -91,23 +149,54 @@ interface DiskOp {
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}")
   read(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
   ): DiskReadResponseEnvelope | ApiError;
 
   @summary("Disk 更新")
   @put
   @route("/{zone}/api/cloud/1.1/disk/{id}")
   update(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: DiskUpdateRequestEnvelope,
   ): DiskUpdateResponseEnvelope | ApiError;
 
   @summary("Disk 削除")
   @delete
   @route("/{zone}/api/cloud/1.1/disk/{id}")
-  delete(@path zone: string, @path id: string): {
+  delete(
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+  ): {
     @statusCode _: 200;
     is_ok: boolean;
   } | ApiError;
@@ -116,8 +205,18 @@ interface DiskOp {
   @get
   @route("/{zone}/api/cloud/1.1/disk/{id}/monitor")
   monitor(
-    @path zone: string,
-    @path id: string,
+    @doc("""
+      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
+      """)
+    @path
+    zone: string,
+
+    @doc("""
+      対象リソースの ID。数値を 10 進文字列で指定する。
+      """)
+    @path
+    id: string,
+
     @body body: DiskMonitorRequestEnvelope,
   ): DiskMonitorResponseEnvelope | ApiError;
 }

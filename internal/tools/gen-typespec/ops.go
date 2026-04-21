@@ -224,6 +224,41 @@ func resolveOpPath(op *dsl.Operation, api *dsl.Resource) string {
 	return pf
 }
 
+// pathParamDocs は @path パラメータ名に対して付与する @doc 文言。
+// 未登録のキーは @doc 無しで出力される。
+var pathParamDocs = map[string]string{
+	"zone": "リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。" +
+		"Sandbox 環境では `tk1v` を指定する。",
+	"id": "対象リソースの ID。数値を 10 進文字列で指定する。",
+	"accountID":       "契約（アカウント）の ID。",
+	"bridgeID":        "ブリッジ ID。",
+	"clientID":        "CA クライアント証明書の ID（`cli_xxxx` 形式）。",
+	"destZoneID":      "転送先ゾーンの ID。",
+	"destination":     "ping の宛先 IP アドレスまたはホスト名。",
+	"index":           "インターフェースのインデックス（0 始まり）。",
+	"ipAddress":       "対象の IPv4 アドレス。",
+	"MemberCode":      "会員コード。",
+	"month":           "対象月（1〜12）。",
+	"nicIndex":        "NIC のインデックス（0 始まり）。",
+	"packetFilterID":  "パケットフィルタ ID。",
+	"serverID":        "サーバ ID。",
+	"simID":           "SIM ID。",
+	"sourceArchiveID": "コピー元アーカイブ ID。",
+	"subnetID":        "サブネット ID。",
+	"switchID":        "スイッチ ID。",
+	"username":        "コンテナレジストリのユーザ名。",
+	"year":            "対象年（西暦 4 桁）。",
+}
+
+// newPathParam は @path パラメータを 1 つ組み立てる。pathParamDocs に該当キーがあれば @doc を付与する。
+func newPathParam(name string) opParam {
+	p := opParam{Decorator: "@path", Name: name, TSType: "string"}
+	if doc, ok := pathParamDocs[name]; ok {
+		p.Doc = doc
+	}
+	return p
+}
+
 // buildOpParams はオペレーションの全パラメータリストを構築する。
 // @path パラメータを先に出力し、その後にボディパラメータを続ける。
 func buildOpParams(op *dsl.Operation, resolvedPath string) []opParam {
@@ -235,7 +270,7 @@ func buildOpParams(op *dsl.Operation, resolvedPath string) []opParam {
 
 	var params []opParam
 	for _, p := range pathParams {
-		params = append(params, opParam{Decorator: "@path", Name: p, TSType: "string"})
+		params = append(params, newPathParam(p))
 	}
 	for _, arg := range op.Arguments {
 		if pathParamSet[arg.PathFormatName()] {
@@ -414,7 +449,7 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 		// @path パラメータ
 		var params []opParam
 		for _, p := range pathParams {
-			params = append(params, opParam{Decorator: "@path", Name: p, TSType: "string"})
+			params = append(params, newPathParam(p))
 		}
 
 		if envelopeName, ok := envelopeNameByKey[g.key]; ok && envelopeName != "" {
@@ -635,7 +670,7 @@ func generateSharedGroupFile(groupName, pathName string, resources []*dsl.Resour
 		// パラメータリストを構築: @path を先に出力
 		var params []opParam
 		for _, p := range pathParams {
-			params = append(params, opParam{Decorator: "@path", Name: p, TSType: "string"})
+			params = append(params, newPathParam(p))
 		}
 
 		// ボディ引数: 全リソースで型が同じなら直接使用、異なれば fat model を生成
