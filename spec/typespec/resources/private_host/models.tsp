@@ -10,7 +10,6 @@ model PrivateHost {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
   Plan?: PrivateHostPlan | null;
   AssignedCPU?: int32 | null;
   AssignedMemoryMB?: int32 | null;

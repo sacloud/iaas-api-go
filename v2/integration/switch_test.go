@@ -34,15 +34,12 @@ func TestSwitchCRUD(t *testing.T) {
 	zone := getZone()
 
 	// 1. Create - スイッチ作成
+	// 注: UserSubnet は fieldmanifest allowlist で除外済み (downstream が未指定のため)。
 	createReq := &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
 			Name:        client.NewOptNilString("test-switch"),
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
-			UserSubnet: client.NewOptNilSwitchCreateRequestUserSubnet(client.SwitchCreateRequestUserSubnet{
-				NetworkMaskLen: 24,
-				DefaultRoute:   "192.168.0.1",
-			}),
 		},
 	}
 
@@ -68,10 +65,6 @@ func TestSwitchCRUD(t *testing.T) {
 			Name:        client.NewOptNilString("test-switch-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
-			UserSubnet: client.NewOptNilSwitchUpdateRequestUserSubnet(client.SwitchUpdateRequestUserSubnet{
-				NetworkMaskLen: 28,
-				DefaultRoute:   "192.168.0.2",
-			}),
 		},
 	}, client.SwitchOpUpdateParams{
 		Zone: zone,

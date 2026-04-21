@@ -8,10 +8,7 @@ model PacketFilter {
   ID?: int64 | null;
   Name?: string | null;
   Description: string;
-  RequiredHostVersion?: int32 | null;
   Expression: PacketFilterExpression[];
-  ExpressionHash?: string | null;
-  CreatedAt?: utcDateTime | null;
 }
 
 model PacketFilterExpression {

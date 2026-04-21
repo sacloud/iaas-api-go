@@ -8,7 +8,6 @@ model SSHKey {
   ID?: int64 | null;
   Name?: string | null;
   Description: string;
-  CreatedAt?: utcDateTime | null;
   PublicKey?: string | null;
   Fingerprint?: string | null;
 }

@@ -8,10 +8,7 @@ model Bill {
   ID?: int64 | null;
   Amount?: int64 | null;
   Date?: utcDateTime | null;
-  MemberID?: string | null;
   Paid: boolean;
-  PayLimit?: utcDateTime | null;
-  PaymentClassID?: int64 | null;
 }
 
 model BillDetail {

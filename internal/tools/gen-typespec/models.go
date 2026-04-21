@@ -27,6 +27,7 @@ import (
 	"github.com/sacloud/iaas-api-go/internal/define"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
 	"github.com/sacloud/iaas-api-go/internal/dsl/meta"
+	"github.com/sacloud/iaas-api-go/internal/tools/fieldmanifest"
 )
 
 const resourcesDir = "spec/typespec/resources/"
@@ -529,8 +530,17 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 	// ルートの `resolveModel` だけでなく再帰呼び出しでも modelFieldExclusions を参照する。
 	subExclusions := modelFieldExclusions[modelName]
 
+	// fieldmanifest allowlist: 登録されていないモデルは従来どおり全通過。
+	// 登録モデルでは allowlist に含まれないフィールドを emit しない。
+	// TypeSpec 側のフィールド名 (child.name) で判定する。
+	isAllowlisted := fieldmanifest.IsRegistered(modelName)
+
 	for _, child := range node.children {
 		if subExclusions[child.name] {
+			continue
+		}
+		if isAllowlisted && !fieldmanifest.Allows(modelName, child.name) {
+			recordExcludedField(modelName, child.name)
 			continue
 		}
 		nullable := nakedFieldIsNullable(nakedRT, child.name)

@@ -6,14 +6,9 @@ namespace Sacloud.IaaS;
 
 model Interface {
   ID?: int64 | null;
-  MACAddress?: string | null;
-  IPAddress?: string | null;
   UserIPAddress?: string | null;
-  HostName?: string | null;
   Switch?: InterfaceSwitch | null;
-  PacketFilter?: ResourceRef | null;
   Server?: ResourceRef | null;
-  CreatedAt: utcDateTime;
 }
 
 model InterfaceSwitch {

@@ -8,10 +8,6 @@ model Bridge {
   ID?: int64 | null;
   Name?: string | null;
   Description: string;
-  CreatedAt?: utcDateTime | null;
-  Region?: Region | null;
-  BridgeInfo?: BridgeInfo[] | null;
-  SwitchInZone?: BridgeSwitchInfo | null;
 }
 
 model Region {

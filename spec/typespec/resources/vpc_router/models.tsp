@@ -12,7 +12,6 @@ model VPCRouter {
   Availability?: EAvailability | null;
   Class?: string | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
   Remark?: VPCRouterRemark | null;
   Settings?: VPCRouterSetting | null;
   SettingsHash?: string | null;

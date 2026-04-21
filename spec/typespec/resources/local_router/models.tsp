@@ -11,8 +11,6 @@ model LocalRouter {
   Tags: string[];
   Availability?: EAvailability | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Settings?: LocalRouterSettings | null;
   Peers: LocalRouterPeer[];
   StaticRoutes: LocalRouterStaticRoute[];

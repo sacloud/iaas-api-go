@@ -359,18 +359,6 @@ func TestArchiveOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveOpDeleteOK
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestArchivePlan_EncodeDecode(t *testing.T) {
-	var typ ArchivePlan
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchivePlan
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestArchiveReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ArchiveReadResponseEnvelope
 	typ.SetFake()
@@ -417,30 +405,6 @@ func TestArchiveShareResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 ArchiveShareResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestArchiveSourceArchive_EncodeDecode(t *testing.T) {
-	var typ ArchiveSourceArchive
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveSourceArchive
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestArchiveSourceDisk_EncodeDecode(t *testing.T) {
-	var typ ArchiveSourceDisk
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 ArchiveSourceDisk
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestArchiveTransferRequest_EncodeDecode(t *testing.T) {
@@ -911,30 +875,6 @@ func TestBridgeFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BridgeFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestBridgeInfo_EncodeDecode(t *testing.T) {
-	var typ BridgeInfo
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BridgeInfo
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBridgeInfoZone_EncodeDecode(t *testing.T) {
-	var typ BridgeInfoZone
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BridgeInfoZone
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestBridgeOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ BridgeOpDeleteOK
 	typ.SetFake()
@@ -957,18 +897,6 @@ func TestBridgeReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 BridgeReadResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBridgeSwitchInfo_EncodeDecode(t *testing.T) {
-	var typ BridgeSwitchInfo
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BridgeSwitchInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestBridgeUpdateRequest_EncodeDecode(t *testing.T) {
@@ -1005,18 +933,6 @@ func TestBridgeUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 BridgeUpdateResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBundleInfo_EncodeDecode(t *testing.T) {
-	var typ BundleInfo
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BundleInfo
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestCDROM_EncodeDecode(t *testing.T) {
@@ -2861,30 +2777,6 @@ func TestDiskUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DiskUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestEAuthClass_EncodeDecode(t *testing.T) {
-	var typ EAuthClass
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 EAuthClass
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestEAuthMethod_EncodeDecode(t *testing.T) {
-	var typ EAuthMethod
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 EAuthMethod
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestEAutoScaleAction_EncodeDecode(t *testing.T) {
 	var typ EAutoScaleAction
 	typ.SetFake()
@@ -3051,30 +2943,6 @@ func TestEInterfaceDriver_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 EInterfaceDriver
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestEOperationPenalty_EncodeDecode(t *testing.T) {
-	var typ EOperationPenalty
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 EOperationPenalty
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestEPermission_EncodeDecode(t *testing.T) {
-	var typ EPermission
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 EPermission
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestEPlanGeneration_EncodeDecode(t *testing.T) {
@@ -3651,18 +3519,6 @@ func TestIPv6AddrFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 IPv6AddrFindResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestIPv6AddrIPv6Net_EncodeDecode(t *testing.T) {
-	var typ IPv6AddrIPv6Net
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 IPv6AddrIPv6Net
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestIPv6AddrOpDeleteOK_EncodeDecode(t *testing.T) {
@@ -4541,30 +4397,6 @@ func TestInternetUpdateSubnetResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 InternetUpdateSubnetResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestJobConfigError_EncodeDecode(t *testing.T) {
-	var typ JobConfigError
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 JobConfigError
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestJobStatus_EncodeDecode(t *testing.T) {
-	var typ JobStatus
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 JobStatus
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestLicense_EncodeDecode(t *testing.T) {
@@ -7195,18 +7027,6 @@ func TestSwitchCreateRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SwitchCreateRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSwitchCreateRequestUserSubnet_EncodeDecode(t *testing.T) {
-	var typ SwitchCreateRequestUserSubnet
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SwitchCreateRequestUserSubnet
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSwitchCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SwitchCreateResponseEnvelope
 	typ.SetFake()
@@ -7351,18 +7171,6 @@ func TestSwitchUpdateRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SwitchUpdateRequestEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSwitchUpdateRequestUserSubnet_EncodeDecode(t *testing.T) {
-	var typ SwitchUpdateRequestUserSubnet
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SwitchUpdateRequestUserSubnet
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
 func TestSwitchUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SwitchUpdateResponseEnvelope
 	typ.SetFake()
@@ -7373,18 +7181,6 @@ func TestSwitchUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 SwitchUpdateResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestSwitchUserSubnet_EncodeDecode(t *testing.T) {
-	var typ SwitchUserSubnet
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 SwitchUserSubnet
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestVNCProxy_EncodeDecode(t *testing.T) {

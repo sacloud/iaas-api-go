@@ -7,7 +7,5 @@ namespace Sacloud.IaaS;
 model LicenseInfo {
   ID?: int64 | null;
   Name?: string | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   TermsOfUse?: string | null;
 }

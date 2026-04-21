@@ -14,6 +14,5 @@ model ServerPlan {
   CPUModel?: string | null;
   Commitment?: ECommitment | null;
   Generation?: EPlanGeneration | null;
-  ConfidentialVM: boolean;
   Availability?: EAvailability | null;
 }

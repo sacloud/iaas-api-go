@@ -147,10 +147,10 @@ func TestSwitchBridgeConnect(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, bridgeID, readSwitch.Switch.Bridge.Value.ID, "Switch.Bridge.ID が接続先の Bridge を指すこと")
 
-	// Bridge 側 SwitchInZone 参照確認
-	readBridge, err := c.BridgeOpRead(ctx, client.BridgeOpReadParams{Zone: zone, ID: bridgeIDStr})
+	// Bridge 側 SwitchInZone は fieldmanifest allowlist で除外しているため、
+	// 接続関係の確認は Switch.Bridge 側（上の assertion）のみで行う。
+	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{Zone: zone, ID: bridgeIDStr})
 	require.NoError(t, err)
-	require.Equal(t, switchID, readBridge.Bridge.SwitchInZone.Value.ID.Value, "Bridge.SwitchInZone.ID が接続された Switch を指すこと")
 
 	// DisconnectFromBridge
 	_, err = c.SwitchOpDisconnectFromBridge(ctx, client.SwitchOpDisconnectFromBridgeParams{Zone: zone, ID: switchIDStr})

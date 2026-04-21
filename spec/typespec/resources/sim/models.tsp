@@ -9,12 +9,9 @@ model SIM {
   Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
   Class: string;
   Status?: SIMStatus | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model SIMStatus {

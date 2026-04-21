@@ -12,8 +12,6 @@ model LoadBalancer {
   Availability?: EAvailability | null;
   Class?: string | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Instance?: LoadBalancerInstance | null;
   Remark?: LoadBalancerRemark | null;
   IPAddresses: string[];

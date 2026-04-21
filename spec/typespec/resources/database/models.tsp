@@ -12,8 +12,6 @@ model Database {
   Tags: string[];
   Availability?: EAvailability | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Settings?: DatabaseSettings | null;
   InterfaceSettings?: DatabaseSettingsInterface[] | null;
   SettingsHash?: string | null;

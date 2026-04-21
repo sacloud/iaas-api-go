@@ -9,10 +9,7 @@ model SimpleNotificationGroup {
   Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Settings?: SimpleNotificationGroupSettings | null;
   SettingsHash?: string | null;
 }

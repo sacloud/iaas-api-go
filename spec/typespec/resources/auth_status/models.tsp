@@ -7,12 +7,7 @@ namespace Sacloud.IaaS;
 model AuthStatus {
   Account?: AuthStatusAccount | null;
   Member?: AuthStatusMember | null;
-  AuthClass?: EAuthClass | null;
-  AuthMethod?: EAuthMethod | null;
   IsAPIKey: boolean;
-  ExternalPermission?: string | null;
-  OperationPenalty?: EOperationPenalty | null;
-  Permission?: EPermission | null;
 }
 
 model AuthStatusAccount {

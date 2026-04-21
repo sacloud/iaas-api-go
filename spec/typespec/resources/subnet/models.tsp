@@ -7,9 +7,7 @@ namespace Sacloud.IaaS;
 model Subnet {
   ID?: int64 | null;
   Switch?: SubnetSwitch | null;
-  DefaultRoute?: string | null;
   NextHop?: string | null;
-  StaticRoute?: string | null;
   NetworkAddress?: string | null;
   NetworkMaskLen?: int32 | null;
   IPAddresses?: SubnetIPAddress[] | null;

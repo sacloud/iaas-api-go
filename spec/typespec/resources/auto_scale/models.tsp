@@ -9,10 +9,7 @@ model AutoScale {
   Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Settings?: AutoScaleSettings | null;
   SettingsHash?: string | null;
   Status?: AutoScaleStatus | null;

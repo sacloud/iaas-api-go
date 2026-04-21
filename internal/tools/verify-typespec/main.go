@@ -59,6 +59,11 @@ type check struct {
 	fieldOptionalName  string // 指定フィールドが optional / required のどちらで宣言されているかを検証するときに使う
 	fieldOptionalWant  bool   // true = optional であること (`X?:` or `X?:`)、false = required (`X:`)
 	rawContains        string // tsp ファイル全体にこの文字列が含まれるかを検証（model ブロックに収まらないトップレベル宣言の検査用）
+	// skipIfModelAbsent = true の場合、model が tsp に存在しないならこのチェックをスキップする。
+	// fieldmanifest allowlist でモデル自体が emit されなくなったケース向け。notPresent とは目的が異なる
+	// （notPresent: 絶対に emit されてはいけない / skipIfModelAbsent: emit されてもされなくても OK、
+	// されているなら本チェックの内容を満たすこと）。
+	skipIfModelAbsent bool
 }
 
 var checks = []check{
@@ -227,11 +232,14 @@ var checks = []check{
 		fieldOptionalWant: true,
 	},
 	{
+		// Switch.UserSubnet は fieldmanifest allowlist で除外しているため通常は emit されない。
+		// allowlist から UserSubnet を戻したときのために nullability invariant は残しておく。
 		label:             "SwitchUserSubnet.DefaultRoute is optional",
 		tsp:               "spec/typespec/resources/switch/models.tsp",
 		model:             "SwitchUserSubnet",
 		fieldOptionalName: "DefaultRoute",
 		fieldOptionalWant: true,
+		skipIfModelAbsent: true,
 	},
 	{
 		label:             "SwitchUserSubnet.NetworkMaskLen is optional",
@@ -239,6 +247,7 @@ var checks = []check{
 		model:             "SwitchUserSubnet",
 		fieldOptionalName: "NetworkMaskLen",
 		fieldOptionalWant: true,
+		skipIfModelAbsent: true,
 	},
 	{
 		label:             "SwitchInfo.Description is optional (Internet のレスポンス下で返らない)",
@@ -327,6 +336,9 @@ func run(c check) error {
 
 	block, ok := modelBlock(content, c.model)
 	if !ok {
+		if c.skipIfModelAbsent {
+			return nil
+		}
 		return fmt.Errorf("model %q not found in %s", c.model, c.tsp)
 	}
 

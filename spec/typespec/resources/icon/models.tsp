@@ -8,11 +8,7 @@ model Icon {
   ID: int64;
   Name?: string | null;
   Tags: string[];
-  Availability?: EAvailability | null;
-  Scope?: EScope | null;
   URL?: string | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model IconCreateRequest {

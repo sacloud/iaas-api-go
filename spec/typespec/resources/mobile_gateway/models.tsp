@@ -12,7 +12,6 @@ model MobileGateway {
   Availability?: EAvailability | null;
   Class?: string | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
   Instance?: MobileGatewayInstance | null;
   Interfaces?: MobileGatewayInterface[] | null;
   Remark?: MobileGatewayRemark | null;

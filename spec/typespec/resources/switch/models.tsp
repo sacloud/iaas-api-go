@@ -10,19 +10,9 @@ model Switch {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  Scope?: EScope | null;
   ServerCount?: int32 | null;
-  UserSubnet?: SwitchUserSubnet | null;
   Subnets?: SwitchSubnet[] | null;
   Bridge?: ResourceRef | null;
-  HybridConnection?: ResourceRef | null;
-}
-
-model SwitchUserSubnet {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
 }
 
 model SwitchSubnet {
@@ -51,26 +41,14 @@ model InternetInfo {
 
 model SwitchCreateRequest {
   Name?: string | null;
-  UserSubnet?: SwitchCreateRequestUserSubnet | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-}
-
-model SwitchCreateRequestUserSubnet {
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
 }
 
 model SwitchUpdateRequest {
   Name?: string | null;
-  UserSubnet?: SwitchUpdateRequestUserSubnet | null;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-}
-
-model SwitchUpdateRequestUserSubnet {
-  NetworkMaskLen: int32;
-  DefaultRoute: string;
 }

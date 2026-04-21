@@ -22,8 +22,6 @@ model Server {
   Interfaces?: InterfaceView[] | null;
   PrivateHost?: ServerPrivateHost | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model ServerServerPlan {
@@ -106,7 +104,6 @@ model ServerCreateRequest {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  WaitDiskMigration: boolean;
   PrivateHost?: ResourceRef | null;
 }
 

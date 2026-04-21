@@ -42,6 +42,8 @@ func main() {
 	generateMainTsp()
 	// 旧構造ディレクトリ・ファイルを削除する
 	removeObsoleteFiles()
+	// fieldmanifest により除外されたフィールド一覧をレポート出力する
+	writeExcludedFieldsReport()
 }
 
 // removeObsoleteFiles は旧ディレクトリ構造の残存ファイル・ディレクトリを削除する。

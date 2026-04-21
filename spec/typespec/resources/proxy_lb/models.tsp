@@ -9,10 +9,7 @@ model ProxyLB {
   Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Plan: EProxyLBPlan;
   Settings?: ProxyLBSettings | null;
   BindPorts: ProxyLBBindPort[];

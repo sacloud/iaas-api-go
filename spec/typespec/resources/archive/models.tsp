@@ -9,36 +9,9 @@ model Archive {
   Name?: string | null;
   Description: string;
   Tags: string[];
-  DisplayOrder?: int64 | null;
   Availability?: EAvailability | null;
-  Scope?: EScope | null;
   SizeMB?: int32 | null;
-  MigratedMB?: int32 | null;
-  Plan?: ArchivePlan | null;
-  SourceDisk?: ArchiveSourceDisk | null;
-  SourceArchive?: ArchiveSourceArchive | null;
-  BundleInfo?: BundleInfo | null;
-  Storage?: Storage | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
-  OriginalArchive?: ResourceRef | null;
-}
-
-model ArchivePlan {
-  ID?: int64 | null;
-  Name?: string | null;
-  StorageClass?: string | null;
-}
-
-model ArchiveSourceDisk {
-  ID?: int64 | null;
-  Availability?: EAvailability | null;
-}
-
-model ArchiveSourceArchive {
-  ID?: int64 | null;
-  Availability?: EAvailability | null;
 }
 
 model BundleInfo {

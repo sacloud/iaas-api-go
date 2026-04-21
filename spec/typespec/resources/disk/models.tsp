@@ -11,22 +11,15 @@ model Disk {
   Tags: string[];
   Availability?: EAvailability | null;
   Connection?: EDiskConnection | null;
-  ConnectionOrder?: int32 | null;
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
   EncryptionKey?: DiskEncryptionKey | null;
-  ReinstallCount?: int32 | null;
-  JobStatus?: JobStatus | null;
   SizeMB?: int32 | null;
-  MigratedMB?: int32 | null;
   Plan?: DiskPlan | null;
   SourceDisk?: DiskSourceDisk | null;
   SourceArchive?: DiskSourceArchive | null;
-  BundleInfo?: BundleInfo | null;
   Storage?: Storage | null;
   Server?: DiskServer | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model DiskEncryptionKey {
@@ -65,7 +58,6 @@ model DiskCreateRequest {
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
   SourceDisk?: ResourceRef | null;
   SourceArchive?: ResourceRef | null;
-  Server?: ResourceRef | null;
   SizeMB?: int32 | null;
   Name?: string | null;
   Description: string;

@@ -9,13 +9,9 @@ model Note {
   Name?: string | null;
   Description?: string | null;
   Tags: string[];
-  Availability?: EAvailability | null;
-  Scope?: EScope | null;
   Class?: string | null;
   Content?: string | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model NoteCreateRequest {

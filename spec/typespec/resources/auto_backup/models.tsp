@@ -9,10 +9,7 @@ model AutoBackup {
   Name?: string | null;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Settings?: AutoBackupSettings | null;
   SettingsHash?: string | null;
   Status?: AutoBackupStatus | null;

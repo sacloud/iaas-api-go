@@ -16,8 +16,6 @@ model NFS {
   Remark?: NFSRemark | null;
   IPAddresses: string[];
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
   Switch?: NFSSwitch | null;
 }
 

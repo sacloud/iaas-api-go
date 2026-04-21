@@ -9,7 +9,6 @@ model PrivateHostPlan {
   Name?: string | null;
   Class?: string | null;
   CPU?: int32 | null;
-  CPUModel?: string | null;
   Dedicated: boolean;
   MemoryMB?: int32 | null;
   Availability?: EAvailability | null;

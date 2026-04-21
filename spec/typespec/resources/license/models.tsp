@@ -8,8 +8,6 @@ model License {
   ID?: int64 | null;
   Name?: string | null;
   LicenseInfo?: LicenseLicenseInfo | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model LicenseLicenseInfo {

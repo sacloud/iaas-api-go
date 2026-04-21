@@ -8,15 +8,9 @@ model CDROM {
   ID?: int64 | null;
   Name?: string | null;
   Description: string;
-  DisplayOrder?: int64 | null;
   Tags: string[];
   Availability?: EAvailability | null;
-  Scope?: EScope | null;
-  Storage?: Storage | null;
-  SizeMB?: int32 | null;
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
-  ModifiedAt?: utcDateTime | null;
 }
 
 model CDROMCreateRequest {

@@ -10,7 +10,6 @@ model Internet {
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  CreatedAt?: utcDateTime | null;
   BandWidthMbps?: int32 | null;
   NetworkMaskLen?: int32 | null;
   Switch?: SwitchInfo | null;

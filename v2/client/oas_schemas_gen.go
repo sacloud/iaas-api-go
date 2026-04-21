@@ -629,24 +629,13 @@ func (s *ApplianceUpdateRequestIcon) SetID(val int64) {
 
 // Ref: #/components/schemas/Archive
 type Archive struct {
-	ID              OptNilInt64                `json:"ID"`
-	Name            OptNilString               `json:"Name"`
-	Description     string                     `json:"Description"`
-	Tags            []string                   `json:"Tags"`
-	DisplayOrder    OptNilInt64                `json:"DisplayOrder"`
-	Availability    OptNilEAvailability        `json:"Availability"`
-	Scope           OptNilEScope               `json:"Scope"`
-	SizeMB          OptNilInt32                `json:"SizeMB"`
-	MigratedMB      OptNilInt32                `json:"MigratedMB"`
-	Plan            OptNilArchivePlan          `json:"Plan"`
-	SourceDisk      OptNilArchiveSourceDisk    `json:"SourceDisk"`
-	SourceArchive   OptNilArchiveSourceArchive `json:"SourceArchive"`
-	BundleInfo      OptNilBundleInfo           `json:"BundleInfo"`
-	Storage         OptNilStorage              `json:"Storage"`
-	Icon            OptNilResourceRef          `json:"Icon"`
-	CreatedAt       OptNilDateTime             `json:"CreatedAt"`
-	ModifiedAt      OptNilDateTime             `json:"ModifiedAt"`
-	OriginalArchive OptNilResourceRef          `json:"OriginalArchive"`
+	ID           OptNilInt64         `json:"ID"`
+	Name         OptNilString        `json:"Name"`
+	Description  string              `json:"Description"`
+	Tags         []string            `json:"Tags"`
+	Availability OptNilEAvailability `json:"Availability"`
+	SizeMB       OptNilInt32         `json:"SizeMB"`
+	Icon         OptNilResourceRef   `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -669,19 +658,9 @@ func (s *Archive) GetTags() []string {
 	return s.Tags
 }
 
-// GetDisplayOrder returns the value of DisplayOrder.
-func (s *Archive) GetDisplayOrder() OptNilInt64 {
-	return s.DisplayOrder
-}
-
 // GetAvailability returns the value of Availability.
 func (s *Archive) GetAvailability() OptNilEAvailability {
 	return s.Availability
-}
-
-// GetScope returns the value of Scope.
-func (s *Archive) GetScope() OptNilEScope {
-	return s.Scope
 }
 
 // GetSizeMB returns the value of SizeMB.
@@ -689,54 +668,9 @@ func (s *Archive) GetSizeMB() OptNilInt32 {
 	return s.SizeMB
 }
 
-// GetMigratedMB returns the value of MigratedMB.
-func (s *Archive) GetMigratedMB() OptNilInt32 {
-	return s.MigratedMB
-}
-
-// GetPlan returns the value of Plan.
-func (s *Archive) GetPlan() OptNilArchivePlan {
-	return s.Plan
-}
-
-// GetSourceDisk returns the value of SourceDisk.
-func (s *Archive) GetSourceDisk() OptNilArchiveSourceDisk {
-	return s.SourceDisk
-}
-
-// GetSourceArchive returns the value of SourceArchive.
-func (s *Archive) GetSourceArchive() OptNilArchiveSourceArchive {
-	return s.SourceArchive
-}
-
-// GetBundleInfo returns the value of BundleInfo.
-func (s *Archive) GetBundleInfo() OptNilBundleInfo {
-	return s.BundleInfo
-}
-
-// GetStorage returns the value of Storage.
-func (s *Archive) GetStorage() OptNilStorage {
-	return s.Storage
-}
-
 // GetIcon returns the value of Icon.
 func (s *Archive) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Archive) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Archive) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
-}
-
-// GetOriginalArchive returns the value of OriginalArchive.
-func (s *Archive) GetOriginalArchive() OptNilResourceRef {
-	return s.OriginalArchive
 }
 
 // SetID sets the value of ID.
@@ -759,19 +693,9 @@ func (s *Archive) SetTags(val []string) {
 	s.Tags = val
 }
 
-// SetDisplayOrder sets the value of DisplayOrder.
-func (s *Archive) SetDisplayOrder(val OptNilInt64) {
-	s.DisplayOrder = val
-}
-
 // SetAvailability sets the value of Availability.
 func (s *Archive) SetAvailability(val OptNilEAvailability) {
 	s.Availability = val
-}
-
-// SetScope sets the value of Scope.
-func (s *Archive) SetScope(val OptNilEScope) {
-	s.Scope = val
 }
 
 // SetSizeMB sets the value of SizeMB.
@@ -779,54 +703,9 @@ func (s *Archive) SetSizeMB(val OptNilInt32) {
 	s.SizeMB = val
 }
 
-// SetMigratedMB sets the value of MigratedMB.
-func (s *Archive) SetMigratedMB(val OptNilInt32) {
-	s.MigratedMB = val
-}
-
-// SetPlan sets the value of Plan.
-func (s *Archive) SetPlan(val OptNilArchivePlan) {
-	s.Plan = val
-}
-
-// SetSourceDisk sets the value of SourceDisk.
-func (s *Archive) SetSourceDisk(val OptNilArchiveSourceDisk) {
-	s.SourceDisk = val
-}
-
-// SetSourceArchive sets the value of SourceArchive.
-func (s *Archive) SetSourceArchive(val OptNilArchiveSourceArchive) {
-	s.SourceArchive = val
-}
-
-// SetBundleInfo sets the value of BundleInfo.
-func (s *Archive) SetBundleInfo(val OptNilBundleInfo) {
-	s.BundleInfo = val
-}
-
-// SetStorage sets the value of Storage.
-func (s *Archive) SetStorage(val OptNilStorage) {
-	s.Storage = val
-}
-
 // SetIcon sets the value of Icon.
 func (s *Archive) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Archive) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Archive) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
-}
-
-// SetOriginalArchive sets the value of OriginalArchive.
-func (s *Archive) SetOriginalArchive(val OptNilResourceRef) {
-	s.OriginalArchive = val
 }
 
 // Ref: #/components/schemas/ArchiveCreateRequest
@@ -1049,43 +928,6 @@ func (s *ArchiveOpDeleteOK) SetIsOk(val bool) {
 	s.IsOk = val
 }
 
-// Ref: #/components/schemas/ArchivePlan
-type ArchivePlan struct {
-	ID           OptNilInt64  `json:"ID"`
-	Name         OptNilString `json:"Name"`
-	StorageClass OptNilString `json:"StorageClass"`
-}
-
-// GetID returns the value of ID.
-func (s *ArchivePlan) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetName returns the value of Name.
-func (s *ArchivePlan) GetName() OptNilString {
-	return s.Name
-}
-
-// GetStorageClass returns the value of StorageClass.
-func (s *ArchivePlan) GetStorageClass() OptNilString {
-	return s.StorageClass
-}
-
-// SetID sets the value of ID.
-func (s *ArchivePlan) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetName sets the value of Name.
-func (s *ArchivePlan) SetName(val OptNilString) {
-	s.Name = val
-}
-
-// SetStorageClass sets the value of StorageClass.
-func (s *ArchivePlan) SetStorageClass(val OptNilString) {
-	s.StorageClass = val
-}
-
 // Response envelope for archiveReadResponseEnvelope.
 // Ref: #/components/schemas/ArchiveReadResponseEnvelope
 type ArchiveReadResponseEnvelope struct {
@@ -1198,58 +1040,6 @@ func (s *ArchiveShareResponseEnvelope) SetArchiveShareInfo(val OptArchiveShareIn
 // SetFTPServer sets the value of FTPServer.
 func (s *ArchiveShareResponseEnvelope) SetFTPServer(val OptFTPServer) {
 	s.FTPServer = val
-}
-
-// Ref: #/components/schemas/ArchiveSourceArchive
-type ArchiveSourceArchive struct {
-	ID           OptNilInt64         `json:"ID"`
-	Availability OptNilEAvailability `json:"Availability"`
-}
-
-// GetID returns the value of ID.
-func (s *ArchiveSourceArchive) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetAvailability returns the value of Availability.
-func (s *ArchiveSourceArchive) GetAvailability() OptNilEAvailability {
-	return s.Availability
-}
-
-// SetID sets the value of ID.
-func (s *ArchiveSourceArchive) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetAvailability sets the value of Availability.
-func (s *ArchiveSourceArchive) SetAvailability(val OptNilEAvailability) {
-	s.Availability = val
-}
-
-// Ref: #/components/schemas/ArchiveSourceDisk
-type ArchiveSourceDisk struct {
-	ID           OptNilInt64         `json:"ID"`
-	Availability OptNilEAvailability `json:"Availability"`
-}
-
-// GetID returns the value of ID.
-func (s *ArchiveSourceDisk) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetAvailability returns the value of Availability.
-func (s *ArchiveSourceDisk) GetAvailability() OptNilEAvailability {
-	return s.Availability
-}
-
-// SetID sets the value of ID.
-func (s *ArchiveSourceDisk) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetAvailability sets the value of Availability.
-func (s *ArchiveSourceDisk) SetAvailability(val OptNilEAvailability) {
-	s.Availability = val
 }
 
 // Ref: #/components/schemas/ArchiveTransferRequest
@@ -1464,14 +1254,9 @@ func (s *ArchiveUpdateResponseEnvelope) SetArchive(val Archive) {
 
 // Ref: #/components/schemas/AuthStatus
 type AuthStatus struct {
-	Account            OptNilAuthStatusAccount `json:"Account"`
-	Member             OptNilAuthStatusMember  `json:"Member"`
-	AuthClass          OptNilEAuthClass        `json:"AuthClass"`
-	AuthMethod         OptNilEAuthMethod       `json:"AuthMethod"`
-	IsAPIKey           bool                    `json:"IsAPIKey"`
-	ExternalPermission OptNilString            `json:"ExternalPermission"`
-	OperationPenalty   OptNilEOperationPenalty `json:"OperationPenalty"`
-	Permission         OptNilEPermission       `json:"Permission"`
+	Account  OptNilAuthStatusAccount `json:"Account"`
+	Member   OptNilAuthStatusMember  `json:"Member"`
+	IsAPIKey bool                    `json:"IsAPIKey"`
 }
 
 // GetAccount returns the value of Account.
@@ -1484,34 +1269,9 @@ func (s *AuthStatus) GetMember() OptNilAuthStatusMember {
 	return s.Member
 }
 
-// GetAuthClass returns the value of AuthClass.
-func (s *AuthStatus) GetAuthClass() OptNilEAuthClass {
-	return s.AuthClass
-}
-
-// GetAuthMethod returns the value of AuthMethod.
-func (s *AuthStatus) GetAuthMethod() OptNilEAuthMethod {
-	return s.AuthMethod
-}
-
 // GetIsAPIKey returns the value of IsAPIKey.
 func (s *AuthStatus) GetIsAPIKey() bool {
 	return s.IsAPIKey
-}
-
-// GetExternalPermission returns the value of ExternalPermission.
-func (s *AuthStatus) GetExternalPermission() OptNilString {
-	return s.ExternalPermission
-}
-
-// GetOperationPenalty returns the value of OperationPenalty.
-func (s *AuthStatus) GetOperationPenalty() OptNilEOperationPenalty {
-	return s.OperationPenalty
-}
-
-// GetPermission returns the value of Permission.
-func (s *AuthStatus) GetPermission() OptNilEPermission {
-	return s.Permission
 }
 
 // SetAccount sets the value of Account.
@@ -1524,34 +1284,9 @@ func (s *AuthStatus) SetMember(val OptNilAuthStatusMember) {
 	s.Member = val
 }
 
-// SetAuthClass sets the value of AuthClass.
-func (s *AuthStatus) SetAuthClass(val OptNilEAuthClass) {
-	s.AuthClass = val
-}
-
-// SetAuthMethod sets the value of AuthMethod.
-func (s *AuthStatus) SetAuthMethod(val OptNilEAuthMethod) {
-	s.AuthMethod = val
-}
-
 // SetIsAPIKey sets the value of IsAPIKey.
 func (s *AuthStatus) SetIsAPIKey(val bool) {
 	s.IsAPIKey = val
-}
-
-// SetExternalPermission sets the value of ExternalPermission.
-func (s *AuthStatus) SetExternalPermission(val OptNilString) {
-	s.ExternalPermission = val
-}
-
-// SetOperationPenalty sets the value of OperationPenalty.
-func (s *AuthStatus) SetOperationPenalty(val OptNilEOperationPenalty) {
-	s.OperationPenalty = val
-}
-
-// SetPermission sets the value of Permission.
-func (s *AuthStatus) SetPermission(val OptNilEPermission) {
-	s.Permission = val
 }
 
 // Ref: #/components/schemas/AuthStatusAccount
@@ -1663,10 +1398,7 @@ type AutoBackup struct {
 	Name         OptNilString             `json:"Name"`
 	Description  string                   `json:"Description"`
 	Tags         []string                 `json:"Tags"`
-	Availability OptNilEAvailability      `json:"Availability"`
 	Icon         OptNilResourceRef        `json:"Icon"`
-	CreatedAt    OptNilDateTime           `json:"CreatedAt"`
-	ModifiedAt   OptNilDateTime           `json:"ModifiedAt"`
 	Settings     OptNilAutoBackupSettings `json:"Settings"`
 	SettingsHash OptNilString             `json:"SettingsHash"`
 	Status       OptNilAutoBackupStatus   `json:"Status"`
@@ -1692,24 +1424,9 @@ func (s *AutoBackup) GetTags() []string {
 	return s.Tags
 }
 
-// GetAvailability returns the value of Availability.
-func (s *AutoBackup) GetAvailability() OptNilEAvailability {
-	return s.Availability
-}
-
 // GetIcon returns the value of Icon.
 func (s *AutoBackup) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *AutoBackup) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *AutoBackup) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // GetSettings returns the value of Settings.
@@ -1747,24 +1464,9 @@ func (s *AutoBackup) SetTags(val []string) {
 	s.Tags = val
 }
 
-// SetAvailability sets the value of Availability.
-func (s *AutoBackup) SetAvailability(val OptNilEAvailability) {
-	s.Availability = val
-}
-
 // SetIcon sets the value of Icon.
 func (s *AutoBackup) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *AutoBackup) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *AutoBackup) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // SetSettings sets the value of Settings.
@@ -2254,13 +1956,10 @@ func (s *BasicAuth) SetRoles(val []string) {
 
 // Ref: #/components/schemas/Bill
 type Bill struct {
-	ID             OptNilInt64    `json:"ID"`
-	Amount         OptNilInt64    `json:"Amount"`
-	Date           OptNilDateTime `json:"Date"`
-	MemberID       OptNilString   `json:"MemberID"`
-	Paid           bool           `json:"Paid"`
-	PayLimit       OptNilDateTime `json:"PayLimit"`
-	PaymentClassID OptNilInt64    `json:"PaymentClassID"`
+	ID     OptNilInt64    `json:"ID"`
+	Amount OptNilInt64    `json:"Amount"`
+	Date   OptNilDateTime `json:"Date"`
+	Paid   bool           `json:"Paid"`
 }
 
 // GetID returns the value of ID.
@@ -2278,24 +1977,9 @@ func (s *Bill) GetDate() OptNilDateTime {
 	return s.Date
 }
 
-// GetMemberID returns the value of MemberID.
-func (s *Bill) GetMemberID() OptNilString {
-	return s.MemberID
-}
-
 // GetPaid returns the value of Paid.
 func (s *Bill) GetPaid() bool {
 	return s.Paid
-}
-
-// GetPayLimit returns the value of PayLimit.
-func (s *Bill) GetPayLimit() OptNilDateTime {
-	return s.PayLimit
-}
-
-// GetPaymentClassID returns the value of PaymentClassID.
-func (s *Bill) GetPaymentClassID() OptNilInt64 {
-	return s.PaymentClassID
 }
 
 // SetID sets the value of ID.
@@ -2313,24 +1997,9 @@ func (s *Bill) SetDate(val OptNilDateTime) {
 	s.Date = val
 }
 
-// SetMemberID sets the value of MemberID.
-func (s *Bill) SetMemberID(val OptNilString) {
-	s.MemberID = val
-}
-
 // SetPaid sets the value of Paid.
 func (s *Bill) SetPaid(val bool) {
 	s.Paid = val
-}
-
-// SetPayLimit sets the value of PayLimit.
-func (s *Bill) SetPayLimit(val OptNilDateTime) {
-	s.PayLimit = val
-}
-
-// SetPaymentClassID sets the value of PaymentClassID.
-func (s *Bill) SetPaymentClassID(val OptNilInt64) {
-	s.PaymentClassID = val
 }
 
 // Response envelope for billByContractResponseEnvelope.
@@ -2813,13 +2482,9 @@ func (s *BillReadResponseEnvelope) SetBills(val []Bill) {
 
 // Ref: #/components/schemas/Bridge
 type Bridge struct {
-	ID           OptNilInt64            `json:"ID"`
-	Name         OptNilString           `json:"Name"`
-	Description  string                 `json:"Description"`
-	CreatedAt    OptNilDateTime         `json:"CreatedAt"`
-	Region       OptNilRegion           `json:"Region"`
-	BridgeInfo   OptNilBridgeInfoArray  `json:"BridgeInfo"`
-	SwitchInZone OptNilBridgeSwitchInfo `json:"SwitchInZone"`
+	ID          OptNilInt64  `json:"ID"`
+	Name        OptNilString `json:"Name"`
+	Description string       `json:"Description"`
 }
 
 // GetID returns the value of ID.
@@ -2837,26 +2502,6 @@ func (s *Bridge) GetDescription() string {
 	return s.Description
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Bridge) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetRegion returns the value of Region.
-func (s *Bridge) GetRegion() OptNilRegion {
-	return s.Region
-}
-
-// GetBridgeInfo returns the value of BridgeInfo.
-func (s *Bridge) GetBridgeInfo() OptNilBridgeInfoArray {
-	return s.BridgeInfo
-}
-
-// GetSwitchInZone returns the value of SwitchInZone.
-func (s *Bridge) GetSwitchInZone() OptNilBridgeSwitchInfo {
-	return s.SwitchInZone
-}
-
 // SetID sets the value of ID.
 func (s *Bridge) SetID(val OptNilInt64) {
 	s.ID = val
@@ -2870,26 +2515,6 @@ func (s *Bridge) SetName(val OptNilString) {
 // SetDescription sets the value of Description.
 func (s *Bridge) SetDescription(val string) {
 	s.Description = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Bridge) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetRegion sets the value of Region.
-func (s *Bridge) SetRegion(val OptNilRegion) {
-	s.Region = val
-}
-
-// SetBridgeInfo sets the value of BridgeInfo.
-func (s *Bridge) SetBridgeInfo(val OptNilBridgeInfoArray) {
-	s.BridgeInfo = val
-}
-
-// SetSwitchInZone sets the value of SwitchInZone.
-func (s *Bridge) SetSwitchInZone(val OptNilBridgeSwitchInfo) {
-	s.SwitchInZone = val
 }
 
 // Ref: #/components/schemas/BridgeCreateRequest
@@ -3017,69 +2642,6 @@ func (s *BridgeFindResponseEnvelope) SetBridges(val []Bridge) {
 	s.Bridges = val
 }
 
-// Ref: #/components/schemas/BridgeInfo
-type BridgeInfo struct {
-	ID   OptNilInt64          `json:"ID"`
-	Name OptNilString         `json:"Name"`
-	Zone OptNilBridgeInfoZone `json:"Zone"`
-}
-
-// GetID returns the value of ID.
-func (s *BridgeInfo) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetName returns the value of Name.
-func (s *BridgeInfo) GetName() OptNilString {
-	return s.Name
-}
-
-// GetZone returns the value of Zone.
-func (s *BridgeInfo) GetZone() OptNilBridgeInfoZone {
-	return s.Zone
-}
-
-// SetID sets the value of ID.
-func (s *BridgeInfo) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetName sets the value of Name.
-func (s *BridgeInfo) SetName(val OptNilString) {
-	s.Name = val
-}
-
-// SetZone sets the value of Zone.
-func (s *BridgeInfo) SetZone(val OptNilBridgeInfoZone) {
-	s.Zone = val
-}
-
-// Ref: #/components/schemas/BridgeInfoZone
-type BridgeInfoZone struct {
-	ID   OptNilInt64  `json:"ID"`
-	Name OptNilString `json:"Name"`
-}
-
-// GetID returns the value of ID.
-func (s *BridgeInfoZone) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetName returns the value of Name.
-func (s *BridgeInfoZone) GetName() OptNilString {
-	return s.Name
-}
-
-// SetID sets the value of ID.
-func (s *BridgeInfoZone) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetName sets the value of Name.
-func (s *BridgeInfoZone) SetName(val OptNilString) {
-	s.Name = val
-}
-
 type BridgeOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
 }
@@ -3121,65 +2683,6 @@ func (s *BridgeReadResponseEnvelope) SetIsOk(val bool) {
 // SetBridge sets the value of Bridge.
 func (s *BridgeReadResponseEnvelope) SetBridge(val Bridge) {
 	s.Bridge = val
-}
-
-// Ref: #/components/schemas/BridgeSwitchInfo
-type BridgeSwitchInfo struct {
-	ID             OptNilInt64  `json:"ID"`
-	Name           OptNilString `json:"Name"`
-	Scope          OptNilEScope `json:"Scope"`
-	ServerCount    OptNilInt32  `json:"ServerCount"`
-	ApplianceCount OptNilInt32  `json:"ApplianceCount"`
-}
-
-// GetID returns the value of ID.
-func (s *BridgeSwitchInfo) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetName returns the value of Name.
-func (s *BridgeSwitchInfo) GetName() OptNilString {
-	return s.Name
-}
-
-// GetScope returns the value of Scope.
-func (s *BridgeSwitchInfo) GetScope() OptNilEScope {
-	return s.Scope
-}
-
-// GetServerCount returns the value of ServerCount.
-func (s *BridgeSwitchInfo) GetServerCount() OptNilInt32 {
-	return s.ServerCount
-}
-
-// GetApplianceCount returns the value of ApplianceCount.
-func (s *BridgeSwitchInfo) GetApplianceCount() OptNilInt32 {
-	return s.ApplianceCount
-}
-
-// SetID sets the value of ID.
-func (s *BridgeSwitchInfo) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetName sets the value of Name.
-func (s *BridgeSwitchInfo) SetName(val OptNilString) {
-	s.Name = val
-}
-
-// SetScope sets the value of Scope.
-func (s *BridgeSwitchInfo) SetScope(val OptNilEScope) {
-	s.Scope = val
-}
-
-// SetServerCount sets the value of ServerCount.
-func (s *BridgeSwitchInfo) SetServerCount(val OptNilInt32) {
-	s.ServerCount = val
-}
-
-// SetApplianceCount sets the value of ApplianceCount.
-func (s *BridgeSwitchInfo) SetApplianceCount(val OptNilInt32) {
-	s.ApplianceCount = val
 }
 
 // Ref: #/components/schemas/BridgeUpdateRequest
@@ -3254,57 +2757,14 @@ func (s *BridgeUpdateResponseEnvelope) SetBridge(val Bridge) {
 	s.Bridge = val
 }
 
-// Ref: #/components/schemas/BundleInfo
-type BundleInfo struct {
-	ID           OptNilInt64  `json:"ID"`
-	HostClass    OptNilString `json:"HostClass"`
-	ServiceClass OptNilString `json:"ServiceClass"`
-}
-
-// GetID returns the value of ID.
-func (s *BundleInfo) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetHostClass returns the value of HostClass.
-func (s *BundleInfo) GetHostClass() OptNilString {
-	return s.HostClass
-}
-
-// GetServiceClass returns the value of ServiceClass.
-func (s *BundleInfo) GetServiceClass() OptNilString {
-	return s.ServiceClass
-}
-
-// SetID sets the value of ID.
-func (s *BundleInfo) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetHostClass sets the value of HostClass.
-func (s *BundleInfo) SetHostClass(val OptNilString) {
-	s.HostClass = val
-}
-
-// SetServiceClass sets the value of ServiceClass.
-func (s *BundleInfo) SetServiceClass(val OptNilString) {
-	s.ServiceClass = val
-}
-
 // Ref: #/components/schemas/CDROM
 type CDROM struct {
 	ID           OptNilInt64         `json:"ID"`
 	Name         OptNilString        `json:"Name"`
 	Description  string              `json:"Description"`
-	DisplayOrder OptNilInt64         `json:"DisplayOrder"`
 	Tags         []string            `json:"Tags"`
 	Availability OptNilEAvailability `json:"Availability"`
-	Scope        OptNilEScope        `json:"Scope"`
-	Storage      OptNilStorage       `json:"Storage"`
-	SizeMB       OptNilInt32         `json:"SizeMB"`
 	Icon         OptNilResourceRef   `json:"Icon"`
-	CreatedAt    OptNilDateTime      `json:"CreatedAt"`
-	ModifiedAt   OptNilDateTime      `json:"ModifiedAt"`
 }
 
 // GetID returns the value of ID.
@@ -3322,11 +2782,6 @@ func (s *CDROM) GetDescription() string {
 	return s.Description
 }
 
-// GetDisplayOrder returns the value of DisplayOrder.
-func (s *CDROM) GetDisplayOrder() OptNilInt64 {
-	return s.DisplayOrder
-}
-
 // GetTags returns the value of Tags.
 func (s *CDROM) GetTags() []string {
 	return s.Tags
@@ -3337,34 +2792,9 @@ func (s *CDROM) GetAvailability() OptNilEAvailability {
 	return s.Availability
 }
 
-// GetScope returns the value of Scope.
-func (s *CDROM) GetScope() OptNilEScope {
-	return s.Scope
-}
-
-// GetStorage returns the value of Storage.
-func (s *CDROM) GetStorage() OptNilStorage {
-	return s.Storage
-}
-
-// GetSizeMB returns the value of SizeMB.
-func (s *CDROM) GetSizeMB() OptNilInt32 {
-	return s.SizeMB
-}
-
 // GetIcon returns the value of Icon.
 func (s *CDROM) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *CDROM) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *CDROM) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // SetID sets the value of ID.
@@ -3382,11 +2812,6 @@ func (s *CDROM) SetDescription(val string) {
 	s.Description = val
 }
 
-// SetDisplayOrder sets the value of DisplayOrder.
-func (s *CDROM) SetDisplayOrder(val OptNilInt64) {
-	s.DisplayOrder = val
-}
-
 // SetTags sets the value of Tags.
 func (s *CDROM) SetTags(val []string) {
 	s.Tags = val
@@ -3397,34 +2822,9 @@ func (s *CDROM) SetAvailability(val OptNilEAvailability) {
 	s.Availability = val
 }
 
-// SetScope sets the value of Scope.
-func (s *CDROM) SetScope(val OptNilEScope) {
-	s.Scope = val
-}
-
-// SetStorage sets the value of Storage.
-func (s *CDROM) SetStorage(val OptNilStorage) {
-	s.Storage = val
-}
-
-// SetSizeMB sets the value of SizeMB.
-func (s *CDROM) SetSizeMB(val OptNilInt32) {
-	s.SizeMB = val
-}
-
 // SetIcon sets the value of Icon.
 func (s *CDROM) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *CDROM) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *CDROM) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // Ref: #/components/schemas/CDROMCreateRequest
@@ -6613,33 +6013,15 @@ func (s *ContainerRegistryUsers) SetUsers(val OptNilContainerRegistryUserArray) 
 
 // Ref: #/components/schemas/Coupon
 type Coupon struct {
-	ID             OptNilInt64    `json:"ID"`
-	MemberID       OptNilString   `json:"MemberID"`
-	ContractID     OptNilInt64    `json:"ContractID"`
-	ServiceClassID OptNilInt64    `json:"ServiceClassID"`
-	Discount       OptNilInt64    `json:"Discount"`
-	AppliedAt      OptNilDateTime `json:"AppliedAt"`
-	UntilAt        OptNilDateTime `json:"UntilAt"`
+	ID        OptNilInt64    `json:"ID"`
+	Discount  OptNilInt64    `json:"Discount"`
+	AppliedAt OptNilDateTime `json:"AppliedAt"`
+	UntilAt   OptNilDateTime `json:"UntilAt"`
 }
 
 // GetID returns the value of ID.
 func (s *Coupon) GetID() OptNilInt64 {
 	return s.ID
-}
-
-// GetMemberID returns the value of MemberID.
-func (s *Coupon) GetMemberID() OptNilString {
-	return s.MemberID
-}
-
-// GetContractID returns the value of ContractID.
-func (s *Coupon) GetContractID() OptNilInt64 {
-	return s.ContractID
-}
-
-// GetServiceClassID returns the value of ServiceClassID.
-func (s *Coupon) GetServiceClassID() OptNilInt64 {
-	return s.ServiceClassID
 }
 
 // GetDiscount returns the value of Discount.
@@ -6660,21 +6042,6 @@ func (s *Coupon) GetUntilAt() OptNilDateTime {
 // SetID sets the value of ID.
 func (s *Coupon) SetID(val OptNilInt64) {
 	s.ID = val
-}
-
-// SetMemberID sets the value of MemberID.
-func (s *Coupon) SetMemberID(val OptNilString) {
-	s.MemberID = val
-}
-
-// SetContractID sets the value of ContractID.
-func (s *Coupon) SetContractID(val OptNilInt64) {
-	s.ContractID = val
-}
-
-// SetServiceClassID sets the value of ServiceClassID.
-func (s *Coupon) SetServiceClassID(val OptNilInt64) {
-	s.ServiceClassID = val
 }
 
 // SetDiscount sets the value of Discount.
@@ -6802,8 +6169,6 @@ type Database struct {
 	Tags              []string                             `json:"Tags"`
 	Availability      OptNilEAvailability                  `json:"Availability"`
 	Icon              OptNilResourceRef                    `json:"Icon"`
-	CreatedAt         OptNilDateTime                       `json:"CreatedAt"`
-	ModifiedAt        OptNilDateTime                       `json:"ModifiedAt"`
 	Settings          OptNilDatabaseSettings               `json:"Settings"`
 	InterfaceSettings OptNilDatabaseSettingsInterfaceArray `json:"InterfaceSettings"`
 	SettingsHash      OptNilString                         `json:"SettingsHash"`
@@ -6846,16 +6211,6 @@ func (s *Database) GetAvailability() OptNilEAvailability {
 // GetIcon returns the value of Icon.
 func (s *Database) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Database) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Database) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // GetSettings returns the value of Settings.
@@ -6926,16 +6281,6 @@ func (s *Database) SetAvailability(val OptNilEAvailability) {
 // SetIcon sets the value of Icon.
 func (s *Database) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Database) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Database) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // SetSettings sets the value of Settings.
@@ -8402,22 +7747,15 @@ type Disk struct {
 	Tags                []string                       `json:"Tags"`
 	Availability        OptNilEAvailability            `json:"Availability"`
 	Connection          OptNilEDiskConnection          `json:"Connection"`
-	ConnectionOrder     OptNilInt32                    `json:"ConnectionOrder"`
 	EncryptionAlgorithm OptNilEDiskEncryptionAlgorithm `json:"EncryptionAlgorithm"`
 	EncryptionKey       OptNilDiskEncryptionKey        `json:"EncryptionKey"`
-	ReinstallCount      OptNilInt32                    `json:"ReinstallCount"`
-	JobStatus           OptNilJobStatus                `json:"JobStatus"`
 	SizeMB              OptNilInt32                    `json:"SizeMB"`
-	MigratedMB          OptNilInt32                    `json:"MigratedMB"`
 	Plan                OptNilDiskPlan                 `json:"Plan"`
 	SourceDisk          OptNilDiskSourceDisk           `json:"SourceDisk"`
 	SourceArchive       OptNilDiskSourceArchive        `json:"SourceArchive"`
-	BundleInfo          OptNilBundleInfo               `json:"BundleInfo"`
 	Storage             OptNilStorage                  `json:"Storage"`
 	Server              OptNilDiskServer               `json:"Server"`
 	Icon                OptNilResourceRef              `json:"Icon"`
-	CreatedAt           OptNilDateTime                 `json:"CreatedAt"`
-	ModifiedAt          OptNilDateTime                 `json:"ModifiedAt"`
 }
 
 // GetID returns the value of ID.
@@ -8450,11 +7788,6 @@ func (s *Disk) GetConnection() OptNilEDiskConnection {
 	return s.Connection
 }
 
-// GetConnectionOrder returns the value of ConnectionOrder.
-func (s *Disk) GetConnectionOrder() OptNilInt32 {
-	return s.ConnectionOrder
-}
-
 // GetEncryptionAlgorithm returns the value of EncryptionAlgorithm.
 func (s *Disk) GetEncryptionAlgorithm() OptNilEDiskEncryptionAlgorithm {
 	return s.EncryptionAlgorithm
@@ -8465,24 +7798,9 @@ func (s *Disk) GetEncryptionKey() OptNilDiskEncryptionKey {
 	return s.EncryptionKey
 }
 
-// GetReinstallCount returns the value of ReinstallCount.
-func (s *Disk) GetReinstallCount() OptNilInt32 {
-	return s.ReinstallCount
-}
-
-// GetJobStatus returns the value of JobStatus.
-func (s *Disk) GetJobStatus() OptNilJobStatus {
-	return s.JobStatus
-}
-
 // GetSizeMB returns the value of SizeMB.
 func (s *Disk) GetSizeMB() OptNilInt32 {
 	return s.SizeMB
-}
-
-// GetMigratedMB returns the value of MigratedMB.
-func (s *Disk) GetMigratedMB() OptNilInt32 {
-	return s.MigratedMB
 }
 
 // GetPlan returns the value of Plan.
@@ -8500,11 +7818,6 @@ func (s *Disk) GetSourceArchive() OptNilDiskSourceArchive {
 	return s.SourceArchive
 }
 
-// GetBundleInfo returns the value of BundleInfo.
-func (s *Disk) GetBundleInfo() OptNilBundleInfo {
-	return s.BundleInfo
-}
-
 // GetStorage returns the value of Storage.
 func (s *Disk) GetStorage() OptNilStorage {
 	return s.Storage
@@ -8518,16 +7831,6 @@ func (s *Disk) GetServer() OptNilDiskServer {
 // GetIcon returns the value of Icon.
 func (s *Disk) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Disk) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Disk) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // SetID sets the value of ID.
@@ -8560,11 +7863,6 @@ func (s *Disk) SetConnection(val OptNilEDiskConnection) {
 	s.Connection = val
 }
 
-// SetConnectionOrder sets the value of ConnectionOrder.
-func (s *Disk) SetConnectionOrder(val OptNilInt32) {
-	s.ConnectionOrder = val
-}
-
 // SetEncryptionAlgorithm sets the value of EncryptionAlgorithm.
 func (s *Disk) SetEncryptionAlgorithm(val OptNilEDiskEncryptionAlgorithm) {
 	s.EncryptionAlgorithm = val
@@ -8575,24 +7873,9 @@ func (s *Disk) SetEncryptionKey(val OptNilDiskEncryptionKey) {
 	s.EncryptionKey = val
 }
 
-// SetReinstallCount sets the value of ReinstallCount.
-func (s *Disk) SetReinstallCount(val OptNilInt32) {
-	s.ReinstallCount = val
-}
-
-// SetJobStatus sets the value of JobStatus.
-func (s *Disk) SetJobStatus(val OptNilJobStatus) {
-	s.JobStatus = val
-}
-
 // SetSizeMB sets the value of SizeMB.
 func (s *Disk) SetSizeMB(val OptNilInt32) {
 	s.SizeMB = val
-}
-
-// SetMigratedMB sets the value of MigratedMB.
-func (s *Disk) SetMigratedMB(val OptNilInt32) {
-	s.MigratedMB = val
 }
 
 // SetPlan sets the value of Plan.
@@ -8610,11 +7893,6 @@ func (s *Disk) SetSourceArchive(val OptNilDiskSourceArchive) {
 	s.SourceArchive = val
 }
 
-// SetBundleInfo sets the value of BundleInfo.
-func (s *Disk) SetBundleInfo(val OptNilBundleInfo) {
-	s.BundleInfo = val
-}
-
 // SetStorage sets the value of Storage.
 func (s *Disk) SetStorage(val OptNilStorage) {
 	s.Storage = val
@@ -8628,16 +7906,6 @@ func (s *Disk) SetServer(val OptNilDiskServer) {
 // SetIcon sets the value of Icon.
 func (s *Disk) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Disk) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Disk) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // Request envelope for diskConfigRequestEnvelope.
@@ -8784,7 +8052,6 @@ type DiskCreateRequest struct {
 	EncryptionAlgorithm OptNilEDiskEncryptionAlgorithm `json:"EncryptionAlgorithm"`
 	SourceDisk          OptNilResourceRef              `json:"SourceDisk"`
 	SourceArchive       OptNilResourceRef              `json:"SourceArchive"`
-	Server              OptNilResourceRef              `json:"Server"`
 	SizeMB              OptNilInt32                    `json:"SizeMB"`
 	Name                OptNilString                   `json:"Name"`
 	Description         string                         `json:"Description"`
@@ -8815,11 +8082,6 @@ func (s *DiskCreateRequest) GetSourceDisk() OptNilResourceRef {
 // GetSourceArchive returns the value of SourceArchive.
 func (s *DiskCreateRequest) GetSourceArchive() OptNilResourceRef {
 	return s.SourceArchive
-}
-
-// GetServer returns the value of Server.
-func (s *DiskCreateRequest) GetServer() OptNilResourceRef {
-	return s.Server
 }
 
 // GetSizeMB returns the value of SizeMB.
@@ -8870,11 +8132,6 @@ func (s *DiskCreateRequest) SetSourceDisk(val OptNilResourceRef) {
 // SetSourceArchive sets the value of SourceArchive.
 func (s *DiskCreateRequest) SetSourceArchive(val OptNilResourceRef) {
 	s.SourceArchive = val
-}
-
-// SetServer sets the value of Server.
-func (s *DiskCreateRequest) SetServer(val OptNilResourceRef) {
-	s.Server = val
 }
 
 // SetSizeMB sets the value of SizeMB.
@@ -9847,10 +9104,6 @@ func (s *DiskUpdateResponseEnvelope) SetDisk(val Disk) {
 	s.Disk = val
 }
 
-type EAuthClass string
-
-type EAuthMethod string
-
 type EAutoScaleAction string
 
 type EAutoScaleTriggerType string
@@ -9953,10 +9206,6 @@ type EDiskEncryptionAlgorithm string
 type EGSLBHealthCheckProtocol string
 
 type EInterfaceDriver string
-
-type EOperationPenalty string
-
-type EPermission string
 
 type EPlanGeneration int32
 
@@ -10662,10 +9911,8 @@ type ID string
 
 // Ref: #/components/schemas/IPAddress
 type IPAddress struct {
-	HostName  string            `json:"HostName"`
-	IPAddress OptNilString      `json:"IPAddress"`
-	Interface OptNilResourceRef `json:"Interface"`
-	Subnet    OptNilResourceRef `json:"Subnet"`
+	HostName  string       `json:"HostName"`
+	IPAddress OptNilString `json:"IPAddress"`
 }
 
 // GetHostName returns the value of HostName.
@@ -10678,16 +9925,6 @@ func (s *IPAddress) GetIPAddress() OptNilString {
 	return s.IPAddress
 }
 
-// GetInterface returns the value of Interface.
-func (s *IPAddress) GetInterface() OptNilResourceRef {
-	return s.Interface
-}
-
-// GetSubnet returns the value of Subnet.
-func (s *IPAddress) GetSubnet() OptNilResourceRef {
-	return s.Subnet
-}
-
 // SetHostName sets the value of HostName.
 func (s *IPAddress) SetHostName(val string) {
 	s.HostName = val
@@ -10696,16 +9933,6 @@ func (s *IPAddress) SetHostName(val string) {
 // SetIPAddress sets the value of IPAddress.
 func (s *IPAddress) SetIPAddress(val OptNilString) {
 	s.IPAddress = val
-}
-
-// SetInterface sets the value of Interface.
-func (s *IPAddress) SetInterface(val OptNilResourceRef) {
-	s.Interface = val
-}
-
-// SetSubnet sets the value of Subnet.
-func (s *IPAddress) SetSubnet(val OptNilResourceRef) {
-	s.Subnet = val
 }
 
 // Response envelope for iPAddressListResponseEnvelope.
@@ -10838,10 +10065,8 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) SetIPAddress(val IPAddress) {
 
 // Ref: #/components/schemas/IPv6Addr
 type IPv6Addr struct {
-	IPv6Addr  OptNilString          `json:"IPv6Addr"`
-	HostName  string                `json:"HostName"`
-	IPv6Net   OptNilIPv6AddrIPv6Net `json:"IPv6Net"`
-	Interface OptNilResourceRef     `json:"Interface"`
+	IPv6Addr OptNilString `json:"IPv6Addr"`
+	HostName string       `json:"HostName"`
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
@@ -10854,16 +10079,6 @@ func (s *IPv6Addr) GetHostName() string {
 	return s.HostName
 }
 
-// GetIPv6Net returns the value of IPv6Net.
-func (s *IPv6Addr) GetIPv6Net() OptNilIPv6AddrIPv6Net {
-	return s.IPv6Net
-}
-
-// GetInterface returns the value of Interface.
-func (s *IPv6Addr) GetInterface() OptNilResourceRef {
-	return s.Interface
-}
-
 // SetIPv6Addr sets the value of IPv6Addr.
 func (s *IPv6Addr) SetIPv6Addr(val OptNilString) {
 	s.IPv6Addr = val
@@ -10872,16 +10087,6 @@ func (s *IPv6Addr) SetIPv6Addr(val OptNilString) {
 // SetHostName sets the value of HostName.
 func (s *IPv6Addr) SetHostName(val string) {
 	s.HostName = val
-}
-
-// SetIPv6Net sets the value of IPv6Net.
-func (s *IPv6Addr) SetIPv6Net(val OptNilIPv6AddrIPv6Net) {
-	s.IPv6Net = val
-}
-
-// SetInterface sets the value of Interface.
-func (s *IPv6Addr) SetInterface(val OptNilResourceRef) {
-	s.Interface = val
 }
 
 // Ref: #/components/schemas/IPv6AddrCreateRequest
@@ -11009,32 +10214,6 @@ func (s *IPv6AddrFindResponseEnvelope) SetIPv6Addrs(val []IPv6Addr) {
 	s.IPv6Addrs = val
 }
 
-// Ref: #/components/schemas/IPv6AddrIPv6Net
-type IPv6AddrIPv6Net struct {
-	ID     OptNilInt64       `json:"ID"`
-	Switch OptNilResourceRef `json:"Switch"`
-}
-
-// GetID returns the value of ID.
-func (s *IPv6AddrIPv6Net) GetID() OptNilInt64 {
-	return s.ID
-}
-
-// GetSwitch returns the value of Switch.
-func (s *IPv6AddrIPv6Net) GetSwitch() OptNilResourceRef {
-	return s.Switch
-}
-
-// SetID sets the value of ID.
-func (s *IPv6AddrIPv6Net) SetID(val OptNilInt64) {
-	s.ID = val
-}
-
-// SetSwitch sets the value of Switch.
-func (s *IPv6AddrIPv6Net) SetSwitch(val OptNilResourceRef) {
-	s.Switch = val
-}
-
 type IPv6AddrOpDeleteOK struct {
 	IsOk bool `json:"is_ok"`
 }
@@ -11141,26 +10320,14 @@ func (s *IPv6AddrUpdateResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 
 // Ref: #/components/schemas/IPv6Net
 type IPv6Net struct {
-	ID                 OptNilInt64       `json:"ID"`
-	ServiceID          OptNilInt64       `json:"ServiceID"`
-	IPv6Prefix         OptNilString      `json:"IPv6Prefix"`
-	IPv6PrefixLen      OptNilInt32       `json:"IPv6PrefixLen"`
-	IPv6PrefixTail     OptNilString      `json:"IPv6PrefixTail"`
-	ServiceClass       OptNilString      `json:"ServiceClass"`
-	IPv6Table          OptNilResourceRef `json:"IPv6Table"`
-	NamedIPv6AddrCount OptNilInt32       `json:"NamedIPv6AddrCount"`
-	CreatedAt          OptNilDateTime    `json:"CreatedAt"`
-	Switch             OptNilResourceRef `json:"Switch"`
+	ID            OptNilInt64  `json:"ID"`
+	IPv6Prefix    OptNilString `json:"IPv6Prefix"`
+	IPv6PrefixLen OptNilInt32  `json:"IPv6PrefixLen"`
 }
 
 // GetID returns the value of ID.
 func (s *IPv6Net) GetID() OptNilInt64 {
 	return s.ID
-}
-
-// GetServiceID returns the value of ServiceID.
-func (s *IPv6Net) GetServiceID() OptNilInt64 {
-	return s.ServiceID
 }
 
 // GetIPv6Prefix returns the value of IPv6Prefix.
@@ -11173,44 +10340,9 @@ func (s *IPv6Net) GetIPv6PrefixLen() OptNilInt32 {
 	return s.IPv6PrefixLen
 }
 
-// GetIPv6PrefixTail returns the value of IPv6PrefixTail.
-func (s *IPv6Net) GetIPv6PrefixTail() OptNilString {
-	return s.IPv6PrefixTail
-}
-
-// GetServiceClass returns the value of ServiceClass.
-func (s *IPv6Net) GetServiceClass() OptNilString {
-	return s.ServiceClass
-}
-
-// GetIPv6Table returns the value of IPv6Table.
-func (s *IPv6Net) GetIPv6Table() OptNilResourceRef {
-	return s.IPv6Table
-}
-
-// GetNamedIPv6AddrCount returns the value of NamedIPv6AddrCount.
-func (s *IPv6Net) GetNamedIPv6AddrCount() OptNilInt32 {
-	return s.NamedIPv6AddrCount
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *IPv6Net) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetSwitch returns the value of Switch.
-func (s *IPv6Net) GetSwitch() OptNilResourceRef {
-	return s.Switch
-}
-
 // SetID sets the value of ID.
 func (s *IPv6Net) SetID(val OptNilInt64) {
 	s.ID = val
-}
-
-// SetServiceID sets the value of ServiceID.
-func (s *IPv6Net) SetServiceID(val OptNilInt64) {
-	s.ServiceID = val
 }
 
 // SetIPv6Prefix sets the value of IPv6Prefix.
@@ -11221,36 +10353,6 @@ func (s *IPv6Net) SetIPv6Prefix(val OptNilString) {
 // SetIPv6PrefixLen sets the value of IPv6PrefixLen.
 func (s *IPv6Net) SetIPv6PrefixLen(val OptNilInt32) {
 	s.IPv6PrefixLen = val
-}
-
-// SetIPv6PrefixTail sets the value of IPv6PrefixTail.
-func (s *IPv6Net) SetIPv6PrefixTail(val OptNilString) {
-	s.IPv6PrefixTail = val
-}
-
-// SetServiceClass sets the value of ServiceClass.
-func (s *IPv6Net) SetServiceClass(val OptNilString) {
-	s.ServiceClass = val
-}
-
-// SetIPv6Table sets the value of IPv6Table.
-func (s *IPv6Net) SetIPv6Table(val OptNilResourceRef) {
-	s.IPv6Table = val
-}
-
-// SetNamedIPv6AddrCount sets the value of NamedIPv6AddrCount.
-func (s *IPv6Net) SetNamedIPv6AddrCount(val OptNilInt32) {
-	s.NamedIPv6AddrCount = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *IPv6Net) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetSwitch sets the value of Switch.
-func (s *IPv6Net) SetSwitch(val OptNilResourceRef) {
-	s.Switch = val
 }
 
 // Ref: #/components/schemas/IPv6NetInfo
@@ -11427,14 +10529,10 @@ func (s *IPv6NetReadResponseEnvelope) SetIPv6Net(val IPv6Net) {
 
 // Ref: #/components/schemas/Icon
 type Icon struct {
-	ID           int64               `json:"ID"`
-	Name         OptNilString        `json:"Name"`
-	Tags         []string            `json:"Tags"`
-	Availability OptNilEAvailability `json:"Availability"`
-	Scope        OptNilEScope        `json:"Scope"`
-	URL          OptNilString        `json:"URL"`
-	CreatedAt    OptNilDateTime      `json:"CreatedAt"`
-	ModifiedAt   OptNilDateTime      `json:"ModifiedAt"`
+	ID   int64        `json:"ID"`
+	Name OptNilString `json:"Name"`
+	Tags []string     `json:"Tags"`
+	URL  OptNilString `json:"URL"`
 }
 
 // GetID returns the value of ID.
@@ -11452,29 +10550,9 @@ func (s *Icon) GetTags() []string {
 	return s.Tags
 }
 
-// GetAvailability returns the value of Availability.
-func (s *Icon) GetAvailability() OptNilEAvailability {
-	return s.Availability
-}
-
-// GetScope returns the value of Scope.
-func (s *Icon) GetScope() OptNilEScope {
-	return s.Scope
-}
-
 // GetURL returns the value of URL.
 func (s *Icon) GetURL() OptNilString {
 	return s.URL
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Icon) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Icon) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // SetID sets the value of ID.
@@ -11492,29 +10570,9 @@ func (s *Icon) SetTags(val []string) {
 	s.Tags = val
 }
 
-// SetAvailability sets the value of Availability.
-func (s *Icon) SetAvailability(val OptNilEAvailability) {
-	s.Availability = val
-}
-
-// SetScope sets the value of Scope.
-func (s *Icon) SetScope(val OptNilEScope) {
-	s.Scope = val
-}
-
 // SetURL sets the value of URL.
 func (s *Icon) SetURL(val OptNilString) {
 	s.URL = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Icon) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Icon) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // Ref: #/components/schemas/IconCreateRequest
@@ -11786,14 +10844,9 @@ func (s *InsertCDROMRequest) SetID(val OptNilInt64) {
 // Ref: #/components/schemas/Interface
 type Interface struct {
 	ID            OptNilInt64           `json:"ID"`
-	MACAddress    OptNilString          `json:"MACAddress"`
-	IPAddress     OptNilString          `json:"IPAddress"`
 	UserIPAddress OptNilString          `json:"UserIPAddress"`
-	HostName      OptNilString          `json:"HostName"`
 	Switch        OptNilInterfaceSwitch `json:"Switch"`
-	PacketFilter  OptNilResourceRef     `json:"PacketFilter"`
 	Server        OptNilResourceRef     `json:"Server"`
-	CreatedAt     time.Time             `json:"CreatedAt"`
 }
 
 // GetID returns the value of ID.
@@ -11801,24 +10854,9 @@ func (s *Interface) GetID() OptNilInt64 {
 	return s.ID
 }
 
-// GetMACAddress returns the value of MACAddress.
-func (s *Interface) GetMACAddress() OptNilString {
-	return s.MACAddress
-}
-
-// GetIPAddress returns the value of IPAddress.
-func (s *Interface) GetIPAddress() OptNilString {
-	return s.IPAddress
-}
-
 // GetUserIPAddress returns the value of UserIPAddress.
 func (s *Interface) GetUserIPAddress() OptNilString {
 	return s.UserIPAddress
-}
-
-// GetHostName returns the value of HostName.
-func (s *Interface) GetHostName() OptNilString {
-	return s.HostName
 }
 
 // GetSwitch returns the value of Switch.
@@ -11826,19 +10864,9 @@ func (s *Interface) GetSwitch() OptNilInterfaceSwitch {
 	return s.Switch
 }
 
-// GetPacketFilter returns the value of PacketFilter.
-func (s *Interface) GetPacketFilter() OptNilResourceRef {
-	return s.PacketFilter
-}
-
 // GetServer returns the value of Server.
 func (s *Interface) GetServer() OptNilResourceRef {
 	return s.Server
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Interface) GetCreatedAt() time.Time {
-	return s.CreatedAt
 }
 
 // SetID sets the value of ID.
@@ -11846,24 +10874,9 @@ func (s *Interface) SetID(val OptNilInt64) {
 	s.ID = val
 }
 
-// SetMACAddress sets the value of MACAddress.
-func (s *Interface) SetMACAddress(val OptNilString) {
-	s.MACAddress = val
-}
-
-// SetIPAddress sets the value of IPAddress.
-func (s *Interface) SetIPAddress(val OptNilString) {
-	s.IPAddress = val
-}
-
 // SetUserIPAddress sets the value of UserIPAddress.
 func (s *Interface) SetUserIPAddress(val OptNilString) {
 	s.UserIPAddress = val
-}
-
-// SetHostName sets the value of HostName.
-func (s *Interface) SetHostName(val OptNilString) {
-	s.HostName = val
 }
 
 // SetSwitch sets the value of Switch.
@@ -11871,19 +10884,9 @@ func (s *Interface) SetSwitch(val OptNilInterfaceSwitch) {
 	s.Switch = val
 }
 
-// SetPacketFilter sets the value of PacketFilter.
-func (s *Interface) SetPacketFilter(val OptNilResourceRef) {
-	s.PacketFilter = val
-}
-
 // SetServer sets the value of Server.
 func (s *Interface) SetServer(val OptNilResourceRef) {
 	s.Server = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Interface) SetCreatedAt(val time.Time) {
-	s.CreatedAt = val
 }
 
 // Ref: #/components/schemas/InterfaceCreateRequest
@@ -12531,7 +11534,6 @@ type Internet struct {
 	Description    string            `json:"Description"`
 	Tags           []string          `json:"Tags"`
 	Icon           OptNilResourceRef `json:"Icon"`
-	CreatedAt      OptNilDateTime    `json:"CreatedAt"`
 	BandWidthMbps  OptNilInt32       `json:"BandWidthMbps"`
 	NetworkMaskLen OptNilInt32       `json:"NetworkMaskLen"`
 	Switch         OptNilSwitchInfo  `json:"Switch"`
@@ -12560,11 +11562,6 @@ func (s *Internet) GetTags() []string {
 // GetIcon returns the value of Icon.
 func (s *Internet) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Internet) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
 }
 
 // GetBandWidthMbps returns the value of BandWidthMbps.
@@ -12605,11 +11602,6 @@ func (s *Internet) SetTags(val []string) {
 // SetIcon sets the value of Icon.
 func (s *Internet) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Internet) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
 }
 
 // SetBandWidthMbps sets the value of BandWidthMbps.
@@ -13472,76 +12464,11 @@ func (s *InternetUpdateSubnetResponseEnvelope) SetSubnet(val Subnet) {
 	s.Subnet = val
 }
 
-// Ref: #/components/schemas/JobConfigError
-type JobConfigError struct {
-	ErrorCode OptNilString `json:"ErrorCode"`
-	ErrorMsg  OptNilString `json:"ErrorMsg"`
-	Status    OptNilString `json:"Status"`
-}
-
-// GetErrorCode returns the value of ErrorCode.
-func (s *JobConfigError) GetErrorCode() OptNilString {
-	return s.ErrorCode
-}
-
-// GetErrorMsg returns the value of ErrorMsg.
-func (s *JobConfigError) GetErrorMsg() OptNilString {
-	return s.ErrorMsg
-}
-
-// GetStatus returns the value of Status.
-func (s *JobConfigError) GetStatus() OptNilString {
-	return s.Status
-}
-
-// SetErrorCode sets the value of ErrorCode.
-func (s *JobConfigError) SetErrorCode(val OptNilString) {
-	s.ErrorCode = val
-}
-
-// SetErrorMsg sets the value of ErrorMsg.
-func (s *JobConfigError) SetErrorMsg(val OptNilString) {
-	s.ErrorMsg = val
-}
-
-// SetStatus sets the value of Status.
-func (s *JobConfigError) SetStatus(val OptNilString) {
-	s.Status = val
-}
-
-// Ref: #/components/schemas/JobStatus
-type JobStatus struct {
-	Status      OptNilString         `json:"Status"`
-	ConfigError OptNilJobConfigError `json:"ConfigError"`
-}
-
-// GetStatus returns the value of Status.
-func (s *JobStatus) GetStatus() OptNilString {
-	return s.Status
-}
-
-// GetConfigError returns the value of ConfigError.
-func (s *JobStatus) GetConfigError() OptNilJobConfigError {
-	return s.ConfigError
-}
-
-// SetStatus sets the value of Status.
-func (s *JobStatus) SetStatus(val OptNilString) {
-	s.Status = val
-}
-
-// SetConfigError sets the value of ConfigError.
-func (s *JobStatus) SetConfigError(val OptNilJobConfigError) {
-	s.ConfigError = val
-}
-
 // Ref: #/components/schemas/License
 type License struct {
 	ID          OptNilInt64              `json:"ID"`
 	Name        OptNilString             `json:"Name"`
 	LicenseInfo OptNilLicenseLicenseInfo `json:"LicenseInfo"`
-	CreatedAt   OptNilDateTime           `json:"CreatedAt"`
-	ModifiedAt  OptNilDateTime           `json:"ModifiedAt"`
 }
 
 // GetID returns the value of ID.
@@ -13559,16 +12486,6 @@ func (s *License) GetLicenseInfo() OptNilLicenseLicenseInfo {
 	return s.LicenseInfo
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *License) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *License) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
-}
-
 // SetID sets the value of ID.
 func (s *License) SetID(val OptNilInt64) {
 	s.ID = val
@@ -13582,16 +12499,6 @@ func (s *License) SetName(val OptNilString) {
 // SetLicenseInfo sets the value of LicenseInfo.
 func (s *License) SetLicenseInfo(val OptNilLicenseLicenseInfo) {
 	s.LicenseInfo = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *License) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *License) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // Ref: #/components/schemas/LicenseCreateRequest
@@ -13721,11 +12628,9 @@ func (s *LicenseFindResponseEnvelope) SetLicenses(val []License) {
 
 // Ref: #/components/schemas/LicenseInfo
 type LicenseInfo struct {
-	ID         OptNilInt64    `json:"ID"`
-	Name       OptNilString   `json:"Name"`
-	CreatedAt  OptNilDateTime `json:"CreatedAt"`
-	ModifiedAt OptNilDateTime `json:"ModifiedAt"`
-	TermsOfUse OptNilString   `json:"TermsOfUse"`
+	ID         OptNilInt64  `json:"ID"`
+	Name       OptNilString `json:"Name"`
+	TermsOfUse OptNilString `json:"TermsOfUse"`
 }
 
 // GetID returns the value of ID.
@@ -13736,16 +12641,6 @@ func (s *LicenseInfo) GetID() OptNilInt64 {
 // GetName returns the value of Name.
 func (s *LicenseInfo) GetName() OptNilString {
 	return s.Name
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *LicenseInfo) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *LicenseInfo) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // GetTermsOfUse returns the value of TermsOfUse.
@@ -13761,16 +12656,6 @@ func (s *LicenseInfo) SetID(val OptNilInt64) {
 // SetName sets the value of Name.
 func (s *LicenseInfo) SetName(val OptNilString) {
 	s.Name = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *LicenseInfo) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *LicenseInfo) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // SetTermsOfUse sets the value of TermsOfUse.
@@ -14943,17 +13828,13 @@ func (s *MonitoringSuiteLog) SetEnabled(val bool) {
 
 // Ref: #/components/schemas/Note
 type Note struct {
-	ID           OptNilInt64         `json:"ID"`
-	Name         OptNilString        `json:"Name"`
-	Description  OptNilString        `json:"Description"`
-	Tags         []string            `json:"Tags"`
-	Availability OptNilEAvailability `json:"Availability"`
-	Scope        OptNilEScope        `json:"Scope"`
-	Class        OptNilString        `json:"Class"`
-	Content      OptNilString        `json:"Content"`
-	Icon         OptNilResourceRef   `json:"Icon"`
-	CreatedAt    OptNilDateTime      `json:"CreatedAt"`
-	ModifiedAt   OptNilDateTime      `json:"ModifiedAt"`
+	ID          OptNilInt64       `json:"ID"`
+	Name        OptNilString      `json:"Name"`
+	Description OptNilString      `json:"Description"`
+	Tags        []string          `json:"Tags"`
+	Class       OptNilString      `json:"Class"`
+	Content     OptNilString      `json:"Content"`
+	Icon        OptNilResourceRef `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -14976,16 +13857,6 @@ func (s *Note) GetTags() []string {
 	return s.Tags
 }
 
-// GetAvailability returns the value of Availability.
-func (s *Note) GetAvailability() OptNilEAvailability {
-	return s.Availability
-}
-
-// GetScope returns the value of Scope.
-func (s *Note) GetScope() OptNilEScope {
-	return s.Scope
-}
-
 // GetClass returns the value of Class.
 func (s *Note) GetClass() OptNilString {
 	return s.Class
@@ -14999,16 +13870,6 @@ func (s *Note) GetContent() OptNilString {
 // GetIcon returns the value of Icon.
 func (s *Note) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Note) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Note) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // SetID sets the value of ID.
@@ -15031,16 +13892,6 @@ func (s *Note) SetTags(val []string) {
 	s.Tags = val
 }
 
-// SetAvailability sets the value of Availability.
-func (s *Note) SetAvailability(val OptNilEAvailability) {
-	s.Availability = val
-}
-
-// SetScope sets the value of Scope.
-func (s *Note) SetScope(val OptNilEScope) {
-	s.Scope = val
-}
-
 // SetClass sets the value of Class.
 func (s *Note) SetClass(val OptNilString) {
 	s.Class = val
@@ -15054,16 +13905,6 @@ func (s *Note) SetContent(val OptNilString) {
 // SetIcon sets the value of Icon.
 func (s *Note) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Note) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Note) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // Ref: #/components/schemas/NoteCreateRequest
@@ -17902,195 +16743,6 @@ func (o OptMonitoringSuiteLog) Or(d MonitoringSuiteLog) MonitoringSuiteLog {
 	return d
 }
 
-// NewOptNilArchivePlan returns new OptNilArchivePlan with value set to v.
-func NewOptNilArchivePlan(v ArchivePlan) OptNilArchivePlan {
-	return OptNilArchivePlan{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilArchivePlan is optional nullable ArchivePlan.
-type OptNilArchivePlan struct {
-	Value ArchivePlan
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilArchivePlan was set.
-func (o OptNilArchivePlan) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilArchivePlan) Reset() {
-	var v ArchivePlan
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilArchivePlan) SetTo(v ArchivePlan) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilArchivePlan) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilArchivePlan) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v ArchivePlan
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilArchivePlan) Get() (v ArchivePlan, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilArchivePlan) Or(d ArchivePlan) ArchivePlan {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilArchiveSourceArchive returns new OptNilArchiveSourceArchive with value set to v.
-func NewOptNilArchiveSourceArchive(v ArchiveSourceArchive) OptNilArchiveSourceArchive {
-	return OptNilArchiveSourceArchive{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilArchiveSourceArchive is optional nullable ArchiveSourceArchive.
-type OptNilArchiveSourceArchive struct {
-	Value ArchiveSourceArchive
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilArchiveSourceArchive was set.
-func (o OptNilArchiveSourceArchive) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilArchiveSourceArchive) Reset() {
-	var v ArchiveSourceArchive
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilArchiveSourceArchive) SetTo(v ArchiveSourceArchive) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilArchiveSourceArchive) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilArchiveSourceArchive) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v ArchiveSourceArchive
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilArchiveSourceArchive) Get() (v ArchiveSourceArchive, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilArchiveSourceArchive) Or(d ArchiveSourceArchive) ArchiveSourceArchive {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilArchiveSourceDisk returns new OptNilArchiveSourceDisk with value set to v.
-func NewOptNilArchiveSourceDisk(v ArchiveSourceDisk) OptNilArchiveSourceDisk {
-	return OptNilArchiveSourceDisk{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilArchiveSourceDisk is optional nullable ArchiveSourceDisk.
-type OptNilArchiveSourceDisk struct {
-	Value ArchiveSourceDisk
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilArchiveSourceDisk was set.
-func (o OptNilArchiveSourceDisk) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilArchiveSourceDisk) Reset() {
-	var v ArchiveSourceDisk
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilArchiveSourceDisk) SetTo(v ArchiveSourceDisk) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilArchiveSourceDisk) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilArchiveSourceDisk) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v ArchiveSourceDisk
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilArchiveSourceDisk) Get() (v ArchiveSourceDisk, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilArchiveSourceDisk) Or(d ArchiveSourceDisk) ArchiveSourceDisk {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptNilAuthStatusAccount returns new OptNilAuthStatusAccount with value set to v.
 func NewOptNilAuthStatusAccount(v AuthStatusAccount) OptNilAuthStatusAccount {
 	return OptNilAuthStatusAccount{
@@ -18463,258 +17115,6 @@ func (o OptNilBool) Get() (v bool, ok bool) {
 
 // Or returns value if set, or given parameter if does not.
 func (o OptNilBool) Or(d bool) bool {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilBridgeInfoArray returns new OptNilBridgeInfoArray with value set to v.
-func NewOptNilBridgeInfoArray(v []BridgeInfo) OptNilBridgeInfoArray {
-	return OptNilBridgeInfoArray{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilBridgeInfoArray is optional nullable []BridgeInfo.
-type OptNilBridgeInfoArray struct {
-	Value []BridgeInfo
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilBridgeInfoArray was set.
-func (o OptNilBridgeInfoArray) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilBridgeInfoArray) Reset() {
-	var v []BridgeInfo
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilBridgeInfoArray) SetTo(v []BridgeInfo) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilBridgeInfoArray) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilBridgeInfoArray) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v []BridgeInfo
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilBridgeInfoArray) Get() (v []BridgeInfo, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilBridgeInfoArray) Or(d []BridgeInfo) []BridgeInfo {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilBridgeInfoZone returns new OptNilBridgeInfoZone with value set to v.
-func NewOptNilBridgeInfoZone(v BridgeInfoZone) OptNilBridgeInfoZone {
-	return OptNilBridgeInfoZone{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilBridgeInfoZone is optional nullable BridgeInfoZone.
-type OptNilBridgeInfoZone struct {
-	Value BridgeInfoZone
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilBridgeInfoZone was set.
-func (o OptNilBridgeInfoZone) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilBridgeInfoZone) Reset() {
-	var v BridgeInfoZone
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilBridgeInfoZone) SetTo(v BridgeInfoZone) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilBridgeInfoZone) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilBridgeInfoZone) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v BridgeInfoZone
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilBridgeInfoZone) Get() (v BridgeInfoZone, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilBridgeInfoZone) Or(d BridgeInfoZone) BridgeInfoZone {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilBridgeSwitchInfo returns new OptNilBridgeSwitchInfo with value set to v.
-func NewOptNilBridgeSwitchInfo(v BridgeSwitchInfo) OptNilBridgeSwitchInfo {
-	return OptNilBridgeSwitchInfo{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilBridgeSwitchInfo is optional nullable BridgeSwitchInfo.
-type OptNilBridgeSwitchInfo struct {
-	Value BridgeSwitchInfo
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilBridgeSwitchInfo was set.
-func (o OptNilBridgeSwitchInfo) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilBridgeSwitchInfo) Reset() {
-	var v BridgeSwitchInfo
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilBridgeSwitchInfo) SetTo(v BridgeSwitchInfo) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilBridgeSwitchInfo) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilBridgeSwitchInfo) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v BridgeSwitchInfo
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilBridgeSwitchInfo) Get() (v BridgeSwitchInfo, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilBridgeSwitchInfo) Or(d BridgeSwitchInfo) BridgeSwitchInfo {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilBundleInfo returns new OptNilBundleInfo with value set to v.
-func NewOptNilBundleInfo(v BundleInfo) OptNilBundleInfo {
-	return OptNilBundleInfo{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilBundleInfo is optional nullable BundleInfo.
-type OptNilBundleInfo struct {
-	Value BundleInfo
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilBundleInfo was set.
-func (o OptNilBundleInfo) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilBundleInfo) Reset() {
-	var v BundleInfo
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilBundleInfo) SetTo(v BundleInfo) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilBundleInfo) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilBundleInfo) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v BundleInfo
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilBundleInfo) Get() (v BundleInfo, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilBundleInfo) Or(d BundleInfo) BundleInfo {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -20800,132 +19200,6 @@ func (o OptNilDiskSourceDisk) Or(d DiskSourceDisk) DiskSourceDisk {
 	return d
 }
 
-// NewOptNilEAuthClass returns new OptNilEAuthClass with value set to v.
-func NewOptNilEAuthClass(v EAuthClass) OptNilEAuthClass {
-	return OptNilEAuthClass{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilEAuthClass is optional nullable EAuthClass.
-type OptNilEAuthClass struct {
-	Value EAuthClass
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilEAuthClass was set.
-func (o OptNilEAuthClass) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilEAuthClass) Reset() {
-	var v EAuthClass
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilEAuthClass) SetTo(v EAuthClass) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilEAuthClass) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilEAuthClass) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v EAuthClass
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilEAuthClass) Get() (v EAuthClass, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilEAuthClass) Or(d EAuthClass) EAuthClass {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilEAuthMethod returns new OptNilEAuthMethod with value set to v.
-func NewOptNilEAuthMethod(v EAuthMethod) OptNilEAuthMethod {
-	return OptNilEAuthMethod{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilEAuthMethod is optional nullable EAuthMethod.
-type OptNilEAuthMethod struct {
-	Value EAuthMethod
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilEAuthMethod was set.
-func (o OptNilEAuthMethod) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilEAuthMethod) Reset() {
-	var v EAuthMethod
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilEAuthMethod) SetTo(v EAuthMethod) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilEAuthMethod) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilEAuthMethod) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v EAuthMethod
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilEAuthMethod) Get() (v EAuthMethod, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilEAuthMethod) Or(d EAuthMethod) EAuthMethod {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptNilEAvailability returns new OptNilEAvailability with value set to v.
 func NewOptNilEAvailability(v EAvailability) OptNilEAvailability {
 	return OptNilEAvailability{
@@ -21493,132 +19767,6 @@ func (o OptNilEInterfaceDriver) Or(d EInterfaceDriver) EInterfaceDriver {
 	return d
 }
 
-// NewOptNilEOperationPenalty returns new OptNilEOperationPenalty with value set to v.
-func NewOptNilEOperationPenalty(v EOperationPenalty) OptNilEOperationPenalty {
-	return OptNilEOperationPenalty{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilEOperationPenalty is optional nullable EOperationPenalty.
-type OptNilEOperationPenalty struct {
-	Value EOperationPenalty
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilEOperationPenalty was set.
-func (o OptNilEOperationPenalty) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilEOperationPenalty) Reset() {
-	var v EOperationPenalty
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilEOperationPenalty) SetTo(v EOperationPenalty) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilEOperationPenalty) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilEOperationPenalty) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v EOperationPenalty
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilEOperationPenalty) Get() (v EOperationPenalty, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilEOperationPenalty) Or(d EOperationPenalty) EOperationPenalty {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilEPermission returns new OptNilEPermission with value set to v.
-func NewOptNilEPermission(v EPermission) OptNilEPermission {
-	return OptNilEPermission{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilEPermission is optional nullable EPermission.
-type OptNilEPermission struct {
-	Value EPermission
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilEPermission was set.
-func (o OptNilEPermission) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilEPermission) Reset() {
-	var v EPermission
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilEPermission) SetTo(v EPermission) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilEPermission) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilEPermission) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v EPermission
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilEPermission) Get() (v EPermission, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilEPermission) Or(d EPermission) EPermission {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptNilEPlanGeneration returns new OptNilEPlanGeneration with value set to v.
 func NewOptNilEPlanGeneration(v EPlanGeneration) OptNilEPlanGeneration {
 	return OptNilEPlanGeneration{
@@ -21991,69 +20139,6 @@ func (o OptNilFTPServerInfo) Get() (v FTPServerInfo, ok bool) {
 
 // Or returns value if set, or given parameter if does not.
 func (o OptNilFTPServerInfo) Or(d FTPServerInfo) FTPServerInfo {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilIPv6AddrIPv6Net returns new OptNilIPv6AddrIPv6Net with value set to v.
-func NewOptNilIPv6AddrIPv6Net(v IPv6AddrIPv6Net) OptNilIPv6AddrIPv6Net {
-	return OptNilIPv6AddrIPv6Net{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilIPv6AddrIPv6Net is optional nullable IPv6AddrIPv6Net.
-type OptNilIPv6AddrIPv6Net struct {
-	Value IPv6AddrIPv6Net
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilIPv6AddrIPv6Net was set.
-func (o OptNilIPv6AddrIPv6Net) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilIPv6AddrIPv6Net) Reset() {
-	var v IPv6AddrIPv6Net
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilIPv6AddrIPv6Net) SetTo(v IPv6AddrIPv6Net) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilIPv6AddrIPv6Net) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilIPv6AddrIPv6Net) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v IPv6AddrIPv6Net
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilIPv6AddrIPv6Net) Get() (v IPv6AddrIPv6Net, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilIPv6AddrIPv6Net) Or(d IPv6AddrIPv6Net) IPv6AddrIPv6Net {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -22810,132 +20895,6 @@ func (o OptNilInternetSubnetArray) Get() (v []InternetSubnet, ok bool) {
 
 // Or returns value if set, or given parameter if does not.
 func (o OptNilInternetSubnetArray) Or(d []InternetSubnet) []InternetSubnet {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilJobConfigError returns new OptNilJobConfigError with value set to v.
-func NewOptNilJobConfigError(v JobConfigError) OptNilJobConfigError {
-	return OptNilJobConfigError{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilJobConfigError is optional nullable JobConfigError.
-type OptNilJobConfigError struct {
-	Value JobConfigError
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilJobConfigError was set.
-func (o OptNilJobConfigError) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilJobConfigError) Reset() {
-	var v JobConfigError
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilJobConfigError) SetTo(v JobConfigError) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilJobConfigError) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilJobConfigError) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v JobConfigError
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilJobConfigError) Get() (v JobConfigError, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilJobConfigError) Or(d JobConfigError) JobConfigError {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilJobStatus returns new OptNilJobStatus with value set to v.
-func NewOptNilJobStatus(v JobStatus) OptNilJobStatus {
-	return OptNilJobStatus{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilJobStatus is optional nullable JobStatus.
-type OptNilJobStatus struct {
-	Value JobStatus
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilJobStatus was set.
-func (o OptNilJobStatus) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilJobStatus) Reset() {
-	var v JobStatus
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilJobStatus) SetTo(v JobStatus) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilJobStatus) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilJobStatus) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v JobStatus
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilJobStatus) Get() (v JobStatus, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilJobStatus) Or(d JobStatus) JobStatus {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -24769,69 +22728,6 @@ func (o OptNilSubnetSwitch) Or(d SubnetSwitch) SubnetSwitch {
 	return d
 }
 
-// NewOptNilSwitchCreateRequestUserSubnet returns new OptNilSwitchCreateRequestUserSubnet with value set to v.
-func NewOptNilSwitchCreateRequestUserSubnet(v SwitchCreateRequestUserSubnet) OptNilSwitchCreateRequestUserSubnet {
-	return OptNilSwitchCreateRequestUserSubnet{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilSwitchCreateRequestUserSubnet is optional nullable SwitchCreateRequestUserSubnet.
-type OptNilSwitchCreateRequestUserSubnet struct {
-	Value SwitchCreateRequestUserSubnet
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilSwitchCreateRequestUserSubnet was set.
-func (o OptNilSwitchCreateRequestUserSubnet) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilSwitchCreateRequestUserSubnet) Reset() {
-	var v SwitchCreateRequestUserSubnet
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilSwitchCreateRequestUserSubnet) SetTo(v SwitchCreateRequestUserSubnet) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilSwitchCreateRequestUserSubnet) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilSwitchCreateRequestUserSubnet) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v SwitchCreateRequestUserSubnet
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilSwitchCreateRequestUserSubnet) Get() (v SwitchCreateRequestUserSubnet, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilSwitchCreateRequestUserSubnet) Or(d SwitchCreateRequestUserSubnet) SwitchCreateRequestUserSubnet {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptNilSwitchInfo returns new OptNilSwitchInfo with value set to v.
 func NewOptNilSwitchInfo(v SwitchInfo) OptNilSwitchInfo {
 	return OptNilSwitchInfo{
@@ -25015,132 +22911,6 @@ func (o OptNilSwitchSubnetIPAddresses) Get() (v SwitchSubnetIPAddresses, ok bool
 
 // Or returns value if set, or given parameter if does not.
 func (o OptNilSwitchSubnetIPAddresses) Or(d SwitchSubnetIPAddresses) SwitchSubnetIPAddresses {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilSwitchUpdateRequestUserSubnet returns new OptNilSwitchUpdateRequestUserSubnet with value set to v.
-func NewOptNilSwitchUpdateRequestUserSubnet(v SwitchUpdateRequestUserSubnet) OptNilSwitchUpdateRequestUserSubnet {
-	return OptNilSwitchUpdateRequestUserSubnet{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilSwitchUpdateRequestUserSubnet is optional nullable SwitchUpdateRequestUserSubnet.
-type OptNilSwitchUpdateRequestUserSubnet struct {
-	Value SwitchUpdateRequestUserSubnet
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilSwitchUpdateRequestUserSubnet was set.
-func (o OptNilSwitchUpdateRequestUserSubnet) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilSwitchUpdateRequestUserSubnet) Reset() {
-	var v SwitchUpdateRequestUserSubnet
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilSwitchUpdateRequestUserSubnet) SetTo(v SwitchUpdateRequestUserSubnet) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilSwitchUpdateRequestUserSubnet) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilSwitchUpdateRequestUserSubnet) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v SwitchUpdateRequestUserSubnet
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilSwitchUpdateRequestUserSubnet) Get() (v SwitchUpdateRequestUserSubnet, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilSwitchUpdateRequestUserSubnet) Or(d SwitchUpdateRequestUserSubnet) SwitchUpdateRequestUserSubnet {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
-// NewOptNilSwitchUserSubnet returns new OptNilSwitchUserSubnet with value set to v.
-func NewOptNilSwitchUserSubnet(v SwitchUserSubnet) OptNilSwitchUserSubnet {
-	return OptNilSwitchUserSubnet{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptNilSwitchUserSubnet is optional nullable SwitchUserSubnet.
-type OptNilSwitchUserSubnet struct {
-	Value SwitchUserSubnet
-	Set   bool
-	Null  bool
-}
-
-// IsSet returns true if OptNilSwitchUserSubnet was set.
-func (o OptNilSwitchUserSubnet) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptNilSwitchUserSubnet) Reset() {
-	var v SwitchUserSubnet
-	o.Value = v
-	o.Set = false
-	o.Null = false
-}
-
-// SetTo sets value to v.
-func (o *OptNilSwitchUserSubnet) SetTo(v SwitchUserSubnet) {
-	o.Set = true
-	o.Null = false
-	o.Value = v
-}
-
-// IsNull returns true if value is Null.
-func (o OptNilSwitchUserSubnet) IsNull() bool { return o.Null }
-
-// SetToNull sets value to null.
-func (o *OptNilSwitchUserSubnet) SetToNull() {
-	o.Set = true
-	o.Null = true
-	var v SwitchUserSubnet
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptNilSwitchUserSubnet) Get() (v SwitchUserSubnet, ok bool) {
-	if o.Null {
-		return v, false
-	}
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptNilSwitchUserSubnet) Or(d SwitchUserSubnet) SwitchUserSubnet {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -25827,13 +23597,10 @@ func (o OptString) Or(d string) string {
 
 // Ref: #/components/schemas/PacketFilter
 type PacketFilter struct {
-	ID                  OptNilInt64              `json:"ID"`
-	Name                OptNilString             `json:"Name"`
-	Description         string                   `json:"Description"`
-	RequiredHostVersion OptNilInt32              `json:"RequiredHostVersion"`
-	Expression          []PacketFilterExpression `json:"Expression"`
-	ExpressionHash      OptNilString             `json:"ExpressionHash"`
-	CreatedAt           OptNilDateTime           `json:"CreatedAt"`
+	ID          OptNilInt64              `json:"ID"`
+	Name        OptNilString             `json:"Name"`
+	Description string                   `json:"Description"`
+	Expression  []PacketFilterExpression `json:"Expression"`
 }
 
 // GetID returns the value of ID.
@@ -25851,24 +23618,9 @@ func (s *PacketFilter) GetDescription() string {
 	return s.Description
 }
 
-// GetRequiredHostVersion returns the value of RequiredHostVersion.
-func (s *PacketFilter) GetRequiredHostVersion() OptNilInt32 {
-	return s.RequiredHostVersion
-}
-
 // GetExpression returns the value of Expression.
 func (s *PacketFilter) GetExpression() []PacketFilterExpression {
 	return s.Expression
-}
-
-// GetExpressionHash returns the value of ExpressionHash.
-func (s *PacketFilter) GetExpressionHash() OptNilString {
-	return s.ExpressionHash
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *PacketFilter) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
 }
 
 // SetID sets the value of ID.
@@ -25886,24 +23638,9 @@ func (s *PacketFilter) SetDescription(val string) {
 	s.Description = val
 }
 
-// SetRequiredHostVersion sets the value of RequiredHostVersion.
-func (s *PacketFilter) SetRequiredHostVersion(val OptNilInt32) {
-	s.RequiredHostVersion = val
-}
-
 // SetExpression sets the value of Expression.
 func (s *PacketFilter) SetExpression(val []PacketFilterExpression) {
 	s.Expression = val
-}
-
-// SetExpressionHash sets the value of ExpressionHash.
-func (s *PacketFilter) SetExpressionHash(val OptNilString) {
-	s.ExpressionHash = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *PacketFilter) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
 }
 
 // Ref: #/components/schemas/PacketFilterCreateRequest
@@ -26393,7 +24130,6 @@ type PrivateHost struct {
 	Description      string                `json:"Description"`
 	Tags             []string              `json:"Tags"`
 	Icon             OptNilResourceRef     `json:"Icon"`
-	CreatedAt        OptNilDateTime        `json:"CreatedAt"`
 	Plan             OptNilPrivateHostPlan `json:"Plan"`
 	AssignedCPU      OptNilInt32           `json:"AssignedCPU"`
 	AssignedMemoryMB OptNilInt32           `json:"AssignedMemoryMB"`
@@ -26423,11 +24159,6 @@ func (s *PrivateHost) GetTags() []string {
 // GetIcon returns the value of Icon.
 func (s *PrivateHost) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *PrivateHost) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
 }
 
 // GetPlan returns the value of Plan.
@@ -26473,11 +24204,6 @@ func (s *PrivateHost) SetTags(val []string) {
 // SetIcon sets the value of Icon.
 func (s *PrivateHost) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *PrivateHost) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
 }
 
 // SetPlan sets the value of Plan.
@@ -26705,7 +24431,6 @@ type PrivateHostPlan struct {
 	Name         OptNilString        `json:"Name"`
 	Class        OptNilString        `json:"Class"`
 	CPU          OptNilInt32         `json:"CPU"`
-	CPUModel     OptNilString        `json:"CPUModel"`
 	Dedicated    bool                `json:"Dedicated"`
 	MemoryMB     OptNilInt32         `json:"MemoryMB"`
 	Availability OptNilEAvailability `json:"Availability"`
@@ -26729,11 +24454,6 @@ func (s *PrivateHostPlan) GetClass() OptNilString {
 // GetCPU returns the value of CPU.
 func (s *PrivateHostPlan) GetCPU() OptNilInt32 {
 	return s.CPU
-}
-
-// GetCPUModel returns the value of CPUModel.
-func (s *PrivateHostPlan) GetCPUModel() OptNilString {
-	return s.CPUModel
 }
 
 // GetDedicated returns the value of Dedicated.
@@ -26769,11 +24489,6 @@ func (s *PrivateHostPlan) SetClass(val OptNilString) {
 // SetCPU sets the value of CPU.
 func (s *PrivateHostPlan) SetCPU(val OptNilInt32) {
 	s.CPU = val
-}
-
-// SetCPUModel sets the value of CPUModel.
-func (s *PrivateHostPlan) SetCPUModel(val OptNilString) {
-	s.CPUModel = val
 }
 
 // SetDedicated sets the value of Dedicated.
@@ -27004,10 +24719,7 @@ type ProxyLB struct {
 	Name         OptNilString          `json:"Name"`
 	Description  string                `json:"Description"`
 	Tags         []string              `json:"Tags"`
-	Availability OptNilEAvailability   `json:"Availability"`
 	Icon         OptNilResourceRef     `json:"Icon"`
-	CreatedAt    OptNilDateTime        `json:"CreatedAt"`
-	ModifiedAt   OptNilDateTime        `json:"ModifiedAt"`
 	Plan         EProxyLBPlan          `json:"Plan"`
 	Settings     OptNilProxyLBSettings `json:"Settings"`
 	BindPorts    []ProxyLBBindPort     `json:"BindPorts"`
@@ -27037,24 +24749,9 @@ func (s *ProxyLB) GetTags() []string {
 	return s.Tags
 }
 
-// GetAvailability returns the value of Availability.
-func (s *ProxyLB) GetAvailability() OptNilEAvailability {
-	return s.Availability
-}
-
 // GetIcon returns the value of Icon.
 func (s *ProxyLB) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *ProxyLB) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *ProxyLB) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
 }
 
 // GetPlan returns the value of Plan.
@@ -27112,24 +24809,9 @@ func (s *ProxyLB) SetTags(val []string) {
 	s.Tags = val
 }
 
-// SetAvailability sets the value of Availability.
-func (s *ProxyLB) SetAvailability(val OptNilEAvailability) {
-	s.Availability = val
-}
-
 // SetIcon sets the value of Icon.
 func (s *ProxyLB) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *ProxyLB) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *ProxyLB) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // SetPlan sets the value of Plan.
@@ -29046,12 +26728,11 @@ func (s *SIMTrafficBytes) SetDownlinkBytes(val int64) {
 
 // Ref: #/components/schemas/SSHKey
 type SSHKey struct {
-	ID          OptNilInt64    `json:"ID"`
-	Name        OptNilString   `json:"Name"`
-	Description string         `json:"Description"`
-	CreatedAt   OptNilDateTime `json:"CreatedAt"`
-	PublicKey   OptNilString   `json:"PublicKey"`
-	Fingerprint OptNilString   `json:"Fingerprint"`
+	ID          OptNilInt64  `json:"ID"`
+	Name        OptNilString `json:"Name"`
+	Description string       `json:"Description"`
+	PublicKey   OptNilString `json:"PublicKey"`
+	Fingerprint OptNilString `json:"Fingerprint"`
 }
 
 // GetID returns the value of ID.
@@ -29067,11 +26748,6 @@ func (s *SSHKey) GetName() OptNilString {
 // GetDescription returns the value of Description.
 func (s *SSHKey) GetDescription() string {
 	return s.Description
-}
-
-// GetCreatedAt returns the value of CreatedAt.
-func (s *SSHKey) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
 }
 
 // GetPublicKey returns the value of PublicKey.
@@ -29097,11 +26773,6 @@ func (s *SSHKey) SetName(val OptNilString) {
 // SetDescription sets the value of Description.
 func (s *SSHKey) SetDescription(val string) {
 	s.Description = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *SSHKey) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
 }
 
 // SetPublicKey sets the value of PublicKey.
@@ -29381,8 +27052,6 @@ type Server struct {
 	Interfaces      OptNilInterfaceViewArray       `json:"Interfaces"`
 	PrivateHost     OptNilServerPrivateHost        `json:"PrivateHost"`
 	Icon            OptNilResourceRef              `json:"Icon"`
-	CreatedAt       OptNilDateTime                 `json:"CreatedAt"`
-	ModifiedAt      OptNilDateTime                 `json:"ModifiedAt"`
 }
 
 // GetID returns the value of ID.
@@ -29455,16 +27124,6 @@ func (s *Server) GetIcon() OptNilResourceRef {
 	return s.Icon
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Server) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Server) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
-}
-
 // SetID sets the value of ID.
 func (s *Server) SetID(val OptNilInt64) {
 	s.ID = val
@@ -29533,16 +27192,6 @@ func (s *Server) SetPrivateHost(val OptNilServerPrivateHost) {
 // SetIcon sets the value of Icon.
 func (s *Server) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Server) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Server) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
 }
 
 // Request envelope for serverBootRequestEnvelope.
@@ -29833,7 +27482,6 @@ type ServerCreateRequest struct {
 	Description       string                              `json:"Description"`
 	Tags              []string                            `json:"Tags"`
 	Icon              OptNilResourceRef                   `json:"Icon"`
-	WaitDiskMigration bool                                `json:"WaitDiskMigration"`
 	PrivateHost       OptNilResourceRef                   `json:"PrivateHost"`
 }
 
@@ -29870,11 +27518,6 @@ func (s *ServerCreateRequest) GetTags() []string {
 // GetIcon returns the value of Icon.
 func (s *ServerCreateRequest) GetIcon() OptNilResourceRef {
 	return s.Icon
-}
-
-// GetWaitDiskMigration returns the value of WaitDiskMigration.
-func (s *ServerCreateRequest) GetWaitDiskMigration() bool {
-	return s.WaitDiskMigration
 }
 
 // GetPrivateHost returns the value of PrivateHost.
@@ -29915,11 +27558,6 @@ func (s *ServerCreateRequest) SetTags(val []string) {
 // SetIcon sets the value of Icon.
 func (s *ServerCreateRequest) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
-}
-
-// SetWaitDiskMigration sets the value of WaitDiskMigration.
-func (s *ServerCreateRequest) SetWaitDiskMigration(val bool) {
-	s.WaitDiskMigration = val
 }
 
 // SetPrivateHost sets the value of PrivateHost.
@@ -30477,17 +28115,16 @@ func (s *ServerOpShutdownOK) SetIsOk(val bool) {
 
 // Ref: #/components/schemas/ServerPlan
 type ServerPlan struct {
-	ID             OptNilInt64           `json:"ID"`
-	Name           OptNilString          `json:"Name"`
-	CPU            OptNilInt32           `json:"CPU"`
-	MemoryMB       OptNilInt32           `json:"MemoryMB"`
-	GPU            OptNilInt32           `json:"GPU"`
-	GPUModel       OptNilString          `json:"GPUModel"`
-	CPUModel       OptNilString          `json:"CPUModel"`
-	Commitment     OptNilECommitment     `json:"Commitment"`
-	Generation     OptNilEPlanGeneration `json:"Generation"`
-	ConfidentialVM bool                  `json:"ConfidentialVM"`
-	Availability   OptNilEAvailability   `json:"Availability"`
+	ID           OptNilInt64           `json:"ID"`
+	Name         OptNilString          `json:"Name"`
+	CPU          OptNilInt32           `json:"CPU"`
+	MemoryMB     OptNilInt32           `json:"MemoryMB"`
+	GPU          OptNilInt32           `json:"GPU"`
+	GPUModel     OptNilString          `json:"GPUModel"`
+	CPUModel     OptNilString          `json:"CPUModel"`
+	Commitment   OptNilECommitment     `json:"Commitment"`
+	Generation   OptNilEPlanGeneration `json:"Generation"`
+	Availability OptNilEAvailability   `json:"Availability"`
 }
 
 // GetID returns the value of ID.
@@ -30533,11 +28170,6 @@ func (s *ServerPlan) GetCommitment() OptNilECommitment {
 // GetGeneration returns the value of Generation.
 func (s *ServerPlan) GetGeneration() OptNilEPlanGeneration {
 	return s.Generation
-}
-
-// GetConfidentialVM returns the value of ConfidentialVM.
-func (s *ServerPlan) GetConfidentialVM() bool {
-	return s.ConfidentialVM
 }
 
 // GetAvailability returns the value of Availability.
@@ -30588,11 +28220,6 @@ func (s *ServerPlan) SetCommitment(val OptNilECommitment) {
 // SetGeneration sets the value of Generation.
 func (s *ServerPlan) SetGeneration(val OptNilEPlanGeneration) {
 	s.Generation = val
-}
-
-// SetConfidentialVM sets the value of ConfidentialVM.
-func (s *ServerPlan) SetConfidentialVM(val bool) {
-	s.ConfidentialVM = val
 }
 
 // SetAvailability sets the value of Availability.
@@ -31796,9 +29423,7 @@ func (s *Storage) SetDedicatedStorageContract(val OptNilResourceRef) {
 type Subnet struct {
 	ID             OptNilInt64                `json:"ID"`
 	Switch         OptNilSubnetSwitch         `json:"Switch"`
-	DefaultRoute   OptNilString               `json:"DefaultRoute"`
 	NextHop        OptNilString               `json:"NextHop"`
-	StaticRoute    OptNilString               `json:"StaticRoute"`
 	NetworkAddress OptNilString               `json:"NetworkAddress"`
 	NetworkMaskLen OptNilInt32                `json:"NetworkMaskLen"`
 	IPAddresses    OptNilSubnetIPAddressArray `json:"IPAddresses"`
@@ -31814,19 +29439,9 @@ func (s *Subnet) GetSwitch() OptNilSubnetSwitch {
 	return s.Switch
 }
 
-// GetDefaultRoute returns the value of DefaultRoute.
-func (s *Subnet) GetDefaultRoute() OptNilString {
-	return s.DefaultRoute
-}
-
 // GetNextHop returns the value of NextHop.
 func (s *Subnet) GetNextHop() OptNilString {
 	return s.NextHop
-}
-
-// GetStaticRoute returns the value of StaticRoute.
-func (s *Subnet) GetStaticRoute() OptNilString {
-	return s.StaticRoute
 }
 
 // GetNetworkAddress returns the value of NetworkAddress.
@@ -31854,19 +29469,9 @@ func (s *Subnet) SetSwitch(val OptNilSubnetSwitch) {
 	s.Switch = val
 }
 
-// SetDefaultRoute sets the value of DefaultRoute.
-func (s *Subnet) SetDefaultRoute(val OptNilString) {
-	s.DefaultRoute = val
-}
-
 // SetNextHop sets the value of NextHop.
 func (s *Subnet) SetNextHop(val OptNilString) {
 	s.NextHop = val
-}
-
-// SetStaticRoute sets the value of StaticRoute.
-func (s *Subnet) SetStaticRoute(val OptNilString) {
-	s.StaticRoute = val
 }
 
 // SetNetworkAddress sets the value of NetworkAddress.
@@ -32020,19 +29625,14 @@ func (s *SubnetSwitch) SetInternet(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/Switch
 type Switch struct {
-	ID               OptNilInt64             `json:"ID"`
-	Name             OptNilString            `json:"Name"`
-	Description      string                  `json:"Description"`
-	Tags             []string                `json:"Tags"`
-	Icon             OptNilResourceRef       `json:"Icon"`
-	CreatedAt        OptNilDateTime          `json:"CreatedAt"`
-	ModifiedAt       OptNilDateTime          `json:"ModifiedAt"`
-	Scope            OptNilEScope            `json:"Scope"`
-	ServerCount      OptNilInt32             `json:"ServerCount"`
-	UserSubnet       OptNilSwitchUserSubnet  `json:"UserSubnet"`
-	Subnets          OptNilSwitchSubnetArray `json:"Subnets"`
-	Bridge           OptNilResourceRef       `json:"Bridge"`
-	HybridConnection OptNilResourceRef       `json:"HybridConnection"`
+	ID          OptNilInt64             `json:"ID"`
+	Name        OptNilString            `json:"Name"`
+	Description string                  `json:"Description"`
+	Tags        []string                `json:"Tags"`
+	Icon        OptNilResourceRef       `json:"Icon"`
+	ServerCount OptNilInt32             `json:"ServerCount"`
+	Subnets     OptNilSwitchSubnetArray `json:"Subnets"`
+	Bridge      OptNilResourceRef       `json:"Bridge"`
 }
 
 // GetID returns the value of ID.
@@ -32060,29 +29660,9 @@ func (s *Switch) GetIcon() OptNilResourceRef {
 	return s.Icon
 }
 
-// GetCreatedAt returns the value of CreatedAt.
-func (s *Switch) GetCreatedAt() OptNilDateTime {
-	return s.CreatedAt
-}
-
-// GetModifiedAt returns the value of ModifiedAt.
-func (s *Switch) GetModifiedAt() OptNilDateTime {
-	return s.ModifiedAt
-}
-
-// GetScope returns the value of Scope.
-func (s *Switch) GetScope() OptNilEScope {
-	return s.Scope
-}
-
 // GetServerCount returns the value of ServerCount.
 func (s *Switch) GetServerCount() OptNilInt32 {
 	return s.ServerCount
-}
-
-// GetUserSubnet returns the value of UserSubnet.
-func (s *Switch) GetUserSubnet() OptNilSwitchUserSubnet {
-	return s.UserSubnet
 }
 
 // GetSubnets returns the value of Subnets.
@@ -32093,11 +29673,6 @@ func (s *Switch) GetSubnets() OptNilSwitchSubnetArray {
 // GetBridge returns the value of Bridge.
 func (s *Switch) GetBridge() OptNilResourceRef {
 	return s.Bridge
-}
-
-// GetHybridConnection returns the value of HybridConnection.
-func (s *Switch) GetHybridConnection() OptNilResourceRef {
-	return s.HybridConnection
 }
 
 // SetID sets the value of ID.
@@ -32125,29 +29700,9 @@ func (s *Switch) SetIcon(val OptNilResourceRef) {
 	s.Icon = val
 }
 
-// SetCreatedAt sets the value of CreatedAt.
-func (s *Switch) SetCreatedAt(val OptNilDateTime) {
-	s.CreatedAt = val
-}
-
-// SetModifiedAt sets the value of ModifiedAt.
-func (s *Switch) SetModifiedAt(val OptNilDateTime) {
-	s.ModifiedAt = val
-}
-
-// SetScope sets the value of Scope.
-func (s *Switch) SetScope(val OptNilEScope) {
-	s.Scope = val
-}
-
 // SetServerCount sets the value of ServerCount.
 func (s *Switch) SetServerCount(val OptNilInt32) {
 	s.ServerCount = val
-}
-
-// SetUserSubnet sets the value of UserSubnet.
-func (s *Switch) SetUserSubnet(val OptNilSwitchUserSubnet) {
-	s.UserSubnet = val
 }
 
 // SetSubnets sets the value of Subnets.
@@ -32160,28 +29715,17 @@ func (s *Switch) SetBridge(val OptNilResourceRef) {
 	s.Bridge = val
 }
 
-// SetHybridConnection sets the value of HybridConnection.
-func (s *Switch) SetHybridConnection(val OptNilResourceRef) {
-	s.HybridConnection = val
-}
-
 // Ref: #/components/schemas/SwitchCreateRequest
 type SwitchCreateRequest struct {
-	Name        OptNilString                        `json:"Name"`
-	UserSubnet  OptNilSwitchCreateRequestUserSubnet `json:"UserSubnet"`
-	Description string                              `json:"Description"`
-	Tags        []string                            `json:"Tags"`
-	Icon        OptNilResourceRef                   `json:"Icon"`
+	Name        OptNilString      `json:"Name"`
+	Description string            `json:"Description"`
+	Tags        []string          `json:"Tags"`
+	Icon        OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
 func (s *SwitchCreateRequest) GetName() OptNilString {
 	return s.Name
-}
-
-// GetUserSubnet returns the value of UserSubnet.
-func (s *SwitchCreateRequest) GetUserSubnet() OptNilSwitchCreateRequestUserSubnet {
-	return s.UserSubnet
 }
 
 // GetDescription returns the value of Description.
@@ -32202,11 +29746,6 @@ func (s *SwitchCreateRequest) GetIcon() OptNilResourceRef {
 // SetName sets the value of Name.
 func (s *SwitchCreateRequest) SetName(val OptNilString) {
 	s.Name = val
-}
-
-// SetUserSubnet sets the value of UserSubnet.
-func (s *SwitchCreateRequest) SetUserSubnet(val OptNilSwitchCreateRequestUserSubnet) {
-	s.UserSubnet = val
 }
 
 // SetDescription sets the value of Description.
@@ -32239,32 +29778,6 @@ func (s *SwitchCreateRequestEnvelope) GetSwitch() SwitchCreateRequest {
 // SetSwitch sets the value of Switch.
 func (s *SwitchCreateRequestEnvelope) SetSwitch(val SwitchCreateRequest) {
 	s.Switch = val
-}
-
-// Ref: #/components/schemas/SwitchCreateRequestUserSubnet
-type SwitchCreateRequestUserSubnet struct {
-	NetworkMaskLen int32  `json:"NetworkMaskLen"`
-	DefaultRoute   string `json:"DefaultRoute"`
-}
-
-// GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *SwitchCreateRequestUserSubnet) GetNetworkMaskLen() int32 {
-	return s.NetworkMaskLen
-}
-
-// GetDefaultRoute returns the value of DefaultRoute.
-func (s *SwitchCreateRequestUserSubnet) GetDefaultRoute() string {
-	return s.DefaultRoute
-}
-
-// SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *SwitchCreateRequestUserSubnet) SetNetworkMaskLen(val int32) {
-	s.NetworkMaskLen = val
-}
-
-// SetDefaultRoute sets the value of DefaultRoute.
-func (s *SwitchCreateRequestUserSubnet) SetDefaultRoute(val string) {
-	s.DefaultRoute = val
 }
 
 // Response envelope for switchCreateResponseEnvelope.
@@ -32674,21 +30187,15 @@ func (s *SwitchSubnetIPAddresses) SetMin(val string) {
 
 // Ref: #/components/schemas/SwitchUpdateRequest
 type SwitchUpdateRequest struct {
-	Name        OptNilString                        `json:"Name"`
-	UserSubnet  OptNilSwitchUpdateRequestUserSubnet `json:"UserSubnet"`
-	Description string                              `json:"Description"`
-	Tags        []string                            `json:"Tags"`
-	Icon        OptNilResourceRef                   `json:"Icon"`
+	Name        OptNilString      `json:"Name"`
+	Description string            `json:"Description"`
+	Tags        []string          `json:"Tags"`
+	Icon        OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
 func (s *SwitchUpdateRequest) GetName() OptNilString {
 	return s.Name
-}
-
-// GetUserSubnet returns the value of UserSubnet.
-func (s *SwitchUpdateRequest) GetUserSubnet() OptNilSwitchUpdateRequestUserSubnet {
-	return s.UserSubnet
 }
 
 // GetDescription returns the value of Description.
@@ -32709,11 +30216,6 @@ func (s *SwitchUpdateRequest) GetIcon() OptNilResourceRef {
 // SetName sets the value of Name.
 func (s *SwitchUpdateRequest) SetName(val OptNilString) {
 	s.Name = val
-}
-
-// SetUserSubnet sets the value of UserSubnet.
-func (s *SwitchUpdateRequest) SetUserSubnet(val OptNilSwitchUpdateRequestUserSubnet) {
-	s.UserSubnet = val
 }
 
 // SetDescription sets the value of Description.
@@ -32748,32 +30250,6 @@ func (s *SwitchUpdateRequestEnvelope) SetSwitch(val SwitchUpdateRequest) {
 	s.Switch = val
 }
 
-// Ref: #/components/schemas/SwitchUpdateRequestUserSubnet
-type SwitchUpdateRequestUserSubnet struct {
-	NetworkMaskLen int32  `json:"NetworkMaskLen"`
-	DefaultRoute   string `json:"DefaultRoute"`
-}
-
-// GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *SwitchUpdateRequestUserSubnet) GetNetworkMaskLen() int32 {
-	return s.NetworkMaskLen
-}
-
-// GetDefaultRoute returns the value of DefaultRoute.
-func (s *SwitchUpdateRequestUserSubnet) GetDefaultRoute() string {
-	return s.DefaultRoute
-}
-
-// SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *SwitchUpdateRequestUserSubnet) SetNetworkMaskLen(val int32) {
-	s.NetworkMaskLen = val
-}
-
-// SetDefaultRoute sets the value of DefaultRoute.
-func (s *SwitchUpdateRequestUserSubnet) SetDefaultRoute(val string) {
-	s.DefaultRoute = val
-}
-
 // Response envelope for switchUpdateResponseEnvelope.
 // Ref: #/components/schemas/SwitchUpdateResponseEnvelope
 type SwitchUpdateResponseEnvelope struct {
@@ -32801,32 +30277,6 @@ func (s *SwitchUpdateResponseEnvelope) SetIsOk(val bool) {
 // SetSwitch sets the value of Switch.
 func (s *SwitchUpdateResponseEnvelope) SetSwitch(val Switch) {
 	s.Switch = val
-}
-
-// Ref: #/components/schemas/SwitchUserSubnet
-type SwitchUserSubnet struct {
-	NetworkMaskLen OptNilInt32  `json:"NetworkMaskLen"`
-	DefaultRoute   OptNilString `json:"DefaultRoute"`
-}
-
-// GetNetworkMaskLen returns the value of NetworkMaskLen.
-func (s *SwitchUserSubnet) GetNetworkMaskLen() OptNilInt32 {
-	return s.NetworkMaskLen
-}
-
-// GetDefaultRoute returns the value of DefaultRoute.
-func (s *SwitchUserSubnet) GetDefaultRoute() OptNilString {
-	return s.DefaultRoute
-}
-
-// SetNetworkMaskLen sets the value of NetworkMaskLen.
-func (s *SwitchUserSubnet) SetNetworkMaskLen(val OptNilInt32) {
-	s.NetworkMaskLen = val
-}
-
-// SetDefaultRoute sets the value of DefaultRoute.
-func (s *SwitchUserSubnet) SetDefaultRoute(val OptNilString) {
-	s.DefaultRoute = val
 }
 
 // Ref: #/components/schemas/VNCProxy
@@ -33043,14 +30493,10 @@ func (s *VPCRouterPingResults) SetResult(val []string) {
 
 // Ref: #/components/schemas/Zone
 type Zone struct {
-	ID           OptNilInt64         `json:"ID"`
-	Name         OptNilString        `json:"Name"`
-	Description  OptNilString        `json:"Description"`
-	DisplayOrder OptNilInt64         `json:"DisplayOrder"`
-	IsDummy      bool                `json:"IsDummy"`
-	VNCProxy     OptNilVNCProxy      `json:"VNCProxy"`
-	FTPServer    OptNilFTPServerInfo `json:"FTPServer"`
-	Region       OptNilRegion        `json:"Region"`
+	ID          OptNilInt64  `json:"ID"`
+	Name        OptNilString `json:"Name"`
+	Description OptNilString `json:"Description"`
+	Region      OptNilRegion `json:"Region"`
 }
 
 // GetID returns the value of ID.
@@ -33066,26 +30512,6 @@ func (s *Zone) GetName() OptNilString {
 // GetDescription returns the value of Description.
 func (s *Zone) GetDescription() OptNilString {
 	return s.Description
-}
-
-// GetDisplayOrder returns the value of DisplayOrder.
-func (s *Zone) GetDisplayOrder() OptNilInt64 {
-	return s.DisplayOrder
-}
-
-// GetIsDummy returns the value of IsDummy.
-func (s *Zone) GetIsDummy() bool {
-	return s.IsDummy
-}
-
-// GetVNCProxy returns the value of VNCProxy.
-func (s *Zone) GetVNCProxy() OptNilVNCProxy {
-	return s.VNCProxy
-}
-
-// GetFTPServer returns the value of FTPServer.
-func (s *Zone) GetFTPServer() OptNilFTPServerInfo {
-	return s.FTPServer
 }
 
 // GetRegion returns the value of Region.
@@ -33106,26 +30532,6 @@ func (s *Zone) SetName(val OptNilString) {
 // SetDescription sets the value of Description.
 func (s *Zone) SetDescription(val OptNilString) {
 	s.Description = val
-}
-
-// SetDisplayOrder sets the value of DisplayOrder.
-func (s *Zone) SetDisplayOrder(val OptNilInt64) {
-	s.DisplayOrder = val
-}
-
-// SetIsDummy sets the value of IsDummy.
-func (s *Zone) SetIsDummy(val bool) {
-	s.IsDummy = val
-}
-
-// SetVNCProxy sets the value of VNCProxy.
-func (s *Zone) SetVNCProxy(val OptNilVNCProxy) {
-	s.VNCProxy = val
-}
-
-// SetFTPServer sets the value of FTPServer.
-func (s *Zone) SetFTPServer(val OptNilFTPServerInfo) {
-	s.FTPServer = val
 }
 
 // SetRegion sets the value of Region.
