@@ -44,6 +44,14 @@ allowlist に含まれず TypeSpec / OpenAPI / v2 Go client に emit されな�
 | CreatedAt |
 | ModifiedAt |
 
+## AutoBackupStatus
+
+| Field |
+|---|
+| AccountID |
+| ZoneID |
+| ZoneName |
+
 ## AutoScale
 
 | Field |
@@ -118,6 +126,18 @@ allowlist に含まれず TypeSpec / OpenAPI / v2 Go client に emit されな�
 |---|
 | CreatedAt |
 | ModifiedAt |
+
+## DatabaseSettingBackup
+
+| Field |
+|---|
+| Connect |
+
+## DatabaseSettingBackupv2View
+
+| Field |
+|---|
+| FirstEnabledAt |
 
 ## Disk
 

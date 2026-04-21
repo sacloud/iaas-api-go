@@ -907,21 +907,6 @@ func (s *AutoBackupStatus) SetFake() {
 			s.DiskID.SetFake()
 		}
 	}
-	{
-		{
-			s.AccountID.SetFake()
-		}
-	}
-	{
-		{
-			s.ZoneID.SetFake()
-		}
-	}
-	{
-		{
-			s.ZoneName.SetFake()
-		}
-	}
 }
 
 // SetFake set fake values.
@@ -4009,11 +3994,6 @@ func (s *DatabaseSettingBackup) SetFake() {
 			s.DayOfWeek.SetFake()
 		}
 	}
-	{
-		{
-			s.Connect.SetFake()
-		}
-	}
 }
 
 // SetFake set fake values.
@@ -4036,11 +4016,6 @@ func (s *DatabaseSettingBackupv2View) SetFake() {
 	{
 		{
 			s.Connect.SetFake()
-		}
-	}
-	{
-		{
-			s.FirstEnabledAt.SetFake()
 		}
 	}
 }

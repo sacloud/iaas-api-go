@@ -1638,10 +1638,7 @@ func (s *AutoBackupSettingsAutobackup) SetMaximumNumberOfArchives(val OptNilInt3
 
 // Ref: #/components/schemas/AutoBackupStatus
 type AutoBackupStatus struct {
-	DiskID    OptNilInt64  `json:"DiskID"`
-	AccountID OptNilInt64  `json:"AccountID"`
-	ZoneID    OptNilInt64  `json:"ZoneID"`
-	ZoneName  OptNilString `json:"ZoneName"`
+	DiskID OptNilInt64 `json:"DiskID"`
 }
 
 // GetDiskID returns the value of DiskID.
@@ -1649,39 +1646,9 @@ func (s *AutoBackupStatus) GetDiskID() OptNilInt64 {
 	return s.DiskID
 }
 
-// GetAccountID returns the value of AccountID.
-func (s *AutoBackupStatus) GetAccountID() OptNilInt64 {
-	return s.AccountID
-}
-
-// GetZoneID returns the value of ZoneID.
-func (s *AutoBackupStatus) GetZoneID() OptNilInt64 {
-	return s.ZoneID
-}
-
-// GetZoneName returns the value of ZoneName.
-func (s *AutoBackupStatus) GetZoneName() OptNilString {
-	return s.ZoneName
-}
-
 // SetDiskID sets the value of DiskID.
 func (s *AutoBackupStatus) SetDiskID(val OptNilInt64) {
 	s.DiskID = val
-}
-
-// SetAccountID sets the value of AccountID.
-func (s *AutoBackupStatus) SetAccountID(val OptNilInt64) {
-	s.AccountID = val
-}
-
-// SetZoneID sets the value of ZoneID.
-func (s *AutoBackupStatus) SetZoneID(val OptNilInt64) {
-	s.ZoneID = val
-}
-
-// SetZoneName sets the value of ZoneName.
-func (s *AutoBackupStatus) SetZoneName(val OptNilString) {
-	s.ZoneName = val
 }
 
 // Response envelope for autoBackupUpdateResponseEnvelope.
@@ -7198,7 +7165,6 @@ type DatabaseSettingBackup struct {
 	Rotate    OptNilInt32              `json:"Rotate"`
 	Time      OptNilString             `json:"Time"`
 	DayOfWeek OptNilEDayOfTheWeekArray `json:"DayOfWeek"`
-	Connect   OptNilString             `json:"Connect"`
 }
 
 // GetRotate returns the value of Rotate.
@@ -7216,11 +7182,6 @@ func (s *DatabaseSettingBackup) GetDayOfWeek() OptNilEDayOfTheWeekArray {
 	return s.DayOfWeek
 }
 
-// GetConnect returns the value of Connect.
-func (s *DatabaseSettingBackup) GetConnect() OptNilString {
-	return s.Connect
-}
-
 // SetRotate sets the value of Rotate.
 func (s *DatabaseSettingBackup) SetRotate(val OptNilInt32) {
 	s.Rotate = val
@@ -7236,18 +7197,12 @@ func (s *DatabaseSettingBackup) SetDayOfWeek(val OptNilEDayOfTheWeekArray) {
 	s.DayOfWeek = val
 }
 
-// SetConnect sets the value of Connect.
-func (s *DatabaseSettingBackup) SetConnect(val OptNilString) {
-	s.Connect = val
-}
-
 // Ref: #/components/schemas/DatabaseSettingBackupv2View
 type DatabaseSettingBackupv2View struct {
-	Rotate         OptNilInt32              `json:"Rotate"`
-	Time           OptNilString             `json:"Time"`
-	DayOfWeek      OptNilEDayOfTheWeekArray `json:"DayOfWeek"`
-	Connect        OptNilString             `json:"Connect"`
-	FirstEnabledAt OptNilDateTime           `json:"FirstEnabledAt"`
+	Rotate    OptNilInt32              `json:"Rotate"`
+	Time      OptNilString             `json:"Time"`
+	DayOfWeek OptNilEDayOfTheWeekArray `json:"DayOfWeek"`
+	Connect   OptNilString             `json:"Connect"`
 }
 
 // GetRotate returns the value of Rotate.
@@ -7270,11 +7225,6 @@ func (s *DatabaseSettingBackupv2View) GetConnect() OptNilString {
 	return s.Connect
 }
 
-// GetFirstEnabledAt returns the value of FirstEnabledAt.
-func (s *DatabaseSettingBackupv2View) GetFirstEnabledAt() OptNilDateTime {
-	return s.FirstEnabledAt
-}
-
 // SetRotate sets the value of Rotate.
 func (s *DatabaseSettingBackupv2View) SetRotate(val OptNilInt32) {
 	s.Rotate = val
@@ -7293,11 +7243,6 @@ func (s *DatabaseSettingBackupv2View) SetDayOfWeek(val OptNilEDayOfTheWeekArray)
 // SetConnect sets the value of Connect.
 func (s *DatabaseSettingBackupv2View) SetConnect(val OptNilString) {
 	s.Connect = val
-}
-
-// SetFirstEnabledAt sets the value of FirstEnabledAt.
-func (s *DatabaseSettingBackupv2View) SetFirstEnabledAt(val OptNilDateTime) {
-	s.FirstEnabledAt = val
 }
 
 // Ref: #/components/schemas/DatabaseSettingCommon

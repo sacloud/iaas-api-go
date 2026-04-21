@@ -5795,31 +5795,10 @@ func (s *AutoBackupStatus) encodeFields(e *jx.Encoder) {
 			s.DiskID.Encode(e)
 		}
 	}
-	{
-		if s.AccountID.Set {
-			e.FieldStart("AccountID")
-			s.AccountID.Encode(e)
-		}
-	}
-	{
-		if s.ZoneID.Set {
-			e.FieldStart("ZoneID")
-			s.ZoneID.Encode(e)
-		}
-	}
-	{
-		if s.ZoneName.Set {
-			e.FieldStart("ZoneName")
-			s.ZoneName.Encode(e)
-		}
-	}
 }
 
-var jsonFieldsNameOfAutoBackupStatus = [4]string{
+var jsonFieldsNameOfAutoBackupStatus = [1]string{
 	0: "DiskID",
-	1: "AccountID",
-	2: "ZoneID",
-	3: "ZoneName",
 }
 
 // Decode decodes AutoBackupStatus from json.
@@ -5839,36 +5818,6 @@ func (s *AutoBackupStatus) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"DiskID\"")
-			}
-		case "AccountID":
-			if err := func() error {
-				s.AccountID.Reset()
-				if err := s.AccountID.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"AccountID\"")
-			}
-		case "ZoneID":
-			if err := func() error {
-				s.ZoneID.Reset()
-				if err := s.ZoneID.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"ZoneID\"")
-			}
-		case "ZoneName":
-			if err := func() error {
-				s.ZoneName.Reset()
-				if err := s.ZoneName.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"ZoneName\"")
 			}
 		default:
 			return d.Skip()
@@ -23019,19 +22968,12 @@ func (s *DatabaseSettingBackup) encodeFields(e *jx.Encoder) {
 			s.DayOfWeek.Encode(e)
 		}
 	}
-	{
-		if s.Connect.Set {
-			e.FieldStart("Connect")
-			s.Connect.Encode(e)
-		}
-	}
 }
 
-var jsonFieldsNameOfDatabaseSettingBackup = [4]string{
+var jsonFieldsNameOfDatabaseSettingBackup = [3]string{
 	0: "Rotate",
 	1: "Time",
 	2: "DayOfWeek",
-	3: "Connect",
 }
 
 // Decode decodes DatabaseSettingBackup from json.
@@ -23071,16 +23013,6 @@ func (s *DatabaseSettingBackup) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"DayOfWeek\"")
-			}
-		case "Connect":
-			if err := func() error {
-				s.Connect.Reset()
-				if err := s.Connect.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"Connect\"")
 			}
 		default:
 			return d.Skip()
@@ -23139,20 +23071,13 @@ func (s *DatabaseSettingBackupv2View) encodeFields(e *jx.Encoder) {
 			s.Connect.Encode(e)
 		}
 	}
-	{
-		if s.FirstEnabledAt.Set {
-			e.FieldStart("FirstEnabledAt")
-			s.FirstEnabledAt.Encode(e, json.EncodeDateTime)
-		}
-	}
 }
 
-var jsonFieldsNameOfDatabaseSettingBackupv2View = [5]string{
+var jsonFieldsNameOfDatabaseSettingBackupv2View = [4]string{
 	0: "Rotate",
 	1: "Time",
 	2: "DayOfWeek",
 	3: "Connect",
-	4: "FirstEnabledAt",
 }
 
 // Decode decodes DatabaseSettingBackupv2View from json.
@@ -23202,16 +23127,6 @@ func (s *DatabaseSettingBackupv2View) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"Connect\"")
-			}
-		case "FirstEnabledAt":
-			if err := func() error {
-				s.FirstEnabledAt.Reset()
-				if err := s.FirstEnabledAt.Decode(d, json.DecodeDateTime); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"FirstEnabledAt\"")
 			}
 		default:
 			return d.Skip()

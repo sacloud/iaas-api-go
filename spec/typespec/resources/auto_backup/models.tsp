@@ -26,9 +26,6 @@ model AutoBackupSettingsAutobackup {
 
 model AutoBackupStatus {
   DiskID?: int64 | null;
-  AccountID?: int64 | null;
-  ZoneID?: int64 | null;
-  ZoneName?: string | null;
 }
 
 model AutoBackupCreateRequest {

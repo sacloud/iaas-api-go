@@ -843,6 +843,36 @@ var Manifest = map[string]map[string]bool{
 	"VPCRouterInterfacePacketFilter": {
 		"ID": true,
 	},
+
+	// ----- DatabaseSettingBackup (legacy backup) -----
+	// Backup (v1) は Rotate/Time/DayOfWeek のみ使用。Connect は Backupv2 側のみで指定される
+	// (iaas-service-go/database/apply_request.go: Connect は Backupv2 にだけ set される)。
+	"DatabaseSettingBackup": {
+		"Rotate":    true,
+		"Time":      true,
+		"DayOfWeek": true,
+	},
+
+	// ----- DatabaseSettingBackupv2View (response) -----
+	// FirstEnabledAt は zz_models.go の getter/setter にのみ存在、downstream 未参照。
+	"DatabaseSettingBackupv2View": {
+		"Rotate":    true,
+		"Time":      true,
+		"DayOfWeek": true,
+		"Connect":   true,
+	},
+
+	// ----- DatabaseRemarkDBConfCommon -----
+	// 同一モデルが response (Remark) と request (CreateRequestRemark.DBConf.Common) の両方で使われる。
+	// response 側は DatabaseName/Version/Revision、Create 側は DefaultUser/UserPassword/DatabaseName を利用
+	// (v2/integration/database_appliance_test.go)。union を allowlist に持つ。
+
+	// ----- AutoBackupStatus -----
+	// downstream は DiskID のみ参照 (v2 structure_auto_backup.go: data.DiskID)。
+	// AccountID/ZoneID/ZoneName は参照なし。
+	"AutoBackupStatus": {
+		"DiskID": true,
+	},
 }
 
 // IsRegistered は modelName が allowlist を持つかを返す。

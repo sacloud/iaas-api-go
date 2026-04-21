@@ -73,7 +73,6 @@ model DatabaseSettingBackup {
   Rotate?: int32 | null;
   Time?: string | null;
   DayOfWeek?: EDayOfTheWeek[] | null;
-  Connect?: string | null;
 }
 
 model DatabaseSettingBackupv2View {
@@ -81,7 +80,6 @@ model DatabaseSettingBackupv2View {
   Time?: string | null;
   DayOfWeek?: EDayOfTheWeek[] | null;
   Connect?: string | null;
-  FirstEnabledAt?: utcDateTime | null;
 }
 
 model DatabaseReplicationSetting {
