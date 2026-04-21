@@ -26,6 +26,31 @@ model IconFindRequestEnvelope {
 /**
  * Response envelope for iconFindResponseEnvelope
  */
+@example(#{
+  Count: 3,
+  From: 0,
+  Icons: #[
+    #{
+      ID: 112300511380,
+      Name: "CGI",
+      Tags: #["category-feature"],
+      URL: "https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/112300511380.png",
+    },
+    #{
+      ID: 112300511382,
+      Name: "DNS",
+      Tags: #["category-feature"],
+      URL: "https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/112300511382.png",
+    },
+    #{
+      ID: 123456789012,
+      Name: "example-icon",
+      Tags: #["example", "dummy"],
+      URL: "https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png",
+    }
+  ],
+  Total: 3,
+})
 model IconFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +79,15 @@ model IconCreateRequestEnvelope {
 /**
  * Response envelope for iconCreateResponseEnvelope
  */
+@example(#{
+  Icon: #{
+    ID: 123456789012,
+    Name: "example-icon",
+    Tags: #["example", "dummy"],
+    URL: "https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png",
+  },
+  is_ok: true,
+})
 model IconCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +101,15 @@ model IconCreateResponseEnvelope {
 /**
  * Response envelope for iconReadResponseEnvelope
  */
+@example(#{
+  Icon: #{
+    ID: 123456789012,
+    Name: "example-icon",
+    Tags: #["example", "dummy"],
+    URL: "https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png",
+  },
+  is_ok: true,
+})
 model IconReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +132,15 @@ model IconUpdateRequestEnvelope {
 /**
  * Response envelope for iconUpdateResponseEnvelope
  */
+@example(#{
+  Icon: #{
+    ID: 123456789012,
+    Name: "example-icon-updated",
+    Tags: #["example", "dummy", "updated"],
+    URL: "https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png",
+  },
+  is_ok: true,
+})
 model IconUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

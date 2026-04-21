@@ -26,6 +26,7 @@ model ContainerRegistryFindRequestEnvelope {
 /**
  * Response envelope for containerRegistryFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model ContainerRegistryFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model ContainerRegistryCreateRequestEnvelope {
 /**
  * Response envelope for containerRegistryCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "コンテナレジストリ例",
+    ID: 123456789012,
+    Name: "example-container-registry",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ContainerRegistryCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model ContainerRegistryCreateResponseEnvelope {
 /**
  * Response envelope for containerRegistryReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "コンテナレジストリ例",
+    ID: 123456789012,
+    Name: "example-container-registry",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ContainerRegistryReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model ContainerRegistryUpdateRequestEnvelope {
 /**
  * Response envelope for containerRegistryUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-container-registry-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model ContainerRegistryUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -102,6 +130,7 @@ model ContainerRegistryUpdateResponseEnvelope {
 /**
  * Response envelope for containerRegistryListUsersResponseEnvelope
  */
+@example(#{ ContainerRegistry: #{ Users: #[] }, is_ok: true })
 model ContainerRegistryListUsersResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

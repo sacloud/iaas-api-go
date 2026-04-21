@@ -26,6 +26,7 @@ model CertificateAuthorityFindRequestEnvelope {
 /**
  * Response envelope for certificateAuthorityFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model CertificateAuthorityFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model CertificateAuthorityCreateRequestEnvelope {
 /**
  * Response envelope for certificateAuthorityCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "マネージド CA 例",
+    ID: 123456789012,
+    Name: "example-ca",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model CertificateAuthorityCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model CertificateAuthorityCreateResponseEnvelope {
 /**
  * Response envelope for certificateAuthorityReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "マネージド CA 例",
+    ID: 123456789012,
+    Name: "example-ca",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model CertificateAuthorityReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model CertificateAuthorityUpdateRequestEnvelope {
 /**
  * Response envelope for certificateAuthorityUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-ca-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model CertificateAuthorityUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -102,6 +130,15 @@ model CertificateAuthorityUpdateResponseEnvelope {
 /**
  * Response envelope for certificateAuthorityDetailResponseEnvelope
  */
+@example(#{
+  CertificateAuthority: #{
+    CertificateData: #{
+      CertificatePEM: "-----BEGIN CERTIFICATE-----\ndummy\n-----END CERTIFICATE-----",
+    },
+    Subject: "CN=example-ca",
+  },
+  is_ok: true,
+})
 model CertificateAuthorityDetailResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -124,6 +161,7 @@ model CertificateAuthorityAddClientRequestEnvelope {
 /**
  * Response envelope for certificateAuthorityAddClientResponseEnvelope
  */
+@example(#{ CertificateAuthority: #{ ID: "cli_000000000001" }, is_ok: true })
 model CertificateAuthorityAddClientResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -137,6 +175,7 @@ model CertificateAuthorityAddClientResponseEnvelope {
 /**
  * Response envelope for certificateAuthorityListClientsResponseEnvelope
  */
+@example(#{ CertificateAuthority: #[], Count: 0, From: 0, Total: 0 })
 model CertificateAuthorityListClientsResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -156,6 +195,14 @@ model CertificateAuthorityListClientsResponseEnvelope {
 /**
  * Response envelope for certificateAuthorityReadClientResponseEnvelope
  */
+@example(#{
+  CertificateAuthority: #{
+    ID: "cli_000000000001",
+    IssueState: "available",
+    Subject: "CN=example-client",
+  },
+  is_ok: true,
+})
 model CertificateAuthorityReadClientResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -178,6 +225,7 @@ model CertificateAuthorityAddServerRequestEnvelope {
 /**
  * Response envelope for certificateAuthorityAddServerResponseEnvelope
  */
+@example(#{ CertificateAuthority: #{ ID: "srv_000000000001" }, is_ok: true })
 model CertificateAuthorityAddServerResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -191,6 +239,7 @@ model CertificateAuthorityAddServerResponseEnvelope {
 /**
  * Response envelope for certificateAuthorityListServersResponseEnvelope
  */
+@example(#{ CertificateAuthority: #[], Count: 0, From: 0, Total: 0 })
 model CertificateAuthorityListServersResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -210,6 +259,14 @@ model CertificateAuthorityListServersResponseEnvelope {
 /**
  * Response envelope for certificateAuthorityReadServerResponseEnvelope
  */
+@example(#{
+  CertificateAuthority: #{
+    ID: "srv_000000000001",
+    IssueState: "available",
+    Subject: "CN=example-server",
+  },
+  is_ok: true,
+})
 model CertificateAuthorityReadServerResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

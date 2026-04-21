@@ -26,6 +26,7 @@ model VPCRouterFindRequestEnvelope {
 /**
  * Response envelope for vPCRouterFindResponseEnvelope
  */
+@example(#{ Appliances: #[], Count: 0, From: 0, Total: 0 })
 model VPCRouterFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,16 @@ model VPCRouterCreateRequestEnvelope {
 /**
  * Response envelope for vPCRouterCreateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Class: "vpcrouter",
+    Description: "VPC ルータ例",
+    ID: 123456789012,
+    Name: "example-vpc-router",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model VPCRouterCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +78,16 @@ model VPCRouterCreateResponseEnvelope {
 /**
  * Response envelope for vPCRouterReadResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Class: "vpcrouter",
+    Description: "VPC ルータ例",
+    ID: 123456789012,
+    Name: "example-vpc-router",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model VPCRouterReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +110,16 @@ model VPCRouterUpdateRequestEnvelope {
 /**
  * Response envelope for vPCRouterUpdateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Class: "vpcrouter",
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-vpc-router-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model VPCRouterUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -126,6 +157,7 @@ model VPCRouterMonitorCPURequestEnvelope {
 /**
  * Response envelope for vPCRouterMonitorCPUResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model VPCRouterMonitorCPUResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -153,6 +185,7 @@ model VPCRouterMonitorInterfaceRequestEnvelope {
 /**
  * Response envelope for vPCRouterMonitorInterfaceResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model VPCRouterMonitorInterfaceResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -166,6 +199,15 @@ model VPCRouterMonitorInterfaceResponseEnvelope {
 /**
  * Response envelope for vPCRouterStatusResponseEnvelope
  */
+@example(#{
+  Router: #{
+    FirewallReceiveLogs: #[],
+    FirewallSendLogs: #[],
+    SessionCount: 0,
+    VPNLogs: #[],
+  },
+  is_ok: true,
+})
 model VPCRouterStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -179,6 +221,7 @@ model VPCRouterStatusResponseEnvelope {
 /**
  * Response envelope for vPCRouterPingResponseEnvelope
  */
+@example(#{ VPCRouter: #{ Result: #["ok"] }, is_ok: true })
 model VPCRouterPingResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

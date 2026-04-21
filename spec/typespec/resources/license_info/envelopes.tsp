@@ -26,6 +26,23 @@ model LicenseInfoFindRequestEnvelope {
 /**
  * Response envelope for licenseInfoFindResponseEnvelope
  */
+@example(#{
+  Count: 2,
+  From: 0,
+  LicenseInfo: #[
+    #{
+      ID: 10001,
+      Name: "Windows RDS SAL",
+      TermsOfUse: "1ライセンスにつき、1人のユーザが利用できます。",
+    },
+    #{
+      ID: 10011,
+      Name: "Windows RDS SAL + Office SAL",
+      TermsOfUse: "1ライセンスにつき、1人のユーザが利用できます。",
+    }
+  ],
+  Total: 2,
+})
 model LicenseInfoFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +62,14 @@ model LicenseInfoFindResponseEnvelope {
 /**
  * Response envelope for licenseInfoReadResponseEnvelope
  */
+@example(#{
+  LicenseInfo: #{
+    ID: 10001,
+    Name: "Windows RDS SAL",
+    TermsOfUse: "1ライセンスにつき、1人のユーザが利用できます。",
+  },
+  is_ok: true,
+})
 model LicenseInfoReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,22 @@ model ArchiveFindRequestEnvelope {
 /**
  * Response envelope for archiveFindResponseEnvelope
  */
+@example(#{
+  Archives: #[
+    #{
+      Availability: "available",
+      Description: "ドキュメント用ダミーアーカイブ",
+      ID: 123456789012,
+      Icon: null,
+      Name: "example-archive",
+      SizeMB: 20480,
+      Tags: #["example"],
+    }
+  ],
+  Count: 1,
+  From: 0,
+  Total: 1,
+})
 model ArchiveFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +70,18 @@ model ArchiveCreateRequestEnvelope {
 /**
  * Response envelope for archiveCreateResponseEnvelope
  */
+@example(#{
+  Archive: #{
+    Availability: "uploading",
+    Description: "ドキュメント用ダミーアーカイブ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-archive",
+    SizeMB: 20480,
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ArchiveCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -72,6 +100,18 @@ model ArchiveCreateResponseEnvelope {
 /**
  * Response envelope for archiveReadResponseEnvelope
  */
+@example(#{
+  Archive: #{
+    Availability: "available",
+    Description: "ドキュメント用ダミーアーカイブ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-archive",
+    SizeMB: 20480,
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ArchiveReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -94,6 +134,18 @@ model ArchiveUpdateRequestEnvelope {
 /**
  * Response envelope for archiveUpdateResponseEnvelope
  */
+@example(#{
+  Archive: #{
+    Availability: "available",
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-archive-updated",
+    SizeMB: 20480,
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model ArchiveUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -121,6 +173,7 @@ model ArchiveShareRequestEnvelope {
 /**
  * Response envelope for archiveShareResponseEnvelope
  */
+@example(#{ is_ok: true })
 model ArchiveShareResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -148,6 +201,18 @@ model ArchiveTransferRequestEnvelope {
 /**
  * Response envelope for archiveTransferResponseEnvelope
  */
+@example(#{
+  Archive: #{
+    Availability: "available",
+    Description: "転送済みアーカイブ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-archive",
+    SizeMB: 20480,
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ArchiveTransferResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,7 @@ model AutoBackupFindRequestEnvelope {
 /**
  * Response envelope for autoBackupFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model AutoBackupFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model AutoBackupCreateRequestEnvelope {
 /**
  * Response envelope for autoBackupCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "自動バックアップ例",
+    ID: 123456789012,
+    Name: "example-auto-backup",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model AutoBackupCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model AutoBackupCreateResponseEnvelope {
 /**
  * Response envelope for autoBackupReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "自動バックアップ例",
+    ID: 123456789012,
+    Name: "example-auto-backup",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model AutoBackupReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model AutoBackupUpdateRequestEnvelope {
 /**
  * Response envelope for autoBackupUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-auto-backup-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model AutoBackupUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

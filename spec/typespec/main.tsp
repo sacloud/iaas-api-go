@@ -2,11 +2,71 @@
 // Copyright 2022-2025 The sacloud/iaas-api-go Authors
 
 import "@typespec/http";
+import "@typespec/openapi";
 import "@typespec/openapi3";
 
 import "./resources.tsp";
 import "./types.tsp";
 
+using TypeSpec.OpenAPI;
+
+@extension(
+  "x-tagGroups",
+  #[
+    #{ name: "サーバ関連のAPI", tags: #["Server", "PrivateHost"] },
+    #{ name: "ディスク関連のAPI", tags: #["Disk"] },
+    #{ name: "スイッチ関連のAPI", tags: #["Switch"] },
+    #{ name: "アーカイブ関連のAPI", tags: #["Archive"] },
+    #{ name: "ISOイメージ関連のAPI", tags: #["CDROM"] },
+    #{ name: "ブリッジ関連のAPI", tags: #["Bridge"] },
+    #{
+      name: "ルータ関連のAPI",
+      tags: #["Internet", "IPAddress", "IPv6Net", "IPv6Addr", "Subnet"],
+    },
+    #{ name: "インタフェース関連のAPI", tags: #["Interface", "PacketFilter"] },
+    #{
+      name: "アプライアンス関連のAPI",
+      tags: #[
+        "Appliance",
+        "Database",
+        "MobileGateway",
+        "VPCRouter",
+        "CommonServiceItem",
+        "AutoScale",
+        "CertificateAuthority",
+        "ContainerRegistry",
+        "ESME",
+        "EnhancedDB",
+        "LocalRouter",
+        "ProxyLB",
+        "SIM",
+        "SimpleMonitor",
+        "SimpleNotificationGroup"
+      ],
+    },
+    #{ name: "アイコン関連のAPI", tags: #["Icon"] },
+    #{ name: "スクリプト関連のAPI", tags: #["Note"] },
+    #{ name: "SSHキー関連のAPI", tags: #["SSHKey"] },
+    #{ name: "設備関連のAPI", tags: #["Region", "Zone"] },
+    #{
+      name: "商品関連のAPI",
+      tags: #[
+        "ServerPlan",
+        "DiskPlan",
+        "InternetPlan",
+        "PrivateHostPlan",
+        "License",
+        "LicenseInfo",
+        "ServiceClass"
+      ],
+    },
+    #{
+      name: "ユーザ・プロジェクト関連のAPI",
+      tags: #["AuthStatus", "Coupon"],
+    },
+    #{ name: "請求関連のAPI", tags: #["Bill"] }
+  ]
+)
 @service(#{ title: "Sakura Cloud IaaS API" })
 @doc("""
   # さくらのクラウド IaaS API

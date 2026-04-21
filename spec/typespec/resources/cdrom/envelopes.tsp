@@ -26,6 +26,21 @@ model CDROMFindRequestEnvelope {
 /**
  * Response envelope for cDROMFindResponseEnvelope
  */
+@example(#{
+  CDROMs: #[
+    #{
+      Availability: "available",
+      Description: "ドキュメント用ダミー ISO",
+      ID: 123456789012,
+      Icon: null,
+      Name: "example-cdrom",
+      Tags: #["example"],
+    }
+  ],
+  Count: 1,
+  From: 0,
+  Total: 1,
+})
 model CDROMFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +69,23 @@ model CDROMCreateRequestEnvelope {
 /**
  * Response envelope for cDROMCreateResponseEnvelope
  */
+@example(#{
+  CDROM: #{
+    Availability: "uploading",
+    Description: "ドキュメント用ダミー ISO",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-cdrom",
+    Tags: #["example"],
+  },
+  FTPServer: #{
+    HostName: "sac-tk1v-ftp.example.jp",
+    IPAddress: "192.0.2.1",
+    Password: "dummy-ftp-password",
+    User: "cdrom123456789012",
+  },
+  is_ok: true,
+})
 model CDROMCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -72,6 +104,17 @@ model CDROMCreateResponseEnvelope {
 /**
  * Response envelope for cDROMReadResponseEnvelope
  */
+@example(#{
+  CDROM: #{
+    Availability: "available",
+    Description: "ドキュメント用ダミー ISO",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-cdrom",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model CDROMReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -94,6 +137,17 @@ model CDROMUpdateRequestEnvelope {
 /**
  * Response envelope for cDROMUpdateResponseEnvelope
  */
+@example(#{
+  CDROM: #{
+    Availability: "available",
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-cdrom-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model CDROMUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -116,6 +170,15 @@ model CDROMOpenFTPRequestEnvelope {
 /**
  * Response envelope for cDROMOpenFTPResponseEnvelope
  */
+@example(#{
+  FTPServer: #{
+    HostName: "sac-tk1v-ftp.example.jp",
+    IPAddress: "192.0.2.1",
+    Password: "dummy-ftp-password",
+    User: "cdrom123456789012",
+  },
+  is_ok: true,
+})
 model CDROMOpenFTPResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

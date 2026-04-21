@@ -26,6 +26,7 @@ model SimpleNotificationDestinationFindRequestEnvelope {
 /**
  * Response envelope for simpleNotificationDestinationFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model SimpleNotificationDestinationFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model SimpleNotificationDestinationCreateRequestEnvelope {
 /**
  * Response envelope for simpleNotificationDestinationCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "通知先例",
+    ID: 123456789012,
+    Name: "example-notice-dest",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SimpleNotificationDestinationCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model SimpleNotificationDestinationCreateResponseEnvelope {
 /**
  * Response envelope for simpleNotificationDestinationReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "通知先例",
+    ID: 123456789012,
+    Name: "example-notice-dest",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SimpleNotificationDestinationReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model SimpleNotificationDestinationUpdateRequestEnvelope {
 /**
  * Response envelope for simpleNotificationDestinationUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-notice-dest-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model SimpleNotificationDestinationUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

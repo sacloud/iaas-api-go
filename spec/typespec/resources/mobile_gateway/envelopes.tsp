@@ -26,6 +26,7 @@ model MobileGatewayFindRequestEnvelope {
 /**
  * Response envelope for mobileGatewayFindResponseEnvelope
  */
+@example(#{ Appliances: #[], Count: 0, From: 0, Total: 0 })
 model MobileGatewayFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,17 @@ model MobileGatewayCreateRequestEnvelope {
 /**
  * Response envelope for mobileGatewayCreateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "モバイルゲートウェイ例",
+    ID: 123456789012,
+    InterfaceSettings: #[],
+    Name: "example-mgw",
+    StaticRoutes: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model MobileGatewayCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +79,17 @@ model MobileGatewayCreateResponseEnvelope {
 /**
  * Response envelope for mobileGatewayReadResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "モバイルゲートウェイ例",
+    ID: 123456789012,
+    InterfaceSettings: #[],
+    Name: "example-mgw",
+    StaticRoutes: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model MobileGatewayReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +112,17 @@ model MobileGatewayUpdateRequestEnvelope {
 /**
  * Response envelope for mobileGatewayUpdateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "更新後",
+    ID: 123456789012,
+    InterfaceSettings: #[],
+    Name: "example-mgw-updated",
+    StaticRoutes: #[],
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model MobileGatewayUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -112,6 +146,10 @@ model MobileGatewayShutdownRequestEnvelope {
 /**
  * Response envelope for mobileGatewayGetDNSResponseEnvelope
  */
+@example(#{
+  SIMGroup: #{ DNS1: "192.0.2.53", DNS2: "198.51.100.53" },
+  is_ok: true,
+})
 model MobileGatewayGetDNSResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -135,6 +173,7 @@ model MobileGatewaySetDNSRequestEnvelope {
 /**
  * Response envelope for mobileGatewayGetSIMRoutesResponseEnvelope
  */
+@example(#{ SIMRoutes: #[], is_ok: true })
 model MobileGatewayGetSIMRoutesResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -158,6 +197,7 @@ model MobileGatewaySetSIMRoutesRequestEnvelope {
 /**
  * Response envelope for mobileGatewayListSIMResponseEnvelope
  */
+@example(#{ SIM: #[], is_ok: true })
 model MobileGatewayListSIMResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -181,6 +221,7 @@ model MobileGatewayAddSIMRequestEnvelope {
 /**
  * Response envelope for mobileGatewayLogsResponseEnvelope
  */
+@example(#{ Logs: #[], is_ok: true })
 model MobileGatewayLogsResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -194,6 +235,16 @@ model MobileGatewayLogsResponseEnvelope {
 /**
  * Response envelope for mobileGatewayGetTrafficConfigResponseEnvelope
  */
+@example(#{
+  TrafficMonitoring: #{
+    AutoTrafficShaping: false,
+    BandWidthLimitInKbps: 0,
+    EMailConfig: #{ Enabled: false },
+    SlackConfig: #{ Enabled: false, IncomingWebhooksURL: "" },
+    TrafficQuotaInMB: 1024,
+  },
+  is_ok: true,
+})
 model MobileGatewayGetTrafficConfigResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -217,6 +268,10 @@ model MobileGatewaySetTrafficConfigRequestEnvelope {
 /**
  * Response envelope for mobileGatewayTrafficStatusResponseEnvelope
  */
+@example(#{
+  TrafficStatus: #{ DownlinkBytes: 0, TrafficShaping: false, UplinkBytes: 0 },
+  is_ok: true,
+})
 model MobileGatewayTrafficStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -244,6 +299,7 @@ model MobileGatewayMonitorInterfaceRequestEnvelope {
 /**
  * Response envelope for mobileGatewayMonitorInterfaceResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model MobileGatewayMonitorInterfaceResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

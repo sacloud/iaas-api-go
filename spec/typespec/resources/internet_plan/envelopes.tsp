@@ -26,6 +26,31 @@ model InternetPlanFindRequestEnvelope {
 /**
  * Response envelope for internetPlanFindResponseEnvelope
  */
+@example(#{
+  Count: 3,
+  From: 0,
+  InternetPlans: #[
+    #{
+      Availability: "available",
+      BandWidthMbps: 100,
+      ID: 100,
+      Name: "100Mbps共有",
+    },
+    #{
+      Availability: "available",
+      BandWidthMbps: 250,
+      ID: 250,
+      Name: "250Mbps共有",
+    },
+    #{
+      Availability: "available",
+      BandWidthMbps: 500,
+      ID: 500,
+      Name: "500Mbps共有",
+    }
+  ],
+  Total: 3,
+})
 model InternetPlanFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +70,15 @@ model InternetPlanFindResponseEnvelope {
 /**
  * Response envelope for internetPlanReadResponseEnvelope
  */
+@example(#{
+  InternetPlan: #{
+    Availability: "available",
+    BandWidthMbps: 100,
+    ID: 100,
+    Name: "100Mbps共有",
+  },
+  is_ok: true,
+})
 model InternetPlanReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

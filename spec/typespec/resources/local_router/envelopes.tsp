@@ -26,6 +26,7 @@ model LocalRouterFindRequestEnvelope {
 /**
  * Response envelope for localRouterFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model LocalRouterFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,17 @@ model LocalRouterCreateRequestEnvelope {
 /**
  * Response envelope for localRouterCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "ローカルルータ例",
+    ID: 123456789012,
+    Name: "example-local-router",
+    Peers: #[],
+    StaticRoutes: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model LocalRouterCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +79,17 @@ model LocalRouterCreateResponseEnvelope {
 /**
  * Response envelope for localRouterReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "ローカルルータ例",
+    ID: 123456789012,
+    Name: "example-local-router",
+    Peers: #[],
+    StaticRoutes: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model LocalRouterReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +112,17 @@ model LocalRouterUpdateRequestEnvelope {
 /**
  * Response envelope for localRouterUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-local-router-updated",
+    Peers: #[],
+    StaticRoutes: #[],
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model LocalRouterUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -102,6 +136,7 @@ model LocalRouterUpdateResponseEnvelope {
 /**
  * Response envelope for localRouterHealthStatusResponseEnvelope
  */
+@example(#{ LocalRouter: #{ Peers: #[] }, is_ok: true })
 model LocalRouterHealthStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -129,6 +164,7 @@ model LocalRouterMonitorLocalRouterRequestEnvelope {
 /**
  * Response envelope for localRouterMonitorLocalRouterResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model LocalRouterMonitorLocalRouterResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

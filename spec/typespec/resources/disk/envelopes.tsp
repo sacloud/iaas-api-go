@@ -26,6 +26,29 @@ model DiskFindRequestEnvelope {
 /**
  * Response envelope for diskFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  Disks: #[
+    #{
+      Availability: "available",
+      Connection: "virtio",
+      Description: "ドキュメント用ダミーディスク",
+      ID: 123456789012,
+      Icon: null,
+      Name: "example-disk",
+      Plan: #{
+        Availability: "available",
+        ID: 4,
+        Name: "SSDプラン",
+        StorageClass: "iscsi1204",
+      },
+      SizeMB: 20480,
+      Tags: #["example"],
+    }
+  ],
+  From: 0,
+  Total: 1,
+})
 model DiskFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -79,6 +102,25 @@ model DiskCreateRequestEnvelope {
 /**
  * Response envelope for diskCreateResponseEnvelope
  */
+@example(#{
+  Disk: #{
+    Availability: "available",
+    Connection: "virtio",
+    Description: "ドキュメント用ダミーディスク",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-disk",
+    Plan: #{
+      Availability: "available",
+      ID: 4,
+      Name: "SSDプラン",
+      StorageClass: "iscsi1204",
+    },
+    SizeMB: 20480,
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model DiskCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -162,6 +204,25 @@ model DiskResizePartitionRequestEnvelope {
 /**
  * Response envelope for diskReadResponseEnvelope
  */
+@example(#{
+  Disk: #{
+    Availability: "available",
+    Connection: "virtio",
+    Description: "ドキュメント用ダミーディスク",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-disk",
+    Plan: #{
+      Availability: "available",
+      ID: 4,
+      Name: "SSDプラン",
+      StorageClass: "iscsi1204",
+    },
+    SizeMB: 20480,
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model DiskReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -184,6 +245,25 @@ model DiskUpdateRequestEnvelope {
 /**
  * Response envelope for diskUpdateResponseEnvelope
  */
+@example(#{
+  Disk: #{
+    Availability: "available",
+    Connection: "virtio",
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-disk-updated",
+    Plan: #{
+      Availability: "available",
+      ID: 4,
+      Name: "SSDプラン",
+      StorageClass: "iscsi1204",
+    },
+    SizeMB: 20480,
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model DiskUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -211,6 +291,7 @@ model DiskMonitorRequestEnvelope {
 /**
  * Response envelope for diskMonitorResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model DiskMonitorResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,7 @@ model NFSFindRequestEnvelope {
 /**
  * Response envelope for nFSFindResponseEnvelope
  */
+@example(#{ Appliances: #[], Count: 0, From: 0, Total: 0 })
 model NFSFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,16 @@ model NFSCreateRequestEnvelope {
 /**
  * Response envelope for nFSCreateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "NFS 例",
+    ID: 123456789012,
+    IPAddresses: #["192.168.0.11"],
+    Name: "example-nfs",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model NFSCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +78,16 @@ model NFSCreateResponseEnvelope {
 /**
  * Response envelope for nFSReadResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "NFS 例",
+    ID: 123456789012,
+    IPAddresses: #["192.168.0.11"],
+    Name: "example-nfs",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model NFSReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +110,16 @@ model NFSUpdateRequestEnvelope {
 /**
  * Response envelope for nFSUpdateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "更新後",
+    ID: 123456789012,
+    IPAddresses: #["192.168.0.11"],
+    Name: "example-nfs-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model NFSUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -126,6 +157,7 @@ model NFSMonitorFreeDiskSizeRequestEnvelope {
 /**
  * Response envelope for nFSMonitorFreeDiskSizeResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model NFSMonitorFreeDiskSizeResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -153,6 +185,7 @@ model NFSMonitorInterfaceRequestEnvelope {
 /**
  * Response envelope for nFSMonitorInterfaceResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model NFSMonitorInterfaceResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,7 @@ model IPv6NetListRequestEnvelope {
 /**
  * Response envelope for iPv6NetListResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, IPv6Nets: #[], Total: 0 })
 model IPv6NetListResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +46,10 @@ model IPv6NetListResponseEnvelope {
 /**
  * Response envelope for iPv6NetReadResponseEnvelope
  */
+@example(#{
+  IPv6Net: #{ ID: 123456789012, IPv6Prefix: "2001:db8::", IPv6PrefixLen: 64 },
+  is_ok: true,
+})
 model IPv6NetReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,20 @@ model SSHKeyFindRequestEnvelope {
 /**
  * Response envelope for sSHKeyFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  SSHKeys: #[
+    #{
+      Description: "ドキュメント用ダミー公開鍵",
+      Fingerprint: "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+      ID: 123456789012,
+      Name: "example-sshkey",
+      PublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com",
+    }
+  ],
+  Total: 1,
+})
 model SSHKeyFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +68,16 @@ model SSHKeyCreateRequestEnvelope {
 /**
  * Response envelope for sSHKeyCreateResponseEnvelope
  */
+@example(#{
+  SSHKey: #{
+    Description: "ドキュメント用ダミー公開鍵",
+    Fingerprint: "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+    ID: 123456789012,
+    Name: "example-sshkey",
+    PublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com",
+  },
+  is_ok: true,
+})
 model SSHKeyCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +91,16 @@ model SSHKeyCreateResponseEnvelope {
 /**
  * Response envelope for sSHKeyReadResponseEnvelope
  */
+@example(#{
+  SSHKey: #{
+    Description: "ドキュメント用ダミー公開鍵",
+    Fingerprint: "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+    ID: 123456789012,
+    Name: "example-sshkey",
+    PublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com",
+  },
+  is_ok: true,
+})
 model SSHKeyReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +123,16 @@ model SSHKeyUpdateRequestEnvelope {
 /**
  * Response envelope for sSHKeyUpdateResponseEnvelope
  */
+@example(#{
+  SSHKey: #{
+    Description: "更新後の説明",
+    Fingerprint: "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+    ID: 123456789012,
+    Name: "example-sshkey-updated",
+    PublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com",
+  },
+  is_ok: true,
+})
 model SSHKeyUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

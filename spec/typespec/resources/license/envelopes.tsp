@@ -26,6 +26,18 @@ model LicenseFindRequestEnvelope {
 /**
  * Response envelope for licenseFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  Licenses: #[
+    #{
+      ID: 123456789012,
+      LicenseInfo: #{ ID: 10001, Name: "Windows RDS SAL" },
+      Name: "example-license",
+    }
+  ],
+  Total: 1,
+})
 model LicenseFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +66,14 @@ model LicenseCreateRequestEnvelope {
 /**
  * Response envelope for licenseCreateResponseEnvelope
  */
+@example(#{
+  License: #{
+    ID: 123456789012,
+    LicenseInfo: #{ ID: 10001, Name: "Windows RDS SAL" },
+    Name: "example-license",
+  },
+  is_ok: true,
+})
 model LicenseCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +87,14 @@ model LicenseCreateResponseEnvelope {
 /**
  * Response envelope for licenseReadResponseEnvelope
  */
+@example(#{
+  License: #{
+    ID: 123456789012,
+    LicenseInfo: #{ ID: 10001, Name: "Windows RDS SAL" },
+    Name: "example-license",
+  },
+  is_ok: true,
+})
 model LicenseReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +117,14 @@ model LicenseUpdateRequestEnvelope {
 /**
  * Response envelope for licenseUpdateResponseEnvelope
  */
+@example(#{
+  License: #{
+    ID: 123456789012,
+    LicenseInfo: #{ ID: 10001, Name: "Windows RDS SAL" },
+    Name: "example-license-updated",
+  },
+  is_ok: true,
+})
 model LicenseUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

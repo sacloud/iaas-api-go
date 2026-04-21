@@ -26,6 +26,23 @@ model InternetFindRequestEnvelope {
 /**
  * Response envelope for internetFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  Internet: #[
+    #{
+      BandWidthMbps: 100,
+      Description: "ドキュメント用ダミールータ",
+      ID: 123456789012,
+      Icon: null,
+      Name: "example-internet",
+      NetworkMaskLen: 28,
+      Switch: #{ ID: 123456789013, Name: "example-internet" },
+      Tags: #["example"],
+    }
+  ],
+  Total: 1,
+})
 model InternetFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +71,19 @@ model InternetCreateRequestEnvelope {
 /**
  * Response envelope for internetCreateResponseEnvelope
  */
+@example(#{
+  Internet: #{
+    BandWidthMbps: 100,
+    Description: "ドキュメント用ダミールータ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-internet",
+    NetworkMaskLen: 28,
+    Switch: #{ ID: 123456789013, Name: "example-internet" },
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model InternetCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +97,19 @@ model InternetCreateResponseEnvelope {
 /**
  * Response envelope for internetReadResponseEnvelope
  */
+@example(#{
+  Internet: #{
+    BandWidthMbps: 100,
+    Description: "ドキュメント用ダミールータ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-internet",
+    NetworkMaskLen: 28,
+    Switch: #{ ID: 123456789013, Name: "example-internet" },
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model InternetReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +132,19 @@ model InternetUpdateRequestEnvelope {
 /**
  * Response envelope for internetUpdateResponseEnvelope
  */
+@example(#{
+  Internet: #{
+    BandWidthMbps: 100,
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-internet-updated",
+    NetworkMaskLen: 28,
+    Switch: #{ ID: 123456789013, Name: "example-internet-updated" },
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model InternetUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -111,6 +167,16 @@ model InternetUpdateBandWidthRequestEnvelope {
 /**
  * Response envelope for internetUpdateBandWidthResponseEnvelope
  */
+@example(#{
+  Internet: #{
+    BandWidthMbps: 250,
+    Description: "帯域変更後",
+    ID: 123456789012,
+    Name: "example-internet",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model InternetUpdateBandWidthResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -138,6 +204,14 @@ model InternetAddSubnetRequestEnvelope {
 /**
  * Response envelope for internetAddSubnetResponseEnvelope
  */
+@example(#{
+  Subnet: #{
+    ID: 123456789013,
+    NetworkAddress: "192.0.2.0",
+    NetworkMaskLen: 28,
+  },
+  is_ok: true,
+})
 model InternetAddSubnetResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -160,6 +234,14 @@ model InternetUpdateSubnetRequestEnvelope {
 /**
  * Response envelope for internetUpdateSubnetResponseEnvelope
  */
+@example(#{
+  Subnet: #{
+    ID: 123456789013,
+    NetworkAddress: "192.0.2.0",
+    NetworkMaskLen: 28,
+  },
+  is_ok: true,
+})
 model InternetUpdateSubnetResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -187,6 +269,7 @@ model InternetMonitorRequestEnvelope {
 /**
  * Response envelope for internetMonitorResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model InternetMonitorResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -200,6 +283,10 @@ model InternetMonitorResponseEnvelope {
 /**
  * Response envelope for internetEnableIPv6ResponseEnvelope
  */
+@example(#{
+  IPv6Net: #{ ID: 123456789014, IPv6Prefix: "2001:db8::", IPv6PrefixLen: 64 },
+  is_ok: true,
+})
 model InternetEnableIPv6ResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

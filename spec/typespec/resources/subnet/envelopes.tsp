@@ -26,6 +26,7 @@ model SubnetFindRequestEnvelope {
 /**
  * Response envelope for subnetFindResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, Subnets: #[], Total: 0 })
 model SubnetFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +46,14 @@ model SubnetFindResponseEnvelope {
 /**
  * Response envelope for subnetReadResponseEnvelope
  */
+@example(#{
+  Subnet: #{
+    ID: 123456789012,
+    NetworkAddress: "192.0.2.0",
+    NetworkMaskLen: 28,
+  },
+  is_ok: true,
+})
 model SubnetReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

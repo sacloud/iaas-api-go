@@ -26,6 +26,7 @@ model DatabaseFindRequestEnvelope {
 /**
  * Response envelope for databaseFindResponseEnvelope
  */
+@example(#{ Appliances: #[], Count: 0, From: 0, Total: 0 })
 model DatabaseFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,17 @@ model DatabaseCreateRequestEnvelope {
 /**
  * Response envelope for databaseCreateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Availability: "migrating",
+    Class: "database",
+    Description: "データベース例",
+    ID: 123456789012,
+    Name: "example-db",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model DatabaseCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +79,17 @@ model DatabaseCreateResponseEnvelope {
 /**
  * Response envelope for databaseReadResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Availability: "available",
+    Class: "database",
+    Description: "データベース例",
+    ID: 123456789012,
+    Name: "example-db",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model DatabaseReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +112,17 @@ model DatabaseUpdateRequestEnvelope {
 /**
  * Response envelope for databaseUpdateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Availability: "available",
+    Class: "database",
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-db-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model DatabaseUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -126,6 +160,7 @@ model DatabaseMonitorCPURequestEnvelope {
 /**
  * Response envelope for databaseMonitorCPUResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model DatabaseMonitorCPUResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -153,6 +188,7 @@ model DatabaseMonitorDiskRequestEnvelope {
 /**
  * Response envelope for databaseMonitorDiskResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model DatabaseMonitorDiskResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -180,6 +216,7 @@ model DatabaseMonitorInterfaceRequestEnvelope {
 /**
  * Response envelope for databaseMonitorInterfaceResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model DatabaseMonitorInterfaceResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -207,6 +244,7 @@ model DatabaseMonitorDatabaseRequestEnvelope {
 /**
  * Response envelope for databaseMonitorDatabaseResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model DatabaseMonitorDatabaseResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -220,6 +258,25 @@ model DatabaseMonitorDatabaseResponseEnvelope {
 /**
  * Response envelope for databaseStatusResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Backups: #[],
+    Logs: #[],
+    SettingsResponse: #{
+      DBConf: #{
+        MariaDB: #{ Status: "running" },
+        Postgres: #{ Status: "running" },
+        Version: #{
+          LastModified: "2025-01-01T00:00:00+09:00",
+          Status: "running",
+        },
+      },
+      IsFatal: false,
+      Status: "up",
+    },
+  },
+  is_ok: true,
+})
 model DatabaseStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -233,6 +290,7 @@ model DatabaseStatusResponseEnvelope {
 /**
  * Response envelope for databaseGetParameterResponseEnvelope
  */
+@example(#{ Database: #{ MetaInfo: #[], Parameter: null }, is_ok: true })
 model DatabaseGetParameterResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

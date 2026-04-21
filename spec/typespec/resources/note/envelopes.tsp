@@ -26,6 +26,22 @@ model NoteFindRequestEnvelope {
 /**
  * Response envelope for noteFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  Notes: #[
+    #{
+      Class: "shell",
+      Content: "#!/bin/bash\necho hello",
+      Description: "ドキュメント用ダミースクリプト",
+      ID: 123456789012,
+      Icon: null,
+      Name: "example-note",
+      Tags: #["example"],
+    }
+  ],
+  Total: 1,
+})
 model NoteFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +70,18 @@ model NoteCreateRequestEnvelope {
 /**
  * Response envelope for noteCreateResponseEnvelope
  */
+@example(#{
+  Note: #{
+    Class: "shell",
+    Content: "#!/bin/bash\necho hello",
+    Description: "",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-note",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model NoteCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +95,18 @@ model NoteCreateResponseEnvelope {
 /**
  * Response envelope for noteReadResponseEnvelope
  */
+@example(#{
+  Note: #{
+    Class: "shell",
+    Content: "#!/bin/bash\necho hello",
+    Description: "",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-note",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model NoteReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +129,18 @@ model NoteUpdateRequestEnvelope {
 /**
  * Response envelope for noteUpdateResponseEnvelope
  */
+@example(#{
+  Note: #{
+    Class: "shell",
+    Content: "#!/bin/bash\necho updated",
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-note-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model NoteUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

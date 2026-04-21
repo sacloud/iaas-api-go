@@ -26,6 +26,7 @@ model SimpleNotificationGroupFindRequestEnvelope {
 /**
  * Response envelope for simpleNotificationGroupFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model SimpleNotificationGroupFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model SimpleNotificationGroupCreateRequestEnvelope {
 /**
  * Response envelope for simpleNotificationGroupCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "シンプル通知グループ例",
+    ID: 123456789012,
+    Name: "example-notice-group",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SimpleNotificationGroupCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model SimpleNotificationGroupCreateResponseEnvelope {
 /**
  * Response envelope for simpleNotificationGroupReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "シンプル通知グループ例",
+    ID: 123456789012,
+    Name: "example-notice-group",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SimpleNotificationGroupReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model SimpleNotificationGroupUpdateRequestEnvelope {
 /**
  * Response envelope for simpleNotificationGroupUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-notice-group-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model SimpleNotificationGroupUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -112,6 +140,10 @@ model SimpleNotificationGroupPostMessageRequestEnvelope {
 /**
  * Response envelope for simpleNotificationGroupHistoryResponseEnvelope
  */
+@example(#{
+  NotificationHistories: #{ NotificationHistories: #[] },
+  is_ok: true,
+})
 model SimpleNotificationGroupHistoryResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

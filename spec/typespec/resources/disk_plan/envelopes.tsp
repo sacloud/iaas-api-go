@@ -26,6 +26,47 @@ model DiskPlanFindRequestEnvelope {
 /**
  * Response envelope for diskPlanFindResponseEnvelope
  */
+@example(#{
+  Count: 2,
+  DiskPlans: #[
+    #{
+      Availability: "available",
+      ID: 4,
+      Name: "SSDプラン",
+      Size: #[
+        #{
+          Availability: "available",
+          DisplaySize: 20,
+          DisplaySuffix: "GB",
+          SizeMB: 20480,
+        },
+        #{
+          Availability: "available",
+          DisplaySize: 40,
+          DisplaySuffix: "GB",
+          SizeMB: 40960,
+        }
+      ],
+      StorageClass: "iscsi1204",
+    },
+    #{
+      Availability: "available",
+      ID: 2,
+      Name: "標準プラン",
+      Size: #[
+        #{
+          Availability: "available",
+          DisplaySize: 20,
+          DisplaySuffix: "GB",
+          SizeMB: 20480,
+        }
+      ],
+      StorageClass: "iscsi1204",
+    }
+  ],
+  From: 0,
+  Total: 2,
+})
 model DiskPlanFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +86,29 @@ model DiskPlanFindResponseEnvelope {
 /**
  * Response envelope for diskPlanReadResponseEnvelope
  */
+@example(#{
+  DiskPlan: #{
+    Availability: "available",
+    ID: 4,
+    Name: "SSDプラン",
+    Size: #[
+      #{
+        Availability: "available",
+        DisplaySize: 20,
+        DisplaySuffix: "GB",
+        SizeMB: 20480,
+      },
+      #{
+        Availability: "available",
+        DisplaySize: 40,
+        DisplaySuffix: "GB",
+        SizeMB: 40960,
+      }
+    ],
+    StorageClass: "iscsi1204",
+  },
+  is_ok: true,
+})
 model DiskPlanReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

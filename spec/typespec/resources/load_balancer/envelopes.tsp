@@ -26,6 +26,7 @@ model LoadBalancerFindRequestEnvelope {
 /**
  * Response envelope for loadBalancerFindResponseEnvelope
  */
+@example(#{ Appliances: #[], Count: 0, From: 0, Total: 0 })
 model LoadBalancerFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,17 @@ model LoadBalancerCreateRequestEnvelope {
 /**
  * Response envelope for loadBalancerCreateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "ロードバランサ例",
+    ID: 123456789012,
+    IPAddresses: #["192.168.0.11", "192.168.0.12"],
+    Name: "example-lb",
+    Tags: #["example"],
+    VirtualIPAddresses: #[],
+  },
+  is_ok: true,
+})
 model LoadBalancerCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +79,17 @@ model LoadBalancerCreateResponseEnvelope {
 /**
  * Response envelope for loadBalancerReadResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "ロードバランサ例",
+    ID: 123456789012,
+    IPAddresses: #["192.168.0.11", "192.168.0.12"],
+    Name: "example-lb",
+    Tags: #["example"],
+    VirtualIPAddresses: #[],
+  },
+  is_ok: true,
+})
 model LoadBalancerReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +112,17 @@ model LoadBalancerUpdateRequestEnvelope {
 /**
  * Response envelope for loadBalancerUpdateResponseEnvelope
  */
+@example(#{
+  Appliance: #{
+    Description: "更新後",
+    ID: 123456789012,
+    IPAddresses: #["192.168.0.11", "192.168.0.12"],
+    Name: "example-lb-updated",
+    Tags: #["example", "updated"],
+    VirtualIPAddresses: #[],
+  },
+  is_ok: true,
+})
 model LoadBalancerUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -126,6 +160,7 @@ model LoadBalancerMonitorInterfaceRequestEnvelope {
 /**
  * Response envelope for loadBalancerMonitorInterfaceResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model LoadBalancerMonitorInterfaceResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

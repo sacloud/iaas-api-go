@@ -7,6 +7,7 @@ namespace Sacloud.IaaS;
 /**
  * Response envelope for billByContractResponseEnvelope
  */
+@example(#{ Bills: #[], Count: 0, From: 0, Total: 0 })
 model BillByContractResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -26,6 +27,7 @@ model BillByContractResponseEnvelope {
 /**
  * Response envelope for billByContractYearResponseEnvelope
  */
+@example(#{ Bills: #[], Count: 0, From: 0, Total: 0 })
 model BillByContractYearResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +47,7 @@ model BillByContractYearResponseEnvelope {
 /**
  * Response envelope for billByContractYearMonthResponseEnvelope
  */
+@example(#{ Bills: #[], Count: 0, From: 0, Total: 0 })
 model BillByContractYearMonthResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -64,6 +67,7 @@ model BillByContractYearMonthResponseEnvelope {
 /**
  * Response envelope for billReadResponseEnvelope
  */
+@example(#{ Bills: #[], Count: 0, From: 0, Total: 0 })
 model BillReadResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -83,6 +87,7 @@ model BillReadResponseEnvelope {
 /**
  * Response envelope for billDetailsResponseEnvelope
  */
+@example(#{ BillDetails: #[], Count: 0, From: 0, Total: 0 })
 model BillDetailsResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -102,6 +107,7 @@ model BillDetailsResponseEnvelope {
 /**
  * Response envelope for billDetailsCSVResponseEnvelope
  */
+@example(#{ CSV: #{ BodyRows: #[], HeaderRow: #[] }, is_ok: true })
 model BillDetailsCSVResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

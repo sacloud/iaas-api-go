@@ -26,6 +26,23 @@ model SwitchFindRequestEnvelope {
 /**
  * Response envelope for switchFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  Switches: #[
+    #{
+      Bridge: null,
+      Description: "ドキュメント用ダミースイッチ",
+      ID: 123456789012,
+      Icon: null,
+      Name: "example-switch",
+      ServerCount: 0,
+      Subnets: #[],
+      Tags: #["example"],
+    }
+  ],
+  Total: 1,
+})
 model SwitchFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +71,19 @@ model SwitchCreateRequestEnvelope {
 /**
  * Response envelope for switchCreateResponseEnvelope
  */
+@example(#{
+  Switch: #{
+    Bridge: null,
+    Description: "ドキュメント用ダミースイッチ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-switch",
+    ServerCount: 0,
+    Subnets: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SwitchCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +97,19 @@ model SwitchCreateResponseEnvelope {
 /**
  * Response envelope for switchReadResponseEnvelope
  */
+@example(#{
+  Switch: #{
+    Bridge: null,
+    Description: "ドキュメント用ダミースイッチ",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-switch",
+    ServerCount: 0,
+    Subnets: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SwitchReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +132,19 @@ model SwitchUpdateRequestEnvelope {
 /**
  * Response envelope for switchUpdateResponseEnvelope
  */
+@example(#{
+  Switch: #{
+    Bridge: null,
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Icon: null,
+    Name: "example-switch-updated",
+    ServerCount: 0,
+    Subnets: #[],
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model SwitchUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -102,6 +158,7 @@ model SwitchUpdateResponseEnvelope {
 /**
  * Response envelope for switchGetServersResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, Servers: #[], Total: 0 })
 model SwitchGetServersResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;

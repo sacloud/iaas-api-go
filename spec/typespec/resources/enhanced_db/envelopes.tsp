@@ -26,6 +26,7 @@ model EnhancedDBFindRequestEnvelope {
 /**
  * Response envelope for enhancedDBFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model EnhancedDBFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model EnhancedDBCreateRequestEnvelope {
 /**
  * Response envelope for enhancedDBCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "エンハンスド DB 例",
+    ID: 123456789012,
+    Name: "example-tidb",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model EnhancedDBCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model EnhancedDBCreateResponseEnvelope {
 /**
  * Response envelope for enhancedDBReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "エンハンスド DB 例",
+    ID: 123456789012,
+    Name: "example-tidb",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model EnhancedDBReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model EnhancedDBUpdateRequestEnvelope {
 /**
  * Response envelope for enhancedDBUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-tidb-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model EnhancedDBUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -112,6 +140,7 @@ model EnhancedDBSetPasswordRequestEnvelope {
 /**
  * Response envelope for enhancedDBGetConfigResponseEnvelope
  */
+@example(#{ EnhancedDB: #{ AllowedNetworks: #[] }, is_ok: true })
 model EnhancedDBGetConfigResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

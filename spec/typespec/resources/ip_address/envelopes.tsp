@@ -7,6 +7,12 @@ namespace Sacloud.IaaS;
 /**
  * Response envelope for iPAddressListResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  IPAddress: #[#{ HostName: "example-host", IPAddress: "192.0.2.10" }],
+  Total: 1,
+})
 model IPAddressListResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -26,6 +32,10 @@ model IPAddressListResponseEnvelope {
 /**
  * Response envelope for iPAddressReadResponseEnvelope
  */
+@example(#{
+  IPAddress: #{ HostName: "example-host", IPAddress: "192.0.2.10" },
+  is_ok: true,
+})
 model IPAddressReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -48,6 +58,10 @@ model IPAddressUpdateHostNameRequestEnvelope {
 /**
  * Response envelope for iPAddressUpdateHostNameResponseEnvelope
  */
+@example(#{
+  IPAddress: #{ HostName: "updated-host", IPAddress: "192.0.2.10" },
+  is_ok: true,
+})
 model IPAddressUpdateHostNameResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

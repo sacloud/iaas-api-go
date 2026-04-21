@@ -26,6 +26,7 @@ model AutoScaleFindRequestEnvelope {
 /**
  * Response envelope for autoScaleFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model AutoScaleFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model AutoScaleCreateRequestEnvelope {
 /**
  * Response envelope for autoScaleCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "オートスケール例",
+    ID: 123456789012,
+    Name: "example-auto-scale",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model AutoScaleCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model AutoScaleCreateResponseEnvelope {
 /**
  * Response envelope for autoScaleReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "オートスケール例",
+    ID: 123456789012,
+    Name: "example-auto-scale",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model AutoScaleReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model AutoScaleUpdateRequestEnvelope {
 /**
  * Response envelope for autoScaleUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-auto-scale-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model AutoScaleUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -102,6 +130,13 @@ model AutoScaleUpdateResponseEnvelope {
 /**
  * Response envelope for autoScaleStatusResponseEnvelope
  */
+@example(#{
+  AutoScale: #{
+    LatestLogs: #["2025-01-01T00:00:00+09:00 scaled up"],
+    ResourcesText: "example-resources",
+  },
+  is_ok: true,
+})
 model AutoScaleStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

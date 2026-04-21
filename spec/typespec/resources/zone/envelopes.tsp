@@ -26,6 +26,35 @@ model ZoneFindRequestEnvelope {
 /**
  * Response envelope for zoneFindResponseEnvelope
  */
+@example(#{
+  Count: 2,
+  From: 0,
+  Total: 2,
+  Zones: #[
+    #{
+      Description: "東京第1ゾーン",
+      ID: 21001,
+      Name: "tk1a",
+      Region: #{
+        Description: "東京",
+        ID: 210,
+        Name: "東京",
+        NameServers: #["210.188.224.10", "210.188.224.11"],
+      },
+    },
+    #{
+      Description: "石狩第1ゾーン",
+      ID: 31001,
+      Name: "is1a",
+      Region: #{
+        Description: "石狩",
+        ID: 310,
+        Name: "石狩",
+        NameServers: #["133.242.0.3", "133.242.0.4"],
+      },
+    }
+  ],
+})
 model ZoneFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +74,20 @@ model ZoneFindResponseEnvelope {
 /**
  * Response envelope for zoneReadResponseEnvelope
  */
+@example(#{
+  Zone: #{
+    Description: "石狩第1ゾーン",
+    ID: 31001,
+    Name: "is1a",
+    Region: #{
+      Description: "石狩",
+      ID: 310,
+      Name: "石狩",
+      NameServers: #["133.242.0.3", "133.242.0.4"],
+    },
+  },
+  is_ok: true,
+})
 model ZoneReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

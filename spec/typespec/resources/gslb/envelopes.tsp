@@ -26,6 +26,7 @@ model GSLBFindRequestEnvelope {
 /**
  * Response envelope for gSLBFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model GSLBFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,16 @@ model GSLBCreateRequestEnvelope {
 /**
  * Response envelope for gSLBCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "GSLB 例",
+    DestinationServers: #[],
+    ID: 123456789012,
+    Name: "example-gslb",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model GSLBCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +78,18 @@ model GSLBCreateResponseEnvelope {
 /**
  * Response envelope for gSLBReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "GSLB 例",
+    DestinationServers: #[
+      #{ Enabled: "True", IPAddress: "192.0.2.10", Weight: 1 }
+    ],
+    ID: 123456789012,
+    Name: "example-gslb",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model GSLBReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +112,16 @@ model GSLBUpdateRequestEnvelope {
 /**
  * Response envelope for gSLBUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    DestinationServers: #[],
+    ID: 123456789012,
+    Name: "example-gslb",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model GSLBUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

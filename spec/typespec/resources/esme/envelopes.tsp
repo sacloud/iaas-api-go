@@ -26,6 +26,7 @@ model ESMEFindRequestEnvelope {
 /**
  * Response envelope for eSMEFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model ESMEFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model ESMECreateRequestEnvelope {
 /**
  * Response envelope for eSMECreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "ESME 例",
+    ID: 123456789012,
+    Name: "example-esme",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ESMECreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model ESMECreateResponseEnvelope {
 /**
  * Response envelope for eSMEReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "ESME 例",
+    ID: 123456789012,
+    Name: "example-esme",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ESMEReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +108,15 @@ model ESMEUpdateRequestEnvelope {
 /**
  * Response envelope for eSMEUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-esme-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model ESMEUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -111,6 +139,10 @@ model ESMESendMessageWithGeneratedOTPRequestEnvelope {
 /**
  * Response envelope for eSMESendMessageWithGeneratedOTPResponseEnvelope
  */
+@example(#{
+  ESME: #{ MessageID: "msg-000000000001", OTP: "123456", Status: "Accepted" },
+  is_ok: true,
+})
 model ESMESendMessageWithGeneratedOTPResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -133,6 +165,10 @@ model ESMESendMessageWithInputtedOTPRequestEnvelope {
 /**
  * Response envelope for eSMESendMessageWithInputtedOTPResponseEnvelope
  */
+@example(#{
+  ESME: #{ MessageID: "msg-000000000002", Status: "Accepted" },
+  is_ok: true,
+})
 model ESMESendMessageWithInputtedOTPResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -146,6 +182,15 @@ model ESMESendMessageWithInputtedOTPResponseEnvelope {
 /**
  * Response envelope for eSMELogsResponseEnvelope
  */
+@example(#{
+  ESME: #{
+    Destination: "09000000000",
+    MessageID: "msg-000000000001",
+    RetryCount: 0,
+    Status: "Delivered",
+  },
+  is_ok: true,
+})
 model ESMELogsResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

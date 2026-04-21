@@ -26,6 +26,7 @@ model ServiceClassFindRequestEnvelope {
 /**
  * Response envelope for serviceClassFindResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, ServiceClasses: #[], Total: 0 })
 model ServiceClassFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;

@@ -26,6 +26,25 @@ model RegionFindRequestEnvelope {
 /**
  * Response envelope for regionFindResponseEnvelope
  */
+@example(#{
+  Count: 2,
+  From: 0,
+  Regions: #[
+    #{
+      Description: "東京",
+      ID: 210,
+      Name: "東京",
+      NameServers: #["210.188.224.10", "210.188.224.11"],
+    },
+    #{
+      Description: "石狩",
+      ID: 310,
+      Name: "石狩",
+      NameServers: #["133.242.0.3", "133.242.0.4"],
+    }
+  ],
+  Total: 2,
+})
 model RegionFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +64,15 @@ model RegionFindResponseEnvelope {
 /**
  * Response envelope for regionReadResponseEnvelope
  */
+@example(#{
+  Region: #{
+    Description: "石狩",
+    ID: 310,
+    Name: "石狩",
+    NameServers: #["133.242.0.3", "133.242.0.4"],
+  },
+  is_ok: true,
+})
 model RegionReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

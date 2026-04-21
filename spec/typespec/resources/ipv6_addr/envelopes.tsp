@@ -26,6 +26,7 @@ model IPv6AddrFindRequestEnvelope {
 /**
  * Response envelope for iPv6AddrFindResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, IPv6Addrs: #[], Total: 0 })
 model IPv6AddrFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,10 @@ model IPv6AddrCreateRequestEnvelope {
 /**
  * Response envelope for iPv6AddrCreateResponseEnvelope
  */
+@example(#{
+  IPv6Addr: #{ HostName: "example-host", IPv6Addr: "2001:db8::1" },
+  is_ok: true,
+})
 model IPv6AddrCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +72,10 @@ model IPv6AddrCreateResponseEnvelope {
 /**
  * Response envelope for iPv6AddrReadResponseEnvelope
  */
+@example(#{
+  IPv6Addr: #{ HostName: "example-host", IPv6Addr: "2001:db8::1" },
+  is_ok: true,
+})
 model IPv6AddrReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +98,10 @@ model IPv6AddrUpdateRequestEnvelope {
 /**
  * Response envelope for iPv6AddrUpdateResponseEnvelope
  */
+@example(#{
+  IPv6Addr: #{ HostName: "updated-host", IPv6Addr: "2001:db8::1" },
+  is_ok: true,
+})
 model IPv6AddrUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

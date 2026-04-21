@@ -26,6 +26,7 @@ model SimpleMonitorFindRequestEnvelope {
 /**
  * Response envelope for simpleMonitorFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model SimpleMonitorFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,16 @@ model SimpleMonitorCreateRequestEnvelope {
 /**
  * Response envelope for simpleMonitorCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Class: "simplemon",
+    Description: "シンプル監視例",
+    ID: 123456789012,
+    Name: "example.com",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SimpleMonitorCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +78,16 @@ model SimpleMonitorCreateResponseEnvelope {
 /**
  * Response envelope for simpleMonitorReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Class: "simplemon",
+    Description: "シンプル監視例",
+    ID: 123456789012,
+    Name: "example.com",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SimpleMonitorReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +110,16 @@ model SimpleMonitorUpdateRequestEnvelope {
 /**
  * Response envelope for simpleMonitorUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Class: "simplemon",
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example.com",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model SimpleMonitorUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -116,6 +147,7 @@ model SimpleMonitorMonitorResponseTimeRequestEnvelope {
 /**
  * Response envelope for simpleMonitorMonitorResponseTimeResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model SimpleMonitorMonitorResponseTimeResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -129,6 +161,7 @@ model SimpleMonitorMonitorResponseTimeResponseEnvelope {
 /**
  * Response envelope for simpleMonitorHealthStatusResponseEnvelope
  */
+@example(#{ SimpleMonitor: #{ Health: "up", LatestLogs: #[] }, is_ok: true })
 model SimpleMonitorHealthStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,35 @@ model ServerFindRequestEnvelope {
 /**
  * Response envelope for serverFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  Servers: #[
+    #{
+      Availability: "available",
+      Description: "ドキュメント用ダミーサーバ",
+      HostName: "localhost",
+      ID: 123456789012,
+      Icon: null,
+      InterfaceDriver: "virtio",
+      Name: "example-server",
+      ServerPlan: #{
+        CPU: 1,
+        CPUModel: "uncategorized",
+        Commitment: "standard",
+        ConfidentialVM: false,
+        GPU: 0,
+        GPUModel: "none",
+        Generation: 200,
+        ID: 200001001,
+        MemoryMB: 1024,
+        Name: "プラン/1Core-1GB(新プラン)",
+      },
+      Tags: #["example"],
+    }
+  ],
+  Total: 1,
+})
 model ServerFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +83,31 @@ model ServerCreateRequestEnvelope {
 /**
  * Response envelope for serverCreateResponseEnvelope
  */
+@example(#{
+  Server: #{
+    Availability: "available",
+    Description: "ドキュメント用ダミーサーバ",
+    HostName: "localhost",
+    ID: 123456789012,
+    Icon: null,
+    InterfaceDriver: "virtio",
+    Name: "example-server",
+    ServerPlan: #{
+      CPU: 1,
+      CPUModel: "uncategorized",
+      Commitment: "standard",
+      ConfidentialVM: false,
+      GPU: 0,
+      GPUModel: "none",
+      Generation: 200,
+      ID: 200001001,
+      MemoryMB: 1024,
+      Name: "プラン/1Core-1GB(新プラン)",
+    },
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ServerCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +121,31 @@ model ServerCreateResponseEnvelope {
 /**
  * Response envelope for serverReadResponseEnvelope
  */
+@example(#{
+  Server: #{
+    Availability: "available",
+    Description: "ドキュメント用ダミーサーバ",
+    HostName: "localhost",
+    ID: 123456789012,
+    Icon: null,
+    InterfaceDriver: "virtio",
+    Name: "example-server",
+    ServerPlan: #{
+      CPU: 1,
+      CPUModel: "uncategorized",
+      Commitment: "standard",
+      ConfidentialVM: false,
+      GPU: 0,
+      GPUModel: "none",
+      Generation: 200,
+      ID: 200001001,
+      MemoryMB: 1024,
+      Name: "プラン/1Core-1GB(新プラン)",
+    },
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ServerReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +168,31 @@ model ServerUpdateRequestEnvelope {
 /**
  * Response envelope for serverUpdateResponseEnvelope
  */
+@example(#{
+  Server: #{
+    Availability: "available",
+    Description: "更新後の説明",
+    HostName: "localhost",
+    ID: 123456789012,
+    Icon: null,
+    InterfaceDriver: "virtio",
+    Name: "example-server-updated",
+    ServerPlan: #{
+      CPU: 1,
+      CPUModel: "uncategorized",
+      Commitment: "standard",
+      ConfidentialVM: false,
+      GPU: 0,
+      GPUModel: "none",
+      Generation: 200,
+      ID: 200001001,
+      MemoryMB: 1024,
+      Name: "プラン/1Core-1GB(新プラン)",
+    },
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model ServerUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -151,6 +255,31 @@ model ServerChangePlanRequestEnvelope {
 /**
  * Response envelope for serverChangePlanResponseEnvelope
  */
+@example(#{
+  Server: #{
+    Availability: "available",
+    Description: "プラン変更後",
+    HostName: "localhost",
+    ID: 123456789012,
+    Icon: null,
+    InterfaceDriver: "virtio",
+    Name: "example-server",
+    ServerPlan: #{
+      CPU: 1,
+      CPUModel: "uncategorized",
+      Commitment: "standard",
+      ConfidentialVM: false,
+      GPU: 0,
+      GPUModel: "none",
+      Generation: 200,
+      ID: 200002001,
+      MemoryMB: 2048,
+      Name: "プラン/1Core-2GB(新プラン)",
+    },
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ServerChangePlanResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -219,6 +348,17 @@ model ServerSendKeyRequestEnvelope {
 /**
  * Response envelope for serverGetVNCProxyResponseEnvelope
  */
+@example(#{
+  VNCProxyInfo: #{
+    Host: "sac-tk1v-vnc.example.jp",
+    IOServerHost: "sac-tk1v-vnc.example.jp",
+    Password: "dummy-vnc-password",
+    Port: 5900,
+    Status: "available",
+    VNCFile: "",
+  },
+  is_ok: true,
+})
 model ServerGetVNCProxyResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -246,6 +386,7 @@ model ServerMonitorRequestEnvelope {
 /**
  * Response envelope for serverMonitorResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model ServerMonitorResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

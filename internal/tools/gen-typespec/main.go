@@ -253,6 +253,66 @@ func isSharedGroup(pathName string) bool {
 	return ok
 }
 
+// sidebarTagGroups は Redoc/Redocly サイドバーの x-tagGroups 定義。
+// 並び順は https://manual.sakura.ad.jp/cloud-api/1.1/ のカテゴリ並びに倣う。
+//
+// 注意: x-tagGroups を使う場合、いずれかのグループに含まれない tag はサイドバーに
+// 表示されなくなる。新たに @tag("...") を増やしたら必ずどこかに追加すること。
+var sidebarTagGroups = []struct {
+	Name string
+	Tags []string
+}{
+	{"サーバ関連のAPI", []string{"Server", "PrivateHost"}},
+	{"ディスク関連のAPI", []string{"Disk"}},
+	{"スイッチ関連のAPI", []string{"Switch"}},
+	{"アーカイブ関連のAPI", []string{"Archive"}},
+	{"ISOイメージ関連のAPI", []string{"CDROM"}},
+	{"ブリッジ関連のAPI", []string{"Bridge"}},
+	{"ルータ関連のAPI", []string{"Internet", "IPAddress", "IPv6Net", "IPv6Addr", "Subnet"}},
+	{"インタフェース関連のAPI", []string{"Interface", "PacketFilter"}},
+	{"アプライアンス関連のAPI", []string{
+		"Appliance",
+		"Database", "MobileGateway", "VPCRouter",
+		"CommonServiceItem",
+		"AutoScale", "CertificateAuthority", "ContainerRegistry",
+		"ESME", "EnhancedDB", "LocalRouter", "ProxyLB",
+		"SIM", "SimpleMonitor", "SimpleNotificationGroup",
+	}},
+	{"アイコン関連のAPI", []string{"Icon"}},
+	{"スクリプト関連のAPI", []string{"Note"}},
+	{"SSHキー関連のAPI", []string{"SSHKey"}},
+	{"設備関連のAPI", []string{"Region", "Zone"}},
+	{"商品関連のAPI", []string{"ServerPlan", "DiskPlan", "InternetPlan", "PrivateHostPlan", "License", "LicenseInfo", "ServiceClass"}},
+	{"ユーザ・プロジェクト関連のAPI", []string{"AuthStatus", "Coupon"}},
+	{"請求関連のAPI", []string{"Bill"}},
+}
+
+// buildTagGroupsTsp は sidebarTagGroups を TypeSpec の @extension 呼び出し文字列に整形する。
+func buildTagGroupsTsp() string {
+	var b strings.Builder
+	b.WriteString("@extension(\"x-tagGroups\", #[\n")
+	for i, g := range sidebarTagGroups {
+		b.WriteString("  #{ name: \"")
+		b.WriteString(g.Name)
+		b.WriteString("\", tags: #[")
+		for j, t := range g.Tags {
+			if j > 0 {
+				b.WriteString(", ")
+			}
+			b.WriteString("\"")
+			b.WriteString(t)
+			b.WriteString("\"")
+		}
+		b.WriteString("] }")
+		if i < len(sidebarTagGroups)-1 {
+			b.WriteString(",")
+		}
+		b.WriteString("\n")
+	}
+	b.WriteString("])")
+	return b.String()
+}
+
 // generateMainTsp は spec/typespec/main.tsp を生成する。
 func generateMainTsp() {
 	// Markdown のインラインコード用バッククォートは Go の raw string を終端してしまうので、
@@ -261,11 +321,15 @@ func generateMainTsp() {
 // Copyright 2022-2025 The sacloud/iaas-api-go Authors
 
 import "@typespec/http";
+import "@typespec/openapi";
 import "@typespec/openapi3";
 
 import "./resources.tsp";
 import "./types.tsp";
 
+using TypeSpec.OpenAPI;
+
+@@TAG_GROUPS@@
 @service(#{
   title: "Sakura Cloud IaaS API",
 })
@@ -339,6 +403,7 @@ model ResourceRef {
 `
 
 	content = strings.ReplaceAll(content, "@BT@", "`")
+	content = strings.ReplaceAll(content, "@@TAG_GROUPS@@", buildTagGroupsTsp())
 	writeFile(content, nil, "spec/typespec/main.tsp", nil)
 	log.Printf("generated: spec/typespec/main.tsp\n")
 }

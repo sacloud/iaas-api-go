@@ -26,6 +26,37 @@ model ServerPlanFindRequestEnvelope {
 /**
  * Response envelope for serverPlanFindResponseEnvelope
  */
+@example(#{
+  Count: 2,
+  From: 0,
+  ServerPlans: #[
+    #{
+      Availability: "available",
+      CPU: 1,
+      CPUModel: "uncategorized",
+      Commitment: "standard",
+      GPU: 0,
+      GPUModel: "none",
+      Generation: 100,
+      ID: 100001001,
+      MemoryMB: 1024,
+      Name: "プラン/1Core-1GB",
+    },
+    #{
+      Availability: "available",
+      CPU: 1,
+      CPUModel: "uncategorized",
+      Commitment: "standard",
+      GPU: 0,
+      GPUModel: "none",
+      Generation: 100,
+      ID: 100002001,
+      MemoryMB: 2048,
+      Name: "プラン/1Core-2GB",
+    }
+  ],
+  Total: 2,
+})
 model ServerPlanFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +76,21 @@ model ServerPlanFindResponseEnvelope {
 /**
  * Response envelope for serverPlanReadResponseEnvelope
  */
+@example(#{
+  ServerPlan: #{
+    Availability: "available",
+    CPU: 1,
+    CPUModel: "uncategorized",
+    Commitment: "standard",
+    GPU: 0,
+    GPUModel: "none",
+    Generation: 100,
+    ID: 100001001,
+    MemoryMB: 1024,
+    Name: "プラン/1Core-1GB",
+  },
+  is_ok: true,
+})
 model ServerPlanReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

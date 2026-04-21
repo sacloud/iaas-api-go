@@ -26,6 +26,7 @@ model DNSFindRequestEnvelope {
 /**
  * Response envelope for dNSFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model DNSFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,16 @@ model DNSCreateRequestEnvelope {
 /**
  * Response envelope for dNSCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "DNS ゾーン例",
+    ID: 123456789012,
+    Name: "example.com",
+    Records: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model DNSCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +78,16 @@ model DNSCreateResponseEnvelope {
 /**
  * Response envelope for dNSReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "DNS ゾーン例",
+    ID: 123456789012,
+    Name: "example.com",
+    Records: #[#{ Name: "www", RData: "192.0.2.10", TTL: 3600, Type: "A" }],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model DNSReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +110,16 @@ model DNSUpdateRequestEnvelope {
 /**
  * Response envelope for dNSUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example.com",
+    Records: #[],
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model DNSUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

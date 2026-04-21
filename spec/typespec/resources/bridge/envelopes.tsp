@@ -26,6 +26,18 @@ model BridgeFindRequestEnvelope {
 /**
  * Response envelope for bridgeFindResponseEnvelope
  */
+@example(#{
+  Bridges: #[
+    #{
+      Description: "ドキュメント用ダミーブリッジ",
+      ID: 123456789012,
+      Name: "example-bridge",
+    }
+  ],
+  Count: 1,
+  From: 0,
+  Total: 1,
+})
 model BridgeFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +66,14 @@ model BridgeCreateRequestEnvelope {
 /**
  * Response envelope for bridgeCreateResponseEnvelope
  */
+@example(#{
+  Bridge: #{
+    Description: "ドキュメント用ダミーブリッジ",
+    ID: 123456789012,
+    Name: "example-bridge",
+  },
+  is_ok: true,
+})
 model BridgeCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +87,14 @@ model BridgeCreateResponseEnvelope {
 /**
  * Response envelope for bridgeReadResponseEnvelope
  */
+@example(#{
+  Bridge: #{
+    Description: "ドキュメント用ダミーブリッジ",
+    ID: 123456789012,
+    Name: "example-bridge",
+  },
+  is_ok: true,
+})
 model BridgeReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +117,14 @@ model BridgeUpdateRequestEnvelope {
 /**
  * Response envelope for bridgeUpdateResponseEnvelope
  */
+@example(#{
+  Bridge: #{
+    Description: "更新後の説明",
+    ID: 123456789012,
+    Name: "example-bridge-updated",
+  },
+  is_ok: true,
+})
 model BridgeUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

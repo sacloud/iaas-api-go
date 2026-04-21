@@ -26,6 +26,22 @@ model PrivateHostPlanFindRequestEnvelope {
 /**
  * Response envelope for privateHostPlanFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  PrivateHostPlans: #[
+    #{
+      Availability: "available",
+      CPU: 200,
+      Class: "dynamic",
+      Dedicated: false,
+      ID: 112900526366,
+      MemoryMB: 229376,
+      Name: "200Core 224GB 標準",
+    }
+  ],
+  Total: 1,
+})
 model PrivateHostPlanFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -45,6 +61,18 @@ model PrivateHostPlanFindResponseEnvelope {
 /**
  * Response envelope for privateHostPlanReadResponseEnvelope
  */
+@example(#{
+  PrivateHostPlan: #{
+    Availability: "available",
+    CPU: 200,
+    Class: "dynamic",
+    Dedicated: false,
+    ID: 112900526366,
+    MemoryMB: 229376,
+    Name: "200Core 224GB 標準",
+  },
+  is_ok: true,
+})
 model PrivateHostPlanReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

@@ -26,6 +26,7 @@ model ProxyLBFindRequestEnvelope {
 /**
  * Response envelope for proxyLBFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model ProxyLBFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,19 @@ model ProxyLBCreateRequestEnvelope {
 /**
  * Response envelope for proxyLBCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    BindPorts: #[],
+    Description: "エンハンスド LB 例",
+    ID: 123456789012,
+    Name: "example-proxy-lb",
+    Plan: 100,
+    Rules: #[],
+    Servers: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ProxyLBCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +81,19 @@ model ProxyLBCreateResponseEnvelope {
 /**
  * Response envelope for proxyLBReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    BindPorts: #[],
+    Description: "エンハンスド LB 例",
+    ID: 123456789012,
+    Name: "example-proxy-lb",
+    Plan: 100,
+    Rules: #[],
+    Servers: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ProxyLBReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +116,19 @@ model ProxyLBUpdateRequestEnvelope {
 /**
  * Response envelope for proxyLBUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    BindPorts: #[],
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-proxy-lb-updated",
+    Plan: 100,
+    Rules: #[],
+    Servers: #[],
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model ProxyLBUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -111,6 +151,19 @@ model ProxyLBChangePlanRequestEnvelope {
 /**
  * Response envelope for proxyLBChangePlanResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    BindPorts: #[],
+    Description: "プラン変更後",
+    ID: 123456789012,
+    Name: "example-proxy-lb",
+    Plan: 500,
+    Rules: #[],
+    Servers: #[],
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model ProxyLBChangePlanResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -124,6 +177,10 @@ model ProxyLBChangePlanResponseEnvelope {
 /**
  * Response envelope for proxyLBGetCertificatesResponseEnvelope
  */
+@example(#{
+  ProxyLB: #{ AdditionalCerts: #[], PrimaryCert: null },
+  is_ok: true,
+})
 model ProxyLBGetCertificatesResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -146,6 +203,10 @@ model ProxyLBSetCertificatesRequestEnvelope {
 /**
  * Response envelope for proxyLBSetCertificatesResponseEnvelope
  */
+@example(#{
+  ProxyLB: #{ AdditionalCerts: #[], PrimaryCert: null },
+  is_ok: true,
+})
 model ProxyLBSetCertificatesResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -159,6 +220,10 @@ model ProxyLBSetCertificatesResponseEnvelope {
 /**
  * Response envelope for proxyLBHealthStatusResponseEnvelope
  */
+@example(#{
+  ProxyLB: #{ ActiveConn: 0, CurrentVIP: "192.0.2.10", Servers: #[] },
+  is_ok: true,
+})
 model ProxyLBHealthStatusResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -186,6 +251,7 @@ model ProxyLBMonitorConnectionRequestEnvelope {
 /**
  * Response envelope for proxyLBMonitorConnectionResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model ProxyLBMonitorConnectionResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

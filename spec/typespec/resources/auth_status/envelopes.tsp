@@ -7,6 +7,19 @@ namespace Sacloud.IaaS;
 /**
  * Response envelope for authStatusReadResponseEnvelope
  */
+@example(#{
+  AuthStatus: #{
+    Account: #{
+      Class: "member",
+      Code: "example-account",
+      ID: 123456789012,
+      Name: "exampleアカウント",
+    },
+    IsAPIKey: true,
+    Member: #{ Class: "member", Code: "example-member" },
+  },
+  is_ok: true,
+})
 model AuthStatusReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

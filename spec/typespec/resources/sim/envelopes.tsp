@@ -26,6 +26,7 @@ model SIMFindRequestEnvelope {
 /**
  * Response envelope for sIMFindResponseEnvelope
  */
+@example(#{ CommonServiceItems: #[], Count: 0, From: 0, Total: 0 })
 model SIMFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,16 @@ model SIMCreateRequestEnvelope {
 /**
  * Response envelope for sIMCreateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Class: "sim",
+    Description: "SIM 例",
+    ID: 123456789012,
+    Name: "example-sim",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SIMCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +78,16 @@ model SIMCreateResponseEnvelope {
 /**
  * Response envelope for sIMReadResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Class: "sim",
+    Description: "SIM 例",
+    ID: 123456789012,
+    Name: "example-sim",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model SIMReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +110,16 @@ model SIMUpdateRequestEnvelope {
 /**
  * Response envelope for sIMUpdateResponseEnvelope
  */
+@example(#{
+  CommonServiceItem: #{
+    Class: "sim",
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-sim-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model SIMUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -122,6 +153,7 @@ model SIMIMEILockRequestEnvelope {
 /**
  * Response envelope for sIMLogsResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, Logs: #[], Total: 0 })
 model SIMLogsResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -141,6 +173,7 @@ model SIMLogsResponseEnvelope {
 /**
  * Response envelope for sIMGetNetworkOperatorResponseEnvelope
  */
+@example(#{ NetworkOperationConfigs: #[], is_ok: true })
 model SIMGetNetworkOperatorResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -178,6 +211,7 @@ model SIMMonitorSIMRequestEnvelope {
 /**
  * Response envelope for sIMMonitorSIMResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model SIMMonitorSIMResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

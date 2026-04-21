@@ -3,7 +3,11 @@
 package client
 
 import (
+	"fmt"
+
+	"github.com/go-faster/errors"
 	"github.com/go-faster/jx"
+	"github.com/ogen-go/ogen/validate"
 
 	std "encoding/json"
 	"testing"
@@ -323,6 +327,35 @@ func TestArchiveCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestArchiveCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Archive\":{\"Availability\":\"uploading\",\"Description\":\"ドキュメント用ダミーアーカイブ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-archive\",\"SizeMB\":20480,\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ArchiveCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ArchiveCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestArchiveFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ArchiveFindResponseEnvelope
 	typ.SetFake()
@@ -334,6 +367,35 @@ func TestArchiveFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ArchiveFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestArchiveFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Archives\":[{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミーアーカイブ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-archive\",\"SizeMB\":20480,\"Tags\":[\"example\"]}],\"Count\":1,\"From\":0,\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ArchiveFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ArchiveFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestArchiveOpCloseFTPOK_EncodeDecode(t *testing.T) {
 	var typ ArchiveOpCloseFTPOK
@@ -371,6 +433,35 @@ func TestArchiveReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestArchiveReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Archive\":{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミーアーカイブ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-archive\",\"SizeMB\":20480,\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ArchiveReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ArchiveReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestArchiveShareInfo_EncodeDecode(t *testing.T) {
 	var typ ArchiveShareInfo
 	typ.SetFake()
@@ -406,6 +497,35 @@ func TestArchiveShareResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ArchiveShareResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestArchiveShareResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ArchiveShareResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ArchiveShareResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestArchiveTransferRequest_EncodeDecode(t *testing.T) {
 	var typ ArchiveTransferRequest
@@ -443,6 +563,35 @@ func TestArchiveTransferResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ArchiveTransferResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestArchiveTransferResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Archive\":{\"Availability\":\"available\",\"Description\":\"転送済みアーカイブ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-archive\",\"SizeMB\":20480,\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ArchiveTransferResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ArchiveTransferResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestArchiveUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ ArchiveUpdateRequest
 	typ.SetFake()
@@ -478,6 +627,35 @@ func TestArchiveUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ArchiveUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestArchiveUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Archive\":{\"Availability\":\"available\",\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-archive-updated\",\"SizeMB\":20480,\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ArchiveUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ArchiveUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestAuthStatus_EncodeDecode(t *testing.T) {
 	var typ AuthStatus
@@ -527,6 +705,35 @@ func TestAuthStatusReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 AuthStatusReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestAuthStatusReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"AuthStatus\":{\"Account\":{\"Class\":\"member\",\"Code\":\"example-account\",\"ID\":123456789012,\"Name\":\"exampleアカウント\"},\"IsAPIKey\":true,\"Member\":{\"Class\":\"member\",\"Code\":\"example-member\"}},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ AuthStatusReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 AuthStatusReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestAutoBackup_EncodeDecode(t *testing.T) {
 	var typ AutoBackup
 	typ.SetFake()
@@ -551,6 +758,35 @@ func TestAutoBackupCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 AutoBackupCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestAutoBackupCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CommonServiceItem\":{\"Description\":\"自動バックアップ例\",\"ID\":123456789012,\"Name\":\"example-auto-backup\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ AutoBackupCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 AutoBackupCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestAutoBackupFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ AutoBackupFindResponseEnvelope
 	typ.SetFake()
@@ -563,6 +799,35 @@ func TestAutoBackupFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 AutoBackupFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestAutoBackupFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CommonServiceItems\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ AutoBackupFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 AutoBackupFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestAutoBackupReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ AutoBackupReadResponseEnvelope
 	typ.SetFake()
@@ -574,6 +839,35 @@ func TestAutoBackupReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 AutoBackupReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestAutoBackupReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CommonServiceItem\":{\"Description\":\"自動バックアップ例\",\"ID\":123456789012,\"Name\":\"example-auto-backup\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ AutoBackupReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 AutoBackupReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestAutoBackupSettings_EncodeDecode(t *testing.T) {
 	var typ AutoBackupSettings
@@ -622,6 +916,35 @@ func TestAutoBackupUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 AutoBackupUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestAutoBackupUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CommonServiceItem\":{\"Description\":\"更新後\",\"ID\":123456789012,\"Name\":\"example-auto-backup-updated\",\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ AutoBackupUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 AutoBackupUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestAutoScaleCPUThresholdScaling_EncodeDecode(t *testing.T) {
 	var typ AutoScaleCPUThresholdScaling
@@ -707,6 +1030,35 @@ func TestAutoScaleStatusResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 AutoScaleStatusResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestAutoScaleStatusResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"AutoScale\":{\"LatestLogs\":[\"2025-01-01T00:00:00+09:00 scaled up\"],\"ResourcesText\":\"example-resources\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ AutoScaleStatusResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 AutoScaleStatusResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestBill_EncodeDecode(t *testing.T) {
 	var typ Bill
 	typ.SetFake()
@@ -731,6 +1083,35 @@ func TestBillByContractResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BillByContractResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestBillByContractResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BillByContractResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BillByContractResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestBillByContractYearMonthResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ BillByContractYearMonthResponseEnvelope
 	typ.SetFake()
@@ -743,6 +1124,35 @@ func TestBillByContractYearMonthResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BillByContractYearMonthResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestBillByContractYearMonthResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BillByContractYearMonthResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BillByContractYearMonthResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestBillByContractYearResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ BillByContractYearResponseEnvelope
 	typ.SetFake()
@@ -754,6 +1164,35 @@ func TestBillByContractYearResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 BillByContractYearResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestBillByContractYearResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BillByContractYearResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BillByContractYearResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestBillDetail_EncodeDecode(t *testing.T) {
 	var typ BillDetail
@@ -791,6 +1230,35 @@ func TestBillDetailsCSVResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BillDetailsCSVResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestBillDetailsCSVResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CSV\":{\"BodyRows\":[],\"HeaderRow\":[]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BillDetailsCSVResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BillDetailsCSVResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestBillDetailsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ BillDetailsResponseEnvelope
 	typ.SetFake()
@@ -803,6 +1271,35 @@ func TestBillDetailsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BillDetailsResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestBillDetailsResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"BillDetails\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BillDetailsResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BillDetailsResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestBillReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ BillReadResponseEnvelope
 	typ.SetFake()
@@ -814,6 +1311,35 @@ func TestBillReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 BillReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestBillReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BillReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BillReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestBridge_EncodeDecode(t *testing.T) {
 	var typ Bridge
@@ -863,6 +1389,35 @@ func TestBridgeCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 BridgeCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestBridgeCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bridge\":{\"Description\":\"ドキュメント用ダミーブリッジ\",\"ID\":123456789012,\"Name\":\"example-bridge\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BridgeCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BridgeCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestBridgeFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ BridgeFindResponseEnvelope
 	typ.SetFake()
@@ -874,6 +1429,35 @@ func TestBridgeFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 BridgeFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestBridgeFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bridges\":[{\"Description\":\"ドキュメント用ダミーブリッジ\",\"ID\":123456789012,\"Name\":\"example-bridge\"}],\"Count\":1,\"From\":0,\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BridgeFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BridgeFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestBridgeOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ BridgeOpDeleteOK
@@ -898,6 +1482,35 @@ func TestBridgeReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 BridgeReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestBridgeReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bridge\":{\"Description\":\"ドキュメント用ダミーブリッジ\",\"ID\":123456789012,\"Name\":\"example-bridge\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BridgeReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BridgeReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestBridgeUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ BridgeUpdateRequest
@@ -934,6 +1547,35 @@ func TestBridgeUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 BridgeUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestBridgeUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Bridge\":{\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Name\":\"example-bridge-updated\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ BridgeUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 BridgeUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestCDROM_EncodeDecode(t *testing.T) {
 	var typ CDROM
@@ -983,6 +1625,35 @@ func TestCDROMCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 CDROMCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCDROMCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CDROM\":{\"Availability\":\"uploading\",\"Description\":\"ドキュメント用ダミー ISO\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-cdrom\",\"Tags\":[\"example\"]},\"FTPServer\":{\"HostName\":\"sac-tk1v-ftp.example.jp\",\"IPAddress\":\"192.0.2.1\",\"Password\":\"dummy-ftp-password\",\"User\":\"cdrom123456789012\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CDROMCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CDROMCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCDROMFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ CDROMFindResponseEnvelope
 	typ.SetFake()
@@ -994,6 +1665,35 @@ func TestCDROMFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 CDROMFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestCDROMFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CDROMs\":[{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミー ISO\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-cdrom\",\"Tags\":[\"example\"]}],\"Count\":1,\"From\":0,\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CDROMFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CDROMFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestCDROMOpCloseFTPOK_EncodeDecode(t *testing.T) {
 	var typ CDROMOpCloseFTPOK
@@ -1043,6 +1743,35 @@ func TestCDROMOpenFTPResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 CDROMOpenFTPResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCDROMOpenFTPResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"FTPServer\":{\"HostName\":\"sac-tk1v-ftp.example.jp\",\"IPAddress\":\"192.0.2.1\",\"Password\":\"dummy-ftp-password\",\"User\":\"cdrom123456789012\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CDROMOpenFTPResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CDROMOpenFTPResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCDROMReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ CDROMReadResponseEnvelope
 	typ.SetFake()
@@ -1054,6 +1783,35 @@ func TestCDROMReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 CDROMReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestCDROMReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CDROM\":{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミー ISO\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-cdrom\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CDROMReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CDROMReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestCDROMUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ CDROMUpdateRequest
@@ -1091,6 +1849,35 @@ func TestCDROMUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 CDROMUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCDROMUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CDROM\":{\"Availability\":\"available\",\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-cdrom-updated\",\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CDROMUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CDROMUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCertificateAuthorityAddClientOrServerResult_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityAddClientOrServerResult
 	typ.SetFake()
@@ -1127,6 +1914,35 @@ func TestCertificateAuthorityAddClientResponseEnvelope_EncodeDecode(t *testing.T
 	var typ2 CertificateAuthorityAddClientResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCertificateAuthorityAddClientResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":{\"ID\":\"cli_000000000001\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityAddClientResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityAddClientResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCertificateAuthorityAddServerParam_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityAddServerParam
 	typ.SetFake()
@@ -1150,6 +1966,35 @@ func TestCertificateAuthorityAddServerResponseEnvelope_EncodeDecode(t *testing.T
 
 	var typ2 CertificateAuthorityAddServerResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestCertificateAuthorityAddServerResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":{\"ID\":\"srv_000000000001\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityAddServerResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityAddServerResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestCertificateAuthorityClient_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityClient
@@ -1187,6 +2032,35 @@ func TestCertificateAuthorityDetailResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 CertificateAuthorityDetailResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCertificateAuthorityDetailResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":{\"CertificateData\":{\"CertificatePEM\":\"-----BEGIN CERTIFICATE-----\\ndummy\\n-----END CERTIFICATE-----\"},\"Subject\":\"CN=example-ca\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityDetailResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityDetailResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCertificateAuthorityListClientsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityListClientsResponseEnvelope
 	typ.SetFake()
@@ -1199,6 +2073,35 @@ func TestCertificateAuthorityListClientsResponseEnvelope_EncodeDecode(t *testing
 	var typ2 CertificateAuthorityListClientsResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCertificateAuthorityListClientsResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityListClientsResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityListClientsResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCertificateAuthorityListServersResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityListServersResponseEnvelope
 	typ.SetFake()
@@ -1210,6 +2113,35 @@ func TestCertificateAuthorityListServersResponseEnvelope_EncodeDecode(t *testing
 
 	var typ2 CertificateAuthorityListServersResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestCertificateAuthorityListServersResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityListServersResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityListServersResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestCertificateAuthorityOpAddClientReq_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityOpAddClientReq
@@ -1331,6 +2263,35 @@ func TestCertificateAuthorityReadClientResponseEnvelope_EncodeDecode(t *testing.
 	var typ2 CertificateAuthorityReadClientResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCertificateAuthorityReadClientResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":{\"ID\":\"cli_000000000001\",\"IssueState\":\"available\",\"Subject\":\"CN=example-client\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityReadClientResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityReadClientResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestCertificateAuthorityReadServerResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityReadServerResponseEnvelope
 	typ.SetFake()
@@ -1342,6 +2303,35 @@ func TestCertificateAuthorityReadServerResponseEnvelope_EncodeDecode(t *testing.
 
 	var typ2 CertificateAuthorityReadServerResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestCertificateAuthorityReadServerResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CertificateAuthority\":{\"ID\":\"srv_000000000001\",\"IssueState\":\"available\",\"Subject\":\"CN=example-server\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CertificateAuthorityReadServerResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CertificateAuthorityReadServerResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestCertificateAuthorityServer_EncodeDecode(t *testing.T) {
 	var typ CertificateAuthorityServer
@@ -1739,6 +2729,35 @@ func TestContainerRegistryListUsersResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ContainerRegistryListUsersResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestContainerRegistryListUsersResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ContainerRegistry\":{\"Users\":[]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ContainerRegistryListUsersResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ContainerRegistryListUsersResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestContainerRegistryOpAddUserOK_EncodeDecode(t *testing.T) {
 	var typ ContainerRegistryOpAddUserOK
 	typ.SetFake()
@@ -1871,6 +2890,35 @@ func TestCouponFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 CouponFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestCouponFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"Coupon\":[],\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ CouponFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 CouponFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDNSRecord_EncodeDecode(t *testing.T) {
 	var typ DNSRecord
 	typ.SetFake()
@@ -1919,6 +2967,35 @@ func TestDatabaseCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDatabaseCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Appliance\":{\"Availability\":\"migrating\",\"Class\":\"database\",\"Description\":\"データベース例\",\"ID\":123456789012,\"Name\":\"example-db\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDatabaseDisk_EncodeDecode(t *testing.T) {
 	var typ DatabaseDisk
 	typ.SetFake()
@@ -1955,6 +3032,35 @@ func TestDatabaseFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDatabaseFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Appliances\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDatabaseGetParameterResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DatabaseGetParameterResponseEnvelope
 	typ.SetFake()
@@ -1966,6 +3072,35 @@ func TestDatabaseGetParameterResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DatabaseGetParameterResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDatabaseGetParameterResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Database\":{\"MetaInfo\":[],\"Parameter\":null},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseGetParameterResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseGetParameterResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDatabaseInstance_EncodeDecode(t *testing.T) {
 	var typ DatabaseInstance
@@ -2015,6 +3150,35 @@ func TestDatabaseMonitorCPUResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseMonitorCPUResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDatabaseMonitorCPUResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseMonitorCPUResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseMonitorCPUResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDatabaseMonitorDatabaseResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DatabaseMonitorDatabaseResponseEnvelope
 	typ.SetFake()
@@ -2026,6 +3190,35 @@ func TestDatabaseMonitorDatabaseResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DatabaseMonitorDatabaseResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDatabaseMonitorDatabaseResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseMonitorDatabaseResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseMonitorDatabaseResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDatabaseMonitorDiskResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DatabaseMonitorDiskResponseEnvelope
@@ -2039,6 +3232,35 @@ func TestDatabaseMonitorDiskResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseMonitorDiskResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDatabaseMonitorDiskResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseMonitorDiskResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseMonitorDiskResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDatabaseMonitorInterfaceResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DatabaseMonitorInterfaceResponseEnvelope
 	typ.SetFake()
@@ -2050,6 +3272,35 @@ func TestDatabaseMonitorInterfaceResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DatabaseMonitorInterfaceResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDatabaseMonitorInterfaceResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseMonitorInterfaceResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseMonitorInterfaceResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDatabaseOpMonitorDiskReq_EncodeDecode(t *testing.T) {
 	var typ DatabaseOpMonitorDiskReq
@@ -2174,6 +3425,35 @@ func TestDatabaseReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DatabaseReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDatabaseReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Appliance\":{\"Availability\":\"available\",\"Class\":\"database\",\"Description\":\"データベース例\",\"ID\":123456789012,\"Name\":\"example-db\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDatabaseRemark_EncodeDecode(t *testing.T) {
 	var typ DatabaseRemark
@@ -2331,6 +3611,35 @@ func TestDatabaseStatusResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DatabaseStatusResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDatabaseStatusResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Appliance\":{\"Backups\":[],\"Logs\":[],\"SettingsResponse\":{\"DBConf\":{\"MariaDB\":{\"Status\":\"running\"},\"Postgres\":{\"Status\":\"running\"},\"Version\":{\"LastModified\":\"2025-01-01T00:00:00+09:00\",\"Status\":\"running\"}},\"IsFatal\":false,\"Status\":\"up\"}},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseStatusResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseStatusResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDatabaseStatusSettingsResponse_EncodeDecode(t *testing.T) {
 	var typ DatabaseStatusSettingsResponse
 	typ.SetFake()
@@ -2390,6 +3699,35 @@ func TestDatabaseUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DatabaseUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDatabaseUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Appliance\":{\"Availability\":\"available\",\"Class\":\"database\",\"Description\":\"更新後\",\"ID\":123456789012,\"Name\":\"example-db-updated\",\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DatabaseUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DatabaseUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDatabaseVersionInfo_EncodeDecode(t *testing.T) {
 	var typ DatabaseVersionInfo
@@ -2462,6 +3800,35 @@ func TestDiskCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DiskCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDiskCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Disk\":{\"Availability\":\"available\",\"Connection\":\"virtio\",\"Description\":\"ドキュメント用ダミーディスク\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-disk\",\"Plan\":{\"Availability\":\"available\",\"ID\":4,\"Name\":\"SSDプラン\",\"StorageClass\":\"iscsi1204\"},\"SizeMB\":20480,\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDiskEditNote_EncodeDecode(t *testing.T) {
 	var typ DiskEditNote
@@ -2549,6 +3916,35 @@ func TestDiskFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DiskFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDiskFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"Disks\":[{\"Availability\":\"available\",\"Connection\":\"virtio\",\"Description\":\"ドキュメント用ダミーディスク\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-disk\",\"Plan\":{\"Availability\":\"available\",\"ID\":4,\"Name\":\"SSDプラン\",\"StorageClass\":\"iscsi1204\"},\"SizeMB\":20480,\"Tags\":[\"example\"]}],\"From\":0,\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDiskMonitorRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ DiskMonitorRequestEnvelope
 	typ.SetFake()
@@ -2572,6 +3968,35 @@ func TestDiskMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DiskMonitorResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDiskMonitorResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskMonitorResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskMonitorResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDiskOpConfigOK_EncodeDecode(t *testing.T) {
 	var typ DiskOpConfigOK
@@ -2657,6 +4082,35 @@ func TestDiskPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 DiskPlanFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestDiskPlanFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":2,\"DiskPlans\":[{\"Availability\":\"available\",\"ID\":4,\"Name\":\"SSDプラン\",\"Size\":[{\"Availability\":\"available\",\"DisplaySize\":20,\"DisplaySuffix\":\"GB\",\"SizeMB\":20480},{\"Availability\":\"available\",\"DisplaySize\":40,\"DisplaySuffix\":\"GB\",\"SizeMB\":40960}],\"StorageClass\":\"iscsi1204\"},{\"Availability\":\"available\",\"ID\":2,\"Name\":\"標準プラン\",\"Size\":[{\"Availability\":\"available\",\"DisplaySize\":20,\"DisplaySuffix\":\"GB\",\"SizeMB\":20480}],\"StorageClass\":\"iscsi1204\"}],\"From\":0,\"Total\":2}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskPlanFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskPlanFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestDiskPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ DiskPlanReadResponseEnvelope
 	typ.SetFake()
@@ -2668,6 +4122,35 @@ func TestDiskPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DiskPlanReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDiskPlanReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"DiskPlan\":{\"Availability\":\"available\",\"ID\":4,\"Name\":\"SSDプラン\",\"Size\":[{\"Availability\":\"available\",\"DisplaySize\":20,\"DisplaySuffix\":\"GB\",\"SizeMB\":20480},{\"Availability\":\"available\",\"DisplaySize\":40,\"DisplaySuffix\":\"GB\",\"SizeMB\":40960}],\"StorageClass\":\"iscsi1204\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskPlanReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskPlanReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDiskPlanSizeInfo_EncodeDecode(t *testing.T) {
 	var typ DiskPlanSizeInfo
@@ -2692,6 +4175,35 @@ func TestDiskReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DiskReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDiskReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Disk\":{\"Availability\":\"available\",\"Connection\":\"virtio\",\"Description\":\"ドキュメント用ダミーディスク\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-disk\",\"Plan\":{\"Availability\":\"available\",\"ID\":4,\"Name\":\"SSDプラン\",\"StorageClass\":\"iscsi1204\"},\"SizeMB\":20480,\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestDiskResizePartitionRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ DiskResizePartitionRequestEnvelope
@@ -2776,6 +4288,35 @@ func TestDiskUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 DiskUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestDiskUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Disk\":{\"Availability\":\"available\",\"Connection\":\"virtio\",\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-disk-updated\",\"Plan\":{\"Availability\":\"available\",\"ID\":4,\"Name\":\"SSDプラン\",\"StorageClass\":\"iscsi1204\"},\"SizeMB\":20480,\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ DiskUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 DiskUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestEAutoScaleAction_EncodeDecode(t *testing.T) {
 	var typ EAutoScaleAction
@@ -3065,6 +4606,35 @@ func TestESMELogsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ESMELogsResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestESMELogsResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ESME\":{\"Destination\":\"09000000000\",\"MessageID\":\"msg-000000000001\",\"RetryCount\":0,\"Status\":\"Delivered\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ESMELogsResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ESMELogsResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestESMEOpSendMessageWithGeneratedOTPReq_EncodeDecode(t *testing.T) {
 	var typ ESMEOpSendMessageWithGeneratedOTPReq
 	typ.SetFake()
@@ -3125,6 +4695,35 @@ func TestESMESendMessageWithGeneratedOTPResponseEnvelope_EncodeDecode(t *testing
 	var typ2 ESMESendMessageWithGeneratedOTPResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestESMESendMessageWithGeneratedOTPResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ESME\":{\"MessageID\":\"msg-000000000001\",\"OTP\":\"123456\",\"Status\":\"Accepted\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ESMESendMessageWithGeneratedOTPResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ESMESendMessageWithGeneratedOTPResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestESMESendMessageWithInputtedOTPRequest_EncodeDecode(t *testing.T) {
 	var typ ESMESendMessageWithInputtedOTPRequest
 	typ.SetFake()
@@ -3148,6 +4747,35 @@ func TestESMESendMessageWithInputtedOTPResponseEnvelope_EncodeDecode(t *testing.
 
 	var typ2 ESMESendMessageWithInputtedOTPResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestESMESendMessageWithInputtedOTPResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ESME\":{\"MessageID\":\"msg-000000000002\",\"Status\":\"Accepted\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ESMESendMessageWithInputtedOTPResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ESMESendMessageWithInputtedOTPResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestEScope_EncodeDecode(t *testing.T) {
 	var typ EScope
@@ -3244,6 +4872,35 @@ func TestEnhancedDBGetConfigResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 EnhancedDBGetConfigResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestEnhancedDBGetConfigResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"EnhancedDB\":{\"AllowedNetworks\":[]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ EnhancedDBGetConfigResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 EnhancedDBGetConfigResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestEnhancedDBOpSetConfigOK_EncodeDecode(t *testing.T) {
 	var typ EnhancedDBOpSetConfigOK
@@ -3425,6 +5082,35 @@ func TestIPAddressListResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 IPAddressListResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestIPAddressListResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"IPAddress\":[{\"HostName\":\"example-host\",\"IPAddress\":\"192.0.2.10\"}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPAddressListResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPAddressListResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestIPAddressReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ IPAddressReadResponseEnvelope
 	typ.SetFake()
@@ -3436,6 +5122,35 @@ func TestIPAddressReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IPAddressReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIPAddressReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPAddress\":{\"HostName\":\"example-host\",\"IPAddress\":\"192.0.2.10\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPAddressReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPAddressReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIPAddressUpdateHostNameRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ IPAddressUpdateHostNameRequestEnvelope
@@ -3460,6 +5175,35 @@ func TestIPAddressUpdateHostNameResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IPAddressUpdateHostNameResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIPAddressUpdateHostNameResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPAddress\":{\"HostName\":\"updated-host\",\"IPAddress\":\"192.0.2.10\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPAddressUpdateHostNameResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPAddressUpdateHostNameResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIPv6Addr_EncodeDecode(t *testing.T) {
 	var typ IPv6Addr
@@ -3509,6 +5253,35 @@ func TestIPv6AddrCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 IPv6AddrCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestIPv6AddrCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPv6Addr\":{\"HostName\":\"example-host\",\"IPv6Addr\":\"2001:db8::1\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPv6AddrCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPv6AddrCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestIPv6AddrFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ IPv6AddrFindResponseEnvelope
 	typ.SetFake()
@@ -3520,6 +5293,35 @@ func TestIPv6AddrFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IPv6AddrFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIPv6AddrFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"IPv6Addrs\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPv6AddrFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPv6AddrFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIPv6AddrOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ IPv6AddrOpDeleteOK
@@ -3544,6 +5346,35 @@ func TestIPv6AddrReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IPv6AddrReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIPv6AddrReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPv6Addr\":{\"HostName\":\"example-host\",\"IPv6Addr\":\"2001:db8::1\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPv6AddrReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPv6AddrReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIPv6AddrUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ IPv6AddrUpdateRequest
@@ -3580,6 +5411,35 @@ func TestIPv6AddrUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IPv6AddrUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIPv6AddrUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPv6Addr\":{\"HostName\":\"updated-host\",\"IPv6Addr\":\"2001:db8::1\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPv6AddrUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPv6AddrUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIPv6Net_EncodeDecode(t *testing.T) {
 	var typ IPv6Net
@@ -3643,6 +5503,35 @@ func TestIPv6NetListResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 IPv6NetListResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestIPv6NetListResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"IPv6Nets\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPv6NetListResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPv6NetListResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestIPv6NetReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ IPv6NetReadResponseEnvelope
 	typ.SetFake()
@@ -3654,6 +5543,35 @@ func TestIPv6NetReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IPv6NetReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIPv6NetReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPv6Net\":{\"ID\":123456789012,\"IPv6Prefix\":\"2001:db8::\",\"IPv6PrefixLen\":64},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IPv6NetReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IPv6NetReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIcon_EncodeDecode(t *testing.T) {
 	var typ Icon
@@ -3703,6 +5621,35 @@ func TestIconCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 IconCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestIconCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Icon\":{\"ID\":123456789012,\"Name\":\"example-icon\",\"Tags\":[\"example\",\"dummy\"],\"URL\":\"https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IconCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IconCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestIconFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ IconFindResponseEnvelope
 	typ.SetFake()
@@ -3714,6 +5661,35 @@ func TestIconFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IconFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIconFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":3,\"From\":0,\"Icons\":[{\"ID\":112300511380,\"Name\":\"CGI\",\"Tags\":[\"category-feature\"],\"URL\":\"https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/112300511380.png\"},{\"ID\":112300511382,\"Name\":\"DNS\",\"Tags\":[\"category-feature\"],\"URL\":\"https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/112300511382.png\"},{\"ID\":123456789012,\"Name\":\"example-icon\",\"Tags\":[\"example\",\"dummy\"],\"URL\":\"https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png\"}],\"Total\":3}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IconFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IconFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIconOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ IconOpDeleteOK
@@ -3738,6 +5714,35 @@ func TestIconReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IconReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIconReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Icon\":{\"ID\":123456789012,\"Name\":\"example-icon\",\"Tags\":[\"example\",\"dummy\"],\"URL\":\"https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IconReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IconReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestIconUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ IconUpdateRequest
@@ -3774,6 +5779,35 @@ func TestIconUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 IconUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestIconUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Icon\":{\"ID\":123456789012,\"Name\":\"example-icon-updated\",\"Tags\":[\"example\",\"dummy\",\"updated\"],\"URL\":\"https://secure.sakura.ad.jp/cloud/zone/tk1v/api/cloud/1.1/icon/123456789012.png\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ IconUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 IconUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInsertCDROMRequest_EncodeDecode(t *testing.T) {
 	var typ InsertCDROMRequest
@@ -3835,6 +5869,35 @@ func TestInterfaceCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InterfaceCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInterfaceCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Interface\":{\"ID\":123456789012,\"Server\":{\"ID\":123456789014},\"Switch\":null,\"UserIPAddress\":null},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InterfaceCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InterfaceCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInterfaceFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InterfaceFindResponseEnvelope
 	typ.SetFake()
@@ -3846,6 +5909,35 @@ func TestInterfaceFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InterfaceFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInterfaceFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"Interfaces\":[{\"ID\":123456789012,\"Server\":{\"ID\":123456789014},\"Switch\":{\"ID\":123456789013,\"Scope\":\"user\"},\"UserIPAddress\":\"192.0.2.10\"}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InterfaceFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InterfaceFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInterfaceMonitorRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ InterfaceMonitorRequestEnvelope
@@ -3870,6 +5962,35 @@ func TestInterfaceMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InterfaceMonitorResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInterfaceMonitorResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InterfaceMonitorResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InterfaceMonitorResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInterfaceOpConnectToPacketFilterOK_EncodeDecode(t *testing.T) {
 	var typ InterfaceOpConnectToPacketFilterOK
@@ -3955,6 +6076,35 @@ func TestInterfaceReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InterfaceReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInterfaceReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Interface\":{\"ID\":123456789012,\"Server\":{\"ID\":123456789014},\"Switch\":{\"ID\":123456789013,\"Scope\":\"user\"},\"UserIPAddress\":\"192.0.2.10\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InterfaceReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InterfaceReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInterfaceSwitch_EncodeDecode(t *testing.T) {
 	var typ InterfaceSwitch
 	typ.SetFake()
@@ -4002,6 +6152,35 @@ func TestInterfaceUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InterfaceUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInterfaceUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Interface\":{\"ID\":123456789012,\"Server\":{\"ID\":123456789014},\"Switch\":{\"ID\":123456789013,\"Scope\":\"user\"},\"UserIPAddress\":\"192.0.2.10\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InterfaceUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InterfaceUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInterfaceView_EncodeDecode(t *testing.T) {
 	var typ InterfaceView
@@ -4111,6 +6290,35 @@ func TestInternetAddSubnetResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetAddSubnetResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetAddSubnetResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Subnet\":{\"ID\":123456789013,\"NetworkAddress\":\"192.0.2.0\",\"NetworkMaskLen\":28},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetAddSubnetResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetAddSubnetResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetCreateRequest_EncodeDecode(t *testing.T) {
 	var typ InternetCreateRequest
 	typ.SetFake()
@@ -4147,6 +6355,35 @@ func TestInternetCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Internet\":{\"BandWidthMbps\":100,\"Description\":\"ドキュメント用ダミールータ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-internet\",\"NetworkMaskLen\":28,\"Switch\":{\"ID\":123456789013,\"Name\":\"example-internet\"},\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetEnableIPv6ResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetEnableIPv6ResponseEnvelope
 	typ.SetFake()
@@ -4159,6 +6396,35 @@ func TestInternetEnableIPv6ResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetEnableIPv6ResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetEnableIPv6ResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"IPv6Net\":{\"ID\":123456789014,\"IPv6Prefix\":\"2001:db8::\",\"IPv6PrefixLen\":64},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetEnableIPv6ResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetEnableIPv6ResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetFindResponseEnvelope
 	typ.SetFake()
@@ -4170,6 +6436,35 @@ func TestInternetFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InternetFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInternetFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"Internet\":[{\"BandWidthMbps\":100,\"Description\":\"ドキュメント用ダミールータ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-internet\",\"NetworkMaskLen\":28,\"Switch\":{\"ID\":123456789013,\"Name\":\"example-internet\"},\"Tags\":[\"example\"]}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInternetInfo_EncodeDecode(t *testing.T) {
 	var typ InternetInfo
@@ -4206,6 +6501,35 @@ func TestInternetMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InternetMonitorResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInternetMonitorResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetMonitorResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetMonitorResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInternetOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ InternetOpDeleteOK
@@ -4267,6 +6591,35 @@ func TestInternetPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetPlanFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetPlanFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":3,\"From\":0,\"InternetPlans\":[{\"Availability\":\"available\",\"BandWidthMbps\":100,\"ID\":100,\"Name\":\"100Mbps共有\"},{\"Availability\":\"available\",\"BandWidthMbps\":250,\"ID\":250,\"Name\":\"250Mbps共有\"},{\"Availability\":\"available\",\"BandWidthMbps\":500,\"ID\":500,\"Name\":\"500Mbps共有\"}],\"Total\":3}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetPlanFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetPlanFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetPlanReadResponseEnvelope
 	typ.SetFake()
@@ -4279,6 +6632,35 @@ func TestInternetPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetPlanReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetPlanReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"InternetPlan\":{\"Availability\":\"available\",\"BandWidthMbps\":100,\"ID\":100,\"Name\":\"100Mbps共有\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetPlanReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetPlanReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetReadResponseEnvelope
 	typ.SetFake()
@@ -4290,6 +6672,35 @@ func TestInternetReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InternetReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInternetReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Internet\":{\"BandWidthMbps\":100,\"Description\":\"ドキュメント用ダミールータ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-internet\",\"NetworkMaskLen\":28,\"Switch\":{\"ID\":123456789013,\"Name\":\"example-internet\"},\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestInternetSubnet_EncodeDecode(t *testing.T) {
 	var typ InternetSubnet
@@ -4339,6 +6750,35 @@ func TestInternetUpdateBandWidthResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetUpdateBandWidthResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetUpdateBandWidthResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Internet\":{\"BandWidthMbps\":250,\"Description\":\"帯域変更後\",\"ID\":123456789012,\"Name\":\"example-internet\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetUpdateBandWidthResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetUpdateBandWidthResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ InternetUpdateRequest
 	typ.SetFake()
@@ -4375,6 +6815,35 @@ func TestInternetUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 InternetUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestInternetUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Internet\":{\"BandWidthMbps\":100,\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-internet-updated\",\"NetworkMaskLen\":28,\"Switch\":{\"ID\":123456789013,\"Name\":\"example-internet-updated\"},\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestInternetUpdateSubnetRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ InternetUpdateSubnetRequestEnvelope
 	typ.SetFake()
@@ -4398,6 +6867,35 @@ func TestInternetUpdateSubnetResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 InternetUpdateSubnetResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestInternetUpdateSubnetResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Subnet\":{\"ID\":123456789013,\"NetworkAddress\":\"192.0.2.0\",\"NetworkMaskLen\":28},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ InternetUpdateSubnetResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 InternetUpdateSubnetResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestLicense_EncodeDecode(t *testing.T) {
 	var typ License
@@ -4447,6 +6945,35 @@ func TestLicenseCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 LicenseCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestLicenseCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"License\":{\"ID\":123456789012,\"LicenseInfo\":{\"ID\":10001,\"Name\":\"Windows RDS SAL\"},\"Name\":\"example-license\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LicenseCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LicenseCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestLicenseFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ LicenseFindResponseEnvelope
 	typ.SetFake()
@@ -4458,6 +6985,35 @@ func TestLicenseFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 LicenseFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestLicenseFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"Licenses\":[{\"ID\":123456789012,\"LicenseInfo\":{\"ID\":10001,\"Name\":\"Windows RDS SAL\"},\"Name\":\"example-license\"}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LicenseFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LicenseFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestLicenseInfo_EncodeDecode(t *testing.T) {
 	var typ LicenseInfo
@@ -4483,6 +7039,35 @@ func TestLicenseInfoFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 LicenseInfoFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestLicenseInfoFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":2,\"From\":0,\"LicenseInfo\":[{\"ID\":10001,\"Name\":\"Windows RDS SAL\",\"TermsOfUse\":\"1ライセンスにつき、1人のユーザが利用できます。\"},{\"ID\":10011,\"Name\":\"Windows RDS SAL + Office SAL\",\"TermsOfUse\":\"1ライセンスにつき、1人のユーザが利用できます。\"}],\"Total\":2}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LicenseInfoFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LicenseInfoFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestLicenseInfoReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ LicenseInfoReadResponseEnvelope
 	typ.SetFake()
@@ -4494,6 +7079,35 @@ func TestLicenseInfoReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 LicenseInfoReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestLicenseInfoReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"LicenseInfo\":{\"ID\":10001,\"Name\":\"Windows RDS SAL\",\"TermsOfUse\":\"1ライセンスにつき、1人のユーザが利用できます。\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LicenseInfoReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LicenseInfoReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestLicenseLicenseInfo_EncodeDecode(t *testing.T) {
 	var typ LicenseLicenseInfo
@@ -4531,6 +7145,35 @@ func TestLicenseReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 LicenseReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestLicenseReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"License\":{\"ID\":123456789012,\"LicenseInfo\":{\"ID\":10001,\"Name\":\"Windows RDS SAL\"},\"Name\":\"example-license\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LicenseReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LicenseReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestLicenseUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ LicenseUpdateRequest
 	typ.SetFake()
@@ -4566,6 +7209,35 @@ func TestLicenseUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 LicenseUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestLicenseUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"License\":{\"ID\":123456789012,\"LicenseInfo\":{\"ID\":10001,\"Name\":\"Windows RDS SAL\"},\"Name\":\"example-license-updated\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LicenseUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LicenseUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestLocalRouterHealth_EncodeDecode(t *testing.T) {
 	var typ LocalRouterHealth
@@ -4603,6 +7275,35 @@ func TestLocalRouterHealthStatusResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 LocalRouterHealthStatusResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestLocalRouterHealthStatusResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"LocalRouter\":{\"Peers\":[]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LocalRouterHealthStatusResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LocalRouterHealthStatusResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestLocalRouterInterface_EncodeDecode(t *testing.T) {
 	var typ LocalRouterInterface
 	typ.SetFake()
@@ -4626,6 +7327,35 @@ func TestLocalRouterMonitorLocalRouterResponseEnvelope_EncodeDecode(t *testing.T
 
 	var typ2 LocalRouterMonitorLocalRouterResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestLocalRouterMonitorLocalRouterResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ LocalRouterMonitorLocalRouterResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 LocalRouterMonitorLocalRouterResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestLocalRouterOpMonitorLocalRouterReq_EncodeDecode(t *testing.T) {
 	var typ LocalRouterOpMonitorLocalRouterReq
@@ -4711,6 +7441,35 @@ func TestMobileGatewayGetDNSResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 MobileGatewayGetDNSResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestMobileGatewayGetDNSResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"SIMGroup\":{\"DNS1\":\"192.0.2.53\",\"DNS2\":\"198.51.100.53\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayGetDNSResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayGetDNSResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestMobileGatewayGetSIMRoutesResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ MobileGatewayGetSIMRoutesResponseEnvelope
 	typ.SetFake()
@@ -4722,6 +7481,35 @@ func TestMobileGatewayGetSIMRoutesResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 MobileGatewayGetSIMRoutesResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestMobileGatewayGetSIMRoutesResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"SIMRoutes\":[],\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayGetSIMRoutesResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayGetSIMRoutesResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestMobileGatewayGetTrafficConfigResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ MobileGatewayGetTrafficConfigResponseEnvelope
@@ -4735,6 +7523,35 @@ func TestMobileGatewayGetTrafficConfigResponseEnvelope_EncodeDecode(t *testing.T
 	var typ2 MobileGatewayGetTrafficConfigResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestMobileGatewayGetTrafficConfigResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"TrafficMonitoring\":{\"AutoTrafficShaping\":false,\"BandWidthLimitInKbps\":0,\"EMailConfig\":{\"Enabled\":false},\"SlackConfig\":{\"Enabled\":false,\"IncomingWebhooksURL\":\"\"},\"TrafficQuotaInMB\":1024},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayGetTrafficConfigResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayGetTrafficConfigResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestMobileGatewayListSIMResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ MobileGatewayListSIMResponseEnvelope
 	typ.SetFake()
@@ -4746,6 +7563,35 @@ func TestMobileGatewayListSIMResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 MobileGatewayListSIMResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestMobileGatewayListSIMResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"SIM\":[],\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayListSIMResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayListSIMResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestMobileGatewayLogsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ MobileGatewayLogsResponseEnvelope
@@ -4759,6 +7605,35 @@ func TestMobileGatewayLogsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 MobileGatewayLogsResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestMobileGatewayLogsResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Logs\":[],\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayLogsResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayLogsResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestMobileGatewayMonitorInterfaceResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ MobileGatewayMonitorInterfaceResponseEnvelope
 	typ.SetFake()
@@ -4770,6 +7645,35 @@ func TestMobileGatewayMonitorInterfaceResponseEnvelope_EncodeDecode(t *testing.T
 
 	var typ2 MobileGatewayMonitorInterfaceResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestMobileGatewayMonitorInterfaceResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayMonitorInterfaceResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayMonitorInterfaceResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestMobileGatewayOpAddSIMOK_EncodeDecode(t *testing.T) {
 	var typ MobileGatewayOpAddSIMOK
@@ -4999,6 +7903,35 @@ func TestMobileGatewayTrafficStatusResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 MobileGatewayTrafficStatusResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestMobileGatewayTrafficStatusResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"TrafficStatus\":{\"DownlinkBytes\":0,\"TrafficShaping\":false,\"UplinkBytes\":0},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ MobileGatewayTrafficStatusResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 MobileGatewayTrafficStatusResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestMonitorCondition_EncodeDecode(t *testing.T) {
 	var typ MonitorCondition
 	typ.SetFake()
@@ -5083,6 +8016,35 @@ func TestNoteCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 NoteCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestNoteCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Note\":{\"Class\":\"shell\",\"Content\":\"#!/bin/bash\\necho hello\",\"Description\":\"\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-note\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ NoteCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 NoteCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestNoteFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ NoteFindResponseEnvelope
 	typ.SetFake()
@@ -5094,6 +8056,35 @@ func TestNoteFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 NoteFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestNoteFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"Notes\":[{\"Class\":\"shell\",\"Content\":\"#!/bin/bash\\necho hello\",\"Description\":\"ドキュメント用ダミースクリプト\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-note\",\"Tags\":[\"example\"]}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ NoteFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 NoteFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestNoteOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ NoteOpDeleteOK
@@ -5118,6 +8109,35 @@ func TestNoteReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 NoteReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestNoteReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Note\":{\"Class\":\"shell\",\"Content\":\"#!/bin/bash\\necho hello\",\"Description\":\"\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-note\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ NoteReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 NoteReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestNoteUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ NoteUpdateRequest
@@ -5154,6 +8174,35 @@ func TestNoteUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 NoteUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestNoteUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Note\":{\"Class\":\"shell\",\"Content\":\"#!/bin/bash\\necho updated\",\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-note-updated\",\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ NoteUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 NoteUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestPacketFilter_EncodeDecode(t *testing.T) {
 	var typ PacketFilter
@@ -5203,6 +8252,35 @@ func TestPacketFilterCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 PacketFilterCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestPacketFilterCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PacketFilter\":{\"Description\":\"パケットフィルタ例\",\"Expression\":[],\"ID\":123456789012,\"Name\":\"example-pf\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PacketFilterCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PacketFilterCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestPacketFilterExpression_EncodeDecode(t *testing.T) {
 	var typ PacketFilterExpression
 	typ.SetFake()
@@ -5227,6 +8305,35 @@ func TestPacketFilterFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 PacketFilterFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestPacketFilterFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"PacketFilters\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PacketFilterFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PacketFilterFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestPacketFilterOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ PacketFilterOpDeleteOK
 	typ.SetFake()
@@ -5250,6 +8357,35 @@ func TestPacketFilterReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 PacketFilterReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestPacketFilterReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PacketFilter\":{\"Description\":\"パケットフィルタ例\",\"Expression\":[],\"ID\":123456789012,\"Name\":\"example-pf\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PacketFilterReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PacketFilterReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestPacketFilterUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ PacketFilterUpdateRequest
@@ -5286,6 +8422,35 @@ func TestPacketFilterUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 PacketFilterUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestPacketFilterUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PacketFilter\":{\"Description\":\"更新後\",\"Expression\":[],\"ID\":123456789012,\"Name\":\"example-pf-updated\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PacketFilterUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PacketFilterUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestPrice_EncodeDecode(t *testing.T) {
 	var typ Price
@@ -5347,6 +8512,35 @@ func TestPrivateHostCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 PrivateHostCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestPrivateHostCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PrivateHost\":{\"Description\":\"専有ホスト例\",\"ID\":123456789012,\"Name\":\"example-private-host\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PrivateHostCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PrivateHostCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestPrivateHostFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ PrivateHostFindResponseEnvelope
 	typ.SetFake()
@@ -5358,6 +8552,35 @@ func TestPrivateHostFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 PrivateHostFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestPrivateHostFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"PrivateHosts\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PrivateHostFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PrivateHostFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestPrivateHostHost_EncodeDecode(t *testing.T) {
 	var typ PrivateHostHost
@@ -5407,6 +8630,35 @@ func TestPrivateHostPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 PrivateHostPlanFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestPrivateHostPlanFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"PrivateHostPlans\":[{\"Availability\":\"available\",\"CPU\":200,\"Class\":\"dynamic\",\"Dedicated\":false,\"ID\":112900526366,\"MemoryMB\":229376,\"Name\":\"200Core 224GB 標準\"}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PrivateHostPlanFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PrivateHostPlanFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestPrivateHostPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ PrivateHostPlanReadResponseEnvelope
 	typ.SetFake()
@@ -5419,6 +8671,35 @@ func TestPrivateHostPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 PrivateHostPlanReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestPrivateHostPlanReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PrivateHostPlan\":{\"Availability\":\"available\",\"CPU\":200,\"Class\":\"dynamic\",\"Dedicated\":false,\"ID\":112900526366,\"MemoryMB\":229376,\"Name\":\"200Core 224GB 標準\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PrivateHostPlanReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PrivateHostPlanReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestPrivateHostReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ PrivateHostReadResponseEnvelope
 	typ.SetFake()
@@ -5430,6 +8711,35 @@ func TestPrivateHostReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 PrivateHostReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestPrivateHostReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PrivateHost\":{\"Description\":\"専有ホスト例\",\"ID\":123456789012,\"Name\":\"example-private-host\",\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PrivateHostReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PrivateHostReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestPrivateHostUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ PrivateHostUpdateRequest
@@ -5466,6 +8776,35 @@ func TestPrivateHostUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 PrivateHostUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestPrivateHostUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"PrivateHost\":{\"Description\":\"更新後\",\"ID\":123456789012,\"Name\":\"example-private-host-updated\",\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ PrivateHostUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 PrivateHostUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestProtocol_EncodeDecode(t *testing.T) {
 	var typ Protocol
@@ -5575,6 +8914,35 @@ func TestProxyLBChangePlanResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ProxyLBChangePlanResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestProxyLBChangePlanResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"CommonServiceItem\":{\"BindPorts\":[],\"Description\":\"プラン変更後\",\"ID\":123456789012,\"Name\":\"example-proxy-lb\",\"Plan\":500,\"Rules\":[],\"Servers\":[],\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ProxyLBChangePlanResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ProxyLBChangePlanResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestProxyLBGetCertificatesResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ProxyLBGetCertificatesResponseEnvelope
 	typ.SetFake()
@@ -5586,6 +8954,35 @@ func TestProxyLBGetCertificatesResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ProxyLBGetCertificatesResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestProxyLBGetCertificatesResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ProxyLB\":{\"AdditionalCerts\":[],\"PrimaryCert\":null},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ProxyLBGetCertificatesResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ProxyLBGetCertificatesResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestProxyLBGzip_EncodeDecode(t *testing.T) {
 	var typ ProxyLBGzip
@@ -5622,6 +9019,35 @@ func TestProxyLBMonitorConnectionResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ProxyLBMonitorConnectionResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestProxyLBMonitorConnectionResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ProxyLBMonitorConnectionResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ProxyLBMonitorConnectionResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestProxyLBOpChangePlanReq_EncodeDecode(t *testing.T) {
 	var typ ProxyLBOpChangePlanReq
@@ -5767,6 +9193,35 @@ func TestProxyLBSetCertificatesResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ProxyLBSetCertificatesResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestProxyLBSetCertificatesResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ProxyLB\":{\"AdditionalCerts\":[],\"PrimaryCert\":null},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ProxyLBSetCertificatesResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ProxyLBSetCertificatesResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestProxyLBSettings_EncodeDecode(t *testing.T) {
 	var typ ProxyLBSettings
 	typ.SetFake()
@@ -5875,6 +9330,35 @@ func TestRegionFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 RegionFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestRegionFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":2,\"From\":0,\"Regions\":[{\"Description\":\"東京\",\"ID\":210,\"Name\":\"東京\",\"NameServers\":[\"210.188.224.10\",\"210.188.224.11\"]},{\"Description\":\"石狩\",\"ID\":310,\"Name\":\"石狩\",\"NameServers\":[\"133.242.0.3\",\"133.242.0.4\"]}],\"Total\":2}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ RegionFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 RegionFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestRegionReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ RegionReadResponseEnvelope
 	typ.SetFake()
@@ -5886,6 +9370,35 @@ func TestRegionReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 RegionReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestRegionReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Region\":{\"Description\":\"石狩\",\"ID\":310,\"Name\":\"石狩\",\"NameServers\":[\"133.242.0.3\",\"133.242.0.4\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ RegionReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 RegionReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestResourceRef_EncodeDecode(t *testing.T) {
 	var typ ResourceRef
@@ -5922,6 +9435,35 @@ func TestSIMGetNetworkOperatorResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SIMGetNetworkOperatorResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSIMGetNetworkOperatorResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"NetworkOperationConfigs\":[],\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SIMGetNetworkOperatorResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SIMGetNetworkOperatorResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSIMIMEILockRequest_EncodeDecode(t *testing.T) {
 	var typ SIMIMEILockRequest
@@ -5971,6 +9513,35 @@ func TestSIMLogsResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SIMLogsResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSIMLogsResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"Logs\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SIMLogsResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SIMLogsResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSIMMonitorSIMResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SIMMonitorSIMResponseEnvelope
 	typ.SetFake()
@@ -5982,6 +9553,35 @@ func TestSIMMonitorSIMResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SIMMonitorSIMResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSIMMonitorSIMResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SIMMonitorSIMResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SIMMonitorSIMResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSIMNetworkOperatorConfig_EncodeDecode(t *testing.T) {
 	var typ SIMNetworkOperatorConfig
@@ -6187,6 +9787,35 @@ func TestSSHKeyCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SSHKeyCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSSHKeyCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"SSHKey\":{\"Description\":\"ドキュメント用ダミー公開鍵\",\"Fingerprint\":\"00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff\",\"ID\":123456789012,\"Name\":\"example-sshkey\",\"PublicKey\":\"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SSHKeyCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SSHKeyCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSSHKeyFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SSHKeyFindResponseEnvelope
 	typ.SetFake()
@@ -6198,6 +9827,35 @@ func TestSSHKeyFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SSHKeyFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSSHKeyFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"SSHKeys\":[{\"Description\":\"ドキュメント用ダミー公開鍵\",\"Fingerprint\":\"00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff\",\"ID\":123456789012,\"Name\":\"example-sshkey\",\"PublicKey\":\"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com\"}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SSHKeyFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SSHKeyFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSSHKeyOpDeleteOK_EncodeDecode(t *testing.T) {
 	var typ SSHKeyOpDeleteOK
@@ -6222,6 +9880,35 @@ func TestSSHKeyReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SSHKeyReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSSHKeyReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"SSHKey\":{\"Description\":\"ドキュメント用ダミー公開鍵\",\"Fingerprint\":\"00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff\",\"ID\":123456789012,\"Name\":\"example-sshkey\",\"PublicKey\":\"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SSHKeyReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SSHKeyReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSSHKeyUpdateRequest_EncodeDecode(t *testing.T) {
 	var typ SSHKeyUpdateRequest
@@ -6258,6 +9945,35 @@ func TestSSHKeyUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SSHKeyUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSSHKeyUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"SSHKey\":{\"Description\":\"更新後の説明\",\"Fingerprint\":\"00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff\",\"ID\":123456789012,\"Name\":\"example-sshkey-updated\",\"PublicKey\":\"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleDummyPublicKeyDoNotUseInProduction example@example.com\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SSHKeyUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SSHKeyUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestServer_EncodeDecode(t *testing.T) {
 	var typ Server
@@ -6331,6 +10047,35 @@ func TestServerChangePlanResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerChangePlanResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestServerChangePlanResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Server\":{\"Availability\":\"available\",\"Description\":\"プラン変更後\",\"HostName\":\"localhost\",\"ID\":123456789012,\"Icon\":null,\"InterfaceDriver\":\"virtio\",\"Name\":\"example-server\",\"ServerPlan\":{\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"ConfidentialVM\":false,\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":200,\"ID\":200002001,\"MemoryMB\":2048,\"Name\":\"プラン/1Core-2GB(新プラン)\"},\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerChangePlanResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerChangePlanResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestServerConnectedDisk_EncodeDecode(t *testing.T) {
 	var typ ServerConnectedDisk
 	typ.SetFake()
@@ -6391,6 +10136,35 @@ func TestServerCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestServerCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Server\":{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミーサーバ\",\"HostName\":\"localhost\",\"ID\":123456789012,\"Icon\":null,\"InterfaceDriver\":\"virtio\",\"Name\":\"example-server\",\"ServerPlan\":{\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"ConfidentialVM\":false,\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":200,\"ID\":200001001,\"MemoryMB\":1024,\"Name\":\"プラン/1Core-1GB(新プラン)\"},\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestServerDeleteRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerDeleteRequestEnvelope
 	typ.SetFake()
@@ -6427,6 +10201,35 @@ func TestServerFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestServerFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"Servers\":[{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミーサーバ\",\"HostName\":\"localhost\",\"ID\":123456789012,\"Icon\":null,\"InterfaceDriver\":\"virtio\",\"Name\":\"example-server\",\"ServerPlan\":{\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"ConfidentialVM\":false,\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":200,\"ID\":200001001,\"MemoryMB\":1024,\"Name\":\"プラン/1Core-1GB(新プラン)\"},\"Tags\":[\"example\"]}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestServerGetVNCProxyResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerGetVNCProxyResponseEnvelope
 	typ.SetFake()
@@ -6438,6 +10241,35 @@ func TestServerGetVNCProxyResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ServerGetVNCProxyResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestServerGetVNCProxyResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"VNCProxyInfo\":{\"Host\":\"sac-tk1v-vnc.example.jp\",\"IOServerHost\":\"sac-tk1v-vnc.example.jp\",\"Password\":\"dummy-vnc-password\",\"Port\":5900,\"Status\":\"available\",\"VNCFile\":\"\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerGetVNCProxyResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerGetVNCProxyResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestServerInsertCDROMRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerInsertCDROMRequestEnvelope
@@ -6498,6 +10330,35 @@ func TestServerMonitorResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ServerMonitorResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestServerMonitorResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerMonitorResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerMonitorResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestServerOpBootOK_EncodeDecode(t *testing.T) {
 	var typ ServerOpBootOK
@@ -6619,6 +10480,35 @@ func TestServerPlanFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerPlanFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestServerPlanFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":2,\"From\":0,\"ServerPlans\":[{\"Availability\":\"available\",\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":100,\"ID\":100001001,\"MemoryMB\":1024,\"Name\":\"プラン/1Core-1GB\"},{\"Availability\":\"available\",\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":100,\"ID\":100002001,\"MemoryMB\":2048,\"Name\":\"プラン/1Core-2GB\"}],\"Total\":2}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerPlanFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerPlanFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestServerPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerPlanReadResponseEnvelope
 	typ.SetFake()
@@ -6630,6 +10520,35 @@ func TestServerPlanReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ServerPlanReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestServerPlanReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"ServerPlan\":{\"Availability\":\"available\",\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":100,\"ID\":100001001,\"MemoryMB\":1024,\"Name\":\"プラン/1Core-1GB\"},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerPlanReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerPlanReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestServerPrivateHost_EncodeDecode(t *testing.T) {
 	var typ ServerPrivateHost
@@ -6654,6 +10573,35 @@ func TestServerReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ServerReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestServerReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Server\":{\"Availability\":\"available\",\"Description\":\"ドキュメント用ダミーサーバ\",\"HostName\":\"localhost\",\"ID\":123456789012,\"Icon\":null,\"InterfaceDriver\":\"virtio\",\"Name\":\"example-server\",\"ServerPlan\":{\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"ConfidentialVM\":false,\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":200,\"ID\":200001001,\"MemoryMB\":1024,\"Name\":\"プラン/1Core-1GB(新プラン)\"},\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestServerSendKeyRequestEnvelope_EncodeDecode(t *testing.T) {
 	var typ ServerSendKeyRequestEnvelope
@@ -6727,6 +10675,35 @@ func TestServerUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ServerUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestServerUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Server\":{\"Availability\":\"available\",\"Description\":\"更新後の説明\",\"HostName\":\"localhost\",\"ID\":123456789012,\"Icon\":null,\"InterfaceDriver\":\"virtio\",\"Name\":\"example-server-updated\",\"ServerPlan\":{\"CPU\":1,\"CPUModel\":\"uncategorized\",\"Commitment\":\"standard\",\"ConfidentialVM\":false,\"GPU\":0,\"GPUModel\":\"none\",\"Generation\":200,\"ID\":200001001,\"MemoryMB\":1024,\"Name\":\"プラン/1Core-1GB(新プラン)\"},\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServerUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServerUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestServiceClass_EncodeDecode(t *testing.T) {
 	var typ ServiceClass
 	typ.SetFake()
@@ -6750,6 +10727,35 @@ func TestServiceClassFindResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ServiceClassFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestServiceClassFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"ServiceClasses\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ServiceClassFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ServiceClassFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestShutdownOption_EncodeDecode(t *testing.T) {
 	var typ ShutdownOption
@@ -6787,6 +10793,35 @@ func TestSimpleMonitorMonitorResponseTimeResponseEnvelope_EncodeDecode(t *testin
 	var typ2 SimpleMonitorMonitorResponseTimeResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSimpleMonitorMonitorResponseTimeResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Data\":{},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SimpleMonitorMonitorResponseTimeResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SimpleMonitorMonitorResponseTimeResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSimpleMonitorOpMonitorResponseTimeReq_EncodeDecode(t *testing.T) {
 	var typ SimpleMonitorOpMonitorResponseTimeReq
 	typ.SetFake()
@@ -6810,6 +10845,35 @@ func TestSimpleNotificationGroupHistoryResponseEnvelope_EncodeDecode(t *testing.
 
 	var typ2 SimpleNotificationGroupHistoryResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSimpleNotificationGroupHistoryResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"NotificationHistories\":{\"NotificationHistories\":[]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SimpleNotificationGroupHistoryResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SimpleNotificationGroupHistoryResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSimpleNotificationGroupOpPostMessageOK_EncodeDecode(t *testing.T) {
 	var typ SimpleNotificationGroupOpPostMessageOK
@@ -6919,6 +10983,35 @@ func TestSubnetFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SubnetFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSubnetFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"Subnets\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SubnetFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SubnetFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSubnetIPAddress_EncodeDecode(t *testing.T) {
 	var typ SubnetIPAddress
 	typ.SetFake()
@@ -6942,6 +11035,35 @@ func TestSubnetReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SubnetReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSubnetReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Subnet\":{\"ID\":123456789012,\"NetworkAddress\":\"192.0.2.0\",\"NetworkMaskLen\":28},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SubnetReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SubnetReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSubnetSwitch_EncodeDecode(t *testing.T) {
 	var typ SubnetSwitch
@@ -7003,6 +11125,35 @@ func TestSwitchCreateResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SwitchCreateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSwitchCreateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Switch\":{\"Bridge\":null,\"Description\":\"ドキュメント用ダミースイッチ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-switch\",\"ServerCount\":0,\"Subnets\":[],\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SwitchCreateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SwitchCreateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSwitchFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SwitchFindResponseEnvelope
 	typ.SetFake()
@@ -7015,6 +11166,35 @@ func TestSwitchFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SwitchFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSwitchFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":1,\"From\":0,\"Switches\":[{\"Bridge\":null,\"Description\":\"ドキュメント用ダミースイッチ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-switch\",\"ServerCount\":0,\"Subnets\":[],\"Tags\":[\"example\"]}],\"Total\":1}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SwitchFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SwitchFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSwitchGetServersResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ SwitchGetServersResponseEnvelope
 	typ.SetFake()
@@ -7026,6 +11206,35 @@ func TestSwitchGetServersResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SwitchGetServersResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSwitchGetServersResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":0,\"From\":0,\"Servers\":[],\"Total\":0}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SwitchGetServersResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SwitchGetServersResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestSwitchInfo_EncodeDecode(t *testing.T) {
 	var typ SwitchInfo
@@ -7087,6 +11296,35 @@ func TestSwitchReadResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 SwitchReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestSwitchReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Switch\":{\"Bridge\":null,\"Description\":\"ドキュメント用ダミースイッチ\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-switch\",\"ServerCount\":0,\"Subnets\":[],\"Tags\":[\"example\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SwitchReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SwitchReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestSwitchSubnet_EncodeDecode(t *testing.T) {
 	var typ SwitchSubnet
 	typ.SetFake()
@@ -7146,6 +11384,35 @@ func TestSwitchUpdateResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 SwitchUpdateResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestSwitchUpdateResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Switch\":{\"Bridge\":null,\"Description\":\"更新後の説明\",\"ID\":123456789012,\"Icon\":null,\"Name\":\"example-switch-updated\",\"ServerCount\":0,\"Subnets\":[],\"Tags\":[\"example\",\"updated\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ SwitchUpdateResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 SwitchUpdateResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }
 func TestVNCProxy_EncodeDecode(t *testing.T) {
 	var typ VNCProxy
@@ -7207,6 +11474,35 @@ func TestVPCRouterPingResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 VPCRouterPingResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestVPCRouterPingResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"VPCRouter\":{\"Result\":[\"ok\"]},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ VPCRouterPingResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 VPCRouterPingResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestVPCRouterPingResults_EncodeDecode(t *testing.T) {
 	var typ VPCRouterPingResults
 	typ.SetFake()
@@ -7243,6 +11539,35 @@ func TestZoneFindResponseEnvelope_EncodeDecode(t *testing.T) {
 	var typ2 ZoneFindResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
+
+func TestZoneFindResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Count\":2,\"From\":0,\"Total\":2,\"Zones\":[{\"Description\":\"東京第1ゾーン\",\"ID\":21001,\"Name\":\"tk1a\",\"Region\":{\"Description\":\"東京\",\"ID\":210,\"Name\":\"東京\",\"NameServers\":[\"210.188.224.10\",\"210.188.224.11\"]}},{\"Description\":\"石狩第1ゾーン\",\"ID\":31001,\"Name\":\"is1a\",\"Region\":{\"Description\":\"石狩\",\"ID\":310,\"Name\":\"石狩\",\"NameServers\":[\"133.242.0.3\",\"133.242.0.4\"]}}]}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ZoneFindResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ZoneFindResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
+}
 func TestZoneInfo_EncodeDecode(t *testing.T) {
 	var typ ZoneInfo
 	typ.SetFake()
@@ -7266,4 +11591,33 @@ func TestZoneReadResponseEnvelope_EncodeDecode(t *testing.T) {
 
 	var typ2 ZoneReadResponseEnvelope
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+
+func TestZoneReadResponseEnvelope_Examples(t *testing.T) {
+
+	for i, tc := range []struct {
+		Input string
+	}{
+		{Input: "{\"Zone\":{\"Description\":\"石狩第1ゾーン\",\"ID\":31001,\"Name\":\"is1a\",\"Region\":{\"Description\":\"石狩\",\"ID\":310,\"Name\":\"石狩\",\"NameServers\":[\"133.242.0.3\",\"133.242.0.4\"]}},\"is_ok\":true}"},
+	} {
+		tc := tc
+		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
+			var typ ZoneReadResponseEnvelope
+
+			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
+				if validateErr, ok := errors.Into[*validate.Error](err); ok {
+					t.Skipf("Validation error: %v", validateErr)
+					return
+				}
+				require.NoErrorf(t, err, "Input: %s", tc.Input)
+			}
+
+			e := jx.Encoder{}
+			typ.Encode(&e)
+			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
+
+			var typ2 ZoneReadResponseEnvelope
+			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
+		})
+	}
 }

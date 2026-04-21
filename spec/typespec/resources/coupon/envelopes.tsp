@@ -7,6 +7,7 @@ namespace Sacloud.IaaS;
 /**
  * Response envelope for couponFindResponseEnvelope
  */
+@example(#{ Count: 0, Coupon: #[], From: 0, Total: 0 })
 model CouponFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;

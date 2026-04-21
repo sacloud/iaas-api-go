@@ -15,12 +15,14 @@
 package main
 
 import (
+	"log"
 	"path/filepath"
 	"strings"
 	"text/template"
 
 	"github.com/sacloud/iaas-api-go/internal/define"
 	"github.com/sacloud/iaas-api-go/internal/dsl"
+	"github.com/sacloud/iaas-api-go/internal/tools/gen-typespec/examples"
 )
 
 
@@ -235,6 +237,71 @@ type envelopeInfo struct {
 	IsResponsePlural             bool
 	RequestPayloads              []resolvedPayload
 	ResponsePayloads             []resolvedPayload
+	// PrimaryOpName は primary op の DSL 上の Name（PascalCase）。
+	// examples.Manifest のキー "<Resource>.<Op>" 組み立てに使う。
+	PrimaryOpName string
+	// ResponseExamples は response envelope model に付与する @example のリスト。
+	// examples.Manifest から解決済み。各要素は TypeSpec value literal 文字列。
+	ResponseExamples []envelopeExample
+}
+
+// envelopeExample は response envelope model に付与する @example 1 件分の情報。
+type envelopeExample struct {
+	Title       string
+	Description string
+	// ValueTSP は JSON から変換済みの TypeSpec value literal（"#{...}"）。
+	// `@example(<ValueTSP>)` にそのまま埋め込む。
+	ValueTSP string
+}
+
+// renderEnvelopeExampleDecorator は 1 件分の @example(...) デコレータ行を組み立てる。
+// Title / Description は ExampleOptions に落とす。両方空なら第 2 引数を省略する。
+func renderEnvelopeExampleDecorator(e envelopeExample) string {
+	var opts string
+	var parts []string
+	if e.Title != "" {
+		parts = append(parts, "title: \""+escapeTSPString(e.Title)+"\"")
+	}
+	if e.Description != "" {
+		parts = append(parts, "description: \""+escapeTSPString(e.Description)+"\"")
+	}
+	if len(parts) > 0 {
+		opts = ", #{ " + strings.Join(parts, ", ") + " }"
+	}
+	return "@example(" + e.ValueTSP + opts + ")"
+}
+
+// escapeTSPString は TypeSpec ダブルクォート文字列内で安全に使える形にエスケープする。
+func escapeTSPString(s string) string {
+	r := strings.NewReplacer(`\`, `\\`, `"`, `\"`, "\n", `\n`)
+	return r.Replace(s)
+}
+
+// buildEnvelopeExamples は examples.Manifest から `<resourceTypeName>.<opName>` のキーで
+// エントリを取り出し、envelope 用の form に整形する。
+// 見つからなければ nil を返す。
+func buildEnvelopeExamples(resourceTypeName, opName string) []envelopeExample {
+	key := resourceTypeName + "." + opName
+	entries, ok := examples.Manifest[key]
+	if !ok {
+		return nil
+	}
+	var out []envelopeExample
+	for _, e := range entries {
+		if strings.TrimSpace(e.Response) == "" {
+			continue
+		}
+		lit, err := examples.ToTSPLiteral(e.Response, 2)
+		if err != nil {
+			log.Fatalf("examples.Manifest[%q]: invalid JSON Response: %v", key, err)
+		}
+		out = append(out, envelopeExample{
+			Title:       e.Title,
+			Description: e.Description,
+			ValueTSP:    lit,
+		})
+	}
+	return out
 }
 
 // resourceEnvelopes は1リソース分の全エンベロープをまとめたテンプレートパラメータ。
@@ -278,6 +345,9 @@ model {{ .RequestEnvelopeTypeSpecName }} {
  * Response envelope for {{ .ResponseEnvelopeStructName }}
  */
 {{- $isPlural := .IsResponsePlural }}
+{{- range .ResponseExamples }}
+{{ exampleDecorator . }}
+{{- end }}
 model {{ .ResponseEnvelopeTypeSpecName }} {
 {{- if .IsResponsePlural }}
 	@doc("対象リソースの総件数")
@@ -464,6 +534,8 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 			IsResponsePlural:             primary.IsResponsePlural(),
 			RequestPayloads:              reqPayloads,
 			ResponsePayloads:             respPayloads,
+			PrimaryOpName:                primary.Name,
+			ResponseExamples:             buildEnvelopeExamples(api.TypeName(), primary.Name),
 		})
 	}
 
@@ -498,6 +570,7 @@ func generateEnvelopes() {
 		writeFile(envelopesTmpl, resourceEnvelopes{Envelopes: envelopes, ExtraModels: extraModels}, outFile, template.FuncMap{
 			"lowerFirst":       lowerFirst,
 			"goTypeToTypeSpec": envelopePayloadTypeToTS,
+			"exampleDecorator": renderEnvelopeExampleDecorator,
 		})
 	}
 }

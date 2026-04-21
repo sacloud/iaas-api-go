@@ -26,6 +26,7 @@ model PrivateHostFindRequestEnvelope {
 /**
  * Response envelope for privateHostFindResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, PrivateHosts: #[], Total: 0 })
 model PrivateHostFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -59,6 +60,15 @@ model PrivateHostCreateRequestEnvelope {
 /**
  * Response envelope for privateHostCreateResponseEnvelope
  */
+@example(#{
+  PrivateHost: #{
+    Description: "専有ホスト例",
+    ID: 123456789012,
+    Name: "example-private-host",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model PrivateHostCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -72,6 +82,15 @@ model PrivateHostCreateResponseEnvelope {
 /**
  * Response envelope for privateHostReadResponseEnvelope
  */
+@example(#{
+  PrivateHost: #{
+    Description: "専有ホスト例",
+    ID: 123456789012,
+    Name: "example-private-host",
+    Tags: #["example"],
+  },
+  is_ok: true,
+})
 model PrivateHostReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -94,6 +113,15 @@ model PrivateHostUpdateRequestEnvelope {
 /**
  * Response envelope for privateHostUpdateResponseEnvelope
  */
+@example(#{
+  PrivateHost: #{
+    Description: "更新後",
+    ID: 123456789012,
+    Name: "example-private-host-updated",
+    Tags: #["example", "updated"],
+  },
+  is_ok: true,
+})
 model PrivateHostUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

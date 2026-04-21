@@ -26,6 +26,7 @@ model PacketFilterFindRequestEnvelope {
 /**
  * Response envelope for packetFilterFindResponseEnvelope
  */
+@example(#{ Count: 0, From: 0, PacketFilters: #[], Total: 0 })
 model PacketFilterFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +55,15 @@ model PacketFilterCreateRequestEnvelope {
 /**
  * Response envelope for packetFilterCreateResponseEnvelope
  */
+@example(#{
+  PacketFilter: #{
+    Description: "パケットフィルタ例",
+    Expression: #[],
+    ID: 123456789012,
+    Name: "example-pf",
+  },
+  is_ok: true,
+})
 model PacketFilterCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +77,15 @@ model PacketFilterCreateResponseEnvelope {
 /**
  * Response envelope for packetFilterReadResponseEnvelope
  */
+@example(#{
+  PacketFilter: #{
+    Description: "パケットフィルタ例",
+    Expression: #[],
+    ID: 123456789012,
+    Name: "example-pf",
+  },
+  is_ok: true,
+})
 model PacketFilterReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -94,6 +113,15 @@ model PacketFilterUpdateRequestEnvelope {
 /**
  * Response envelope for packetFilterUpdateResponseEnvelope
  */
+@example(#{
+  PacketFilter: #{
+    Description: "更新後",
+    Expression: #[],
+    ID: 123456789012,
+    Name: "example-pf-updated",
+  },
+  is_ok: true,
+})
 model PacketFilterUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;

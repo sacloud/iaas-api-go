@@ -26,6 +26,19 @@ model InterfaceFindRequestEnvelope {
 /**
  * Response envelope for interfaceFindResponseEnvelope
  */
+@example(#{
+  Count: 1,
+  From: 0,
+  Interfaces: #[
+    #{
+      ID: 123456789012,
+      Server: #{ ID: 123456789014 },
+      Switch: #{ ID: 123456789013, Scope: "user" },
+      UserIPAddress: "192.0.2.10",
+    }
+  ],
+  Total: 1,
+})
 model InterfaceFindResponseEnvelope {
   @doc("対象リソースの総件数")
   Total: int32;
@@ -54,6 +67,15 @@ model InterfaceCreateRequestEnvelope {
 /**
  * Response envelope for interfaceCreateResponseEnvelope
  */
+@example(#{
+  Interface: #{
+    ID: 123456789012,
+    Server: #{ ID: 123456789014 },
+    Switch: null,
+    UserIPAddress: null,
+  },
+  is_ok: true,
+})
 model InterfaceCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -67,6 +89,15 @@ model InterfaceCreateResponseEnvelope {
 /**
  * Response envelope for interfaceReadResponseEnvelope
  */
+@example(#{
+  Interface: #{
+    ID: 123456789012,
+    Server: #{ ID: 123456789014 },
+    Switch: #{ ID: 123456789013, Scope: "user" },
+    UserIPAddress: "192.0.2.10",
+  },
+  is_ok: true,
+})
 model InterfaceReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -89,6 +120,15 @@ model InterfaceUpdateRequestEnvelope {
 /**
  * Response envelope for interfaceUpdateResponseEnvelope
  */
+@example(#{
+  Interface: #{
+    ID: 123456789012,
+    Server: #{ ID: 123456789014 },
+    Switch: #{ ID: 123456789013, Scope: "user" },
+    UserIPAddress: "192.0.2.10",
+  },
+  is_ok: true,
+})
 model InterfaceUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
@@ -116,6 +156,7 @@ model InterfaceMonitorRequestEnvelope {
 /**
  * Response envelope for interfaceMonitorResponseEnvelope
  */
+@example(#{ Data: #{}, is_ok: true })
 model InterfaceMonitorResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
