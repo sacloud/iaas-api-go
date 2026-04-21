@@ -660,6 +660,26 @@ func (m *modelsDef) internetModel() *dsl.Model {
 	}
 }
 
+// internetInfoModel は Switch/Subnet 配下に埋め込まれる軽量な Internet ビュー。
+// 実 API のネスト表現は Description/Tags/Icon/CreatedAt/NetworkMaskLen/Switch を返さないため、
+// これらを持たないモデルにする（full の Internet をそのまま使うと v2 の decode が required で失敗する）。
+func (m *modelsDef) internetInfoModel() *dsl.Model {
+	return &dsl.Model{
+		Name:      "InternetInfo",
+		NakedType: meta.Static(naked.Internet{}),
+		Fields: []*dsl.FieldDesc{
+			fields.ID(),
+			fields.Name(),
+			fields.BandWidthMbps(),
+			fields.Scope(),
+			{
+				Name: "ServiceClass",
+				Type: meta.TypeString,
+			},
+		},
+	}
+}
+
 // switchIPv6NetModel InternetリソースのフィールドとしてのIPv6Net
 func (m *modelsDef) switchIPv6NetModel() *dsl.Model {
 	return &dsl.Model{
@@ -762,7 +782,7 @@ func (m *modelsDef) switchSubnet() *dsl.Model {
 	subnet.Fields = append(subnet.Fields,
 		&dsl.FieldDesc{
 			Name: "Internet",
-			Type: m.internetModel(),
+			Type: m.internetInfoModel(),
 		},
 		&dsl.FieldDesc{
 			Name: "AssignedIPAddressMax",

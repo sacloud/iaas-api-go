@@ -1,0 +1,24 @@
+{
+  "name": "@sacloud/iaas-api-spec",
+  "version": "0.0.1",
+  "private": true,
+  "description": "TypeSpec definitions for sacloud IaaS API",
+  "scripts": {
+    "build": "pnpm run generate && pnpm run verify && pnpm run format && pnpm run lint && pnpm run generate:client && pnpm run generate:find-request",
+    "generate": "cd .. && go run ./internal/tools/gen-typespec/",
+    "verify": "cd .. && go run ./internal/tools/verify-typespec/",
+    "generate:client": "mkdir -p ../v2/client && find ../v2/client -maxdepth 1 -name 'oas_*.go' -delete; ogen --target ../v2/client --package client --config ogen.yml tsp-output/@typespec/openapi3/openapi.yaml",
+    "generate:find-request": "cd .. && go run ./internal/tools/gen-find-request/",
+    "format": "tsp format typespec/",
+    "lint": "tsp compile typespec/main.tsp --output-dir tsp-output",
+    "redocly": "redocly build-docs tsp-output/@typespec/openapi3/openapi.yaml -o redoc-static.html && open redoc-static.html"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.26.0"
+  },
+  "dependencies": {
+    "@typespec/compiler": "^1.11.0",
+    "@typespec/http": "^1.11.0",
+    "@typespec/openapi3": "^1.11.0"
+  }
+}
