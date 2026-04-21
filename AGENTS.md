@@ -539,3 +539,84 @@ TEST_ACC=1 go test -v ./integration/...
 ```
 
 
+## v2 ラッパー層の設計方針（参考: saclient-go / simple-notification-api-go）
+
+現状の `v2/client/` は ogen 生成物そのままで、認証ヘッダ付与・Find クエリ書き換え・エラーラップ等は `v2/integration/helper_test.go` に手書きで散らばっている。将来 v2 を公開クライアントにするにあたり、`simple-notification-api-go` と同じ使用感（`saclient.Client` を渡して `NewClient` → リソースごとに `NewFooOp` で CRUD）になるようラッパー層を編成する。
+
+ここでは参考実装の構造と v2 に取り込むべきパターンを整理する。具体の配置・生成方式は「要実装判断」節に切り出してあり、本決まりではない。
+
+### リファレンス実装の位置づけ
+
+- `github.com/sacloud/saclient-go`: 認証・ヘッダ付与・プロファイル解決・ミドルウェアチェーンを担う共通土台。各 API クライアントはこれを受け取って上に乗る。
+- `github.com/sacloud/simple-notification-api-go`: ogen 生成物（`apis/v1/`）の上に薄く載るラッパー。トップレベル Go ファイル（`client.go`, `destination.go`, `group.go`, `history.go`, `routing.go`, `context.go`, `modifier.go`, `error.go`）が手書き。v2 の参考にする具体的な API 形。
+
+### saclient-go の利用プロトコル
+
+- `saclient.Client` は bare struct。ユーザは `var c saclient.Client` と宣言し、`SetEnviron(os.Environ())` / usacloud プロファイル / Terraform HCL 等で設定源を指定してから `Populate()` を呼ぶ（遅延初期化）。
+- サービス固有の設定が必要なとき（BigInt ヘッダ・独自ミドルウェア等）は `DupWith(saclient.WithBigInt(false), saclient.WithMiddleware(...))` で複製して適用する。Populate 済みの元 client を直接変更しないのが原則。
+- エンドポイント解決は `client.EndpointConfig()` の `Endpoints map[string]string` を引く。サービス key（`"iaas"`, `"simple_notification"` 等）でヒットしなければハードコードのデフォルト URL に fallback する（`simple-notification-api-go/client.go` の `defaultAPIRootURL` + `serviceKey` が手本）。
+- 認証は saclient-go 側の `middlewareAuthorization` が担う（Basic / OAuth 両対応）。ogen 側の `SecuritySource` は空実装にする方向になる見込み。
+
+### ミドルウェアチェーンの合成順
+
+saclient-go 内蔵ミドルウェアの標準順序（上から実行）:
+
+1. Header 付与（User-Agent, `X-Sakura-Bigint-As-Int` 等）
+2. Authorization（Basic / OAuth）
+3. tracer
+4. gzip 展開
+5. RateLimiter
+6. Request Customizer（レガシー互換フック）
+7. Retry（指数バックオフ）
+
+`WithMiddleware` で渡したカスタムミドルウェアは先頭に **prepend** される（ユーザ定義が最上位で走る）。simple-notification では `modifiyMiddleware()` が request 前に `Provider.Class` クエリ注入、response 後に icon の null→{} 変換を行っている（ogen の required バリデーションを通すための応急処置）。
+
+v2 整合: 現在 `helper_test.go` に手書きされている `baseTransport`（ヘッダ付与）と `findQueryRewriteTransport`（`?q=...` 書き換え）は saclient-go ミドルウェアまたは Transport の上で再構成することになる。認証ヘッダは saclient-go 任せにできるので、`helper_test.go` の `securitySource` 手書き分は消える見込み。
+
+### Op 層のパターン
+
+リソースごとに **interface-first** で組む:
+
+```go
+type DestinationAPI interface {
+    List(ctx context.Context) (*v1.ListCommonServiceItemsResponse, error)
+    Create(ctx context.Context, req v1.PostCommonServiceItemRequest) (*v1.CreateCommonServiceItemCreated, error)
+    Read(ctx context.Context, id string) (*v1.GetCommonServiceItemOK, error)
+    // ...
+}
+
+type DestinationOp struct{ client *v1.Client }
+
+func NewDestinationOp(client *v1.Client) DestinationAPI {
+    return &DestinationOp{client: client}
+}
+
+var _ DestinationAPI = (*DestinationOp)(nil)
+```
+
+方針のポイント:
+
+- コンストラクタはインターフェースを返す（`var _ DestinationAPI = (*DestinationOp)(nil)` でコンパイル時検証）。
+- メソッドは `ctx` を第一引数に取り、必要に応じて id / リクエスト body を続けて渡す。戻り値は **ogen 生成型をそのまま露出** する（v1 のように独自型へ詰め替えない）。
+- 共通処理として:
+  - `const methodName = "Destination.Create"` で呼び出し識別子を持たせ、エラーメッセージに含める。
+  - context 経由でミドルウェアへメタ情報を引き渡す（`context.go` の typed key パターン: `setContextProviderClass(ctx, ...)` → ミドルウェアが context から読んで URL に差し込む）。
+  - create / update では固定 class / type 定数を request 構造体に埋め込む（呼び出し側から省ける）。
+  - エラーは `errors.As(err, &v1.ErrorStatusCode)` で status code を取り出し、当たれば `NewAPIError(methodName, code, err)`、外れたら `NewError(methodName, err)` で包む。
+
+### エラー型の階層
+
+- モジュール固有の `Error` 型を 1 つ用意し、`msg` + `err` を持つ（`Unwrap()` で下位を露出）。
+- `NewAPIError` は内部で `saclient.NewError(code, "", err)` に委譲し、`saclient.IsNotFoundError(err)` 等の汎用ヘルパが `errors.As` 経由で使えるようにする。
+- 利用者側は `<module>.Error` → `saclient.Error` → `v1.ErrorStatusCode`（ogen）という 3 段の Unwrap チェーンを辿れる。
+
+### 要実装判断
+
+本決まりではない論点。ラッパー実装に入る前に別途合意する:
+
+- **配置**: トップレベル手書きファイルを `v2/` 直下に置くか、`v2/iaas/` のようなサブパッケージに置くか。`v2/client/` は ogen 出力専用のまま維持する。
+- **生成方式**: リソースは 41 個あり全量手書きは非現実的。`internal/tools/gen-v2-op/`（仮称）で Op を自動生成する方向が自然（v1 の `gen-api-op` 相当）。テンプレートの形を先に 1〜2 リソース分手書きで固めてから生成器化するのが安全。
+- **zone / id**: simple-notification はゾーン概念が無いため純粋移植はできない。zone を第二引数に、id を第三引数に取る形へ変形する必要がある。`types.ID` を v2 に再導入するか `string` のままかは別途決定。
+- **saclient-go 依存**: `v2/go.mod` に `github.com/sacloud/saclient-go` を追加する。これに伴い `integration/helper_test.go` の認証・ヘッダ付与を saclient-go に寄せるため統合テストの構築コードも書き直しになる。
+- **既存資産の再利用**: `v2/client/find_transport.go` / `find_request_gen.go` は Op 層からも引き続き使う（saclient-go の `WithMiddleware` または `http.Client` Transport として Op 経由で注入）。
+
