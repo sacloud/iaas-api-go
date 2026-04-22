@@ -398,9 +398,6 @@ using TypeSpec.Http;
 
 // カスタム型定義
 scalar ID extends string;
-scalar Tags;
-scalar StringNumber extends string;
-scalar StringFlag extends string;
 
 // API エラーレスポンス
 @error
