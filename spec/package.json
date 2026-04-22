@@ -14,7 +14,7 @@
     "redocly": "redocly build-docs tsp-output/@typespec/openapi3/openapi.yaml -o redoc-static.html && open redoc-static.html"
   },
   "devDependencies": {
-    "@redocly/cli": "^2.26.0"
+    "@redocly/cli": "^2.29.0"
   },
   "dependencies": {
     "@typespec/compiler": "^1.11.0",
