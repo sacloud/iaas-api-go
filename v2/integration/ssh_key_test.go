@@ -34,7 +34,6 @@ func TestSSHKeyCRUD(t *testing.T) {
 
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
 	// 1. Create - 公開鍵登録
 	createReq := &client.SSHKeyCreateRequestEnvelope{
@@ -45,7 +44,7 @@ func TestSSHKeyCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.SSHKeyOpCreate(ctx, createReq, client.SSHKeyOpCreateParams{Zone: zone})
+	createResp, err := c.SSHKeyOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	sshKeyID := createResp.SSHKey.ID.Value
@@ -55,7 +54,7 @@ func TestSSHKeyCRUD(t *testing.T) {
 	require.NotEmpty(t, createResp.SSHKey.Fingerprint.Value, "fingerprint must be returned on create")
 
 	// 2. Read
-	readResp, err := c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{Zone: zone, ID: sshKeyIDStr})
+	readResp, err := c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{ID: sshKeyIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-sshkey", readResp.SSHKey.Name.Value)
 	require.Equal(t, sshKeyID, readResp.SSHKey.ID.Value)
@@ -67,13 +66,13 @@ func TestSSHKeyCRUD(t *testing.T) {
 			Name:        client.NewOptString("test-sshkey-updated"),
 			Description: "desc-updated",
 		},
-	}, client.SSHKeyOpUpdateParams{Zone: zone, ID: sshKeyIDStr})
+	}, client.SSHKeyOpUpdateParams{ID: sshKeyIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-sshkey-updated", updateResp.SSHKey.Name.Value)
 	require.Equal(t, "desc-updated", updateResp.SSHKey.Description)
 
 	// 4. Find
-	findResp, err := c.SSHKeyOpFind(ctx, client.SSHKeyOpFindParams{Zone: zone})
+	findResp, err := c.SSHKeyOpFind(ctx, client.SSHKeyOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.SSHKeys), 0)
 
@@ -87,10 +86,10 @@ func TestSSHKeyCRUD(t *testing.T) {
 	require.True(t, found, "作成した SSH キーがリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{Zone: zone, ID: sshKeyIDStr})
+	_, err = c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{ID: sshKeyIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{Zone: zone, ID: sshKeyIDStr})
+	_, err = c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{ID: sshKeyIDStr})
 	require.Error(t, err)
 }

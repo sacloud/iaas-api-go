@@ -24,11 +24,11 @@ import (
 
 // BridgeAPI は Bridge リソースに対する操作インターフェース。
 type BridgeAPI interface {
-	Create(ctx context.Context, zone string, request *client.BridgeCreateRequestEnvelope) (*client.BridgeCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.BridgeFindRequest) (*client.BridgeFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.BridgeReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.BridgeCreateRequestEnvelope) (*client.BridgeCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.BridgeFindRequest) (*client.BridgeFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.BridgeReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error)
 }
 
 var _ BridgeAPI = (*bridgeOp)(nil)
@@ -42,17 +42,16 @@ func NewBridgeOp(c *client.Client) BridgeAPI {
 	return &bridgeOp{client: c}
 }
 
-func (op *bridgeOp) Create(ctx context.Context, zone string, request *client.BridgeCreateRequestEnvelope) (*client.BridgeCreateResponseEnvelope, error) {
-	params := client.BridgeOpCreateParams{Zone: zone}
-	resp, err := op.client.BridgeOpCreate(ctx, request, params)
+func (op *bridgeOp) Create(ctx context.Context, request *client.BridgeCreateRequestEnvelope) (*client.BridgeCreateResponseEnvelope, error) {
+	resp, err := op.client.BridgeOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Bridge.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *bridgeOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.BridgeOpDeleteParams{Zone: zone, ID: id}
+func (op *bridgeOp) Delete(ctx context.Context, id string) error {
+	params := client.BridgeOpDeleteParams{ID: id}
 	_, err := op.client.BridgeOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Bridge.Delete", err)
@@ -60,8 +59,8 @@ func (op *bridgeOp) Delete(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *bridgeOp) List(ctx context.Context, zone string, req *client.BridgeFindRequest) (*client.BridgeFindResponseEnvelope, error) {
-	params := client.BridgeOpFindParams{Zone: zone}
+func (op *bridgeOp) List(ctx context.Context, req *client.BridgeFindRequest) (*client.BridgeFindResponseEnvelope, error) {
+	params := client.BridgeOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -72,8 +71,8 @@ func (op *bridgeOp) List(ctx context.Context, zone string, req *client.BridgeFin
 	return resp, nil
 }
 
-func (op *bridgeOp) Read(ctx context.Context, zone string, id string) (*client.BridgeReadResponseEnvelope, error) {
-	params := client.BridgeOpReadParams{Zone: zone, ID: id}
+func (op *bridgeOp) Read(ctx context.Context, id string) (*client.BridgeReadResponseEnvelope, error) {
+	params := client.BridgeOpReadParams{ID: id}
 	resp, err := op.client.BridgeOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bridge.Read", err)
@@ -81,8 +80,8 @@ func (op *bridgeOp) Read(ctx context.Context, zone string, id string) (*client.B
 	return resp, nil
 }
 
-func (op *bridgeOp) Update(ctx context.Context, zone string, id string, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error) {
-	params := client.BridgeOpUpdateParams{Zone: zone, ID: id}
+func (op *bridgeOp) Update(ctx context.Context, id string, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error) {
+	params := client.BridgeOpUpdateParams{ID: id}
 	resp, err := op.client.BridgeOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Bridge.Update", err)

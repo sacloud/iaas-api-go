@@ -24,8 +24,8 @@ import (
 
 // ZoneAPI は Zone リソースに対する操作インターフェース。
 type ZoneAPI interface {
-	List(ctx context.Context, zone string, req *client.ZoneFindRequest) (*client.ZoneFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.ZoneReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.ZoneFindRequest) (*client.ZoneFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.ZoneReadResponseEnvelope, error)
 }
 
 var _ ZoneAPI = (*zoneOp)(nil)
@@ -39,8 +39,8 @@ func NewZoneOp(c *client.Client) ZoneAPI {
 	return &zoneOp{client: c}
 }
 
-func (op *zoneOp) List(ctx context.Context, zone string, req *client.ZoneFindRequest) (*client.ZoneFindResponseEnvelope, error) {
-	params := client.ZoneOpFindParams{Zone: zone}
+func (op *zoneOp) List(ctx context.Context, req *client.ZoneFindRequest) (*client.ZoneFindResponseEnvelope, error) {
+	params := client.ZoneOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *zoneOp) List(ctx context.Context, zone string, req *client.ZoneFindReq
 	return resp, nil
 }
 
-func (op *zoneOp) Read(ctx context.Context, zone string, id string) (*client.ZoneReadResponseEnvelope, error) {
-	params := client.ZoneOpReadParams{Zone: zone, ID: id}
+func (op *zoneOp) Read(ctx context.Context, id string) (*client.ZoneReadResponseEnvelope, error) {
+	params := client.ZoneOpReadParams{ID: id}
 	resp, err := op.client.ZoneOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Zone.Read", err)

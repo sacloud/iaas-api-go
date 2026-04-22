@@ -24,14 +24,14 @@ import (
 
 // SwitchAPI は Switch リソースに対する操作インターフェース。
 type SwitchAPI interface {
-	ConnectToBridge(ctx context.Context, zone string, id string, bridgeID string) error
-	Create(ctx context.Context, zone string, request *client.SwitchCreateRequestEnvelope) (*client.SwitchCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	DisconnectFromBridge(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.SwitchFindRequest) (*client.SwitchFindResponseEnvelope, error)
-	GetServers(ctx context.Context, zone string, id string) (*client.SwitchGetServersResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.SwitchReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error)
+	ConnectToBridge(ctx context.Context, id string, bridgeID string) error
+	Create(ctx context.Context, request *client.SwitchCreateRequestEnvelope) (*client.SwitchCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	DisconnectFromBridge(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.SwitchFindRequest) (*client.SwitchFindResponseEnvelope, error)
+	GetServers(ctx context.Context, id string) (*client.SwitchGetServersResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.SwitchReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error)
 }
 
 var _ SwitchAPI = (*switchOp)(nil)
@@ -45,8 +45,8 @@ func NewSwitchOp(c *client.Client) SwitchAPI {
 	return &switchOp{client: c}
 }
 
-func (op *switchOp) ConnectToBridge(ctx context.Context, zone string, id string, bridgeID string) error {
-	params := client.SwitchOpConnectToBridgeParams{Zone: zone, ID: id, BridgeID: bridgeID}
+func (op *switchOp) ConnectToBridge(ctx context.Context, id string, bridgeID string) error {
+	params := client.SwitchOpConnectToBridgeParams{ID: id, BridgeID: bridgeID}
 	_, err := op.client.SwitchOpConnectToBridge(ctx, params)
 	if err != nil {
 		return wrapOpErr("Switch.ConnectToBridge", err)
@@ -54,17 +54,16 @@ func (op *switchOp) ConnectToBridge(ctx context.Context, zone string, id string,
 	return nil
 }
 
-func (op *switchOp) Create(ctx context.Context, zone string, request *client.SwitchCreateRequestEnvelope) (*client.SwitchCreateResponseEnvelope, error) {
-	params := client.SwitchOpCreateParams{Zone: zone}
-	resp, err := op.client.SwitchOpCreate(ctx, request, params)
+func (op *switchOp) Create(ctx context.Context, request *client.SwitchCreateRequestEnvelope) (*client.SwitchCreateResponseEnvelope, error) {
+	resp, err := op.client.SwitchOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Switch.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *switchOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.SwitchOpDeleteParams{Zone: zone, ID: id}
+func (op *switchOp) Delete(ctx context.Context, id string) error {
+	params := client.SwitchOpDeleteParams{ID: id}
 	_, err := op.client.SwitchOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Switch.Delete", err)
@@ -72,8 +71,8 @@ func (op *switchOp) Delete(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *switchOp) DisconnectFromBridge(ctx context.Context, zone string, id string) error {
-	params := client.SwitchOpDisconnectFromBridgeParams{Zone: zone, ID: id}
+func (op *switchOp) DisconnectFromBridge(ctx context.Context, id string) error {
+	params := client.SwitchOpDisconnectFromBridgeParams{ID: id}
 	_, err := op.client.SwitchOpDisconnectFromBridge(ctx, params)
 	if err != nil {
 		return wrapOpErr("Switch.DisconnectFromBridge", err)
@@ -81,8 +80,8 @@ func (op *switchOp) DisconnectFromBridge(ctx context.Context, zone string, id st
 	return nil
 }
 
-func (op *switchOp) List(ctx context.Context, zone string, req *client.SwitchFindRequest) (*client.SwitchFindResponseEnvelope, error) {
-	params := client.SwitchOpFindParams{Zone: zone}
+func (op *switchOp) List(ctx context.Context, req *client.SwitchFindRequest) (*client.SwitchFindResponseEnvelope, error) {
+	params := client.SwitchOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -93,8 +92,8 @@ func (op *switchOp) List(ctx context.Context, zone string, req *client.SwitchFin
 	return resp, nil
 }
 
-func (op *switchOp) GetServers(ctx context.Context, zone string, id string) (*client.SwitchGetServersResponseEnvelope, error) {
-	params := client.SwitchOpGetServersParams{Zone: zone, ID: id}
+func (op *switchOp) GetServers(ctx context.Context, id string) (*client.SwitchGetServersResponseEnvelope, error) {
+	params := client.SwitchOpGetServersParams{ID: id}
 	resp, err := op.client.SwitchOpGetServers(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Switch.GetServers", err)
@@ -102,8 +101,8 @@ func (op *switchOp) GetServers(ctx context.Context, zone string, id string) (*cl
 	return resp, nil
 }
 
-func (op *switchOp) Read(ctx context.Context, zone string, id string) (*client.SwitchReadResponseEnvelope, error) {
-	params := client.SwitchOpReadParams{Zone: zone, ID: id}
+func (op *switchOp) Read(ctx context.Context, id string) (*client.SwitchReadResponseEnvelope, error) {
+	params := client.SwitchOpReadParams{ID: id}
 	resp, err := op.client.SwitchOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Switch.Read", err)
@@ -111,8 +110,8 @@ func (op *switchOp) Read(ctx context.Context, zone string, id string) (*client.S
 	return resp, nil
 }
 
-func (op *switchOp) Update(ctx context.Context, zone string, id string, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error) {
-	params := client.SwitchOpUpdateParams{Zone: zone, ID: id}
+func (op *switchOp) Update(ctx context.Context, id string, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error) {
+	params := client.SwitchOpUpdateParams{ID: id}
 	resp, err := op.client.SwitchOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Switch.Update", err)

@@ -24,9 +24,9 @@ import (
 
 // VPCRouterAPI は VPCRouter リソースに対する操作インターフェース。
 type VPCRouterAPI interface {
-	ConnectToSwitch(ctx context.Context, zone string, id string, nicIndex string, switchID string) error
-	DisconnectFromSwitch(ctx context.Context, zone string, id string, nicIndex string) error
-	Ping(ctx context.Context, zone string, id string, destination string) (*client.VPCRouterPingResponseEnvelope, error)
+	ConnectToSwitch(ctx context.Context, id string, nicIndex string, switchID string) error
+	DisconnectFromSwitch(ctx context.Context, id string, nicIndex string) error
+	Ping(ctx context.Context, id string, destination string) (*client.VPCRouterPingResponseEnvelope, error)
 }
 
 var _ VPCRouterAPI = (*vPCRouterOp)(nil)
@@ -40,8 +40,8 @@ func NewVPCRouterOp(c *client.Client) VPCRouterAPI {
 	return &vPCRouterOp{client: c}
 }
 
-func (op *vPCRouterOp) ConnectToSwitch(ctx context.Context, zone string, id string, nicIndex string, switchID string) error {
-	params := client.VPCRouterOpConnectToSwitchParams{Zone: zone, ID: id, NicIndex: nicIndex, SwitchID: switchID}
+func (op *vPCRouterOp) ConnectToSwitch(ctx context.Context, id string, nicIndex string, switchID string) error {
+	params := client.VPCRouterOpConnectToSwitchParams{ID: id, NicIndex: nicIndex, SwitchID: switchID}
 	_, err := op.client.VPCRouterOpConnectToSwitch(ctx, params)
 	if err != nil {
 		return wrapOpErr("VPCRouter.ConnectToSwitch", err)
@@ -49,8 +49,8 @@ func (op *vPCRouterOp) ConnectToSwitch(ctx context.Context, zone string, id stri
 	return nil
 }
 
-func (op *vPCRouterOp) DisconnectFromSwitch(ctx context.Context, zone string, id string, nicIndex string) error {
-	params := client.VPCRouterOpDisconnectFromSwitchParams{Zone: zone, ID: id, NicIndex: nicIndex}
+func (op *vPCRouterOp) DisconnectFromSwitch(ctx context.Context, id string, nicIndex string) error {
+	params := client.VPCRouterOpDisconnectFromSwitchParams{ID: id, NicIndex: nicIndex}
 	_, err := op.client.VPCRouterOpDisconnectFromSwitch(ctx, params)
 	if err != nil {
 		return wrapOpErr("VPCRouter.DisconnectFromSwitch", err)
@@ -58,8 +58,8 @@ func (op *vPCRouterOp) DisconnectFromSwitch(ctx context.Context, zone string, id
 	return nil
 }
 
-func (op *vPCRouterOp) Ping(ctx context.Context, zone string, id string, destination string) (*client.VPCRouterPingResponseEnvelope, error) {
-	params := client.VPCRouterOpPingParams{Zone: zone, ID: id, Destination: destination}
+func (op *vPCRouterOp) Ping(ctx context.Context, id string, destination string) (*client.VPCRouterPingResponseEnvelope, error) {
+	params := client.VPCRouterOpPingParams{ID: id, Destination: destination}
 	resp, err := op.client.VPCRouterOpPing(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("VPCRouter.Ping", err)

@@ -24,11 +24,11 @@ import (
 
 // SSHKeyAPI は SSHKey リソースに対する操作インターフェース。
 type SSHKeyAPI interface {
-	Create(ctx context.Context, zone string, request *client.SSHKeyCreateRequestEnvelope) (*client.SSHKeyCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.SSHKeyFindRequest) (*client.SSHKeyFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.SSHKeyReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.SSHKeyCreateRequestEnvelope) (*client.SSHKeyCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.SSHKeyFindRequest) (*client.SSHKeyFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.SSHKeyReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error)
 }
 
 var _ SSHKeyAPI = (*sSHKeyOp)(nil)
@@ -42,17 +42,16 @@ func NewSSHKeyOp(c *client.Client) SSHKeyAPI {
 	return &sSHKeyOp{client: c}
 }
 
-func (op *sSHKeyOp) Create(ctx context.Context, zone string, request *client.SSHKeyCreateRequestEnvelope) (*client.SSHKeyCreateResponseEnvelope, error) {
-	params := client.SSHKeyOpCreateParams{Zone: zone}
-	resp, err := op.client.SSHKeyOpCreate(ctx, request, params)
+func (op *sSHKeyOp) Create(ctx context.Context, request *client.SSHKeyCreateRequestEnvelope) (*client.SSHKeyCreateResponseEnvelope, error) {
+	resp, err := op.client.SSHKeyOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("SSHKey.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *sSHKeyOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.SSHKeyOpDeleteParams{Zone: zone, ID: id}
+func (op *sSHKeyOp) Delete(ctx context.Context, id string) error {
+	params := client.SSHKeyOpDeleteParams{ID: id}
 	_, err := op.client.SSHKeyOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("SSHKey.Delete", err)
@@ -60,8 +59,8 @@ func (op *sSHKeyOp) Delete(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *sSHKeyOp) List(ctx context.Context, zone string, req *client.SSHKeyFindRequest) (*client.SSHKeyFindResponseEnvelope, error) {
-	params := client.SSHKeyOpFindParams{Zone: zone}
+func (op *sSHKeyOp) List(ctx context.Context, req *client.SSHKeyFindRequest) (*client.SSHKeyFindResponseEnvelope, error) {
+	params := client.SSHKeyOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -72,8 +71,8 @@ func (op *sSHKeyOp) List(ctx context.Context, zone string, req *client.SSHKeyFin
 	return resp, nil
 }
 
-func (op *sSHKeyOp) Read(ctx context.Context, zone string, id string) (*client.SSHKeyReadResponseEnvelope, error) {
-	params := client.SSHKeyOpReadParams{Zone: zone, ID: id}
+func (op *sSHKeyOp) Read(ctx context.Context, id string) (*client.SSHKeyReadResponseEnvelope, error) {
+	params := client.SSHKeyOpReadParams{ID: id}
 	resp, err := op.client.SSHKeyOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("SSHKey.Read", err)
@@ -81,8 +80,8 @@ func (op *sSHKeyOp) Read(ctx context.Context, zone string, id string) (*client.S
 	return resp, nil
 }
 
-func (op *sSHKeyOp) Update(ctx context.Context, zone string, id string, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error) {
-	params := client.SSHKeyOpUpdateParams{Zone: zone, ID: id}
+func (op *sSHKeyOp) Update(ctx context.Context, id string, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error) {
+	params := client.SSHKeyOpUpdateParams{ID: id}
 	resp, err := op.client.SSHKeyOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("SSHKey.Update", err)

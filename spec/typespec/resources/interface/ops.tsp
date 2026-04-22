@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface InterfaceOp {
   @summary("Interface 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/interface")
+  @route("/interface")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -39,30 +33,16 @@ interface InterfaceOp {
 
   @summary("Interface 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/interface")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: InterfaceCreateRequestEnvelope,
-  ): {
+  @route("/interface")
+  create(@body body: InterfaceCreateRequestEnvelope): {
     @statusCode _: 201;
     ...InterfaceCreateResponseEnvelope;
   } | ApiError;
 
   @summary("Interface 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/interface/{id}")
+  @route("/interface/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -72,14 +52,8 @@ interface InterfaceOp {
 
   @summary("Interface 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/interface/{id}")
+  @route("/interface/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -91,14 +65,8 @@ interface InterfaceOp {
 
   @summary("Interface 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/interface/{id}")
+  @route("/interface/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -111,14 +79,8 @@ interface InterfaceOp {
 
   @summary("Interface モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/interface/{id}/monitor")
+  @route("/interface/{id}/monitor")
   monitor(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -130,14 +92,8 @@ interface InterfaceOp {
 
   @summary("Interface 共有セグメント接続")
   @put
-  @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/shared")
+  @route("/interface/{id}/to/switch/shared")
   connectToSharedSegment(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -150,14 +106,8 @@ interface InterfaceOp {
 
   @summary("Interface スイッチ接続")
   @put
-  @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}")
+  @route("/interface/{id}/to/switch/{switchID}")
   connectToSwitch(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -176,14 +126,8 @@ interface InterfaceOp {
 
   @summary("Interface スイッチ切断")
   @delete
-  @route("/{zone}/api/cloud/1.1/interface/{id}/to/switch")
+  @route("/interface/{id}/to/switch")
   disconnectFromSwitch(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -196,14 +140,8 @@ interface InterfaceOp {
 
   @summary("Interface パケットフィルタ接続")
   @put
-  @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}")
+  @route("/interface/{id}/to/packetfilter/{packetFilterID}")
   connectToPacketFilter(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -222,14 +160,8 @@ interface InterfaceOp {
 
   @summary("Interface パケットフィルタ切断")
   @delete
-  @route("/{zone}/api/cloud/1.1/interface/{id}/to/packetfilter")
+  @route("/interface/{id}/to/packetfilter")
   disconnectFromPacketFilter(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

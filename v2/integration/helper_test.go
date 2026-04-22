@@ -67,7 +67,37 @@ func newClient(t *testing.T) *client.Client {
 		scAPI = dupped
 	}
 
-	c, err := iaas.NewClient(scAPI)
+	c, err := iaas.NewClient(scAPI, getZone())
+	if err != nil {
+		t.Fatalf("iaas.NewClient: %v", err)
+	}
+	return c
+}
+
+// newClientForZone は明示的にゾーンを指定してクライアントを生成する。
+// archive の他ゾーン転送のようにテスト中で複数ゾーンを切り替える場合に使う。
+func newClientForZone(t *testing.T, zone string) *client.Client {
+	t.Helper()
+	accessToken, accessTokenSecret := getConfig()
+	if accessToken == "" || accessTokenSecret == "" {
+		t.Skip("SAKURA_ACCESS_TOKEN and SAKURA_ACCESS_TOKEN_SECRET must be set")
+	}
+
+	var sc saclient.Client
+	if err := sc.SetEnviron(os.Environ()); err != nil {
+		t.Fatalf("saclient SetEnviron: %v", err)
+	}
+
+	var scAPI saclient.ClientAPI = &sc
+	if os.Getenv("SAKURA_TRACE") == "1" {
+		dupped, err := sc.DupWith(saclient.WithTraceMode("all"))
+		if err != nil {
+			t.Fatalf("saclient DupWith(trace): %v", err)
+		}
+		scAPI = dupped
+	}
+
+	c, err := iaas.NewClient(scAPI, zone)
 	if err != nil {
 		t.Fatalf("iaas.NewClient: %v", err)
 	}

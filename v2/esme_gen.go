@@ -24,9 +24,9 @@ import (
 
 // ESMEAPI は ESME リソースに対する操作インターフェース。
 type ESMEAPI interface {
-	Logs(ctx context.Context, zone string, id string) (*client.ESMELogsResponseEnvelope, error)
-	SendMessageWithGeneratedOTP(ctx context.Context, zone string, id string, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error)
-	SendMessageWithInputtedOTP(ctx context.Context, zone string, id string, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error)
+	Logs(ctx context.Context, id string) (*client.ESMELogsResponseEnvelope, error)
+	SendMessageWithGeneratedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error)
+	SendMessageWithInputtedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error)
 }
 
 var _ ESMEAPI = (*esmeOp)(nil)
@@ -40,8 +40,8 @@ func NewESMEOp(c *client.Client) ESMEAPI {
 	return &esmeOp{client: c}
 }
 
-func (op *esmeOp) Logs(ctx context.Context, zone string, id string) (*client.ESMELogsResponseEnvelope, error) {
-	params := client.ESMEOpLogsParams{Zone: zone, ID: id}
+func (op *esmeOp) Logs(ctx context.Context, id string) (*client.ESMELogsResponseEnvelope, error) {
+	params := client.ESMEOpLogsParams{ID: id}
 	resp, err := op.client.ESMEOpLogs(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("ESME.Logs", err)
@@ -49,8 +49,8 @@ func (op *esmeOp) Logs(ctx context.Context, zone string, id string) (*client.ESM
 	return resp, nil
 }
 
-func (op *esmeOp) SendMessageWithGeneratedOTP(ctx context.Context, zone string, id string, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error) {
-	params := client.ESMEOpSendMessageWithGeneratedOTPParams{Zone: zone, ID: id}
+func (op *esmeOp) SendMessageWithGeneratedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error) {
+	params := client.ESMEOpSendMessageWithGeneratedOTPParams{ID: id}
 	resp, err := op.client.ESMEOpSendMessageWithGeneratedOTP(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("ESME.SendMessageWithGeneratedOTP", err)
@@ -58,8 +58,8 @@ func (op *esmeOp) SendMessageWithGeneratedOTP(ctx context.Context, zone string, 
 	return resp, nil
 }
 
-func (op *esmeOp) SendMessageWithInputtedOTP(ctx context.Context, zone string, id string, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error) {
-	params := client.ESMEOpSendMessageWithInputtedOTPParams{Zone: zone, ID: id}
+func (op *esmeOp) SendMessageWithInputtedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error) {
+	params := client.ESMEOpSendMessageWithInputtedOTPParams{ID: id}
 	resp, err := op.client.ESMEOpSendMessageWithInputtedOTP(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("ESME.SendMessageWithInputtedOTP", err)

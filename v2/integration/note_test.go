@@ -31,7 +31,6 @@ func TestNoteCRUD(t *testing.T) {
 
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
 	// 1. Create - スクリプト作成
 	createReq := &client.NoteCreateRequestEnvelope{
@@ -43,7 +42,7 @@ func TestNoteCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.NoteOpCreate(ctx, createReq, client.NoteOpCreateParams{Zone: zone})
+	createResp, err := c.NoteOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	noteID := createResp.Note.ID.Value
@@ -52,9 +51,7 @@ func TestNoteCRUD(t *testing.T) {
 	require.Equal(t, "shell", createResp.Note.Class.Value)
 
 	// 2. Read - スクリプト取得
-	readResp, err := c.NoteOpRead(ctx, client.NoteOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", noteID),
+	readResp, err := c.NoteOpRead(ctx, client.NoteOpReadParams{ID:   fmt.Sprintf("%d", noteID),
 	})
 	require.NoError(t, err)
 	require.Equal(t, "test-note", readResp.Note.Name.Value)
@@ -68,15 +65,13 @@ func TestNoteCRUD(t *testing.T) {
 			Class:   client.NewOptString("shell"),
 			Content: client.NewOptString("#!/bin/bash\necho updated"),
 		},
-	}, client.NoteOpUpdateParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", noteID),
+	}, client.NoteOpUpdateParams{ID:   fmt.Sprintf("%d", noteID),
 	})
 	require.NoError(t, err)
 	require.Equal(t, "test-note-updated", updateResp.Note.Name.Value)
 
 	// 4. Find - スクリプト検索
-	findResp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{Zone: zone})
+	findResp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Notes), 0)
 
@@ -90,16 +85,12 @@ func TestNoteCRUD(t *testing.T) {
 	require.True(t, found, "作成したスクリプトがリストに含まれていること")
 
 	// 5. Delete - スクリプト削除
-	_, err = c.NoteOpDelete(ctx, client.NoteOpDeleteParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", noteID),
+	_, err = c.NoteOpDelete(ctx, client.NoteOpDeleteParams{ID:   fmt.Sprintf("%d", noteID),
 	})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.NoteOpRead(ctx, client.NoteOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", noteID),
+	_, err = c.NoteOpRead(ctx, client.NoteOpReadParams{ID:   fmt.Sprintf("%d", noteID),
 	})
 	require.Error(t, err)
 }

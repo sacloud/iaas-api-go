@@ -24,16 +24,16 @@ import (
 
 // DiskAPI は Disk リソースに対する操作インターフェース。
 type DiskAPI interface {
-	Config(ctx context.Context, zone string, id string, request *client.DiskConfigRequestEnvelope) error
-	ConnectToServer(ctx context.Context, zone string, id string, serverID string) error
-	Create(ctx context.Context, zone string, request *client.DiskCreateRequestEnvelope) (*client.DiskCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	DisconnectFromServer(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.DiskFindRequest) (*client.DiskFindResponseEnvelope, error)
-	Monitor(ctx context.Context, zone string, id string, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.DiskReadResponseEnvelope, error)
-	ResizePartition(ctx context.Context, zone string, id string, request *client.DiskResizePartitionRequestEnvelope) error
-	Update(ctx context.Context, zone string, id string, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error)
+	Config(ctx context.Context, id string, request *client.DiskConfigRequestEnvelope) error
+	ConnectToServer(ctx context.Context, id string, serverID string) error
+	Create(ctx context.Context, request *client.DiskCreateRequestEnvelope) (*client.DiskCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	DisconnectFromServer(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.DiskFindRequest) (*client.DiskFindResponseEnvelope, error)
+	Monitor(ctx context.Context, id string, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.DiskReadResponseEnvelope, error)
+	ResizePartition(ctx context.Context, id string, request *client.DiskResizePartitionRequestEnvelope) error
+	Update(ctx context.Context, id string, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error)
 }
 
 var _ DiskAPI = (*diskOp)(nil)
@@ -47,8 +47,8 @@ func NewDiskOp(c *client.Client) DiskAPI {
 	return &diskOp{client: c}
 }
 
-func (op *diskOp) Config(ctx context.Context, zone string, id string, request *client.DiskConfigRequestEnvelope) error {
-	params := client.DiskOpConfigParams{Zone: zone, ID: id}
+func (op *diskOp) Config(ctx context.Context, id string, request *client.DiskConfigRequestEnvelope) error {
+	params := client.DiskOpConfigParams{ID: id}
 	_, err := op.client.DiskOpConfig(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Disk.Config", err)
@@ -56,8 +56,8 @@ func (op *diskOp) Config(ctx context.Context, zone string, id string, request *c
 	return nil
 }
 
-func (op *diskOp) ConnectToServer(ctx context.Context, zone string, id string, serverID string) error {
-	params := client.DiskOpConnectToServerParams{Zone: zone, ID: id, ServerID: serverID}
+func (op *diskOp) ConnectToServer(ctx context.Context, id string, serverID string) error {
+	params := client.DiskOpConnectToServerParams{ID: id, ServerID: serverID}
 	_, err := op.client.DiskOpConnectToServer(ctx, params)
 	if err != nil {
 		return wrapOpErr("Disk.ConnectToServer", err)
@@ -65,17 +65,16 @@ func (op *diskOp) ConnectToServer(ctx context.Context, zone string, id string, s
 	return nil
 }
 
-func (op *diskOp) Create(ctx context.Context, zone string, request *client.DiskCreateRequestEnvelope) (*client.DiskCreateResponseEnvelope, error) {
-	params := client.DiskOpCreateParams{Zone: zone}
-	resp, err := op.client.DiskOpCreate(ctx, request, params)
+func (op *diskOp) Create(ctx context.Context, request *client.DiskCreateRequestEnvelope) (*client.DiskCreateResponseEnvelope, error) {
+	resp, err := op.client.DiskOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Disk.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *diskOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.DiskOpDeleteParams{Zone: zone, ID: id}
+func (op *diskOp) Delete(ctx context.Context, id string) error {
+	params := client.DiskOpDeleteParams{ID: id}
 	_, err := op.client.DiskOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Disk.Delete", err)
@@ -83,8 +82,8 @@ func (op *diskOp) Delete(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *diskOp) DisconnectFromServer(ctx context.Context, zone string, id string) error {
-	params := client.DiskOpDisconnectFromServerParams{Zone: zone, ID: id}
+func (op *diskOp) DisconnectFromServer(ctx context.Context, id string) error {
+	params := client.DiskOpDisconnectFromServerParams{ID: id}
 	_, err := op.client.DiskOpDisconnectFromServer(ctx, params)
 	if err != nil {
 		return wrapOpErr("Disk.DisconnectFromServer", err)
@@ -92,8 +91,8 @@ func (op *diskOp) DisconnectFromServer(ctx context.Context, zone string, id stri
 	return nil
 }
 
-func (op *diskOp) List(ctx context.Context, zone string, req *client.DiskFindRequest) (*client.DiskFindResponseEnvelope, error) {
-	params := client.DiskOpFindParams{Zone: zone}
+func (op *diskOp) List(ctx context.Context, req *client.DiskFindRequest) (*client.DiskFindResponseEnvelope, error) {
+	params := client.DiskOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -104,8 +103,8 @@ func (op *diskOp) List(ctx context.Context, zone string, req *client.DiskFindReq
 	return resp, nil
 }
 
-func (op *diskOp) Monitor(ctx context.Context, zone string, id string, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error) {
-	params := client.DiskOpMonitorParams{Zone: zone, ID: id}
+func (op *diskOp) Monitor(ctx context.Context, id string, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error) {
+	params := client.DiskOpMonitorParams{ID: id}
 	resp, err := op.client.DiskOpMonitor(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Disk.Monitor", err)
@@ -113,8 +112,8 @@ func (op *diskOp) Monitor(ctx context.Context, zone string, id string, request *
 	return resp, nil
 }
 
-func (op *diskOp) Read(ctx context.Context, zone string, id string) (*client.DiskReadResponseEnvelope, error) {
-	params := client.DiskOpReadParams{Zone: zone, ID: id}
+func (op *diskOp) Read(ctx context.Context, id string) (*client.DiskReadResponseEnvelope, error) {
+	params := client.DiskOpReadParams{ID: id}
 	resp, err := op.client.DiskOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Disk.Read", err)
@@ -122,8 +121,8 @@ func (op *diskOp) Read(ctx context.Context, zone string, id string) (*client.Dis
 	return resp, nil
 }
 
-func (op *diskOp) ResizePartition(ctx context.Context, zone string, id string, request *client.DiskResizePartitionRequestEnvelope) error {
-	params := client.DiskOpResizePartitionParams{Zone: zone, ID: id}
+func (op *diskOp) ResizePartition(ctx context.Context, id string, request *client.DiskResizePartitionRequestEnvelope) error {
+	params := client.DiskOpResizePartitionParams{ID: id}
 	_, err := op.client.DiskOpResizePartition(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Disk.ResizePartition", err)
@@ -131,8 +130,8 @@ func (op *diskOp) ResizePartition(ctx context.Context, zone string, id string, r
 	return nil
 }
 
-func (op *diskOp) Update(ctx context.Context, zone string, id string, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error) {
-	params := client.DiskOpUpdateParams{Zone: zone, ID: id}
+func (op *diskOp) Update(ctx context.Context, id string, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error) {
+	params := client.DiskOpUpdateParams{ID: id}
 	resp, err := op.client.DiskOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Disk.Update", err)

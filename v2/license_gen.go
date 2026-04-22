@@ -24,11 +24,11 @@ import (
 
 // LicenseAPI は License リソースに対する操作インターフェース。
 type LicenseAPI interface {
-	Create(ctx context.Context, zone string, request *client.LicenseCreateRequestEnvelope) (*client.LicenseCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.LicenseFindRequest) (*client.LicenseFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.LicenseReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.LicenseCreateRequestEnvelope) (*client.LicenseCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.LicenseFindRequest) (*client.LicenseFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.LicenseReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error)
 }
 
 var _ LicenseAPI = (*licenseOp)(nil)
@@ -42,17 +42,16 @@ func NewLicenseOp(c *client.Client) LicenseAPI {
 	return &licenseOp{client: c}
 }
 
-func (op *licenseOp) Create(ctx context.Context, zone string, request *client.LicenseCreateRequestEnvelope) (*client.LicenseCreateResponseEnvelope, error) {
-	params := client.LicenseOpCreateParams{Zone: zone}
-	resp, err := op.client.LicenseOpCreate(ctx, request, params)
+func (op *licenseOp) Create(ctx context.Context, request *client.LicenseCreateRequestEnvelope) (*client.LicenseCreateResponseEnvelope, error) {
+	resp, err := op.client.LicenseOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("License.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *licenseOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.LicenseOpDeleteParams{Zone: zone, ID: id}
+func (op *licenseOp) Delete(ctx context.Context, id string) error {
+	params := client.LicenseOpDeleteParams{ID: id}
 	_, err := op.client.LicenseOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("License.Delete", err)
@@ -60,8 +59,8 @@ func (op *licenseOp) Delete(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *licenseOp) List(ctx context.Context, zone string, req *client.LicenseFindRequest) (*client.LicenseFindResponseEnvelope, error) {
-	params := client.LicenseOpFindParams{Zone: zone}
+func (op *licenseOp) List(ctx context.Context, req *client.LicenseFindRequest) (*client.LicenseFindResponseEnvelope, error) {
+	params := client.LicenseOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -72,8 +71,8 @@ func (op *licenseOp) List(ctx context.Context, zone string, req *client.LicenseF
 	return resp, nil
 }
 
-func (op *licenseOp) Read(ctx context.Context, zone string, id string) (*client.LicenseReadResponseEnvelope, error) {
-	params := client.LicenseOpReadParams{Zone: zone, ID: id}
+func (op *licenseOp) Read(ctx context.Context, id string) (*client.LicenseReadResponseEnvelope, error) {
+	params := client.LicenseOpReadParams{ID: id}
 	resp, err := op.client.LicenseOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("License.Read", err)
@@ -81,8 +80,8 @@ func (op *licenseOp) Read(ctx context.Context, zone string, id string) (*client.
 	return resp, nil
 }
 
-func (op *licenseOp) Update(ctx context.Context, zone string, id string, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error) {
-	params := client.LicenseOpUpdateParams{Zone: zone, ID: id}
+func (op *licenseOp) Update(ctx context.Context, id string, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error) {
+	params := client.LicenseOpUpdateParams{ID: id}
 	resp, err := op.client.LicenseOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("License.Update", err)

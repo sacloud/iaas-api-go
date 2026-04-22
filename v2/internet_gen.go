@@ -24,18 +24,18 @@ import (
 
 // InternetAPI は Internet リソースに対する操作インターフェース。
 type InternetAPI interface {
-	AddSubnet(ctx context.Context, zone string, id string, request *client.InternetAddSubnetRequestEnvelope) (*client.InternetAddSubnetResponseEnvelope, error)
-	Create(ctx context.Context, zone string, request *client.InternetCreateRequestEnvelope) (*client.InternetCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	DeleteSubnet(ctx context.Context, zone string, id string, subnetID string) error
-	DisableIPv6(ctx context.Context, zone string, id string, ipv6netID string) error
-	EnableIPv6(ctx context.Context, zone string, id string) (*client.InternetEnableIPv6ResponseEnvelope, error)
-	List(ctx context.Context, zone string, req *client.InternetFindRequest) (*client.InternetFindResponseEnvelope, error)
-	Monitor(ctx context.Context, zone string, id string, request *client.InternetMonitorRequestEnvelope) (*client.InternetMonitorResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.InternetReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.InternetUpdateRequestEnvelope) (*client.InternetUpdateResponseEnvelope, error)
-	UpdateBandWidth(ctx context.Context, zone string, id string, request *client.InternetUpdateBandWidthRequestEnvelope) (*client.InternetUpdateBandWidthResponseEnvelope, error)
-	UpdateSubnet(ctx context.Context, zone string, id string, subnetID string, request *client.InternetUpdateSubnetRequestEnvelope) (*client.InternetUpdateSubnetResponseEnvelope, error)
+	AddSubnet(ctx context.Context, id string, request *client.InternetAddSubnetRequestEnvelope) (*client.InternetAddSubnetResponseEnvelope, error)
+	Create(ctx context.Context, request *client.InternetCreateRequestEnvelope) (*client.InternetCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	DeleteSubnet(ctx context.Context, id string, subnetID string) error
+	DisableIPv6(ctx context.Context, id string, ipv6netID string) error
+	EnableIPv6(ctx context.Context, id string) (*client.InternetEnableIPv6ResponseEnvelope, error)
+	List(ctx context.Context, req *client.InternetFindRequest) (*client.InternetFindResponseEnvelope, error)
+	Monitor(ctx context.Context, id string, request *client.InternetMonitorRequestEnvelope) (*client.InternetMonitorResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.InternetReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.InternetUpdateRequestEnvelope) (*client.InternetUpdateResponseEnvelope, error)
+	UpdateBandWidth(ctx context.Context, id string, request *client.InternetUpdateBandWidthRequestEnvelope) (*client.InternetUpdateBandWidthResponseEnvelope, error)
+	UpdateSubnet(ctx context.Context, id string, subnetID string, request *client.InternetUpdateSubnetRequestEnvelope) (*client.InternetUpdateSubnetResponseEnvelope, error)
 }
 
 var _ InternetAPI = (*internetOp)(nil)
@@ -49,8 +49,8 @@ func NewInternetOp(c *client.Client) InternetAPI {
 	return &internetOp{client: c}
 }
 
-func (op *internetOp) AddSubnet(ctx context.Context, zone string, id string, request *client.InternetAddSubnetRequestEnvelope) (*client.InternetAddSubnetResponseEnvelope, error) {
-	params := client.InternetOpAddSubnetParams{Zone: zone, ID: id}
+func (op *internetOp) AddSubnet(ctx context.Context, id string, request *client.InternetAddSubnetRequestEnvelope) (*client.InternetAddSubnetResponseEnvelope, error) {
+	params := client.InternetOpAddSubnetParams{ID: id}
 	resp, err := op.client.InternetOpAddSubnet(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.AddSubnet", err)
@@ -58,17 +58,16 @@ func (op *internetOp) AddSubnet(ctx context.Context, zone string, id string, req
 	return resp, nil
 }
 
-func (op *internetOp) Create(ctx context.Context, zone string, request *client.InternetCreateRequestEnvelope) (*client.InternetCreateResponseEnvelope, error) {
-	params := client.InternetOpCreateParams{Zone: zone}
-	resp, err := op.client.InternetOpCreate(ctx, request, params)
+func (op *internetOp) Create(ctx context.Context, request *client.InternetCreateRequestEnvelope) (*client.InternetCreateResponseEnvelope, error) {
+	resp, err := op.client.InternetOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Internet.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *internetOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.InternetOpDeleteParams{Zone: zone, ID: id}
+func (op *internetOp) Delete(ctx context.Context, id string) error {
+	params := client.InternetOpDeleteParams{ID: id}
 	_, err := op.client.InternetOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Internet.Delete", err)
@@ -76,8 +75,8 @@ func (op *internetOp) Delete(ctx context.Context, zone string, id string) error 
 	return nil
 }
 
-func (op *internetOp) DeleteSubnet(ctx context.Context, zone string, id string, subnetID string) error {
-	params := client.InternetOpDeleteSubnetParams{Zone: zone, ID: id, SubnetID: subnetID}
+func (op *internetOp) DeleteSubnet(ctx context.Context, id string, subnetID string) error {
+	params := client.InternetOpDeleteSubnetParams{ID: id, SubnetID: subnetID}
 	_, err := op.client.InternetOpDeleteSubnet(ctx, params)
 	if err != nil {
 		return wrapOpErr("Internet.DeleteSubnet", err)
@@ -85,8 +84,8 @@ func (op *internetOp) DeleteSubnet(ctx context.Context, zone string, id string, 
 	return nil
 }
 
-func (op *internetOp) DisableIPv6(ctx context.Context, zone string, id string, ipv6netID string) error {
-	params := client.InternetOpDisableIPv6Params{Zone: zone, ID: id, Ipv6netID: ipv6netID}
+func (op *internetOp) DisableIPv6(ctx context.Context, id string, ipv6netID string) error {
+	params := client.InternetOpDisableIPv6Params{ID: id, Ipv6netID: ipv6netID}
 	_, err := op.client.InternetOpDisableIPv6(ctx, params)
 	if err != nil {
 		return wrapOpErr("Internet.DisableIPv6", err)
@@ -94,8 +93,8 @@ func (op *internetOp) DisableIPv6(ctx context.Context, zone string, id string, i
 	return nil
 }
 
-func (op *internetOp) EnableIPv6(ctx context.Context, zone string, id string) (*client.InternetEnableIPv6ResponseEnvelope, error) {
-	params := client.InternetOpEnableIPv6Params{Zone: zone, ID: id}
+func (op *internetOp) EnableIPv6(ctx context.Context, id string) (*client.InternetEnableIPv6ResponseEnvelope, error) {
+	params := client.InternetOpEnableIPv6Params{ID: id}
 	resp, err := op.client.InternetOpEnableIPv6(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.EnableIPv6", err)
@@ -103,8 +102,8 @@ func (op *internetOp) EnableIPv6(ctx context.Context, zone string, id string) (*
 	return resp, nil
 }
 
-func (op *internetOp) List(ctx context.Context, zone string, req *client.InternetFindRequest) (*client.InternetFindResponseEnvelope, error) {
-	params := client.InternetOpFindParams{Zone: zone}
+func (op *internetOp) List(ctx context.Context, req *client.InternetFindRequest) (*client.InternetFindResponseEnvelope, error) {
+	params := client.InternetOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -115,8 +114,8 @@ func (op *internetOp) List(ctx context.Context, zone string, req *client.Interne
 	return resp, nil
 }
 
-func (op *internetOp) Monitor(ctx context.Context, zone string, id string, request *client.InternetMonitorRequestEnvelope) (*client.InternetMonitorResponseEnvelope, error) {
-	params := client.InternetOpMonitorParams{Zone: zone, ID: id}
+func (op *internetOp) Monitor(ctx context.Context, id string, request *client.InternetMonitorRequestEnvelope) (*client.InternetMonitorResponseEnvelope, error) {
+	params := client.InternetOpMonitorParams{ID: id}
 	resp, err := op.client.InternetOpMonitor(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.Monitor", err)
@@ -124,8 +123,8 @@ func (op *internetOp) Monitor(ctx context.Context, zone string, id string, reque
 	return resp, nil
 }
 
-func (op *internetOp) Read(ctx context.Context, zone string, id string) (*client.InternetReadResponseEnvelope, error) {
-	params := client.InternetOpReadParams{Zone: zone, ID: id}
+func (op *internetOp) Read(ctx context.Context, id string) (*client.InternetReadResponseEnvelope, error) {
+	params := client.InternetOpReadParams{ID: id}
 	resp, err := op.client.InternetOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.Read", err)
@@ -133,8 +132,8 @@ func (op *internetOp) Read(ctx context.Context, zone string, id string) (*client
 	return resp, nil
 }
 
-func (op *internetOp) Update(ctx context.Context, zone string, id string, request *client.InternetUpdateRequestEnvelope) (*client.InternetUpdateResponseEnvelope, error) {
-	params := client.InternetOpUpdateParams{Zone: zone, ID: id}
+func (op *internetOp) Update(ctx context.Context, id string, request *client.InternetUpdateRequestEnvelope) (*client.InternetUpdateResponseEnvelope, error) {
+	params := client.InternetOpUpdateParams{ID: id}
 	resp, err := op.client.InternetOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.Update", err)
@@ -142,8 +141,8 @@ func (op *internetOp) Update(ctx context.Context, zone string, id string, reques
 	return resp, nil
 }
 
-func (op *internetOp) UpdateBandWidth(ctx context.Context, zone string, id string, request *client.InternetUpdateBandWidthRequestEnvelope) (*client.InternetUpdateBandWidthResponseEnvelope, error) {
-	params := client.InternetOpUpdateBandWidthParams{Zone: zone, ID: id}
+func (op *internetOp) UpdateBandWidth(ctx context.Context, id string, request *client.InternetUpdateBandWidthRequestEnvelope) (*client.InternetUpdateBandWidthResponseEnvelope, error) {
+	params := client.InternetOpUpdateBandWidthParams{ID: id}
 	resp, err := op.client.InternetOpUpdateBandWidth(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.UpdateBandWidth", err)
@@ -151,8 +150,8 @@ func (op *internetOp) UpdateBandWidth(ctx context.Context, zone string, id strin
 	return resp, nil
 }
 
-func (op *internetOp) UpdateSubnet(ctx context.Context, zone string, id string, subnetID string, request *client.InternetUpdateSubnetRequestEnvelope) (*client.InternetUpdateSubnetResponseEnvelope, error) {
-	params := client.InternetOpUpdateSubnetParams{Zone: zone, ID: id, SubnetID: subnetID}
+func (op *internetOp) UpdateSubnet(ctx context.Context, id string, subnetID string, request *client.InternetUpdateSubnetRequestEnvelope) (*client.InternetUpdateSubnetResponseEnvelope, error) {
+	params := client.InternetOpUpdateSubnetParams{ID: id, SubnetID: subnetID}
 	resp, err := op.client.InternetOpUpdateSubnet(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Internet.UpdateSubnet", err)

@@ -33,9 +33,8 @@ func TestRegionFindRead(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.RegionOpFind(ctx, client.RegionOpFindParams{Zone: zone})
+	findResp, err := c.RegionOpFind(ctx, client.RegionOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Regions), 0, "Region が 1 件以上返ること")
 
@@ -44,9 +43,7 @@ func TestRegionFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.NotEmpty(t, first.Name.Value)
 
-	readResp, err := c.RegionOpRead(ctx, client.RegionOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", first.ID.Value),
+	readResp, err := c.RegionOpRead(ctx, client.RegionOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
 	})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.Region.ID.Value)
@@ -61,7 +58,7 @@ func TestZoneFindRead(t *testing.T) {
 	ctx := context.Background()
 	zone := getZone()
 
-	findResp, err := c.ZoneOpFind(ctx, client.ZoneOpFindParams{Zone: zone})
+	findResp, err := c.ZoneOpFind(ctx, client.ZoneOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Zones), 0, "Zone が 1 件以上返ること")
 
@@ -77,9 +74,7 @@ func TestZoneFindRead(t *testing.T) {
 	require.NotZero(t, target.ID.Value)
 	t.Logf("Current zone: id=%d name=%s description=%s", target.ID.Value, target.Name.Value, target.Description.Value)
 
-	readResp, err := c.ZoneOpRead(ctx, client.ZoneOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", target.ID.Value),
+	readResp, err := c.ZoneOpRead(ctx, client.ZoneOpReadParams{ID:   fmt.Sprintf("%d", target.ID.Value),
 	})
 	require.NoError(t, err)
 	require.Equal(t, target.ID.Value, readResp.Zone.ID.Value)

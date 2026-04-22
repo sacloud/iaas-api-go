@@ -176,13 +176,14 @@ func postSuccessStatus(resolvedPath string) int {
 
 // postStatusCodeOverrides は POST ステータスコードの個別上書きマップ。
 // 観測済みエンドポイントのみ登録し、未登録は 201 にフォールバックする。
+// キーは resolveOpPath 後の TypeSpec ルート（zone / pathSuffix を含まない形）。
 var postStatusCodeOverrides = map[string]int{
 	// 202 Accepted（非同期受付完了）を返すエンドポイント
-	"/{zone}/api/cloud/1.1/internet":  202,
-	"/{zone}/api/cloud/1.1/appliance": 202,
+	"/internet":  202,
+	"/appliance": 202,
 
 	// 200 OK を返す sub-action 系 POST（既存リソースに対する操作で「新規リソース作成」では無い）
-	"/{zone}/api/cloud/1.1/internet/{id}/ipv6net": 200,
+	"/internet/{id}/ipv6net": 200,
 }
 
 // fatField は fat model の1フィールドを表す。
@@ -207,10 +208,13 @@ type opKey struct {
 }
 
 // resolveOpPath は DSL のパスフォーマットを TypeSpec 互換のパス文字列に変換する。
+// zone と pathSuffix (api/cloud/1.1) は OpenAPI の servers: 側に移動したので、
+// TypeSpec の @route からは落とす。
 func resolveOpPath(op *dsl.Operation, api *dsl.Resource) string {
 	pf := op.GetPathFormat()
 	pf = strings.ReplaceAll(pf, "{{.rootURL}}", "")
-	pf = strings.ReplaceAll(pf, "{{.pathSuffix}}", api.GetPathSuffix())
+	pf = strings.ReplaceAll(pf, "{{.zone}}", "")
+	pf = strings.ReplaceAll(pf, "{{.pathSuffix}}", "")
 	pf = strings.ReplaceAll(pf, "{{.pathName}}", api.GetPathName())
 	pf = replaceGoTemplatePlaceholders(pf)
 	if !strings.HasPrefix(pf, "/") {
@@ -226,9 +230,8 @@ func resolveOpPath(op *dsl.Operation, api *dsl.Resource) string {
 
 // pathParamDocs は @path パラメータ名に対して付与する @doc 文言。
 // 未登録のキーは @doc 無しで出力される。
+// zone は @server のサーバー変数として扱うため、パスパラメータには出現しない。
 var pathParamDocs = map[string]string{
-	"zone": "リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。" +
-		"Sandbox 環境では `tk1v` を指定する。",
 	"id": "対象リソースの ID。数値を 10 進文字列で指定する。",
 	"accountID":       "契約（アカウント）の ID。",
 	"bridgeID":        "ブリッジ ID。",
@@ -916,10 +919,11 @@ func goArgTypeToTS(goType string) string {
 	}
 }
 
-// extraPathParamSuffix はパスから zone/id 以外の最初のパスパラメータ名を返す。
+// extraPathParamSuffix はパスから id 以外の最初のパスパラメータ名を返す。
 // op 名の重複解消用サフィックスとして使用する。
+// zone は @server の変数扱いで @route には出現しないので考慮不要。
 func extraPathParamSuffix(path string) string {
-	standard := map[string]bool{"zone": true, "id": true}
+	standard := map[string]bool{"id": true}
 	for _, p := range extractPathParams(path) {
 		if !standard[p] {
 			return p

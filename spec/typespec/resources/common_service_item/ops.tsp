@@ -245,14 +245,8 @@ model CommonServiceItemUpdateRequestEnvelope {
 interface CommonServiceItemOp {
   @summary("CommonServiceItem 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem")
+  @route("/commonserviceitem")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -274,30 +268,16 @@ interface CommonServiceItemOp {
 
   @summary("CommonServiceItem 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/commonserviceitem")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: CommonServiceItemCreateRequestEnvelope,
-  ): {
+  @route("/commonserviceitem")
+  create(@body body: CommonServiceItemCreateRequestEnvelope): {
     @statusCode _: 201;
     ...AutoBackupCreateResponseEnvelope;
   } | ApiError;
 
   @summary("CommonServiceItem 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
+  @route("/commonserviceitem/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -307,14 +287,8 @@ interface CommonServiceItemOp {
 
   @summary("CommonServiceItem 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
+  @route("/commonserviceitem/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -326,14 +300,8 @@ interface CommonServiceItemOp {
 
   @summary("CommonServiceItem 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}")
+  @route("/commonserviceitem/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -346,14 +314,8 @@ interface CommonServiceItemOp {
 
   @summary("CommonServiceItem ヘルスステータス取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/health")
+  @route("/commonserviceitem/{id}/health")
   healthStatus(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -366,13 +328,8 @@ interface CommonServiceItemOp {
 interface AutoScaleOp {
   @summary("AutoScale ステータス取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status")
+  @route("/commonserviceitem/{id}/autoscale/status")
   status(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -382,13 +339,8 @@ interface AutoScaleOp {
 
   @summary("AutoScale スケールアップ")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up")
+  @route("/commonserviceitem/{id}/autoscale/up")
   scaleUp(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -401,13 +353,8 @@ interface AutoScaleOp {
 
   @summary("AutoScale スケールダウン")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down")
+  @route("/commonserviceitem/{id}/autoscale/down")
   scaleDown(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -423,13 +370,8 @@ interface AutoScaleOp {
 interface CertificateAuthorityOp {
   @summary("CertificateAuthority 詳細取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority")
+  @route("/commonserviceitem/{id}/certificateauthority")
   detail(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -439,13 +381,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント追加")
   @post
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients")
+  @route("/commonserviceitem/{id}/certificateauthority/clients")
   addClient(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -459,13 +396,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients")
+  @route("/commonserviceitem/{id}/certificateauthority/clients")
   listClients(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -475,13 +407,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}")
+  @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}")
   readClient(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -496,13 +423,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント破棄")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke")
+  @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke")
   revokeClient(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -520,13 +442,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント保留")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold")
+  @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold")
   holdClient(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -544,13 +461,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント再開")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume")
+  @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume")
   resumeClient(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -568,13 +480,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority クライアント拒否")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny")
+  @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny")
   denyClient(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -592,13 +499,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority サーバー追加")
   @post
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers")
+  @route("/commonserviceitem/{id}/certificateauthority/servers")
   addServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -612,13 +514,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority サーバー一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers")
+  @route("/commonserviceitem/{id}/certificateauthority/servers")
   listServers(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -628,13 +525,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority サーバー取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}")
+  @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}")
   readServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -649,13 +541,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority サーバー破棄")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke")
+  @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke")
   revokeServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -673,13 +560,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority サーバー保留")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold")
+  @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold")
   holdServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -697,13 +579,8 @@ interface CertificateAuthorityOp {
 
   @summary("CertificateAuthority サーバー再開")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume")
+  @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume")
   resumeServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -724,13 +601,8 @@ interface CertificateAuthorityOp {
 interface ContainerRegistryOp {
   @summary("ContainerRegistry ユーザー一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users")
+  @route("/commonserviceitem/{id}/containerregistry/users")
   listUsers(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -740,13 +612,8 @@ interface ContainerRegistryOp {
 
   @summary("ContainerRegistry ユーザー追加")
   @post
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users")
+  @route("/commonserviceitem/{id}/containerregistry/users")
   addUser(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -760,13 +627,8 @@ interface ContainerRegistryOp {
 
   @summary("ContainerRegistry ユーザー更新")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
+  @route("/commonserviceitem/{id}/containerregistry/users/{username}")
   updateUser(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -785,13 +647,8 @@ interface ContainerRegistryOp {
 
   @summary("ContainerRegistry ユーザー削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}")
+  @route("/commonserviceitem/{id}/containerregistry/users/{username}")
   deleteUser(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -812,13 +669,8 @@ interface ContainerRegistryOp {
 interface ESMEOp {
   @summary("自動生成 OTP 付き SMS メッセージ送信")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa/otp")
+  @route("/commonserviceitem/{id}/esme/2fa/otp")
   sendMessageWithGeneratedOTP(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -829,13 +681,8 @@ interface ESMEOp {
 
   @summary("指定 OTP 付き SMS メッセージ送信")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa")
+  @route("/commonserviceitem/{id}/esme/2fa")
   sendMessageWithInputtedOTP(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -846,13 +693,8 @@ interface ESMEOp {
 
   @summary("SMS 送信ログ取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/logs")
+  @route("/commonserviceitem/{id}/esme/logs")
   logs(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -865,13 +707,8 @@ interface ESMEOp {
 interface EnhancedDBOp {
   @summary("EnhancedDB パスワード設定")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password")
+  @route("/commonserviceitem/{id}/enhanceddb/set-password")
   setPassword(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -885,13 +722,8 @@ interface EnhancedDBOp {
 
   @summary("EnhancedDB 設定取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config")
+  @route("/commonserviceitem/{id}/enhanceddb/config")
   getConfig(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -901,13 +733,8 @@ interface EnhancedDBOp {
 
   @summary("EnhancedDB 設定更新")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config")
+  @route("/commonserviceitem/{id}/enhanceddb/config")
   setConfig(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -924,13 +751,8 @@ interface EnhancedDBOp {
 interface LocalRouterOp {
   @summary("LocalRouter モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor")
+  @route("/commonserviceitem/{id}/activity/localrouter/monitor")
   monitorLocalRouter(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -944,13 +766,8 @@ interface LocalRouterOp {
 interface ProxyLBOp {
   @summary("ProxyLB プラン変更")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/plan")
+  @route("/commonserviceitem/{id}/plan")
   changePlan(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -961,13 +778,8 @@ interface ProxyLBOp {
 
   @summary("ProxyLB 証明書取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
+  @route("/commonserviceitem/{id}/proxylb/sslcertificate")
   getCertificates(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -977,13 +789,8 @@ interface ProxyLBOp {
 
   @summary("ProxyLB 証明書設定")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
+  @route("/commonserviceitem/{id}/proxylb/sslcertificate")
   setCertificates(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -994,13 +801,8 @@ interface ProxyLBOp {
 
   @summary("ProxyLB 証明書削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate")
+  @route("/commonserviceitem/{id}/proxylb/sslcertificate")
   deleteCertificates(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1013,13 +815,8 @@ interface ProxyLBOp {
 
   @summary("ProxyLB Let's Encrypt 証明書更新")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew")
+  @route("/commonserviceitem/{id}/proxylb/letsencryptrenew")
   renewLetsEncryptCert(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1032,13 +829,8 @@ interface ProxyLBOp {
 
   @summary("ProxyLB コネクションモニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor")
+  @route("/commonserviceitem/{id}/activity/proxylb/monitor")
   monitorConnection(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1052,13 +844,8 @@ interface ProxyLBOp {
 interface SIMOp {
   @summary("SIM 有効化")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate")
+  @route("/commonserviceitem/{id}/sim/activate")
   activate(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1071,13 +858,8 @@ interface SIMOp {
 
   @summary("SIM 無効化")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate")
+  @route("/commonserviceitem/{id}/sim/deactivate")
   deactivate(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1090,13 +872,8 @@ interface SIMOp {
 
   @summary("SIM への IP アドレス割り当て")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
+  @route("/commonserviceitem/{id}/sim/ip")
   assignIP(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1110,13 +887,8 @@ interface SIMOp {
 
   @summary("SIM の IP アドレス割り当て解除")
   @delete
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip")
+  @route("/commonserviceitem/{id}/sim/ip")
   clearIP(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1129,13 +901,8 @@ interface SIMOp {
 
   @summary("SIM の IMEI ロック設定")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
+  @route("/commonserviceitem/{id}/sim/imeilock")
   imeiLock(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1149,13 +916,8 @@ interface SIMOp {
 
   @summary("SIM の IMEI ロック解除")
   @delete
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock")
+  @route("/commonserviceitem/{id}/sim/imeilock")
   imeiUnlock(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1168,13 +930,8 @@ interface SIMOp {
 
   @summary("SIM セッションログ取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog")
+  @route("/commonserviceitem/{id}/sim/sessionlog")
   logs(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1184,13 +941,8 @@ interface SIMOp {
 
   @summary("SIM 通信キャリア取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config")
+  @route("/commonserviceitem/{id}/sim/network_operator_config")
   getNetworkOperator(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1200,13 +952,8 @@ interface SIMOp {
 
   @summary("SIM 通信キャリア設定")
   @put
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config")
+  @route("/commonserviceitem/{id}/sim/network_operator_config")
   setNetworkOperator(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1220,13 +967,8 @@ interface SIMOp {
 
   @summary("SIM モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor")
+  @route("/commonserviceitem/{id}/sim/metrics/monitor")
   monitorSIM(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1240,13 +982,8 @@ interface SIMOp {
 interface SimpleMonitorOp {
   @summary("SimpleMonitor 応答時間モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor")
+  @route("/commonserviceitem/{id}/activity/responsetimesec/monitor")
   monitorResponseTime(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1260,13 +997,8 @@ interface SimpleMonitorOp {
 interface SimpleNotificationGroupOp {
   @summary("SimpleNotificationGroup メッセージ送信")
   @post
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message")
+  @route("/commonserviceitem/{id}/simplenotification/message")
   postMessage(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -1280,12 +1012,6 @@ interface SimpleNotificationGroupOp {
 
   @summary("SimpleNotificationGroup 履歴取得")
   @get
-  @route("/{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history")
-  history(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-  ): SimpleNotificationGroupHistoryResponseEnvelope | ApiError;
+  @route("/commonserviceitem/simplenotification/history")
+  history(): SimpleNotificationGroupHistoryResponseEnvelope | ApiError;
 }

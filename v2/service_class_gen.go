@@ -24,7 +24,7 @@ import (
 
 // ServiceClassAPI は ServiceClass リソースに対する操作インターフェース。
 type ServiceClassAPI interface {
-	List(ctx context.Context, zone string, req *client.ServiceClassFindRequest) (*client.ServiceClassFindResponseEnvelope, error)
+	List(ctx context.Context, req *client.ServiceClassFindRequest) (*client.ServiceClassFindResponseEnvelope, error)
 }
 
 var _ ServiceClassAPI = (*serviceClassOp)(nil)
@@ -38,8 +38,8 @@ func NewServiceClassOp(c *client.Client) ServiceClassAPI {
 	return &serviceClassOp{client: c}
 }
 
-func (op *serviceClassOp) List(ctx context.Context, zone string, req *client.ServiceClassFindRequest) (*client.ServiceClassFindResponseEnvelope, error) {
-	params := client.ServiceClassOpFindParams{Zone: zone}
+func (op *serviceClassOp) List(ctx context.Context, req *client.ServiceClassFindRequest) (*client.ServiceClassFindResponseEnvelope, error) {
+	params := client.ServiceClassOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}

@@ -59,7 +59,7 @@ func TestVPCRouterApplianceCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.ApplianceOpCreate(ctx, createReq, client.ApplianceOpCreateParams{Zone: zone})
+	createResp, err := c.ApplianceOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	vpcID := createResp.Appliance.ID.Value
@@ -73,7 +73,7 @@ func TestVPCRouterApplianceCRUD(t *testing.T) {
 	waitApplianceAvailableOpt(t, ctx, c, zone, vpcIDStr, false)
 
 	// Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: vpcIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: vpcIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-vpc-router", readResp.Appliance.Name.Value)
 	require.Equal(t, "vpcrouter", readResp.Appliance.Class.Value)
@@ -85,11 +85,11 @@ func TestVPCRouterApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{Zone: zone, ID: vpcIDStr})
+	}, client.ApplianceOpUpdateParams{ID: vpcIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-vpc-router-updated", updateResp.Appliance.Name.Value)
 
 	// Delete（既に down なので shutdown 不要）
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: vpcIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: vpcIDStr})
 	require.NoError(t, err)
 }

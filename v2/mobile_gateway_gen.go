@@ -24,20 +24,20 @@ import (
 
 // MobileGatewayAPI は MobileGateway リソースに対する操作インターフェース。
 type MobileGatewayAPI interface {
-	AddSIM(ctx context.Context, zone string, id string, request *client.MobileGatewayOpAddSIMReq) error
-	ConnectToSwitch(ctx context.Context, zone string, id string, switchID string) error
-	DeleteSIM(ctx context.Context, zone string, id string, simID string) error
-	DeleteTrafficConfig(ctx context.Context, zone string, id string) error
-	DisconnectFromSwitch(ctx context.Context, zone string, id string) error
-	GetDNS(ctx context.Context, zone string, id string) (*client.MobileGatewayGetDNSResponseEnvelope, error)
-	GetSIMRoutes(ctx context.Context, zone string, id string) (*client.MobileGatewayGetSIMRoutesResponseEnvelope, error)
-	GetTrafficConfig(ctx context.Context, zone string, id string) (*client.MobileGatewayGetTrafficConfigResponseEnvelope, error)
-	ListSIM(ctx context.Context, zone string, id string) (*client.MobileGatewayListSIMResponseEnvelope, error)
-	Logs(ctx context.Context, zone string, id string) (*client.MobileGatewayLogsResponseEnvelope, error)
-	SetDNS(ctx context.Context, zone string, id string, request *client.MobileGatewayOpSetDNSReq) error
-	SetSIMRoutes(ctx context.Context, zone string, id string, request *client.MobileGatewayOpSetSIMRoutesReq) error
-	SetTrafficConfig(ctx context.Context, zone string, id string, request *client.MobileGatewayOpSetTrafficConfigReq) error
-	TrafficStatus(ctx context.Context, zone string, id string) (*client.MobileGatewayTrafficStatusResponseEnvelope, error)
+	AddSIM(ctx context.Context, id string, request *client.MobileGatewayOpAddSIMReq) error
+	ConnectToSwitch(ctx context.Context, id string, switchID string) error
+	DeleteSIM(ctx context.Context, id string, simID string) error
+	DeleteTrafficConfig(ctx context.Context, id string) error
+	DisconnectFromSwitch(ctx context.Context, id string) error
+	GetDNS(ctx context.Context, id string) (*client.MobileGatewayGetDNSResponseEnvelope, error)
+	GetSIMRoutes(ctx context.Context, id string) (*client.MobileGatewayGetSIMRoutesResponseEnvelope, error)
+	GetTrafficConfig(ctx context.Context, id string) (*client.MobileGatewayGetTrafficConfigResponseEnvelope, error)
+	ListSIM(ctx context.Context, id string) (*client.MobileGatewayListSIMResponseEnvelope, error)
+	Logs(ctx context.Context, id string) (*client.MobileGatewayLogsResponseEnvelope, error)
+	SetDNS(ctx context.Context, id string, request *client.MobileGatewayOpSetDNSReq) error
+	SetSIMRoutes(ctx context.Context, id string, request *client.MobileGatewayOpSetSIMRoutesReq) error
+	SetTrafficConfig(ctx context.Context, id string, request *client.MobileGatewayOpSetTrafficConfigReq) error
+	TrafficStatus(ctx context.Context, id string) (*client.MobileGatewayTrafficStatusResponseEnvelope, error)
 }
 
 var _ MobileGatewayAPI = (*mobileGatewayOp)(nil)
@@ -51,8 +51,8 @@ func NewMobileGatewayOp(c *client.Client) MobileGatewayAPI {
 	return &mobileGatewayOp{client: c}
 }
 
-func (op *mobileGatewayOp) AddSIM(ctx context.Context, zone string, id string, request *client.MobileGatewayOpAddSIMReq) error {
-	params := client.MobileGatewayOpAddSIMParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) AddSIM(ctx context.Context, id string, request *client.MobileGatewayOpAddSIMReq) error {
+	params := client.MobileGatewayOpAddSIMParams{ID: id}
 	_, err := op.client.MobileGatewayOpAddSIM(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.AddSIM", err)
@@ -60,8 +60,8 @@ func (op *mobileGatewayOp) AddSIM(ctx context.Context, zone string, id string, r
 	return nil
 }
 
-func (op *mobileGatewayOp) ConnectToSwitch(ctx context.Context, zone string, id string, switchID string) error {
-	params := client.MobileGatewayOpConnectToSwitchParams{Zone: zone, ID: id, SwitchID: switchID}
+func (op *mobileGatewayOp) ConnectToSwitch(ctx context.Context, id string, switchID string) error {
+	params := client.MobileGatewayOpConnectToSwitchParams{ID: id, SwitchID: switchID}
 	_, err := op.client.MobileGatewayOpConnectToSwitch(ctx, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.ConnectToSwitch", err)
@@ -69,8 +69,8 @@ func (op *mobileGatewayOp) ConnectToSwitch(ctx context.Context, zone string, id 
 	return nil
 }
 
-func (op *mobileGatewayOp) DeleteSIM(ctx context.Context, zone string, id string, simID string) error {
-	params := client.MobileGatewayOpDeleteSIMParams{Zone: zone, ID: id, SimID: simID}
+func (op *mobileGatewayOp) DeleteSIM(ctx context.Context, id string, simID string) error {
+	params := client.MobileGatewayOpDeleteSIMParams{ID: id, SimID: simID}
 	_, err := op.client.MobileGatewayOpDeleteSIM(ctx, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.DeleteSIM", err)
@@ -78,8 +78,8 @@ func (op *mobileGatewayOp) DeleteSIM(ctx context.Context, zone string, id string
 	return nil
 }
 
-func (op *mobileGatewayOp) DeleteTrafficConfig(ctx context.Context, zone string, id string) error {
-	params := client.MobileGatewayOpDeleteTrafficConfigParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) DeleteTrafficConfig(ctx context.Context, id string) error {
+	params := client.MobileGatewayOpDeleteTrafficConfigParams{ID: id}
 	_, err := op.client.MobileGatewayOpDeleteTrafficConfig(ctx, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.DeleteTrafficConfig", err)
@@ -87,8 +87,8 @@ func (op *mobileGatewayOp) DeleteTrafficConfig(ctx context.Context, zone string,
 	return nil
 }
 
-func (op *mobileGatewayOp) DisconnectFromSwitch(ctx context.Context, zone string, id string) error {
-	params := client.MobileGatewayOpDisconnectFromSwitchParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) DisconnectFromSwitch(ctx context.Context, id string) error {
+	params := client.MobileGatewayOpDisconnectFromSwitchParams{ID: id}
 	_, err := op.client.MobileGatewayOpDisconnectFromSwitch(ctx, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.DisconnectFromSwitch", err)
@@ -96,8 +96,8 @@ func (op *mobileGatewayOp) DisconnectFromSwitch(ctx context.Context, zone string
 	return nil
 }
 
-func (op *mobileGatewayOp) GetDNS(ctx context.Context, zone string, id string) (*client.MobileGatewayGetDNSResponseEnvelope, error) {
-	params := client.MobileGatewayOpGetDNSParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) GetDNS(ctx context.Context, id string) (*client.MobileGatewayGetDNSResponseEnvelope, error) {
+	params := client.MobileGatewayOpGetDNSParams{ID: id}
 	resp, err := op.client.MobileGatewayOpGetDNS(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("MobileGateway.GetDNS", err)
@@ -105,8 +105,8 @@ func (op *mobileGatewayOp) GetDNS(ctx context.Context, zone string, id string) (
 	return resp, nil
 }
 
-func (op *mobileGatewayOp) GetSIMRoutes(ctx context.Context, zone string, id string) (*client.MobileGatewayGetSIMRoutesResponseEnvelope, error) {
-	params := client.MobileGatewayOpGetSIMRoutesParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) GetSIMRoutes(ctx context.Context, id string) (*client.MobileGatewayGetSIMRoutesResponseEnvelope, error) {
+	params := client.MobileGatewayOpGetSIMRoutesParams{ID: id}
 	resp, err := op.client.MobileGatewayOpGetSIMRoutes(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("MobileGateway.GetSIMRoutes", err)
@@ -114,8 +114,8 @@ func (op *mobileGatewayOp) GetSIMRoutes(ctx context.Context, zone string, id str
 	return resp, nil
 }
 
-func (op *mobileGatewayOp) GetTrafficConfig(ctx context.Context, zone string, id string) (*client.MobileGatewayGetTrafficConfigResponseEnvelope, error) {
-	params := client.MobileGatewayOpGetTrafficConfigParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) GetTrafficConfig(ctx context.Context, id string) (*client.MobileGatewayGetTrafficConfigResponseEnvelope, error) {
+	params := client.MobileGatewayOpGetTrafficConfigParams{ID: id}
 	resp, err := op.client.MobileGatewayOpGetTrafficConfig(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("MobileGateway.GetTrafficConfig", err)
@@ -123,8 +123,8 @@ func (op *mobileGatewayOp) GetTrafficConfig(ctx context.Context, zone string, id
 	return resp, nil
 }
 
-func (op *mobileGatewayOp) ListSIM(ctx context.Context, zone string, id string) (*client.MobileGatewayListSIMResponseEnvelope, error) {
-	params := client.MobileGatewayOpListSIMParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) ListSIM(ctx context.Context, id string) (*client.MobileGatewayListSIMResponseEnvelope, error) {
+	params := client.MobileGatewayOpListSIMParams{ID: id}
 	resp, err := op.client.MobileGatewayOpListSIM(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("MobileGateway.ListSIM", err)
@@ -132,8 +132,8 @@ func (op *mobileGatewayOp) ListSIM(ctx context.Context, zone string, id string) 
 	return resp, nil
 }
 
-func (op *mobileGatewayOp) Logs(ctx context.Context, zone string, id string) (*client.MobileGatewayLogsResponseEnvelope, error) {
-	params := client.MobileGatewayOpLogsParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) Logs(ctx context.Context, id string) (*client.MobileGatewayLogsResponseEnvelope, error) {
+	params := client.MobileGatewayOpLogsParams{ID: id}
 	resp, err := op.client.MobileGatewayOpLogs(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("MobileGateway.Logs", err)
@@ -141,8 +141,8 @@ func (op *mobileGatewayOp) Logs(ctx context.Context, zone string, id string) (*c
 	return resp, nil
 }
 
-func (op *mobileGatewayOp) SetDNS(ctx context.Context, zone string, id string, request *client.MobileGatewayOpSetDNSReq) error {
-	params := client.MobileGatewayOpSetDNSParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) SetDNS(ctx context.Context, id string, request *client.MobileGatewayOpSetDNSReq) error {
+	params := client.MobileGatewayOpSetDNSParams{ID: id}
 	_, err := op.client.MobileGatewayOpSetDNS(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.SetDNS", err)
@@ -150,8 +150,8 @@ func (op *mobileGatewayOp) SetDNS(ctx context.Context, zone string, id string, r
 	return nil
 }
 
-func (op *mobileGatewayOp) SetSIMRoutes(ctx context.Context, zone string, id string, request *client.MobileGatewayOpSetSIMRoutesReq) error {
-	params := client.MobileGatewayOpSetSIMRoutesParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) SetSIMRoutes(ctx context.Context, id string, request *client.MobileGatewayOpSetSIMRoutesReq) error {
+	params := client.MobileGatewayOpSetSIMRoutesParams{ID: id}
 	_, err := op.client.MobileGatewayOpSetSIMRoutes(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.SetSIMRoutes", err)
@@ -159,8 +159,8 @@ func (op *mobileGatewayOp) SetSIMRoutes(ctx context.Context, zone string, id str
 	return nil
 }
 
-func (op *mobileGatewayOp) SetTrafficConfig(ctx context.Context, zone string, id string, request *client.MobileGatewayOpSetTrafficConfigReq) error {
-	params := client.MobileGatewayOpSetTrafficConfigParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) SetTrafficConfig(ctx context.Context, id string, request *client.MobileGatewayOpSetTrafficConfigReq) error {
+	params := client.MobileGatewayOpSetTrafficConfigParams{ID: id}
 	_, err := op.client.MobileGatewayOpSetTrafficConfig(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("MobileGateway.SetTrafficConfig", err)
@@ -168,8 +168,8 @@ func (op *mobileGatewayOp) SetTrafficConfig(ctx context.Context, zone string, id
 	return nil
 }
 
-func (op *mobileGatewayOp) TrafficStatus(ctx context.Context, zone string, id string) (*client.MobileGatewayTrafficStatusResponseEnvelope, error) {
-	params := client.MobileGatewayOpTrafficStatusParams{Zone: zone, ID: id}
+func (op *mobileGatewayOp) TrafficStatus(ctx context.Context, id string) (*client.MobileGatewayTrafficStatusResponseEnvelope, error) {
+	params := client.MobileGatewayOpTrafficStatusParams{ID: id}
 	resp, err := op.client.MobileGatewayOpTrafficStatus(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("MobileGateway.TrafficStatus", err)

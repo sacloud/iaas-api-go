@@ -24,12 +24,12 @@ import (
 
 // ProxyLBAPI は ProxyLB リソースに対する操作インターフェース。
 type ProxyLBAPI interface {
-	ChangePlan(ctx context.Context, zone string, id string, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error)
-	DeleteCertificates(ctx context.Context, zone string, id string) error
-	GetCertificates(ctx context.Context, zone string, id string) (*client.ProxyLBGetCertificatesResponseEnvelope, error)
-	MonitorConnection(ctx context.Context, zone string, id string, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error)
-	RenewLetsEncryptCert(ctx context.Context, zone string, id string) error
-	SetCertificates(ctx context.Context, zone string, id string, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error)
+	ChangePlan(ctx context.Context, id string, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error)
+	DeleteCertificates(ctx context.Context, id string) error
+	GetCertificates(ctx context.Context, id string) (*client.ProxyLBGetCertificatesResponseEnvelope, error)
+	MonitorConnection(ctx context.Context, id string, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error)
+	RenewLetsEncryptCert(ctx context.Context, id string) error
+	SetCertificates(ctx context.Context, id string, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error)
 }
 
 var _ ProxyLBAPI = (*proxyLBOp)(nil)
@@ -43,8 +43,8 @@ func NewProxyLBOp(c *client.Client) ProxyLBAPI {
 	return &proxyLBOp{client: c}
 }
 
-func (op *proxyLBOp) ChangePlan(ctx context.Context, zone string, id string, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error) {
-	params := client.ProxyLBOpChangePlanParams{Zone: zone, ID: id}
+func (op *proxyLBOp) ChangePlan(ctx context.Context, id string, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error) {
+	params := client.ProxyLBOpChangePlanParams{ID: id}
 	resp, err := op.client.ProxyLBOpChangePlan(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("ProxyLB.ChangePlan", err)
@@ -52,8 +52,8 @@ func (op *proxyLBOp) ChangePlan(ctx context.Context, zone string, id string, req
 	return resp, nil
 }
 
-func (op *proxyLBOp) DeleteCertificates(ctx context.Context, zone string, id string) error {
-	params := client.ProxyLBOpDeleteCertificatesParams{Zone: zone, ID: id}
+func (op *proxyLBOp) DeleteCertificates(ctx context.Context, id string) error {
+	params := client.ProxyLBOpDeleteCertificatesParams{ID: id}
 	_, err := op.client.ProxyLBOpDeleteCertificates(ctx, params)
 	if err != nil {
 		return wrapOpErr("ProxyLB.DeleteCertificates", err)
@@ -61,8 +61,8 @@ func (op *proxyLBOp) DeleteCertificates(ctx context.Context, zone string, id str
 	return nil
 }
 
-func (op *proxyLBOp) GetCertificates(ctx context.Context, zone string, id string) (*client.ProxyLBGetCertificatesResponseEnvelope, error) {
-	params := client.ProxyLBOpGetCertificatesParams{Zone: zone, ID: id}
+func (op *proxyLBOp) GetCertificates(ctx context.Context, id string) (*client.ProxyLBGetCertificatesResponseEnvelope, error) {
+	params := client.ProxyLBOpGetCertificatesParams{ID: id}
 	resp, err := op.client.ProxyLBOpGetCertificates(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("ProxyLB.GetCertificates", err)
@@ -70,8 +70,8 @@ func (op *proxyLBOp) GetCertificates(ctx context.Context, zone string, id string
 	return resp, nil
 }
 
-func (op *proxyLBOp) MonitorConnection(ctx context.Context, zone string, id string, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error) {
-	params := client.ProxyLBOpMonitorConnectionParams{Zone: zone, ID: id}
+func (op *proxyLBOp) MonitorConnection(ctx context.Context, id string, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error) {
+	params := client.ProxyLBOpMonitorConnectionParams{ID: id}
 	resp, err := op.client.ProxyLBOpMonitorConnection(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("ProxyLB.MonitorConnection", err)
@@ -79,8 +79,8 @@ func (op *proxyLBOp) MonitorConnection(ctx context.Context, zone string, id stri
 	return resp, nil
 }
 
-func (op *proxyLBOp) RenewLetsEncryptCert(ctx context.Context, zone string, id string) error {
-	params := client.ProxyLBOpRenewLetsEncryptCertParams{Zone: zone, ID: id}
+func (op *proxyLBOp) RenewLetsEncryptCert(ctx context.Context, id string) error {
+	params := client.ProxyLBOpRenewLetsEncryptCertParams{ID: id}
 	_, err := op.client.ProxyLBOpRenewLetsEncryptCert(ctx, params)
 	if err != nil {
 		return wrapOpErr("ProxyLB.RenewLetsEncryptCert", err)
@@ -88,8 +88,8 @@ func (op *proxyLBOp) RenewLetsEncryptCert(ctx context.Context, zone string, id s
 	return nil
 }
 
-func (op *proxyLBOp) SetCertificates(ctx context.Context, zone string, id string, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error) {
-	params := client.ProxyLBOpSetCertificatesParams{Zone: zone, ID: id}
+func (op *proxyLBOp) SetCertificates(ctx context.Context, id string, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error) {
+	params := client.ProxyLBOpSetCertificatesParams{ID: id}
 	resp, err := op.client.ProxyLBOpSetCertificates(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("ProxyLB.SetCertificates", err)

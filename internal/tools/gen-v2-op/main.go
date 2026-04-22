@@ -217,9 +217,9 @@ func extractInvokerOps(iface *ast.InterfaceType, fset *token.FileSet) []operatio
 				op.RequestType = typeStr
 			}
 		}
-		if op.ParamsType == "" {
-			continue
-		}
+		// ParamsType が無い op は zone / id / query を一切持たない（body のみ）形。
+		// ogen がそうした op では Params 構造体自体を生成しないため、ラッパー側でも
+		// params を組み立てずに request だけを渡す。
 
 		// Return: (*T, error)
 		if fn.Results == nil || len(fn.Results.List) == 0 {
@@ -277,7 +277,8 @@ type opView struct {
 	Action       string    // エラーメッセージ用（MethodName と同じ）
 	OpName       string    // ogen 側の元メソッド名 (例: "NoteOpFind")
 	MethodArgs   []argView // ctx 以降の引数。ctx 自体は含めない
-	ParamsType   string    // "client.<ParamsType>"
+	ParamsType   string    // "client.<ParamsType>"。NoParams の場合は空
+	NoParams     bool      // ogen 側が Params 構造体を生成しない op（body のみ or 引数なし）
 	ParamAssigns []assignView
 	HasOptAssign bool       // Q+FindRequest の nil check が必要
 	OptAssign    assignView // Q の代入（if req != nil { ... } でガード）
@@ -340,7 +341,11 @@ func buildOpView(op operation, paramsFields map[string][]paramsField, findReques
 		MethodName: methodName,
 		Action:     methodName,
 		OpName:     op.Name,
-		ParamsType: "client." + op.ParamsType,
+	}
+	if op.ParamsType == "" {
+		v.NoParams = true
+	} else {
+		v.ParamsType = "client." + op.ParamsType
 	}
 
 	fields := paramsFields[op.ParamsType]
@@ -516,13 +521,15 @@ func New{{.Bucket}}Op(c *client.Client) {{.Bucket}}API {
 }
 {{range .Ops}}
 func (op *{{$structName}}) {{.MethodName}}(ctx context.Context{{range .MethodArgs}}, {{.Name}} {{.Type}}{{end}}) ({{if not .ReturnsError}}{{.ReturnType}}, {{end}}error) {
+	{{- if not .NoParams}}
 	params := {{.ParamsType}}{ {{- range $i, $a := .ParamAssigns}}{{if $i}}, {{end}}{{$a.Field}}: {{$a.Value}}{{end -}} }
+	{{- end}}
 	{{- if .HasOptAssign}}
 	if req != nil {
 		params.{{.OptAssign.Field}} = {{.OptAssign.Value}}
 	}
 	{{- end}}
-	{{if .ReturnsError}}_, err{{else}}resp, err{{end}} := op.client.{{.OpName}}(ctx{{if .HasRequest}}, {{.RequestName}}{{end}}, params)
+	{{if .ReturnsError}}_, err{{else}}resp, err{{end}} := op.client.{{.OpName}}(ctx{{if .HasRequest}}, {{.RequestName}}{{end}}{{if not .NoParams}}, params{{end}})
 	if err != nil {
 		return {{if not .ReturnsError}}nil, {{end}}wrapOpErr("{{.Bucket}}.{{.MethodName}}", err)
 	}

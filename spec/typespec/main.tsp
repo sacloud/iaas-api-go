@@ -67,9 +67,26 @@ using TypeSpec.OpenAPI;
     #{ name: "請求関連のAPI", tags: #["Bill"] }
   ]
 )
+@server(
+  "https://secure.sakura.ad.jp/cloud/zone/{zone}/api/cloud/1.1",
+  "さくらのクラウド IaaS API エンドポイント",
+  {
+    @doc("""
+      リソースが所属するゾーンの識別子。本番環境は `tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか、
+      Sandbox 環境では `tk1v` を指定する。
+      """)
+    zone: string = "is1a",
+  }
+)
 @service(#{ title: "Sakura Cloud IaaS API" })
 @doc("""
   # さくらのクラウド IaaS API
+  
+  ## エンドポイント
+  
+  ベース URL は `https://secure.sakura.ad.jp/cloud/zone/{zone}/api/cloud/1.1` 形式で、
+  `{zone}` にゾーン識別子（`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` / `tk1v`）を埋め込む。
+  OpenAPI 上はサーバー変数として表現されており、各パスは `/server` / `/disk/{id}` のようにゾーンを含まない形で記述される。
   
   ## 必須リクエストヘッダ
   
@@ -90,13 +107,13 @@ using TypeSpec.OpenAPI;
   本定義書（および生成された OpenAPI）上の表現:
   
   ```
-  GET /is1a/api/cloud/1.1/bridge?q=%7B%22Count%22%3A3%7D
+  GET /bridge?q=%7B%22Count%22%3A3%7D
   ```
   
   実サーバーが受理する表現:
   
   ```
-  GET /is1a/api/cloud/1.1/bridge?{"Count":3}
+  GET /bridge?{"Count":3}
   ```
   
   ### クライアント実装が取るべき対応

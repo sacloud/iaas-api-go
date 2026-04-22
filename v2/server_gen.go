@@ -24,21 +24,21 @@ import (
 
 // ServerAPI は Server リソースに対する操作インターフェース。
 type ServerAPI interface {
-	Boot(ctx context.Context, zone string, id string, request *client.ServerBootRequestEnvelope) error
-	ChangePlan(ctx context.Context, zone string, id string, request *client.ServerChangePlanRequestEnvelope) (*client.ServerChangePlanResponseEnvelope, error)
-	Create(ctx context.Context, zone string, request *client.ServerCreateRequestEnvelope) (*client.ServerCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string, request *client.ServerDeleteRequestEnvelope) error
-	EjectCDROM(ctx context.Context, zone string, id string, request *client.ServerEjectCDROMRequestEnvelope) error
-	List(ctx context.Context, zone string, req *client.ServerFindRequest) (*client.ServerFindResponseEnvelope, error)
-	GetVNCProxy(ctx context.Context, zone string, id string) (*client.ServerGetVNCProxyResponseEnvelope, error)
-	InsertCDROM(ctx context.Context, zone string, id string, request *client.ServerInsertCDROMRequestEnvelope) error
-	Monitor(ctx context.Context, zone string, id string, request *client.ServerMonitorRequestEnvelope) (*client.ServerMonitorResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.ServerReadResponseEnvelope, error)
-	Reset(ctx context.Context, zone string, id string) error
-	SendKey(ctx context.Context, zone string, id string, request *client.ServerSendKeyRequestEnvelope) error
-	SendNMI(ctx context.Context, zone string, id string) error
-	Shutdown(ctx context.Context, zone string, id string, request *client.ServerShutdownRequestEnvelope) error
-	Update(ctx context.Context, zone string, id string, request *client.ServerUpdateRequestEnvelope) (*client.ServerUpdateResponseEnvelope, error)
+	Boot(ctx context.Context, id string, request *client.ServerBootRequestEnvelope) error
+	ChangePlan(ctx context.Context, id string, request *client.ServerChangePlanRequestEnvelope) (*client.ServerChangePlanResponseEnvelope, error)
+	Create(ctx context.Context, request *client.ServerCreateRequestEnvelope) (*client.ServerCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string, request *client.ServerDeleteRequestEnvelope) error
+	EjectCDROM(ctx context.Context, id string, request *client.ServerEjectCDROMRequestEnvelope) error
+	List(ctx context.Context, req *client.ServerFindRequest) (*client.ServerFindResponseEnvelope, error)
+	GetVNCProxy(ctx context.Context, id string) (*client.ServerGetVNCProxyResponseEnvelope, error)
+	InsertCDROM(ctx context.Context, id string, request *client.ServerInsertCDROMRequestEnvelope) error
+	Monitor(ctx context.Context, id string, request *client.ServerMonitorRequestEnvelope) (*client.ServerMonitorResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.ServerReadResponseEnvelope, error)
+	Reset(ctx context.Context, id string) error
+	SendKey(ctx context.Context, id string, request *client.ServerSendKeyRequestEnvelope) error
+	SendNMI(ctx context.Context, id string) error
+	Shutdown(ctx context.Context, id string, request *client.ServerShutdownRequestEnvelope) error
+	Update(ctx context.Context, id string, request *client.ServerUpdateRequestEnvelope) (*client.ServerUpdateResponseEnvelope, error)
 }
 
 var _ ServerAPI = (*serverOp)(nil)
@@ -52,8 +52,8 @@ func NewServerOp(c *client.Client) ServerAPI {
 	return &serverOp{client: c}
 }
 
-func (op *serverOp) Boot(ctx context.Context, zone string, id string, request *client.ServerBootRequestEnvelope) error {
-	params := client.ServerOpBootParams{Zone: zone, ID: id}
+func (op *serverOp) Boot(ctx context.Context, id string, request *client.ServerBootRequestEnvelope) error {
+	params := client.ServerOpBootParams{ID: id}
 	_, err := op.client.ServerOpBoot(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Server.Boot", err)
@@ -61,8 +61,8 @@ func (op *serverOp) Boot(ctx context.Context, zone string, id string, request *c
 	return nil
 }
 
-func (op *serverOp) ChangePlan(ctx context.Context, zone string, id string, request *client.ServerChangePlanRequestEnvelope) (*client.ServerChangePlanResponseEnvelope, error) {
-	params := client.ServerOpChangePlanParams{Zone: zone, ID: id}
+func (op *serverOp) ChangePlan(ctx context.Context, id string, request *client.ServerChangePlanRequestEnvelope) (*client.ServerChangePlanResponseEnvelope, error) {
+	params := client.ServerOpChangePlanParams{ID: id}
 	resp, err := op.client.ServerOpChangePlan(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Server.ChangePlan", err)
@@ -70,17 +70,16 @@ func (op *serverOp) ChangePlan(ctx context.Context, zone string, id string, requ
 	return resp, nil
 }
 
-func (op *serverOp) Create(ctx context.Context, zone string, request *client.ServerCreateRequestEnvelope) (*client.ServerCreateResponseEnvelope, error) {
-	params := client.ServerOpCreateParams{Zone: zone}
-	resp, err := op.client.ServerOpCreate(ctx, request, params)
+func (op *serverOp) Create(ctx context.Context, request *client.ServerCreateRequestEnvelope) (*client.ServerCreateResponseEnvelope, error) {
+	resp, err := op.client.ServerOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Server.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *serverOp) Delete(ctx context.Context, zone string, id string, request *client.ServerDeleteRequestEnvelope) error {
-	params := client.ServerOpDeleteParams{Zone: zone, ID: id}
+func (op *serverOp) Delete(ctx context.Context, id string, request *client.ServerDeleteRequestEnvelope) error {
+	params := client.ServerOpDeleteParams{ID: id}
 	_, err := op.client.ServerOpDelete(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Server.Delete", err)
@@ -88,8 +87,8 @@ func (op *serverOp) Delete(ctx context.Context, zone string, id string, request 
 	return nil
 }
 
-func (op *serverOp) EjectCDROM(ctx context.Context, zone string, id string, request *client.ServerEjectCDROMRequestEnvelope) error {
-	params := client.ServerOpEjectCDROMParams{Zone: zone, ID: id}
+func (op *serverOp) EjectCDROM(ctx context.Context, id string, request *client.ServerEjectCDROMRequestEnvelope) error {
+	params := client.ServerOpEjectCDROMParams{ID: id}
 	_, err := op.client.ServerOpEjectCDROM(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Server.EjectCDROM", err)
@@ -97,8 +96,8 @@ func (op *serverOp) EjectCDROM(ctx context.Context, zone string, id string, requ
 	return nil
 }
 
-func (op *serverOp) List(ctx context.Context, zone string, req *client.ServerFindRequest) (*client.ServerFindResponseEnvelope, error) {
-	params := client.ServerOpFindParams{Zone: zone}
+func (op *serverOp) List(ctx context.Context, req *client.ServerFindRequest) (*client.ServerFindResponseEnvelope, error) {
+	params := client.ServerOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -109,8 +108,8 @@ func (op *serverOp) List(ctx context.Context, zone string, req *client.ServerFin
 	return resp, nil
 }
 
-func (op *serverOp) GetVNCProxy(ctx context.Context, zone string, id string) (*client.ServerGetVNCProxyResponseEnvelope, error) {
-	params := client.ServerOpGetVNCProxyParams{Zone: zone, ID: id}
+func (op *serverOp) GetVNCProxy(ctx context.Context, id string) (*client.ServerGetVNCProxyResponseEnvelope, error) {
+	params := client.ServerOpGetVNCProxyParams{ID: id}
 	resp, err := op.client.ServerOpGetVNCProxy(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Server.GetVNCProxy", err)
@@ -118,8 +117,8 @@ func (op *serverOp) GetVNCProxy(ctx context.Context, zone string, id string) (*c
 	return resp, nil
 }
 
-func (op *serverOp) InsertCDROM(ctx context.Context, zone string, id string, request *client.ServerInsertCDROMRequestEnvelope) error {
-	params := client.ServerOpInsertCDROMParams{Zone: zone, ID: id}
+func (op *serverOp) InsertCDROM(ctx context.Context, id string, request *client.ServerInsertCDROMRequestEnvelope) error {
+	params := client.ServerOpInsertCDROMParams{ID: id}
 	_, err := op.client.ServerOpInsertCDROM(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Server.InsertCDROM", err)
@@ -127,8 +126,8 @@ func (op *serverOp) InsertCDROM(ctx context.Context, zone string, id string, req
 	return nil
 }
 
-func (op *serverOp) Monitor(ctx context.Context, zone string, id string, request *client.ServerMonitorRequestEnvelope) (*client.ServerMonitorResponseEnvelope, error) {
-	params := client.ServerOpMonitorParams{Zone: zone, ID: id}
+func (op *serverOp) Monitor(ctx context.Context, id string, request *client.ServerMonitorRequestEnvelope) (*client.ServerMonitorResponseEnvelope, error) {
+	params := client.ServerOpMonitorParams{ID: id}
 	resp, err := op.client.ServerOpMonitor(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Server.Monitor", err)
@@ -136,8 +135,8 @@ func (op *serverOp) Monitor(ctx context.Context, zone string, id string, request
 	return resp, nil
 }
 
-func (op *serverOp) Read(ctx context.Context, zone string, id string) (*client.ServerReadResponseEnvelope, error) {
-	params := client.ServerOpReadParams{Zone: zone, ID: id}
+func (op *serverOp) Read(ctx context.Context, id string) (*client.ServerReadResponseEnvelope, error) {
+	params := client.ServerOpReadParams{ID: id}
 	resp, err := op.client.ServerOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Server.Read", err)
@@ -145,8 +144,8 @@ func (op *serverOp) Read(ctx context.Context, zone string, id string) (*client.S
 	return resp, nil
 }
 
-func (op *serverOp) Reset(ctx context.Context, zone string, id string) error {
-	params := client.ServerOpResetParams{Zone: zone, ID: id}
+func (op *serverOp) Reset(ctx context.Context, id string) error {
+	params := client.ServerOpResetParams{ID: id}
 	_, err := op.client.ServerOpReset(ctx, params)
 	if err != nil {
 		return wrapOpErr("Server.Reset", err)
@@ -154,8 +153,8 @@ func (op *serverOp) Reset(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *serverOp) SendKey(ctx context.Context, zone string, id string, request *client.ServerSendKeyRequestEnvelope) error {
-	params := client.ServerOpSendKeyParams{Zone: zone, ID: id}
+func (op *serverOp) SendKey(ctx context.Context, id string, request *client.ServerSendKeyRequestEnvelope) error {
+	params := client.ServerOpSendKeyParams{ID: id}
 	_, err := op.client.ServerOpSendKey(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Server.SendKey", err)
@@ -163,8 +162,8 @@ func (op *serverOp) SendKey(ctx context.Context, zone string, id string, request
 	return nil
 }
 
-func (op *serverOp) SendNMI(ctx context.Context, zone string, id string) error {
-	params := client.ServerOpSendNMIParams{Zone: zone, ID: id}
+func (op *serverOp) SendNMI(ctx context.Context, id string) error {
+	params := client.ServerOpSendNMIParams{ID: id}
 	_, err := op.client.ServerOpSendNMI(ctx, params)
 	if err != nil {
 		return wrapOpErr("Server.SendNMI", err)
@@ -172,8 +171,8 @@ func (op *serverOp) SendNMI(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *serverOp) Shutdown(ctx context.Context, zone string, id string, request *client.ServerShutdownRequestEnvelope) error {
-	params := client.ServerOpShutdownParams{Zone: zone, ID: id}
+func (op *serverOp) Shutdown(ctx context.Context, id string, request *client.ServerShutdownRequestEnvelope) error {
+	params := client.ServerOpShutdownParams{ID: id}
 	_, err := op.client.ServerOpShutdown(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Server.Shutdown", err)
@@ -181,8 +180,8 @@ func (op *serverOp) Shutdown(ctx context.Context, zone string, id string, reques
 	return nil
 }
 
-func (op *serverOp) Update(ctx context.Context, zone string, id string, request *client.ServerUpdateRequestEnvelope) (*client.ServerUpdateResponseEnvelope, error) {
-	params := client.ServerOpUpdateParams{Zone: zone, ID: id}
+func (op *serverOp) Update(ctx context.Context, id string, request *client.ServerUpdateRequestEnvelope) (*client.ServerUpdateResponseEnvelope, error) {
+	params := client.ServerOpUpdateParams{ID: id}
 	resp, err := op.client.ServerOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Server.Update", err)

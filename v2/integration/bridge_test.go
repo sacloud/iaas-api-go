@@ -37,9 +37,8 @@ func TestBridgeCRUD(t *testing.T) {
 	if os.Getenv("TEST_ACC") == "" {
 		t.Skip("TEST_ACC=1 env var required")
 	}
-	c := newClient(t)
+	c := newClientForZone(t, bridgeTestZone)
 	ctx := context.Background()
-	zone := bridgeTestZone
 
 	// 1. Create
 	createResp, err := c.BridgeOpCreate(ctx, &client.BridgeCreateRequestEnvelope{
@@ -47,7 +46,7 @@ func TestBridgeCRUD(t *testing.T) {
 			Name:        client.NewOptString("test-bridge"),
 			Description: "desc",
 		},
-	}, client.BridgeOpCreateParams{Zone: zone})
+	})
 	require.NoError(t, err)
 	bridgeID := createResp.Bridge.ID.Value
 	bridgeIDStr := fmt.Sprintf("%d", bridgeID)
@@ -55,7 +54,7 @@ func TestBridgeCRUD(t *testing.T) {
 	require.Equal(t, "test-bridge", createResp.Bridge.Name.Value)
 
 	// 2. Read
-	readResp, err := c.BridgeOpRead(ctx, client.BridgeOpReadParams{Zone: zone, ID: bridgeIDStr})
+	readResp, err := c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeIDStr})
 	require.NoError(t, err)
 	require.Equal(t, bridgeID, readResp.Bridge.ID.Value)
 	require.Equal(t, "test-bridge", readResp.Bridge.Name.Value)
@@ -66,12 +65,12 @@ func TestBridgeCRUD(t *testing.T) {
 			Name:        client.NewOptString("test-bridge-updated"),
 			Description: "desc-updated",
 		},
-	}, client.BridgeOpUpdateParams{Zone: zone, ID: bridgeIDStr})
+	}, client.BridgeOpUpdateParams{ID: bridgeIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-bridge-updated", updateResp.Bridge.Name.Value)
 
 	// 4. Find
-	findResp, err := c.BridgeOpFind(ctx, client.BridgeOpFindParams{Zone: zone})
+	findResp, err := c.BridgeOpFind(ctx, client.BridgeOpFindParams{})
 	require.NoError(t, err)
 	var found bool
 	for _, b := range findResp.Bridges {
@@ -83,11 +82,11 @@ func TestBridgeCRUD(t *testing.T) {
 	require.True(t, found, "作成した Bridge がリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{Zone: zone, ID: bridgeIDStr})
+	_, err = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: bridgeIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{Zone: zone, ID: bridgeIDStr})
+	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeIDStr})
 	require.Error(t, err)
 }
 
@@ -98,7 +97,7 @@ func TestSwitchBridgeConnect(t *testing.T) {
 	if os.Getenv("TEST_ACC") == "" {
 		t.Skip("TEST_ACC=1 env var required")
 	}
-	c := newClient(t)
+	c := newClientForZone(t, bridgeTestZone)
 	ctx := context.Background()
 	zone := bridgeTestZone
 
@@ -107,12 +106,12 @@ func TestSwitchBridgeConnect(t *testing.T) {
 		Bridge: client.BridgeCreateRequest{
 			Name: client.NewOptString("test-bridge-for-switch"),
 		},
-	}, client.BridgeOpCreateParams{Zone: zone})
+	})
 	require.NoError(t, err)
 	bridgeID := bridgeResp.Bridge.ID.Value
 	bridgeIDStr := fmt.Sprintf("%d", bridgeID)
 	defer func() {
-		_, _ = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{Zone: zone, ID: bridgeIDStr})
+		_, _ = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: bridgeIDStr})
 	}()
 
 	// Switch を作成。tk1a は `switch: 1` per zone quota なので既存の switch があると 409 になる。
@@ -122,7 +121,7 @@ func TestSwitchBridgeConnect(t *testing.T) {
 			Name: client.NewOptString("test-switch-for-bridge"),
 			Tags: []string{"test", "integration"},
 		},
-	}, client.SwitchOpCreateParams{Zone: zone})
+	})
 	if err != nil {
 		// 他のリソース（v1 テスト残骸など）に食われていた場合は skip
 		if isLimitCountError(err) {
@@ -133,26 +132,25 @@ func TestSwitchBridgeConnect(t *testing.T) {
 	switchID := swResp.Switch.ID.Value
 	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{Zone: zone, ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
 	}()
 
 	// ConnectToBridge
-	_, err = c.SwitchOpConnectToBridge(ctx, client.SwitchOpConnectToBridgeParams{
-		Zone: zone, ID: switchIDStr, BridgeID: bridgeIDStr,
+	_, err = c.SwitchOpConnectToBridge(ctx, client.SwitchOpConnectToBridgeParams{ID: switchIDStr, BridgeID: bridgeIDStr,
 	})
 	require.NoError(t, err)
 
 	// Switch 側 Bridge 参照確認
-	readSwitch, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{Zone: zone, ID: switchIDStr})
+	readSwitch, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID: switchIDStr})
 	require.NoError(t, err)
 	require.Equal(t, bridgeID, readSwitch.Switch.Bridge.Value.ID, "Switch.Bridge.ID が接続先の Bridge を指すこと")
 
 	// Bridge 側 SwitchInZone は fieldmanifest allowlist で除外しているため、
 	// 接続関係の確認は Switch.Bridge 側（上の assertion）のみで行う。
-	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{Zone: zone, ID: bridgeIDStr})
+	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeIDStr})
 	require.NoError(t, err)
 
 	// DisconnectFromBridge
-	_, err = c.SwitchOpDisconnectFromBridge(ctx, client.SwitchOpDisconnectFromBridgeParams{Zone: zone, ID: switchIDStr})
+	_, err = c.SwitchOpDisconnectFromBridge(ctx, client.SwitchOpDisconnectFromBridgeParams{ID: switchIDStr})
 	require.NoError(t, err)
 }

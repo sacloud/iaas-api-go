@@ -24,8 +24,8 @@ import (
 
 // PrivateHostPlanAPI は PrivateHostPlan リソースに対する操作インターフェース。
 type PrivateHostPlanAPI interface {
-	List(ctx context.Context, zone string, req *client.PrivateHostPlanFindRequest) (*client.PrivateHostPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.PrivateHostPlanReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.PrivateHostPlanFindRequest) (*client.PrivateHostPlanFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.PrivateHostPlanReadResponseEnvelope, error)
 }
 
 var _ PrivateHostPlanAPI = (*privateHostPlanOp)(nil)
@@ -39,8 +39,8 @@ func NewPrivateHostPlanOp(c *client.Client) PrivateHostPlanAPI {
 	return &privateHostPlanOp{client: c}
 }
 
-func (op *privateHostPlanOp) List(ctx context.Context, zone string, req *client.PrivateHostPlanFindRequest) (*client.PrivateHostPlanFindResponseEnvelope, error) {
-	params := client.PrivateHostPlanOpFindParams{Zone: zone}
+func (op *privateHostPlanOp) List(ctx context.Context, req *client.PrivateHostPlanFindRequest) (*client.PrivateHostPlanFindResponseEnvelope, error) {
+	params := client.PrivateHostPlanOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *privateHostPlanOp) List(ctx context.Context, zone string, req *client.
 	return resp, nil
 }
 
-func (op *privateHostPlanOp) Read(ctx context.Context, zone string, id string) (*client.PrivateHostPlanReadResponseEnvelope, error) {
-	params := client.PrivateHostPlanOpReadParams{Zone: zone, ID: id}
+func (op *privateHostPlanOp) Read(ctx context.Context, id string) (*client.PrivateHostPlanReadResponseEnvelope, error) {
+	params := client.PrivateHostPlanOpReadParams{ID: id}
 	resp, err := op.client.PrivateHostPlanOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("PrivateHostPlan.Read", err)

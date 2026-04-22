@@ -24,9 +24,9 @@ import (
 
 // DatabaseAPI は Database リソースに対する操作インターフェース。
 type DatabaseAPI interface {
-	GetParameter(ctx context.Context, zone string, id string) (*client.DatabaseGetParameterResponseEnvelope, error)
-	MonitorDisk(ctx context.Context, zone string, id string, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error)
-	SetParameter(ctx context.Context, zone string, id string, request *client.DatabaseOpSetParameterReq) error
+	GetParameter(ctx context.Context, id string) (*client.DatabaseGetParameterResponseEnvelope, error)
+	MonitorDisk(ctx context.Context, id string, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error)
+	SetParameter(ctx context.Context, id string, request *client.DatabaseOpSetParameterReq) error
 }
 
 var _ DatabaseAPI = (*databaseOp)(nil)
@@ -40,8 +40,8 @@ func NewDatabaseOp(c *client.Client) DatabaseAPI {
 	return &databaseOp{client: c}
 }
 
-func (op *databaseOp) GetParameter(ctx context.Context, zone string, id string) (*client.DatabaseGetParameterResponseEnvelope, error) {
-	params := client.DatabaseOpGetParameterParams{Zone: zone, ID: id}
+func (op *databaseOp) GetParameter(ctx context.Context, id string) (*client.DatabaseGetParameterResponseEnvelope, error) {
+	params := client.DatabaseOpGetParameterParams{ID: id}
 	resp, err := op.client.DatabaseOpGetParameter(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Database.GetParameter", err)
@@ -49,8 +49,8 @@ func (op *databaseOp) GetParameter(ctx context.Context, zone string, id string) 
 	return resp, nil
 }
 
-func (op *databaseOp) MonitorDisk(ctx context.Context, zone string, id string, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error) {
-	params := client.DatabaseOpMonitorDiskParams{Zone: zone, ID: id}
+func (op *databaseOp) MonitorDisk(ctx context.Context, id string, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error) {
+	params := client.DatabaseOpMonitorDiskParams{ID: id}
 	resp, err := op.client.DatabaseOpMonitorDisk(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Database.MonitorDisk", err)
@@ -58,8 +58,8 @@ func (op *databaseOp) MonitorDisk(ctx context.Context, zone string, id string, r
 	return resp, nil
 }
 
-func (op *databaseOp) SetParameter(ctx context.Context, zone string, id string, request *client.DatabaseOpSetParameterReq) error {
-	params := client.DatabaseOpSetParameterParams{Zone: zone, ID: id}
+func (op *databaseOp) SetParameter(ctx context.Context, id string, request *client.DatabaseOpSetParameterReq) error {
+	params := client.DatabaseOpSetParameterParams{ID: id}
 	_, err := op.client.DatabaseOpSetParameter(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Database.SetParameter", err)

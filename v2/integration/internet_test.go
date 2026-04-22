@@ -31,7 +31,7 @@ func waitInternetSwitchReady(t *testing.T, ctx context.Context, c *client.Client
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
-		resp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{Zone: zone, ID: switchID})
+		resp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID: switchID})
 		if err == nil {
 			if len(resp.Switch.Subnets) > 0 && resp.Switch.Subnets[0].IPAddresses.Value.Min != "" {
 				return
@@ -62,7 +62,7 @@ func TestInternetCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.InternetOpCreate(ctx, createReq, client.InternetOpCreateParams{Zone: zone})
+	createResp, err := c.InternetOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	internetID := createResp.Internet.ID.Value
@@ -77,7 +77,7 @@ func TestInternetCRUD(t *testing.T) {
 	waitInternetSwitchReady(t, ctx, c, zone, switchID)
 
 	// 2. Read
-	readResp, err := c.InternetOpRead(ctx, client.InternetOpReadParams{Zone: zone, ID: internetIDStr})
+	readResp, err := c.InternetOpRead(ctx, client.InternetOpReadParams{ID: internetIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-internet", readResp.Internet.Name.Value)
 	require.Equal(t, internetID, readResp.Internet.ID.Value)
@@ -89,12 +89,12 @@ func TestInternetCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.InternetOpUpdateParams{Zone: zone, ID: internetIDStr})
+	}, client.InternetOpUpdateParams{ID: internetIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-internet-updated", updateResp.Internet.Name.Value)
 
 	// 4. Find
-	findResp, err := c.InternetOpFind(ctx, client.InternetOpFindParams{Zone: zone})
+	findResp, err := c.InternetOpFind(ctx, client.InternetOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Internet), 0)
 	var found bool
@@ -107,25 +107,23 @@ func TestInternetCRUD(t *testing.T) {
 	require.True(t, found, "作成したルータがリストに含まれていること")
 
 	// 5. EnableIPv6
-	ipv6Resp, err := c.InternetOpEnableIPv6(ctx, client.InternetOpEnableIPv6Params{Zone: zone, ID: internetIDStr})
+	ipv6Resp, err := c.InternetOpEnableIPv6(ctx, client.InternetOpEnableIPv6Params{ID: internetIDStr})
 	require.NoError(t, err)
 	ipv6NetID := ipv6Resp.IPv6Net.ID.Value
 	require.NotZero(t, ipv6NetID)
 	t.Logf("Enabled IPv6 net ID: %d", ipv6NetID)
 
 	// 6. DisableIPv6
-	_, err = c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{
-		Zone:      zone,
-		ID:        internetIDStr,
+	_, err = c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{ID:        internetIDStr,
 		Ipv6netID: fmt.Sprintf("%d", ipv6NetID),
 	})
 	require.NoError(t, err)
 
 	// 7. Delete
-	_, err = c.InternetOpDelete(ctx, client.InternetOpDeleteParams{Zone: zone, ID: internetIDStr})
+	_, err = c.InternetOpDelete(ctx, client.InternetOpDeleteParams{ID: internetIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.InternetOpRead(ctx, client.InternetOpReadParams{Zone: zone, ID: internetIDStr})
+	_, err = c.InternetOpRead(ctx, client.InternetOpReadParams{ID: internetIDStr})
 	require.Error(t, err)
 }

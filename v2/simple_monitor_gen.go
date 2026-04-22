@@ -24,7 +24,7 @@ import (
 
 // SimpleMonitorAPI は SimpleMonitor リソースに対する操作インターフェース。
 type SimpleMonitorAPI interface {
-	MonitorResponseTime(ctx context.Context, zone string, id string, request *client.SimpleMonitorOpMonitorResponseTimeReq) (*client.SimpleMonitorMonitorResponseTimeResponseEnvelope, error)
+	MonitorResponseTime(ctx context.Context, id string, request *client.SimpleMonitorOpMonitorResponseTimeReq) (*client.SimpleMonitorMonitorResponseTimeResponseEnvelope, error)
 }
 
 var _ SimpleMonitorAPI = (*simpleMonitorOp)(nil)
@@ -38,8 +38,8 @@ func NewSimpleMonitorOp(c *client.Client) SimpleMonitorAPI {
 	return &simpleMonitorOp{client: c}
 }
 
-func (op *simpleMonitorOp) MonitorResponseTime(ctx context.Context, zone string, id string, request *client.SimpleMonitorOpMonitorResponseTimeReq) (*client.SimpleMonitorMonitorResponseTimeResponseEnvelope, error) {
-	params := client.SimpleMonitorOpMonitorResponseTimeParams{Zone: zone, ID: id}
+func (op *simpleMonitorOp) MonitorResponseTime(ctx context.Context, id string, request *client.SimpleMonitorOpMonitorResponseTimeReq) (*client.SimpleMonitorMonitorResponseTimeResponseEnvelope, error) {
+	params := client.SimpleMonitorOpMonitorResponseTimeParams{ID: id}
 	resp, err := op.client.SimpleMonitorOpMonitorResponseTime(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("SimpleMonitor.MonitorResponseTime", err)

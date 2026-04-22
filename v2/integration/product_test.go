@@ -33,9 +33,8 @@ func TestDiskPlanFindRead(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.DiskPlanOpFind(ctx, client.DiskPlanOpFindParams{Zone: zone})
+	findResp, err := c.DiskPlanOpFind(ctx, client.DiskPlanOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.DiskPlans), 0, "DiskPlan が 1 件以上返ること")
 
@@ -44,9 +43,7 @@ func TestDiskPlanFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.NotEmpty(t, first.Name.Value)
 
-	readResp, err := c.DiskPlanOpRead(ctx, client.DiskPlanOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", first.ID.Value),
+	readResp, err := c.DiskPlanOpRead(ctx, client.DiskPlanOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
 	})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.DiskPlan.ID.Value)
@@ -58,9 +55,8 @@ func TestInternetPlanFindRead(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.InternetPlanOpFind(ctx, client.InternetPlanOpFindParams{Zone: zone})
+	findResp, err := c.InternetPlanOpFind(ctx, client.InternetPlanOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.InternetPlans), 0, "InternetPlan が 1 件以上返ること")
 
@@ -69,9 +65,7 @@ func TestInternetPlanFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.Greater(t, first.BandWidthMbps.Value, int32(0))
 
-	readResp, err := c.InternetPlanOpRead(ctx, client.InternetPlanOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", first.ID.Value),
+	readResp, err := c.InternetPlanOpRead(ctx, client.InternetPlanOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
 	})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.InternetPlan.ID.Value)
@@ -83,9 +77,8 @@ func TestServerPlanFindRead(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.ServerPlanOpFind(ctx, client.ServerPlanOpFindParams{Zone: zone})
+	findResp, err := c.ServerPlanOpFind(ctx, client.ServerPlanOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.ServerPlans), 0, "ServerPlan が 1 件以上返ること")
 
@@ -95,9 +88,7 @@ func TestServerPlanFindRead(t *testing.T) {
 	require.Greater(t, first.CPU.Value, int32(0))
 	require.Greater(t, first.MemoryMB.Value, int32(0))
 
-	readResp, err := c.ServerPlanOpRead(ctx, client.ServerPlanOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", first.ID.Value),
+	readResp, err := c.ServerPlanOpRead(ctx, client.ServerPlanOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
 	})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.ServerPlan.ID.Value)
@@ -112,9 +103,8 @@ func TestLicenseInfoFindRead(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.LicenseInfoOpFind(ctx, client.LicenseInfoOpFindParams{Zone: zone})
+	findResp, err := c.LicenseInfoOpFind(ctx, client.LicenseInfoOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.LicenseInfo), 0, "LicenseInfo が 1 件以上返ること")
 
@@ -123,9 +113,7 @@ func TestLicenseInfoFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.NotEmpty(t, first.Name.Value)
 
-	readResp, err := c.LicenseInfoOpRead(ctx, client.LicenseInfoOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", first.ID.Value),
+	readResp, err := c.LicenseInfoOpRead(ctx, client.LicenseInfoOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
 	})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.LicenseInfo.ID.Value)

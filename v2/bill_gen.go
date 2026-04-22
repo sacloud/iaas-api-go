@@ -24,12 +24,12 @@ import (
 
 // BillAPI は Bill リソースに対する操作インターフェース。
 type BillAPI interface {
-	ByContract(ctx context.Context, zone string, accountID string) (*client.BillByContractResponseEnvelope, error)
-	ByContractYear(ctx context.Context, zone string, accountID string, year string) (*client.BillByContractYearResponseEnvelope, error)
-	ByContractYearMonth(ctx context.Context, zone string, accountID string, year string, month string) (*client.BillByContractYearMonthResponseEnvelope, error)
-	Details(ctx context.Context, zone string, memberCode string, id string) (*client.BillDetailsResponseEnvelope, error)
-	DetailsCSV(ctx context.Context, zone string, memberCode string, id string) (*client.BillDetailsCSVResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.BillReadResponseEnvelope, error)
+	ByContract(ctx context.Context, accountID string) (*client.BillByContractResponseEnvelope, error)
+	ByContractYear(ctx context.Context, accountID string, year string) (*client.BillByContractYearResponseEnvelope, error)
+	ByContractYearMonth(ctx context.Context, accountID string, year string, month string) (*client.BillByContractYearMonthResponseEnvelope, error)
+	Details(ctx context.Context, memberCode string, id string) (*client.BillDetailsResponseEnvelope, error)
+	DetailsCSV(ctx context.Context, memberCode string, id string) (*client.BillDetailsCSVResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.BillReadResponseEnvelope, error)
 }
 
 var _ BillAPI = (*billOp)(nil)
@@ -43,8 +43,8 @@ func NewBillOp(c *client.Client) BillAPI {
 	return &billOp{client: c}
 }
 
-func (op *billOp) ByContract(ctx context.Context, zone string, accountID string) (*client.BillByContractResponseEnvelope, error) {
-	params := client.BillOpByContractParams{Zone: zone, AccountID: accountID}
+func (op *billOp) ByContract(ctx context.Context, accountID string) (*client.BillByContractResponseEnvelope, error) {
+	params := client.BillOpByContractParams{AccountID: accountID}
 	resp, err := op.client.BillOpByContract(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bill.ByContract", err)
@@ -52,8 +52,8 @@ func (op *billOp) ByContract(ctx context.Context, zone string, accountID string)
 	return resp, nil
 }
 
-func (op *billOp) ByContractYear(ctx context.Context, zone string, accountID string, year string) (*client.BillByContractYearResponseEnvelope, error) {
-	params := client.BillOpByContractYearParams{Zone: zone, AccountID: accountID, Year: year}
+func (op *billOp) ByContractYear(ctx context.Context, accountID string, year string) (*client.BillByContractYearResponseEnvelope, error) {
+	params := client.BillOpByContractYearParams{AccountID: accountID, Year: year}
 	resp, err := op.client.BillOpByContractYear(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bill.ByContractYear", err)
@@ -61,8 +61,8 @@ func (op *billOp) ByContractYear(ctx context.Context, zone string, accountID str
 	return resp, nil
 }
 
-func (op *billOp) ByContractYearMonth(ctx context.Context, zone string, accountID string, year string, month string) (*client.BillByContractYearMonthResponseEnvelope, error) {
-	params := client.BillOpByContractYearMonthParams{Zone: zone, AccountID: accountID, Year: year, Month: month}
+func (op *billOp) ByContractYearMonth(ctx context.Context, accountID string, year string, month string) (*client.BillByContractYearMonthResponseEnvelope, error) {
+	params := client.BillOpByContractYearMonthParams{AccountID: accountID, Year: year, Month: month}
 	resp, err := op.client.BillOpByContractYearMonth(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bill.ByContractYearMonth", err)
@@ -70,8 +70,8 @@ func (op *billOp) ByContractYearMonth(ctx context.Context, zone string, accountI
 	return resp, nil
 }
 
-func (op *billOp) Details(ctx context.Context, zone string, memberCode string, id string) (*client.BillDetailsResponseEnvelope, error) {
-	params := client.BillOpDetailsParams{Zone: zone, MemberCode: memberCode, ID: id}
+func (op *billOp) Details(ctx context.Context, memberCode string, id string) (*client.BillDetailsResponseEnvelope, error) {
+	params := client.BillOpDetailsParams{MemberCode: memberCode, ID: id}
 	resp, err := op.client.BillOpDetails(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bill.Details", err)
@@ -79,8 +79,8 @@ func (op *billOp) Details(ctx context.Context, zone string, memberCode string, i
 	return resp, nil
 }
 
-func (op *billOp) DetailsCSV(ctx context.Context, zone string, memberCode string, id string) (*client.BillDetailsCSVResponseEnvelope, error) {
-	params := client.BillOpDetailsCSVParams{Zone: zone, MemberCode: memberCode, ID: id}
+func (op *billOp) DetailsCSV(ctx context.Context, memberCode string, id string) (*client.BillDetailsCSVResponseEnvelope, error) {
+	params := client.BillOpDetailsCSVParams{MemberCode: memberCode, ID: id}
 	resp, err := op.client.BillOpDetailsCSV(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bill.DetailsCSV", err)
@@ -88,8 +88,8 @@ func (op *billOp) DetailsCSV(ctx context.Context, zone string, memberCode string
 	return resp, nil
 }
 
-func (op *billOp) Read(ctx context.Context, zone string, id string) (*client.BillReadResponseEnvelope, error) {
-	params := client.BillOpReadParams{Zone: zone, ID: id}
+func (op *billOp) Read(ctx context.Context, id string) (*client.BillReadResponseEnvelope, error) {
+	params := client.BillOpReadParams{ID: id}
 	resp, err := op.client.BillOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Bill.Read", err)

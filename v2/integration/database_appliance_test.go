@@ -41,12 +41,12 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 			Name: client.NewOptString("switch-for-db"),
 			Tags: []string{"test", "integration"},
 		},
-	}, client.SwitchOpCreateParams{Zone: zone})
+	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
 	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{Zone: zone, ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
 	}()
 
 	// 2. Appliance Create (Class=database, Plan=DB10GB / ID=10)
@@ -106,7 +106,7 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.ApplianceOpCreate(ctx, createReq, client.ApplianceOpCreateParams{Zone: zone})
+	createResp, err := c.ApplianceOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	dbID := createResp.Appliance.ID.Value
@@ -121,16 +121,16 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 	waitApplianceAvailable(t, ctx, c, zone, dbIDStr)
 
 	// 3. Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: dbIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: dbIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-db", readResp.Appliance.Name.Value)
 	require.Equal(t, "database", readResp.Appliance.Class.Value)
 
 	// 4. Shutdown → Delete
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{Zone: zone, ID: dbIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: dbIDStr})
 	require.NoError(t, err)
 	waitApplianceShutdown(t, ctx, c, zone, dbIDStr)
 
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: dbIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: dbIDStr})
 	require.NoError(t, err)
 }

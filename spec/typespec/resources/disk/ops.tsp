@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface DiskOp {
   @summary("Disk 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/disk")
+  @route("/disk")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -41,30 +35,16 @@ interface DiskOp {
 
   @summary("Disk 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/disk")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: DiskCreateRequestEnvelope,
-  ): {
+  @route("/disk")
+  create(@body body: DiskCreateRequestEnvelope): {
     @statusCode _: 201;
     ...DiskCreateResponseEnvelope;
   } | ApiError;
 
   @summary("ディスクの修正反映")
   @put
-  @route("/{zone}/api/cloud/1.1/disk/{id}/config")
+  @route("/disk/{id}/config")
   config(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -79,14 +59,8 @@ interface DiskOp {
 
   @summary("Disk パーティションリサイズ")
   @put
-  @route("/{zone}/api/cloud/1.1/disk/{id}/resize-partition")
+  @route("/disk/{id}/resize-partition")
   resizePartition(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -101,14 +75,8 @@ interface DiskOp {
 
   @summary("Disk サーバー接続")
   @put
-  @route("/{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}")
+  @route("/disk/{id}/to/server/{serverID}")
   connectToServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -127,14 +95,8 @@ interface DiskOp {
 
   @summary("Disk サーバー切断")
   @delete
-  @route("/{zone}/api/cloud/1.1/disk/{id}/to/server")
+  @route("/disk/{id}/to/server")
   disconnectFromServer(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -147,14 +109,8 @@ interface DiskOp {
 
   @summary("Disk 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/disk/{id}")
+  @route("/disk/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -164,14 +120,8 @@ interface DiskOp {
 
   @summary("Disk 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/disk/{id}")
+  @route("/disk/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -183,14 +133,8 @@ interface DiskOp {
 
   @summary("Disk 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/disk/{id}")
+  @route("/disk/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -203,14 +147,8 @@ interface DiskOp {
 
   @summary("Disk モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/disk/{id}/monitor")
+  @route("/disk/{id}/monitor")
   monitor(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

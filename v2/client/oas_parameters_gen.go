@@ -4,43 +4,24 @@ package client
 
 // ApplianceOpBootParams is parameters of ApplianceOp_boot operation.
 type ApplianceOpBootParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpConfigParams is parameters of ApplianceOp_config operation.
 type ApplianceOpConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// ApplianceOpCreateParams is parameters of ApplianceOp_create operation.
-type ApplianceOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // ApplianceOpDeleteParams is parameters of ApplianceOp_delete operation.
 type ApplianceOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpFindParams is parameters of ApplianceOp_find operation.
 type ApplianceOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -55,36 +36,24 @@ type ApplianceOpFindParams struct {
 
 // ApplianceOpMonitorCPUParams is parameters of ApplianceOp_monitorCPU operation.
 type ApplianceOpMonitorCPUParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpMonitorDatabaseParams is parameters of ApplianceOp_monitorDatabase operation.
 type ApplianceOpMonitorDatabaseParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpMonitorInterfaceParams is parameters of ApplianceOp_monitorInterface operation.
 type ApplianceOpMonitorInterfaceParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpMonitorInterfaceByIndexParams is parameters of ApplianceOp_monitorInterfaceByIndex operation.
 type ApplianceOpMonitorInterfaceByIndexParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// インターフェースのインデックス（0 始まり）。.
@@ -93,79 +62,48 @@ type ApplianceOpMonitorInterfaceByIndexParams struct {
 
 // ApplianceOpReadParams is parameters of ApplianceOp_read operation.
 type ApplianceOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpResetParams is parameters of ApplianceOp_reset operation.
 type ApplianceOpResetParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpShutdownParams is parameters of ApplianceOp_shutdown operation.
 type ApplianceOpShutdownParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpStatusParams is parameters of ApplianceOp_status operation.
 type ApplianceOpStatusParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ApplianceOpUpdateParams is parameters of ApplianceOp_update operation.
 type ApplianceOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ArchiveOpCloseFTPParams is parameters of ArchiveOp_closeFTP operation.
 type ArchiveOpCloseFTPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// ArchiveOpCreateParams is parameters of ArchiveOp_create operation.
-type ArchiveOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // ArchiveOpDeleteParams is parameters of ArchiveOp_delete operation.
 type ArchiveOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ArchiveOpFindParams is parameters of ArchiveOp_find operation.
 type ArchiveOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -179,27 +117,18 @@ type ArchiveOpFindParams struct {
 
 // ArchiveOpReadParams is parameters of ArchiveOp_read operation.
 type ArchiveOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ArchiveOpShareParams is parameters of ArchiveOp_share operation.
 type ArchiveOpShareParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ArchiveOpTransferParams is parameters of ArchiveOp_transfer operation.
 type ArchiveOpTransferParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// コピー元アーカイブ ID。.
 	SourceArchiveID string
 	// 転送先ゾーンの ID。.
@@ -208,61 +137,36 @@ type ArchiveOpTransferParams struct {
 
 // ArchiveOpUpdateParams is parameters of ArchiveOp_update operation.
 type ArchiveOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// AuthStatusOpReadParams is parameters of AuthStatusOp_read operation.
-type AuthStatusOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // AutoScaleOpScaleDownParams is parameters of AutoScaleOp_scaleDown operation.
 type AutoScaleOpScaleDownParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // AutoScaleOpScaleUpParams is parameters of AutoScaleOp_scaleUp operation.
 type AutoScaleOpScaleUpParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // AutoScaleOpStatusParams is parameters of AutoScaleOp_status operation.
 type AutoScaleOpStatusParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // BillOpByContractParams is parameters of BillOp_byContract operation.
 type BillOpByContractParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 契約（アカウント）の ID。.
 	AccountID string
 }
 
 // BillOpByContractYearParams is parameters of BillOp_byContractYear operation.
 type BillOpByContractYearParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 契約（アカウント）の ID。.
 	AccountID string
 	// 対象年（西暦 4 桁）。.
@@ -271,9 +175,6 @@ type BillOpByContractYearParams struct {
 
 // BillOpByContractYearMonthParams is parameters of BillOp_byContractYearMonth operation.
 type BillOpByContractYearMonthParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 契約（アカウント）の ID。.
 	AccountID string
 	// 対象年（西暦 4 桁）。.
@@ -284,9 +185,6 @@ type BillOpByContractYearMonthParams struct {
 
 // BillOpDetailsParams is parameters of BillOp_details operation.
 type BillOpDetailsParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 会員コード。.
 	MemberCode string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
@@ -295,9 +193,6 @@ type BillOpDetailsParams struct {
 
 // BillOpDetailsCSVParams is parameters of BillOp_detailsCSV operation.
 type BillOpDetailsCSVParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 会員コード。.
 	MemberCode string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
@@ -306,34 +201,18 @@ type BillOpDetailsCSVParams struct {
 
 // BillOpReadParams is parameters of BillOp_read operation.
 type BillOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// BridgeOpCreateParams is parameters of BridgeOp_create operation.
-type BridgeOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // BridgeOpDeleteParams is parameters of BridgeOp_delete operation.
 type BridgeOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // BridgeOpFindParams is parameters of BridgeOp_find operation.
 type BridgeOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -345,52 +224,30 @@ type BridgeOpFindParams struct {
 
 // BridgeOpReadParams is parameters of BridgeOp_read operation.
 type BridgeOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // BridgeOpUpdateParams is parameters of BridgeOp_update operation.
 type BridgeOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CDROMOpCloseFTPParams is parameters of CDROMOp_closeFTP operation.
 type CDROMOpCloseFTPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// CDROMOpCreateParams is parameters of CDROMOp_create operation.
-type CDROMOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // CDROMOpDeleteParams is parameters of CDROMOp_delete operation.
 type CDROMOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CDROMOpFindParams is parameters of CDROMOp_find operation.
 type CDROMOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -404,54 +261,36 @@ type CDROMOpFindParams struct {
 
 // CDROMOpOpenFTPParams is parameters of CDROMOp_openFTP operation.
 type CDROMOpOpenFTPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CDROMOpReadParams is parameters of CDROMOp_read operation.
 type CDROMOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CDROMOpUpdateParams is parameters of CDROMOp_update operation.
 type CDROMOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CertificateAuthorityOpAddClientParams is parameters of CertificateAuthorityOp_addClient operation.
 type CertificateAuthorityOpAddClientParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CertificateAuthorityOpAddServerParams is parameters of CertificateAuthorityOp_addServer operation.
 type CertificateAuthorityOpAddServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CertificateAuthorityOpDenyClientParams is parameters of CertificateAuthorityOp_denyClient operation.
 type CertificateAuthorityOpDenyClientParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
@@ -460,18 +299,12 @@ type CertificateAuthorityOpDenyClientParams struct {
 
 // CertificateAuthorityOpDetailParams is parameters of CertificateAuthorityOp_detail operation.
 type CertificateAuthorityOpDetailParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CertificateAuthorityOpHoldClientParams is parameters of CertificateAuthorityOp_holdClient operation.
 type CertificateAuthorityOpHoldClientParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
@@ -480,9 +313,6 @@ type CertificateAuthorityOpHoldClientParams struct {
 
 // CertificateAuthorityOpHoldServerParams is parameters of CertificateAuthorityOp_holdServer operation.
 type CertificateAuthorityOpHoldServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サーバ ID。.
@@ -491,27 +321,18 @@ type CertificateAuthorityOpHoldServerParams struct {
 
 // CertificateAuthorityOpListClientsParams is parameters of CertificateAuthorityOp_listClients operation.
 type CertificateAuthorityOpListClientsParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CertificateAuthorityOpListServersParams is parameters of CertificateAuthorityOp_listServers operation.
 type CertificateAuthorityOpListServersParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CertificateAuthorityOpReadClientParams is parameters of CertificateAuthorityOp_readClient operation.
 type CertificateAuthorityOpReadClientParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
@@ -520,9 +341,6 @@ type CertificateAuthorityOpReadClientParams struct {
 
 // CertificateAuthorityOpReadServerParams is parameters of CertificateAuthorityOp_readServer operation.
 type CertificateAuthorityOpReadServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サーバ ID。.
@@ -531,9 +349,6 @@ type CertificateAuthorityOpReadServerParams struct {
 
 // CertificateAuthorityOpResumeClientParams is parameters of CertificateAuthorityOp_resumeClient operation.
 type CertificateAuthorityOpResumeClientParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
@@ -542,9 +357,6 @@ type CertificateAuthorityOpResumeClientParams struct {
 
 // CertificateAuthorityOpResumeServerParams is parameters of CertificateAuthorityOp_resumeServer operation.
 type CertificateAuthorityOpResumeServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サーバ ID。.
@@ -553,9 +365,6 @@ type CertificateAuthorityOpResumeServerParams struct {
 
 // CertificateAuthorityOpRevokeClientParams is parameters of CertificateAuthorityOp_revokeClient operation.
 type CertificateAuthorityOpRevokeClientParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
@@ -564,36 +373,20 @@ type CertificateAuthorityOpRevokeClientParams struct {
 
 // CertificateAuthorityOpRevokeServerParams is parameters of CertificateAuthorityOp_revokeServer operation.
 type CertificateAuthorityOpRevokeServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サーバ ID。.
 	ServerID string
 }
 
-// CommonServiceItemOpCreateParams is parameters of CommonServiceItemOp_create operation.
-type CommonServiceItemOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // CommonServiceItemOpDeleteParams is parameters of CommonServiceItemOp_delete operation.
 type CommonServiceItemOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CommonServiceItemOpFindParams is parameters of CommonServiceItemOp_find operation.
 type CommonServiceItemOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -607,45 +400,30 @@ type CommonServiceItemOpFindParams struct {
 
 // CommonServiceItemOpHealthStatusParams is parameters of CommonServiceItemOp_healthStatus operation.
 type CommonServiceItemOpHealthStatusParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CommonServiceItemOpReadParams is parameters of CommonServiceItemOp_read operation.
 type CommonServiceItemOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // CommonServiceItemOpUpdateParams is parameters of CommonServiceItemOp_update operation.
 type CommonServiceItemOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ContainerRegistryOpAddUserParams is parameters of ContainerRegistryOp_addUser operation.
 type ContainerRegistryOpAddUserParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ContainerRegistryOpDeleteUserParams is parameters of ContainerRegistryOp_deleteUser operation.
 type ContainerRegistryOpDeleteUserParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// コンテナレジストリのユーザ名。.
@@ -654,18 +432,12 @@ type ContainerRegistryOpDeleteUserParams struct {
 
 // ContainerRegistryOpListUsersParams is parameters of ContainerRegistryOp_listUsers operation.
 type ContainerRegistryOpListUsersParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ContainerRegistryOpUpdateUserParams is parameters of ContainerRegistryOp_updateUser operation.
 type ContainerRegistryOpUpdateUserParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// コンテナレジストリのユーザ名。.
@@ -674,90 +446,56 @@ type ContainerRegistryOpUpdateUserParams struct {
 
 // CouponOpFindParams is parameters of CouponOp_find operation.
 type CouponOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 契約（アカウント）の ID。.
 	AccountID string
 }
 
 // DatabaseOpGetParameterParams is parameters of DatabaseOp_getParameter operation.
 type DatabaseOpGetParameterParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DatabaseOpMonitorDiskParams is parameters of DatabaseOp_monitorDisk operation.
 type DatabaseOpMonitorDiskParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DatabaseOpSetParameterParams is parameters of DatabaseOp_setParameter operation.
 type DatabaseOpSetParameterParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpConfigParams is parameters of DiskOp_config operation.
 type DiskOpConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpConnectToServerParams is parameters of DiskOp_connectToServer operation.
 type DiskOpConnectToServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サーバ ID。.
 	ServerID string
 }
 
-// DiskOpCreateParams is parameters of DiskOp_create operation.
-type DiskOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // DiskOpDeleteParams is parameters of DiskOp_delete operation.
 type DiskOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpDisconnectFromServerParams is parameters of DiskOp_disconnectFromServer operation.
 type DiskOpDisconnectFromServerParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpFindParams is parameters of DiskOp_find operation.
 type DiskOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -771,45 +509,30 @@ type DiskOpFindParams struct {
 
 // DiskOpMonitorParams is parameters of DiskOp_monitor operation.
 type DiskOpMonitorParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpReadParams is parameters of DiskOp_read operation.
 type DiskOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpResizePartitionParams is parameters of DiskOp_resizePartition operation.
 type DiskOpResizePartitionParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskOpUpdateParams is parameters of DiskOp_update operation.
 type DiskOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // DiskPlanOpFindParams is parameters of DiskPlanOp_find operation.
 type DiskPlanOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -821,113 +544,66 @@ type DiskPlanOpFindParams struct {
 
 // DiskPlanOpReadParams is parameters of DiskPlanOp_read operation.
 type DiskPlanOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ESMEOpLogsParams is parameters of ESMEOp_logs operation.
 type ESMEOpLogsParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ESMEOpSendMessageWithGeneratedOTPParams is parameters of ESMEOp_sendMessageWithGeneratedOTP operation.
 type ESMEOpSendMessageWithGeneratedOTPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ESMEOpSendMessageWithInputtedOTPParams is parameters of ESMEOp_sendMessageWithInputtedOTP operation.
 type ESMEOpSendMessageWithInputtedOTPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // EnhancedDBOpGetConfigParams is parameters of EnhancedDBOp_getConfig operation.
 type EnhancedDBOpGetConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // EnhancedDBOpSetConfigParams is parameters of EnhancedDBOp_setConfig operation.
 type EnhancedDBOpSetConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // EnhancedDBOpSetPasswordParams is parameters of EnhancedDBOp_setPassword operation.
 type EnhancedDBOpSetPasswordParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// IPAddressOpListParams is parameters of IPAddressOp_list operation.
-type IPAddressOpListParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // IPAddressOpReadParams is parameters of IPAddressOp_read operation.
 type IPAddressOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象の IPv4 アドレス。.
 	IpAddress string
 }
 
 // IPAddressOpUpdateHostNameParams is parameters of IPAddressOp_updateHostName operation.
 type IPAddressOpUpdateHostNameParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象の IPv4 アドレス。.
 	IpAddress string
 }
 
-// IPv6AddrOpCreateParams is parameters of IPv6AddrOp_create operation.
-type IPv6AddrOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // IPv6AddrOpDeleteParams is parameters of IPv6AddrOp_delete operation.
 type IPv6AddrOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // IPv6AddrOpFindParams is parameters of IPv6AddrOp_find operation.
 type IPv6AddrOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -937,59 +613,30 @@ type IPv6AddrOpFindParams struct {
 
 // IPv6AddrOpReadParams is parameters of IPv6AddrOp_read operation.
 type IPv6AddrOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // IPv6AddrOpUpdateParams is parameters of IPv6AddrOp_update operation.
 type IPv6AddrOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
-}
-
-// IPv6NetOpListParams is parameters of IPv6NetOp_list operation.
-type IPv6NetOpListParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 }
 
 // IPv6NetOpReadParams is parameters of IPv6NetOp_read operation.
 type IPv6NetOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// IconOpCreateParams is parameters of IconOp_create operation.
-type IconOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // IconOpDeleteParams is parameters of IconOp_delete operation.
 type IconOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // IconOpFindParams is parameters of IconOp_find operation.
 type IconOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1003,27 +650,18 @@ type IconOpFindParams struct {
 
 // IconOpReadParams is parameters of IconOp_read operation.
 type IconOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // IconOpUpdateParams is parameters of IconOp_update operation.
 type IconOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpConnectToPacketFilterParams is parameters of InterfaceOp_connectToPacketFilter operation.
 type InterfaceOpConnectToPacketFilterParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// パケットフィルタ ID。.
@@ -1032,63 +670,38 @@ type InterfaceOpConnectToPacketFilterParams struct {
 
 // InterfaceOpConnectToSharedSegmentParams is parameters of InterfaceOp_connectToSharedSegment operation.
 type InterfaceOpConnectToSharedSegmentParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpConnectToSwitchParams is parameters of InterfaceOp_connectToSwitch operation.
 type InterfaceOpConnectToSwitchParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// スイッチ ID。.
 	SwitchID string
 }
 
-// InterfaceOpCreateParams is parameters of InterfaceOp_create operation.
-type InterfaceOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // InterfaceOpDeleteParams is parameters of InterfaceOp_delete operation.
 type InterfaceOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpDisconnectFromPacketFilterParams is parameters of InterfaceOp_disconnectFromPacketFilter operation.
 type InterfaceOpDisconnectFromPacketFilterParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpDisconnectFromSwitchParams is parameters of InterfaceOp_disconnectFromSwitch operation.
 type InterfaceOpDisconnectFromSwitchParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpFindParams is parameters of InterfaceOp_find operation.
 type InterfaceOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1100,61 +713,36 @@ type InterfaceOpFindParams struct {
 
 // InterfaceOpMonitorParams is parameters of InterfaceOp_monitor operation.
 type InterfaceOpMonitorParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpReadParams is parameters of InterfaceOp_read operation.
 type InterfaceOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InterfaceOpUpdateParams is parameters of InterfaceOp_update operation.
 type InterfaceOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpAddSubnetParams is parameters of InternetOp_addSubnet operation.
 type InternetOpAddSubnetParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// InternetOpCreateParams is parameters of InternetOp_create operation.
-type InternetOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // InternetOpDeleteParams is parameters of InternetOp_delete operation.
 type InternetOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpDeleteSubnetParams is parameters of InternetOp_deleteSubnet operation.
 type InternetOpDeleteSubnetParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サブネット ID。.
@@ -1163,9 +751,6 @@ type InternetOpDeleteSubnetParams struct {
 
 // InternetOpDisableIPv6Params is parameters of InternetOp_disableIPv6 operation.
 type InternetOpDisableIPv6Params struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID        string
 	Ipv6netID string
@@ -1173,18 +758,12 @@ type InternetOpDisableIPv6Params struct {
 
 // InternetOpEnableIPv6Params is parameters of InternetOp_enableIPv6 operation.
 type InternetOpEnableIPv6Params struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpFindParams is parameters of InternetOp_find operation.
 type InternetOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1197,45 +776,30 @@ type InternetOpFindParams struct {
 
 // InternetOpMonitorParams is parameters of InternetOp_monitor operation.
 type InternetOpMonitorParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpReadParams is parameters of InternetOp_read operation.
 type InternetOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpUpdateParams is parameters of InternetOp_update operation.
 type InternetOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpUpdateBandWidthParams is parameters of InternetOp_updateBandWidth operation.
 type InternetOpUpdateBandWidthParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // InternetOpUpdateSubnetParams is parameters of InternetOp_updateSubnet operation.
 type InternetOpUpdateSubnetParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// サブネット ID。.
@@ -1244,9 +808,6 @@ type InternetOpUpdateSubnetParams struct {
 
 // InternetPlanOpFindParams is parameters of InternetPlanOp_find operation.
 type InternetPlanOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1258,18 +819,12 @@ type InternetPlanOpFindParams struct {
 
 // InternetPlanOpReadParams is parameters of InternetPlanOp_read operation.
 type InternetPlanOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // LicenseInfoOpFindParams is parameters of LicenseInfoOp_find operation.
 type LicenseInfoOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1281,34 +836,18 @@ type LicenseInfoOpFindParams struct {
 
 // LicenseInfoOpReadParams is parameters of LicenseInfoOp_read operation.
 type LicenseInfoOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// LicenseOpCreateParams is parameters of LicenseOp_create operation.
-type LicenseOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // LicenseOpDeleteParams is parameters of LicenseOp_delete operation.
 type LicenseOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // LicenseOpFindParams is parameters of LicenseOp_find operation.
 type LicenseOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1320,45 +859,30 @@ type LicenseOpFindParams struct {
 
 // LicenseOpReadParams is parameters of LicenseOp_read operation.
 type LicenseOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // LicenseOpUpdateParams is parameters of LicenseOp_update operation.
 type LicenseOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // LocalRouterOpMonitorLocalRouterParams is parameters of LocalRouterOp_monitorLocalRouter operation.
 type LocalRouterOpMonitorLocalRouterParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpAddSIMParams is parameters of MobileGatewayOp_addSIM operation.
 type MobileGatewayOpAddSIMParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpConnectToSwitchParams is parameters of MobileGatewayOp_connectToSwitch operation.
 type MobileGatewayOpConnectToSwitchParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// スイッチ ID。.
@@ -1367,9 +891,6 @@ type MobileGatewayOpConnectToSwitchParams struct {
 
 // MobileGatewayOpDeleteSIMParams is parameters of MobileGatewayOp_deleteSIM operation.
 type MobileGatewayOpDeleteSIMParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// SIM ID。.
@@ -1378,124 +899,78 @@ type MobileGatewayOpDeleteSIMParams struct {
 
 // MobileGatewayOpDeleteTrafficConfigParams is parameters of MobileGatewayOp_deleteTrafficConfig operation.
 type MobileGatewayOpDeleteTrafficConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpDisconnectFromSwitchParams is parameters of MobileGatewayOp_disconnectFromSwitch operation.
 type MobileGatewayOpDisconnectFromSwitchParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpGetDNSParams is parameters of MobileGatewayOp_getDNS operation.
 type MobileGatewayOpGetDNSParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpGetSIMRoutesParams is parameters of MobileGatewayOp_getSIMRoutes operation.
 type MobileGatewayOpGetSIMRoutesParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpGetTrafficConfigParams is parameters of MobileGatewayOp_getTrafficConfig operation.
 type MobileGatewayOpGetTrafficConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpListSIMParams is parameters of MobileGatewayOp_listSIM operation.
 type MobileGatewayOpListSIMParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpLogsParams is parameters of MobileGatewayOp_logs operation.
 type MobileGatewayOpLogsParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpSetDNSParams is parameters of MobileGatewayOp_setDNS operation.
 type MobileGatewayOpSetDNSParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpSetSIMRoutesParams is parameters of MobileGatewayOp_setSIMRoutes operation.
 type MobileGatewayOpSetSIMRoutesParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpSetTrafficConfigParams is parameters of MobileGatewayOp_setTrafficConfig operation.
 type MobileGatewayOpSetTrafficConfigParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // MobileGatewayOpTrafficStatusParams is parameters of MobileGatewayOp_trafficStatus operation.
 type MobileGatewayOpTrafficStatusParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// NoteOpCreateParams is parameters of NoteOp_create operation.
-type NoteOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // NoteOpDeleteParams is parameters of NoteOp_delete operation.
 type NoteOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // NoteOpFindParams is parameters of NoteOp_find operation.
 type NoteOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1509,43 +984,24 @@ type NoteOpFindParams struct {
 
 // NoteOpReadParams is parameters of NoteOp_read operation.
 type NoteOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // NoteOpUpdateParams is parameters of NoteOp_update operation.
 type NoteOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// PacketFilterOpCreateParams is parameters of PacketFilterOp_create operation.
-type PacketFilterOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // PacketFilterOpDeleteParams is parameters of PacketFilterOp_delete operation.
 type PacketFilterOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // PacketFilterOpFindParams is parameters of PacketFilterOp_find operation.
 type PacketFilterOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1557,43 +1013,24 @@ type PacketFilterOpFindParams struct {
 
 // PacketFilterOpReadParams is parameters of PacketFilterOp_read operation.
 type PacketFilterOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // PacketFilterOpUpdateParams is parameters of PacketFilterOp_update operation.
 type PacketFilterOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// PrivateHostOpCreateParams is parameters of PrivateHostOp_create operation.
-type PrivateHostOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // PrivateHostOpDeleteParams is parameters of PrivateHostOp_delete operation.
 type PrivateHostOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // PrivateHostOpFindParams is parameters of PrivateHostOp_find operation.
 type PrivateHostOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1606,27 +1043,18 @@ type PrivateHostOpFindParams struct {
 
 // PrivateHostOpReadParams is parameters of PrivateHostOp_read operation.
 type PrivateHostOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // PrivateHostOpUpdateParams is parameters of PrivateHostOp_update operation.
 type PrivateHostOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // PrivateHostPlanOpFindParams is parameters of PrivateHostPlanOp_find operation.
 type PrivateHostPlanOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1640,72 +1068,48 @@ type PrivateHostPlanOpFindParams struct {
 
 // PrivateHostPlanOpReadParams is parameters of PrivateHostPlanOp_read operation.
 type PrivateHostPlanOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ProxyLBOpChangePlanParams is parameters of ProxyLBOp_changePlan operation.
 type ProxyLBOpChangePlanParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ProxyLBOpDeleteCertificatesParams is parameters of ProxyLBOp_deleteCertificates operation.
 type ProxyLBOpDeleteCertificatesParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ProxyLBOpGetCertificatesParams is parameters of ProxyLBOp_getCertificates operation.
 type ProxyLBOpGetCertificatesParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ProxyLBOpMonitorConnectionParams is parameters of ProxyLBOp_monitorConnection operation.
 type ProxyLBOpMonitorConnectionParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ProxyLBOpRenewLetsEncryptCertParams is parameters of ProxyLBOp_renewLetsEncryptCert operation.
 type ProxyLBOpRenewLetsEncryptCertParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ProxyLBOpSetCertificatesParams is parameters of ProxyLBOp_setCertificates operation.
 type ProxyLBOpSetCertificatesParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // RegionOpFindParams is parameters of RegionOp_find operation.
 type RegionOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1717,124 +1121,78 @@ type RegionOpFindParams struct {
 
 // RegionOpReadParams is parameters of RegionOp_read operation.
 type RegionOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpActivateParams is parameters of SIMOp_activate operation.
 type SIMOpActivateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpAssignIPParams is parameters of SIMOp_assignIP operation.
 type SIMOpAssignIPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpClearIPParams is parameters of SIMOp_clearIP operation.
 type SIMOpClearIPParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpDeactivateParams is parameters of SIMOp_deactivate operation.
 type SIMOpDeactivateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpGetNetworkOperatorParams is parameters of SIMOp_getNetworkOperator operation.
 type SIMOpGetNetworkOperatorParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpImeiLockParams is parameters of SIMOp_imeiLock operation.
 type SIMOpImeiLockParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpImeiUnlockParams is parameters of SIMOp_imeiUnlock operation.
 type SIMOpImeiUnlockParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpLogsParams is parameters of SIMOp_logs operation.
 type SIMOpLogsParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpMonitorSIMParams is parameters of SIMOp_monitorSIM operation.
 type SIMOpMonitorSIMParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SIMOpSetNetworkOperatorParams is parameters of SIMOp_setNetworkOperator operation.
 type SIMOpSetNetworkOperatorParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// SSHKeyOpCreateParams is parameters of SSHKeyOp_create operation.
-type SSHKeyOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // SSHKeyOpDeleteParams is parameters of SSHKeyOp_delete operation.
 type SSHKeyOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SSHKeyOpFindParams is parameters of SSHKeyOp_find operation.
 type SSHKeyOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1846,70 +1204,42 @@ type SSHKeyOpFindParams struct {
 
 // SSHKeyOpReadParams is parameters of SSHKeyOp_read operation.
 type SSHKeyOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SSHKeyOpUpdateParams is parameters of SSHKeyOp_update operation.
 type SSHKeyOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpBootParams is parameters of ServerOp_boot operation.
 type ServerOpBootParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpChangePlanParams is parameters of ServerOp_changePlan operation.
 type ServerOpChangePlanParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// ServerOpCreateParams is parameters of ServerOp_create operation.
-type ServerOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // ServerOpDeleteParams is parameters of ServerOp_delete operation.
 type ServerOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpEjectCDROMParams is parameters of ServerOp_ejectCDROM operation.
 type ServerOpEjectCDROMParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpFindParams is parameters of ServerOp_find operation.
 type ServerOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -1922,90 +1252,60 @@ type ServerOpFindParams struct {
 
 // ServerOpGetVNCProxyParams is parameters of ServerOp_getVNCProxy operation.
 type ServerOpGetVNCProxyParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpInsertCDROMParams is parameters of ServerOp_insertCDROM operation.
 type ServerOpInsertCDROMParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpMonitorParams is parameters of ServerOp_monitor operation.
 type ServerOpMonitorParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpReadParams is parameters of ServerOp_read operation.
 type ServerOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpResetParams is parameters of ServerOp_reset operation.
 type ServerOpResetParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpSendKeyParams is parameters of ServerOp_sendKey operation.
 type ServerOpSendKeyParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpSendNMIParams is parameters of ServerOp_sendNMI operation.
 type ServerOpSendNMIParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpShutdownParams is parameters of ServerOp_shutdown operation.
 type ServerOpShutdownParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerOpUpdateParams is parameters of ServerOp_update operation.
 type ServerOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServerPlanOpFindParams is parameters of ServerPlanOp_find operation.
 type ServerPlanOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -2017,18 +1317,12 @@ type ServerPlanOpFindParams struct {
 
 // ServerPlanOpReadParams is parameters of ServerPlanOp_read operation.
 type ServerPlanOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // ServiceClassOpFindParams is parameters of ServiceClassOp_find operation.
 type ServiceClassOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -2040,34 +1334,18 @@ type ServiceClassOpFindParams struct {
 
 // SimpleMonitorOpMonitorResponseTimeParams is parameters of SimpleMonitorOp_monitorResponseTime operation.
 type SimpleMonitorOpMonitorResponseTimeParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
-// SimpleNotificationGroupOpHistoryParams is parameters of SimpleNotificationGroupOp_history operation.
-type SimpleNotificationGroupOpHistoryParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // SimpleNotificationGroupOpPostMessageParams is parameters of SimpleNotificationGroupOp_postMessage operation.
 type SimpleNotificationGroupOpPostMessageParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SubnetOpFindParams is parameters of SubnetOp_find operation.
 type SubnetOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -2079,54 +1357,32 @@ type SubnetOpFindParams struct {
 
 // SubnetOpReadParams is parameters of SubnetOp_read operation.
 type SubnetOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SwitchOpConnectToBridgeParams is parameters of SwitchOp_connectToBridge operation.
 type SwitchOpConnectToBridgeParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// ブリッジ ID。.
 	BridgeID string
 }
 
-// SwitchOpCreateParams is parameters of SwitchOp_create operation.
-type SwitchOpCreateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
-}
-
 // SwitchOpDeleteParams is parameters of SwitchOp_delete operation.
 type SwitchOpDeleteParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SwitchOpDisconnectFromBridgeParams is parameters of SwitchOp_disconnectFromBridge operation.
 type SwitchOpDisconnectFromBridgeParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SwitchOpFindParams is parameters of SwitchOp_find operation.
 type SwitchOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -2140,36 +1396,24 @@ type SwitchOpFindParams struct {
 
 // SwitchOpGetServersParams is parameters of SwitchOp_getServers operation.
 type SwitchOpGetServersParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SwitchOpReadParams is parameters of SwitchOp_read operation.
 type SwitchOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // SwitchOpUpdateParams is parameters of SwitchOp_update operation.
 type SwitchOpUpdateParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }
 
 // VPCRouterOpConnectToSwitchParams is parameters of VPCRouterOp_connectToSwitch operation.
 type VPCRouterOpConnectToSwitchParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// NIC のインデックス（0 始まり）。.
@@ -2180,9 +1424,6 @@ type VPCRouterOpConnectToSwitchParams struct {
 
 // VPCRouterOpDisconnectFromSwitchParams is parameters of VPCRouterOp_disconnectFromSwitch operation.
 type VPCRouterOpDisconnectFromSwitchParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// NIC のインデックス（0 始まり）。.
@@ -2191,9 +1432,6 @@ type VPCRouterOpDisconnectFromSwitchParams struct {
 
 // VPCRouterOpPingParams is parameters of VPCRouterOp_ping operation.
 type VPCRouterOpPingParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 	// Ping の宛先 IP アドレスまたはホスト名。.
@@ -2202,9 +1440,6 @@ type VPCRouterOpPingParams struct {
 
 // ZoneOpFindParams is parameters of ZoneOp_find operation.
 type ZoneOpFindParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// Find 検索条件をシリアライズした JSON 文字列を渡す。
 	// **指定可能なトップレベルフィールド:**
 	// - `Count` (int): 取得件数の上限
@@ -2216,9 +1451,6 @@ type ZoneOpFindParams struct {
 
 // ZoneOpReadParams is parameters of ZoneOp_read operation.
 type ZoneOpReadParams struct {
-	// リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c`
-	// のいずれか。Sandbox 環境では `tk1v` を指定する。.
-	Zone string
 	// 対象リソースの ID。数値を 10 進文字列で指定する。.
 	ID string
 }

@@ -34,7 +34,7 @@ func waitDiskAvailable(t *testing.T, ctx context.Context, c *client.Client, zone
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
-		resp, err := c.DiskOpRead(ctx, client.DiskOpReadParams{Zone: zone, ID: id})
+		resp, err := c.DiskOpRead(ctx, client.DiskOpReadParams{ID: id})
 		require.NoError(t, err)
 		if resp.Disk.Availability.Value == "available" {
 			return
@@ -65,7 +65,7 @@ func TestDiskCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.DiskOpCreate(ctx, createReq, client.DiskOpCreateParams{Zone: zone})
+	createResp, err := c.DiskOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	diskID := createResp.Disk.ID.Value
@@ -77,7 +77,7 @@ func TestDiskCRUD(t *testing.T) {
 	waitDiskAvailable(t, ctx, c, zone, diskIDStr)
 
 	// 2. Read - ディスク取得
-	readResp, err := c.DiskOpRead(ctx, client.DiskOpReadParams{Zone: zone, ID: diskIDStr})
+	readResp, err := c.DiskOpRead(ctx, client.DiskOpReadParams{ID: diskIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-disk", readResp.Disk.Name.Value)
 	require.Equal(t, diskID, readResp.Disk.ID.Value)
@@ -89,12 +89,12 @@ func TestDiskCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.DiskOpUpdateParams{Zone: zone, ID: diskIDStr})
+	}, client.DiskOpUpdateParams{ID: diskIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-disk-updated", updateResp.Disk.Name.Value)
 
 	// 4. Find - リストに含まれることを確認
-	findResp, err := c.DiskOpFind(ctx, client.DiskOpFindParams{Zone: zone})
+	findResp, err := c.DiskOpFind(ctx, client.DiskOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Disks), 0)
 
@@ -108,10 +108,10 @@ func TestDiskCRUD(t *testing.T) {
 	require.True(t, found, "作成したディスクがリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.DiskOpDelete(ctx, client.DiskOpDeleteParams{Zone: zone, ID: diskIDStr})
+	_, err = c.DiskOpDelete(ctx, client.DiskOpDeleteParams{ID: diskIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.DiskOpRead(ctx, client.DiskOpReadParams{Zone: zone, ID: diskIDStr})
+	_, err = c.DiskOpRead(ctx, client.DiskOpReadParams{ID: diskIDStr})
 	require.Error(t, err)
 }

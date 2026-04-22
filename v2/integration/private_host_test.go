@@ -33,11 +33,11 @@ func TestPrivateHostPlanFind(t *testing.T) {
 		t.Skip("TEST_ACC=1 env var required")
 	}
 
-	c := newClient(t)
+	c := newClientForZone(t, privateHostTestZone)
 	ctx := context.Background()
 
 	req := &client.PrivateHostPlanFindRequest{Count: 1}
-	findResp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{Zone: privateHostTestZone, Q: req.ToOptString()})
+	findResp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{Q: req.ToOptString()})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.PrivateHostPlans), 0, "PrivateHostPlan が 1 件以上返ること")
 	require.LessOrEqual(t, len(findResp.PrivateHostPlans), 1, "Count=1 が反映されていること")
@@ -51,7 +51,7 @@ func TestPrivateHostPlanFind(t *testing.T) {
 	require.Greater(t, plan.CPU.Value, int32(0))
 	require.Greater(t, plan.MemoryMB.Value, int32(0))
 
-	readResp, err := c.PrivateHostPlanOpRead(ctx, client.PrivateHostPlanOpReadParams{Zone: privateHostTestZone, ID: planIDStr})
+	readResp, err := c.PrivateHostPlanOpRead(ctx, client.PrivateHostPlanOpReadParams{ID: planIDStr})
 	require.NoError(t, err)
 	require.Equal(t, plan.ID.Value, readResp.PrivateHostPlan.ID.Value)
 }
@@ -61,14 +61,14 @@ func TestPrivateHostCRUD(t *testing.T) {
 		t.Skip("TEST_ACC=1 env var required")
 	}
 
-	c := newClient(t)
+	c := newClientForZone(t, privateHostTestZone)
 	ctx := context.Background()
 
 	// PrivateHostPlan を Class=dynamic, Dedicated=false で検索して ID を得る
 	planReq := &client.PrivateHostPlanFindRequest{
 		Filter: client.PrivateHostPlanFindFilter{Class: "dynamic"},
 	}
-	planFindResp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{Zone: privateHostTestZone, Q: planReq.ToOptString()})
+	planFindResp, err := c.PrivateHostPlanOpFind(ctx, client.PrivateHostPlanOpFindParams{Q: planReq.ToOptString()})
 	require.NoError(t, err)
 	require.Greater(t, len(planFindResp.PrivateHostPlans), 0, "PrivateHostPlan (Class=dynamic) が見つかること")
 	var planID int64
@@ -90,7 +90,7 @@ func TestPrivateHostCRUD(t *testing.T) {
 			Plan:        client.NewOptNilResourceRef(client.ResourceRef{ID: planID}),
 		},
 	}
-	createResp, err := c.PrivateHostOpCreate(ctx, createReq, client.PrivateHostOpCreateParams{Zone: privateHostTestZone})
+	createResp, err := c.PrivateHostOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	phID := createResp.PrivateHost.ID
@@ -99,7 +99,7 @@ func TestPrivateHostCRUD(t *testing.T) {
 	require.Equal(t, "test-private-host", createResp.PrivateHost.Name.Value)
 
 	// 2. Read
-	readResp, err := c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{Zone: privateHostTestZone, ID: phIDStr})
+	readResp, err := c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{ID: phIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-private-host", readResp.PrivateHost.Name.Value)
 	require.Equal(t, phID, readResp.PrivateHost.ID)
@@ -111,12 +111,12 @@ func TestPrivateHostCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.PrivateHostOpUpdateParams{Zone: privateHostTestZone, ID: phIDStr})
+	}, client.PrivateHostOpUpdateParams{ID: phIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-private-host-updated", updateResp.PrivateHost.Name.Value)
 
 	// 4. Find
-	findResp, err := c.PrivateHostOpFind(ctx, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
+	findResp, err := c.PrivateHostOpFind(ctx, client.PrivateHostOpFindParams{})
 	require.NoError(t, err)
 	var found bool
 	for _, ph := range findResp.PrivateHosts {
@@ -128,10 +128,10 @@ func TestPrivateHostCRUD(t *testing.T) {
 	require.True(t, found, "作成した PrivateHost がリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{Zone: privateHostTestZone, ID: phIDStr})
+	_, err = c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{ID: phIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{Zone: privateHostTestZone, ID: phIDStr})
+	_, err = c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{ID: phIDStr})
 	require.Error(t, err)
 }

@@ -24,11 +24,11 @@ import (
 
 // IPv6AddrAPI は IPv6Addr リソースに対する操作インターフェース。
 type IPv6AddrAPI interface {
-	Create(ctx context.Context, zone string, request *client.IPv6AddrCreateRequestEnvelope) (*client.IPv6AddrCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, q client.OptString) (*client.IPv6AddrFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.IPv6AddrReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.IPv6AddrCreateRequestEnvelope) (*client.IPv6AddrCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, q client.OptString) (*client.IPv6AddrFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.IPv6AddrReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error)
 }
 
 var _ IPv6AddrAPI = (*iPv6AddrOp)(nil)
@@ -42,17 +42,16 @@ func NewIPv6AddrOp(c *client.Client) IPv6AddrAPI {
 	return &iPv6AddrOp{client: c}
 }
 
-func (op *iPv6AddrOp) Create(ctx context.Context, zone string, request *client.IPv6AddrCreateRequestEnvelope) (*client.IPv6AddrCreateResponseEnvelope, error) {
-	params := client.IPv6AddrOpCreateParams{Zone: zone}
-	resp, err := op.client.IPv6AddrOpCreate(ctx, request, params)
+func (op *iPv6AddrOp) Create(ctx context.Context, request *client.IPv6AddrCreateRequestEnvelope) (*client.IPv6AddrCreateResponseEnvelope, error) {
+	resp, err := op.client.IPv6AddrOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("IPv6Addr.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *iPv6AddrOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.IPv6AddrOpDeleteParams{Zone: zone, ID: id}
+func (op *iPv6AddrOp) Delete(ctx context.Context, id string) error {
+	params := client.IPv6AddrOpDeleteParams{ID: id}
 	_, err := op.client.IPv6AddrOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("IPv6Addr.Delete", err)
@@ -60,8 +59,8 @@ func (op *iPv6AddrOp) Delete(ctx context.Context, zone string, id string) error 
 	return nil
 }
 
-func (op *iPv6AddrOp) List(ctx context.Context, zone string, q client.OptString) (*client.IPv6AddrFindResponseEnvelope, error) {
-	params := client.IPv6AddrOpFindParams{Zone: zone, Q: q}
+func (op *iPv6AddrOp) List(ctx context.Context, q client.OptString) (*client.IPv6AddrFindResponseEnvelope, error) {
+	params := client.IPv6AddrOpFindParams{Q: q}
 	resp, err := op.client.IPv6AddrOpFind(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("IPv6Addr.List", err)
@@ -69,8 +68,8 @@ func (op *iPv6AddrOp) List(ctx context.Context, zone string, q client.OptString)
 	return resp, nil
 }
 
-func (op *iPv6AddrOp) Read(ctx context.Context, zone string, id string) (*client.IPv6AddrReadResponseEnvelope, error) {
-	params := client.IPv6AddrOpReadParams{Zone: zone, ID: id}
+func (op *iPv6AddrOp) Read(ctx context.Context, id string) (*client.IPv6AddrReadResponseEnvelope, error) {
+	params := client.IPv6AddrOpReadParams{ID: id}
 	resp, err := op.client.IPv6AddrOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("IPv6Addr.Read", err)
@@ -78,8 +77,8 @@ func (op *iPv6AddrOp) Read(ctx context.Context, zone string, id string) (*client
 	return resp, nil
 }
 
-func (op *iPv6AddrOp) Update(ctx context.Context, zone string, id string, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error) {
-	params := client.IPv6AddrOpUpdateParams{Zone: zone, ID: id}
+func (op *iPv6AddrOp) Update(ctx context.Context, id string, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error) {
+	params := client.IPv6AddrOpUpdateParams{ID: id}
 	resp, err := op.client.IPv6AddrOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("IPv6Addr.Update", err)

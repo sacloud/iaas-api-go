@@ -24,8 +24,8 @@ import (
 
 // RegionAPI は Region リソースに対する操作インターフェース。
 type RegionAPI interface {
-	List(ctx context.Context, zone string, req *client.RegionFindRequest) (*client.RegionFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.RegionReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.RegionFindRequest) (*client.RegionFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.RegionReadResponseEnvelope, error)
 }
 
 var _ RegionAPI = (*regionOp)(nil)
@@ -39,8 +39,8 @@ func NewRegionOp(c *client.Client) RegionAPI {
 	return &regionOp{client: c}
 }
 
-func (op *regionOp) List(ctx context.Context, zone string, req *client.RegionFindRequest) (*client.RegionFindResponseEnvelope, error) {
-	params := client.RegionOpFindParams{Zone: zone}
+func (op *regionOp) List(ctx context.Context, req *client.RegionFindRequest) (*client.RegionFindResponseEnvelope, error) {
+	params := client.RegionOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *regionOp) List(ctx context.Context, zone string, req *client.RegionFin
 	return resp, nil
 }
 
-func (op *regionOp) Read(ctx context.Context, zone string, id string) (*client.RegionReadResponseEnvelope, error) {
-	params := client.RegionOpReadParams{Zone: zone, ID: id}
+func (op *regionOp) Read(ctx context.Context, id string) (*client.RegionReadResponseEnvelope, error) {
+	params := client.RegionOpReadParams{ID: id}
 	resp, err := op.client.RegionOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Region.Read", err)

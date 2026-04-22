@@ -31,7 +31,6 @@ func TestIconCRUD(t *testing.T) {
 
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
 	// 1. Create - アイコン作成
 	// 1x1 pixel transparent PNG (base64エンコード済み)
@@ -45,11 +44,7 @@ func TestIconCRUD(t *testing.T) {
 		},
 	}
 
-	createParams := client.IconOpCreateParams{
-		Zone: zone,
-	}
-
-	createResp, err := c.IconOpCreate(ctx, createReq, createParams)
+	createResp, err := c.IconOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	iconID := createResp.Icon.ID
@@ -57,9 +52,7 @@ func TestIconCRUD(t *testing.T) {
 	require.Equal(t, "test-icon", createResp.Icon.Name.Value)
 
 	// 2. Read - アイコン取得
-	readParams := client.IconOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", iconID),
+	readParams := client.IconOpReadParams{ID:   fmt.Sprintf("%d", iconID),
 	}
 
 	readResp, err := c.IconOpRead(ctx, readParams)
@@ -75,9 +68,7 @@ func TestIconCRUD(t *testing.T) {
 			Tags: []string{"test", "integration", "updated"},
 		},
 	}
-	updateParams := client.IconOpUpdateParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", iconID),
+	updateParams := client.IconOpUpdateParams{ID:   fmt.Sprintf("%d", iconID),
 	}
 
 	updateResp, err := c.IconOpUpdate(ctx, updateReq, updateParams)
@@ -86,9 +77,7 @@ func TestIconCRUD(t *testing.T) {
 	require.Equal(t, "test-icon-updated", updateResp.Icon.Name.Value)
 
 	// 4. Find - アイコン検索
-	findParams := client.IconOpFindParams{
-		Zone: zone,
-	}
+	findParams := client.IconOpFindParams{}
 
 	findResp, err := c.IconOpFind(ctx, findParams)
 	require.NoError(t, err)
@@ -106,9 +95,7 @@ func TestIconCRUD(t *testing.T) {
 	require.True(t, found, "作成したアイコンがリストに含まれていること")
 
 	// 5. Delete - アイコン削除
-	deleteParams := client.IconOpDeleteParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", iconID),
+	deleteParams := client.IconOpDeleteParams{ID:   fmt.Sprintf("%d", iconID),
 	}
 
 	_, err = c.IconOpDelete(ctx, deleteParams) //nolint:errcheck

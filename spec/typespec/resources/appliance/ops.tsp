@@ -93,14 +93,8 @@ model ApplianceUpdateRequestEnvelope {
 interface ApplianceOp {
   @summary("Appliance 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance")
+  @route("/appliance")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -122,30 +116,16 @@ interface ApplianceOp {
 
   @summary("Appliance 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/appliance")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: ApplianceCreateRequestEnvelope,
-  ): {
+  @route("/appliance")
+  create(@body body: ApplianceCreateRequestEnvelope): {
     @statusCode _: 202;
     ...DatabaseCreateResponseEnvelope;
   } | ApiError;
 
   @summary("Appliance 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}")
+  @route("/appliance/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -155,14 +135,8 @@ interface ApplianceOp {
 
   @summary("Appliance 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}")
+  @route("/appliance/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -174,14 +148,8 @@ interface ApplianceOp {
 
   @summary("Appliance 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/appliance/{id}")
+  @route("/appliance/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -194,14 +162,8 @@ interface ApplianceOp {
 
   @summary("Appliance 設定反映")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/config")
+  @route("/appliance/{id}/config")
   config(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -214,14 +176,8 @@ interface ApplianceOp {
 
   @summary("Appliance 起動")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
+  @route("/appliance/{id}/power")
   boot(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -234,14 +190,8 @@ interface ApplianceOp {
 
   @summary("Appliance シャットダウン")
   @delete
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/power")
+  @route("/appliance/{id}/power")
   shutdown(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -256,14 +206,8 @@ interface ApplianceOp {
 
   @summary("Appliance リセット")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/reset")
+  @route("/appliance/{id}/reset")
   reset(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -276,14 +220,8 @@ interface ApplianceOp {
 
   @summary("Appliance CPU モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor")
+  @route("/appliance/{id}/cpu/monitor")
   monitorCPU(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -295,14 +233,8 @@ interface ApplianceOp {
 
   @summary("Appliance インターフェイスモニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/monitor")
+  @route("/appliance/{id}/interface/monitor")
   monitorInterface(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -314,14 +246,8 @@ interface ApplianceOp {
 
   @summary("Appliance データベースモニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/database/monitor")
+  @route("/appliance/{id}/database/monitor")
   monitorDatabase(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -333,14 +259,8 @@ interface ApplianceOp {
 
   @summary("Appliance ステータス取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/status")
+  @route("/appliance/{id}/status")
   status(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -350,14 +270,8 @@ interface ApplianceOp {
 
   @summary("Appliance インターフェイスモニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor")
+  @route("/appliance/{id}/interface/{index}/monitor")
   monitorInterfaceByIndex(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -376,13 +290,8 @@ interface ApplianceOp {
 interface DatabaseOp {
   @summary("Database ディスクモニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor")
+  @route("/appliance/{id}/disk/0/monitor")
   monitorDisk(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -393,13 +302,8 @@ interface DatabaseOp {
 
   @summary("Database パラメータ取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
+  @route("/appliance/{id}/database/parameter")
   getParameter(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -409,13 +313,8 @@ interface DatabaseOp {
 
   @summary("Database パラメータ設定")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/database/parameter")
+  @route("/appliance/{id}/database/parameter")
   setParameter(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -432,13 +331,8 @@ interface DatabaseOp {
 interface MobileGatewayOp {
   @summary("MobileGateway スイッチ接続")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}")
+  @route("/appliance/{id}/interface/1/to/switch/{switchID}")
   connectToSwitch(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -456,13 +350,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway スイッチ切断")
   @delete
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch")
+  @route("/appliance/{id}/interface/1/to/switch")
   disconnectFromSwitch(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -475,13 +364,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway DNS 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
+  @route("/appliance/{id}/mobilegateway/dnsresolver")
   getDNS(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -491,13 +375,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway DNS 設定")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver")
+  @route("/appliance/{id}/mobilegateway/dnsresolver")
   setDNS(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -511,13 +390,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway SIM ルート取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
+  @route("/appliance/{id}/mobilegateway/simroutes")
   getSIMRoutes(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -527,13 +401,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway SIM ルート設定")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes")
+  @route("/appliance/{id}/mobilegateway/simroutes")
   setSIMRoutes(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -547,13 +416,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway SIM 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
+  @route("/appliance/{id}/mobilegateway/sims")
   listSIM(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -563,13 +427,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway SIM 追加")
   @post
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims")
+  @route("/appliance/{id}/mobilegateway/sims")
   addSIM(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -583,13 +442,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway SIM 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}")
+  @route("/appliance/{id}/mobilegateway/sims/{simID}")
   deleteSIM(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -607,13 +461,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway ログ取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog")
+  @route("/appliance/{id}/mobilegateway/sessionlog")
   logs(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -623,13 +472,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway トラフィック設定取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
+  @route("/appliance/{id}/mobilegateway/traffic_monitoring")
   getTrafficConfig(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -639,13 +483,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway トラフィック設定更新")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
+  @route("/appliance/{id}/mobilegateway/traffic_monitoring")
   setTrafficConfig(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -659,13 +498,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway トラフィック設定削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring")
+  @route("/appliance/{id}/mobilegateway/traffic_monitoring")
   deleteTrafficConfig(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -678,13 +512,8 @@ interface MobileGatewayOp {
 
   @summary("MobileGateway トラフィック状況取得")
   @get
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status")
+  @route("/appliance/{id}/mobilegateway/traffic_status")
   trafficStatus(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -697,13 +526,8 @@ interface MobileGatewayOp {
 interface VPCRouterOp {
   @summary("VPCRouter スイッチ接続")
   @put
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}")
+  @route("/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}")
   connectToSwitch(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -726,13 +550,8 @@ interface VPCRouterOp {
 
   @summary("VPCRouter スイッチ切断")
   @delete
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch")
+  @route("/appliance/{id}/interface/{nicIndex}/to/switch")
   disconnectFromSwitch(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -750,13 +569,8 @@ interface VPCRouterOp {
 
   @summary("VPCRouter Ping")
   @post
-  @route("/{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}")
+  @route("/appliance/{id}/vpcrouter/ping/{destination}")
   ping(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

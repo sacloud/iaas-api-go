@@ -32,7 +32,7 @@ func waitCDROMAvailable(t *testing.T, ctx context.Context, c *client.Client, zon
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
-		resp, err := c.CDROMOpRead(ctx, client.CDROMOpReadParams{Zone: zone, ID: id})
+		resp, err := c.CDROMOpRead(ctx, client.CDROMOpReadParams{ID: id})
 		if err == nil && resp.CDROM.Availability.Value == "available" {
 			return
 		}
@@ -61,7 +61,7 @@ func TestCDROMCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.CDROMOpCreate(ctx, createReq, client.CDROMOpCreateParams{Zone: zone})
+	createResp, err := c.CDROMOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	cdromID := createResp.CDROM.ID.Value
@@ -73,13 +73,13 @@ func TestCDROMCRUD(t *testing.T) {
 	require.NotEmpty(t, createResp.FTPServer.Password.Value)
 
 	// create 後は FTP 共有が開いた状態。実データ転送は行わないので閉じる。
-	if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{Zone: zone, ID: cdromIDStr}); err != nil {
+	if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{ID: cdromIDStr}); err != nil {
 		t.Logf("close FTP (ignorable if already closed): %v", err)
 	}
 	waitCDROMAvailable(t, ctx, c, zone, cdromIDStr)
 
 	// 2. Read
-	readResp, err := c.CDROMOpRead(ctx, client.CDROMOpReadParams{Zone: zone, ID: cdromIDStr})
+	readResp, err := c.CDROMOpRead(ctx, client.CDROMOpReadParams{ID: cdromIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-cdrom", readResp.CDROM.Name.Value)
 	require.Equal(t, cdromID, readResp.CDROM.ID.Value)
@@ -91,12 +91,12 @@ func TestCDROMCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.CDROMOpUpdateParams{Zone: zone, ID: cdromIDStr})
+	}, client.CDROMOpUpdateParams{ID: cdromIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-cdrom-updated", updateResp.CDROM.Name.Value)
 
 	// 4. Find
-	findResp, err := c.CDROMOpFind(ctx, client.CDROMOpFindParams{Zone: zone})
+	findResp, err := c.CDROMOpFind(ctx, client.CDROMOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.CDROMs), 0)
 
@@ -114,10 +114,10 @@ func TestCDROMCRUD(t *testing.T) {
 	// tk1v サンドボックスではブランク ISO に対し CloseFTP 後の OpenFTP が
 	// `ftp_is_already_close` (409) を返すため、envelope の decode は create 時に
 	// FTPServer を受け取った時点 + create 直後の CloseFTP で検証済みとする。
-	_, err = c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{Zone: zone, ID: cdromIDStr})
+	_, err = c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{ID: cdromIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.CDROMOpRead(ctx, client.CDROMOpReadParams{Zone: zone, ID: cdromIDStr})
+	_, err = c.CDROMOpRead(ctx, client.CDROMOpReadParams{ID: cdromIDStr})
 	require.Error(t, err)
 }

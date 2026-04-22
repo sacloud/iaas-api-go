@@ -78,7 +78,7 @@ func TestMobileGatewayApplianceCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.ApplianceOpCreate(ctx, createReq, client.ApplianceOpCreateParams{Zone: zone})
+	createResp, err := c.ApplianceOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	mgwID := createResp.Appliance.ID.Value
@@ -90,7 +90,7 @@ func TestMobileGatewayApplianceCRUD(t *testing.T) {
 	waitApplianceAvailable(t, ctx, c, zone, mgwIDStr)
 
 	// Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: mgwIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: mgwIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-mgw", readResp.Appliance.Name.Value)
 	require.Equal(t, "mobilegateway", readResp.Appliance.Class.Value)
@@ -102,15 +102,15 @@ func TestMobileGatewayApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{Zone: zone, ID: mgwIDStr})
+	}, client.ApplianceOpUpdateParams{ID: mgwIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-mgw-updated", updateResp.Appliance.Name.Value)
 
 	// Shutdown → Delete
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{Zone: zone, ID: mgwIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: mgwIDStr})
 	require.NoError(t, err)
 	waitApplianceShutdown(t, ctx, c, zone, mgwIDStr)
 
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: mgwIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: mgwIDStr})
 	require.NoError(t, err)
 }

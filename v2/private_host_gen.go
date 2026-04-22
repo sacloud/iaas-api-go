@@ -24,11 +24,11 @@ import (
 
 // PrivateHostAPI は PrivateHost リソースに対する操作インターフェース。
 type PrivateHostAPI interface {
-	Create(ctx context.Context, zone string, request *client.PrivateHostCreateRequestEnvelope) (*client.PrivateHostCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.PrivateHostFindRequest) (*client.PrivateHostFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.PrivateHostReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.PrivateHostCreateRequestEnvelope) (*client.PrivateHostCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.PrivateHostFindRequest) (*client.PrivateHostFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.PrivateHostReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error)
 }
 
 var _ PrivateHostAPI = (*privateHostOp)(nil)
@@ -42,17 +42,16 @@ func NewPrivateHostOp(c *client.Client) PrivateHostAPI {
 	return &privateHostOp{client: c}
 }
 
-func (op *privateHostOp) Create(ctx context.Context, zone string, request *client.PrivateHostCreateRequestEnvelope) (*client.PrivateHostCreateResponseEnvelope, error) {
-	params := client.PrivateHostOpCreateParams{Zone: zone}
-	resp, err := op.client.PrivateHostOpCreate(ctx, request, params)
+func (op *privateHostOp) Create(ctx context.Context, request *client.PrivateHostCreateRequestEnvelope) (*client.PrivateHostCreateResponseEnvelope, error) {
+	resp, err := op.client.PrivateHostOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("PrivateHost.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *privateHostOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.PrivateHostOpDeleteParams{Zone: zone, ID: id}
+func (op *privateHostOp) Delete(ctx context.Context, id string) error {
+	params := client.PrivateHostOpDeleteParams{ID: id}
 	_, err := op.client.PrivateHostOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("PrivateHost.Delete", err)
@@ -60,8 +59,8 @@ func (op *privateHostOp) Delete(ctx context.Context, zone string, id string) err
 	return nil
 }
 
-func (op *privateHostOp) List(ctx context.Context, zone string, req *client.PrivateHostFindRequest) (*client.PrivateHostFindResponseEnvelope, error) {
-	params := client.PrivateHostOpFindParams{Zone: zone}
+func (op *privateHostOp) List(ctx context.Context, req *client.PrivateHostFindRequest) (*client.PrivateHostFindResponseEnvelope, error) {
+	params := client.PrivateHostOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -72,8 +71,8 @@ func (op *privateHostOp) List(ctx context.Context, zone string, req *client.Priv
 	return resp, nil
 }
 
-func (op *privateHostOp) Read(ctx context.Context, zone string, id string) (*client.PrivateHostReadResponseEnvelope, error) {
-	params := client.PrivateHostOpReadParams{Zone: zone, ID: id}
+func (op *privateHostOp) Read(ctx context.Context, id string) (*client.PrivateHostReadResponseEnvelope, error) {
+	params := client.PrivateHostOpReadParams{ID: id}
 	resp, err := op.client.PrivateHostOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("PrivateHost.Read", err)
@@ -81,8 +80,8 @@ func (op *privateHostOp) Read(ctx context.Context, zone string, id string) (*cli
 	return resp, nil
 }
 
-func (op *privateHostOp) Update(ctx context.Context, zone string, id string, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error) {
-	params := client.PrivateHostOpUpdateParams{Zone: zone, ID: id}
+func (op *privateHostOp) Update(ctx context.Context, id string, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error) {
+	params := client.PrivateHostOpUpdateParams{ID: id}
 	resp, err := op.client.PrivateHostOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("PrivateHost.Update", err)

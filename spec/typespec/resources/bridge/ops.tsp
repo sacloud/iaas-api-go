@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface BridgeOp {
   @summary("Bridge 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/bridge")
+  @route("/bridge")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -39,30 +33,16 @@ interface BridgeOp {
 
   @summary("Bridge 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/bridge")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: BridgeCreateRequestEnvelope,
-  ): {
+  @route("/bridge")
+  create(@body body: BridgeCreateRequestEnvelope): {
     @statusCode _: 201;
     ...BridgeCreateResponseEnvelope;
   } | ApiError;
 
   @summary("Bridge 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/bridge/{id}")
+  @route("/bridge/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -72,14 +52,8 @@ interface BridgeOp {
 
   @summary("Bridge 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/bridge/{id}")
+  @route("/bridge/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -91,14 +65,8 @@ interface BridgeOp {
 
   @summary("Bridge 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/bridge/{id}")
+  @route("/bridge/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

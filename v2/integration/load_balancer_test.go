@@ -41,12 +41,12 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 			Name: client.NewOptString("switch-for-lb"),
 			Tags: []string{"test", "integration"},
 		},
-	}, client.SwitchOpCreateParams{Zone: zone})
+	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
 	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{Zone: zone, ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
 	}()
 
 	// 2. Appliance Create (Class=loadbalancer, Plan=Standard/ID=1)
@@ -104,7 +104,7 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.ApplianceOpCreate(ctx, createReq, client.ApplianceOpCreateParams{Zone: zone})
+	createResp, err := c.ApplianceOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	lbID := createResp.Appliance.ID.Value
@@ -116,7 +116,7 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 	waitApplianceAvailable(t, ctx, c, zone, lbIDStr)
 
 	// 3. Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: lbIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: lbIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-lb", readResp.Appliance.Name.Value)
 	require.Equal(t, "loadbalancer", readResp.Appliance.Class.Value)
@@ -128,15 +128,15 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{Zone: zone, ID: lbIDStr})
+	}, client.ApplianceOpUpdateParams{ID: lbIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-lb-updated", updateResp.Appliance.Name.Value)
 
 	// 5. Shutdown → Delete
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{Zone: zone, ID: lbIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: lbIDStr})
 	require.NoError(t, err)
 	waitApplianceShutdown(t, ctx, c, zone, lbIDStr)
 
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: lbIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: lbIDStr})
 	require.NoError(t, err)
 }

@@ -24,9 +24,9 @@ import (
 
 // AutoScaleAPI は AutoScale リソースに対する操作インターフェース。
 type AutoScaleAPI interface {
-	ScaleDown(ctx context.Context, zone string, id string) error
-	ScaleUp(ctx context.Context, zone string, id string) error
-	Status(ctx context.Context, zone string, id string) (*client.AutoScaleStatusResponseEnvelope, error)
+	ScaleDown(ctx context.Context, id string) error
+	ScaleUp(ctx context.Context, id string) error
+	Status(ctx context.Context, id string) (*client.AutoScaleStatusResponseEnvelope, error)
 }
 
 var _ AutoScaleAPI = (*autoScaleOp)(nil)
@@ -40,8 +40,8 @@ func NewAutoScaleOp(c *client.Client) AutoScaleAPI {
 	return &autoScaleOp{client: c}
 }
 
-func (op *autoScaleOp) ScaleDown(ctx context.Context, zone string, id string) error {
-	params := client.AutoScaleOpScaleDownParams{Zone: zone, ID: id}
+func (op *autoScaleOp) ScaleDown(ctx context.Context, id string) error {
+	params := client.AutoScaleOpScaleDownParams{ID: id}
 	_, err := op.client.AutoScaleOpScaleDown(ctx, params)
 	if err != nil {
 		return wrapOpErr("AutoScale.ScaleDown", err)
@@ -49,8 +49,8 @@ func (op *autoScaleOp) ScaleDown(ctx context.Context, zone string, id string) er
 	return nil
 }
 
-func (op *autoScaleOp) ScaleUp(ctx context.Context, zone string, id string) error {
-	params := client.AutoScaleOpScaleUpParams{Zone: zone, ID: id}
+func (op *autoScaleOp) ScaleUp(ctx context.Context, id string) error {
+	params := client.AutoScaleOpScaleUpParams{ID: id}
 	_, err := op.client.AutoScaleOpScaleUp(ctx, params)
 	if err != nil {
 		return wrapOpErr("AutoScale.ScaleUp", err)
@@ -58,8 +58,8 @@ func (op *autoScaleOp) ScaleUp(ctx context.Context, zone string, id string) erro
 	return nil
 }
 
-func (op *autoScaleOp) Status(ctx context.Context, zone string, id string) (*client.AutoScaleStatusResponseEnvelope, error) {
-	params := client.AutoScaleOpStatusParams{Zone: zone, ID: id}
+func (op *autoScaleOp) Status(ctx context.Context, id string) (*client.AutoScaleStatusResponseEnvelope, error) {
+	params := client.AutoScaleOpStatusParams{ID: id}
 	resp, err := op.client.AutoScaleOpStatus(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("AutoScale.Status", err)

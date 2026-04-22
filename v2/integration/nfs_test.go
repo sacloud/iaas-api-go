@@ -34,7 +34,7 @@ func findNFSPlanID(t *testing.T, ctx context.Context, c *client.Client, zone str
 	t.Helper()
 
 	// v2 の Filter syntax は v1 search.Filter と異なるため、全 Note を舐めて Name=="sys-nfs" & Class=="json" を探す。
-	resp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{Zone: zone})
+	resp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{})
 	require.NoError(t, err)
 
 	var content string
@@ -93,7 +93,7 @@ func waitApplianceAvailableOpt(t *testing.T, ctx context.Context, c *client.Clie
 	t.Helper()
 	deadline := time.Now().Add(15 * time.Minute)
 	for time.Now().Before(deadline) {
-		resp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: id})
+		resp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: id})
 		if err == nil && resp.Appliance.Availability.Value == "available" {
 			if !requireUp {
 				return
@@ -112,7 +112,7 @@ func waitApplianceShutdown(t *testing.T, ctx context.Context, c *client.Client, 
 	t.Helper()
 	deadline := time.Now().Add(5 * time.Minute)
 	for time.Now().Before(deadline) {
-		resp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: id})
+		resp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: id})
 		if err == nil && resp.Appliance.Instance.Value.Status.Value == "down" {
 			return
 		}
@@ -136,12 +136,12 @@ func TestNFSApplianceCRUD(t *testing.T) {
 			Name: client.NewOptString("switch-for-nfs"),
 			Tags: []string{"test", "integration"},
 		},
-	}, client.SwitchOpCreateParams{Zone: zone})
+	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
 	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{Zone: zone, ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
 	}()
 
 	// 2. NFSPlan ID を sys-nfs Note から検索。SSD/100GB を使う。
@@ -173,7 +173,7 @@ func TestNFSApplianceCRUD(t *testing.T) {
 			Tags:        []string{"test", "integration"},
 		},
 	}
-	createResp, err := c.ApplianceOpCreate(ctx, createReq, client.ApplianceOpCreateParams{Zone: zone})
+	createResp, err := c.ApplianceOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	nfsID := createResp.Appliance.ID.Value
@@ -185,7 +185,7 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	waitApplianceAvailable(t, ctx, c, zone, nfsIDStr)
 
 	// 4. Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: nfsIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: nfsIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-nfs", readResp.Appliance.Name.Value)
 	require.Equal(t, "nfs", readResp.Appliance.Class.Value)
@@ -197,12 +197,12 @@ func TestNFSApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{Zone: zone, ID: nfsIDStr})
+	}, client.ApplianceOpUpdateParams{ID: nfsIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-nfs-updated", updateResp.Appliance.Name.Value)
 
 	// 6. Find
-	findResp, err := c.ApplianceOpFind(ctx, client.ApplianceOpFindParams{Zone: zone})
+	findResp, err := c.ApplianceOpFind(ctx, client.ApplianceOpFindParams{})
 	require.NoError(t, err)
 	var found bool
 	for _, app := range findResp.Appliances {
@@ -214,15 +214,15 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	require.True(t, found, "作成した NFS がリストに含まれていること")
 
 	// 7. Shutdown (force)
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{Zone: zone, ID: nfsIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: nfsIDStr})
 	require.NoError(t, err)
 	waitApplianceShutdown(t, ctx, c, zone, nfsIDStr)
 
 	// 8. Delete
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: nfsIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: nfsIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{Zone: zone, ID: nfsIDStr})
+	_, err = c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: nfsIDStr})
 	require.Error(t, err)
 }

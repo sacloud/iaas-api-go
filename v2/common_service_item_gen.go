@@ -24,12 +24,12 @@ import (
 
 // CommonServiceItemAPI は CommonServiceItem リソースに対する操作インターフェース。
 type CommonServiceItemAPI interface {
-	Create(ctx context.Context, zone string, request *client.CommonServiceItemCreateRequestEnvelope) (*client.AutoBackupCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, q client.OptString) (*client.AutoBackupFindResponseEnvelope, error)
-	HealthStatus(ctx context.Context, zone string, id string) (*client.LocalRouterHealthStatusResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.AutoBackupReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.CommonServiceItemCreateRequestEnvelope) (*client.AutoBackupCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, q client.OptString) (*client.AutoBackupFindResponseEnvelope, error)
+	HealthStatus(ctx context.Context, id string) (*client.LocalRouterHealthStatusResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.AutoBackupReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error)
 }
 
 var _ CommonServiceItemAPI = (*commonServiceItemOp)(nil)
@@ -43,17 +43,16 @@ func NewCommonServiceItemOp(c *client.Client) CommonServiceItemAPI {
 	return &commonServiceItemOp{client: c}
 }
 
-func (op *commonServiceItemOp) Create(ctx context.Context, zone string, request *client.CommonServiceItemCreateRequestEnvelope) (*client.AutoBackupCreateResponseEnvelope, error) {
-	params := client.CommonServiceItemOpCreateParams{Zone: zone}
-	resp, err := op.client.CommonServiceItemOpCreate(ctx, request, params)
+func (op *commonServiceItemOp) Create(ctx context.Context, request *client.CommonServiceItemCreateRequestEnvelope) (*client.AutoBackupCreateResponseEnvelope, error) {
+	resp, err := op.client.CommonServiceItemOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("CommonServiceItem.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.CommonServiceItemOpDeleteParams{Zone: zone, ID: id}
+func (op *commonServiceItemOp) Delete(ctx context.Context, id string) error {
+	params := client.CommonServiceItemOpDeleteParams{ID: id}
 	_, err := op.client.CommonServiceItemOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("CommonServiceItem.Delete", err)
@@ -61,8 +60,8 @@ func (op *commonServiceItemOp) Delete(ctx context.Context, zone string, id strin
 	return nil
 }
 
-func (op *commonServiceItemOp) List(ctx context.Context, zone string, q client.OptString) (*client.AutoBackupFindResponseEnvelope, error) {
-	params := client.CommonServiceItemOpFindParams{Zone: zone, Q: q}
+func (op *commonServiceItemOp) List(ctx context.Context, q client.OptString) (*client.AutoBackupFindResponseEnvelope, error) {
+	params := client.CommonServiceItemOpFindParams{Q: q}
 	resp, err := op.client.CommonServiceItemOpFind(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("CommonServiceItem.List", err)
@@ -70,8 +69,8 @@ func (op *commonServiceItemOp) List(ctx context.Context, zone string, q client.O
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) HealthStatus(ctx context.Context, zone string, id string) (*client.LocalRouterHealthStatusResponseEnvelope, error) {
-	params := client.CommonServiceItemOpHealthStatusParams{Zone: zone, ID: id}
+func (op *commonServiceItemOp) HealthStatus(ctx context.Context, id string) (*client.LocalRouterHealthStatusResponseEnvelope, error) {
+	params := client.CommonServiceItemOpHealthStatusParams{ID: id}
 	resp, err := op.client.CommonServiceItemOpHealthStatus(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("CommonServiceItem.HealthStatus", err)
@@ -79,8 +78,8 @@ func (op *commonServiceItemOp) HealthStatus(ctx context.Context, zone string, id
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) Read(ctx context.Context, zone string, id string) (*client.AutoBackupReadResponseEnvelope, error) {
-	params := client.CommonServiceItemOpReadParams{Zone: zone, ID: id}
+func (op *commonServiceItemOp) Read(ctx context.Context, id string) (*client.AutoBackupReadResponseEnvelope, error) {
+	params := client.CommonServiceItemOpReadParams{ID: id}
 	resp, err := op.client.CommonServiceItemOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("CommonServiceItem.Read", err)
@@ -88,8 +87,8 @@ func (op *commonServiceItemOp) Read(ctx context.Context, zone string, id string)
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) Update(ctx context.Context, zone string, id string, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error) {
-	params := client.CommonServiceItemOpUpdateParams{Zone: zone, ID: id}
+func (op *commonServiceItemOp) Update(ctx context.Context, id string, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error) {
+	params := client.CommonServiceItemOpUpdateParams{ID: id}
 	resp, err := op.client.CommonServiceItemOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("CommonServiceItem.Update", err)

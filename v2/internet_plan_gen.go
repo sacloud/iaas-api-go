@@ -24,8 +24,8 @@ import (
 
 // InternetPlanAPI は InternetPlan リソースに対する操作インターフェース。
 type InternetPlanAPI interface {
-	List(ctx context.Context, zone string, req *client.InternetPlanFindRequest) (*client.InternetPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.InternetPlanReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.InternetPlanFindRequest) (*client.InternetPlanFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.InternetPlanReadResponseEnvelope, error)
 }
 
 var _ InternetPlanAPI = (*internetPlanOp)(nil)
@@ -39,8 +39,8 @@ func NewInternetPlanOp(c *client.Client) InternetPlanAPI {
 	return &internetPlanOp{client: c}
 }
 
-func (op *internetPlanOp) List(ctx context.Context, zone string, req *client.InternetPlanFindRequest) (*client.InternetPlanFindResponseEnvelope, error) {
-	params := client.InternetPlanOpFindParams{Zone: zone}
+func (op *internetPlanOp) List(ctx context.Context, req *client.InternetPlanFindRequest) (*client.InternetPlanFindResponseEnvelope, error) {
+	params := client.InternetPlanOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *internetPlanOp) List(ctx context.Context, zone string, req *client.Int
 	return resp, nil
 }
 
-func (op *internetPlanOp) Read(ctx context.Context, zone string, id string) (*client.InternetPlanReadResponseEnvelope, error) {
-	params := client.InternetPlanOpReadParams{Zone: zone, ID: id}
+func (op *internetPlanOp) Read(ctx context.Context, id string) (*client.InternetPlanReadResponseEnvelope, error) {
+	params := client.InternetPlanOpReadParams{ID: id}
 	resp, err := op.client.InternetPlanOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("InternetPlan.Read", err)

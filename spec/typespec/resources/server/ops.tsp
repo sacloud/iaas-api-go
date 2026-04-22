@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface ServerOp {
   @summary("Server 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/server")
+  @route("/server")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -40,30 +34,16 @@ interface ServerOp {
 
   @summary("Server 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/server")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: ServerCreateRequestEnvelope,
-  ): {
+  @route("/server")
+  create(@body body: ServerCreateRequestEnvelope): {
     @statusCode _: 201;
     ...ServerCreateResponseEnvelope;
   } | ApiError;
 
   @summary("Server 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/server/{id}")
+  @route("/server/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -73,14 +53,8 @@ interface ServerOp {
 
   @summary("Server 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}")
+  @route("/server/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -92,14 +66,8 @@ interface ServerOp {
 
   @summary("Server 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/server/{id}")
+  @route("/server/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -114,14 +82,8 @@ interface ServerOp {
 
   @summary("Server プラン変更")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}/plan")
+  @route("/server/{id}/plan")
   changePlan(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -133,14 +95,8 @@ interface ServerOp {
 
   @summary("Server CD-ROM 挿入")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
+  @route("/server/{id}/cdrom")
   insertCDROM(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -155,14 +111,8 @@ interface ServerOp {
 
   @summary("Server CD-ROM 取り出し")
   @delete
-  @route("/{zone}/api/cloud/1.1/server/{id}/cdrom")
+  @route("/server/{id}/cdrom")
   ejectCDROM(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -177,14 +127,8 @@ interface ServerOp {
 
   @summary("Server 起動")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}/power")
+  @route("/server/{id}/power")
   boot(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -199,14 +143,8 @@ interface ServerOp {
 
   @summary("Server シャットダウン")
   @delete
-  @route("/{zone}/api/cloud/1.1/server/{id}/power")
+  @route("/server/{id}/power")
   shutdown(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -221,14 +159,8 @@ interface ServerOp {
 
   @summary("Server リセット")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}/reset")
+  @route("/server/{id}/reset")
   reset(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -241,14 +173,8 @@ interface ServerOp {
 
   @summary("Server キー送信")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}/keyboard")
+  @route("/server/{id}/keyboard")
   sendKey(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -263,14 +189,8 @@ interface ServerOp {
 
   @summary("Server NMI 送信")
   @put
-  @route("/{zone}/api/cloud/1.1/server/{id}/qemu/nmi")
+  @route("/server/{id}/qemu/nmi")
   sendNMI(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -283,14 +203,8 @@ interface ServerOp {
 
   @summary("Server VNC プロキシ取得")
   @get
-  @route("/{zone}/api/cloud/1.1/server/{id}/vnc/proxy")
+  @route("/server/{id}/vnc/proxy")
   getVNCProxy(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -300,14 +214,8 @@ interface ServerOp {
 
   @summary("Server モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/server/{id}/monitor")
+  @route("/server/{id}/monitor")
   monitor(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

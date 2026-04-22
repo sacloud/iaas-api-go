@@ -24,8 +24,8 @@ import (
 
 // SimpleNotificationGroupAPI は SimpleNotificationGroup リソースに対する操作インターフェース。
 type SimpleNotificationGroupAPI interface {
-	History(ctx context.Context, zone string) (*client.SimpleNotificationGroupHistoryResponseEnvelope, error)
-	PostMessage(ctx context.Context, zone string, id string, request *client.SimpleNotificationGroupOpPostMessageReq) error
+	History(ctx context.Context) (*client.SimpleNotificationGroupHistoryResponseEnvelope, error)
+	PostMessage(ctx context.Context, id string, request *client.SimpleNotificationGroupOpPostMessageReq) error
 }
 
 var _ SimpleNotificationGroupAPI = (*simpleNotificationGroupOp)(nil)
@@ -39,17 +39,16 @@ func NewSimpleNotificationGroupOp(c *client.Client) SimpleNotificationGroupAPI {
 	return &simpleNotificationGroupOp{client: c}
 }
 
-func (op *simpleNotificationGroupOp) History(ctx context.Context, zone string) (*client.SimpleNotificationGroupHistoryResponseEnvelope, error) {
-	params := client.SimpleNotificationGroupOpHistoryParams{Zone: zone}
-	resp, err := op.client.SimpleNotificationGroupOpHistory(ctx, params)
+func (op *simpleNotificationGroupOp) History(ctx context.Context) (*client.SimpleNotificationGroupHistoryResponseEnvelope, error) {
+	resp, err := op.client.SimpleNotificationGroupOpHistory(ctx)
 	if err != nil {
 		return nil, wrapOpErr("SimpleNotificationGroup.History", err)
 	}
 	return resp, nil
 }
 
-func (op *simpleNotificationGroupOp) PostMessage(ctx context.Context, zone string, id string, request *client.SimpleNotificationGroupOpPostMessageReq) error {
-	params := client.SimpleNotificationGroupOpPostMessageParams{Zone: zone, ID: id}
+func (op *simpleNotificationGroupOp) PostMessage(ctx context.Context, id string, request *client.SimpleNotificationGroupOpPostMessageReq) error {
+	params := client.SimpleNotificationGroupOpPostMessageParams{ID: id}
 	_, err := op.client.SimpleNotificationGroupOpPostMessage(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("SimpleNotificationGroup.PostMessage", err)

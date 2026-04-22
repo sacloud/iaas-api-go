@@ -31,7 +31,6 @@ func TestSwitchCRUD(t *testing.T) {
 
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
 	// 1. Create - スイッチ作成
 	// 注: UserSubnet は fieldmanifest allowlist で除外済み (downstream が未指定のため)。
@@ -43,7 +42,7 @@ func TestSwitchCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.SwitchOpCreate(ctx, createReq, client.SwitchOpCreateParams{Zone: zone})
+	createResp, err := c.SwitchOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	switchID := createResp.Switch.ID.Value
@@ -51,9 +50,7 @@ func TestSwitchCRUD(t *testing.T) {
 	require.Equal(t, "test-switch", createResp.Switch.Name.Value)
 
 	// 2. Read - スイッチ取得
-	readResp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", switchID),
+	readResp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID:   fmt.Sprintf("%d", switchID),
 	})
 	require.NoError(t, err)
 	require.Equal(t, "test-switch", readResp.Switch.Name.Value)
@@ -66,15 +63,13 @@ func TestSwitchCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.SwitchOpUpdateParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", switchID),
+	}, client.SwitchOpUpdateParams{ID:   fmt.Sprintf("%d", switchID),
 	})
 	require.NoError(t, err)
 	require.Equal(t, "test-switch-updated", updateResp.Switch.Name.Value)
 
 	// 4. Find - スイッチ検索
-	findResp, err := c.SwitchOpFind(ctx, client.SwitchOpFindParams{Zone: zone})
+	findResp, err := c.SwitchOpFind(ctx, client.SwitchOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Switches), 0)
 
@@ -88,16 +83,12 @@ func TestSwitchCRUD(t *testing.T) {
 	require.True(t, found, "作成したスイッチがリストに含まれていること")
 
 	// 5. Delete - スイッチ削除
-	_, err = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", switchID),
+	_, err = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID:   fmt.Sprintf("%d", switchID),
 	})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.SwitchOpRead(ctx, client.SwitchOpReadParams{
-		Zone: zone,
-		ID:   fmt.Sprintf("%d", switchID),
+	_, err = c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID:   fmt.Sprintf("%d", switchID),
 	})
 	require.Error(t, err)
 }

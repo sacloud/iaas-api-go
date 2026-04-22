@@ -24,9 +24,9 @@ import (
 
 // EnhancedDBAPI は EnhancedDB リソースに対する操作インターフェース。
 type EnhancedDBAPI interface {
-	GetConfig(ctx context.Context, zone string, id string) (*client.EnhancedDBGetConfigResponseEnvelope, error)
-	SetConfig(ctx context.Context, zone string, id string, request *client.EnhancedDBOpSetConfigReq) error
-	SetPassword(ctx context.Context, zone string, id string, request *client.EnhancedDBOpSetPasswordReq) error
+	GetConfig(ctx context.Context, id string) (*client.EnhancedDBGetConfigResponseEnvelope, error)
+	SetConfig(ctx context.Context, id string, request *client.EnhancedDBOpSetConfigReq) error
+	SetPassword(ctx context.Context, id string, request *client.EnhancedDBOpSetPasswordReq) error
 }
 
 var _ EnhancedDBAPI = (*enhancedDBOp)(nil)
@@ -40,8 +40,8 @@ func NewEnhancedDBOp(c *client.Client) EnhancedDBAPI {
 	return &enhancedDBOp{client: c}
 }
 
-func (op *enhancedDBOp) GetConfig(ctx context.Context, zone string, id string) (*client.EnhancedDBGetConfigResponseEnvelope, error) {
-	params := client.EnhancedDBOpGetConfigParams{Zone: zone, ID: id}
+func (op *enhancedDBOp) GetConfig(ctx context.Context, id string) (*client.EnhancedDBGetConfigResponseEnvelope, error) {
+	params := client.EnhancedDBOpGetConfigParams{ID: id}
 	resp, err := op.client.EnhancedDBOpGetConfig(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("EnhancedDB.GetConfig", err)
@@ -49,8 +49,8 @@ func (op *enhancedDBOp) GetConfig(ctx context.Context, zone string, id string) (
 	return resp, nil
 }
 
-func (op *enhancedDBOp) SetConfig(ctx context.Context, zone string, id string, request *client.EnhancedDBOpSetConfigReq) error {
-	params := client.EnhancedDBOpSetConfigParams{Zone: zone, ID: id}
+func (op *enhancedDBOp) SetConfig(ctx context.Context, id string, request *client.EnhancedDBOpSetConfigReq) error {
+	params := client.EnhancedDBOpSetConfigParams{ID: id}
 	_, err := op.client.EnhancedDBOpSetConfig(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("EnhancedDB.SetConfig", err)
@@ -58,8 +58,8 @@ func (op *enhancedDBOp) SetConfig(ctx context.Context, zone string, id string, r
 	return nil
 }
 
-func (op *enhancedDBOp) SetPassword(ctx context.Context, zone string, id string, request *client.EnhancedDBOpSetPasswordReq) error {
-	params := client.EnhancedDBOpSetPasswordParams{Zone: zone, ID: id}
+func (op *enhancedDBOp) SetPassword(ctx context.Context, id string, request *client.EnhancedDBOpSetPasswordReq) error {
+	params := client.EnhancedDBOpSetPasswordParams{ID: id}
 	_, err := op.client.EnhancedDBOpSetPassword(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("EnhancedDB.SetPassword", err)

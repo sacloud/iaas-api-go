@@ -24,9 +24,9 @@ import (
 
 // IPAddressAPI は IPAddress リソースに対する操作インターフェース。
 type IPAddressAPI interface {
-	List(ctx context.Context, zone string) (*client.IPAddressListResponseEnvelope, error)
-	Read(ctx context.Context, zone string, ipAddress string) (*client.IPAddressReadResponseEnvelope, error)
-	UpdateHostName(ctx context.Context, zone string, ipAddress string, request *client.IPAddressUpdateHostNameRequestEnvelope) (*client.IPAddressUpdateHostNameResponseEnvelope, error)
+	List(ctx context.Context) (*client.IPAddressListResponseEnvelope, error)
+	Read(ctx context.Context, ipAddress string) (*client.IPAddressReadResponseEnvelope, error)
+	UpdateHostName(ctx context.Context, ipAddress string, request *client.IPAddressUpdateHostNameRequestEnvelope) (*client.IPAddressUpdateHostNameResponseEnvelope, error)
 }
 
 var _ IPAddressAPI = (*iPAddressOp)(nil)
@@ -40,17 +40,16 @@ func NewIPAddressOp(c *client.Client) IPAddressAPI {
 	return &iPAddressOp{client: c}
 }
 
-func (op *iPAddressOp) List(ctx context.Context, zone string) (*client.IPAddressListResponseEnvelope, error) {
-	params := client.IPAddressOpListParams{Zone: zone}
-	resp, err := op.client.IPAddressOpList(ctx, params)
+func (op *iPAddressOp) List(ctx context.Context) (*client.IPAddressListResponseEnvelope, error) {
+	resp, err := op.client.IPAddressOpList(ctx)
 	if err != nil {
 		return nil, wrapOpErr("IPAddress.List", err)
 	}
 	return resp, nil
 }
 
-func (op *iPAddressOp) Read(ctx context.Context, zone string, ipAddress string) (*client.IPAddressReadResponseEnvelope, error) {
-	params := client.IPAddressOpReadParams{Zone: zone, IpAddress: ipAddress}
+func (op *iPAddressOp) Read(ctx context.Context, ipAddress string) (*client.IPAddressReadResponseEnvelope, error) {
+	params := client.IPAddressOpReadParams{IpAddress: ipAddress}
 	resp, err := op.client.IPAddressOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("IPAddress.Read", err)
@@ -58,8 +57,8 @@ func (op *iPAddressOp) Read(ctx context.Context, zone string, ipAddress string) 
 	return resp, nil
 }
 
-func (op *iPAddressOp) UpdateHostName(ctx context.Context, zone string, ipAddress string, request *client.IPAddressUpdateHostNameRequestEnvelope) (*client.IPAddressUpdateHostNameResponseEnvelope, error) {
-	params := client.IPAddressOpUpdateHostNameParams{Zone: zone, IpAddress: ipAddress}
+func (op *iPAddressOp) UpdateHostName(ctx context.Context, ipAddress string, request *client.IPAddressUpdateHostNameRequestEnvelope) (*client.IPAddressUpdateHostNameResponseEnvelope, error) {
+	params := client.IPAddressOpUpdateHostNameParams{IpAddress: ipAddress}
 	resp, err := op.client.IPAddressOpUpdateHostName(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("IPAddress.UpdateHostName", err)

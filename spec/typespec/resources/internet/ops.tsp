@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface InternetOp {
   @summary("Internet 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/internet")
+  @route("/internet")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -40,30 +34,16 @@ interface InternetOp {
 
   @summary("Internet 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/internet")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: InternetCreateRequestEnvelope,
-  ): {
+  @route("/internet")
+  create(@body body: InternetCreateRequestEnvelope): {
     @statusCode _: 202;
     ...InternetCreateResponseEnvelope;
   } | ApiError;
 
   @summary("Internet 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/internet/{id}")
+  @route("/internet/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -73,14 +53,8 @@ interface InternetOp {
 
   @summary("Internet 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/internet/{id}")
+  @route("/internet/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -92,14 +66,8 @@ interface InternetOp {
 
   @summary("Internet 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/internet/{id}")
+  @route("/internet/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -112,14 +80,8 @@ interface InternetOp {
 
   @summary("Internet 帯域更新")
   @put
-  @route("/{zone}/api/cloud/1.1/internet/{id}/bandwidth")
+  @route("/internet/{id}/bandwidth")
   updateBandWidth(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -131,14 +93,8 @@ interface InternetOp {
 
   @summary("Internet サブネット追加")
   @post
-  @route("/{zone}/api/cloud/1.1/internet/{id}/subnet")
+  @route("/internet/{id}/subnet")
   addSubnet(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -153,14 +109,8 @@ interface InternetOp {
 
   @summary("Internet サブネット更新")
   @put
-  @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
+  @route("/internet/{id}/subnet/{subnetID}")
   updateSubnet(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -178,14 +128,8 @@ interface InternetOp {
 
   @summary("Internet サブネット削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}")
+  @route("/internet/{id}/subnet/{subnetID}")
   deleteSubnet(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -204,14 +148,8 @@ interface InternetOp {
 
   @summary("Internet モニター情報取得")
   @get
-  @route("/{zone}/api/cloud/1.1/internet/{id}/monitor")
+  @route("/internet/{id}/monitor")
   monitor(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -223,14 +161,8 @@ interface InternetOp {
 
   @summary("Internet IPv6 有効化")
   @post
-  @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net")
+  @route("/internet/{id}/ipv6net")
   enableIPv6(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -243,14 +175,8 @@ interface InternetOp {
 
   @summary("Internet IPv6 無効化")
   @delete
-  @route("/{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}")
+  @route("/internet/{id}/ipv6net/{ipv6netID}")
   disableIPv6(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

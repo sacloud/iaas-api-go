@@ -35,12 +35,11 @@ func TestIaasNoteCRUD(t *testing.T) {
 
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
 	noteOp := iaas.NewNoteOp(c)
 
 	// Create
-	createResp, err := noteOp.Create(ctx, zone, &client.NoteCreateRequestEnvelope{
+	createResp, err := noteOp.Create(ctx,&client.NoteCreateRequestEnvelope{
 		Note: client.NoteCreateRequest{
 			Name:    client.NewOptString("test-note-wrapper"),
 			Tags:    []string{"test", "integration", "wrapper"},
@@ -55,12 +54,12 @@ func TestIaasNoteCRUD(t *testing.T) {
 	idStr := fmt.Sprintf("%d", noteID)
 
 	// Read
-	readResp, err := noteOp.Read(ctx, zone, idStr)
+	readResp, err := noteOp.Read(ctx, idStr)
 	require.NoError(t, err)
 	require.Equal(t, "test-note-wrapper", readResp.Note.Name.Value)
 
 	// Update
-	updateResp, err := noteOp.Update(ctx, zone, idStr, &client.NoteUpdateRequestEnvelope{
+	updateResp, err := noteOp.Update(ctx, idStr, &client.NoteUpdateRequestEnvelope{
 		Note: client.NoteUpdateRequest{
 			Name:    client.NewOptString("test-note-wrapper-updated"),
 			Tags:    []string{"test", "integration", "wrapper", "updated"},
@@ -74,7 +73,7 @@ func TestIaasNoteCRUD(t *testing.T) {
 	// List（ラッパーの Find クエリ書き換えミドルウェアの動作確認。
 	//        メソッド名は List だが内部は ogen の NoteOpFind を呼んでいる。
 	//        アカウント内 Note の累積に影響されないよう Name で絞り込む）
-	findResp, err := noteOp.List(ctx, zone, &client.NoteFindRequest{
+	findResp, err := noteOp.List(ctx, &client.NoteFindRequest{
 		Count:  50,
 		Filter: client.NoteFindFilter{Name: "test-note-wrapper-updated"},
 	})
@@ -89,10 +88,10 @@ func TestIaasNoteCRUD(t *testing.T) {
 	require.True(t, found, "作成した Note が Find 結果に含まれていること")
 
 	// Delete
-	err = noteOp.Delete(ctx, zone, idStr)
+	err = noteOp.Delete(ctx, idStr)
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = noteOp.Read(ctx, zone, idStr)
+	_, err = noteOp.Read(ctx, idStr)
 	require.Error(t, err)
 }

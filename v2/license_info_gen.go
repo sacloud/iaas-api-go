@@ -24,8 +24,8 @@ import (
 
 // LicenseInfoAPI は LicenseInfo リソースに対する操作インターフェース。
 type LicenseInfoAPI interface {
-	List(ctx context.Context, zone string, req *client.LicenseInfoFindRequest) (*client.LicenseInfoFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.LicenseInfoReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.LicenseInfoFindRequest) (*client.LicenseInfoFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.LicenseInfoReadResponseEnvelope, error)
 }
 
 var _ LicenseInfoAPI = (*licenseInfoOp)(nil)
@@ -39,8 +39,8 @@ func NewLicenseInfoOp(c *client.Client) LicenseInfoAPI {
 	return &licenseInfoOp{client: c}
 }
 
-func (op *licenseInfoOp) List(ctx context.Context, zone string, req *client.LicenseInfoFindRequest) (*client.LicenseInfoFindResponseEnvelope, error) {
-	params := client.LicenseInfoOpFindParams{Zone: zone}
+func (op *licenseInfoOp) List(ctx context.Context, req *client.LicenseInfoFindRequest) (*client.LicenseInfoFindResponseEnvelope, error) {
+	params := client.LicenseInfoOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *licenseInfoOp) List(ctx context.Context, zone string, req *client.Lice
 	return resp, nil
 }
 
-func (op *licenseInfoOp) Read(ctx context.Context, zone string, id string) (*client.LicenseInfoReadResponseEnvelope, error) {
-	params := client.LicenseInfoOpReadParams{Zone: zone, ID: id}
+func (op *licenseInfoOp) Read(ctx context.Context, id string) (*client.LicenseInfoReadResponseEnvelope, error) {
+	params := client.LicenseInfoOpReadParams{ID: id}
 	resp, err := op.client.LicenseInfoOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("LicenseInfo.Read", err)

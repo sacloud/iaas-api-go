@@ -24,20 +24,20 @@ import (
 
 // ApplianceAPI は Appliance リソースに対する操作インターフェース。
 type ApplianceAPI interface {
-	Boot(ctx context.Context, zone string, id string) error
-	Config(ctx context.Context, zone string, id string) error
-	Create(ctx context.Context, zone string, request *client.ApplianceCreateRequestEnvelope) (*client.DatabaseCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, q client.OptString) (*client.DatabaseFindResponseEnvelope, error)
-	MonitorCPU(ctx context.Context, zone string, id string, request *client.MonitorCondition) (*client.DatabaseMonitorCPUResponseEnvelope, error)
-	MonitorDatabase(ctx context.Context, zone string, id string, request *client.MonitorCondition) (*client.DatabaseMonitorDatabaseResponseEnvelope, error)
-	MonitorInterface(ctx context.Context, zone string, id string, request *client.MonitorCondition) (*client.DatabaseMonitorInterfaceResponseEnvelope, error)
-	MonitorInterfaceByIndex(ctx context.Context, zone string, id string, index string) (*client.MobileGatewayMonitorInterfaceResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.DatabaseReadResponseEnvelope, error)
-	Reset(ctx context.Context, zone string, id string) error
-	Shutdown(ctx context.Context, zone string, id string, request *client.ShutdownOption) error
-	Status(ctx context.Context, zone string, id string) (*client.DatabaseStatusResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.ApplianceUpdateRequestEnvelope) (*client.DatabaseUpdateResponseEnvelope, error)
+	Boot(ctx context.Context, id string) error
+	Config(ctx context.Context, id string) error
+	Create(ctx context.Context, request *client.ApplianceCreateRequestEnvelope) (*client.DatabaseCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, q client.OptString) (*client.DatabaseFindResponseEnvelope, error)
+	MonitorCPU(ctx context.Context, id string, request *client.MonitorCondition) (*client.DatabaseMonitorCPUResponseEnvelope, error)
+	MonitorDatabase(ctx context.Context, id string, request *client.MonitorCondition) (*client.DatabaseMonitorDatabaseResponseEnvelope, error)
+	MonitorInterface(ctx context.Context, id string, request *client.MonitorCondition) (*client.DatabaseMonitorInterfaceResponseEnvelope, error)
+	MonitorInterfaceByIndex(ctx context.Context, id string, index string) (*client.MobileGatewayMonitorInterfaceResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.DatabaseReadResponseEnvelope, error)
+	Reset(ctx context.Context, id string) error
+	Shutdown(ctx context.Context, id string, request *client.ShutdownOption) error
+	Status(ctx context.Context, id string) (*client.DatabaseStatusResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.ApplianceUpdateRequestEnvelope) (*client.DatabaseUpdateResponseEnvelope, error)
 }
 
 var _ ApplianceAPI = (*applianceOp)(nil)
@@ -51,8 +51,8 @@ func NewApplianceOp(c *client.Client) ApplianceAPI {
 	return &applianceOp{client: c}
 }
 
-func (op *applianceOp) Boot(ctx context.Context, zone string, id string) error {
-	params := client.ApplianceOpBootParams{Zone: zone, ID: id}
+func (op *applianceOp) Boot(ctx context.Context, id string) error {
+	params := client.ApplianceOpBootParams{ID: id}
 	_, err := op.client.ApplianceOpBoot(ctx, params)
 	if err != nil {
 		return wrapOpErr("Appliance.Boot", err)
@@ -60,8 +60,8 @@ func (op *applianceOp) Boot(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *applianceOp) Config(ctx context.Context, zone string, id string) error {
-	params := client.ApplianceOpConfigParams{Zone: zone, ID: id}
+func (op *applianceOp) Config(ctx context.Context, id string) error {
+	params := client.ApplianceOpConfigParams{ID: id}
 	_, err := op.client.ApplianceOpConfig(ctx, params)
 	if err != nil {
 		return wrapOpErr("Appliance.Config", err)
@@ -69,17 +69,16 @@ func (op *applianceOp) Config(ctx context.Context, zone string, id string) error
 	return nil
 }
 
-func (op *applianceOp) Create(ctx context.Context, zone string, request *client.ApplianceCreateRequestEnvelope) (*client.DatabaseCreateResponseEnvelope, error) {
-	params := client.ApplianceOpCreateParams{Zone: zone}
-	resp, err := op.client.ApplianceOpCreate(ctx, request, params)
+func (op *applianceOp) Create(ctx context.Context, request *client.ApplianceCreateRequestEnvelope) (*client.DatabaseCreateResponseEnvelope, error) {
+	resp, err := op.client.ApplianceOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *applianceOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.ApplianceOpDeleteParams{Zone: zone, ID: id}
+func (op *applianceOp) Delete(ctx context.Context, id string) error {
+	params := client.ApplianceOpDeleteParams{ID: id}
 	_, err := op.client.ApplianceOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Appliance.Delete", err)
@@ -87,8 +86,8 @@ func (op *applianceOp) Delete(ctx context.Context, zone string, id string) error
 	return nil
 }
 
-func (op *applianceOp) List(ctx context.Context, zone string, q client.OptString) (*client.DatabaseFindResponseEnvelope, error) {
-	params := client.ApplianceOpFindParams{Zone: zone, Q: q}
+func (op *applianceOp) List(ctx context.Context, q client.OptString) (*client.DatabaseFindResponseEnvelope, error) {
+	params := client.ApplianceOpFindParams{Q: q}
 	resp, err := op.client.ApplianceOpFind(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.List", err)
@@ -96,8 +95,8 @@ func (op *applianceOp) List(ctx context.Context, zone string, q client.OptString
 	return resp, nil
 }
 
-func (op *applianceOp) MonitorCPU(ctx context.Context, zone string, id string, request *client.MonitorCondition) (*client.DatabaseMonitorCPUResponseEnvelope, error) {
-	params := client.ApplianceOpMonitorCPUParams{Zone: zone, ID: id}
+func (op *applianceOp) MonitorCPU(ctx context.Context, id string, request *client.MonitorCondition) (*client.DatabaseMonitorCPUResponseEnvelope, error) {
+	params := client.ApplianceOpMonitorCPUParams{ID: id}
 	resp, err := op.client.ApplianceOpMonitorCPU(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.MonitorCPU", err)
@@ -105,8 +104,8 @@ func (op *applianceOp) MonitorCPU(ctx context.Context, zone string, id string, r
 	return resp, nil
 }
 
-func (op *applianceOp) MonitorDatabase(ctx context.Context, zone string, id string, request *client.MonitorCondition) (*client.DatabaseMonitorDatabaseResponseEnvelope, error) {
-	params := client.ApplianceOpMonitorDatabaseParams{Zone: zone, ID: id}
+func (op *applianceOp) MonitorDatabase(ctx context.Context, id string, request *client.MonitorCondition) (*client.DatabaseMonitorDatabaseResponseEnvelope, error) {
+	params := client.ApplianceOpMonitorDatabaseParams{ID: id}
 	resp, err := op.client.ApplianceOpMonitorDatabase(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.MonitorDatabase", err)
@@ -114,8 +113,8 @@ func (op *applianceOp) MonitorDatabase(ctx context.Context, zone string, id stri
 	return resp, nil
 }
 
-func (op *applianceOp) MonitorInterface(ctx context.Context, zone string, id string, request *client.MonitorCondition) (*client.DatabaseMonitorInterfaceResponseEnvelope, error) {
-	params := client.ApplianceOpMonitorInterfaceParams{Zone: zone, ID: id}
+func (op *applianceOp) MonitorInterface(ctx context.Context, id string, request *client.MonitorCondition) (*client.DatabaseMonitorInterfaceResponseEnvelope, error) {
+	params := client.ApplianceOpMonitorInterfaceParams{ID: id}
 	resp, err := op.client.ApplianceOpMonitorInterface(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.MonitorInterface", err)
@@ -123,8 +122,8 @@ func (op *applianceOp) MonitorInterface(ctx context.Context, zone string, id str
 	return resp, nil
 }
 
-func (op *applianceOp) MonitorInterfaceByIndex(ctx context.Context, zone string, id string, index string) (*client.MobileGatewayMonitorInterfaceResponseEnvelope, error) {
-	params := client.ApplianceOpMonitorInterfaceByIndexParams{Zone: zone, ID: id, Index: index}
+func (op *applianceOp) MonitorInterfaceByIndex(ctx context.Context, id string, index string) (*client.MobileGatewayMonitorInterfaceResponseEnvelope, error) {
+	params := client.ApplianceOpMonitorInterfaceByIndexParams{ID: id, Index: index}
 	resp, err := op.client.ApplianceOpMonitorInterfaceByIndex(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.MonitorInterfaceByIndex", err)
@@ -132,8 +131,8 @@ func (op *applianceOp) MonitorInterfaceByIndex(ctx context.Context, zone string,
 	return resp, nil
 }
 
-func (op *applianceOp) Read(ctx context.Context, zone string, id string) (*client.DatabaseReadResponseEnvelope, error) {
-	params := client.ApplianceOpReadParams{Zone: zone, ID: id}
+func (op *applianceOp) Read(ctx context.Context, id string) (*client.DatabaseReadResponseEnvelope, error) {
+	params := client.ApplianceOpReadParams{ID: id}
 	resp, err := op.client.ApplianceOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.Read", err)
@@ -141,8 +140,8 @@ func (op *applianceOp) Read(ctx context.Context, zone string, id string) (*clien
 	return resp, nil
 }
 
-func (op *applianceOp) Reset(ctx context.Context, zone string, id string) error {
-	params := client.ApplianceOpResetParams{Zone: zone, ID: id}
+func (op *applianceOp) Reset(ctx context.Context, id string) error {
+	params := client.ApplianceOpResetParams{ID: id}
 	_, err := op.client.ApplianceOpReset(ctx, params)
 	if err != nil {
 		return wrapOpErr("Appliance.Reset", err)
@@ -150,8 +149,8 @@ func (op *applianceOp) Reset(ctx context.Context, zone string, id string) error 
 	return nil
 }
 
-func (op *applianceOp) Shutdown(ctx context.Context, zone string, id string, request *client.ShutdownOption) error {
-	params := client.ApplianceOpShutdownParams{Zone: zone, ID: id}
+func (op *applianceOp) Shutdown(ctx context.Context, id string, request *client.ShutdownOption) error {
+	params := client.ApplianceOpShutdownParams{ID: id}
 	_, err := op.client.ApplianceOpShutdown(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("Appliance.Shutdown", err)
@@ -159,8 +158,8 @@ func (op *applianceOp) Shutdown(ctx context.Context, zone string, id string, req
 	return nil
 }
 
-func (op *applianceOp) Status(ctx context.Context, zone string, id string) (*client.DatabaseStatusResponseEnvelope, error) {
-	params := client.ApplianceOpStatusParams{Zone: zone, ID: id}
+func (op *applianceOp) Status(ctx context.Context, id string) (*client.DatabaseStatusResponseEnvelope, error) {
+	params := client.ApplianceOpStatusParams{ID: id}
 	resp, err := op.client.ApplianceOpStatus(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.Status", err)
@@ -168,8 +167,8 @@ func (op *applianceOp) Status(ctx context.Context, zone string, id string) (*cli
 	return resp, nil
 }
 
-func (op *applianceOp) Update(ctx context.Context, zone string, id string, request *client.ApplianceUpdateRequestEnvelope) (*client.DatabaseUpdateResponseEnvelope, error) {
-	params := client.ApplianceOpUpdateParams{Zone: zone, ID: id}
+func (op *applianceOp) Update(ctx context.Context, id string, request *client.ApplianceUpdateRequestEnvelope) (*client.DatabaseUpdateResponseEnvelope, error) {
+	params := client.ApplianceOpUpdateParams{ID: id}
 	resp, err := op.client.ApplianceOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Appliance.Update", err)

@@ -24,11 +24,11 @@ import (
 
 // IconAPI は Icon リソースに対する操作インターフェース。
 type IconAPI interface {
-	Create(ctx context.Context, zone string, request *client.IconCreateRequestEnvelope) (*client.IconCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.IconFindRequest) (*client.IconFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.IconReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.IconCreateRequestEnvelope) (*client.IconCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.IconFindRequest) (*client.IconFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.IconReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error)
 }
 
 var _ IconAPI = (*iconOp)(nil)
@@ -42,17 +42,16 @@ func NewIconOp(c *client.Client) IconAPI {
 	return &iconOp{client: c}
 }
 
-func (op *iconOp) Create(ctx context.Context, zone string, request *client.IconCreateRequestEnvelope) (*client.IconCreateResponseEnvelope, error) {
-	params := client.IconOpCreateParams{Zone: zone}
-	resp, err := op.client.IconOpCreate(ctx, request, params)
+func (op *iconOp) Create(ctx context.Context, request *client.IconCreateRequestEnvelope) (*client.IconCreateResponseEnvelope, error) {
+	resp, err := op.client.IconOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Icon.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *iconOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.IconOpDeleteParams{Zone: zone, ID: id}
+func (op *iconOp) Delete(ctx context.Context, id string) error {
+	params := client.IconOpDeleteParams{ID: id}
 	_, err := op.client.IconOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Icon.Delete", err)
@@ -60,8 +59,8 @@ func (op *iconOp) Delete(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *iconOp) List(ctx context.Context, zone string, req *client.IconFindRequest) (*client.IconFindResponseEnvelope, error) {
-	params := client.IconOpFindParams{Zone: zone}
+func (op *iconOp) List(ctx context.Context, req *client.IconFindRequest) (*client.IconFindResponseEnvelope, error) {
+	params := client.IconOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -72,8 +71,8 @@ func (op *iconOp) List(ctx context.Context, zone string, req *client.IconFindReq
 	return resp, nil
 }
 
-func (op *iconOp) Read(ctx context.Context, zone string, id string) (*client.IconReadResponseEnvelope, error) {
-	params := client.IconOpReadParams{Zone: zone, ID: id}
+func (op *iconOp) Read(ctx context.Context, id string) (*client.IconReadResponseEnvelope, error) {
+	params := client.IconOpReadParams{ID: id}
 	resp, err := op.client.IconOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Icon.Read", err)
@@ -81,8 +80,8 @@ func (op *iconOp) Read(ctx context.Context, zone string, id string) (*client.Ico
 	return resp, nil
 }
 
-func (op *iconOp) Update(ctx context.Context, zone string, id string, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error) {
-	params := client.IconOpUpdateParams{Zone: zone, ID: id}
+func (op *iconOp) Update(ctx context.Context, id string, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error) {
+	params := client.IconOpUpdateParams{ID: id}
 	resp, err := op.client.IconOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Icon.Update", err)

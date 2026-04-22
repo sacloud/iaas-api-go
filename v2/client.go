@@ -24,18 +24,21 @@ import (
 	"context"
 	"fmt"
 	"runtime"
+	"strings"
 
 	"github.com/sacloud/iaas-api-go/v2/client"
 	"github.com/sacloud/saclient-go"
 )
 
 const (
-	// DefaultAPIRootURL デフォルトのAPIルートURL。
-	// v2 ではゾーンを path param として扱うため、ベース URL にはゾーンを含めない。
-	DefaultAPIRootURL = "https://secure.sakura.ad.jp/cloud/zone"
+	// APIRootURLTemplate デフォルトの API ルート URL テンプレート。
+	// OpenAPI の servers 変数と同じく {zone} プレースホルダを含む。
+	// NewClient / NewClientWithAPIRootURL では zone を埋め込んで使用する。
+	APIRootURLTemplate = "https://secure.sakura.ad.jp/cloud/zone/{zone}/api/cloud/1.1"
 
 	// ServiceKey SDKの種別を示すキー、プロファイルでのエンドポイント取得に利用する。
 	// SAKURA_ENDPOINTS_iaas 環境変数などで上書き可能。
+	// エンドポイント値は {zone} プレースホルダを含むテンプレートで指定する。
 	ServiceKey = "iaas"
 )
 
@@ -57,23 +60,27 @@ func (noopSecuritySource) BasicAuth(_ context.Context, _ client.OperationName) (
 	return client.BasicAuth{}, nil
 }
 
-// NewClient は saclient.ClientAPI を受け取って ogen クライアントを組み立てる。
-// エンドポイントは saclient.EndpointConfig の "iaas" キーを優先し、
-// 見つからなければ DefaultAPIRootURL にフォールバックする。
-func NewClient(c saclient.ClientAPI) (*client.Client, error) {
+// NewClient は zone と saclient.ClientAPI を受け取って ogen クライアントを組み立てる。
+// URL テンプレートは saclient.EndpointConfig の "iaas" キーを優先し、
+// 見つからなければ APIRootURLTemplate にフォールバックする。いずれも {zone}
+// プレースホルダを含み、本関数内で zone が埋め込まれる。
+func NewClient(c saclient.ClientAPI, zone string) (*client.Client, error) {
+	if zone == "" {
+		return nil, NewError("zone must not be empty", nil)
+	}
 	endpointConfig, err := c.EndpointConfig()
 	if err != nil {
 		return nil, NewError("unable to load endpoint configuration", err)
 	}
-	endpoint := DefaultAPIRootURL
+	template := APIRootURLTemplate
 	if ep, ok := endpointConfig.Endpoints[ServiceKey]; ok && ep != "" {
-		endpoint = ep
+		template = ep
 	}
-	return NewClientWithAPIRootURL(c, endpoint)
+	return NewClientWithAPIRootURL(c, resolveAPIRootURL(template, zone))
 }
 
-// NewClientWithAPIRootURL は明示的にエンドポイントを指定してクライアントを
-// 組み立てる。テストや非標準環境向け。通常は NewClient を使うこと。
+// NewClientWithAPIRootURL は zone 解決済みの完全な API ルート URL を指定して
+// クライアントを組み立てる。テストや非標準環境向け。通常は NewClient を使うこと。
 func NewClientWithAPIRootURL(c saclient.ClientAPI, apiRootURL string) (*client.Client, error) {
 	dupable, ok := c.(saclient.ClientOptionAPI)
 	if !ok {
@@ -90,4 +97,11 @@ func NewClientWithAPIRootURL(c saclient.ClientAPI, apiRootURL string) (*client.C
 		return nil, err
 	}
 	return client.NewClient(apiRootURL, noopSecuritySource{}, client.WithClient(augmented))
+}
+
+// resolveAPIRootURL は URL テンプレート中の {zone} を指定ゾーンで置換する。
+// テンプレートに {zone} が含まれない（zone を含めない形で設定された）場合は
+// そのまま返す。
+func resolveAPIRootURL(template, zone string) string {
+	return strings.ReplaceAll(template, "{zone}", zone)
 }

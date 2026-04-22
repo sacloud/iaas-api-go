@@ -25,1369 +25,1369 @@ type Invoker interface {
 	//
 	// Appliance 起動.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/power
+	// PUT /appliance/{id}/power
 	ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (*ApplianceOpBootOK, error)
 	// ApplianceOpConfig invokes ApplianceOp_config operation.
 	//
 	// Appliance 設定反映.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/config
+	// PUT /appliance/{id}/config
 	ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (*ApplianceOpConfigOK, error)
 	// ApplianceOpCreate invokes ApplianceOp_create operation.
 	//
 	// Appliance 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/appliance
-	ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error)
+	// POST /appliance
+	ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope) (*DatabaseCreateResponseEnvelope, error)
 	// ApplianceOpDelete invokes ApplianceOp_delete operation.
 	//
 	// Appliance 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/appliance/{id}
+	// DELETE /appliance/{id}
 	ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (*ApplianceOpDeleteOK, error)
 	// ApplianceOpFind invokes ApplianceOp_find operation.
 	//
 	// Appliance 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance
+	// GET /appliance
 	ApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error)
 	// ApplianceOpMonitorCPU invokes ApplianceOp_monitorCPU operation.
 	//
 	// Appliance CPU モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
+	// GET /appliance/{id}/cpu/monitor
 	ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error)
 	// ApplianceOpMonitorDatabase invokes ApplianceOp_monitorDatabase operation.
 	//
 	// Appliance データベースモニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/database/monitor
+	// GET /appliance/{id}/database/monitor
 	ApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error)
 	// ApplianceOpMonitorInterface invokes ApplianceOp_monitorInterface operation.
 	//
 	// Appliance インターフェイスモニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/monitor
+	// GET /appliance/{id}/interface/monitor
 	ApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error)
 	// ApplianceOpMonitorInterfaceByIndex invokes ApplianceOp_monitorInterfaceByIndex operation.
 	//
 	// Appliance インターフェイスモニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor
+	// GET /appliance/{id}/interface/{index}/monitor
 	ApplianceOpMonitorInterfaceByIndex(ctx context.Context, params ApplianceOpMonitorInterfaceByIndexParams) (*MobileGatewayMonitorInterfaceResponseEnvelope, error)
 	// ApplianceOpRead invokes ApplianceOp_read operation.
 	//
 	// Appliance 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}
+	// GET /appliance/{id}
 	ApplianceOpRead(ctx context.Context, params ApplianceOpReadParams) (*DatabaseReadResponseEnvelope, error)
 	// ApplianceOpReset invokes ApplianceOp_reset operation.
 	//
 	// Appliance リセット.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/reset
+	// PUT /appliance/{id}/reset
 	ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (*ApplianceOpResetOK, error)
 	// ApplianceOpShutdown invokes ApplianceOp_shutdown operation.
 	//
 	// Appliance シャットダウン.
 	//
-	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
+	// DELETE /appliance/{id}/power
 	ApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error)
 	// ApplianceOpStatus invokes ApplianceOp_status operation.
 	//
 	// Appliance ステータス取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/status
+	// GET /appliance/{id}/status
 	ApplianceOpStatus(ctx context.Context, params ApplianceOpStatusParams) (*DatabaseStatusResponseEnvelope, error)
 	// ApplianceOpUpdate invokes ApplianceOp_update operation.
 	//
 	// Appliance 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}
+	// PUT /appliance/{id}
 	ApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error)
 	// ArchiveOpCloseFTP invokes ArchiveOp_closeFTP operation.
 	//
 	// Archive FTP クローズ.
 	//
-	// DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
+	// DELETE /archive/{id}/ftp
 	ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (*ArchiveOpCloseFTPOK, error)
 	// ArchiveOpCreate invokes ArchiveOp_create operation.
 	//
 	// Archive 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/archive
-	ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error)
+	// POST /archive
+	ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope) (*ArchiveCreateResponseEnvelope, error)
 	// ArchiveOpDelete invokes ArchiveOp_delete operation.
 	//
 	// Archive 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/archive/{id}
+	// DELETE /archive/{id}
 	ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (*ArchiveOpDeleteOK, error)
 	// ArchiveOpFind invokes ArchiveOp_find operation.
 	//
 	// Archive 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/archive
+	// GET /archive
 	ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error)
 	// ArchiveOpRead invokes ArchiveOp_read operation.
 	//
 	// Archive 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/archive/{id}
+	// GET /archive/{id}
 	ArchiveOpRead(ctx context.Context, params ArchiveOpReadParams) (*ArchiveReadResponseEnvelope, error)
 	// ArchiveOpShare invokes ArchiveOp_share operation.
 	//
 	// Archive 共有.
 	//
-	// PUT /{zone}/api/cloud/1.1/archive/{id}/ftp
+	// PUT /archive/{id}/ftp
 	ArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error)
 	// ArchiveOpTransfer invokes ArchiveOp_transfer operation.
 	//
 	// Archive 移管.
 	//
-	// POST /{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}
+	// POST /archive/{sourceArchiveID}/to/zone/{destZoneID}
 	ArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error)
 	// ArchiveOpUpdate invokes ArchiveOp_update operation.
 	//
 	// Archive 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/archive/{id}
+	// PUT /archive/{id}
 	ArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error)
 	// AuthStatusOpRead invokes AuthStatusOp_read operation.
 	//
 	// 認証情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/auth-status
-	AuthStatusOpRead(ctx context.Context, params AuthStatusOpReadParams) (*AuthStatusReadResponseEnvelope, error)
+	// GET /auth-status
+	AuthStatusOpRead(ctx context.Context) (*AuthStatusReadResponseEnvelope, error)
 	// AutoScaleOpScaleDown invokes AutoScaleOp_scaleDown operation.
 	//
 	// AutoScale スケールダウン.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down
+	// PUT /commonserviceitem/{id}/autoscale/down
 	AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (*AutoScaleOpScaleDownOK, error)
 	// AutoScaleOpScaleUp invokes AutoScaleOp_scaleUp operation.
 	//
 	// AutoScale スケールアップ.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up
+	// PUT /commonserviceitem/{id}/autoscale/up
 	AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (*AutoScaleOpScaleUpOK, error)
 	// AutoScaleOpStatus invokes AutoScaleOp_status operation.
 	//
 	// AutoScale ステータス取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status
+	// GET /commonserviceitem/{id}/autoscale/status
 	AutoScaleOpStatus(ctx context.Context, params AutoScaleOpStatusParams) (*AutoScaleStatusResponseEnvelope, error)
 	// BillOpByContract invokes BillOp_byContract operation.
 	//
 	// 契約別請求情報取得.
 	//
-	// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}
+	// GET /bill/by-contract/{accountID}
 	BillOpByContract(ctx context.Context, params BillOpByContractParams) (*BillByContractResponseEnvelope, error)
 	// BillOpByContractYear invokes BillOp_byContractYear operation.
 	//
 	// 契約・年別請求情報取得.
 	//
-	// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}
+	// GET /bill/by-contract/{accountID}/{year}
 	BillOpByContractYear(ctx context.Context, params BillOpByContractYearParams) (*BillByContractYearResponseEnvelope, error)
 	// BillOpByContractYearMonth invokes BillOp_byContractYearMonth operation.
 	//
 	// 契約・年月別請求情報取得.
 	//
-	// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}
+	// GET /bill/by-contract/{accountID}/{year}/{month}
 	BillOpByContractYearMonth(ctx context.Context, params BillOpByContractYearMonthParams) (*BillByContractYearMonthResponseEnvelope, error)
 	// BillOpDetails invokes BillOp_details operation.
 	//
 	// 請求明細取得.
 	//
-	// GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}
+	// GET /billdetail/{MemberCode}/{id}
 	BillOpDetails(ctx context.Context, params BillOpDetailsParams) (*BillDetailsResponseEnvelope, error)
 	// BillOpDetailsCSV invokes BillOp_detailsCSV operation.
 	//
 	// 請求明細 CSV 取得.
 	//
-	// GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv
+	// GET /billdetail/{MemberCode}/{id}/csv
 	BillOpDetailsCSV(ctx context.Context, params BillOpDetailsCSVParams) (*BillDetailsCSVResponseEnvelope, error)
 	// BillOpRead invokes BillOp_read operation.
 	//
 	// 請求情報取得.
 	//
-	// GET /{zone}/api/system/1.0/bill/id/{id}
+	// GET /bill/id/{id}
 	BillOpRead(ctx context.Context, params BillOpReadParams) (*BillReadResponseEnvelope, error)
 	// BridgeOpCreate invokes BridgeOp_create operation.
 	//
 	// Bridge 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/bridge
-	BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error)
+	// POST /bridge
+	BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope) (*BridgeCreateResponseEnvelope, error)
 	// BridgeOpDelete invokes BridgeOp_delete operation.
 	//
 	// Bridge 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/bridge/{id}
+	// DELETE /bridge/{id}
 	BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (*BridgeOpDeleteOK, error)
 	// BridgeOpFind invokes BridgeOp_find operation.
 	//
 	// Bridge 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/bridge
+	// GET /bridge
 	BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error)
 	// BridgeOpRead invokes BridgeOp_read operation.
 	//
 	// Bridge 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/bridge/{id}
+	// GET /bridge/{id}
 	BridgeOpRead(ctx context.Context, params BridgeOpReadParams) (*BridgeReadResponseEnvelope, error)
 	// BridgeOpUpdate invokes BridgeOp_update operation.
 	//
 	// Bridge 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/bridge/{id}
+	// PUT /bridge/{id}
 	BridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error)
 	// CDROMOpCloseFTP invokes CDROMOp_closeFTP operation.
 	//
 	// CDROM FTP クローズ.
 	//
-	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
+	// DELETE /cdrom/{id}/ftp
 	CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (*CDROMOpCloseFTPOK, error)
 	// CDROMOpCreate invokes CDROMOp_create operation.
 	//
 	// CDROM 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/cdrom
-	CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error)
+	// POST /cdrom
+	CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope) (*CDROMCreateResponseEnvelope, error)
 	// CDROMOpDelete invokes CDROMOp_delete operation.
 	//
 	// CDROM 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/cdrom/{id}
+	// DELETE /cdrom/{id}
 	CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (*CDROMOpDeleteOK, error)
 	// CDROMOpFind invokes CDROMOp_find operation.
 	//
 	// CDROM 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/cdrom
+	// GET /cdrom
 	CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error)
 	// CDROMOpOpenFTP invokes CDROMOp_openFTP operation.
 	//
 	// CDROM FTP オープン.
 	//
-	// PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
+	// PUT /cdrom/{id}/ftp
 	CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error)
 	// CDROMOpRead invokes CDROMOp_read operation.
 	//
 	// CDROM 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/cdrom/{id}
+	// GET /cdrom/{id}
 	CDROMOpRead(ctx context.Context, params CDROMOpReadParams) (*CDROMReadResponseEnvelope, error)
 	// CDROMOpUpdate invokes CDROMOp_update operation.
 	//
 	// CDROM 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/cdrom/{id}
+	// PUT /cdrom/{id}
 	CDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error)
 	// CertificateAuthorityOpAddClient invokes CertificateAuthorityOp_addClient operation.
 	//
 	// CertificateAuthority クライアント追加.
 	//
-	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
+	// POST /commonserviceitem/{id}/certificateauthority/clients
 	CertificateAuthorityOpAddClient(ctx context.Context, request *CertificateAuthorityOpAddClientReq, params CertificateAuthorityOpAddClientParams) (*CertificateAuthorityAddClientResponseEnvelope, error)
 	// CertificateAuthorityOpAddServer invokes CertificateAuthorityOp_addServer operation.
 	//
 	// CertificateAuthority サーバー追加.
 	//
-	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
+	// POST /commonserviceitem/{id}/certificateauthority/servers
 	CertificateAuthorityOpAddServer(ctx context.Context, request *CertificateAuthorityOpAddServerReq, params CertificateAuthorityOpAddServerParams) (*CertificateAuthorityAddServerResponseEnvelope, error)
 	// CertificateAuthorityOpDenyClient invokes CertificateAuthorityOp_denyClient operation.
 	//
 	// CertificateAuthority クライアント拒否.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
+	// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
 	CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (*CertificateAuthorityOpDenyClientOK, error)
 	// CertificateAuthorityOpDetail invokes CertificateAuthorityOp_detail operation.
 	//
 	// CertificateAuthority 詳細取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority
+	// GET /commonserviceitem/{id}/certificateauthority
 	CertificateAuthorityOpDetail(ctx context.Context, params CertificateAuthorityOpDetailParams) (*CertificateAuthorityDetailResponseEnvelope, error)
 	// CertificateAuthorityOpHoldClient invokes CertificateAuthorityOp_holdClient operation.
 	//
 	// CertificateAuthority クライアント保留.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
+	// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
 	CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (*CertificateAuthorityOpHoldClientOK, error)
 	// CertificateAuthorityOpHoldServer invokes CertificateAuthorityOp_holdServer operation.
 	//
 	// CertificateAuthority サーバー保留.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
+	// PUT /commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
 	CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (*CertificateAuthorityOpHoldServerOK, error)
 	// CertificateAuthorityOpListClients invokes CertificateAuthorityOp_listClients operation.
 	//
 	// CertificateAuthority クライアント一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
+	// GET /commonserviceitem/{id}/certificateauthority/clients
 	CertificateAuthorityOpListClients(ctx context.Context, params CertificateAuthorityOpListClientsParams) (*CertificateAuthorityListClientsResponseEnvelope, error)
 	// CertificateAuthorityOpListServers invokes CertificateAuthorityOp_listServers operation.
 	//
 	// CertificateAuthority サーバー一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
+	// GET /commonserviceitem/{id}/certificateauthority/servers
 	CertificateAuthorityOpListServers(ctx context.Context, params CertificateAuthorityOpListServersParams) (*CertificateAuthorityListServersResponseEnvelope, error)
 	// CertificateAuthorityOpReadClient invokes CertificateAuthorityOp_readClient operation.
 	//
 	// CertificateAuthority クライアント取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}
+	// GET /commonserviceitem/{id}/certificateauthority/clients/{clientID}
 	CertificateAuthorityOpReadClient(ctx context.Context, params CertificateAuthorityOpReadClientParams) (*CertificateAuthorityReadClientResponseEnvelope, error)
 	// CertificateAuthorityOpReadServer invokes CertificateAuthorityOp_readServer operation.
 	//
 	// CertificateAuthority サーバー取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}
+	// GET /commonserviceitem/{id}/certificateauthority/servers/{serverID}
 	CertificateAuthorityOpReadServer(ctx context.Context, params CertificateAuthorityOpReadServerParams) (*CertificateAuthorityReadServerResponseEnvelope, error)
 	// CertificateAuthorityOpResumeClient invokes CertificateAuthorityOp_resumeClient operation.
 	//
 	// CertificateAuthority クライアント再開.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
+	// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
 	CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (*CertificateAuthorityOpResumeClientOK, error)
 	// CertificateAuthorityOpResumeServer invokes CertificateAuthorityOp_resumeServer operation.
 	//
 	// CertificateAuthority サーバー再開.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
+	// PUT /commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
 	CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (*CertificateAuthorityOpResumeServerOK, error)
 	// CertificateAuthorityOpRevokeClient invokes CertificateAuthorityOp_revokeClient operation.
 	//
 	// CertificateAuthority クライアント破棄.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
+	// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
 	CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (*CertificateAuthorityOpRevokeClientOK, error)
 	// CertificateAuthorityOpRevokeServer invokes CertificateAuthorityOp_revokeServer operation.
 	//
 	// CertificateAuthority サーバー破棄.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
+	// PUT /commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
 	CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (*CertificateAuthorityOpRevokeServerOK, error)
 	// CommonServiceItemOpCreate invokes CommonServiceItemOp_create operation.
 	//
 	// CommonServiceItem 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/commonserviceitem
-	CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error)
+	// POST /commonserviceitem
+	CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope) (*AutoBackupCreateResponseEnvelope, error)
 	// CommonServiceItemOpDelete invokes CommonServiceItemOp_delete operation.
 	//
 	// CommonServiceItem 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
+	// DELETE /commonserviceitem/{id}
 	CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (*CommonServiceItemOpDeleteOK, error)
 	// CommonServiceItemOpFind invokes CommonServiceItemOp_find operation.
 	//
 	// CommonServiceItem 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem
+	// GET /commonserviceitem
 	CommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error)
 	// CommonServiceItemOpHealthStatus invokes CommonServiceItemOp_healthStatus operation.
 	//
 	// CommonServiceItem ヘルスステータス取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/health
+	// GET /commonserviceitem/{id}/health
 	CommonServiceItemOpHealthStatus(ctx context.Context, params CommonServiceItemOpHealthStatusParams) (*LocalRouterHealthStatusResponseEnvelope, error)
 	// CommonServiceItemOpRead invokes CommonServiceItemOp_read operation.
 	//
 	// CommonServiceItem 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}
+	// GET /commonserviceitem/{id}
 	CommonServiceItemOpRead(ctx context.Context, params CommonServiceItemOpReadParams) (*AutoBackupReadResponseEnvelope, error)
 	// CommonServiceItemOpUpdate invokes CommonServiceItemOp_update operation.
 	//
 	// CommonServiceItem 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}
+	// PUT /commonserviceitem/{id}
 	CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error)
 	// ContainerRegistryOpAddUser invokes ContainerRegistryOp_addUser operation.
 	//
 	// ContainerRegistry ユーザー追加.
 	//
-	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
+	// POST /commonserviceitem/{id}/containerregistry/users
 	ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (*ContainerRegistryOpAddUserOK, error)
 	// ContainerRegistryOpDeleteUser invokes ContainerRegistryOp_deleteUser operation.
 	//
 	// ContainerRegistry ユーザー削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
+	// DELETE /commonserviceitem/{id}/containerregistry/users/{username}
 	ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (*ContainerRegistryOpDeleteUserOK, error)
 	// ContainerRegistryOpListUsers invokes ContainerRegistryOp_listUsers operation.
 	//
 	// ContainerRegistry ユーザー一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
+	// GET /commonserviceitem/{id}/containerregistry/users
 	ContainerRegistryOpListUsers(ctx context.Context, params ContainerRegistryOpListUsersParams) (*ContainerRegistryListUsersResponseEnvelope, error)
 	// ContainerRegistryOpUpdateUser invokes ContainerRegistryOp_updateUser operation.
 	//
 	// ContainerRegistry ユーザー更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
+	// PUT /commonserviceitem/{id}/containerregistry/users/{username}
 	ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (*ContainerRegistryOpUpdateUserOK, error)
 	// CouponOpFind invokes CouponOp_find operation.
 	//
 	// クーポン情報取得.
 	//
-	// GET /{zone}/api/system/1.0/coupon/{accountID}
+	// GET /coupon/{accountID}
 	CouponOpFind(ctx context.Context, params CouponOpFindParams) (*CouponFindResponseEnvelope, error)
 	// DatabaseOpGetParameter invokes DatabaseOp_getParameter operation.
 	//
 	// Database パラメータ取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
+	// GET /appliance/{id}/database/parameter
 	DatabaseOpGetParameter(ctx context.Context, params DatabaseOpGetParameterParams) (*DatabaseGetParameterResponseEnvelope, error)
 	// DatabaseOpMonitorDisk invokes DatabaseOp_monitorDisk operation.
 	//
 	// Database ディスクモニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor
+	// GET /appliance/{id}/disk/0/monitor
 	DatabaseOpMonitorDisk(ctx context.Context, request *DatabaseOpMonitorDiskReq, params DatabaseOpMonitorDiskParams) (*DatabaseMonitorDiskResponseEnvelope, error)
 	// DatabaseOpSetParameter invokes DatabaseOp_setParameter operation.
 	//
 	// Database パラメータ設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
+	// PUT /appliance/{id}/database/parameter
 	DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (*DatabaseOpSetParameterOK, error)
 	// DiskOpConfig invokes DiskOp_config operation.
 	//
 	// ディスクの修正反映.
 	//
-	// PUT /{zone}/api/cloud/1.1/disk/{id}/config
+	// PUT /disk/{id}/config
 	DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (*DiskOpConfigOK, error)
 	// DiskOpConnectToServer invokes DiskOp_connectToServer operation.
 	//
 	// Disk サーバー接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
+	// PUT /disk/{id}/to/server/{serverID}
 	DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (*DiskOpConnectToServerOK, error)
 	// DiskOpCreate invokes DiskOp_create operation.
 	//
 	// Disk 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/disk
-	DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error)
+	// POST /disk
+	DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope) (*DiskCreateResponseEnvelope, error)
 	// DiskOpDelete invokes DiskOp_delete operation.
 	//
 	// Disk 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/disk/{id}
+	// DELETE /disk/{id}
 	DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*DiskOpDeleteOK, error)
 	// DiskOpDisconnectFromServer invokes DiskOp_disconnectFromServer operation.
 	//
 	// Disk サーバー切断.
 	//
-	// DELETE /{zone}/api/cloud/1.1/disk/{id}/to/server
+	// DELETE /disk/{id}/to/server
 	DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (*DiskOpDisconnectFromServerOK, error)
 	// DiskOpFind invokes DiskOp_find operation.
 	//
 	// Disk 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/disk
+	// GET /disk
 	DiskOpFind(ctx context.Context, params DiskOpFindParams) (*DiskFindResponseEnvelope, error)
 	// DiskOpMonitor invokes DiskOp_monitor operation.
 	//
 	// Disk モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/disk/{id}/monitor
+	// GET /disk/{id}/monitor
 	DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error)
 	// DiskOpRead invokes DiskOp_read operation.
 	//
 	// Disk 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/disk/{id}
+	// GET /disk/{id}
 	DiskOpRead(ctx context.Context, params DiskOpReadParams) (*DiskReadResponseEnvelope, error)
 	// DiskOpResizePartition invokes DiskOp_resizePartition operation.
 	//
 	// Disk パーティションリサイズ.
 	//
-	// PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
+	// PUT /disk/{id}/resize-partition
 	DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (*DiskOpResizePartitionOK, error)
 	// DiskOpUpdate invokes DiskOp_update operation.
 	//
 	// Disk 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/disk/{id}
+	// PUT /disk/{id}
 	DiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error)
 	// DiskPlanOpFind invokes DiskPlanOp_find operation.
 	//
 	// DiskPlan 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/disk
+	// GET /product/disk
 	DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error)
 	// DiskPlanOpRead invokes DiskPlanOp_read operation.
 	//
 	// DiskPlan 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/disk/{id}
+	// GET /product/disk/{id}
 	DiskPlanOpRead(ctx context.Context, params DiskPlanOpReadParams) (*DiskPlanReadResponseEnvelope, error)
 	// ESMEOpLogs invokes ESMEOp_logs operation.
 	//
 	// SMS 送信ログ取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/logs
+	// GET /commonserviceitem/{id}/esme/logs
 	ESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (*ESMELogsResponseEnvelope, error)
 	// ESMEOpSendMessageWithGeneratedOTP invokes ESMEOp_sendMessageWithGeneratedOTP operation.
 	//
 	// 自動生成 OTP 付き SMS メッセージ送信.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa/otp
+	// PUT /commonserviceitem/{id}/esme/2fa/otp
 	ESMEOpSendMessageWithGeneratedOTP(ctx context.Context, request *ESMEOpSendMessageWithGeneratedOTPReq, params ESMEOpSendMessageWithGeneratedOTPParams) (*ESMESendMessageWithGeneratedOTPResponseEnvelope, error)
 	// ESMEOpSendMessageWithInputtedOTP invokes ESMEOp_sendMessageWithInputtedOTP operation.
 	//
 	// 指定 OTP 付き SMS メッセージ送信.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa
+	// PUT /commonserviceitem/{id}/esme/2fa
 	ESMEOpSendMessageWithInputtedOTP(ctx context.Context, request *ESMEOpSendMessageWithInputtedOTPReq, params ESMEOpSendMessageWithInputtedOTPParams) (*ESMESendMessageWithInputtedOTPResponseEnvelope, error)
 	// EnhancedDBOpGetConfig invokes EnhancedDBOp_getConfig operation.
 	//
 	// EnhancedDB 設定取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
+	// GET /commonserviceitem/{id}/enhanceddb/config
 	EnhancedDBOpGetConfig(ctx context.Context, params EnhancedDBOpGetConfigParams) (*EnhancedDBGetConfigResponseEnvelope, error)
 	// EnhancedDBOpSetConfig invokes EnhancedDBOp_setConfig operation.
 	//
 	// EnhancedDB 設定更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
+	// PUT /commonserviceitem/{id}/enhanceddb/config
 	EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (*EnhancedDBOpSetConfigOK, error)
 	// EnhancedDBOpSetPassword invokes EnhancedDBOp_setPassword operation.
 	//
 	// EnhancedDB パスワード設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password
+	// PUT /commonserviceitem/{id}/enhanceddb/set-password
 	EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (*EnhancedDBOpSetPasswordOK, error)
 	// IPAddressOpList invokes IPAddressOp_list operation.
 	//
 	// IPAddress 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/ipaddress
-	IPAddressOpList(ctx context.Context, params IPAddressOpListParams) (*IPAddressListResponseEnvelope, error)
+	// GET /ipaddress
+	IPAddressOpList(ctx context.Context) (*IPAddressListResponseEnvelope, error)
 	// IPAddressOpRead invokes IPAddressOp_read operation.
 	//
 	// IPAddress 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
+	// GET /ipaddress/{ipAddress}
 	IPAddressOpRead(ctx context.Context, params IPAddressOpReadParams) (*IPAddressReadResponseEnvelope, error)
 	// IPAddressOpUpdateHostName invokes IPAddressOp_updateHostName operation.
 	//
 	// IPAddress ホスト名更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
+	// PUT /ipaddress/{ipAddress}
 	IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error)
 	// IPv6AddrOpCreate invokes IPv6AddrOp_create operation.
 	//
 	// IPv6Addr 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/ipv6addr
-	IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error)
+	// POST /ipv6addr
+	IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope) (*IPv6AddrCreateResponseEnvelope, error)
 	// IPv6AddrOpDelete invokes IPv6AddrOp_delete operation.
 	//
 	// IPv6Addr 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
+	// DELETE /ipv6addr/{id}
 	IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (*IPv6AddrOpDeleteOK, error)
 	// IPv6AddrOpFind invokes IPv6AddrOp_find operation.
 	//
 	// IPv6Addr 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/ipv6addr
+	// GET /ipv6addr
 	IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error)
 	// IPv6AddrOpRead invokes IPv6AddrOp_read operation.
 	//
 	// IPv6Addr 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/ipv6addr/{id}
+	// GET /ipv6addr/{id}
 	IPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadParams) (*IPv6AddrReadResponseEnvelope, error)
 	// IPv6AddrOpUpdate invokes IPv6AddrOp_update operation.
 	//
 	// IPv6Addr 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/ipv6addr/{id}
+	// PUT /ipv6addr/{id}
 	IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error)
 	// IPv6NetOpList invokes IPv6NetOp_list operation.
 	//
 	// IPv6Net 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/ipv6net
-	IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error)
+	// GET /ipv6net
+	IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope) (*IPv6NetListResponseEnvelope, error)
 	// IPv6NetOpRead invokes IPv6NetOp_read operation.
 	//
 	// IPv6Net 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/ipv6net/{id}
+	// GET /ipv6net/{id}
 	IPv6NetOpRead(ctx context.Context, params IPv6NetOpReadParams) (*IPv6NetReadResponseEnvelope, error)
 	// IconOpCreate invokes IconOp_create operation.
 	//
 	// Icon 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/icon
-	IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (*IconCreateResponseEnvelope, error)
+	// POST /icon
+	IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope) (*IconCreateResponseEnvelope, error)
 	// IconOpDelete invokes IconOp_delete operation.
 	//
 	// Icon 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/icon/{id}
+	// DELETE /icon/{id}
 	IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*IconOpDeleteOK, error)
 	// IconOpFind invokes IconOp_find operation.
 	//
 	// Icon 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/icon
+	// GET /icon
 	IconOpFind(ctx context.Context, params IconOpFindParams) (*IconFindResponseEnvelope, error)
 	// IconOpRead invokes IconOp_read operation.
 	//
 	// Icon 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/icon/{id}
+	// GET /icon/{id}
 	IconOpRead(ctx context.Context, params IconOpReadParams) (*IconReadResponseEnvelope, error)
 	// IconOpUpdate invokes IconOp_update operation.
 	//
 	// Icon 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/icon/{id}
+	// PUT /icon/{id}
 	IconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error)
 	// InterfaceOpConnectToPacketFilter invokes InterfaceOp_connectToPacketFilter operation.
 	//
 	// Interface パケットフィルタ接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
+	// PUT /interface/{id}/to/packetfilter/{packetFilterID}
 	InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (*InterfaceOpConnectToPacketFilterOK, error)
 	// InterfaceOpConnectToSharedSegment invokes InterfaceOp_connectToSharedSegment operation.
 	//
 	// Interface 共有セグメント接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/shared
+	// PUT /interface/{id}/to/switch/shared
 	InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (*InterfaceOpConnectToSharedSegmentOK, error)
 	// InterfaceOpConnectToSwitch invokes InterfaceOp_connectToSwitch operation.
 	//
 	// Interface スイッチ接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}
+	// PUT /interface/{id}/to/switch/{switchID}
 	InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (*InterfaceOpConnectToSwitchOK, error)
 	// InterfaceOpCreate invokes InterfaceOp_create operation.
 	//
 	// Interface 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/interface
-	InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error)
+	// POST /interface
+	InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope) (*InterfaceCreateResponseEnvelope, error)
 	// InterfaceOpDelete invokes InterfaceOp_delete operation.
 	//
 	// Interface 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/interface/{id}
+	// DELETE /interface/{id}
 	InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (*InterfaceOpDeleteOK, error)
 	// InterfaceOpDisconnectFromPacketFilter invokes InterfaceOp_disconnectFromPacketFilter operation.
 	//
 	// Interface パケットフィルタ切断.
 	//
-	// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter
+	// DELETE /interface/{id}/to/packetfilter
 	InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (*InterfaceOpDisconnectFromPacketFilterOK, error)
 	// InterfaceOpDisconnectFromSwitch invokes InterfaceOp_disconnectFromSwitch operation.
 	//
 	// Interface スイッチ切断.
 	//
-	// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/switch
+	// DELETE /interface/{id}/to/switch
 	InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (*InterfaceOpDisconnectFromSwitchOK, error)
 	// InterfaceOpFind invokes InterfaceOp_find operation.
 	//
 	// Interface 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/interface
+	// GET /interface
 	InterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error)
 	// InterfaceOpMonitor invokes InterfaceOp_monitor operation.
 	//
 	// Interface モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/interface/{id}/monitor
+	// GET /interface/{id}/monitor
 	InterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error)
 	// InterfaceOpRead invokes InterfaceOp_read operation.
 	//
 	// Interface 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/interface/{id}
+	// GET /interface/{id}
 	InterfaceOpRead(ctx context.Context, params InterfaceOpReadParams) (*InterfaceReadResponseEnvelope, error)
 	// InterfaceOpUpdate invokes InterfaceOp_update operation.
 	//
 	// Interface 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/interface/{id}
+	// PUT /interface/{id}
 	InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error)
 	// InternetOpAddSubnet invokes InternetOp_addSubnet operation.
 	//
 	// Internet サブネット追加.
 	//
-	// POST /{zone}/api/cloud/1.1/internet/{id}/subnet
+	// POST /internet/{id}/subnet
 	InternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error)
 	// InternetOpCreate invokes InternetOp_create operation.
 	//
 	// Internet 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/internet
-	InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error)
+	// POST /internet
+	InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope) (*InternetCreateResponseEnvelope, error)
 	// InternetOpDelete invokes InternetOp_delete operation.
 	//
 	// Internet 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/internet/{id}
+	// DELETE /internet/{id}
 	InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (*InternetOpDeleteOK, error)
 	// InternetOpDeleteSubnet invokes InternetOp_deleteSubnet operation.
 	//
 	// Internet サブネット削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
+	// DELETE /internet/{id}/subnet/{subnetID}
 	InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (*InternetOpDeleteSubnetOK, error)
 	// InternetOpDisableIPv6 invokes InternetOp_disableIPv6 operation.
 	//
 	// Internet IPv6 無効化.
 	//
-	// DELETE /{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}
+	// DELETE /internet/{id}/ipv6net/{ipv6netID}
 	InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (*InternetOpDisableIPv6OK, error)
 	// InternetOpEnableIPv6 invokes InternetOp_enableIPv6 operation.
 	//
 	// Internet IPv6 有効化.
 	//
-	// POST /{zone}/api/cloud/1.1/internet/{id}/ipv6net
+	// POST /internet/{id}/ipv6net
 	InternetOpEnableIPv6(ctx context.Context, params InternetOpEnableIPv6Params) (*InternetEnableIPv6ResponseEnvelope, error)
 	// InternetOpFind invokes InternetOp_find operation.
 	//
 	// Internet 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/internet
+	// GET /internet
 	InternetOpFind(ctx context.Context, params InternetOpFindParams) (*InternetFindResponseEnvelope, error)
 	// InternetOpMonitor invokes InternetOp_monitor operation.
 	//
 	// Internet モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/internet/{id}/monitor
+	// GET /internet/{id}/monitor
 	InternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error)
 	// InternetOpRead invokes InternetOp_read operation.
 	//
 	// Internet 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/internet/{id}
+	// GET /internet/{id}
 	InternetOpRead(ctx context.Context, params InternetOpReadParams) (*InternetReadResponseEnvelope, error)
 	// InternetOpUpdate invokes InternetOp_update operation.
 	//
 	// Internet 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/internet/{id}
+	// PUT /internet/{id}
 	InternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error)
 	// InternetOpUpdateBandWidth invokes InternetOp_updateBandWidth operation.
 	//
 	// Internet 帯域更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/internet/{id}/bandwidth
+	// PUT /internet/{id}/bandwidth
 	InternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error)
 	// InternetOpUpdateSubnet invokes InternetOp_updateSubnet operation.
 	//
 	// Internet サブネット更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
+	// PUT /internet/{id}/subnet/{subnetID}
 	InternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error)
 	// InternetPlanOpFind invokes InternetPlanOp_find operation.
 	//
 	// InternetPlan 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/internet
+	// GET /product/internet
 	InternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error)
 	// InternetPlanOpRead invokes InternetPlanOp_read operation.
 	//
 	// InternetPlan 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/internet/{id}
+	// GET /product/internet/{id}
 	InternetPlanOpRead(ctx context.Context, params InternetPlanOpReadParams) (*InternetPlanReadResponseEnvelope, error)
 	// LicenseInfoOpFind invokes LicenseInfoOp_find operation.
 	//
 	// LicenseInfo 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/license
+	// GET /product/license
 	LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error)
 	// LicenseInfoOpRead invokes LicenseInfoOp_read operation.
 	//
 	// LicenseInfo 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/license/{id}
+	// GET /product/license/{id}
 	LicenseInfoOpRead(ctx context.Context, params LicenseInfoOpReadParams) (*LicenseInfoReadResponseEnvelope, error)
 	// LicenseOpCreate invokes LicenseOp_create operation.
 	//
 	// License 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/license
-	LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error)
+	// POST /license
+	LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope) (*LicenseCreateResponseEnvelope, error)
 	// LicenseOpDelete invokes LicenseOp_delete operation.
 	//
 	// License 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/license/{id}
+	// DELETE /license/{id}
 	LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (*LicenseOpDeleteOK, error)
 	// LicenseOpFind invokes LicenseOp_find operation.
 	//
 	// License 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/license
+	// GET /license
 	LicenseOpFind(ctx context.Context, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error)
 	// LicenseOpRead invokes LicenseOp_read operation.
 	//
 	// License 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/license/{id}
+	// GET /license/{id}
 	LicenseOpRead(ctx context.Context, params LicenseOpReadParams) (*LicenseReadResponseEnvelope, error)
 	// LicenseOpUpdate invokes LicenseOp_update operation.
 	//
 	// License 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/license/{id}
+	// PUT /license/{id}
 	LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error)
 	// LocalRouterOpMonitorLocalRouter invokes LocalRouterOp_monitorLocalRouter operation.
 	//
 	// LocalRouter モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor
+	// GET /commonserviceitem/{id}/activity/localrouter/monitor
 	LocalRouterOpMonitorLocalRouter(ctx context.Context, request *LocalRouterOpMonitorLocalRouterReq, params LocalRouterOpMonitorLocalRouterParams) (*LocalRouterMonitorLocalRouterResponseEnvelope, error)
 	// MobileGatewayOpAddSIM invokes MobileGatewayOp_addSIM operation.
 	//
 	// MobileGateway SIM 追加.
 	//
-	// POST /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
+	// POST /appliance/{id}/mobilegateway/sims
 	MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (*MobileGatewayOpAddSIMOK, error)
 	// MobileGatewayOpConnectToSwitch invokes MobileGatewayOp_connectToSwitch operation.
 	//
 	// MobileGateway スイッチ接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}
+	// PUT /appliance/{id}/interface/1/to/switch/{switchID}
 	MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (*MobileGatewayOpConnectToSwitchOK, error)
 	// MobileGatewayOpDeleteSIM invokes MobileGatewayOp_deleteSIM operation.
 	//
 	// MobileGateway SIM 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
+	// DELETE /appliance/{id}/mobilegateway/sims/{simID}
 	MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (*MobileGatewayOpDeleteSIMOK, error)
 	// MobileGatewayOpDeleteTrafficConfig invokes MobileGatewayOp_deleteTrafficConfig operation.
 	//
 	// MobileGateway トラフィック設定削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
+	// DELETE /appliance/{id}/mobilegateway/traffic_monitoring
 	MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (*MobileGatewayOpDeleteTrafficConfigOK, error)
 	// MobileGatewayOpDisconnectFromSwitch invokes MobileGatewayOp_disconnectFromSwitch operation.
 	//
 	// MobileGateway スイッチ切断.
 	//
-	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch
+	// DELETE /appliance/{id}/interface/1/to/switch
 	MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (*MobileGatewayOpDisconnectFromSwitchOK, error)
 	// MobileGatewayOpGetDNS invokes MobileGatewayOp_getDNS operation.
 	//
 	// MobileGateway DNS 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
+	// GET /appliance/{id}/mobilegateway/dnsresolver
 	MobileGatewayOpGetDNS(ctx context.Context, params MobileGatewayOpGetDNSParams) (*MobileGatewayGetDNSResponseEnvelope, error)
 	// MobileGatewayOpGetSIMRoutes invokes MobileGatewayOp_getSIMRoutes operation.
 	//
 	// MobileGateway SIM ルート取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
+	// GET /appliance/{id}/mobilegateway/simroutes
 	MobileGatewayOpGetSIMRoutes(ctx context.Context, params MobileGatewayOpGetSIMRoutesParams) (*MobileGatewayGetSIMRoutesResponseEnvelope, error)
 	// MobileGatewayOpGetTrafficConfig invokes MobileGatewayOp_getTrafficConfig operation.
 	//
 	// MobileGateway トラフィック設定取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
+	// GET /appliance/{id}/mobilegateway/traffic_monitoring
 	MobileGatewayOpGetTrafficConfig(ctx context.Context, params MobileGatewayOpGetTrafficConfigParams) (*MobileGatewayGetTrafficConfigResponseEnvelope, error)
 	// MobileGatewayOpListSIM invokes MobileGatewayOp_listSIM operation.
 	//
 	// MobileGateway SIM 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
+	// GET /appliance/{id}/mobilegateway/sims
 	MobileGatewayOpListSIM(ctx context.Context, params MobileGatewayOpListSIMParams) (*MobileGatewayListSIMResponseEnvelope, error)
 	// MobileGatewayOpLogs invokes MobileGatewayOp_logs operation.
 	//
 	// MobileGateway ログ取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog
+	// GET /appliance/{id}/mobilegateway/sessionlog
 	MobileGatewayOpLogs(ctx context.Context, params MobileGatewayOpLogsParams) (*MobileGatewayLogsResponseEnvelope, error)
 	// MobileGatewayOpSetDNS invokes MobileGatewayOp_setDNS operation.
 	//
 	// MobileGateway DNS 設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
+	// PUT /appliance/{id}/mobilegateway/dnsresolver
 	MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (*MobileGatewayOpSetDNSOK, error)
 	// MobileGatewayOpSetSIMRoutes invokes MobileGatewayOp_setSIMRoutes operation.
 	//
 	// MobileGateway SIM ルート設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
+	// PUT /appliance/{id}/mobilegateway/simroutes
 	MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (*MobileGatewayOpSetSIMRoutesOK, error)
 	// MobileGatewayOpSetTrafficConfig invokes MobileGatewayOp_setTrafficConfig operation.
 	//
 	// MobileGateway トラフィック設定更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
+	// PUT /appliance/{id}/mobilegateway/traffic_monitoring
 	MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (*MobileGatewayOpSetTrafficConfigOK, error)
 	// MobileGatewayOpTrafficStatus invokes MobileGatewayOp_trafficStatus operation.
 	//
 	// MobileGateway トラフィック状況取得.
 	//
-	// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status
+	// GET /appliance/{id}/mobilegateway/traffic_status
 	MobileGatewayOpTrafficStatus(ctx context.Context, params MobileGatewayOpTrafficStatusParams) (*MobileGatewayTrafficStatusResponseEnvelope, error)
 	// NoteOpCreate invokes NoteOp_create operation.
 	//
 	// Note 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/note
-	NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error)
+	// POST /note
+	NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope) (*NoteCreateResponseEnvelope, error)
 	// NoteOpDelete invokes NoteOp_delete operation.
 	//
 	// Note 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/note/{id}
+	// DELETE /note/{id}
 	NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*NoteOpDeleteOK, error)
 	// NoteOpFind invokes NoteOp_find operation.
 	//
 	// Note 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/note
+	// GET /note
 	NoteOpFind(ctx context.Context, params NoteOpFindParams) (*NoteFindResponseEnvelope, error)
 	// NoteOpRead invokes NoteOp_read operation.
 	//
 	// Note 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/note/{id}
+	// GET /note/{id}
 	NoteOpRead(ctx context.Context, params NoteOpReadParams) (*NoteReadResponseEnvelope, error)
 	// NoteOpUpdate invokes NoteOp_update operation.
 	//
 	// Note 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/note/{id}
+	// PUT /note/{id}
 	NoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error)
 	// PacketFilterOpCreate invokes PacketFilterOp_create operation.
 	//
 	// PacketFilter 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/packetfilter
-	PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error)
+	// POST /packetfilter
+	PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope) (*PacketFilterCreateResponseEnvelope, error)
 	// PacketFilterOpDelete invokes PacketFilterOp_delete operation.
 	//
 	// PacketFilter 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
+	// DELETE /packetfilter/{id}
 	PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (*PacketFilterOpDeleteOK, error)
 	// PacketFilterOpFind invokes PacketFilterOp_find operation.
 	//
 	// PacketFilter 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/packetfilter
+	// GET /packetfilter
 	PacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error)
 	// PacketFilterOpRead invokes PacketFilterOp_read operation.
 	//
 	// PacketFilter 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/packetfilter/{id}
+	// GET /packetfilter/{id}
 	PacketFilterOpRead(ctx context.Context, params PacketFilterOpReadParams) (*PacketFilterReadResponseEnvelope, error)
 	// PacketFilterOpUpdate invokes PacketFilterOp_update operation.
 	//
 	// PacketFilter 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/packetfilter/{id}
+	// PUT /packetfilter/{id}
 	PacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error)
 	// PrivateHostOpCreate invokes PrivateHostOp_create operation.
 	//
 	// PrivateHost 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/privatehost
-	PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error)
+	// POST /privatehost
+	PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope) (*PrivateHostCreateResponseEnvelope, error)
 	// PrivateHostOpDelete invokes PrivateHostOp_delete operation.
 	//
 	// PrivateHost 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/privatehost/{id}
+	// DELETE /privatehost/{id}
 	PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (*PrivateHostOpDeleteOK, error)
 	// PrivateHostOpFind invokes PrivateHostOp_find operation.
 	//
 	// PrivateHost 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/privatehost
+	// GET /privatehost
 	PrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error)
 	// PrivateHostOpRead invokes PrivateHostOp_read operation.
 	//
 	// PrivateHost 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/privatehost/{id}
+	// GET /privatehost/{id}
 	PrivateHostOpRead(ctx context.Context, params PrivateHostOpReadParams) (*PrivateHostReadResponseEnvelope, error)
 	// PrivateHostOpUpdate invokes PrivateHostOp_update operation.
 	//
 	// PrivateHost 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/privatehost/{id}
+	// PUT /privatehost/{id}
 	PrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error)
 	// PrivateHostPlanOpFind invokes PrivateHostPlanOp_find operation.
 	//
 	// PrivateHostPlan 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/privatehost
+	// GET /product/privatehost
 	PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error)
 	// PrivateHostPlanOpRead invokes PrivateHostPlanOp_read operation.
 	//
 	// PrivateHostPlan 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/privatehost/{id}
+	// GET /product/privatehost/{id}
 	PrivateHostPlanOpRead(ctx context.Context, params PrivateHostPlanOpReadParams) (*PrivateHostPlanReadResponseEnvelope, error)
 	// ProxyLBOpChangePlan invokes ProxyLBOp_changePlan operation.
 	//
 	// ProxyLB プラン変更.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/plan
+	// PUT /commonserviceitem/{id}/plan
 	ProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOpChangePlanReq, params ProxyLBOpChangePlanParams) (*ProxyLBChangePlanResponseEnvelope, error)
 	// ProxyLBOpDeleteCertificates invokes ProxyLBOp_deleteCertificates operation.
 	//
 	// ProxyLB 証明書削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
+	// DELETE /commonserviceitem/{id}/proxylb/sslcertificate
 	ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (*ProxyLBOpDeleteCertificatesOK, error)
 	// ProxyLBOpGetCertificates invokes ProxyLBOp_getCertificates operation.
 	//
 	// ProxyLB 証明書取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
+	// GET /commonserviceitem/{id}/proxylb/sslcertificate
 	ProxyLBOpGetCertificates(ctx context.Context, params ProxyLBOpGetCertificatesParams) (*ProxyLBGetCertificatesResponseEnvelope, error)
 	// ProxyLBOpMonitorConnection invokes ProxyLBOp_monitorConnection operation.
 	//
 	// ProxyLB コネクションモニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor
+	// GET /commonserviceitem/{id}/activity/proxylb/monitor
 	ProxyLBOpMonitorConnection(ctx context.Context, request *ProxyLBOpMonitorConnectionReq, params ProxyLBOpMonitorConnectionParams) (*ProxyLBMonitorConnectionResponseEnvelope, error)
 	// ProxyLBOpRenewLetsEncryptCert invokes ProxyLBOp_renewLetsEncryptCert operation.
 	//
 	// ProxyLB Let's Encrypt 証明書更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew
+	// PUT /commonserviceitem/{id}/proxylb/letsencryptrenew
 	ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (*ProxyLBOpRenewLetsEncryptCertOK, error)
 	// ProxyLBOpSetCertificates invokes ProxyLBOp_setCertificates operation.
 	//
 	// ProxyLB 証明書設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
+	// PUT /commonserviceitem/{id}/proxylb/sslcertificate
 	ProxyLBOpSetCertificates(ctx context.Context, request *ProxyLBOpSetCertificatesReq, params ProxyLBOpSetCertificatesParams) (*ProxyLBSetCertificatesResponseEnvelope, error)
 	// RegionOpFind invokes RegionOp_find operation.
 	//
 	// リージョン一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/region
+	// GET /region
 	RegionOpFind(ctx context.Context, params RegionOpFindParams) (*RegionFindResponseEnvelope, error)
 	// RegionOpRead invokes RegionOp_read operation.
 	//
 	// リージョン情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/region/{id}
+	// GET /region/{id}
 	RegionOpRead(ctx context.Context, params RegionOpReadParams) (*RegionReadResponseEnvelope, error)
 	// SIMOpActivate invokes SIMOp_activate operation.
 	//
 	// SIM 有効化.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate
+	// PUT /commonserviceitem/{id}/sim/activate
 	SIMOpActivate(ctx context.Context, params SIMOpActivateParams) (*SIMOpActivateOK, error)
 	// SIMOpAssignIP invokes SIMOp_assignIP operation.
 	//
 	// SIM への IP アドレス割り当て.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
+	// PUT /commonserviceitem/{id}/sim/ip
 	SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (*SIMOpAssignIPOK, error)
 	// SIMOpClearIP invokes SIMOp_clearIP operation.
 	//
 	// SIM の IP アドレス割り当て解除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
+	// DELETE /commonserviceitem/{id}/sim/ip
 	SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*SIMOpClearIPOK, error)
 	// SIMOpDeactivate invokes SIMOp_deactivate operation.
 	//
 	// SIM 無効化.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
+	// PUT /commonserviceitem/{id}/sim/deactivate
 	SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (*SIMOpDeactivateOK, error)
 	// SIMOpGetNetworkOperator invokes SIMOp_getNetworkOperator operation.
 	//
 	// SIM 通信キャリア取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
+	// GET /commonserviceitem/{id}/sim/network_operator_config
 	SIMOpGetNetworkOperator(ctx context.Context, params SIMOpGetNetworkOperatorParams) (*SIMGetNetworkOperatorResponseEnvelope, error)
 	// SIMOpImeiLock invokes SIMOp_imeiLock operation.
 	//
 	// SIM の IMEI ロック設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
+	// PUT /commonserviceitem/{id}/sim/imeilock
 	SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (*SIMOpImeiLockOK, error)
 	// SIMOpImeiUnlock invokes SIMOp_imeiUnlock operation.
 	//
 	// SIM の IMEI ロック解除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
+	// DELETE /commonserviceitem/{id}/sim/imeilock
 	SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (*SIMOpImeiUnlockOK, error)
 	// SIMOpLogs invokes SIMOp_logs operation.
 	//
 	// SIM セッションログ取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog
+	// GET /commonserviceitem/{id}/sim/sessionlog
 	SIMOpLogs(ctx context.Context, params SIMOpLogsParams) (*SIMLogsResponseEnvelope, error)
 	// SIMOpMonitorSIM invokes SIMOp_monitorSIM operation.
 	//
 	// SIM モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor
+	// GET /commonserviceitem/{id}/sim/metrics/monitor
 	SIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorSIMReq, params SIMOpMonitorSIMParams) (*SIMMonitorSIMResponseEnvelope, error)
 	// SIMOpSetNetworkOperator invokes SIMOp_setNetworkOperator operation.
 	//
 	// SIM 通信キャリア設定.
 	//
-	// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
+	// PUT /commonserviceitem/{id}/sim/network_operator_config
 	SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error)
 	// SSHKeyOpCreate invokes SSHKeyOp_create operation.
 	//
 	// SSHKey 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/sshkey
-	SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error)
+	// POST /sshkey
+	SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope) (*SSHKeyCreateResponseEnvelope, error)
 	// SSHKeyOpDelete invokes SSHKeyOp_delete operation.
 	//
 	// SSHKey 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/sshkey/{id}
+	// DELETE /sshkey/{id}
 	SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (*SSHKeyOpDeleteOK, error)
 	// SSHKeyOpFind invokes SSHKeyOp_find operation.
 	//
 	// SSHKey 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/sshkey
+	// GET /sshkey
 	SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error)
 	// SSHKeyOpRead invokes SSHKeyOp_read operation.
 	//
 	// SSHKey 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/sshkey/{id}
+	// GET /sshkey/{id}
 	SSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams) (*SSHKeyReadResponseEnvelope, error)
 	// SSHKeyOpUpdate invokes SSHKeyOp_update operation.
 	//
 	// SSHKey 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/sshkey/{id}
+	// PUT /sshkey/{id}
 	SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error)
 	// ServerOpBoot invokes ServerOp_boot operation.
 	//
 	// Server 起動.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}/power
+	// PUT /server/{id}/power
 	ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (*ServerOpBootOK, error)
 	// ServerOpChangePlan invokes ServerOp_changePlan operation.
 	//
 	// Server プラン変更.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}/plan
+	// PUT /server/{id}/plan
 	ServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error)
 	// ServerOpCreate invokes ServerOp_create operation.
 	//
 	// Server 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/server
-	ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error)
+	// POST /server
+	ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope) (*ServerCreateResponseEnvelope, error)
 	// ServerOpDelete invokes ServerOp_delete operation.
 	//
 	// Server 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/server/{id}
+	// DELETE /server/{id}
 	ServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (*ServerOpDeleteOK, error)
 	// ServerOpEjectCDROM invokes ServerOp_ejectCDROM operation.
 	//
 	// Server CD-ROM 取り出し.
 	//
-	// DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
+	// DELETE /server/{id}/cdrom
 	ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (*ServerOpEjectCDROMOK, error)
 	// ServerOpFind invokes ServerOp_find operation.
 	//
 	// Server 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/server
+	// GET /server
 	ServerOpFind(ctx context.Context, params ServerOpFindParams) (*ServerFindResponseEnvelope, error)
 	// ServerOpGetVNCProxy invokes ServerOp_getVNCProxy operation.
 	//
 	// Server VNC プロキシ取得.
 	//
-	// GET /{zone}/api/cloud/1.1/server/{id}/vnc/proxy
+	// GET /server/{id}/vnc/proxy
 	ServerOpGetVNCProxy(ctx context.Context, params ServerOpGetVNCProxyParams) (*ServerGetVNCProxyResponseEnvelope, error)
 	// ServerOpInsertCDROM invokes ServerOp_insertCDROM operation.
 	//
 	// Server CD-ROM 挿入.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
+	// PUT /server/{id}/cdrom
 	ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (*ServerOpInsertCDROMOK, error)
 	// ServerOpMonitor invokes ServerOp_monitor operation.
 	//
 	// Server モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/server/{id}/monitor
+	// GET /server/{id}/monitor
 	ServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error)
 	// ServerOpRead invokes ServerOp_read operation.
 	//
 	// Server 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/server/{id}
+	// GET /server/{id}
 	ServerOpRead(ctx context.Context, params ServerOpReadParams) (*ServerReadResponseEnvelope, error)
 	// ServerOpReset invokes ServerOp_reset operation.
 	//
 	// Server リセット.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}/reset
+	// PUT /server/{id}/reset
 	ServerOpReset(ctx context.Context, params ServerOpResetParams) (*ServerOpResetOK, error)
 	// ServerOpSendKey invokes ServerOp_sendKey operation.
 	//
 	// Server キー送信.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
+	// PUT /server/{id}/keyboard
 	ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (*ServerOpSendKeyOK, error)
 	// ServerOpSendNMI invokes ServerOp_sendNMI operation.
 	//
 	// Server NMI 送信.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
+	// PUT /server/{id}/qemu/nmi
 	ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (*ServerOpSendNMIOK, error)
 	// ServerOpShutdown invokes ServerOp_shutdown operation.
 	//
 	// Server シャットダウン.
 	//
-	// DELETE /{zone}/api/cloud/1.1/server/{id}/power
+	// DELETE /server/{id}/power
 	ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (*ServerOpShutdownOK, error)
 	// ServerOpUpdate invokes ServerOp_update operation.
 	//
 	// Server 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/server/{id}
+	// PUT /server/{id}
 	ServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error)
 	// ServerPlanOpFind invokes ServerPlanOp_find operation.
 	//
 	// ServerPlan 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/server
+	// GET /product/server
 	ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error)
 	// ServerPlanOpRead invokes ServerPlanOp_read operation.
 	//
 	// ServerPlan 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/product/server/{id}
+	// GET /product/server/{id}
 	ServerPlanOpRead(ctx context.Context, params ServerPlanOpReadParams) (*ServerPlanReadResponseEnvelope, error)
 	// ServiceClassOpFind invokes ServiceClassOp_find operation.
 	//
 	// ServiceClass 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/public/price
+	// GET /public/price
 	ServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error)
 	// SimpleMonitorOpMonitorResponseTime invokes SimpleMonitorOp_monitorResponseTime operation.
 	//
 	// SimpleMonitor 応答時間モニター情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
+	// GET /commonserviceitem/{id}/activity/responsetimesec/monitor
 	SimpleMonitorOpMonitorResponseTime(ctx context.Context, request *SimpleMonitorOpMonitorResponseTimeReq, params SimpleMonitorOpMonitorResponseTimeParams) (*SimpleMonitorMonitorResponseTimeResponseEnvelope, error)
 	// SimpleNotificationGroupOpHistory invokes SimpleNotificationGroupOp_history operation.
 	//
 	// SimpleNotificationGroup 履歴取得.
 	//
-	// GET /{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history
-	SimpleNotificationGroupOpHistory(ctx context.Context, params SimpleNotificationGroupOpHistoryParams) (*SimpleNotificationGroupHistoryResponseEnvelope, error)
+	// GET /commonserviceitem/simplenotification/history
+	SimpleNotificationGroupOpHistory(ctx context.Context) (*SimpleNotificationGroupHistoryResponseEnvelope, error)
 	// SimpleNotificationGroupOpPostMessage invokes SimpleNotificationGroupOp_postMessage operation.
 	//
 	// SimpleNotificationGroup メッセージ送信.
 	//
-	// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message
+	// POST /commonserviceitem/{id}/simplenotification/message
 	SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (*SimpleNotificationGroupOpPostMessageOK, error)
 	// SubnetOpFind invokes SubnetOp_find operation.
 	//
 	// Subnet 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/subnet
+	// GET /subnet
 	SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error)
 	// SubnetOpRead invokes SubnetOp_read operation.
 	//
 	// Subnet 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/subnet/{id}
+	// GET /subnet/{id}
 	SubnetOpRead(ctx context.Context, params SubnetOpReadParams) (*SubnetReadResponseEnvelope, error)
 	// SwitchOpConnectToBridge invokes SwitchOp_connectToBridge operation.
 	//
 	// ブリッジ接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}
+	// PUT /switch/{id}/to/bridge/{bridgeID}
 	SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (*SwitchOpConnectToBridgeOK, error)
 	// SwitchOpCreate invokes SwitchOp_create operation.
 	//
 	// Switch 作成.
 	//
-	// POST /{zone}/api/cloud/1.1/switch
-	SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error)
+	// POST /switch
+	SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope) (*SwitchCreateResponseEnvelope, error)
 	// SwitchOpDelete invokes SwitchOp_delete operation.
 	//
 	// Switch 削除.
 	//
-	// DELETE /{zone}/api/cloud/1.1/switch/{id}
+	// DELETE /switch/{id}
 	SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (*SwitchOpDeleteOK, error)
 	// SwitchOpDisconnectFromBridge invokes SwitchOp_disconnectFromBridge operation.
 	//
 	// ブリッジ切断.
 	//
-	// DELETE /{zone}/api/cloud/1.1/switch/{id}/to/bridge
+	// DELETE /switch/{id}/to/bridge
 	SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (*SwitchOpDisconnectFromBridgeOK, error)
 	// SwitchOpFind invokes SwitchOp_find operation.
 	//
 	// Switch 一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/switch
+	// GET /switch
 	SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error)
 	// SwitchOpGetServers invokes SwitchOp_getServers operation.
 	//
 	// Switch サーバー一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/switch/{id}/server
+	// GET /switch/{id}/server
 	SwitchOpGetServers(ctx context.Context, params SwitchOpGetServersParams) (*SwitchGetServersResponseEnvelope, error)
 	// SwitchOpRead invokes SwitchOp_read operation.
 	//
 	// Switch 取得.
 	//
-	// GET /{zone}/api/cloud/1.1/switch/{id}
+	// GET /switch/{id}
 	SwitchOpRead(ctx context.Context, params SwitchOpReadParams) (*SwitchReadResponseEnvelope, error)
 	// SwitchOpUpdate invokes SwitchOp_update operation.
 	//
 	// Switch 更新.
 	//
-	// PUT /{zone}/api/cloud/1.1/switch/{id}
+	// PUT /switch/{id}
 	SwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error)
 	// VPCRouterOpConnectToSwitch invokes VPCRouterOp_connectToSwitch operation.
 	//
 	// VPCRouter スイッチ接続.
 	//
-	// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
+	// PUT /appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
 	VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (*VPCRouterOpConnectToSwitchOK, error)
 	// VPCRouterOpDisconnectFromSwitch invokes VPCRouterOp_disconnectFromSwitch operation.
 	//
 	// VPCRouter スイッチ切断.
 	//
-	// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
+	// DELETE /appliance/{id}/interface/{nicIndex}/to/switch
 	VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error)
 	// VPCRouterOpPing invokes VPCRouterOp_ping operation.
 	//
 	// VPCRouter Ping.
 	//
-	// POST /{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}
+	// POST /appliance/{id}/vpcrouter/ping/{destination}
 	VPCRouterOpPing(ctx context.Context, params VPCRouterOpPingParams) (*VPCRouterPingResponseEnvelope, error)
 	// ZoneOpFind invokes ZoneOp_find operation.
 	//
 	// ゾーン一覧取得.
 	//
-	// GET /{zone}/api/cloud/1.1/zone
+	// GET /zone
 	ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error)
 	// ZoneOpRead invokes ZoneOp_read operation.
 	//
 	// ゾーン情報取得.
 	//
-	// GET /{zone}/api/cloud/1.1/zone/{id}
+	// GET /zone/{id}
 	ZoneOpRead(ctx context.Context, params ZoneOpReadParams) (*ZoneReadResponseEnvelope, error)
 }
 
@@ -1436,7 +1436,7 @@ func (c *Client) requestURL(ctx context.Context) *url.URL {
 //
 // Appliance 起動.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/power
+// PUT /appliance/{id}/power
 func (c *Client) ApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (*ApplianceOpBootOK, error) {
 	res, err := c.sendApplianceOpBoot(ctx, params)
 	return res, err
@@ -1445,27 +1445,8 @@ func (c *Client) ApplianceOpBoot(ctx context.Context, params ApplianceOpBootPara
 func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBootParams) (res *ApplianceOpBootOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -1482,9 +1463,9 @@ func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBoot
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/power"
+	pathParts[2] = "/power"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -1544,7 +1525,7 @@ func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBoot
 //
 // Appliance 設定反映.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/config
+// PUT /appliance/{id}/config
 func (c *Client) ApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (*ApplianceOpConfigOK, error) {
 	res, err := c.sendApplianceOpConfig(ctx, params)
 	return res, err
@@ -1553,27 +1534,8 @@ func (c *Client) ApplianceOpConfig(ctx context.Context, params ApplianceOpConfig
 func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpConfigParams) (res *ApplianceOpConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -1590,9 +1552,9 @@ func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpCo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/config"
+	pathParts[2] = "/config"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -1652,13 +1614,13 @@ func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpCo
 //
 // Appliance 作成.
 //
-// POST /{zone}/api/cloud/1.1/appliance
-func (c *Client) ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (*DatabaseCreateResponseEnvelope, error) {
-	res, err := c.sendApplianceOpCreate(ctx, request, params)
+// POST /appliance
+func (c *Client) ApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope) (*DatabaseCreateResponseEnvelope, error) {
+	res, err := c.sendApplianceOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope, params ApplianceOpCreateParams) (res *DatabaseCreateResponseEnvelope, err error) {
+func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceCreateRequestEnvelope) (res *DatabaseCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -1670,27 +1632,8 @@ func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceCr
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance"
+	var pathParts [1]string
+	pathParts[0] = "/appliance"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -1753,7 +1696,7 @@ func (c *Client) sendApplianceOpCreate(ctx context.Context, request *ApplianceCr
 //
 // Appliance 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/appliance/{id}
+// DELETE /appliance/{id}
 func (c *Client) ApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (*ApplianceOpDeleteOK, error) {
 	res, err := c.sendApplianceOpDelete(ctx, params)
 	return res, err
@@ -1762,27 +1705,8 @@ func (c *Client) ApplianceOpDelete(ctx context.Context, params ApplianceOpDelete
 func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDeleteParams) (res *ApplianceOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [2]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -1799,7 +1723,7 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -1860,7 +1784,7 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 //
 // Appliance 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance
+// GET /appliance
 func (c *Client) ApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (*DatabaseFindResponseEnvelope, error) {
 	res, err := c.sendApplianceOpFind(ctx, params)
 	return res, err
@@ -1869,27 +1793,8 @@ func (c *Client) ApplianceOpFind(ctx context.Context, params ApplianceOpFindPara
 func (c *Client) sendApplianceOpFind(ctx context.Context, params ApplianceOpFindParams) (res *DatabaseFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance"
+	var pathParts [1]string
+	pathParts[0] = "/appliance"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -1969,7 +1874,7 @@ func (c *Client) sendApplianceOpFind(ctx context.Context, params ApplianceOpFind
 //
 // Appliance CPU モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/cpu/monitor
+// GET /appliance/{id}/cpu/monitor
 func (c *Client) ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (*DatabaseMonitorCPUResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorCPU(ctx, request, params)
 	return res, err
@@ -1978,27 +1883,8 @@ func (c *Client) ApplianceOpMonitorCPU(ctx context.Context, request *MonitorCond
 func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorCPUParams) (res *DatabaseMonitorCPUResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2015,9 +1901,9 @@ func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *Monitor
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/cpu/monitor"
+	pathParts[2] = "/cpu/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -2080,7 +1966,7 @@ func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *Monitor
 //
 // Appliance データベースモニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/database/monitor
+// GET /appliance/{id}/database/monitor
 func (c *Client) ApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (*DatabaseMonitorDatabaseResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorDatabase(ctx, request, params)
 	return res, err
@@ -2089,27 +1975,8 @@ func (c *Client) ApplianceOpMonitorDatabase(ctx context.Context, request *Monito
 func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorDatabaseParams) (res *DatabaseMonitorDatabaseResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2126,9 +1993,9 @@ func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *Mo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/database/monitor"
+	pathParts[2] = "/database/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -2191,7 +2058,7 @@ func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *Mo
 //
 // Appliance インターフェイスモニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/monitor
+// GET /appliance/{id}/interface/monitor
 func (c *Client) ApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (*DatabaseMonitorInterfaceResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorInterface(ctx, request, params)
 	return res, err
@@ -2200,27 +2067,8 @@ func (c *Client) ApplianceOpMonitorInterface(ctx context.Context, request *Monit
 func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *MonitorCondition, params ApplianceOpMonitorInterfaceParams) (res *DatabaseMonitorInterfaceResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2237,9 +2085,9 @@ func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *M
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/interface/monitor"
+	pathParts[2] = "/interface/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -2302,7 +2150,7 @@ func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *M
 //
 // Appliance インターフェイスモニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/interface/{index}/monitor
+// GET /appliance/{id}/interface/{index}/monitor
 func (c *Client) ApplianceOpMonitorInterfaceByIndex(ctx context.Context, params ApplianceOpMonitorInterfaceByIndexParams) (*MobileGatewayMonitorInterfaceResponseEnvelope, error) {
 	res, err := c.sendApplianceOpMonitorInterfaceByIndex(ctx, params)
 	return res, err
@@ -2311,27 +2159,8 @@ func (c *Client) ApplianceOpMonitorInterfaceByIndex(ctx context.Context, params 
 func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, params ApplianceOpMonitorInterfaceByIndexParams) (res *MobileGatewayMonitorInterfaceResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [5]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2348,9 +2177,9 @@ func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/interface/"
+	pathParts[2] = "/interface/"
 	{
 		// Encode "index" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2367,9 +2196,9 @@ func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/monitor"
+	pathParts[4] = "/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -2429,7 +2258,7 @@ func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, par
 //
 // Appliance 取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}
+// GET /appliance/{id}
 func (c *Client) ApplianceOpRead(ctx context.Context, params ApplianceOpReadParams) (*DatabaseReadResponseEnvelope, error) {
 	res, err := c.sendApplianceOpRead(ctx, params)
 	return res, err
@@ -2438,27 +2267,8 @@ func (c *Client) ApplianceOpRead(ctx context.Context, params ApplianceOpReadPara
 func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpReadParams) (res *DatabaseReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [2]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2475,7 +2285,7 @@ func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpRead
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -2536,7 +2346,7 @@ func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpRead
 //
 // Appliance リセット.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/reset
+// PUT /appliance/{id}/reset
 func (c *Client) ApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (*ApplianceOpResetOK, error) {
 	res, err := c.sendApplianceOpReset(ctx, params)
 	return res, err
@@ -2545,27 +2355,8 @@ func (c *Client) ApplianceOpReset(ctx context.Context, params ApplianceOpResetPa
 func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpResetParams) (res *ApplianceOpResetOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2582,9 +2373,9 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/reset"
+	pathParts[2] = "/reset"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -2644,7 +2435,7 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 //
 // Appliance シャットダウン.
 //
-// DELETE /{zone}/api/cloud/1.1/appliance/{id}/power
+// DELETE /appliance/{id}/power
 func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (*ApplianceOpShutdownOK, error) {
 	res, err := c.sendApplianceOpShutdown(ctx, request, params)
 	return res, err
@@ -2653,27 +2444,8 @@ func (c *Client) ApplianceOpShutdown(ctx context.Context, request *ShutdownOptio
 func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ShutdownOption, params ApplianceOpShutdownParams) (res *ApplianceOpShutdownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2690,9 +2462,9 @@ func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ShutdownO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/power"
+	pathParts[2] = "/power"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -2755,7 +2527,7 @@ func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ShutdownO
 //
 // Appliance ステータス取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/status
+// GET /appliance/{id}/status
 func (c *Client) ApplianceOpStatus(ctx context.Context, params ApplianceOpStatusParams) (*DatabaseStatusResponseEnvelope, error) {
 	res, err := c.sendApplianceOpStatus(ctx, params)
 	return res, err
@@ -2764,27 +2536,8 @@ func (c *Client) ApplianceOpStatus(ctx context.Context, params ApplianceOpStatus
 func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpStatusParams) (res *DatabaseStatusResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2801,9 +2554,9 @@ func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpSt
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/status"
+	pathParts[2] = "/status"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -2863,7 +2616,7 @@ func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpSt
 //
 // Appliance 更新.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}
+// PUT /appliance/{id}
 func (c *Client) ApplianceOpUpdate(ctx context.Context, request *ApplianceUpdateRequestEnvelope, params ApplianceOpUpdateParams) (*DatabaseUpdateResponseEnvelope, error) {
 	res, err := c.sendApplianceOpUpdate(ctx, request, params)
 	return res, err
@@ -2881,27 +2634,8 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceUp
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [2]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -2918,7 +2652,7 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceUp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -2982,7 +2716,7 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceUp
 //
 // Archive FTP クローズ.
 //
-// DELETE /{zone}/api/cloud/1.1/archive/{id}/ftp
+// DELETE /archive/{id}/ftp
 func (c *Client) ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (*ArchiveOpCloseFTPOK, error) {
 	res, err := c.sendArchiveOpCloseFTP(ctx, params)
 	return res, err
@@ -2991,27 +2725,8 @@ func (c *Client) ArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTP
 func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpCloseFTPParams) (res *ArchiveOpCloseFTPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive/"
+	var pathParts [3]string
+	pathParts[0] = "/archive/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3028,9 +2743,9 @@ func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpClos
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/ftp"
+	pathParts[2] = "/ftp"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -3090,13 +2805,13 @@ func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpClos
 //
 // Archive 作成.
 //
-// POST /{zone}/api/cloud/1.1/archive
-func (c *Client) ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (*ArchiveCreateResponseEnvelope, error) {
-	res, err := c.sendArchiveOpCreate(ctx, request, params)
+// POST /archive
+func (c *Client) ArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope) (*ArchiveCreateResponseEnvelope, error) {
+	res, err := c.sendArchiveOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope, params ArchiveOpCreateParams) (res *ArchiveCreateResponseEnvelope, err error) {
+func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveCreateRequestEnvelope) (res *ArchiveCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -3108,27 +2823,8 @@ func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveCreate
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive"
+	var pathParts [1]string
+	pathParts[0] = "/archive"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -3191,7 +2887,7 @@ func (c *Client) sendArchiveOpCreate(ctx context.Context, request *ArchiveCreate
 //
 // Archive 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/archive/{id}
+// DELETE /archive/{id}
 func (c *Client) ArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (*ArchiveOpDeleteOK, error) {
 	res, err := c.sendArchiveOpDelete(ctx, params)
 	return res, err
@@ -3200,27 +2896,8 @@ func (c *Client) ArchiveOpDelete(ctx context.Context, params ArchiveOpDeletePara
 func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDeleteParams) (res *ArchiveOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive/"
+	var pathParts [2]string
+	pathParts[0] = "/archive/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3237,7 +2914,7 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -3298,7 +2975,7 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 //
 // Archive 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/archive
+// GET /archive
 func (c *Client) ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (*ArchiveFindResponseEnvelope, error) {
 	res, err := c.sendArchiveOpFind(ctx, params)
 	return res, err
@@ -3307,27 +2984,8 @@ func (c *Client) ArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) 
 func (c *Client) sendArchiveOpFind(ctx context.Context, params ArchiveOpFindParams) (res *ArchiveFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive"
+	var pathParts [1]string
+	pathParts[0] = "/archive"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -3407,7 +3065,7 @@ func (c *Client) sendArchiveOpFind(ctx context.Context, params ArchiveOpFindPara
 //
 // Archive 取得.
 //
-// GET /{zone}/api/cloud/1.1/archive/{id}
+// GET /archive/{id}
 func (c *Client) ArchiveOpRead(ctx context.Context, params ArchiveOpReadParams) (*ArchiveReadResponseEnvelope, error) {
 	res, err := c.sendArchiveOpRead(ctx, params)
 	return res, err
@@ -3416,27 +3074,8 @@ func (c *Client) ArchiveOpRead(ctx context.Context, params ArchiveOpReadParams) 
 func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadParams) (res *ArchiveReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive/"
+	var pathParts [2]string
+	pathParts[0] = "/archive/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3453,7 +3092,7 @@ func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadPara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -3514,7 +3153,7 @@ func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadPara
 //
 // Archive 共有.
 //
-// PUT /{zone}/api/cloud/1.1/archive/{id}/ftp
+// PUT /archive/{id}/ftp
 func (c *Client) ArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (*ArchiveShareResponseEnvelope, error) {
 	res, err := c.sendArchiveOpShare(ctx, request, params)
 	return res, err
@@ -3523,27 +3162,8 @@ func (c *Client) ArchiveOpShare(ctx context.Context, request *ArchiveShareReques
 func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveShareRequestEnvelope, params ArchiveOpShareParams) (res *ArchiveShareResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive/"
+	var pathParts [3]string
+	pathParts[0] = "/archive/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3560,9 +3180,9 @@ func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveShareRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/ftp"
+	pathParts[2] = "/ftp"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -3625,7 +3245,7 @@ func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveShareRe
 //
 // Archive 移管.
 //
-// POST /{zone}/api/cloud/1.1/archive/{sourceArchiveID}/to/zone/{destZoneID}
+// POST /archive/{sourceArchiveID}/to/zone/{destZoneID}
 func (c *Client) ArchiveOpTransfer(ctx context.Context, request *ArchiveTransferRequestEnvelope, params ArchiveOpTransferParams) (*ArchiveTransferResponseEnvelope, error) {
 	res, err := c.sendArchiveOpTransfer(ctx, request, params)
 	return res, err
@@ -3643,27 +3263,8 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive/"
+	var pathParts [4]string
+	pathParts[0] = "/archive/"
 	{
 		// Encode "sourceArchiveID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3680,9 +3281,9 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/zone/"
+	pathParts[2] = "/to/zone/"
 	{
 		// Encode "destZoneID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3699,7 +3300,7 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -3763,7 +3364,7 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 //
 // Archive 更新.
 //
-// PUT /{zone}/api/cloud/1.1/archive/{id}
+// PUT /archive/{id}
 func (c *Client) ArchiveOpUpdate(ctx context.Context, request *ArchiveUpdateRequestEnvelope, params ArchiveOpUpdateParams) (*ArchiveUpdateResponseEnvelope, error) {
 	res, err := c.sendArchiveOpUpdate(ctx, request, params)
 	return res, err
@@ -3781,27 +3382,8 @@ func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveUpdate
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/archive/"
+	var pathParts [2]string
+	pathParts[0] = "/archive/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -3818,7 +3400,7 @@ func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveUpdate
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -3882,36 +3464,17 @@ func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveUpdate
 //
 // 認証情報取得.
 //
-// GET /{zone}/api/cloud/1.1/auth-status
-func (c *Client) AuthStatusOpRead(ctx context.Context, params AuthStatusOpReadParams) (*AuthStatusReadResponseEnvelope, error) {
-	res, err := c.sendAuthStatusOpRead(ctx, params)
+// GET /auth-status
+func (c *Client) AuthStatusOpRead(ctx context.Context) (*AuthStatusReadResponseEnvelope, error) {
+	res, err := c.sendAuthStatusOpRead(ctx)
 	return res, err
 }
 
-func (c *Client) sendAuthStatusOpRead(ctx context.Context, params AuthStatusOpReadParams) (res *AuthStatusReadResponseEnvelope, err error) {
+func (c *Client) sendAuthStatusOpRead(ctx context.Context) (res *AuthStatusReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/auth-status"
+	var pathParts [1]string
+	pathParts[0] = "/auth-status"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -3971,7 +3534,7 @@ func (c *Client) sendAuthStatusOpRead(ctx context.Context, params AuthStatusOpRe
 //
 // AutoScale スケールダウン.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/down
+// PUT /commonserviceitem/{id}/autoscale/down
 func (c *Client) AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (*AutoScaleOpScaleDownOK, error) {
 	res, err := c.sendAutoScaleOpScaleDown(ctx, params)
 	return res, err
@@ -3980,27 +3543,8 @@ func (c *Client) AutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpSca
 func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleOpScaleDownParams) (res *AutoScaleOpScaleDownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4017,9 +3561,9 @@ func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/autoscale/down"
+	pathParts[2] = "/autoscale/down"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -4079,7 +3623,7 @@ func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleO
 //
 // AutoScale スケールアップ.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/up
+// PUT /commonserviceitem/{id}/autoscale/up
 func (c *Client) AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (*AutoScaleOpScaleUpOK, error) {
 	res, err := c.sendAutoScaleOpScaleUp(ctx, params)
 	return res, err
@@ -4088,27 +3632,8 @@ func (c *Client) AutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScale
 func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpScaleUpParams) (res *AutoScaleOpScaleUpOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4125,9 +3650,9 @@ func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpS
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/autoscale/up"
+	pathParts[2] = "/autoscale/up"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -4187,7 +3712,7 @@ func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpS
 //
 // AutoScale ステータス取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/autoscale/status
+// GET /commonserviceitem/{id}/autoscale/status
 func (c *Client) AutoScaleOpStatus(ctx context.Context, params AutoScaleOpStatusParams) (*AutoScaleStatusResponseEnvelope, error) {
 	res, err := c.sendAutoScaleOpStatus(ctx, params)
 	return res, err
@@ -4196,27 +3721,8 @@ func (c *Client) AutoScaleOpStatus(ctx context.Context, params AutoScaleOpStatus
 func (c *Client) sendAutoScaleOpStatus(ctx context.Context, params AutoScaleOpStatusParams) (res *AutoScaleStatusResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4233,9 +3739,9 @@ func (c *Client) sendAutoScaleOpStatus(ctx context.Context, params AutoScaleOpSt
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/autoscale/status"
+	pathParts[2] = "/autoscale/status"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -4295,7 +3801,7 @@ func (c *Client) sendAutoScaleOpStatus(ctx context.Context, params AutoScaleOpSt
 //
 // 契約別請求情報取得.
 //
-// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}
+// GET /bill/by-contract/{accountID}
 func (c *Client) BillOpByContract(ctx context.Context, params BillOpByContractParams) (*BillByContractResponseEnvelope, error) {
 	res, err := c.sendBillOpByContract(ctx, params)
 	return res, err
@@ -4304,27 +3810,8 @@ func (c *Client) BillOpByContract(ctx context.Context, params BillOpByContractPa
 func (c *Client) sendBillOpByContract(ctx context.Context, params BillOpByContractParams) (res *BillByContractResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/bill/by-contract/"
+	var pathParts [2]string
+	pathParts[0] = "/bill/by-contract/"
 	{
 		// Encode "accountID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4341,7 +3828,7 @@ func (c *Client) sendBillOpByContract(ctx context.Context, params BillOpByContra
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -4402,7 +3889,7 @@ func (c *Client) sendBillOpByContract(ctx context.Context, params BillOpByContra
 //
 // 契約・年別請求情報取得.
 //
-// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}
+// GET /bill/by-contract/{accountID}/{year}
 func (c *Client) BillOpByContractYear(ctx context.Context, params BillOpByContractYearParams) (*BillByContractYearResponseEnvelope, error) {
 	res, err := c.sendBillOpByContractYear(ctx, params)
 	return res, err
@@ -4411,27 +3898,8 @@ func (c *Client) BillOpByContractYear(ctx context.Context, params BillOpByContra
 func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByContractYearParams) (res *BillByContractYearResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/bill/by-contract/"
+	var pathParts [4]string
+	pathParts[0] = "/bill/by-contract/"
 	{
 		// Encode "accountID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4448,9 +3916,9 @@ func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByCo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/"
+	pathParts[2] = "/"
 	{
 		// Encode "year" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4467,7 +3935,7 @@ func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByCo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -4528,7 +3996,7 @@ func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByCo
 //
 // 契約・年月別請求情報取得.
 //
-// GET /{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}
+// GET /bill/by-contract/{accountID}/{year}/{month}
 func (c *Client) BillOpByContractYearMonth(ctx context.Context, params BillOpByContractYearMonthParams) (*BillByContractYearMonthResponseEnvelope, error) {
 	res, err := c.sendBillOpByContractYearMonth(ctx, params)
 	return res, err
@@ -4537,27 +4005,8 @@ func (c *Client) BillOpByContractYearMonth(ctx context.Context, params BillOpByC
 func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillOpByContractYearMonthParams) (res *BillByContractYearMonthResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [8]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/bill/by-contract/"
+	var pathParts [6]string
+	pathParts[0] = "/bill/by-contract/"
 	{
 		// Encode "accountID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4574,9 +4023,9 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/"
+	pathParts[2] = "/"
 	{
 		// Encode "year" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4593,9 +4042,9 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/"
+	pathParts[4] = "/"
 	{
 		// Encode "month" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4612,7 +4061,7 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[7] = encoded
+		pathParts[5] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -4673,7 +4122,7 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 //
 // 請求明細取得.
 //
-// GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}
+// GET /billdetail/{MemberCode}/{id}
 func (c *Client) BillOpDetails(ctx context.Context, params BillOpDetailsParams) (*BillDetailsResponseEnvelope, error) {
 	res, err := c.sendBillOpDetails(ctx, params)
 	return res, err
@@ -4682,27 +4131,8 @@ func (c *Client) BillOpDetails(ctx context.Context, params BillOpDetailsParams) 
 func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsParams) (res *BillDetailsResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/billdetail/"
+	var pathParts [4]string
+	pathParts[0] = "/billdetail/"
 	{
 		// Encode "MemberCode" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4719,9 +4149,9 @@ func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsPara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/"
+	pathParts[2] = "/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4738,7 +4168,7 @@ func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsPara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -4799,7 +4229,7 @@ func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsPara
 //
 // 請求明細 CSV 取得.
 //
-// GET /{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv
+// GET /billdetail/{MemberCode}/{id}/csv
 func (c *Client) BillOpDetailsCSV(ctx context.Context, params BillOpDetailsCSVParams) (*BillDetailsCSVResponseEnvelope, error) {
 	res, err := c.sendBillOpDetailsCSV(ctx, params)
 	return res, err
@@ -4808,27 +4238,8 @@ func (c *Client) BillOpDetailsCSV(ctx context.Context, params BillOpDetailsCSVPa
 func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsCSVParams) (res *BillDetailsCSVResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/billdetail/"
+	var pathParts [5]string
+	pathParts[0] = "/billdetail/"
 	{
 		// Encode "MemberCode" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4845,9 +4256,9 @@ func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsC
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/"
+	pathParts[2] = "/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4864,9 +4275,9 @@ func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsC
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/csv"
+	pathParts[4] = "/csv"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -4926,7 +4337,7 @@ func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsC
 //
 // 請求情報取得.
 //
-// GET /{zone}/api/system/1.0/bill/id/{id}
+// GET /bill/id/{id}
 func (c *Client) BillOpRead(ctx context.Context, params BillOpReadParams) (*BillReadResponseEnvelope, error) {
 	res, err := c.sendBillOpRead(ctx, params)
 	return res, err
@@ -4935,27 +4346,8 @@ func (c *Client) BillOpRead(ctx context.Context, params BillOpReadParams) (*Bill
 func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (res *BillReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/bill/id/"
+	var pathParts [2]string
+	pathParts[0] = "/bill/id/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -4972,7 +4364,7 @@ func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -5033,36 +4425,17 @@ func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (r
 //
 // Bridge 作成.
 //
-// POST /{zone}/api/cloud/1.1/bridge
-func (c *Client) BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (*BridgeCreateResponseEnvelope, error) {
-	res, err := c.sendBridgeOpCreate(ctx, request, params)
+// POST /bridge
+func (c *Client) BridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope) (*BridgeCreateResponseEnvelope, error) {
+	res, err := c.sendBridgeOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope, params BridgeOpCreateParams) (res *BridgeCreateResponseEnvelope, err error) {
+func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRequestEnvelope) (res *BridgeCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/bridge"
+	var pathParts [1]string
+	pathParts[0] = "/bridge"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -5125,7 +4498,7 @@ func (c *Client) sendBridgeOpCreate(ctx context.Context, request *BridgeCreateRe
 //
 // Bridge 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/bridge/{id}
+// DELETE /bridge/{id}
 func (c *Client) BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (*BridgeOpDeleteOK, error) {
 	res, err := c.sendBridgeOpDelete(ctx, params)
 	return res, err
@@ -5134,27 +4507,8 @@ func (c *Client) BridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams
 func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeleteParams) (res *BridgeOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/bridge/"
+	var pathParts [2]string
+	pathParts[0] = "/bridge/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -5171,7 +4525,7 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -5232,7 +4586,7 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 //
 // Bridge 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/bridge
+// GET /bridge
 func (c *Client) BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*BridgeFindResponseEnvelope, error) {
 	res, err := c.sendBridgeOpFind(ctx, params)
 	return res, err
@@ -5241,27 +4595,8 @@ func (c *Client) BridgeOpFind(ctx context.Context, params BridgeOpFindParams) (*
 func (c *Client) sendBridgeOpFind(ctx context.Context, params BridgeOpFindParams) (res *BridgeFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/bridge"
+	var pathParts [1]string
+	pathParts[0] = "/bridge"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -5341,7 +4676,7 @@ func (c *Client) sendBridgeOpFind(ctx context.Context, params BridgeOpFindParams
 //
 // Bridge 取得.
 //
-// GET /{zone}/api/cloud/1.1/bridge/{id}
+// GET /bridge/{id}
 func (c *Client) BridgeOpRead(ctx context.Context, params BridgeOpReadParams) (*BridgeReadResponseEnvelope, error) {
 	res, err := c.sendBridgeOpRead(ctx, params)
 	return res, err
@@ -5350,27 +4685,8 @@ func (c *Client) BridgeOpRead(ctx context.Context, params BridgeOpReadParams) (*
 func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams) (res *BridgeReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/bridge/"
+	var pathParts [2]string
+	pathParts[0] = "/bridge/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -5387,7 +4703,7 @@ func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -5448,7 +4764,7 @@ func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams
 //
 // Bridge 更新.
 //
-// PUT /{zone}/api/cloud/1.1/bridge/{id}
+// PUT /bridge/{id}
 func (c *Client) BridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (*BridgeUpdateResponseEnvelope, error) {
 	res, err := c.sendBridgeOpUpdate(ctx, request, params)
 	return res, err
@@ -5457,27 +4773,8 @@ func (c *Client) BridgeOpUpdate(ctx context.Context, request *BridgeUpdateReques
 func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRequestEnvelope, params BridgeOpUpdateParams) (res *BridgeUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/bridge/"
+	var pathParts [2]string
+	pathParts[0] = "/bridge/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -5494,7 +4791,7 @@ func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -5558,7 +4855,7 @@ func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRe
 //
 // CDROM FTP クローズ.
 //
-// DELETE /{zone}/api/cloud/1.1/cdrom/{id}/ftp
+// DELETE /cdrom/{id}/ftp
 func (c *Client) CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (*CDROMOpCloseFTPOK, error) {
 	res, err := c.sendCDROMOpCloseFTP(ctx, params)
 	return res, err
@@ -5567,27 +4864,8 @@ func (c *Client) CDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPPara
 func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTPParams) (res *CDROMOpCloseFTPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom/"
+	var pathParts [3]string
+	pathParts[0] = "/cdrom/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -5604,9 +4882,9 @@ func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTP
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/ftp"
+	pathParts[2] = "/ftp"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -5666,13 +4944,13 @@ func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTP
 //
 // CDROM 作成.
 //
-// POST /{zone}/api/cloud/1.1/cdrom
-func (c *Client) CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (*CDROMCreateResponseEnvelope, error) {
-	res, err := c.sendCDROMOpCreate(ctx, request, params)
+// POST /cdrom
+func (c *Client) CDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope) (*CDROMCreateResponseEnvelope, error) {
+	res, err := c.sendCDROMOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope, params CDROMOpCreateParams) (res *CDROMCreateResponseEnvelope, err error) {
+func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequestEnvelope) (res *CDROMCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -5684,27 +4962,8 @@ func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequ
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom"
+	var pathParts [1]string
+	pathParts[0] = "/cdrom"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -5767,7 +5026,7 @@ func (c *Client) sendCDROMOpCreate(ctx context.Context, request *CDROMCreateRequ
 //
 // CDROM 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/cdrom/{id}
+// DELETE /cdrom/{id}
 func (c *Client) CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (*CDROMOpDeleteOK, error) {
 	res, err := c.sendCDROMOpDelete(ctx, params)
 	return res, err
@@ -5776,27 +5035,8 @@ func (c *Client) CDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) 
 func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeleteParams) (res *CDROMOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom/"
+	var pathParts [2]string
+	pathParts[0] = "/cdrom/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -5813,7 +5053,7 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -5874,7 +5114,7 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 //
 // CDROM 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/cdrom
+// GET /cdrom
 func (c *Client) CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CDROMFindResponseEnvelope, error) {
 	res, err := c.sendCDROMOpFind(ctx, params)
 	return res, err
@@ -5883,27 +5123,8 @@ func (c *Client) CDROMOpFind(ctx context.Context, params CDROMOpFindParams) (*CD
 func (c *Client) sendCDROMOpFind(ctx context.Context, params CDROMOpFindParams) (res *CDROMFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom"
+	var pathParts [1]string
+	pathParts[0] = "/cdrom"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -5983,7 +5204,7 @@ func (c *Client) sendCDROMOpFind(ctx context.Context, params CDROMOpFindParams) 
 //
 // CDROM FTP オープン.
 //
-// PUT /{zone}/api/cloud/1.1/cdrom/{id}/ftp
+// PUT /cdrom/{id}/ftp
 func (c *Client) CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (*CDROMOpenFTPResponseEnvelope, error) {
 	res, err := c.sendCDROMOpOpenFTP(ctx, request, params)
 	return res, err
@@ -5992,27 +5213,8 @@ func (c *Client) CDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPReques
 func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRequestEnvelope, params CDROMOpOpenFTPParams) (res *CDROMOpenFTPResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom/"
+	var pathParts [3]string
+	pathParts[0] = "/cdrom/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6029,9 +5231,9 @@ func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/ftp"
+	pathParts[2] = "/ftp"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -6094,7 +5296,7 @@ func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRe
 //
 // CDROM 取得.
 //
-// GET /{zone}/api/cloud/1.1/cdrom/{id}
+// GET /cdrom/{id}
 func (c *Client) CDROMOpRead(ctx context.Context, params CDROMOpReadParams) (*CDROMReadResponseEnvelope, error) {
 	res, err := c.sendCDROMOpRead(ctx, params)
 	return res, err
@@ -6103,27 +5305,8 @@ func (c *Client) CDROMOpRead(ctx context.Context, params CDROMOpReadParams) (*CD
 func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) (res *CDROMReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom/"
+	var pathParts [2]string
+	pathParts[0] = "/cdrom/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6140,7 +5323,7 @@ func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) 
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -6201,7 +5384,7 @@ func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) 
 //
 // CDROM 更新.
 //
-// PUT /{zone}/api/cloud/1.1/cdrom/{id}
+// PUT /cdrom/{id}
 func (c *Client) CDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequestEnvelope, params CDROMOpUpdateParams) (*CDROMUpdateResponseEnvelope, error) {
 	res, err := c.sendCDROMOpUpdate(ctx, request, params)
 	return res, err
@@ -6219,27 +5402,8 @@ func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequ
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/cdrom/"
+	var pathParts [2]string
+	pathParts[0] = "/cdrom/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6256,7 +5420,7 @@ func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequ
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -6320,7 +5484,7 @@ func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequ
 //
 // CertificateAuthority クライアント追加.
 //
-// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
+// POST /commonserviceitem/{id}/certificateauthority/clients
 func (c *Client) CertificateAuthorityOpAddClient(ctx context.Context, request *CertificateAuthorityOpAddClientReq, params CertificateAuthorityOpAddClientParams) (*CertificateAuthorityAddClientResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpAddClient(ctx, request, params)
 	return res, err
@@ -6329,27 +5493,8 @@ func (c *Client) CertificateAuthorityOpAddClient(ctx context.Context, request *C
 func (c *Client) sendCertificateAuthorityOpAddClient(ctx context.Context, request *CertificateAuthorityOpAddClientReq, params CertificateAuthorityOpAddClientParams) (res *CertificateAuthorityAddClientResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6366,9 +5511,9 @@ func (c *Client) sendCertificateAuthorityOpAddClient(ctx context.Context, reques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients"
+	pathParts[2] = "/certificateauthority/clients"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -6431,7 +5576,7 @@ func (c *Client) sendCertificateAuthorityOpAddClient(ctx context.Context, reques
 //
 // CertificateAuthority サーバー追加.
 //
-// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
+// POST /commonserviceitem/{id}/certificateauthority/servers
 func (c *Client) CertificateAuthorityOpAddServer(ctx context.Context, request *CertificateAuthorityOpAddServerReq, params CertificateAuthorityOpAddServerParams) (*CertificateAuthorityAddServerResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpAddServer(ctx, request, params)
 	return res, err
@@ -6449,27 +5594,8 @@ func (c *Client) sendCertificateAuthorityOpAddServer(ctx context.Context, reques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6486,9 +5612,9 @@ func (c *Client) sendCertificateAuthorityOpAddServer(ctx context.Context, reques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/servers"
+	pathParts[2] = "/certificateauthority/servers"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -6551,7 +5677,7 @@ func (c *Client) sendCertificateAuthorityOpAddServer(ctx context.Context, reques
 //
 // CertificateAuthority クライアント拒否.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
+// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny
 func (c *Client) CertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (*CertificateAuthorityOpDenyClientOK, error) {
 	res, err := c.sendCertificateAuthorityOpDenyClient(ctx, params)
 	return res, err
@@ -6560,27 +5686,8 @@ func (c *Client) CertificateAuthorityOpDenyClient(ctx context.Context, params Ce
 func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, params CertificateAuthorityOpDenyClientParams) (res *CertificateAuthorityOpDenyClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6597,9 +5704,9 @@ func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients/"
+	pathParts[2] = "/certificateauthority/clients/"
 	{
 		// Encode "clientID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6616,9 +5723,9 @@ func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/deny"
+	pathParts[4] = "/deny"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -6678,7 +5785,7 @@ func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, param
 //
 // CertificateAuthority 詳細取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority
+// GET /commonserviceitem/{id}/certificateauthority
 func (c *Client) CertificateAuthorityOpDetail(ctx context.Context, params CertificateAuthorityOpDetailParams) (*CertificateAuthorityDetailResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpDetail(ctx, params)
 	return res, err
@@ -6687,27 +5794,8 @@ func (c *Client) CertificateAuthorityOpDetail(ctx context.Context, params Certif
 func (c *Client) sendCertificateAuthorityOpDetail(ctx context.Context, params CertificateAuthorityOpDetailParams) (res *CertificateAuthorityDetailResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6724,9 +5812,9 @@ func (c *Client) sendCertificateAuthorityOpDetail(ctx context.Context, params Ce
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority"
+	pathParts[2] = "/certificateauthority"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -6786,7 +5874,7 @@ func (c *Client) sendCertificateAuthorityOpDetail(ctx context.Context, params Ce
 //
 // CertificateAuthority クライアント保留.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
+// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold
 func (c *Client) CertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (*CertificateAuthorityOpHoldClientOK, error) {
 	res, err := c.sendCertificateAuthorityOpHoldClient(ctx, params)
 	return res, err
@@ -6795,27 +5883,8 @@ func (c *Client) CertificateAuthorityOpHoldClient(ctx context.Context, params Ce
 func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, params CertificateAuthorityOpHoldClientParams) (res *CertificateAuthorityOpHoldClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6832,9 +5901,9 @@ func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients/"
+	pathParts[2] = "/certificateauthority/clients/"
 	{
 		// Encode "clientID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6851,9 +5920,9 @@ func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/hold"
+	pathParts[4] = "/hold"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -6913,7 +5982,7 @@ func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, param
 //
 // CertificateAuthority サーバー保留.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
+// PUT /commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold
 func (c *Client) CertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (*CertificateAuthorityOpHoldServerOK, error) {
 	res, err := c.sendCertificateAuthorityOpHoldServer(ctx, params)
 	return res, err
@@ -6922,27 +5991,8 @@ func (c *Client) CertificateAuthorityOpHoldServer(ctx context.Context, params Ce
 func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, params CertificateAuthorityOpHoldServerParams) (res *CertificateAuthorityOpHoldServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6959,9 +6009,9 @@ func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/servers/"
+	pathParts[2] = "/certificateauthority/servers/"
 	{
 		// Encode "serverID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -6978,9 +6028,9 @@ func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/hold"
+	pathParts[4] = "/hold"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -7040,7 +6090,7 @@ func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, param
 //
 // CertificateAuthority クライアント一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients
+// GET /commonserviceitem/{id}/certificateauthority/clients
 func (c *Client) CertificateAuthorityOpListClients(ctx context.Context, params CertificateAuthorityOpListClientsParams) (*CertificateAuthorityListClientsResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpListClients(ctx, params)
 	return res, err
@@ -7049,27 +6099,8 @@ func (c *Client) CertificateAuthorityOpListClients(ctx context.Context, params C
 func (c *Client) sendCertificateAuthorityOpListClients(ctx context.Context, params CertificateAuthorityOpListClientsParams) (res *CertificateAuthorityListClientsResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7086,9 +6117,9 @@ func (c *Client) sendCertificateAuthorityOpListClients(ctx context.Context, para
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients"
+	pathParts[2] = "/certificateauthority/clients"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -7148,7 +6179,7 @@ func (c *Client) sendCertificateAuthorityOpListClients(ctx context.Context, para
 //
 // CertificateAuthority サーバー一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers
+// GET /commonserviceitem/{id}/certificateauthority/servers
 func (c *Client) CertificateAuthorityOpListServers(ctx context.Context, params CertificateAuthorityOpListServersParams) (*CertificateAuthorityListServersResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpListServers(ctx, params)
 	return res, err
@@ -7157,27 +6188,8 @@ func (c *Client) CertificateAuthorityOpListServers(ctx context.Context, params C
 func (c *Client) sendCertificateAuthorityOpListServers(ctx context.Context, params CertificateAuthorityOpListServersParams) (res *CertificateAuthorityListServersResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7194,9 +6206,9 @@ func (c *Client) sendCertificateAuthorityOpListServers(ctx context.Context, para
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/servers"
+	pathParts[2] = "/certificateauthority/servers"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -7256,7 +6268,7 @@ func (c *Client) sendCertificateAuthorityOpListServers(ctx context.Context, para
 //
 // CertificateAuthority クライアント取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}
+// GET /commonserviceitem/{id}/certificateauthority/clients/{clientID}
 func (c *Client) CertificateAuthorityOpReadClient(ctx context.Context, params CertificateAuthorityOpReadClientParams) (*CertificateAuthorityReadClientResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpReadClient(ctx, params)
 	return res, err
@@ -7265,27 +6277,8 @@ func (c *Client) CertificateAuthorityOpReadClient(ctx context.Context, params Ce
 func (c *Client) sendCertificateAuthorityOpReadClient(ctx context.Context, params CertificateAuthorityOpReadClientParams) (res *CertificateAuthorityReadClientResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [4]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7302,9 +6295,9 @@ func (c *Client) sendCertificateAuthorityOpReadClient(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients/"
+	pathParts[2] = "/certificateauthority/clients/"
 	{
 		// Encode "clientID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7321,7 +6314,7 @@ func (c *Client) sendCertificateAuthorityOpReadClient(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -7382,7 +6375,7 @@ func (c *Client) sendCertificateAuthorityOpReadClient(ctx context.Context, param
 //
 // CertificateAuthority サーバー取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}
+// GET /commonserviceitem/{id}/certificateauthority/servers/{serverID}
 func (c *Client) CertificateAuthorityOpReadServer(ctx context.Context, params CertificateAuthorityOpReadServerParams) (*CertificateAuthorityReadServerResponseEnvelope, error) {
 	res, err := c.sendCertificateAuthorityOpReadServer(ctx, params)
 	return res, err
@@ -7391,27 +6384,8 @@ func (c *Client) CertificateAuthorityOpReadServer(ctx context.Context, params Ce
 func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, params CertificateAuthorityOpReadServerParams) (res *CertificateAuthorityReadServerResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [4]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7428,9 +6402,9 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/servers/"
+	pathParts[2] = "/certificateauthority/servers/"
 	{
 		// Encode "serverID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7447,7 +6421,7 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -7508,7 +6482,7 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 //
 // CertificateAuthority クライアント再開.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
+// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume
 func (c *Client) CertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (*CertificateAuthorityOpResumeClientOK, error) {
 	res, err := c.sendCertificateAuthorityOpResumeClient(ctx, params)
 	return res, err
@@ -7517,27 +6491,8 @@ func (c *Client) CertificateAuthorityOpResumeClient(ctx context.Context, params 
 func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, params CertificateAuthorityOpResumeClientParams) (res *CertificateAuthorityOpResumeClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7554,9 +6509,9 @@ func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients/"
+	pathParts[2] = "/certificateauthority/clients/"
 	{
 		// Encode "clientID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7573,9 +6528,9 @@ func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/resume"
+	pathParts[4] = "/resume"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -7635,7 +6590,7 @@ func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, par
 //
 // CertificateAuthority サーバー再開.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
+// PUT /commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume
 func (c *Client) CertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (*CertificateAuthorityOpResumeServerOK, error) {
 	res, err := c.sendCertificateAuthorityOpResumeServer(ctx, params)
 	return res, err
@@ -7644,27 +6599,8 @@ func (c *Client) CertificateAuthorityOpResumeServer(ctx context.Context, params 
 func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, params CertificateAuthorityOpResumeServerParams) (res *CertificateAuthorityOpResumeServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7681,9 +6617,9 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/servers/"
+	pathParts[2] = "/certificateauthority/servers/"
 	{
 		// Encode "serverID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7700,9 +6636,9 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/resume"
+	pathParts[4] = "/resume"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -7762,7 +6698,7 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 //
 // CertificateAuthority クライアント破棄.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
+// PUT /commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke
 func (c *Client) CertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (*CertificateAuthorityOpRevokeClientOK, error) {
 	res, err := c.sendCertificateAuthorityOpRevokeClient(ctx, params)
 	return res, err
@@ -7771,27 +6707,8 @@ func (c *Client) CertificateAuthorityOpRevokeClient(ctx context.Context, params 
 func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, params CertificateAuthorityOpRevokeClientParams) (res *CertificateAuthorityOpRevokeClientOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7808,9 +6725,9 @@ func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/clients/"
+	pathParts[2] = "/certificateauthority/clients/"
 	{
 		// Encode "clientID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7827,9 +6744,9 @@ func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/revoke"
+	pathParts[4] = "/revoke"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -7889,7 +6806,7 @@ func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, par
 //
 // CertificateAuthority サーバー破棄.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
+// PUT /commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke
 func (c *Client) CertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (*CertificateAuthorityOpRevokeServerOK, error) {
 	res, err := c.sendCertificateAuthorityOpRevokeServer(ctx, params)
 	return res, err
@@ -7898,27 +6815,8 @@ func (c *Client) CertificateAuthorityOpRevokeServer(ctx context.Context, params 
 func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, params CertificateAuthorityOpRevokeServerParams) (res *CertificateAuthorityOpRevokeServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [5]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7935,9 +6833,9 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/certificateauthority/servers/"
+	pathParts[2] = "/certificateauthority/servers/"
 	{
 		// Encode "serverID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -7954,9 +6852,9 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/revoke"
+	pathParts[4] = "/revoke"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -8016,13 +6914,13 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 //
 // CommonServiceItem 作成.
 //
-// POST /{zone}/api/cloud/1.1/commonserviceitem
-func (c *Client) CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (*AutoBackupCreateResponseEnvelope, error) {
-	res, err := c.sendCommonServiceItemOpCreate(ctx, request, params)
+// POST /commonserviceitem
+func (c *Client) CommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope) (*AutoBackupCreateResponseEnvelope, error) {
+	res, err := c.sendCommonServiceItemOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope, params CommonServiceItemOpCreateParams) (res *AutoBackupCreateResponseEnvelope, err error) {
+func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *CommonServiceItemCreateRequestEnvelope) (res *AutoBackupCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -8034,27 +6932,8 @@ func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *Com
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem"
+	var pathParts [1]string
+	pathParts[0] = "/commonserviceitem"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -8117,7 +6996,7 @@ func (c *Client) sendCommonServiceItemOpCreate(ctx context.Context, request *Com
 //
 // CommonServiceItem 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}
+// DELETE /commonserviceitem/{id}
 func (c *Client) CommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (*CommonServiceItemOpDeleteOK, error) {
 	res, err := c.sendCommonServiceItemOpDelete(ctx, params)
 	return res, err
@@ -8126,27 +7005,8 @@ func (c *Client) CommonServiceItemOpDelete(ctx context.Context, params CommonSer
 func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params CommonServiceItemOpDeleteParams) (res *CommonServiceItemOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [2]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8163,7 +7023,7 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -8224,7 +7084,7 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 //
 // CommonServiceItem 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem
+// GET /commonserviceitem
 func (c *Client) CommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (*AutoBackupFindResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpFind(ctx, params)
 	return res, err
@@ -8233,27 +7093,8 @@ func (c *Client) CommonServiceItemOpFind(ctx context.Context, params CommonServi
 func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, params CommonServiceItemOpFindParams) (res *AutoBackupFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem"
+	var pathParts [1]string
+	pathParts[0] = "/commonserviceitem"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -8333,7 +7174,7 @@ func (c *Client) sendCommonServiceItemOpFind(ctx context.Context, params CommonS
 //
 // CommonServiceItem ヘルスステータス取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/health
+// GET /commonserviceitem/{id}/health
 func (c *Client) CommonServiceItemOpHealthStatus(ctx context.Context, params CommonServiceItemOpHealthStatusParams) (*LocalRouterHealthStatusResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpHealthStatus(ctx, params)
 	return res, err
@@ -8342,27 +7183,8 @@ func (c *Client) CommonServiceItemOpHealthStatus(ctx context.Context, params Com
 func (c *Client) sendCommonServiceItemOpHealthStatus(ctx context.Context, params CommonServiceItemOpHealthStatusParams) (res *LocalRouterHealthStatusResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8379,9 +7201,9 @@ func (c *Client) sendCommonServiceItemOpHealthStatus(ctx context.Context, params
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/health"
+	pathParts[2] = "/health"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -8441,7 +7263,7 @@ func (c *Client) sendCommonServiceItemOpHealthStatus(ctx context.Context, params
 //
 // CommonServiceItem 取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}
+// GET /commonserviceitem/{id}
 func (c *Client) CommonServiceItemOpRead(ctx context.Context, params CommonServiceItemOpReadParams) (*AutoBackupReadResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpRead(ctx, params)
 	return res, err
@@ -8450,27 +7272,8 @@ func (c *Client) CommonServiceItemOpRead(ctx context.Context, params CommonServi
 func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonServiceItemOpReadParams) (res *AutoBackupReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [2]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8487,7 +7290,7 @@ func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonS
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -8548,7 +7351,7 @@ func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonS
 //
 // CommonServiceItem 更新.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}
+// PUT /commonserviceitem/{id}
 func (c *Client) CommonServiceItemOpUpdate(ctx context.Context, request *CommonServiceItemUpdateRequestEnvelope, params CommonServiceItemOpUpdateParams) (*AutoBackupUpdateResponseEnvelope, error) {
 	res, err := c.sendCommonServiceItemOpUpdate(ctx, request, params)
 	return res, err
@@ -8566,27 +7369,8 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [2]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8603,7 +7387,7 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -8667,7 +7451,7 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 //
 // ContainerRegistry ユーザー追加.
 //
-// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
+// POST /commonserviceitem/{id}/containerregistry/users
 func (c *Client) ContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (*ContainerRegistryOpAddUserOK, error) {
 	res, err := c.sendContainerRegistryOpAddUser(ctx, request, params)
 	return res, err
@@ -8676,27 +7460,8 @@ func (c *Client) ContainerRegistryOpAddUser(ctx context.Context, request *Contai
 func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *ContainerRegistryOpAddUserReq, params ContainerRegistryOpAddUserParams) (res *ContainerRegistryOpAddUserOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8713,9 +7478,9 @@ func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *Co
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/containerregistry/users"
+	pathParts[2] = "/containerregistry/users"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -8778,7 +7543,7 @@ func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *Co
 //
 // ContainerRegistry ユーザー削除.
 //
-// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
+// DELETE /commonserviceitem/{id}/containerregistry/users/{username}
 func (c *Client) ContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (*ContainerRegistryOpDeleteUserOK, error) {
 	res, err := c.sendContainerRegistryOpDeleteUser(ctx, params)
 	return res, err
@@ -8787,27 +7552,8 @@ func (c *Client) ContainerRegistryOpDeleteUser(ctx context.Context, params Conta
 func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params ContainerRegistryOpDeleteUserParams) (res *ContainerRegistryOpDeleteUserOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [4]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8824,9 +7570,9 @@ func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params C
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/containerregistry/users/"
+	pathParts[2] = "/containerregistry/users/"
 	{
 		// Encode "username" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8843,7 +7589,7 @@ func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params C
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -8904,7 +7650,7 @@ func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params C
 //
 // ContainerRegistry ユーザー一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users
+// GET /commonserviceitem/{id}/containerregistry/users
 func (c *Client) ContainerRegistryOpListUsers(ctx context.Context, params ContainerRegistryOpListUsersParams) (*ContainerRegistryListUsersResponseEnvelope, error) {
 	res, err := c.sendContainerRegistryOpListUsers(ctx, params)
 	return res, err
@@ -8913,27 +7659,8 @@ func (c *Client) ContainerRegistryOpListUsers(ctx context.Context, params Contai
 func (c *Client) sendContainerRegistryOpListUsers(ctx context.Context, params ContainerRegistryOpListUsersParams) (res *ContainerRegistryListUsersResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -8950,9 +7677,9 @@ func (c *Client) sendContainerRegistryOpListUsers(ctx context.Context, params Co
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/containerregistry/users"
+	pathParts[2] = "/containerregistry/users"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -9012,7 +7739,7 @@ func (c *Client) sendContainerRegistryOpListUsers(ctx context.Context, params Co
 //
 // ContainerRegistry ユーザー更新.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/containerregistry/users/{username}
+// PUT /commonserviceitem/{id}/containerregistry/users/{username}
 func (c *Client) ContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (*ContainerRegistryOpUpdateUserOK, error) {
 	res, err := c.sendContainerRegistryOpUpdateUser(ctx, request, params)
 	return res, err
@@ -9021,27 +7748,8 @@ func (c *Client) ContainerRegistryOpUpdateUser(ctx context.Context, request *Con
 func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request *ContainerRegistryOpUpdateUserReq, params ContainerRegistryOpUpdateUserParams) (res *ContainerRegistryOpUpdateUserOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [4]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9058,9 +7766,9 @@ func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request 
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/containerregistry/users/"
+	pathParts[2] = "/containerregistry/users/"
 	{
 		// Encode "username" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9077,7 +7785,7 @@ func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request 
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -9141,7 +7849,7 @@ func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request 
 //
 // クーポン情報取得.
 //
-// GET /{zone}/api/system/1.0/coupon/{accountID}
+// GET /coupon/{accountID}
 func (c *Client) CouponOpFind(ctx context.Context, params CouponOpFindParams) (*CouponFindResponseEnvelope, error) {
 	res, err := c.sendCouponOpFind(ctx, params)
 	return res, err
@@ -9150,27 +7858,8 @@ func (c *Client) CouponOpFind(ctx context.Context, params CouponOpFindParams) (*
 func (c *Client) sendCouponOpFind(ctx context.Context, params CouponOpFindParams) (res *CouponFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/system/1.0/coupon/"
+	var pathParts [2]string
+	pathParts[0] = "/coupon/"
 	{
 		// Encode "accountID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9187,7 +7876,7 @@ func (c *Client) sendCouponOpFind(ctx context.Context, params CouponOpFindParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -9248,7 +7937,7 @@ func (c *Client) sendCouponOpFind(ctx context.Context, params CouponOpFindParams
 //
 // Database パラメータ取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
+// GET /appliance/{id}/database/parameter
 func (c *Client) DatabaseOpGetParameter(ctx context.Context, params DatabaseOpGetParameterParams) (*DatabaseGetParameterResponseEnvelope, error) {
 	res, err := c.sendDatabaseOpGetParameter(ctx, params)
 	return res, err
@@ -9257,27 +7946,8 @@ func (c *Client) DatabaseOpGetParameter(ctx context.Context, params DatabaseOpGe
 func (c *Client) sendDatabaseOpGetParameter(ctx context.Context, params DatabaseOpGetParameterParams) (res *DatabaseGetParameterResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9294,9 +7964,9 @@ func (c *Client) sendDatabaseOpGetParameter(ctx context.Context, params Database
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/database/parameter"
+	pathParts[2] = "/database/parameter"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -9356,7 +8026,7 @@ func (c *Client) sendDatabaseOpGetParameter(ctx context.Context, params Database
 //
 // Database ディスクモニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/disk/0/monitor
+// GET /appliance/{id}/disk/0/monitor
 func (c *Client) DatabaseOpMonitorDisk(ctx context.Context, request *DatabaseOpMonitorDiskReq, params DatabaseOpMonitorDiskParams) (*DatabaseMonitorDiskResponseEnvelope, error) {
 	res, err := c.sendDatabaseOpMonitorDisk(ctx, request, params)
 	return res, err
@@ -9365,27 +8035,8 @@ func (c *Client) DatabaseOpMonitorDisk(ctx context.Context, request *DatabaseOpM
 func (c *Client) sendDatabaseOpMonitorDisk(ctx context.Context, request *DatabaseOpMonitorDiskReq, params DatabaseOpMonitorDiskParams) (res *DatabaseMonitorDiskResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9402,9 +8053,9 @@ func (c *Client) sendDatabaseOpMonitorDisk(ctx context.Context, request *Databas
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/disk/0/monitor"
+	pathParts[2] = "/disk/0/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -9467,7 +8118,7 @@ func (c *Client) sendDatabaseOpMonitorDisk(ctx context.Context, request *Databas
 //
 // Database パラメータ設定.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/database/parameter
+// PUT /appliance/{id}/database/parameter
 func (c *Client) DatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (*DatabaseOpSetParameterOK, error) {
 	res, err := c.sendDatabaseOpSetParameter(ctx, request, params)
 	return res, err
@@ -9476,27 +8127,8 @@ func (c *Client) DatabaseOpSetParameter(ctx context.Context, request *DatabaseOp
 func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *DatabaseOpSetParameterReq, params DatabaseOpSetParameterParams) (res *DatabaseOpSetParameterOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9513,9 +8145,9 @@ func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *Databa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/database/parameter"
+	pathParts[2] = "/database/parameter"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -9578,7 +8210,7 @@ func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *Databa
 //
 // ディスクの修正反映.
 //
-// PUT /{zone}/api/cloud/1.1/disk/{id}/config
+// PUT /disk/{id}/config
 func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (*DiskOpConfigOK, error) {
 	res, err := c.sendDiskOpConfig(ctx, request, params)
 	return res, err
@@ -9587,27 +8219,8 @@ func (c *Client) DiskOpConfig(ctx context.Context, request *DiskConfigRequestEnv
 func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigRequestEnvelope, params DiskOpConfigParams) (res *DiskOpConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [3]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9624,9 +8237,9 @@ func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigReques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/config"
+	pathParts[2] = "/config"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -9689,7 +8302,7 @@ func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigReques
 //
 // Disk サーバー接続.
 //
-// PUT /{zone}/api/cloud/1.1/disk/{id}/to/server/{serverID}
+// PUT /disk/{id}/to/server/{serverID}
 func (c *Client) DiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (*DiskOpConnectToServerOK, error) {
 	res, err := c.sendDiskOpConnectToServer(ctx, params)
 	return res, err
@@ -9698,27 +8311,8 @@ func (c *Client) DiskOpConnectToServer(ctx context.Context, params DiskOpConnect
 func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpConnectToServerParams) (res *DiskOpConnectToServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [4]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9735,9 +8329,9 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/server/"
+	pathParts[2] = "/to/server/"
 	{
 		// Encode "serverID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9754,7 +8348,7 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -9815,13 +8409,13 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 //
 // Disk 作成.
 //
-// POST /{zone}/api/cloud/1.1/disk
-func (c *Client) DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (*DiskCreateResponseEnvelope, error) {
-	res, err := c.sendDiskOpCreate(ctx, request, params)
+// POST /disk
+func (c *Client) DiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope) (*DiskCreateResponseEnvelope, error) {
+	res, err := c.sendDiskOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope, params DiskOpCreateParams) (res *DiskCreateResponseEnvelope, err error) {
+func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskCreateRequestEnvelope) (res *DiskCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -9833,27 +8427,8 @@ func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskCreateReques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk"
+	var pathParts [1]string
+	pathParts[0] = "/disk"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -9916,7 +8491,7 @@ func (c *Client) sendDiskOpCreate(ctx context.Context, request *DiskCreateReques
 //
 // Disk 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/disk/{id}
+// DELETE /disk/{id}
 func (c *Client) DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*DiskOpDeleteOK, error) {
 	res, err := c.sendDiskOpDelete(ctx, params)
 	return res, err
@@ -9925,27 +8500,8 @@ func (c *Client) DiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (*
 func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams) (res *DiskOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [2]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -9962,7 +8518,7 @@ func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -10023,7 +8579,7 @@ func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams
 //
 // Disk サーバー切断.
 //
-// DELETE /{zone}/api/cloud/1.1/disk/{id}/to/server
+// DELETE /disk/{id}/to/server
 func (c *Client) DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (*DiskOpDisconnectFromServerOK, error) {
 	res, err := c.sendDiskOpDisconnectFromServer(ctx, params)
 	return res, err
@@ -10032,27 +8588,8 @@ func (c *Client) DiskOpDisconnectFromServer(ctx context.Context, params DiskOpDi
 func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params DiskOpDisconnectFromServerParams) (res *DiskOpDisconnectFromServerOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [3]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10069,9 +8606,9 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/server"
+	pathParts[2] = "/to/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -10131,7 +8668,7 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 //
 // Disk 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/disk
+// GET /disk
 func (c *Client) DiskOpFind(ctx context.Context, params DiskOpFindParams) (*DiskFindResponseEnvelope, error) {
 	res, err := c.sendDiskOpFind(ctx, params)
 	return res, err
@@ -10140,27 +8677,8 @@ func (c *Client) DiskOpFind(ctx context.Context, params DiskOpFindParams) (*Disk
 func (c *Client) sendDiskOpFind(ctx context.Context, params DiskOpFindParams) (res *DiskFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk"
+	var pathParts [1]string
+	pathParts[0] = "/disk"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -10240,7 +8758,7 @@ func (c *Client) sendDiskOpFind(ctx context.Context, params DiskOpFindParams) (r
 //
 // Disk モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/disk/{id}/monitor
+// GET /disk/{id}/monitor
 func (c *Client) DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (*DiskMonitorResponseEnvelope, error) {
 	res, err := c.sendDiskOpMonitor(ctx, request, params)
 	return res, err
@@ -10249,27 +8767,8 @@ func (c *Client) DiskOpMonitor(ctx context.Context, request *DiskMonitorRequestE
 func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskMonitorRequestEnvelope, params DiskOpMonitorParams) (res *DiskMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [3]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10286,9 +8785,9 @@ func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskMonitorRequ
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/monitor"
+	pathParts[2] = "/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -10351,7 +8850,7 @@ func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskMonitorRequ
 //
 // Disk 取得.
 //
-// GET /{zone}/api/cloud/1.1/disk/{id}
+// GET /disk/{id}
 func (c *Client) DiskOpRead(ctx context.Context, params DiskOpReadParams) (*DiskReadResponseEnvelope, error) {
 	res, err := c.sendDiskOpRead(ctx, params)
 	return res, err
@@ -10360,27 +8859,8 @@ func (c *Client) DiskOpRead(ctx context.Context, params DiskOpReadParams) (*Disk
 func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (res *DiskReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [2]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10397,7 +8877,7 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -10458,7 +8938,7 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 //
 // Disk パーティションリサイズ.
 //
-// PUT /{zone}/api/cloud/1.1/disk/{id}/resize-partition
+// PUT /disk/{id}/resize-partition
 func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (*DiskOpResizePartitionOK, error) {
 	res, err := c.sendDiskOpResizePartition(ctx, request, params)
 	return res, err
@@ -10467,27 +8947,8 @@ func (c *Client) DiskOpResizePartition(ctx context.Context, request *DiskResizeP
 func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskResizePartitionRequestEnvelope, params DiskOpResizePartitionParams) (res *DiskOpResizePartitionOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [3]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10504,9 +8965,9 @@ func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskRes
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/resize-partition"
+	pathParts[2] = "/resize-partition"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -10569,7 +9030,7 @@ func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskRes
 //
 // Disk 更新.
 //
-// PUT /{zone}/api/cloud/1.1/disk/{id}
+// PUT /disk/{id}
 func (c *Client) DiskOpUpdate(ctx context.Context, request *DiskUpdateRequestEnvelope, params DiskOpUpdateParams) (*DiskUpdateResponseEnvelope, error) {
 	res, err := c.sendDiskOpUpdate(ctx, request, params)
 	return res, err
@@ -10587,27 +9048,8 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateReques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/disk/"
+	var pathParts [2]string
+	pathParts[0] = "/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10624,7 +9066,7 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateReques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -10688,7 +9130,7 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateReques
 //
 // DiskPlan 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/product/disk
+// GET /product/disk
 func (c *Client) DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (*DiskPlanFindResponseEnvelope, error) {
 	res, err := c.sendDiskPlanOpFind(ctx, params)
 	return res, err
@@ -10697,27 +9139,8 @@ func (c *Client) DiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams
 func (c *Client) sendDiskPlanOpFind(ctx context.Context, params DiskPlanOpFindParams) (res *DiskPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/disk"
+	var pathParts [1]string
+	pathParts[0] = "/product/disk"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -10797,7 +9220,7 @@ func (c *Client) sendDiskPlanOpFind(ctx context.Context, params DiskPlanOpFindPa
 //
 // DiskPlan 取得.
 //
-// GET /{zone}/api/cloud/1.1/product/disk/{id}
+// GET /product/disk/{id}
 func (c *Client) DiskPlanOpRead(ctx context.Context, params DiskPlanOpReadParams) (*DiskPlanReadResponseEnvelope, error) {
 	res, err := c.sendDiskPlanOpRead(ctx, params)
 	return res, err
@@ -10806,27 +9229,8 @@ func (c *Client) DiskPlanOpRead(ctx context.Context, params DiskPlanOpReadParams
 func (c *Client) sendDiskPlanOpRead(ctx context.Context, params DiskPlanOpReadParams) (res *DiskPlanReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/disk/"
+	var pathParts [2]string
+	pathParts[0] = "/product/disk/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10843,7 +9247,7 @@ func (c *Client) sendDiskPlanOpRead(ctx context.Context, params DiskPlanOpReadPa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -10904,7 +9308,7 @@ func (c *Client) sendDiskPlanOpRead(ctx context.Context, params DiskPlanOpReadPa
 //
 // SMS 送信ログ取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/logs
+// GET /commonserviceitem/{id}/esme/logs
 func (c *Client) ESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (*ESMELogsResponseEnvelope, error) {
 	res, err := c.sendESMEOpLogs(ctx, params)
 	return res, err
@@ -10913,27 +9317,8 @@ func (c *Client) ESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (*ESME
 func (c *Client) sendESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (res *ESMELogsResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -10950,9 +9335,9 @@ func (c *Client) sendESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/esme/logs"
+	pathParts[2] = "/esme/logs"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -11012,7 +9397,7 @@ func (c *Client) sendESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (r
 //
 // 自動生成 OTP 付き SMS メッセージ送信.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa/otp
+// PUT /commonserviceitem/{id}/esme/2fa/otp
 func (c *Client) ESMEOpSendMessageWithGeneratedOTP(ctx context.Context, request *ESMEOpSendMessageWithGeneratedOTPReq, params ESMEOpSendMessageWithGeneratedOTPParams) (*ESMESendMessageWithGeneratedOTPResponseEnvelope, error) {
 	res, err := c.sendESMEOpSendMessageWithGeneratedOTP(ctx, request, params)
 	return res, err
@@ -11021,27 +9406,8 @@ func (c *Client) ESMEOpSendMessageWithGeneratedOTP(ctx context.Context, request 
 func (c *Client) sendESMEOpSendMessageWithGeneratedOTP(ctx context.Context, request *ESMEOpSendMessageWithGeneratedOTPReq, params ESMEOpSendMessageWithGeneratedOTPParams) (res *ESMESendMessageWithGeneratedOTPResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11058,9 +9424,9 @@ func (c *Client) sendESMEOpSendMessageWithGeneratedOTP(ctx context.Context, requ
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/esme/2fa/otp"
+	pathParts[2] = "/esme/2fa/otp"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -11123,7 +9489,7 @@ func (c *Client) sendESMEOpSendMessageWithGeneratedOTP(ctx context.Context, requ
 //
 // 指定 OTP 付き SMS メッセージ送信.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/esme/2fa
+// PUT /commonserviceitem/{id}/esme/2fa
 func (c *Client) ESMEOpSendMessageWithInputtedOTP(ctx context.Context, request *ESMEOpSendMessageWithInputtedOTPReq, params ESMEOpSendMessageWithInputtedOTPParams) (*ESMESendMessageWithInputtedOTPResponseEnvelope, error) {
 	res, err := c.sendESMEOpSendMessageWithInputtedOTP(ctx, request, params)
 	return res, err
@@ -11132,27 +9498,8 @@ func (c *Client) ESMEOpSendMessageWithInputtedOTP(ctx context.Context, request *
 func (c *Client) sendESMEOpSendMessageWithInputtedOTP(ctx context.Context, request *ESMEOpSendMessageWithInputtedOTPReq, params ESMEOpSendMessageWithInputtedOTPParams) (res *ESMESendMessageWithInputtedOTPResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11169,9 +9516,9 @@ func (c *Client) sendESMEOpSendMessageWithInputtedOTP(ctx context.Context, reque
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/esme/2fa"
+	pathParts[2] = "/esme/2fa"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -11234,7 +9581,7 @@ func (c *Client) sendESMEOpSendMessageWithInputtedOTP(ctx context.Context, reque
 //
 // EnhancedDB 設定取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
+// GET /commonserviceitem/{id}/enhanceddb/config
 func (c *Client) EnhancedDBOpGetConfig(ctx context.Context, params EnhancedDBOpGetConfigParams) (*EnhancedDBGetConfigResponseEnvelope, error) {
 	res, err := c.sendEnhancedDBOpGetConfig(ctx, params)
 	return res, err
@@ -11243,27 +9590,8 @@ func (c *Client) EnhancedDBOpGetConfig(ctx context.Context, params EnhancedDBOpG
 func (c *Client) sendEnhancedDBOpGetConfig(ctx context.Context, params EnhancedDBOpGetConfigParams) (res *EnhancedDBGetConfigResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11280,9 +9608,9 @@ func (c *Client) sendEnhancedDBOpGetConfig(ctx context.Context, params EnhancedD
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/enhanceddb/config"
+	pathParts[2] = "/enhanceddb/config"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -11342,7 +9670,7 @@ func (c *Client) sendEnhancedDBOpGetConfig(ctx context.Context, params EnhancedD
 //
 // EnhancedDB 設定更新.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/config
+// PUT /commonserviceitem/{id}/enhanceddb/config
 func (c *Client) EnhancedDBOpSetConfig(ctx context.Context, request *EnhancedDBOpSetConfigReq, params EnhancedDBOpSetConfigParams) (*EnhancedDBOpSetConfigOK, error) {
 	res, err := c.sendEnhancedDBOpSetConfig(ctx, request, params)
 	return res, err
@@ -11360,27 +9688,8 @@ func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *Enhance
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11397,9 +9706,9 @@ func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *Enhance
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/enhanceddb/config"
+	pathParts[2] = "/enhanceddb/config"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -11462,7 +9771,7 @@ func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *Enhance
 //
 // EnhancedDB パスワード設定.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/enhanceddb/set-password
+// PUT /commonserviceitem/{id}/enhanceddb/set-password
 func (c *Client) EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (*EnhancedDBOpSetPasswordOK, error) {
 	res, err := c.sendEnhancedDBOpSetPassword(ctx, request, params)
 	return res, err
@@ -11471,27 +9780,8 @@ func (c *Client) EnhancedDBOpSetPassword(ctx context.Context, request *EnhancedD
 func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *EnhancedDBOpSetPasswordReq, params EnhancedDBOpSetPasswordParams) (res *EnhancedDBOpSetPasswordOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11508,9 +9798,9 @@ func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *Enhan
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/enhanceddb/set-password"
+	pathParts[2] = "/enhanceddb/set-password"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -11573,36 +9863,17 @@ func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *Enhan
 //
 // IPAddress 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/ipaddress
-func (c *Client) IPAddressOpList(ctx context.Context, params IPAddressOpListParams) (*IPAddressListResponseEnvelope, error) {
-	res, err := c.sendIPAddressOpList(ctx, params)
+// GET /ipaddress
+func (c *Client) IPAddressOpList(ctx context.Context) (*IPAddressListResponseEnvelope, error) {
+	res, err := c.sendIPAddressOpList(ctx)
 	return res, err
 }
 
-func (c *Client) sendIPAddressOpList(ctx context.Context, params IPAddressOpListParams) (res *IPAddressListResponseEnvelope, err error) {
+func (c *Client) sendIPAddressOpList(ctx context.Context) (res *IPAddressListResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipaddress"
+	var pathParts [1]string
+	pathParts[0] = "/ipaddress"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -11662,7 +9933,7 @@ func (c *Client) sendIPAddressOpList(ctx context.Context, params IPAddressOpList
 //
 // IPAddress 取得.
 //
-// GET /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
+// GET /ipaddress/{ipAddress}
 func (c *Client) IPAddressOpRead(ctx context.Context, params IPAddressOpReadParams) (*IPAddressReadResponseEnvelope, error) {
 	res, err := c.sendIPAddressOpRead(ctx, params)
 	return res, err
@@ -11671,27 +9942,8 @@ func (c *Client) IPAddressOpRead(ctx context.Context, params IPAddressOpReadPara
 func (c *Client) sendIPAddressOpRead(ctx context.Context, params IPAddressOpReadParams) (res *IPAddressReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipaddress/"
+	var pathParts [2]string
+	pathParts[0] = "/ipaddress/"
 	{
 		// Encode "ipAddress" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11708,7 +9960,7 @@ func (c *Client) sendIPAddressOpRead(ctx context.Context, params IPAddressOpRead
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -11769,7 +10021,7 @@ func (c *Client) sendIPAddressOpRead(ctx context.Context, params IPAddressOpRead
 //
 // IPAddress ホスト名更新.
 //
-// PUT /{zone}/api/cloud/1.1/ipaddress/{ipAddress}
+// PUT /ipaddress/{ipAddress}
 func (c *Client) IPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (*IPAddressUpdateHostNameResponseEnvelope, error) {
 	res, err := c.sendIPAddressOpUpdateHostName(ctx, request, params)
 	return res, err
@@ -11778,27 +10030,8 @@ func (c *Client) IPAddressOpUpdateHostName(ctx context.Context, request *IPAddre
 func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPAddressUpdateHostNameRequestEnvelope, params IPAddressOpUpdateHostNameParams) (res *IPAddressUpdateHostNameResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipaddress/"
+	var pathParts [2]string
+	pathParts[0] = "/ipaddress/"
 	{
 		// Encode "ipAddress" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -11815,7 +10048,7 @@ func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPA
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -11879,36 +10112,17 @@ func (c *Client) sendIPAddressOpUpdateHostName(ctx context.Context, request *IPA
 //
 // IPv6Addr 作成.
 //
-// POST /{zone}/api/cloud/1.1/ipv6addr
-func (c *Client) IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (*IPv6AddrCreateResponseEnvelope, error) {
-	res, err := c.sendIPv6AddrOpCreate(ctx, request, params)
+// POST /ipv6addr
+func (c *Client) IPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope) (*IPv6AddrCreateResponseEnvelope, error) {
+	res, err := c.sendIPv6AddrOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope, params IPv6AddrOpCreateParams) (res *IPv6AddrCreateResponseEnvelope, err error) {
+func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCreateRequestEnvelope) (res *IPv6AddrCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6addr"
+	var pathParts [1]string
+	pathParts[0] = "/ipv6addr"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -11971,7 +10185,7 @@ func (c *Client) sendIPv6AddrOpCreate(ctx context.Context, request *IPv6AddrCrea
 //
 // IPv6Addr 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/ipv6addr/{id}
+// DELETE /ipv6addr/{id}
 func (c *Client) IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (*IPv6AddrOpDeleteOK, error) {
 	res, err := c.sendIPv6AddrOpDelete(ctx, params)
 	return res, err
@@ -11980,27 +10194,8 @@ func (c *Client) IPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeletePa
 func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDeleteParams) (res *IPv6AddrOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6addr/"
+	var pathParts [2]string
+	pathParts[0] = "/ipv6addr/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -12017,7 +10212,7 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -12078,7 +10273,7 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 //
 // IPv6Addr 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/ipv6addr
+// GET /ipv6addr
 func (c *Client) IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (*IPv6AddrFindResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpFind(ctx, params)
 	return res, err
@@ -12087,27 +10282,8 @@ func (c *Client) IPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams
 func (c *Client) sendIPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindParams) (res *IPv6AddrFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6addr"
+	var pathParts [1]string
+	pathParts[0] = "/ipv6addr"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -12187,7 +10363,7 @@ func (c *Client) sendIPv6AddrOpFind(ctx context.Context, params IPv6AddrOpFindPa
 //
 // IPv6Addr 取得.
 //
-// GET /{zone}/api/cloud/1.1/ipv6addr/{id}
+// GET /ipv6addr/{id}
 func (c *Client) IPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadParams) (*IPv6AddrReadResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpRead(ctx, params)
 	return res, err
@@ -12196,27 +10372,8 @@ func (c *Client) IPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadParams
 func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadParams) (res *IPv6AddrReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6addr/"
+	var pathParts [2]string
+	pathParts[0] = "/ipv6addr/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -12233,7 +10390,7 @@ func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadPa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -12294,7 +10451,7 @@ func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadPa
 //
 // IPv6Addr 更新.
 //
-// PUT /{zone}/api/cloud/1.1/ipv6addr/{id}
+// PUT /ipv6addr/{id}
 func (c *Client) IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (*IPv6AddrUpdateResponseEnvelope, error) {
 	res, err := c.sendIPv6AddrOpUpdate(ctx, request, params)
 	return res, err
@@ -12303,27 +10460,8 @@ func (c *Client) IPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRe
 func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpdateRequestEnvelope, params IPv6AddrOpUpdateParams) (res *IPv6AddrUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6addr/"
+	var pathParts [2]string
+	pathParts[0] = "/ipv6addr/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -12340,7 +10478,7 @@ func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpda
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -12404,36 +10542,17 @@ func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpda
 //
 // IPv6Net 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/ipv6net
-func (c *Client) IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (*IPv6NetListResponseEnvelope, error) {
-	res, err := c.sendIPv6NetOpList(ctx, request, params)
+// GET /ipv6net
+func (c *Client) IPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope) (*IPv6NetListResponseEnvelope, error) {
+	res, err := c.sendIPv6NetOpList(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope, params IPv6NetOpListParams) (res *IPv6NetListResponseEnvelope, err error) {
+func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetListRequestEnvelope) (res *IPv6NetListResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6net"
+	var pathParts [1]string
+	pathParts[0] = "/ipv6net"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -12496,7 +10615,7 @@ func (c *Client) sendIPv6NetOpList(ctx context.Context, request *IPv6NetListRequ
 //
 // IPv6Net 取得.
 //
-// GET /{zone}/api/cloud/1.1/ipv6net/{id}
+// GET /ipv6net/{id}
 func (c *Client) IPv6NetOpRead(ctx context.Context, params IPv6NetOpReadParams) (*IPv6NetReadResponseEnvelope, error) {
 	res, err := c.sendIPv6NetOpRead(ctx, params)
 	return res, err
@@ -12505,27 +10624,8 @@ func (c *Client) IPv6NetOpRead(ctx context.Context, params IPv6NetOpReadParams) 
 func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadParams) (res *IPv6NetReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/ipv6net/"
+	var pathParts [2]string
+	pathParts[0] = "/ipv6net/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -12542,7 +10642,7 @@ func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadPara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -12603,13 +10703,13 @@ func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadPara
 //
 // Icon 作成.
 //
-// POST /{zone}/api/cloud/1.1/icon
-func (c *Client) IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (*IconCreateResponseEnvelope, error) {
-	res, err := c.sendIconOpCreate(ctx, request, params)
+// POST /icon
+func (c *Client) IconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope) (*IconCreateResponseEnvelope, error) {
+	res, err := c.sendIconOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope, params IconOpCreateParams) (res *IconCreateResponseEnvelope, err error) {
+func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateRequestEnvelope) (res *IconCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -12621,27 +10721,8 @@ func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateReques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/icon"
+	var pathParts [1]string
+	pathParts[0] = "/icon"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -12704,7 +10785,7 @@ func (c *Client) sendIconOpCreate(ctx context.Context, request *IconCreateReques
 //
 // Icon 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/icon/{id}
+// DELETE /icon/{id}
 func (c *Client) IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*IconOpDeleteOK, error) {
 	res, err := c.sendIconOpDelete(ctx, params)
 	return res, err
@@ -12713,27 +10794,8 @@ func (c *Client) IconOpDelete(ctx context.Context, params IconOpDeleteParams) (*
 func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams) (res *IconOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/icon/"
+	var pathParts [2]string
+	pathParts[0] = "/icon/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -12750,7 +10812,7 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -12811,7 +10873,7 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 //
 // Icon 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/icon
+// GET /icon
 func (c *Client) IconOpFind(ctx context.Context, params IconOpFindParams) (*IconFindResponseEnvelope, error) {
 	res, err := c.sendIconOpFind(ctx, params)
 	return res, err
@@ -12820,27 +10882,8 @@ func (c *Client) IconOpFind(ctx context.Context, params IconOpFindParams) (*Icon
 func (c *Client) sendIconOpFind(ctx context.Context, params IconOpFindParams) (res *IconFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/icon"
+	var pathParts [1]string
+	pathParts[0] = "/icon"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -12920,7 +10963,7 @@ func (c *Client) sendIconOpFind(ctx context.Context, params IconOpFindParams) (r
 //
 // Icon 取得.
 //
-// GET /{zone}/api/cloud/1.1/icon/{id}
+// GET /icon/{id}
 func (c *Client) IconOpRead(ctx context.Context, params IconOpReadParams) (*IconReadResponseEnvelope, error) {
 	res, err := c.sendIconOpRead(ctx, params)
 	return res, err
@@ -12929,27 +10972,8 @@ func (c *Client) IconOpRead(ctx context.Context, params IconOpReadParams) (*Icon
 func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (res *IconReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/icon/"
+	var pathParts [2]string
+	pathParts[0] = "/icon/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -12966,7 +10990,7 @@ func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -13027,7 +11051,7 @@ func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (r
 //
 // Icon 更新.
 //
-// PUT /{zone}/api/cloud/1.1/icon/{id}
+// PUT /icon/{id}
 func (c *Client) IconOpUpdate(ctx context.Context, request *IconUpdateRequestEnvelope, params IconOpUpdateParams) (*IconUpdateResponseEnvelope, error) {
 	res, err := c.sendIconOpUpdate(ctx, request, params)
 	return res, err
@@ -13045,27 +11069,8 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateReques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/icon/"
+	var pathParts [2]string
+	pathParts[0] = "/icon/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13082,7 +11087,7 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateReques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -13146,7 +11151,7 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateReques
 //
 // Interface パケットフィルタ接続.
 //
-// PUT /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter/{packetFilterID}
+// PUT /interface/{id}/to/packetfilter/{packetFilterID}
 func (c *Client) InterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (*InterfaceOpConnectToPacketFilterOK, error) {
 	res, err := c.sendInterfaceOpConnectToPacketFilter(ctx, params)
 	return res, err
@@ -13155,27 +11160,8 @@ func (c *Client) InterfaceOpConnectToPacketFilter(ctx context.Context, params In
 func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, params InterfaceOpConnectToPacketFilterParams) (res *InterfaceOpConnectToPacketFilterOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [4]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13192,9 +11178,9 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/packetfilter/"
+	pathParts[2] = "/to/packetfilter/"
 	{
 		// Encode "packetFilterID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13211,7 +11197,7 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -13272,7 +11258,7 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 //
 // Interface 共有セグメント接続.
 //
-// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/shared
+// PUT /interface/{id}/to/switch/shared
 func (c *Client) InterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (*InterfaceOpConnectToSharedSegmentOK, error) {
 	res, err := c.sendInterfaceOpConnectToSharedSegment(ctx, params)
 	return res, err
@@ -13281,27 +11267,8 @@ func (c *Client) InterfaceOpConnectToSharedSegment(ctx context.Context, params I
 func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, params InterfaceOpConnectToSharedSegmentParams) (res *InterfaceOpConnectToSharedSegmentOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [3]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13318,9 +11285,9 @@ func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, para
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/switch/shared"
+	pathParts[2] = "/to/switch/shared"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -13380,7 +11347,7 @@ func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, para
 //
 // Interface スイッチ接続.
 //
-// PUT /{zone}/api/cloud/1.1/interface/{id}/to/switch/{switchID}
+// PUT /interface/{id}/to/switch/{switchID}
 func (c *Client) InterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (*InterfaceOpConnectToSwitchOK, error) {
 	res, err := c.sendInterfaceOpConnectToSwitch(ctx, params)
 	return res, err
@@ -13389,27 +11356,8 @@ func (c *Client) InterfaceOpConnectToSwitch(ctx context.Context, params Interfac
 func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params InterfaceOpConnectToSwitchParams) (res *InterfaceOpConnectToSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [4]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13426,9 +11374,9 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/switch/"
+	pathParts[2] = "/to/switch/"
 	{
 		// Encode "switchID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13445,7 +11393,7 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -13506,36 +11454,17 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 //
 // Interface 作成.
 //
-// POST /{zone}/api/cloud/1.1/interface
-func (c *Client) InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (*InterfaceCreateResponseEnvelope, error) {
-	res, err := c.sendInterfaceOpCreate(ctx, request, params)
+// POST /interface
+func (c *Client) InterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope) (*InterfaceCreateResponseEnvelope, error) {
+	res, err := c.sendInterfaceOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope, params InterfaceOpCreateParams) (res *InterfaceCreateResponseEnvelope, err error) {
+func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceCreateRequestEnvelope) (res *InterfaceCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface"
+	var pathParts [1]string
+	pathParts[0] = "/interface"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -13598,7 +11527,7 @@ func (c *Client) sendInterfaceOpCreate(ctx context.Context, request *InterfaceCr
 //
 // Interface 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/interface/{id}
+// DELETE /interface/{id}
 func (c *Client) InterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (*InterfaceOpDeleteOK, error) {
 	res, err := c.sendInterfaceOpDelete(ctx, params)
 	return res, err
@@ -13607,27 +11536,8 @@ func (c *Client) InterfaceOpDelete(ctx context.Context, params InterfaceOpDelete
 func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDeleteParams) (res *InterfaceOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [2]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13644,7 +11554,7 @@ func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -13705,7 +11615,7 @@ func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDe
 //
 // Interface パケットフィルタ切断.
 //
-// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/packetfilter
+// DELETE /interface/{id}/to/packetfilter
 func (c *Client) InterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (*InterfaceOpDisconnectFromPacketFilterOK, error) {
 	res, err := c.sendInterfaceOpDisconnectFromPacketFilter(ctx, params)
 	return res, err
@@ -13714,27 +11624,8 @@ func (c *Client) InterfaceOpDisconnectFromPacketFilter(ctx context.Context, para
 func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, params InterfaceOpDisconnectFromPacketFilterParams) (res *InterfaceOpDisconnectFromPacketFilterOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [3]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13751,9 +11642,9 @@ func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, 
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/packetfilter"
+	pathParts[2] = "/to/packetfilter"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -13813,7 +11704,7 @@ func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, 
 //
 // Interface スイッチ切断.
 //
-// DELETE /{zone}/api/cloud/1.1/interface/{id}/to/switch
+// DELETE /interface/{id}/to/switch
 func (c *Client) InterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (*InterfaceOpDisconnectFromSwitchOK, error) {
 	res, err := c.sendInterfaceOpDisconnectFromSwitch(ctx, params)
 	return res, err
@@ -13822,27 +11713,8 @@ func (c *Client) InterfaceOpDisconnectFromSwitch(ctx context.Context, params Int
 func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params InterfaceOpDisconnectFromSwitchParams) (res *InterfaceOpDisconnectFromSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [3]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -13859,9 +11731,9 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/switch"
+	pathParts[2] = "/to/switch"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -13921,7 +11793,7 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 //
 // Interface 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/interface
+// GET /interface
 func (c *Client) InterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (*InterfaceFindResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpFind(ctx, params)
 	return res, err
@@ -13930,27 +11802,8 @@ func (c *Client) InterfaceOpFind(ctx context.Context, params InterfaceOpFindPara
 func (c *Client) sendInterfaceOpFind(ctx context.Context, params InterfaceOpFindParams) (res *InterfaceFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface"
+	var pathParts [1]string
+	pathParts[0] = "/interface"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -14030,7 +11883,7 @@ func (c *Client) sendInterfaceOpFind(ctx context.Context, params InterfaceOpFind
 //
 // Interface モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/interface/{id}/monitor
+// GET /interface/{id}/monitor
 func (c *Client) InterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (*InterfaceMonitorResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpMonitor(ctx, request, params)
 	return res, err
@@ -14039,27 +11892,8 @@ func (c *Client) InterfaceOpMonitor(ctx context.Context, request *InterfaceMonit
 func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceMonitorRequestEnvelope, params InterfaceOpMonitorParams) (res *InterfaceMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [3]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14076,9 +11910,9 @@ func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceM
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/monitor"
+	pathParts[2] = "/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -14141,7 +11975,7 @@ func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceM
 //
 // Interface 取得.
 //
-// GET /{zone}/api/cloud/1.1/interface/{id}
+// GET /interface/{id}
 func (c *Client) InterfaceOpRead(ctx context.Context, params InterfaceOpReadParams) (*InterfaceReadResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpRead(ctx, params)
 	return res, err
@@ -14150,27 +11984,8 @@ func (c *Client) InterfaceOpRead(ctx context.Context, params InterfaceOpReadPara
 func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpReadParams) (res *InterfaceReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [2]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14187,7 +12002,7 @@ func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpRead
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -14248,7 +12063,7 @@ func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpRead
 //
 // Interface 更新.
 //
-// PUT /{zone}/api/cloud/1.1/interface/{id}
+// PUT /interface/{id}
 func (c *Client) InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (*InterfaceUpdateResponseEnvelope, error) {
 	res, err := c.sendInterfaceOpUpdate(ctx, request, params)
 	return res, err
@@ -14257,27 +12072,8 @@ func (c *Client) InterfaceOpUpdate(ctx context.Context, request *InterfaceUpdate
 func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceUpdateRequestEnvelope, params InterfaceOpUpdateParams) (res *InterfaceUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/interface/"
+	var pathParts [2]string
+	pathParts[0] = "/interface/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14294,7 +12090,7 @@ func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceUp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -14358,7 +12154,7 @@ func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceUp
 //
 // Internet サブネット追加.
 //
-// POST /{zone}/api/cloud/1.1/internet/{id}/subnet
+// POST /internet/{id}/subnet
 func (c *Client) InternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (*InternetAddSubnetResponseEnvelope, error) {
 	res, err := c.sendInternetOpAddSubnet(ctx, request, params)
 	return res, err
@@ -14367,27 +12163,8 @@ func (c *Client) InternetOpAddSubnet(ctx context.Context, request *InternetAddSu
 func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetAddSubnetRequestEnvelope, params InternetOpAddSubnetParams) (res *InternetAddSubnetResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [3]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14404,9 +12181,9 @@ func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetA
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/subnet"
+	pathParts[2] = "/subnet"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -14469,13 +12246,13 @@ func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetA
 //
 // Internet 作成.
 //
-// POST /{zone}/api/cloud/1.1/internet
-func (c *Client) InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (*InternetCreateResponseEnvelope, error) {
-	res, err := c.sendInternetOpCreate(ctx, request, params)
+// POST /internet
+func (c *Client) InternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope) (*InternetCreateResponseEnvelope, error) {
+	res, err := c.sendInternetOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope, params InternetOpCreateParams) (res *InternetCreateResponseEnvelope, err error) {
+func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCreateRequestEnvelope) (res *InternetCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -14487,27 +12264,8 @@ func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCrea
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet"
+	var pathParts [1]string
+	pathParts[0] = "/internet"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -14570,7 +12328,7 @@ func (c *Client) sendInternetOpCreate(ctx context.Context, request *InternetCrea
 //
 // Internet 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/internet/{id}
+// DELETE /internet/{id}
 func (c *Client) InternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (*InternetOpDeleteOK, error) {
 	res, err := c.sendInternetOpDelete(ctx, params)
 	return res, err
@@ -14579,27 +12337,8 @@ func (c *Client) InternetOpDelete(ctx context.Context, params InternetOpDeletePa
 func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDeleteParams) (res *InternetOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [2]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14616,7 +12355,7 @@ func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDele
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -14677,7 +12416,7 @@ func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDele
 //
 // Internet サブネット削除.
 //
-// DELETE /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
+// DELETE /internet/{id}/subnet/{subnetID}
 func (c *Client) InternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (*InternetOpDeleteSubnetOK, error) {
 	res, err := c.sendInternetOpDeleteSubnet(ctx, params)
 	return res, err
@@ -14686,27 +12425,8 @@ func (c *Client) InternetOpDeleteSubnet(ctx context.Context, params InternetOpDe
 func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params InternetOpDeleteSubnetParams) (res *InternetOpDeleteSubnetOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [4]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14723,9 +12443,9 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/subnet/"
+	pathParts[2] = "/subnet/"
 	{
 		// Encode "subnetID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14742,7 +12462,7 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -14803,7 +12523,7 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 //
 // Internet IPv6 無効化.
 //
-// DELETE /{zone}/api/cloud/1.1/internet/{id}/ipv6net/{ipv6netID}
+// DELETE /internet/{id}/ipv6net/{ipv6netID}
 func (c *Client) InternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (*InternetOpDisableIPv6OK, error) {
 	res, err := c.sendInternetOpDisableIPv6(ctx, params)
 	return res, err
@@ -14812,27 +12532,8 @@ func (c *Client) InternetOpDisableIPv6(ctx context.Context, params InternetOpDis
 func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetOpDisableIPv6Params) (res *InternetOpDisableIPv6OK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [4]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14849,9 +12550,9 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/ipv6net/"
+	pathParts[2] = "/ipv6net/"
 	{
 		// Encode "ipv6netID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14868,7 +12569,7 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -14929,7 +12630,7 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 //
 // Internet IPv6 有効化.
 //
-// POST /{zone}/api/cloud/1.1/internet/{id}/ipv6net
+// POST /internet/{id}/ipv6net
 func (c *Client) InternetOpEnableIPv6(ctx context.Context, params InternetOpEnableIPv6Params) (*InternetEnableIPv6ResponseEnvelope, error) {
 	res, err := c.sendInternetOpEnableIPv6(ctx, params)
 	return res, err
@@ -14938,27 +12639,8 @@ func (c *Client) InternetOpEnableIPv6(ctx context.Context, params InternetOpEnab
 func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOpEnableIPv6Params) (res *InternetEnableIPv6ResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [3]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -14975,9 +12657,9 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/ipv6net"
+	pathParts[2] = "/ipv6net"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -15037,7 +12719,7 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 //
 // Internet 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/internet
+// GET /internet
 func (c *Client) InternetOpFind(ctx context.Context, params InternetOpFindParams) (*InternetFindResponseEnvelope, error) {
 	res, err := c.sendInternetOpFind(ctx, params)
 	return res, err
@@ -15046,27 +12728,8 @@ func (c *Client) InternetOpFind(ctx context.Context, params InternetOpFindParams
 func (c *Client) sendInternetOpFind(ctx context.Context, params InternetOpFindParams) (res *InternetFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet"
+	var pathParts [1]string
+	pathParts[0] = "/internet"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -15146,7 +12809,7 @@ func (c *Client) sendInternetOpFind(ctx context.Context, params InternetOpFindPa
 //
 // Internet モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/internet/{id}/monitor
+// GET /internet/{id}/monitor
 func (c *Client) InternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (*InternetMonitorResponseEnvelope, error) {
 	res, err := c.sendInternetOpMonitor(ctx, request, params)
 	return res, err
@@ -15155,27 +12818,8 @@ func (c *Client) InternetOpMonitor(ctx context.Context, request *InternetMonitor
 func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetMonitorRequestEnvelope, params InternetOpMonitorParams) (res *InternetMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [3]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15192,9 +12836,9 @@ func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetMon
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/monitor"
+	pathParts[2] = "/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -15257,7 +12901,7 @@ func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetMon
 //
 // Internet 取得.
 //
-// GET /{zone}/api/cloud/1.1/internet/{id}
+// GET /internet/{id}
 func (c *Client) InternetOpRead(ctx context.Context, params InternetOpReadParams) (*InternetReadResponseEnvelope, error) {
 	res, err := c.sendInternetOpRead(ctx, params)
 	return res, err
@@ -15266,27 +12910,8 @@ func (c *Client) InternetOpRead(ctx context.Context, params InternetOpReadParams
 func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadParams) (res *InternetReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [2]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15303,7 +12928,7 @@ func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadPa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -15364,7 +12989,7 @@ func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadPa
 //
 // Internet 更新.
 //
-// PUT /{zone}/api/cloud/1.1/internet/{id}
+// PUT /internet/{id}
 func (c *Client) InternetOpUpdate(ctx context.Context, request *InternetUpdateRequestEnvelope, params InternetOpUpdateParams) (*InternetUpdateResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdate(ctx, request, params)
 	return res, err
@@ -15382,27 +13007,8 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetUpda
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [2]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15419,7 +13025,7 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetUpda
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -15483,7 +13089,7 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetUpda
 //
 // Internet 帯域更新.
 //
-// PUT /{zone}/api/cloud/1.1/internet/{id}/bandwidth
+// PUT /internet/{id}/bandwidth
 func (c *Client) InternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (*InternetUpdateBandWidthResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdateBandWidth(ctx, request, params)
 	return res, err
@@ -15492,27 +13098,8 @@ func (c *Client) InternetOpUpdateBandWidth(ctx context.Context, request *Interne
 func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *InternetUpdateBandWidthRequestEnvelope, params InternetOpUpdateBandWidthParams) (res *InternetUpdateBandWidthResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [3]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15529,9 +13116,9 @@ func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *Int
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/bandwidth"
+	pathParts[2] = "/bandwidth"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -15594,7 +13181,7 @@ func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *Int
 //
 // Internet サブネット更新.
 //
-// PUT /{zone}/api/cloud/1.1/internet/{id}/subnet/{subnetID}
+// PUT /internet/{id}/subnet/{subnetID}
 func (c *Client) InternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (*InternetUpdateSubnetResponseEnvelope, error) {
 	res, err := c.sendInternetOpUpdateSubnet(ctx, request, params)
 	return res, err
@@ -15603,27 +13190,8 @@ func (c *Client) InternetOpUpdateSubnet(ctx context.Context, request *InternetUp
 func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *InternetUpdateSubnetRequestEnvelope, params InternetOpUpdateSubnetParams) (res *InternetUpdateSubnetResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/internet/"
+	var pathParts [4]string
+	pathParts[0] = "/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15640,9 +13208,9 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/subnet/"
+	pathParts[2] = "/subnet/"
 	{
 		// Encode "subnetID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15659,7 +13227,7 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -15723,7 +13291,7 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 //
 // InternetPlan 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/product/internet
+// GET /product/internet
 func (c *Client) InternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (*InternetPlanFindResponseEnvelope, error) {
 	res, err := c.sendInternetPlanOpFind(ctx, params)
 	return res, err
@@ -15732,27 +13300,8 @@ func (c *Client) InternetPlanOpFind(ctx context.Context, params InternetPlanOpFi
 func (c *Client) sendInternetPlanOpFind(ctx context.Context, params InternetPlanOpFindParams) (res *InternetPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/internet"
+	var pathParts [1]string
+	pathParts[0] = "/product/internet"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -15832,7 +13381,7 @@ func (c *Client) sendInternetPlanOpFind(ctx context.Context, params InternetPlan
 //
 // InternetPlan 取得.
 //
-// GET /{zone}/api/cloud/1.1/product/internet/{id}
+// GET /product/internet/{id}
 func (c *Client) InternetPlanOpRead(ctx context.Context, params InternetPlanOpReadParams) (*InternetPlanReadResponseEnvelope, error) {
 	res, err := c.sendInternetPlanOpRead(ctx, params)
 	return res, err
@@ -15841,27 +13390,8 @@ func (c *Client) InternetPlanOpRead(ctx context.Context, params InternetPlanOpRe
 func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlanOpReadParams) (res *InternetPlanReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/internet/"
+	var pathParts [2]string
+	pathParts[0] = "/product/internet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -15878,7 +13408,7 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -15939,7 +13469,7 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 //
 // LicenseInfo 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/product/license
+// GET /product/license
 func (c *Client) LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (*LicenseInfoFindResponseEnvelope, error) {
 	res, err := c.sendLicenseInfoOpFind(ctx, params)
 	return res, err
@@ -15948,27 +13478,8 @@ func (c *Client) LicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFind
 func (c *Client) sendLicenseInfoOpFind(ctx context.Context, params LicenseInfoOpFindParams) (res *LicenseInfoFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/license"
+	var pathParts [1]string
+	pathParts[0] = "/product/license"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -16048,7 +13559,7 @@ func (c *Client) sendLicenseInfoOpFind(ctx context.Context, params LicenseInfoOp
 //
 // LicenseInfo 取得.
 //
-// GET /{zone}/api/cloud/1.1/product/license/{id}
+// GET /product/license/{id}
 func (c *Client) LicenseInfoOpRead(ctx context.Context, params LicenseInfoOpReadParams) (*LicenseInfoReadResponseEnvelope, error) {
 	res, err := c.sendLicenseInfoOpRead(ctx, params)
 	return res, err
@@ -16057,27 +13568,8 @@ func (c *Client) LicenseInfoOpRead(ctx context.Context, params LicenseInfoOpRead
 func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOpReadParams) (res *LicenseInfoReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/license/"
+	var pathParts [2]string
+	pathParts[0] = "/product/license/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16094,7 +13586,7 @@ func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -16155,36 +13647,17 @@ func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOp
 //
 // License 作成.
 //
-// POST /{zone}/api/cloud/1.1/license
-func (c *Client) LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (*LicenseCreateResponseEnvelope, error) {
-	res, err := c.sendLicenseOpCreate(ctx, request, params)
+// POST /license
+func (c *Client) LicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope) (*LicenseCreateResponseEnvelope, error) {
+	res, err := c.sendLicenseOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope, params LicenseOpCreateParams) (res *LicenseCreateResponseEnvelope, err error) {
+func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseCreateRequestEnvelope) (res *LicenseCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/license"
+	var pathParts [1]string
+	pathParts[0] = "/license"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -16247,7 +13720,7 @@ func (c *Client) sendLicenseOpCreate(ctx context.Context, request *LicenseCreate
 //
 // License 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/license/{id}
+// DELETE /license/{id}
 func (c *Client) LicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (*LicenseOpDeleteOK, error) {
 	res, err := c.sendLicenseOpDelete(ctx, params)
 	return res, err
@@ -16256,27 +13729,8 @@ func (c *Client) LicenseOpDelete(ctx context.Context, params LicenseOpDeletePara
 func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDeleteParams) (res *LicenseOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/license/"
+	var pathParts [2]string
+	pathParts[0] = "/license/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16293,7 +13747,7 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -16354,7 +13808,7 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 //
 // License 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/license
+// GET /license
 func (c *Client) LicenseOpFind(ctx context.Context, params LicenseOpFindParams) (*LicenseFindResponseEnvelope, error) {
 	res, err := c.sendLicenseOpFind(ctx, params)
 	return res, err
@@ -16363,27 +13817,8 @@ func (c *Client) LicenseOpFind(ctx context.Context, params LicenseOpFindParams) 
 func (c *Client) sendLicenseOpFind(ctx context.Context, params LicenseOpFindParams) (res *LicenseFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/license"
+	var pathParts [1]string
+	pathParts[0] = "/license"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -16463,7 +13898,7 @@ func (c *Client) sendLicenseOpFind(ctx context.Context, params LicenseOpFindPara
 //
 // License 取得.
 //
-// GET /{zone}/api/cloud/1.1/license/{id}
+// GET /license/{id}
 func (c *Client) LicenseOpRead(ctx context.Context, params LicenseOpReadParams) (*LicenseReadResponseEnvelope, error) {
 	res, err := c.sendLicenseOpRead(ctx, params)
 	return res, err
@@ -16472,27 +13907,8 @@ func (c *Client) LicenseOpRead(ctx context.Context, params LicenseOpReadParams) 
 func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadParams) (res *LicenseReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/license/"
+	var pathParts [2]string
+	pathParts[0] = "/license/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16509,7 +13925,7 @@ func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadPara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -16570,7 +13986,7 @@ func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadPara
 //
 // License 更新.
 //
-// PUT /{zone}/api/cloud/1.1/license/{id}
+// PUT /license/{id}
 func (c *Client) LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (*LicenseUpdateResponseEnvelope, error) {
 	res, err := c.sendLicenseOpUpdate(ctx, request, params)
 	return res, err
@@ -16579,27 +13995,8 @@ func (c *Client) LicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequ
 func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseUpdateRequestEnvelope, params LicenseOpUpdateParams) (res *LicenseUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/license/"
+	var pathParts [2]string
+	pathParts[0] = "/license/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16616,7 +14013,7 @@ func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseUpdate
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -16680,7 +14077,7 @@ func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseUpdate
 //
 // LocalRouter モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/localrouter/monitor
+// GET /commonserviceitem/{id}/activity/localrouter/monitor
 func (c *Client) LocalRouterOpMonitorLocalRouter(ctx context.Context, request *LocalRouterOpMonitorLocalRouterReq, params LocalRouterOpMonitorLocalRouterParams) (*LocalRouterMonitorLocalRouterResponseEnvelope, error) {
 	res, err := c.sendLocalRouterOpMonitorLocalRouter(ctx, request, params)
 	return res, err
@@ -16689,27 +14086,8 @@ func (c *Client) LocalRouterOpMonitorLocalRouter(ctx context.Context, request *L
 func (c *Client) sendLocalRouterOpMonitorLocalRouter(ctx context.Context, request *LocalRouterOpMonitorLocalRouterReq, params LocalRouterOpMonitorLocalRouterParams) (res *LocalRouterMonitorLocalRouterResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16726,9 +14104,9 @@ func (c *Client) sendLocalRouterOpMonitorLocalRouter(ctx context.Context, reques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/activity/localrouter/monitor"
+	pathParts[2] = "/activity/localrouter/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -16791,7 +14169,7 @@ func (c *Client) sendLocalRouterOpMonitorLocalRouter(ctx context.Context, reques
 //
 // MobileGateway SIM 追加.
 //
-// POST /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
+// POST /appliance/{id}/mobilegateway/sims
 func (c *Client) MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (*MobileGatewayOpAddSIMOK, error) {
 	res, err := c.sendMobileGatewayOpAddSIM(ctx, request, params)
 	return res, err
@@ -16800,27 +14178,8 @@ func (c *Client) MobileGatewayOpAddSIM(ctx context.Context, request *MobileGatew
 func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileGatewayOpAddSIMReq, params MobileGatewayOpAddSIMParams) (res *MobileGatewayOpAddSIMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16837,9 +14196,9 @@ func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileG
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/sims"
+	pathParts[2] = "/mobilegateway/sims"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -16902,7 +14261,7 @@ func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileG
 //
 // MobileGateway スイッチ接続.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch/{switchID}
+// PUT /appliance/{id}/interface/1/to/switch/{switchID}
 func (c *Client) MobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (*MobileGatewayOpConnectToSwitchOK, error) {
 	res, err := c.sendMobileGatewayOpConnectToSwitch(ctx, params)
 	return res, err
@@ -16911,27 +14270,8 @@ func (c *Client) MobileGatewayOpConnectToSwitch(ctx context.Context, params Mobi
 func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params MobileGatewayOpConnectToSwitchParams) (res *MobileGatewayOpConnectToSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [4]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16948,9 +14288,9 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/interface/1/to/switch/"
+	pathParts[2] = "/interface/1/to/switch/"
 	{
 		// Encode "switchID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -16967,7 +14307,7 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -17028,7 +14368,7 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 //
 // MobileGateway SIM 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims/{simID}
+// DELETE /appliance/{id}/mobilegateway/sims/{simID}
 func (c *Client) MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (*MobileGatewayOpDeleteSIMOK, error) {
 	res, err := c.sendMobileGatewayOpDeleteSIM(ctx, params)
 	return res, err
@@ -17037,27 +14377,8 @@ func (c *Client) MobileGatewayOpDeleteSIM(ctx context.Context, params MobileGate
 func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params MobileGatewayOpDeleteSIMParams) (res *MobileGatewayOpDeleteSIMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [4]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17074,9 +14395,9 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/sims/"
+	pathParts[2] = "/mobilegateway/sims/"
 	{
 		// Encode "simID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17093,7 +14414,7 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -17154,7 +14475,7 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 //
 // MobileGateway トラフィック設定削除.
 //
-// DELETE /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
+// DELETE /appliance/{id}/mobilegateway/traffic_monitoring
 func (c *Client) MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (*MobileGatewayOpDeleteTrafficConfigOK, error) {
 	res, err := c.sendMobileGatewayOpDeleteTrafficConfig(ctx, params)
 	return res, err
@@ -17163,27 +14484,8 @@ func (c *Client) MobileGatewayOpDeleteTrafficConfig(ctx context.Context, params 
 func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, params MobileGatewayOpDeleteTrafficConfigParams) (res *MobileGatewayOpDeleteTrafficConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17200,9 +14502,9 @@ func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, par
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/traffic_monitoring"
+	pathParts[2] = "/mobilegateway/traffic_monitoring"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -17262,7 +14564,7 @@ func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, par
 //
 // MobileGateway スイッチ切断.
 //
-// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/1/to/switch
+// DELETE /appliance/{id}/interface/1/to/switch
 func (c *Client) MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (*MobileGatewayOpDisconnectFromSwitchOK, error) {
 	res, err := c.sendMobileGatewayOpDisconnectFromSwitch(ctx, params)
 	return res, err
@@ -17271,27 +14573,8 @@ func (c *Client) MobileGatewayOpDisconnectFromSwitch(ctx context.Context, params
 func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, params MobileGatewayOpDisconnectFromSwitchParams) (res *MobileGatewayOpDisconnectFromSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17308,9 +14591,9 @@ func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, pa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/interface/1/to/switch"
+	pathParts[2] = "/interface/1/to/switch"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -17370,7 +14653,7 @@ func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, pa
 //
 // MobileGateway DNS 取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
+// GET /appliance/{id}/mobilegateway/dnsresolver
 func (c *Client) MobileGatewayOpGetDNS(ctx context.Context, params MobileGatewayOpGetDNSParams) (*MobileGatewayGetDNSResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpGetDNS(ctx, params)
 	return res, err
@@ -17379,27 +14662,8 @@ func (c *Client) MobileGatewayOpGetDNS(ctx context.Context, params MobileGateway
 func (c *Client) sendMobileGatewayOpGetDNS(ctx context.Context, params MobileGatewayOpGetDNSParams) (res *MobileGatewayGetDNSResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17416,9 +14680,9 @@ func (c *Client) sendMobileGatewayOpGetDNS(ctx context.Context, params MobileGat
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/dnsresolver"
+	pathParts[2] = "/mobilegateway/dnsresolver"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -17478,7 +14742,7 @@ func (c *Client) sendMobileGatewayOpGetDNS(ctx context.Context, params MobileGat
 //
 // MobileGateway SIM ルート取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
+// GET /appliance/{id}/mobilegateway/simroutes
 func (c *Client) MobileGatewayOpGetSIMRoutes(ctx context.Context, params MobileGatewayOpGetSIMRoutesParams) (*MobileGatewayGetSIMRoutesResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpGetSIMRoutes(ctx, params)
 	return res, err
@@ -17487,27 +14751,8 @@ func (c *Client) MobileGatewayOpGetSIMRoutes(ctx context.Context, params MobileG
 func (c *Client) sendMobileGatewayOpGetSIMRoutes(ctx context.Context, params MobileGatewayOpGetSIMRoutesParams) (res *MobileGatewayGetSIMRoutesResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17524,9 +14769,9 @@ func (c *Client) sendMobileGatewayOpGetSIMRoutes(ctx context.Context, params Mob
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/simroutes"
+	pathParts[2] = "/mobilegateway/simroutes"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -17586,7 +14831,7 @@ func (c *Client) sendMobileGatewayOpGetSIMRoutes(ctx context.Context, params Mob
 //
 // MobileGateway トラフィック設定取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
+// GET /appliance/{id}/mobilegateway/traffic_monitoring
 func (c *Client) MobileGatewayOpGetTrafficConfig(ctx context.Context, params MobileGatewayOpGetTrafficConfigParams) (*MobileGatewayGetTrafficConfigResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpGetTrafficConfig(ctx, params)
 	return res, err
@@ -17595,27 +14840,8 @@ func (c *Client) MobileGatewayOpGetTrafficConfig(ctx context.Context, params Mob
 func (c *Client) sendMobileGatewayOpGetTrafficConfig(ctx context.Context, params MobileGatewayOpGetTrafficConfigParams) (res *MobileGatewayGetTrafficConfigResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17632,9 +14858,9 @@ func (c *Client) sendMobileGatewayOpGetTrafficConfig(ctx context.Context, params
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/traffic_monitoring"
+	pathParts[2] = "/mobilegateway/traffic_monitoring"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -17694,7 +14920,7 @@ func (c *Client) sendMobileGatewayOpGetTrafficConfig(ctx context.Context, params
 //
 // MobileGateway SIM 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sims
+// GET /appliance/{id}/mobilegateway/sims
 func (c *Client) MobileGatewayOpListSIM(ctx context.Context, params MobileGatewayOpListSIMParams) (*MobileGatewayListSIMResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpListSIM(ctx, params)
 	return res, err
@@ -17703,27 +14929,8 @@ func (c *Client) MobileGatewayOpListSIM(ctx context.Context, params MobileGatewa
 func (c *Client) sendMobileGatewayOpListSIM(ctx context.Context, params MobileGatewayOpListSIMParams) (res *MobileGatewayListSIMResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17740,9 +14947,9 @@ func (c *Client) sendMobileGatewayOpListSIM(ctx context.Context, params MobileGa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/sims"
+	pathParts[2] = "/mobilegateway/sims"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -17802,7 +15009,7 @@ func (c *Client) sendMobileGatewayOpListSIM(ctx context.Context, params MobileGa
 //
 // MobileGateway ログ取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/sessionlog
+// GET /appliance/{id}/mobilegateway/sessionlog
 func (c *Client) MobileGatewayOpLogs(ctx context.Context, params MobileGatewayOpLogsParams) (*MobileGatewayLogsResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpLogs(ctx, params)
 	return res, err
@@ -17811,27 +15018,8 @@ func (c *Client) MobileGatewayOpLogs(ctx context.Context, params MobileGatewayOp
 func (c *Client) sendMobileGatewayOpLogs(ctx context.Context, params MobileGatewayOpLogsParams) (res *MobileGatewayLogsResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17848,9 +15036,9 @@ func (c *Client) sendMobileGatewayOpLogs(ctx context.Context, params MobileGatew
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/sessionlog"
+	pathParts[2] = "/mobilegateway/sessionlog"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -17910,7 +15098,7 @@ func (c *Client) sendMobileGatewayOpLogs(ctx context.Context, params MobileGatew
 //
 // MobileGateway DNS 設定.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/dnsresolver
+// PUT /appliance/{id}/mobilegateway/dnsresolver
 func (c *Client) MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (*MobileGatewayOpSetDNSOK, error) {
 	res, err := c.sendMobileGatewayOpSetDNS(ctx, request, params)
 	return res, err
@@ -17919,27 +15107,8 @@ func (c *Client) MobileGatewayOpSetDNS(ctx context.Context, request *MobileGatew
 func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileGatewayOpSetDNSReq, params MobileGatewayOpSetDNSParams) (res *MobileGatewayOpSetDNSOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -17956,9 +15125,9 @@ func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileG
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/dnsresolver"
+	pathParts[2] = "/mobilegateway/dnsresolver"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -18021,7 +15190,7 @@ func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileG
 //
 // MobileGateway SIM ルート設定.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/simroutes
+// PUT /appliance/{id}/mobilegateway/simroutes
 func (c *Client) MobileGatewayOpSetSIMRoutes(ctx context.Context, request *MobileGatewayOpSetSIMRoutesReq, params MobileGatewayOpSetSIMRoutesParams) (*MobileGatewayOpSetSIMRoutesOK, error) {
 	res, err := c.sendMobileGatewayOpSetSIMRoutes(ctx, request, params)
 	return res, err
@@ -18039,27 +15208,8 @@ func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *M
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -18076,9 +15226,9 @@ func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *M
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/simroutes"
+	pathParts[2] = "/mobilegateway/simroutes"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -18141,7 +15291,7 @@ func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *M
 //
 // MobileGateway トラフィック設定更新.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_monitoring
+// PUT /appliance/{id}/mobilegateway/traffic_monitoring
 func (c *Client) MobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (*MobileGatewayOpSetTrafficConfigOK, error) {
 	res, err := c.sendMobileGatewayOpSetTrafficConfig(ctx, request, params)
 	return res, err
@@ -18150,27 +15300,8 @@ func (c *Client) MobileGatewayOpSetTrafficConfig(ctx context.Context, request *M
 func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, request *MobileGatewayOpSetTrafficConfigReq, params MobileGatewayOpSetTrafficConfigParams) (res *MobileGatewayOpSetTrafficConfigOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -18187,9 +15318,9 @@ func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, reques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/traffic_monitoring"
+	pathParts[2] = "/mobilegateway/traffic_monitoring"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -18252,7 +15383,7 @@ func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, reques
 //
 // MobileGateway トラフィック状況取得.
 //
-// GET /{zone}/api/cloud/1.1/appliance/{id}/mobilegateway/traffic_status
+// GET /appliance/{id}/mobilegateway/traffic_status
 func (c *Client) MobileGatewayOpTrafficStatus(ctx context.Context, params MobileGatewayOpTrafficStatusParams) (*MobileGatewayTrafficStatusResponseEnvelope, error) {
 	res, err := c.sendMobileGatewayOpTrafficStatus(ctx, params)
 	return res, err
@@ -18261,27 +15392,8 @@ func (c *Client) MobileGatewayOpTrafficStatus(ctx context.Context, params Mobile
 func (c *Client) sendMobileGatewayOpTrafficStatus(ctx context.Context, params MobileGatewayOpTrafficStatusParams) (res *MobileGatewayTrafficStatusResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [3]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -18298,9 +15410,9 @@ func (c *Client) sendMobileGatewayOpTrafficStatus(ctx context.Context, params Mo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/mobilegateway/traffic_status"
+	pathParts[2] = "/mobilegateway/traffic_status"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -18360,13 +15472,13 @@ func (c *Client) sendMobileGatewayOpTrafficStatus(ctx context.Context, params Mo
 //
 // Note 作成.
 //
-// POST /{zone}/api/cloud/1.1/note
-func (c *Client) NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (*NoteCreateResponseEnvelope, error) {
-	res, err := c.sendNoteOpCreate(ctx, request, params)
+// POST /note
+func (c *Client) NoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope) (*NoteCreateResponseEnvelope, error) {
+	res, err := c.sendNoteOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope, params NoteOpCreateParams) (res *NoteCreateResponseEnvelope, err error) {
+func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateRequestEnvelope) (res *NoteCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -18378,27 +15490,8 @@ func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateReques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/note"
+	var pathParts [1]string
+	pathParts[0] = "/note"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -18461,7 +15554,7 @@ func (c *Client) sendNoteOpCreate(ctx context.Context, request *NoteCreateReques
 //
 // Note 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/note/{id}
+// DELETE /note/{id}
 func (c *Client) NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*NoteOpDeleteOK, error) {
 	res, err := c.sendNoteOpDelete(ctx, params)
 	return res, err
@@ -18470,27 +15563,8 @@ func (c *Client) NoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (*
 func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams) (res *NoteOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/note/"
+	var pathParts [2]string
+	pathParts[0] = "/note/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -18507,7 +15581,7 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -18568,7 +15642,7 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 //
 // Note 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/note
+// GET /note
 func (c *Client) NoteOpFind(ctx context.Context, params NoteOpFindParams) (*NoteFindResponseEnvelope, error) {
 	res, err := c.sendNoteOpFind(ctx, params)
 	return res, err
@@ -18577,27 +15651,8 @@ func (c *Client) NoteOpFind(ctx context.Context, params NoteOpFindParams) (*Note
 func (c *Client) sendNoteOpFind(ctx context.Context, params NoteOpFindParams) (res *NoteFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/note"
+	var pathParts [1]string
+	pathParts[0] = "/note"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -18677,7 +15732,7 @@ func (c *Client) sendNoteOpFind(ctx context.Context, params NoteOpFindParams) (r
 //
 // Note 取得.
 //
-// GET /{zone}/api/cloud/1.1/note/{id}
+// GET /note/{id}
 func (c *Client) NoteOpRead(ctx context.Context, params NoteOpReadParams) (*NoteReadResponseEnvelope, error) {
 	res, err := c.sendNoteOpRead(ctx, params)
 	return res, err
@@ -18686,27 +15741,8 @@ func (c *Client) NoteOpRead(ctx context.Context, params NoteOpReadParams) (*Note
 func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (res *NoteReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/note/"
+	var pathParts [2]string
+	pathParts[0] = "/note/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -18723,7 +15759,7 @@ func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -18784,7 +15820,7 @@ func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (r
 //
 // Note 更新.
 //
-// PUT /{zone}/api/cloud/1.1/note/{id}
+// PUT /note/{id}
 func (c *Client) NoteOpUpdate(ctx context.Context, request *NoteUpdateRequestEnvelope, params NoteOpUpdateParams) (*NoteUpdateResponseEnvelope, error) {
 	res, err := c.sendNoteOpUpdate(ctx, request, params)
 	return res, err
@@ -18802,27 +15838,8 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteUpdateReques
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/note/"
+	var pathParts [2]string
+	pathParts[0] = "/note/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -18839,7 +15856,7 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteUpdateReques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -18903,13 +15920,13 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteUpdateReques
 //
 // PacketFilter 作成.
 //
-// POST /{zone}/api/cloud/1.1/packetfilter
-func (c *Client) PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (*PacketFilterCreateResponseEnvelope, error) {
-	res, err := c.sendPacketFilterOpCreate(ctx, request, params)
+// POST /packetfilter
+func (c *Client) PacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope) (*PacketFilterCreateResponseEnvelope, error) {
+	res, err := c.sendPacketFilterOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope, params PacketFilterOpCreateParams) (res *PacketFilterCreateResponseEnvelope, err error) {
+func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFilterCreateRequestEnvelope) (res *PacketFilterCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -18921,27 +15938,8 @@ func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFi
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/packetfilter"
+	var pathParts [1]string
+	pathParts[0] = "/packetfilter"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -19004,7 +16002,7 @@ func (c *Client) sendPacketFilterOpCreate(ctx context.Context, request *PacketFi
 //
 // PacketFilter 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/packetfilter/{id}
+// DELETE /packetfilter/{id}
 func (c *Client) PacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (*PacketFilterOpDeleteOK, error) {
 	res, err := c.sendPacketFilterOpDelete(ctx, params)
 	return res, err
@@ -19013,27 +16011,8 @@ func (c *Client) PacketFilterOpDelete(ctx context.Context, params PacketFilterOp
 func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilterOpDeleteParams) (res *PacketFilterOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/packetfilter/"
+	var pathParts [2]string
+	pathParts[0] = "/packetfilter/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -19050,7 +16029,7 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -19111,7 +16090,7 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 //
 // PacketFilter 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/packetfilter
+// GET /packetfilter
 func (c *Client) PacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (*PacketFilterFindResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpFind(ctx, params)
 	return res, err
@@ -19120,27 +16099,8 @@ func (c *Client) PacketFilterOpFind(ctx context.Context, params PacketFilterOpFi
 func (c *Client) sendPacketFilterOpFind(ctx context.Context, params PacketFilterOpFindParams) (res *PacketFilterFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/packetfilter"
+	var pathParts [1]string
+	pathParts[0] = "/packetfilter"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -19220,7 +16180,7 @@ func (c *Client) sendPacketFilterOpFind(ctx context.Context, params PacketFilter
 //
 // PacketFilter 取得.
 //
-// GET /{zone}/api/cloud/1.1/packetfilter/{id}
+// GET /packetfilter/{id}
 func (c *Client) PacketFilterOpRead(ctx context.Context, params PacketFilterOpReadParams) (*PacketFilterReadResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpRead(ctx, params)
 	return res, err
@@ -19229,27 +16189,8 @@ func (c *Client) PacketFilterOpRead(ctx context.Context, params PacketFilterOpRe
 func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilterOpReadParams) (res *PacketFilterReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/packetfilter/"
+	var pathParts [2]string
+	pathParts[0] = "/packetfilter/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -19266,7 +16207,7 @@ func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilter
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -19327,7 +16268,7 @@ func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilter
 //
 // PacketFilter 更新.
 //
-// PUT /{zone}/api/cloud/1.1/packetfilter/{id}
+// PUT /packetfilter/{id}
 func (c *Client) PacketFilterOpUpdate(ctx context.Context, request *PacketFilterUpdateRequestEnvelope, params PacketFilterOpUpdateParams) (*PacketFilterUpdateResponseEnvelope, error) {
 	res, err := c.sendPacketFilterOpUpdate(ctx, request, params)
 	return res, err
@@ -19345,27 +16286,8 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/packetfilter/"
+	var pathParts [2]string
+	pathParts[0] = "/packetfilter/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -19382,7 +16304,7 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -19446,13 +16368,13 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 //
 // PrivateHost 作成.
 //
-// POST /{zone}/api/cloud/1.1/privatehost
-func (c *Client) PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (*PrivateHostCreateResponseEnvelope, error) {
-	res, err := c.sendPrivateHostOpCreate(ctx, request, params)
+// POST /privatehost
+func (c *Client) PrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope) (*PrivateHostCreateResponseEnvelope, error) {
+	res, err := c.sendPrivateHostOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope, params PrivateHostOpCreateParams) (res *PrivateHostCreateResponseEnvelope, err error) {
+func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHostCreateRequestEnvelope) (res *PrivateHostCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -19464,27 +16386,8 @@ func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHo
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/privatehost"
+	var pathParts [1]string
+	pathParts[0] = "/privatehost"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -19547,7 +16450,7 @@ func (c *Client) sendPrivateHostOpCreate(ctx context.Context, request *PrivateHo
 //
 // PrivateHost 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/privatehost/{id}
+// DELETE /privatehost/{id}
 func (c *Client) PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (*PrivateHostOpDeleteOK, error) {
 	res, err := c.sendPrivateHostOpDelete(ctx, params)
 	return res, err
@@ -19556,27 +16459,8 @@ func (c *Client) PrivateHostOpDelete(ctx context.Context, params PrivateHostOpDe
 func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHostOpDeleteParams) (res *PrivateHostOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/privatehost/"
+	var pathParts [2]string
+	pathParts[0] = "/privatehost/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -19593,7 +16477,7 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -19654,7 +16538,7 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 //
 // PrivateHost 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/privatehost
+// GET /privatehost
 func (c *Client) PrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (*PrivateHostFindResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpFind(ctx, params)
 	return res, err
@@ -19663,27 +16547,8 @@ func (c *Client) PrivateHostOpFind(ctx context.Context, params PrivateHostOpFind
 func (c *Client) sendPrivateHostOpFind(ctx context.Context, params PrivateHostOpFindParams) (res *PrivateHostFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/privatehost"
+	var pathParts [1]string
+	pathParts[0] = "/privatehost"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -19763,7 +16628,7 @@ func (c *Client) sendPrivateHostOpFind(ctx context.Context, params PrivateHostOp
 //
 // PrivateHost 取得.
 //
-// GET /{zone}/api/cloud/1.1/privatehost/{id}
+// GET /privatehost/{id}
 func (c *Client) PrivateHostOpRead(ctx context.Context, params PrivateHostOpReadParams) (*PrivateHostReadResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpRead(ctx, params)
 	return res, err
@@ -19772,27 +16637,8 @@ func (c *Client) PrivateHostOpRead(ctx context.Context, params PrivateHostOpRead
 func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOpReadParams) (res *PrivateHostReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/privatehost/"
+	var pathParts [2]string
+	pathParts[0] = "/privatehost/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -19809,7 +16655,7 @@ func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -19870,7 +16716,7 @@ func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOp
 //
 // PrivateHost 更新.
 //
-// PUT /{zone}/api/cloud/1.1/privatehost/{id}
+// PUT /privatehost/{id}
 func (c *Client) PrivateHostOpUpdate(ctx context.Context, request *PrivateHostUpdateRequestEnvelope, params PrivateHostOpUpdateParams) (*PrivateHostUpdateResponseEnvelope, error) {
 	res, err := c.sendPrivateHostOpUpdate(ctx, request, params)
 	return res, err
@@ -19888,27 +16734,8 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/privatehost/"
+	var pathParts [2]string
+	pathParts[0] = "/privatehost/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -19925,7 +16752,7 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -19989,7 +16816,7 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 //
 // PrivateHostPlan 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/product/privatehost
+// GET /product/privatehost
 func (c *Client) PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (*PrivateHostPlanFindResponseEnvelope, error) {
 	res, err := c.sendPrivateHostPlanOpFind(ctx, params)
 	return res, err
@@ -19998,27 +16825,8 @@ func (c *Client) PrivateHostPlanOpFind(ctx context.Context, params PrivateHostPl
 func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, params PrivateHostPlanOpFindParams) (res *PrivateHostPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/privatehost"
+	var pathParts [1]string
+	pathParts[0] = "/product/privatehost"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -20098,7 +16906,7 @@ func (c *Client) sendPrivateHostPlanOpFind(ctx context.Context, params PrivateHo
 //
 // PrivateHostPlan 取得.
 //
-// GET /{zone}/api/cloud/1.1/product/privatehost/{id}
+// GET /product/privatehost/{id}
 func (c *Client) PrivateHostPlanOpRead(ctx context.Context, params PrivateHostPlanOpReadParams) (*PrivateHostPlanReadResponseEnvelope, error) {
 	res, err := c.sendPrivateHostPlanOpRead(ctx, params)
 	return res, err
@@ -20107,27 +16915,8 @@ func (c *Client) PrivateHostPlanOpRead(ctx context.Context, params PrivateHostPl
 func (c *Client) sendPrivateHostPlanOpRead(ctx context.Context, params PrivateHostPlanOpReadParams) (res *PrivateHostPlanReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/privatehost/"
+	var pathParts [2]string
+	pathParts[0] = "/product/privatehost/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20144,7 +16933,7 @@ func (c *Client) sendPrivateHostPlanOpRead(ctx context.Context, params PrivateHo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -20205,7 +16994,7 @@ func (c *Client) sendPrivateHostPlanOpRead(ctx context.Context, params PrivateHo
 //
 // ProxyLB プラン変更.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/plan
+// PUT /commonserviceitem/{id}/plan
 func (c *Client) ProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOpChangePlanReq, params ProxyLBOpChangePlanParams) (*ProxyLBChangePlanResponseEnvelope, error) {
 	res, err := c.sendProxyLBOpChangePlan(ctx, request, params)
 	return res, err
@@ -20214,27 +17003,8 @@ func (c *Client) ProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOpChan
 func (c *Client) sendProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOpChangePlanReq, params ProxyLBOpChangePlanParams) (res *ProxyLBChangePlanResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20251,9 +17021,9 @@ func (c *Client) sendProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/plan"
+	pathParts[2] = "/plan"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -20316,7 +17086,7 @@ func (c *Client) sendProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOp
 //
 // ProxyLB 証明書削除.
 //
-// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
+// DELETE /commonserviceitem/{id}/proxylb/sslcertificate
 func (c *Client) ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (*ProxyLBOpDeleteCertificatesOK, error) {
 	res, err := c.sendProxyLBOpDeleteCertificates(ctx, params)
 	return res, err
@@ -20325,27 +17095,8 @@ func (c *Client) ProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLB
 func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params ProxyLBOpDeleteCertificatesParams) (res *ProxyLBOpDeleteCertificatesOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20362,9 +17113,9 @@ func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params Pro
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/proxylb/sslcertificate"
+	pathParts[2] = "/proxylb/sslcertificate"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -20424,7 +17175,7 @@ func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params Pro
 //
 // ProxyLB 証明書取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
+// GET /commonserviceitem/{id}/proxylb/sslcertificate
 func (c *Client) ProxyLBOpGetCertificates(ctx context.Context, params ProxyLBOpGetCertificatesParams) (*ProxyLBGetCertificatesResponseEnvelope, error) {
 	res, err := c.sendProxyLBOpGetCertificates(ctx, params)
 	return res, err
@@ -20433,27 +17184,8 @@ func (c *Client) ProxyLBOpGetCertificates(ctx context.Context, params ProxyLBOpG
 func (c *Client) sendProxyLBOpGetCertificates(ctx context.Context, params ProxyLBOpGetCertificatesParams) (res *ProxyLBGetCertificatesResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20470,9 +17202,9 @@ func (c *Client) sendProxyLBOpGetCertificates(ctx context.Context, params ProxyL
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/proxylb/sslcertificate"
+	pathParts[2] = "/proxylb/sslcertificate"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -20532,7 +17264,7 @@ func (c *Client) sendProxyLBOpGetCertificates(ctx context.Context, params ProxyL
 //
 // ProxyLB コネクションモニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/proxylb/monitor
+// GET /commonserviceitem/{id}/activity/proxylb/monitor
 func (c *Client) ProxyLBOpMonitorConnection(ctx context.Context, request *ProxyLBOpMonitorConnectionReq, params ProxyLBOpMonitorConnectionParams) (*ProxyLBMonitorConnectionResponseEnvelope, error) {
 	res, err := c.sendProxyLBOpMonitorConnection(ctx, request, params)
 	return res, err
@@ -20541,27 +17273,8 @@ func (c *Client) ProxyLBOpMonitorConnection(ctx context.Context, request *ProxyL
 func (c *Client) sendProxyLBOpMonitorConnection(ctx context.Context, request *ProxyLBOpMonitorConnectionReq, params ProxyLBOpMonitorConnectionParams) (res *ProxyLBMonitorConnectionResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20578,9 +17291,9 @@ func (c *Client) sendProxyLBOpMonitorConnection(ctx context.Context, request *Pr
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/activity/proxylb/monitor"
+	pathParts[2] = "/activity/proxylb/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -20643,7 +17356,7 @@ func (c *Client) sendProxyLBOpMonitorConnection(ctx context.Context, request *Pr
 //
 // ProxyLB Let's Encrypt 証明書更新.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/letsencryptrenew
+// PUT /commonserviceitem/{id}/proxylb/letsencryptrenew
 func (c *Client) ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (*ProxyLBOpRenewLetsEncryptCertOK, error) {
 	res, err := c.sendProxyLBOpRenewLetsEncryptCert(ctx, params)
 	return res, err
@@ -20652,27 +17365,8 @@ func (c *Client) ProxyLBOpRenewLetsEncryptCert(ctx context.Context, params Proxy
 func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params ProxyLBOpRenewLetsEncryptCertParams) (res *ProxyLBOpRenewLetsEncryptCertOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20689,9 +17383,9 @@ func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params P
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/proxylb/letsencryptrenew"
+	pathParts[2] = "/proxylb/letsencryptrenew"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -20751,7 +17445,7 @@ func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params P
 //
 // ProxyLB 証明書設定.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/proxylb/sslcertificate
+// PUT /commonserviceitem/{id}/proxylb/sslcertificate
 func (c *Client) ProxyLBOpSetCertificates(ctx context.Context, request *ProxyLBOpSetCertificatesReq, params ProxyLBOpSetCertificatesParams) (*ProxyLBSetCertificatesResponseEnvelope, error) {
 	res, err := c.sendProxyLBOpSetCertificates(ctx, request, params)
 	return res, err
@@ -20769,27 +17463,8 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -20806,9 +17481,9 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/proxylb/sslcertificate"
+	pathParts[2] = "/proxylb/sslcertificate"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -20871,7 +17546,7 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 //
 // リージョン一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/region
+// GET /region
 func (c *Client) RegionOpFind(ctx context.Context, params RegionOpFindParams) (*RegionFindResponseEnvelope, error) {
 	res, err := c.sendRegionOpFind(ctx, params)
 	return res, err
@@ -20880,27 +17555,8 @@ func (c *Client) RegionOpFind(ctx context.Context, params RegionOpFindParams) (*
 func (c *Client) sendRegionOpFind(ctx context.Context, params RegionOpFindParams) (res *RegionFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/region"
+	var pathParts [1]string
+	pathParts[0] = "/region"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -20980,7 +17636,7 @@ func (c *Client) sendRegionOpFind(ctx context.Context, params RegionOpFindParams
 //
 // リージョン情報取得.
 //
-// GET /{zone}/api/cloud/1.1/region/{id}
+// GET /region/{id}
 func (c *Client) RegionOpRead(ctx context.Context, params RegionOpReadParams) (*RegionReadResponseEnvelope, error) {
 	res, err := c.sendRegionOpRead(ctx, params)
 	return res, err
@@ -20989,27 +17645,8 @@ func (c *Client) RegionOpRead(ctx context.Context, params RegionOpReadParams) (*
 func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams) (res *RegionReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/region/"
+	var pathParts [2]string
+	pathParts[0] = "/region/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21026,7 +17663,7 @@ func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -21087,7 +17724,7 @@ func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams
 //
 // SIM 有効化.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/activate
+// PUT /commonserviceitem/{id}/sim/activate
 func (c *Client) SIMOpActivate(ctx context.Context, params SIMOpActivateParams) (*SIMOpActivateOK, error) {
 	res, err := c.sendSIMOpActivate(ctx, params)
 	return res, err
@@ -21096,27 +17733,8 @@ func (c *Client) SIMOpActivate(ctx context.Context, params SIMOpActivateParams) 
 func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivateParams) (res *SIMOpActivateOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21133,9 +17751,9 @@ func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivatePara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/activate"
+	pathParts[2] = "/sim/activate"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -21195,7 +17813,7 @@ func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivatePara
 //
 // SIM への IP アドレス割り当て.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
+// PUT /commonserviceitem/{id}/sim/ip
 func (c *Client) SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (*SIMOpAssignIPOK, error) {
 	res, err := c.sendSIMOpAssignIP(ctx, request, params)
 	return res, err
@@ -21204,27 +17822,8 @@ func (c *Client) SIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, p
 func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPReq, params SIMOpAssignIPParams) (res *SIMOpAssignIPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21241,9 +17840,9 @@ func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/ip"
+	pathParts[2] = "/sim/ip"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -21306,7 +17905,7 @@ func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPRe
 //
 // SIM の IP アドレス割り当て解除.
 //
-// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/ip
+// DELETE /commonserviceitem/{id}/sim/ip
 func (c *Client) SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*SIMOpClearIPOK, error) {
 	res, err := c.sendSIMOpClearIP(ctx, params)
 	return res, err
@@ -21315,27 +17914,8 @@ func (c *Client) SIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (*
 func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams) (res *SIMOpClearIPOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21352,9 +17932,9 @@ func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/ip"
+	pathParts[2] = "/sim/ip"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -21414,7 +17994,7 @@ func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams
 //
 // SIM 無効化.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/deactivate
+// PUT /commonserviceitem/{id}/sim/deactivate
 func (c *Client) SIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (*SIMOpDeactivateOK, error) {
 	res, err := c.sendSIMOpDeactivate(ctx, params)
 	return res, err
@@ -21423,27 +18003,8 @@ func (c *Client) SIMOpDeactivate(ctx context.Context, params SIMOpDeactivatePara
 func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivateParams) (res *SIMOpDeactivateOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21460,9 +18021,9 @@ func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivate
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/deactivate"
+	pathParts[2] = "/sim/deactivate"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -21522,7 +18083,7 @@ func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivate
 //
 // SIM 通信キャリア取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
+// GET /commonserviceitem/{id}/sim/network_operator_config
 func (c *Client) SIMOpGetNetworkOperator(ctx context.Context, params SIMOpGetNetworkOperatorParams) (*SIMGetNetworkOperatorResponseEnvelope, error) {
 	res, err := c.sendSIMOpGetNetworkOperator(ctx, params)
 	return res, err
@@ -21531,27 +18092,8 @@ func (c *Client) SIMOpGetNetworkOperator(ctx context.Context, params SIMOpGetNet
 func (c *Client) sendSIMOpGetNetworkOperator(ctx context.Context, params SIMOpGetNetworkOperatorParams) (res *SIMGetNetworkOperatorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21568,9 +18110,9 @@ func (c *Client) sendSIMOpGetNetworkOperator(ctx context.Context, params SIMOpGe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/network_operator_config"
+	pathParts[2] = "/sim/network_operator_config"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -21630,7 +18172,7 @@ func (c *Client) sendSIMOpGetNetworkOperator(ctx context.Context, params SIMOpGe
 //
 // SIM の IMEI ロック設定.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
+// PUT /commonserviceitem/{id}/sim/imeilock
 func (c *Client) SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (*SIMOpImeiLockOK, error) {
 	res, err := c.sendSIMOpImeiLock(ctx, request, params)
 	return res, err
@@ -21639,27 +18181,8 @@ func (c *Client) SIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, p
 func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockReq, params SIMOpImeiLockParams) (res *SIMOpImeiLockOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21676,9 +18199,9 @@ func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/imeilock"
+	pathParts[2] = "/sim/imeilock"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -21741,7 +18264,7 @@ func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockRe
 //
 // SIM の IMEI ロック解除.
 //
-// DELETE /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/imeilock
+// DELETE /commonserviceitem/{id}/sim/imeilock
 func (c *Client) SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (*SIMOpImeiUnlockOK, error) {
 	res, err := c.sendSIMOpImeiUnlock(ctx, params)
 	return res, err
@@ -21750,27 +18273,8 @@ func (c *Client) SIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockPara
 func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlockParams) (res *SIMOpImeiUnlockOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21787,9 +18291,9 @@ func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlock
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/imeilock"
+	pathParts[2] = "/sim/imeilock"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -21849,7 +18353,7 @@ func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlock
 //
 // SIM セッションログ取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/sessionlog
+// GET /commonserviceitem/{id}/sim/sessionlog
 func (c *Client) SIMOpLogs(ctx context.Context, params SIMOpLogsParams) (*SIMLogsResponseEnvelope, error) {
 	res, err := c.sendSIMOpLogs(ctx, params)
 	return res, err
@@ -21858,27 +18362,8 @@ func (c *Client) SIMOpLogs(ctx context.Context, params SIMOpLogsParams) (*SIMLog
 func (c *Client) sendSIMOpLogs(ctx context.Context, params SIMOpLogsParams) (res *SIMLogsResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -21895,9 +18380,9 @@ func (c *Client) sendSIMOpLogs(ctx context.Context, params SIMOpLogsParams) (res
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/sessionlog"
+	pathParts[2] = "/sim/sessionlog"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -21957,7 +18442,7 @@ func (c *Client) sendSIMOpLogs(ctx context.Context, params SIMOpLogsParams) (res
 //
 // SIM モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/metrics/monitor
+// GET /commonserviceitem/{id}/sim/metrics/monitor
 func (c *Client) SIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorSIMReq, params SIMOpMonitorSIMParams) (*SIMMonitorSIMResponseEnvelope, error) {
 	res, err := c.sendSIMOpMonitorSIM(ctx, request, params)
 	return res, err
@@ -21966,27 +18451,8 @@ func (c *Client) SIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorSIMRe
 func (c *Client) sendSIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorSIMReq, params SIMOpMonitorSIMParams) (res *SIMMonitorSIMResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22003,9 +18469,9 @@ func (c *Client) sendSIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorS
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/metrics/monitor"
+	pathParts[2] = "/sim/metrics/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -22068,7 +18534,7 @@ func (c *Client) sendSIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorS
 //
 // SIM 通信キャリア設定.
 //
-// PUT /{zone}/api/cloud/1.1/commonserviceitem/{id}/sim/network_operator_config
+// PUT /commonserviceitem/{id}/sim/network_operator_config
 func (c *Client) SIMOpSetNetworkOperator(ctx context.Context, request *SIMOpSetNetworkOperatorReq, params SIMOpSetNetworkOperatorParams) (*SIMOpSetNetworkOperatorOK, error) {
 	res, err := c.sendSIMOpSetNetworkOperator(ctx, request, params)
 	return res, err
@@ -22086,27 +18552,8 @@ func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOp
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22123,9 +18570,9 @@ func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOp
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/sim/network_operator_config"
+	pathParts[2] = "/sim/network_operator_config"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -22188,36 +18635,17 @@ func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOp
 //
 // SSHKey 作成.
 //
-// POST /{zone}/api/cloud/1.1/sshkey
-func (c *Client) SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (*SSHKeyCreateResponseEnvelope, error) {
-	res, err := c.sendSSHKeyOpCreate(ctx, request, params)
+// POST /sshkey
+func (c *Client) SSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope) (*SSHKeyCreateResponseEnvelope, error) {
+	res, err := c.sendSSHKeyOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope, params SSHKeyOpCreateParams) (res *SSHKeyCreateResponseEnvelope, err error) {
+func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRequestEnvelope) (res *SSHKeyCreateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/sshkey"
+	var pathParts [1]string
+	pathParts[0] = "/sshkey"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -22280,7 +18708,7 @@ func (c *Client) sendSSHKeyOpCreate(ctx context.Context, request *SSHKeyCreateRe
 //
 // SSHKey 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/sshkey/{id}
+// DELETE /sshkey/{id}
 func (c *Client) SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (*SSHKeyOpDeleteOK, error) {
 	res, err := c.sendSSHKeyOpDelete(ctx, params)
 	return res, err
@@ -22289,27 +18717,8 @@ func (c *Client) SSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams
 func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeleteParams) (res *SSHKeyOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/sshkey/"
+	var pathParts [2]string
+	pathParts[0] = "/sshkey/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22326,7 +18735,7 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -22387,7 +18796,7 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 //
 // SSHKey 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/sshkey
+// GET /sshkey
 func (c *Client) SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*SSHKeyFindResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpFind(ctx, params)
 	return res, err
@@ -22396,27 +18805,8 @@ func (c *Client) SSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (*
 func (c *Client) sendSSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams) (res *SSHKeyFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/sshkey"
+	var pathParts [1]string
+	pathParts[0] = "/sshkey"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -22496,7 +18886,7 @@ func (c *Client) sendSSHKeyOpFind(ctx context.Context, params SSHKeyOpFindParams
 //
 // SSHKey 取得.
 //
-// GET /{zone}/api/cloud/1.1/sshkey/{id}
+// GET /sshkey/{id}
 func (c *Client) SSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams) (*SSHKeyReadResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpRead(ctx, params)
 	return res, err
@@ -22505,27 +18895,8 @@ func (c *Client) SSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams) (*
 func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams) (res *SSHKeyReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/sshkey/"
+	var pathParts [2]string
+	pathParts[0] = "/sshkey/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22542,7 +18913,7 @@ func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -22603,7 +18974,7 @@ func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams
 //
 // SSHKey 更新.
 //
-// PUT /{zone}/api/cloud/1.1/sshkey/{id}
+// PUT /sshkey/{id}
 func (c *Client) SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (*SSHKeyUpdateResponseEnvelope, error) {
 	res, err := c.sendSSHKeyOpUpdate(ctx, request, params)
 	return res, err
@@ -22612,27 +18983,8 @@ func (c *Client) SSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateReques
 func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRequestEnvelope, params SSHKeyOpUpdateParams) (res *SSHKeyUpdateResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/sshkey/"
+	var pathParts [2]string
+	pathParts[0] = "/sshkey/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22649,7 +19001,7 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -22713,7 +19065,7 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRe
 //
 // Server 起動.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}/power
+// PUT /server/{id}/power
 func (c *Client) ServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (*ServerOpBootOK, error) {
 	res, err := c.sendServerOpBoot(ctx, request, params)
 	return res, err
@@ -22722,27 +19074,8 @@ func (c *Client) ServerOpBoot(ctx context.Context, request *ServerBootRequestEnv
 func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootRequestEnvelope, params ServerOpBootParams) (res *ServerOpBootOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22759,9 +19092,9 @@ func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootReques
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/power"
+	pathParts[2] = "/power"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -22824,7 +19157,7 @@ func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootReques
 //
 // Server プラン変更.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}/plan
+// PUT /server/{id}/plan
 func (c *Client) ServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (*ServerChangePlanResponseEnvelope, error) {
 	res, err := c.sendServerOpChangePlan(ctx, request, params)
 	return res, err
@@ -22833,27 +19166,8 @@ func (c *Client) ServerOpChangePlan(ctx context.Context, request *ServerChangePl
 func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerChangePlanRequestEnvelope, params ServerOpChangePlanParams) (res *ServerChangePlanResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -22870,9 +19184,9 @@ func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerChan
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/plan"
+	pathParts[2] = "/plan"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -22935,13 +19249,13 @@ func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerChan
 //
 // Server 作成.
 //
-// POST /{zone}/api/cloud/1.1/server
-func (c *Client) ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (*ServerCreateResponseEnvelope, error) {
-	res, err := c.sendServerOpCreate(ctx, request, params)
+// POST /server
+func (c *Client) ServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope) (*ServerCreateResponseEnvelope, error) {
+	res, err := c.sendServerOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope, params ServerOpCreateParams) (res *ServerCreateResponseEnvelope, err error) {
+func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRequestEnvelope) (res *ServerCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -22953,27 +19267,8 @@ func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRe
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server"
+	var pathParts [1]string
+	pathParts[0] = "/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -23036,7 +19331,7 @@ func (c *Client) sendServerOpCreate(ctx context.Context, request *ServerCreateRe
 //
 // Server 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/server/{id}
+// DELETE /server/{id}
 func (c *Client) ServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (*ServerOpDeleteOK, error) {
 	res, err := c.sendServerOpDelete(ctx, request, params)
 	return res, err
@@ -23045,27 +19340,8 @@ func (c *Client) ServerOpDelete(ctx context.Context, request *ServerDeleteReques
 func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerDeleteRequestEnvelope, params ServerOpDeleteParams) (res *ServerOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [2]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23082,7 +19358,7 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerDeleteRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -23146,7 +19422,7 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerDeleteRe
 //
 // Server CD-ROM 取り出し.
 //
-// DELETE /{zone}/api/cloud/1.1/server/{id}/cdrom
+// DELETE /server/{id}/cdrom
 func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (*ServerOpEjectCDROMOK, error) {
 	res, err := c.sendServerOpEjectCDROM(ctx, request, params)
 	return res, err
@@ -23155,27 +19431,8 @@ func (c *Client) ServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDR
 func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjectCDROMRequestEnvelope, params ServerOpEjectCDROMParams) (res *ServerOpEjectCDROMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23192,9 +19449,9 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjec
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/cdrom"
+	pathParts[2] = "/cdrom"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -23257,7 +19514,7 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjec
 //
 // Server 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/server
+// GET /server
 func (c *Client) ServerOpFind(ctx context.Context, params ServerOpFindParams) (*ServerFindResponseEnvelope, error) {
 	res, err := c.sendServerOpFind(ctx, params)
 	return res, err
@@ -23266,27 +19523,8 @@ func (c *Client) ServerOpFind(ctx context.Context, params ServerOpFindParams) (*
 func (c *Client) sendServerOpFind(ctx context.Context, params ServerOpFindParams) (res *ServerFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server"
+	var pathParts [1]string
+	pathParts[0] = "/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -23366,7 +19604,7 @@ func (c *Client) sendServerOpFind(ctx context.Context, params ServerOpFindParams
 //
 // Server VNC プロキシ取得.
 //
-// GET /{zone}/api/cloud/1.1/server/{id}/vnc/proxy
+// GET /server/{id}/vnc/proxy
 func (c *Client) ServerOpGetVNCProxy(ctx context.Context, params ServerOpGetVNCProxyParams) (*ServerGetVNCProxyResponseEnvelope, error) {
 	res, err := c.sendServerOpGetVNCProxy(ctx, params)
 	return res, err
@@ -23375,27 +19613,8 @@ func (c *Client) ServerOpGetVNCProxy(ctx context.Context, params ServerOpGetVNCP
 func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGetVNCProxyParams) (res *ServerGetVNCProxyResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23412,9 +19631,9 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/vnc/proxy"
+	pathParts[2] = "/vnc/proxy"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -23474,7 +19693,7 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 //
 // Server CD-ROM 挿入.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}/cdrom
+// PUT /server/{id}/cdrom
 func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (*ServerOpInsertCDROMOK, error) {
 	res, err := c.sendServerOpInsertCDROM(ctx, request, params)
 	return res, err
@@ -23483,27 +19702,8 @@ func (c *Client) ServerOpInsertCDROM(ctx context.Context, request *ServerInsertC
 func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerInsertCDROMRequestEnvelope, params ServerOpInsertCDROMParams) (res *ServerOpInsertCDROMOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23520,9 +19720,9 @@ func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerIns
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/cdrom"
+	pathParts[2] = "/cdrom"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -23585,7 +19785,7 @@ func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerIns
 //
 // Server モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/server/{id}/monitor
+// GET /server/{id}/monitor
 func (c *Client) ServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (*ServerMonitorResponseEnvelope, error) {
 	res, err := c.sendServerOpMonitor(ctx, request, params)
 	return res, err
@@ -23594,27 +19794,8 @@ func (c *Client) ServerOpMonitor(ctx context.Context, request *ServerMonitorRequ
 func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerMonitorRequestEnvelope, params ServerOpMonitorParams) (res *ServerMonitorResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23631,9 +19812,9 @@ func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerMonitor
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/monitor"
+	pathParts[2] = "/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -23696,7 +19877,7 @@ func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerMonitor
 //
 // Server 取得.
 //
-// GET /{zone}/api/cloud/1.1/server/{id}
+// GET /server/{id}
 func (c *Client) ServerOpRead(ctx context.Context, params ServerOpReadParams) (*ServerReadResponseEnvelope, error) {
 	res, err := c.sendServerOpRead(ctx, params)
 	return res, err
@@ -23705,27 +19886,8 @@ func (c *Client) ServerOpRead(ctx context.Context, params ServerOpReadParams) (*
 func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams) (res *ServerReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [2]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23742,7 +19904,7 @@ func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -23803,7 +19965,7 @@ func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams
 //
 // Server リセット.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}/reset
+// PUT /server/{id}/reset
 func (c *Client) ServerOpReset(ctx context.Context, params ServerOpResetParams) (*ServerOpResetOK, error) {
 	res, err := c.sendServerOpReset(ctx, params)
 	return res, err
@@ -23812,27 +19974,8 @@ func (c *Client) ServerOpReset(ctx context.Context, params ServerOpResetParams) 
 func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetParams) (res *ServerOpResetOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23849,9 +19992,9 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/reset"
+	pathParts[2] = "/reset"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -23911,7 +20054,7 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 //
 // Server キー送信.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}/keyboard
+// PUT /server/{id}/keyboard
 func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (*ServerOpSendKeyOK, error) {
 	res, err := c.sendServerOpSendKey(ctx, request, params)
 	return res, err
@@ -23920,27 +20063,8 @@ func (c *Client) ServerOpSendKey(ctx context.Context, request *ServerSendKeyRequ
 func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKeyRequestEnvelope, params ServerOpSendKeyParams) (res *ServerOpSendKeyOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -23957,9 +20081,9 @@ func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKey
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/keyboard"
+	pathParts[2] = "/keyboard"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -24022,7 +20146,7 @@ func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKey
 //
 // Server NMI 送信.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}/qemu/nmi
+// PUT /server/{id}/qemu/nmi
 func (c *Client) ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (*ServerOpSendNMIOK, error) {
 	res, err := c.sendServerOpSendNMI(ctx, params)
 	return res, err
@@ -24031,27 +20155,8 @@ func (c *Client) ServerOpSendNMI(ctx context.Context, params ServerOpSendNMIPara
 func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMIParams) (res *ServerOpSendNMIOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -24068,9 +20173,9 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/qemu/nmi"
+	pathParts[2] = "/qemu/nmi"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "PUT", u)
@@ -24130,7 +20235,7 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 //
 // Server シャットダウン.
 //
-// DELETE /{zone}/api/cloud/1.1/server/{id}/power
+// DELETE /server/{id}/power
 func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (*ServerOpShutdownOK, error) {
 	res, err := c.sendServerOpShutdown(ctx, request, params)
 	return res, err
@@ -24139,27 +20244,8 @@ func (c *Client) ServerOpShutdown(ctx context.Context, request *ServerShutdownRe
 func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdownRequestEnvelope, params ServerOpShutdownParams) (res *ServerOpShutdownOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [3]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -24176,9 +20262,9 @@ func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdo
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/power"
+	pathParts[2] = "/power"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -24241,7 +20327,7 @@ func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdo
 //
 // Server 更新.
 //
-// PUT /{zone}/api/cloud/1.1/server/{id}
+// PUT /server/{id}
 func (c *Client) ServerOpUpdate(ctx context.Context, request *ServerUpdateRequestEnvelope, params ServerOpUpdateParams) (*ServerUpdateResponseEnvelope, error) {
 	res, err := c.sendServerOpUpdate(ctx, request, params)
 	return res, err
@@ -24259,27 +20345,8 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRe
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/server/"
+	var pathParts [2]string
+	pathParts[0] = "/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -24296,7 +20363,7 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -24360,7 +20427,7 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRe
 //
 // ServerPlan 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/product/server
+// GET /product/server
 func (c *Client) ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (*ServerPlanFindResponseEnvelope, error) {
 	res, err := c.sendServerPlanOpFind(ctx, params)
 	return res, err
@@ -24369,27 +20436,8 @@ func (c *Client) ServerPlanOpFind(ctx context.Context, params ServerPlanOpFindPa
 func (c *Client) sendServerPlanOpFind(ctx context.Context, params ServerPlanOpFindParams) (res *ServerPlanFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/server"
+	var pathParts [1]string
+	pathParts[0] = "/product/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -24469,7 +20517,7 @@ func (c *Client) sendServerPlanOpFind(ctx context.Context, params ServerPlanOpFi
 //
 // ServerPlan 取得.
 //
-// GET /{zone}/api/cloud/1.1/product/server/{id}
+// GET /product/server/{id}
 func (c *Client) ServerPlanOpRead(ctx context.Context, params ServerPlanOpReadParams) (*ServerPlanReadResponseEnvelope, error) {
 	res, err := c.sendServerPlanOpRead(ctx, params)
 	return res, err
@@ -24478,27 +20526,8 @@ func (c *Client) ServerPlanOpRead(ctx context.Context, params ServerPlanOpReadPa
 func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpReadParams) (res *ServerPlanReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/product/server/"
+	var pathParts [2]string
+	pathParts[0] = "/product/server/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -24515,7 +20544,7 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -24576,7 +20605,7 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 //
 // ServiceClass 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/public/price
+// GET /public/price
 func (c *Client) ServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (*ServiceClassFindResponseEnvelope, error) {
 	res, err := c.sendServiceClassOpFind(ctx, params)
 	return res, err
@@ -24585,27 +20614,8 @@ func (c *Client) ServiceClassOpFind(ctx context.Context, params ServiceClassOpFi
 func (c *Client) sendServiceClassOpFind(ctx context.Context, params ServiceClassOpFindParams) (res *ServiceClassFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/public/price"
+	var pathParts [1]string
+	pathParts[0] = "/public/price"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -24685,7 +20695,7 @@ func (c *Client) sendServiceClassOpFind(ctx context.Context, params ServiceClass
 //
 // SimpleMonitor 応答時間モニター情報取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/{id}/activity/responsetimesec/monitor
+// GET /commonserviceitem/{id}/activity/responsetimesec/monitor
 func (c *Client) SimpleMonitorOpMonitorResponseTime(ctx context.Context, request *SimpleMonitorOpMonitorResponseTimeReq, params SimpleMonitorOpMonitorResponseTimeParams) (*SimpleMonitorMonitorResponseTimeResponseEnvelope, error) {
 	res, err := c.sendSimpleMonitorOpMonitorResponseTime(ctx, request, params)
 	return res, err
@@ -24694,27 +20704,8 @@ func (c *Client) SimpleMonitorOpMonitorResponseTime(ctx context.Context, request
 func (c *Client) sendSimpleMonitorOpMonitorResponseTime(ctx context.Context, request *SimpleMonitorOpMonitorResponseTimeReq, params SimpleMonitorOpMonitorResponseTimeParams) (res *SimpleMonitorMonitorResponseTimeResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -24731,9 +20722,9 @@ func (c *Client) sendSimpleMonitorOpMonitorResponseTime(ctx context.Context, req
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/activity/responsetimesec/monitor"
+	pathParts[2] = "/activity/responsetimesec/monitor"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -24796,36 +20787,17 @@ func (c *Client) sendSimpleMonitorOpMonitorResponseTime(ctx context.Context, req
 //
 // SimpleNotificationGroup 履歴取得.
 //
-// GET /{zone}/api/cloud/1.1/commonserviceitem/simplenotification/history
-func (c *Client) SimpleNotificationGroupOpHistory(ctx context.Context, params SimpleNotificationGroupOpHistoryParams) (*SimpleNotificationGroupHistoryResponseEnvelope, error) {
-	res, err := c.sendSimpleNotificationGroupOpHistory(ctx, params)
+// GET /commonserviceitem/simplenotification/history
+func (c *Client) SimpleNotificationGroupOpHistory(ctx context.Context) (*SimpleNotificationGroupHistoryResponseEnvelope, error) {
+	res, err := c.sendSimpleNotificationGroupOpHistory(ctx)
 	return res, err
 }
 
-func (c *Client) sendSimpleNotificationGroupOpHistory(ctx context.Context, params SimpleNotificationGroupOpHistoryParams) (res *SimpleNotificationGroupHistoryResponseEnvelope, err error) {
+func (c *Client) sendSimpleNotificationGroupOpHistory(ctx context.Context) (res *SimpleNotificationGroupHistoryResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/simplenotification/history"
+	var pathParts [1]string
+	pathParts[0] = "/commonserviceitem/simplenotification/history"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -24885,7 +20857,7 @@ func (c *Client) sendSimpleNotificationGroupOpHistory(ctx context.Context, param
 //
 // SimpleNotificationGroup メッセージ送信.
 //
-// POST /{zone}/api/cloud/1.1/commonserviceitem/{id}/simplenotification/message
+// POST /commonserviceitem/{id}/simplenotification/message
 func (c *Client) SimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (*SimpleNotificationGroupOpPostMessageOK, error) {
 	res, err := c.sendSimpleNotificationGroupOpPostMessage(ctx, request, params)
 	return res, err
@@ -24894,27 +20866,8 @@ func (c *Client) SimpleNotificationGroupOpPostMessage(ctx context.Context, reque
 func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, request *SimpleNotificationGroupOpPostMessageReq, params SimpleNotificationGroupOpPostMessageParams) (res *SimpleNotificationGroupOpPostMessageOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/commonserviceitem/"
+	var pathParts [3]string
+	pathParts[0] = "/commonserviceitem/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -24931,9 +20884,9 @@ func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/simplenotification/message"
+	pathParts[2] = "/simplenotification/message"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -24996,7 +20949,7 @@ func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, r
 //
 // Subnet 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/subnet
+// GET /subnet
 func (c *Client) SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*SubnetFindResponseEnvelope, error) {
 	res, err := c.sendSubnetOpFind(ctx, params)
 	return res, err
@@ -25005,27 +20958,8 @@ func (c *Client) SubnetOpFind(ctx context.Context, params SubnetOpFindParams) (*
 func (c *Client) sendSubnetOpFind(ctx context.Context, params SubnetOpFindParams) (res *SubnetFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/subnet"
+	var pathParts [1]string
+	pathParts[0] = "/subnet"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -25105,7 +21039,7 @@ func (c *Client) sendSubnetOpFind(ctx context.Context, params SubnetOpFindParams
 //
 // Subnet 取得.
 //
-// GET /{zone}/api/cloud/1.1/subnet/{id}
+// GET /subnet/{id}
 func (c *Client) SubnetOpRead(ctx context.Context, params SubnetOpReadParams) (*SubnetReadResponseEnvelope, error) {
 	res, err := c.sendSubnetOpRead(ctx, params)
 	return res, err
@@ -25114,27 +21048,8 @@ func (c *Client) SubnetOpRead(ctx context.Context, params SubnetOpReadParams) (*
 func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams) (res *SubnetReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/subnet/"
+	var pathParts [2]string
+	pathParts[0] = "/subnet/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25151,7 +21066,7 @@ func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -25212,7 +21127,7 @@ func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams
 //
 // ブリッジ接続.
 //
-// PUT /{zone}/api/cloud/1.1/switch/{id}/to/bridge/{bridgeID}
+// PUT /switch/{id}/to/bridge/{bridgeID}
 func (c *Client) SwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (*SwitchOpConnectToBridgeOK, error) {
 	res, err := c.sendSwitchOpConnectToBridge(ctx, params)
 	return res, err
@@ -25221,27 +21136,8 @@ func (c *Client) SwitchOpConnectToBridge(ctx context.Context, params SwitchOpCon
 func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchOpConnectToBridgeParams) (res *SwitchOpConnectToBridgeOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch/"
+	var pathParts [4]string
+	pathParts[0] = "/switch/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25258,9 +21154,9 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/bridge/"
+	pathParts[2] = "/to/bridge/"
 	{
 		// Encode "bridgeID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25277,7 +21173,7 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -25338,13 +21234,13 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 //
 // Switch 作成.
 //
-// POST /{zone}/api/cloud/1.1/switch
-func (c *Client) SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (*SwitchCreateResponseEnvelope, error) {
-	res, err := c.sendSwitchOpCreate(ctx, request, params)
+// POST /switch
+func (c *Client) SwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope) (*SwitchCreateResponseEnvelope, error) {
+	res, err := c.sendSwitchOpCreate(ctx, request)
 	return res, err
 }
 
-func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope, params SwitchOpCreateParams) (res *SwitchCreateResponseEnvelope, err error) {
+func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRequestEnvelope) (res *SwitchCreateResponseEnvelope, err error) {
 	// Validate request before sending.
 	if err := func() error {
 		if err := request.Validate(); err != nil {
@@ -25356,27 +21252,8 @@ func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRe
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch"
+	var pathParts [1]string
+	pathParts[0] = "/switch"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "POST", u)
@@ -25439,7 +21316,7 @@ func (c *Client) sendSwitchOpCreate(ctx context.Context, request *SwitchCreateRe
 //
 // Switch 削除.
 //
-// DELETE /{zone}/api/cloud/1.1/switch/{id}
+// DELETE /switch/{id}
 func (c *Client) SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (*SwitchOpDeleteOK, error) {
 	res, err := c.sendSwitchOpDelete(ctx, params)
 	return res, err
@@ -25448,27 +21325,8 @@ func (c *Client) SwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams
 func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeleteParams) (res *SwitchOpDeleteOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch/"
+	var pathParts [2]string
+	pathParts[0] = "/switch/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25485,7 +21343,7 @@ func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeletePa
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -25546,7 +21404,7 @@ func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeletePa
 //
 // ブリッジ切断.
 //
-// DELETE /{zone}/api/cloud/1.1/switch/{id}/to/bridge
+// DELETE /switch/{id}/to/bridge
 func (c *Client) SwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (*SwitchOpDisconnectFromBridgeOK, error) {
 	res, err := c.sendSwitchOpDisconnectFromBridge(ctx, params)
 	return res, err
@@ -25555,27 +21413,8 @@ func (c *Client) SwitchOpDisconnectFromBridge(ctx context.Context, params Switch
 func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params SwitchOpDisconnectFromBridgeParams) (res *SwitchOpDisconnectFromBridgeOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch/"
+	var pathParts [3]string
+	pathParts[0] = "/switch/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25592,9 +21431,9 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/to/bridge"
+	pathParts[2] = "/to/bridge"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -25654,7 +21493,7 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 //
 // Switch 一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/switch
+// GET /switch
 func (c *Client) SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*SwitchFindResponseEnvelope, error) {
 	res, err := c.sendSwitchOpFind(ctx, params)
 	return res, err
@@ -25663,27 +21502,8 @@ func (c *Client) SwitchOpFind(ctx context.Context, params SwitchOpFindParams) (*
 func (c *Client) sendSwitchOpFind(ctx context.Context, params SwitchOpFindParams) (res *SwitchFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch"
+	var pathParts [1]string
+	pathParts[0] = "/switch"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -25763,7 +21583,7 @@ func (c *Client) sendSwitchOpFind(ctx context.Context, params SwitchOpFindParams
 //
 // Switch サーバー一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/switch/{id}/server
+// GET /switch/{id}/server
 func (c *Client) SwitchOpGetServers(ctx context.Context, params SwitchOpGetServersParams) (*SwitchGetServersResponseEnvelope, error) {
 	res, err := c.sendSwitchOpGetServers(ctx, params)
 	return res, err
@@ -25772,27 +21592,8 @@ func (c *Client) SwitchOpGetServers(ctx context.Context, params SwitchOpGetServe
 func (c *Client) sendSwitchOpGetServers(ctx context.Context, params SwitchOpGetServersParams) (res *SwitchGetServersResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [5]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch/"
+	var pathParts [3]string
+	pathParts[0] = "/switch/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25809,9 +21610,9 @@ func (c *Client) sendSwitchOpGetServers(ctx context.Context, params SwitchOpGetS
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/server"
+	pathParts[2] = "/server"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "GET", u)
@@ -25871,7 +21672,7 @@ func (c *Client) sendSwitchOpGetServers(ctx context.Context, params SwitchOpGetS
 //
 // Switch 取得.
 //
-// GET /{zone}/api/cloud/1.1/switch/{id}
+// GET /switch/{id}
 func (c *Client) SwitchOpRead(ctx context.Context, params SwitchOpReadParams) (*SwitchReadResponseEnvelope, error) {
 	res, err := c.sendSwitchOpRead(ctx, params)
 	return res, err
@@ -25880,27 +21681,8 @@ func (c *Client) SwitchOpRead(ctx context.Context, params SwitchOpReadParams) (*
 func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams) (res *SwitchReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch/"
+	var pathParts [2]string
+	pathParts[0] = "/switch/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -25917,7 +21699,7 @@ func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -25978,7 +21760,7 @@ func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams
 //
 // Switch 更新.
 //
-// PUT /{zone}/api/cloud/1.1/switch/{id}
+// PUT /switch/{id}
 func (c *Client) SwitchOpUpdate(ctx context.Context, request *SwitchUpdateRequestEnvelope, params SwitchOpUpdateParams) (*SwitchUpdateResponseEnvelope, error) {
 	res, err := c.sendSwitchOpUpdate(ctx, request, params)
 	return res, err
@@ -25996,27 +21778,8 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRe
 	}
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/switch/"
+	var pathParts [2]string
+	pathParts[0] = "/switch/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26033,7 +21796,7 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRe
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -26097,7 +21860,7 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRe
 //
 // VPCRouter スイッチ接続.
 //
-// PUT /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
+// PUT /appliance/{id}/interface/{nicIndex}/to/switch/{switchID}
 func (c *Client) VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (*VPCRouterOpConnectToSwitchOK, error) {
 	res, err := c.sendVPCRouterOpConnectToSwitch(ctx, params)
 	return res, err
@@ -26106,27 +21869,8 @@ func (c *Client) VPCRouterOpConnectToSwitch(ctx context.Context, params VPCRoute
 func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCRouterOpConnectToSwitchParams) (res *VPCRouterOpConnectToSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [8]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [6]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26143,9 +21887,9 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/interface/"
+	pathParts[2] = "/interface/"
 	{
 		// Encode "nicIndex" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26162,9 +21906,9 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/to/switch/"
+	pathParts[4] = "/to/switch/"
 	{
 		// Encode "switchID" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26181,7 +21925,7 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[7] = encoded
+		pathParts[5] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -26242,7 +21986,7 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 //
 // VPCRouter スイッチ切断.
 //
-// DELETE /{zone}/api/cloud/1.1/appliance/{id}/interface/{nicIndex}/to/switch
+// DELETE /appliance/{id}/interface/{nicIndex}/to/switch
 func (c *Client) VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (*VPCRouterOpDisconnectFromSwitchOK, error) {
 	res, err := c.sendVPCRouterOpDisconnectFromSwitch(ctx, params)
 	return res, err
@@ -26251,27 +21995,8 @@ func (c *Client) VPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPC
 func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params VPCRouterOpDisconnectFromSwitchParams) (res *VPCRouterOpDisconnectFromSwitchOK, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [7]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [5]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26288,9 +22013,9 @@ func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/interface/"
+	pathParts[2] = "/interface/"
 	{
 		// Encode "nicIndex" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26307,9 +22032,9 @@ func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
-	pathParts[6] = "/to/switch"
+	pathParts[4] = "/to/switch"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	r, err := ht.NewRequest(ctx, "DELETE", u)
@@ -26369,7 +22094,7 @@ func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params
 //
 // VPCRouter Ping.
 //
-// POST /{zone}/api/cloud/1.1/appliance/{id}/vpcrouter/ping/{destination}
+// POST /appliance/{id}/vpcrouter/ping/{destination}
 func (c *Client) VPCRouterOpPing(ctx context.Context, params VPCRouterOpPingParams) (*VPCRouterPingResponseEnvelope, error) {
 	res, err := c.sendVPCRouterOpPing(ctx, params)
 	return res, err
@@ -26378,27 +22103,8 @@ func (c *Client) VPCRouterOpPing(ctx context.Context, params VPCRouterOpPingPara
 func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPingParams) (res *VPCRouterPingResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [6]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/appliance/"
+	var pathParts [4]string
+	pathParts[0] = "/appliance/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26415,9 +22121,9 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
-	pathParts[4] = "/vpcrouter/ping/"
+	pathParts[2] = "/vpcrouter/ping/"
 	{
 		// Encode "destination" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26434,7 +22140,7 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[5] = encoded
+		pathParts[3] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 
@@ -26495,7 +22201,7 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 //
 // ゾーン一覧取得.
 //
-// GET /{zone}/api/cloud/1.1/zone
+// GET /zone
 func (c *Client) ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*ZoneFindResponseEnvelope, error) {
 	res, err := c.sendZoneOpFind(ctx, params)
 	return res, err
@@ -26504,27 +22210,8 @@ func (c *Client) ZoneOpFind(ctx context.Context, params ZoneOpFindParams) (*Zone
 func (c *Client) sendZoneOpFind(ctx context.Context, params ZoneOpFindParams) (res *ZoneFindResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [3]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/zone"
+	var pathParts [1]string
+	pathParts[0] = "/zone"
 	uri.AddPathParts(u, pathParts[:]...)
 
 	q := uri.NewQueryEncoder()
@@ -26604,7 +22291,7 @@ func (c *Client) sendZoneOpFind(ctx context.Context, params ZoneOpFindParams) (r
 //
 // ゾーン情報取得.
 //
-// GET /{zone}/api/cloud/1.1/zone/{id}
+// GET /zone/{id}
 func (c *Client) ZoneOpRead(ctx context.Context, params ZoneOpReadParams) (*ZoneReadResponseEnvelope, error) {
 	res, err := c.sendZoneOpRead(ctx, params)
 	return res, err
@@ -26613,27 +22300,8 @@ func (c *Client) ZoneOpRead(ctx context.Context, params ZoneOpReadParams) (*Zone
 func (c *Client) sendZoneOpRead(ctx context.Context, params ZoneOpReadParams) (res *ZoneReadResponseEnvelope, err error) {
 
 	u := uri.Clone(c.requestURL(ctx))
-	var pathParts [4]string
-	pathParts[0] = "/"
-	{
-		// Encode "zone" parameter.
-		e := uri.NewPathEncoder(uri.PathEncoderConfig{
-			Param:   "zone",
-			Style:   uri.PathStyleSimple,
-			Explode: false,
-		})
-		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Zone))
-		}(); err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		encoded, err := e.Result()
-		if err != nil {
-			return res, errors.Wrap(err, "encode path")
-		}
-		pathParts[1] = encoded
-	}
-	pathParts[2] = "/api/cloud/1.1/zone/"
+	var pathParts [2]string
+	pathParts[0] = "/zone/"
 	{
 		// Encode "id" parameter.
 		e := uri.NewPathEncoder(uri.PathEncoderConfig{
@@ -26650,7 +22318,7 @@ func (c *Client) sendZoneOpRead(ctx context.Context, params ZoneOpReadParams) (r
 		if err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
-		pathParts[3] = encoded
+		pathParts[1] = encoded
 	}
 	uri.AddPathParts(u, pathParts[:]...)
 

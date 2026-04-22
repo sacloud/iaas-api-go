@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface BillOp {
   @summary("契約別請求情報取得")
   @get
-  @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}")
+  @route("/bill/by-contract/{accountID}")
   byContract(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       契約（アカウント）の ID。
       """)
@@ -29,14 +23,8 @@ interface BillOp {
 
   @summary("契約・年別請求情報取得")
   @get
-  @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}")
+  @route("/bill/by-contract/{accountID}/{year}")
   byContractYear(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       契約（アカウント）の ID。
       """)
@@ -52,14 +40,8 @@ interface BillOp {
 
   @summary("契約・年月別請求情報取得")
   @get
-  @route("/{zone}/api/system/1.0/bill/by-contract/{accountID}/{year}/{month}")
+  @route("/bill/by-contract/{accountID}/{year}/{month}")
   byContractYearMonth(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       契約（アカウント）の ID。
       """)
@@ -81,14 +63,8 @@ interface BillOp {
 
   @summary("請求情報取得")
   @get
-  @route("/{zone}/api/system/1.0/bill/id/{id}")
+  @route("/bill/id/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -98,14 +74,8 @@ interface BillOp {
 
   @summary("請求明細取得")
   @get
-  @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}")
+  @route("/billdetail/{MemberCode}/{id}")
   details(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       会員コード。
       """)
@@ -121,14 +91,8 @@ interface BillOp {
 
   @summary("請求明細 CSV 取得")
   @get
-  @route("/{zone}/api/system/1.0/billdetail/{MemberCode}/{id}/csv")
+  @route("/billdetail/{MemberCode}/{id}/csv")
   detailsCSV(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       会員コード。
       """)

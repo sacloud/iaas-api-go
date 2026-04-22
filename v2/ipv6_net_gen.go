@@ -24,8 +24,8 @@ import (
 
 // IPv6NetAPI は IPv6Net リソースに対する操作インターフェース。
 type IPv6NetAPI interface {
-	List(ctx context.Context, zone string, request *client.IPv6NetListRequestEnvelope) (*client.IPv6NetListResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.IPv6NetReadResponseEnvelope, error)
+	List(ctx context.Context, request *client.IPv6NetListRequestEnvelope) (*client.IPv6NetListResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.IPv6NetReadResponseEnvelope, error)
 }
 
 var _ IPv6NetAPI = (*iPv6NetOp)(nil)
@@ -39,17 +39,16 @@ func NewIPv6NetOp(c *client.Client) IPv6NetAPI {
 	return &iPv6NetOp{client: c}
 }
 
-func (op *iPv6NetOp) List(ctx context.Context, zone string, request *client.IPv6NetListRequestEnvelope) (*client.IPv6NetListResponseEnvelope, error) {
-	params := client.IPv6NetOpListParams{Zone: zone}
-	resp, err := op.client.IPv6NetOpList(ctx, request, params)
+func (op *iPv6NetOp) List(ctx context.Context, request *client.IPv6NetListRequestEnvelope) (*client.IPv6NetListResponseEnvelope, error) {
+	resp, err := op.client.IPv6NetOpList(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("IPv6Net.List", err)
 	}
 	return resp, nil
 }
 
-func (op *iPv6NetOp) Read(ctx context.Context, zone string, id string) (*client.IPv6NetReadResponseEnvelope, error) {
-	params := client.IPv6NetOpReadParams{Zone: zone, ID: id}
+func (op *iPv6NetOp) Read(ctx context.Context, id string) (*client.IPv6NetReadResponseEnvelope, error) {
+	params := client.IPv6NetOpReadParams{ID: id}
 	resp, err := op.client.IPv6NetOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("IPv6Net.Read", err)

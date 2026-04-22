@@ -24,17 +24,17 @@ import (
 
 // InterfaceAPI は Interface リソースに対する操作インターフェース。
 type InterfaceAPI interface {
-	ConnectToPacketFilter(ctx context.Context, zone string, id string, packetFilterID string) error
-	ConnectToSharedSegment(ctx context.Context, zone string, id string) error
-	ConnectToSwitch(ctx context.Context, zone string, id string, switchID string) error
-	Create(ctx context.Context, zone string, request *client.InterfaceCreateRequestEnvelope) (*client.InterfaceCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	DisconnectFromPacketFilter(ctx context.Context, zone string, id string) error
-	DisconnectFromSwitch(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.InterfaceFindRequest) (*client.InterfaceFindResponseEnvelope, error)
-	Monitor(ctx context.Context, zone string, id string, request *client.InterfaceMonitorRequestEnvelope) (*client.InterfaceMonitorResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.InterfaceReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.InterfaceUpdateRequestEnvelope) (*client.InterfaceUpdateResponseEnvelope, error)
+	ConnectToPacketFilter(ctx context.Context, id string, packetFilterID string) error
+	ConnectToSharedSegment(ctx context.Context, id string) error
+	ConnectToSwitch(ctx context.Context, id string, switchID string) error
+	Create(ctx context.Context, request *client.InterfaceCreateRequestEnvelope) (*client.InterfaceCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	DisconnectFromPacketFilter(ctx context.Context, id string) error
+	DisconnectFromSwitch(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.InterfaceFindRequest) (*client.InterfaceFindResponseEnvelope, error)
+	Monitor(ctx context.Context, id string, request *client.InterfaceMonitorRequestEnvelope) (*client.InterfaceMonitorResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.InterfaceReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.InterfaceUpdateRequestEnvelope) (*client.InterfaceUpdateResponseEnvelope, error)
 }
 
 var _ InterfaceAPI = (*interfaceOp)(nil)
@@ -48,8 +48,8 @@ func NewInterfaceOp(c *client.Client) InterfaceAPI {
 	return &interfaceOp{client: c}
 }
 
-func (op *interfaceOp) ConnectToPacketFilter(ctx context.Context, zone string, id string, packetFilterID string) error {
-	params := client.InterfaceOpConnectToPacketFilterParams{Zone: zone, ID: id, PacketFilterID: packetFilterID}
+func (op *interfaceOp) ConnectToPacketFilter(ctx context.Context, id string, packetFilterID string) error {
+	params := client.InterfaceOpConnectToPacketFilterParams{ID: id, PacketFilterID: packetFilterID}
 	_, err := op.client.InterfaceOpConnectToPacketFilter(ctx, params)
 	if err != nil {
 		return wrapOpErr("Interface.ConnectToPacketFilter", err)
@@ -57,8 +57,8 @@ func (op *interfaceOp) ConnectToPacketFilter(ctx context.Context, zone string, i
 	return nil
 }
 
-func (op *interfaceOp) ConnectToSharedSegment(ctx context.Context, zone string, id string) error {
-	params := client.InterfaceOpConnectToSharedSegmentParams{Zone: zone, ID: id}
+func (op *interfaceOp) ConnectToSharedSegment(ctx context.Context, id string) error {
+	params := client.InterfaceOpConnectToSharedSegmentParams{ID: id}
 	_, err := op.client.InterfaceOpConnectToSharedSegment(ctx, params)
 	if err != nil {
 		return wrapOpErr("Interface.ConnectToSharedSegment", err)
@@ -66,8 +66,8 @@ func (op *interfaceOp) ConnectToSharedSegment(ctx context.Context, zone string, 
 	return nil
 }
 
-func (op *interfaceOp) ConnectToSwitch(ctx context.Context, zone string, id string, switchID string) error {
-	params := client.InterfaceOpConnectToSwitchParams{Zone: zone, ID: id, SwitchID: switchID}
+func (op *interfaceOp) ConnectToSwitch(ctx context.Context, id string, switchID string) error {
+	params := client.InterfaceOpConnectToSwitchParams{ID: id, SwitchID: switchID}
 	_, err := op.client.InterfaceOpConnectToSwitch(ctx, params)
 	if err != nil {
 		return wrapOpErr("Interface.ConnectToSwitch", err)
@@ -75,17 +75,16 @@ func (op *interfaceOp) ConnectToSwitch(ctx context.Context, zone string, id stri
 	return nil
 }
 
-func (op *interfaceOp) Create(ctx context.Context, zone string, request *client.InterfaceCreateRequestEnvelope) (*client.InterfaceCreateResponseEnvelope, error) {
-	params := client.InterfaceOpCreateParams{Zone: zone}
-	resp, err := op.client.InterfaceOpCreate(ctx, request, params)
+func (op *interfaceOp) Create(ctx context.Context, request *client.InterfaceCreateRequestEnvelope) (*client.InterfaceCreateResponseEnvelope, error) {
+	resp, err := op.client.InterfaceOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("Interface.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *interfaceOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.InterfaceOpDeleteParams{Zone: zone, ID: id}
+func (op *interfaceOp) Delete(ctx context.Context, id string) error {
+	params := client.InterfaceOpDeleteParams{ID: id}
 	_, err := op.client.InterfaceOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("Interface.Delete", err)
@@ -93,8 +92,8 @@ func (op *interfaceOp) Delete(ctx context.Context, zone string, id string) error
 	return nil
 }
 
-func (op *interfaceOp) DisconnectFromPacketFilter(ctx context.Context, zone string, id string) error {
-	params := client.InterfaceOpDisconnectFromPacketFilterParams{Zone: zone, ID: id}
+func (op *interfaceOp) DisconnectFromPacketFilter(ctx context.Context, id string) error {
+	params := client.InterfaceOpDisconnectFromPacketFilterParams{ID: id}
 	_, err := op.client.InterfaceOpDisconnectFromPacketFilter(ctx, params)
 	if err != nil {
 		return wrapOpErr("Interface.DisconnectFromPacketFilter", err)
@@ -102,8 +101,8 @@ func (op *interfaceOp) DisconnectFromPacketFilter(ctx context.Context, zone stri
 	return nil
 }
 
-func (op *interfaceOp) DisconnectFromSwitch(ctx context.Context, zone string, id string) error {
-	params := client.InterfaceOpDisconnectFromSwitchParams{Zone: zone, ID: id}
+func (op *interfaceOp) DisconnectFromSwitch(ctx context.Context, id string) error {
+	params := client.InterfaceOpDisconnectFromSwitchParams{ID: id}
 	_, err := op.client.InterfaceOpDisconnectFromSwitch(ctx, params)
 	if err != nil {
 		return wrapOpErr("Interface.DisconnectFromSwitch", err)
@@ -111,8 +110,8 @@ func (op *interfaceOp) DisconnectFromSwitch(ctx context.Context, zone string, id
 	return nil
 }
 
-func (op *interfaceOp) List(ctx context.Context, zone string, req *client.InterfaceFindRequest) (*client.InterfaceFindResponseEnvelope, error) {
-	params := client.InterfaceOpFindParams{Zone: zone}
+func (op *interfaceOp) List(ctx context.Context, req *client.InterfaceFindRequest) (*client.InterfaceFindResponseEnvelope, error) {
+	params := client.InterfaceOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -123,8 +122,8 @@ func (op *interfaceOp) List(ctx context.Context, zone string, req *client.Interf
 	return resp, nil
 }
 
-func (op *interfaceOp) Monitor(ctx context.Context, zone string, id string, request *client.InterfaceMonitorRequestEnvelope) (*client.InterfaceMonitorResponseEnvelope, error) {
-	params := client.InterfaceOpMonitorParams{Zone: zone, ID: id}
+func (op *interfaceOp) Monitor(ctx context.Context, id string, request *client.InterfaceMonitorRequestEnvelope) (*client.InterfaceMonitorResponseEnvelope, error) {
+	params := client.InterfaceOpMonitorParams{ID: id}
 	resp, err := op.client.InterfaceOpMonitor(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Interface.Monitor", err)
@@ -132,8 +131,8 @@ func (op *interfaceOp) Monitor(ctx context.Context, zone string, id string, requ
 	return resp, nil
 }
 
-func (op *interfaceOp) Read(ctx context.Context, zone string, id string) (*client.InterfaceReadResponseEnvelope, error) {
-	params := client.InterfaceOpReadParams{Zone: zone, ID: id}
+func (op *interfaceOp) Read(ctx context.Context, id string) (*client.InterfaceReadResponseEnvelope, error) {
+	params := client.InterfaceOpReadParams{ID: id}
 	resp, err := op.client.InterfaceOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Interface.Read", err)
@@ -141,8 +140,8 @@ func (op *interfaceOp) Read(ctx context.Context, zone string, id string) (*clien
 	return resp, nil
 }
 
-func (op *interfaceOp) Update(ctx context.Context, zone string, id string, request *client.InterfaceUpdateRequestEnvelope) (*client.InterfaceUpdateResponseEnvelope, error) {
-	params := client.InterfaceOpUpdateParams{Zone: zone, ID: id}
+func (op *interfaceOp) Update(ctx context.Context, id string, request *client.InterfaceUpdateRequestEnvelope) (*client.InterfaceUpdateResponseEnvelope, error) {
+	params := client.InterfaceOpUpdateParams{ID: id}
 	resp, err := op.client.InterfaceOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("Interface.Update", err)

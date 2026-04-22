@@ -24,8 +24,8 @@ import (
 
 // DiskPlanAPI は DiskPlan リソースに対する操作インターフェース。
 type DiskPlanAPI interface {
-	List(ctx context.Context, zone string, req *client.DiskPlanFindRequest) (*client.DiskPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.DiskPlanReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.DiskPlanFindRequest) (*client.DiskPlanFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.DiskPlanReadResponseEnvelope, error)
 }
 
 var _ DiskPlanAPI = (*diskPlanOp)(nil)
@@ -39,8 +39,8 @@ func NewDiskPlanOp(c *client.Client) DiskPlanAPI {
 	return &diskPlanOp{client: c}
 }
 
-func (op *diskPlanOp) List(ctx context.Context, zone string, req *client.DiskPlanFindRequest) (*client.DiskPlanFindResponseEnvelope, error) {
-	params := client.DiskPlanOpFindParams{Zone: zone}
+func (op *diskPlanOp) List(ctx context.Context, req *client.DiskPlanFindRequest) (*client.DiskPlanFindResponseEnvelope, error) {
+	params := client.DiskPlanOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *diskPlanOp) List(ctx context.Context, zone string, req *client.DiskPla
 	return resp, nil
 }
 
-func (op *diskPlanOp) Read(ctx context.Context, zone string, id string) (*client.DiskPlanReadResponseEnvelope, error) {
-	params := client.DiskPlanOpReadParams{Zone: zone, ID: id}
+func (op *diskPlanOp) Read(ctx context.Context, id string) (*client.DiskPlanReadResponseEnvelope, error) {
+	params := client.DiskPlanOpReadParams{ID: id}
 	resp, err := op.client.DiskPlanOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("DiskPlan.Read", err)

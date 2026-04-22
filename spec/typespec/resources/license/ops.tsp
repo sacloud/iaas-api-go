@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface LicenseOp {
   @summary("License 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/license")
+  @route("/license")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -39,30 +33,16 @@ interface LicenseOp {
 
   @summary("License 作成")
   @post
-  @route("/{zone}/api/cloud/1.1/license")
-  create(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
-    @body body: LicenseCreateRequestEnvelope,
-  ): {
+  @route("/license")
+  create(@body body: LicenseCreateRequestEnvelope): {
     @statusCode _: 201;
     ...LicenseCreateResponseEnvelope;
   } | ApiError;
 
   @summary("License 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/license/{id}")
+  @route("/license/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -72,14 +52,8 @@ interface LicenseOp {
 
   @summary("License 更新")
   @put
-  @route("/{zone}/api/cloud/1.1/license/{id}")
+  @route("/license/{id}")
   update(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)
@@ -91,14 +65,8 @@ interface LicenseOp {
 
   @summary("License 削除")
   @delete
-  @route("/{zone}/api/cloud/1.1/license/{id}")
+  @route("/license/{id}")
   delete(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

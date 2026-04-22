@@ -24,8 +24,8 @@ import (
 
 // SubnetAPI は Subnet リソースに対する操作インターフェース。
 type SubnetAPI interface {
-	List(ctx context.Context, zone string, req *client.SubnetFindRequest) (*client.SubnetFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.SubnetReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.SubnetFindRequest) (*client.SubnetFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.SubnetReadResponseEnvelope, error)
 }
 
 var _ SubnetAPI = (*subnetOp)(nil)
@@ -39,8 +39,8 @@ func NewSubnetOp(c *client.Client) SubnetAPI {
 	return &subnetOp{client: c}
 }
 
-func (op *subnetOp) List(ctx context.Context, zone string, req *client.SubnetFindRequest) (*client.SubnetFindResponseEnvelope, error) {
-	params := client.SubnetOpFindParams{Zone: zone}
+func (op *subnetOp) List(ctx context.Context, req *client.SubnetFindRequest) (*client.SubnetFindResponseEnvelope, error) {
+	params := client.SubnetOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *subnetOp) List(ctx context.Context, zone string, req *client.SubnetFin
 	return resp, nil
 }
 
-func (op *subnetOp) Read(ctx context.Context, zone string, id string) (*client.SubnetReadResponseEnvelope, error) {
-	params := client.SubnetOpReadParams{Zone: zone, ID: id}
+func (op *subnetOp) Read(ctx context.Context, id string) (*client.SubnetReadResponseEnvelope, error) {
+	params := client.SubnetOpReadParams{ID: id}
 	resp, err := op.client.SubnetOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("Subnet.Read", err)

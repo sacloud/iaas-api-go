@@ -24,16 +24,16 @@ import (
 
 // SIMAPI は SIM リソースに対する操作インターフェース。
 type SIMAPI interface {
-	Activate(ctx context.Context, zone string, id string) error
-	AssignIP(ctx context.Context, zone string, id string, request *client.SIMOpAssignIPReq) error
-	ClearIP(ctx context.Context, zone string, id string) error
-	Deactivate(ctx context.Context, zone string, id string) error
-	GetNetworkOperator(ctx context.Context, zone string, id string) (*client.SIMGetNetworkOperatorResponseEnvelope, error)
-	ImeiLock(ctx context.Context, zone string, id string, request *client.SIMOpImeiLockReq) error
-	ImeiUnlock(ctx context.Context, zone string, id string) error
-	Logs(ctx context.Context, zone string, id string) (*client.SIMLogsResponseEnvelope, error)
-	MonitorSIM(ctx context.Context, zone string, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error)
-	SetNetworkOperator(ctx context.Context, zone string, id string, request *client.SIMOpSetNetworkOperatorReq) error
+	Activate(ctx context.Context, id string) error
+	AssignIP(ctx context.Context, id string, request *client.SIMOpAssignIPReq) error
+	ClearIP(ctx context.Context, id string) error
+	Deactivate(ctx context.Context, id string) error
+	GetNetworkOperator(ctx context.Context, id string) (*client.SIMGetNetworkOperatorResponseEnvelope, error)
+	ImeiLock(ctx context.Context, id string, request *client.SIMOpImeiLockReq) error
+	ImeiUnlock(ctx context.Context, id string) error
+	Logs(ctx context.Context, id string) (*client.SIMLogsResponseEnvelope, error)
+	MonitorSIM(ctx context.Context, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error)
+	SetNetworkOperator(ctx context.Context, id string, request *client.SIMOpSetNetworkOperatorReq) error
 }
 
 var _ SIMAPI = (*simOp)(nil)
@@ -47,8 +47,8 @@ func NewSIMOp(c *client.Client) SIMAPI {
 	return &simOp{client: c}
 }
 
-func (op *simOp) Activate(ctx context.Context, zone string, id string) error {
-	params := client.SIMOpActivateParams{Zone: zone, ID: id}
+func (op *simOp) Activate(ctx context.Context, id string) error {
+	params := client.SIMOpActivateParams{ID: id}
 	_, err := op.client.SIMOpActivate(ctx, params)
 	if err != nil {
 		return wrapOpErr("SIM.Activate", err)
@@ -56,8 +56,8 @@ func (op *simOp) Activate(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *simOp) AssignIP(ctx context.Context, zone string, id string, request *client.SIMOpAssignIPReq) error {
-	params := client.SIMOpAssignIPParams{Zone: zone, ID: id}
+func (op *simOp) AssignIP(ctx context.Context, id string, request *client.SIMOpAssignIPReq) error {
+	params := client.SIMOpAssignIPParams{ID: id}
 	_, err := op.client.SIMOpAssignIP(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("SIM.AssignIP", err)
@@ -65,8 +65,8 @@ func (op *simOp) AssignIP(ctx context.Context, zone string, id string, request *
 	return nil
 }
 
-func (op *simOp) ClearIP(ctx context.Context, zone string, id string) error {
-	params := client.SIMOpClearIPParams{Zone: zone, ID: id}
+func (op *simOp) ClearIP(ctx context.Context, id string) error {
+	params := client.SIMOpClearIPParams{ID: id}
 	_, err := op.client.SIMOpClearIP(ctx, params)
 	if err != nil {
 		return wrapOpErr("SIM.ClearIP", err)
@@ -74,8 +74,8 @@ func (op *simOp) ClearIP(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *simOp) Deactivate(ctx context.Context, zone string, id string) error {
-	params := client.SIMOpDeactivateParams{Zone: zone, ID: id}
+func (op *simOp) Deactivate(ctx context.Context, id string) error {
+	params := client.SIMOpDeactivateParams{ID: id}
 	_, err := op.client.SIMOpDeactivate(ctx, params)
 	if err != nil {
 		return wrapOpErr("SIM.Deactivate", err)
@@ -83,8 +83,8 @@ func (op *simOp) Deactivate(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *simOp) GetNetworkOperator(ctx context.Context, zone string, id string) (*client.SIMGetNetworkOperatorResponseEnvelope, error) {
-	params := client.SIMOpGetNetworkOperatorParams{Zone: zone, ID: id}
+func (op *simOp) GetNetworkOperator(ctx context.Context, id string) (*client.SIMGetNetworkOperatorResponseEnvelope, error) {
+	params := client.SIMOpGetNetworkOperatorParams{ID: id}
 	resp, err := op.client.SIMOpGetNetworkOperator(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("SIM.GetNetworkOperator", err)
@@ -92,8 +92,8 @@ func (op *simOp) GetNetworkOperator(ctx context.Context, zone string, id string)
 	return resp, nil
 }
 
-func (op *simOp) ImeiLock(ctx context.Context, zone string, id string, request *client.SIMOpImeiLockReq) error {
-	params := client.SIMOpImeiLockParams{Zone: zone, ID: id}
+func (op *simOp) ImeiLock(ctx context.Context, id string, request *client.SIMOpImeiLockReq) error {
+	params := client.SIMOpImeiLockParams{ID: id}
 	_, err := op.client.SIMOpImeiLock(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("SIM.ImeiLock", err)
@@ -101,8 +101,8 @@ func (op *simOp) ImeiLock(ctx context.Context, zone string, id string, request *
 	return nil
 }
 
-func (op *simOp) ImeiUnlock(ctx context.Context, zone string, id string) error {
-	params := client.SIMOpImeiUnlockParams{Zone: zone, ID: id}
+func (op *simOp) ImeiUnlock(ctx context.Context, id string) error {
+	params := client.SIMOpImeiUnlockParams{ID: id}
 	_, err := op.client.SIMOpImeiUnlock(ctx, params)
 	if err != nil {
 		return wrapOpErr("SIM.ImeiUnlock", err)
@@ -110,8 +110,8 @@ func (op *simOp) ImeiUnlock(ctx context.Context, zone string, id string) error {
 	return nil
 }
 
-func (op *simOp) Logs(ctx context.Context, zone string, id string) (*client.SIMLogsResponseEnvelope, error) {
-	params := client.SIMOpLogsParams{Zone: zone, ID: id}
+func (op *simOp) Logs(ctx context.Context, id string) (*client.SIMLogsResponseEnvelope, error) {
+	params := client.SIMOpLogsParams{ID: id}
 	resp, err := op.client.SIMOpLogs(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("SIM.Logs", err)
@@ -119,8 +119,8 @@ func (op *simOp) Logs(ctx context.Context, zone string, id string) (*client.SIML
 	return resp, nil
 }
 
-func (op *simOp) MonitorSIM(ctx context.Context, zone string, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error) {
-	params := client.SIMOpMonitorSIMParams{Zone: zone, ID: id}
+func (op *simOp) MonitorSIM(ctx context.Context, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error) {
+	params := client.SIMOpMonitorSIMParams{ID: id}
 	resp, err := op.client.SIMOpMonitorSIM(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("SIM.MonitorSIM", err)
@@ -128,8 +128,8 @@ func (op *simOp) MonitorSIM(ctx context.Context, zone string, id string, request
 	return resp, nil
 }
 
-func (op *simOp) SetNetworkOperator(ctx context.Context, zone string, id string, request *client.SIMOpSetNetworkOperatorReq) error {
-	params := client.SIMOpSetNetworkOperatorParams{Zone: zone, ID: id}
+func (op *simOp) SetNetworkOperator(ctx context.Context, id string, request *client.SIMOpSetNetworkOperatorReq) error {
+	params := client.SIMOpSetNetworkOperatorParams{ID: id}
 	_, err := op.client.SIMOpSetNetworkOperator(ctx, request, params)
 	if err != nil {
 		return wrapOpErr("SIM.SetNetworkOperator", err)

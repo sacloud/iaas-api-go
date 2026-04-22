@@ -12,27 +12,15 @@ namespace Sacloud.IaaS;
 interface IPv6NetOp {
   @summary("IPv6Net 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/ipv6net")
+  @route("/ipv6net")
   list(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @body body: IPv6NetListRequestEnvelope,
   ): IPv6NetListResponseEnvelope | ApiError;
 
   @summary("IPv6Net 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/ipv6net/{id}")
+  @route("/ipv6net/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

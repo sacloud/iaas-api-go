@@ -12,25 +12,13 @@ namespace Sacloud.IaaS;
 interface IPAddressOp {
   @summary("IPAddress 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/ipaddress")
-  list(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-  ): IPAddressListResponseEnvelope | ApiError;
+  @route("/ipaddress")
+  list(): IPAddressListResponseEnvelope | ApiError;
 
   @summary("IPAddress 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
+  @route("/ipaddress/{ipAddress}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象の IPv4 アドレス。
       """)
@@ -40,14 +28,8 @@ interface IPAddressOp {
 
   @summary("IPAddress ホスト名更新")
   @put
-  @route("/{zone}/api/cloud/1.1/ipaddress/{ipAddress}")
+  @route("/ipaddress/{ipAddress}")
   updateHostName(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象の IPv4 アドレス。
       """)

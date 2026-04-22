@@ -29,7 +29,7 @@ func waitArchiveAvailable(t *testing.T, ctx context.Context, c *client.Client, z
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
-		resp, err := c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{Zone: zone, ID: id})
+		resp, err := c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: id})
 		require.NoError(t, err)
 		if resp.Archive.Availability.Value == "available" {
 			return
@@ -48,11 +48,10 @@ func TestArchiveFindWithQuery(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
 	// 1. フィルタ無し + Count=3 → 3 件以下返る
 	reqCount := &client.ArchiveFindRequest{Count: 3}
-	respCount, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone, Q: reqCount.ToOptString()})
+	respCount, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Q: reqCount.ToOptString()})
 	require.NoError(t, err)
 	require.LessOrEqual(t, len(respCount.Archives), 3, "Count=3 の結果は 3 件以下であること")
 	t.Logf("Count=3 returned %d archives (Total=%d)", len(respCount.Archives), respCount.Total)
@@ -64,7 +63,7 @@ func TestArchiveFindWithQuery(t *testing.T) {
 		Count:  5,
 		Filter: client.ArchiveFindFilter{Scope: "shared"},
 	}
-	respScope, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone, Q: reqScope.ToOptString()})
+	respScope, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Q: reqScope.ToOptString()})
 	require.NoError(t, err)
 	require.Greater(t, len(respScope.Archives), 0, "shared archive が 1 件以上返ること")
 	t.Logf("Scope=shared returned %d archives", len(respScope.Archives))
@@ -74,7 +73,7 @@ func TestArchiveFindWithQuery(t *testing.T) {
 		Count:  5,
 		Filter: client.ArchiveFindFilter{Name: "CentOS"},
 	}
-	respName, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone, Q: reqName.ToOptString()})
+	respName, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Q: reqName.ToOptString()})
 	require.NoError(t, err)
 	// さくらクラウドが提供する CentOS archive は tk1v に少なくとも 1 つある
 	require.Greater(t, len(respName.Archives), 0, "Name=CentOS にマッチする archive があること")
@@ -103,7 +102,7 @@ func TestArchiveCRUD(t *testing.T) {
 		},
 	}
 
-	createResp, err := c.ArchiveOpCreate(ctx, createReq, client.ArchiveOpCreateParams{Zone: zone})
+	createResp, err := c.ArchiveOpCreate(ctx, createReq)
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	archiveID := createResp.Archive.ID.Value
@@ -113,7 +112,7 @@ func TestArchiveCRUD(t *testing.T) {
 
 	// SizeMB 指定で作成するとサーバ側で FTP アップロード用セッションが開くことがある。
 	// 本テストでは実データ転送は行わないのでセッションを閉じる（既に閉じている場合はエラーは無視）。
-	if _, err := c.ArchiveOpCloseFTP(ctx, client.ArchiveOpCloseFTPParams{Zone: zone, ID: archiveIDStr}); err != nil {
+	if _, err := c.ArchiveOpCloseFTP(ctx, client.ArchiveOpCloseFTPParams{ID: archiveIDStr}); err != nil {
 		t.Logf("close FTP (ignorable if already closed): %v", err)
 	}
 
@@ -121,7 +120,7 @@ func TestArchiveCRUD(t *testing.T) {
 	waitArchiveAvailable(t, ctx, c, zone, archiveIDStr)
 
 	// 2. Read
-	readResp, err := c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{Zone: zone, ID: archiveIDStr})
+	readResp, err := c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: archiveIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-archive", readResp.Archive.Name.Value)
 	require.Equal(t, archiveID, readResp.Archive.ID.Value)
@@ -133,12 +132,12 @@ func TestArchiveCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ArchiveOpUpdateParams{Zone: zone, ID: archiveIDStr})
+	}, client.ArchiveOpUpdateParams{ID: archiveIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-archive-updated", updateResp.Archive.Name.Value)
 
 	// 4. Find
-	findResp, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{Zone: zone})
+	findResp, err := c.ArchiveOpFind(ctx, client.ArchiveOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(findResp.Archives), 0)
 
@@ -152,10 +151,10 @@ func TestArchiveCRUD(t *testing.T) {
 	require.True(t, found, "作成したアーカイブがリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.ArchiveOpDelete(ctx, client.ArchiveOpDeleteParams{Zone: zone, ID: archiveIDStr})
+	_, err = c.ArchiveOpDelete(ctx, client.ArchiveOpDeleteParams{ID: archiveIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{Zone: zone, ID: archiveIDStr})
+	_, err = c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: archiveIDStr})
 	require.Error(t, err)
 }

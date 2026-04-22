@@ -37,12 +37,11 @@ func TestLicenseCRUD(t *testing.T) {
 	if os.Getenv("TEST_ACC") == "" {
 		t.Skip("TEST_ACC=1 env var required")
 	}
-	c := newClient(t)
+	c := newClientForZone(t, licenseTestZone)
 	ctx := context.Background()
-	zone := licenseTestZone
 
 	// 1. LicenseInfo を Find して有効な LicenseInfo.ID を得る
-	infoResp, err := c.LicenseInfoOpFind(ctx, client.LicenseInfoOpFindParams{Zone: zone})
+	infoResp, err := c.LicenseInfoOpFind(ctx, client.LicenseInfoOpFindParams{})
 	require.NoError(t, err)
 	require.Greater(t, len(infoResp.LicenseInfo), 0)
 	licenseInfoID := infoResp.LicenseInfo[0].ID.Value
@@ -55,7 +54,7 @@ func TestLicenseCRUD(t *testing.T) {
 			Name:        client.NewOptString("test-license"),
 			LicenseInfo: client.NewOptNilResourceRef(client.ResourceRef{ID: licenseInfoID}),
 		},
-	}, client.LicenseOpCreateParams{Zone: zone})
+	})
 	require.NoError(t, err)
 	licenseID := createResp.License.ID.Value
 	licenseIDStr := fmt.Sprintf("%d", licenseID)
@@ -63,7 +62,7 @@ func TestLicenseCRUD(t *testing.T) {
 	require.Equal(t, "test-license", createResp.License.Name.Value)
 
 	// 3. Read
-	readResp, err := c.LicenseOpRead(ctx, client.LicenseOpReadParams{Zone: zone, ID: licenseIDStr})
+	readResp, err := c.LicenseOpRead(ctx, client.LicenseOpReadParams{ID: licenseIDStr})
 	require.NoError(t, err)
 	require.Equal(t, licenseID, readResp.License.ID.Value)
 	require.Equal(t, "test-license", readResp.License.Name.Value)
@@ -73,12 +72,12 @@ func TestLicenseCRUD(t *testing.T) {
 		License: client.LicenseUpdateRequest{
 			Name: client.NewOptString("test-license-updated"),
 		},
-	}, client.LicenseOpUpdateParams{Zone: zone, ID: licenseIDStr})
+	}, client.LicenseOpUpdateParams{ID: licenseIDStr})
 	require.NoError(t, err)
 	require.Equal(t, "test-license-updated", updateResp.License.Name.Value)
 
 	// 5. Find - リストに含まれることを確認
-	findResp, err := c.LicenseOpFind(ctx, client.LicenseOpFindParams{Zone: zone})
+	findResp, err := c.LicenseOpFind(ctx, client.LicenseOpFindParams{})
 	require.NoError(t, err)
 	var found bool
 	for _, l := range findResp.Licenses {
@@ -90,10 +89,10 @@ func TestLicenseCRUD(t *testing.T) {
 	require.True(t, found, "作成した License がリストに含まれていること")
 
 	// 6. Delete
-	_, err = c.LicenseOpDelete(ctx, client.LicenseOpDeleteParams{Zone: zone, ID: licenseIDStr})
+	_, err = c.LicenseOpDelete(ctx, client.LicenseOpDeleteParams{ID: licenseIDStr})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.LicenseOpRead(ctx, client.LicenseOpReadParams{Zone: zone, ID: licenseIDStr})
+	_, err = c.LicenseOpRead(ctx, client.LicenseOpReadParams{ID: licenseIDStr})
 	require.Error(t, err)
 }

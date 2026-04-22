@@ -12,14 +12,8 @@ namespace Sacloud.IaaS;
 interface LicenseInfoOp {
   @summary("LicenseInfo 一覧取得")
   @get
-  @route("/{zone}/api/cloud/1.1/product/license")
+  @route("/product/license")
   find(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       Find 検索条件をシリアライズした JSON 文字列を渡す。
       
@@ -39,14 +33,8 @@ interface LicenseInfoOp {
 
   @summary("LicenseInfo 取得")
   @get
-  @route("/{zone}/api/cloud/1.1/product/license/{id}")
+  @route("/product/license/{id}")
   read(
-    @doc("""
-      リソースが所属するゾーンの識別子。`tk1a` / `tk1b` / `is1a` / `is1b` / `is1c` のいずれか。Sandbox 環境では `tk1v` を指定する。
-      """)
-    @path
-    zone: string,
-
     @doc("""
       対象リソースの ID。数値を 10 進文字列で指定する。
       """)

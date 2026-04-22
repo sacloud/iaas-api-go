@@ -24,7 +24,7 @@ import (
 
 // AuthStatusAPI は AuthStatus リソースに対する操作インターフェース。
 type AuthStatusAPI interface {
-	Read(ctx context.Context, zone string) (*client.AuthStatusReadResponseEnvelope, error)
+	Read(ctx context.Context) (*client.AuthStatusReadResponseEnvelope, error)
 }
 
 var _ AuthStatusAPI = (*authStatusOp)(nil)
@@ -38,9 +38,8 @@ func NewAuthStatusOp(c *client.Client) AuthStatusAPI {
 	return &authStatusOp{client: c}
 }
 
-func (op *authStatusOp) Read(ctx context.Context, zone string) (*client.AuthStatusReadResponseEnvelope, error) {
-	params := client.AuthStatusOpReadParams{Zone: zone}
-	resp, err := op.client.AuthStatusOpRead(ctx, params)
+func (op *authStatusOp) Read(ctx context.Context) (*client.AuthStatusReadResponseEnvelope, error) {
+	resp, err := op.client.AuthStatusOpRead(ctx)
 	if err != nil {
 		return nil, wrapOpErr("AuthStatus.Read", err)
 	}

@@ -33,9 +33,8 @@ func TestCleanupInternet(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.InternetOpFind(ctx, client.InternetOpFindParams{Zone: zone})
+	findResp, err := c.InternetOpFind(ctx, client.InternetOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -49,16 +48,14 @@ func TestCleanupInternet(t *testing.T) {
 		if ii.Switch.Set && !ii.Switch.Null {
 			for _, ipv6 := range ii.Switch.Value.IPv6Nets {
 				ipv6IDStr := fmt.Sprintf("%d", ipv6.ID.Value)
-				if _, err := c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{
-					Zone:      zone,
-					ID:        idStr,
+				if _, err := c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{ID:        idStr,
 					Ipv6netID: ipv6IDStr,
 				}); err != nil {
 					t.Logf("disable ipv6 %s on internet %s failed: %v", ipv6IDStr, idStr, err)
 				}
 			}
 		}
-		if _, err := c.InternetOpDelete(ctx, client.InternetOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+		if _, err := c.InternetOpDelete(ctx, client.InternetOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete internet %s failed: %v", idStr, err)
 		}
 	}
@@ -70,10 +67,10 @@ func TestCleanupSwitchTK1a(t *testing.T) {
 	if os.Getenv("TEST_ACC_CLEANUP") == "" {
 		t.Skip("TEST_ACC_CLEANUP=1 env var required")
 	}
-	c := newClient(t)
+	c := newClientForZone(t, bridgeTestZone)
 	ctx := context.Background()
 
-	findResp, err := c.SwitchOpFind(ctx, client.SwitchOpFindParams{Zone: bridgeTestZone})
+	findResp, err := c.SwitchOpFind(ctx, client.SwitchOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -83,7 +80,7 @@ func TestCleanupSwitchTK1a(t *testing.T) {
 		}
 		idStr := fmt.Sprintf("%d", sw.ID.Value)
 		t.Logf("Deleting switch %s (name=%s)", idStr, sw.Name.Value)
-		if _, err := c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{Zone: bridgeTestZone, ID: idStr}); err != nil {
+		if _, err := c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete switch %s failed: %v", idStr, err)
 		}
 	}
@@ -95,10 +92,10 @@ func TestCleanupBridge(t *testing.T) {
 	if os.Getenv("TEST_ACC_CLEANUP") == "" {
 		t.Skip("TEST_ACC_CLEANUP=1 env var required")
 	}
-	c := newClient(t)
+	c := newClientForZone(t, bridgeTestZone)
 	ctx := context.Background()
 
-	findResp, err := c.BridgeOpFind(ctx, client.BridgeOpFindParams{Zone: bridgeTestZone})
+	findResp, err := c.BridgeOpFind(ctx, client.BridgeOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -109,7 +106,7 @@ func TestCleanupBridge(t *testing.T) {
 		idStr := fmt.Sprintf("%d", b.ID.Value)
 		t.Logf("Deleting bridge %s (name=%s)", idStr, b.Name.Value)
 		// 接続中の Switch があれば先に disconnect する必要があるが、このテストでは defer で済ませているので不要
-		if _, err := c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{Zone: bridgeTestZone, ID: idStr}); err != nil {
+		if _, err := c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete bridge %s failed: %v", idStr, err)
 		}
 	}
@@ -123,9 +120,8 @@ func TestCleanupAppliance(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.ApplianceOpFind(ctx, client.ApplianceOpFindParams{Zone: zone})
+	findResp, err := c.ApplianceOpFind(ctx, client.ApplianceOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -136,13 +132,13 @@ func TestCleanupAppliance(t *testing.T) {
 		idStr := fmt.Sprintf("%d", app.ID.Value)
 		t.Logf("Deleting appliance %s (name=%s class=%s status=%s)", idStr, app.Name.Value, app.Class.Value, app.Instance.Value.Status.Value)
 		if app.Instance.Value.Status.Value == "up" {
-			if _, err := c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{Zone: zone, ID: idStr}); err != nil {
+			if _, err := c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: idStr}); err != nil {
 				t.Logf("force shutdown %s failed: %v", idStr, err)
 			}
 			// wait a bit for status to flip
 			time.Sleep(10 * time.Second)
 		}
-		if _, err := c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+		if _, err := c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete appliance %s failed: %v", idStr, err)
 		}
 	}
@@ -154,10 +150,10 @@ func TestCleanupPrivateHost(t *testing.T) {
 	if os.Getenv("TEST_ACC_CLEANUP") == "" {
 		t.Skip("TEST_ACC_CLEANUP=1 env var required")
 	}
-	c := newClient(t)
+	c := newClientForZone(t, privateHostTestZone)
 	ctx := context.Background()
 
-	findResp, err := c.PrivateHostOpFind(ctx, client.PrivateHostOpFindParams{Zone: privateHostTestZone})
+	findResp, err := c.PrivateHostOpFind(ctx, client.PrivateHostOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -167,7 +163,7 @@ func TestCleanupPrivateHost(t *testing.T) {
 		}
 		idStr := fmt.Sprintf("%d", ph.ID)
 		t.Logf("Deleting privatehost %s (name=%s)", idStr, ph.Name.Value)
-		if _, err := c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{Zone: privateHostTestZone, ID: idStr}); err != nil {
+		if _, err := c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete privatehost %s failed: %v", idStr, err)
 		}
 	}
@@ -181,9 +177,8 @@ func TestCleanupCDROM(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.CDROMOpFind(ctx, client.CDROMOpFindParams{Zone: zone})
+	findResp, err := c.CDROMOpFind(ctx, client.CDROMOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -194,11 +189,11 @@ func TestCleanupCDROM(t *testing.T) {
 		idStr := fmt.Sprintf("%d", cd.ID.Value)
 		t.Logf("Deleting cdrom %s (name=%s avail=%s)", idStr, cd.Name.Value, cd.Availability.Value)
 		if cd.Availability.Value == "uploading" {
-			if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{Zone: zone, ID: idStr}); err != nil {
+			if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{ID: idStr}); err != nil {
 				t.Logf("close FTP on cdrom %s failed: %v", idStr, err)
 			}
 		}
-		if _, err := c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+		if _, err := c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete cdrom %s failed: %v", idStr, err)
 		}
 	}
@@ -212,9 +207,8 @@ func TestCleanupServer(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.ServerOpFind(ctx, client.ServerOpFindParams{Zone: zone})
+	findResp, err := c.ServerOpFind(ctx, client.ServerOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -232,7 +226,7 @@ func TestCleanupServer(t *testing.T) {
 			continue
 		}
 		t.Logf("Deleting server %s (name=%s)", idStr, s.Name.Value)
-		if _, err := c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+		if _, err := c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete server %s failed: %v", idStr, err)
 		}
 	}
@@ -247,9 +241,8 @@ func TestCleanupNote(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{Zone: zone})
+	findResp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -259,7 +252,7 @@ func TestCleanupNote(t *testing.T) {
 		}
 		idStr := fmt.Sprintf("%d", n.ID.Value)
 		t.Logf("Deleting note %s (name=%s)", idStr, n.Name.Value)
-		if _, err := c.NoteOpDelete(ctx, client.NoteOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+		if _, err := c.NoteOpDelete(ctx, client.NoteOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete note %s failed: %v", idStr, err)
 		}
 	}
@@ -273,9 +266,8 @@ func TestCleanupSSHKey(t *testing.T) {
 	}
 	c := newClient(t)
 	ctx := context.Background()
-	zone := getZone()
 
-	findResp, err := c.SSHKeyOpFind(ctx, client.SSHKeyOpFindParams{Zone: zone})
+	findResp, err := c.SSHKeyOpFind(ctx, client.SSHKeyOpFindParams{})
 	if err != nil {
 		t.Fatalf("find failed: %v", err)
 	}
@@ -285,7 +277,7 @@ func TestCleanupSSHKey(t *testing.T) {
 		}
 		idStr := fmt.Sprintf("%d", k.ID.Value)
 		t.Logf("Deleting sshkey %s (name=%s)", idStr, k.Name.Value)
-		if _, err := c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+		if _, err := c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{ID: idStr}); err != nil {
 			t.Logf("delete sshkey %s failed: %v", idStr, err)
 		}
 	}

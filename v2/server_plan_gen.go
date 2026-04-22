@@ -24,8 +24,8 @@ import (
 
 // ServerPlanAPI は ServerPlan リソースに対する操作インターフェース。
 type ServerPlanAPI interface {
-	List(ctx context.Context, zone string, req *client.ServerPlanFindRequest) (*client.ServerPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.ServerPlanReadResponseEnvelope, error)
+	List(ctx context.Context, req *client.ServerPlanFindRequest) (*client.ServerPlanFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.ServerPlanReadResponseEnvelope, error)
 }
 
 var _ ServerPlanAPI = (*serverPlanOp)(nil)
@@ -39,8 +39,8 @@ func NewServerPlanOp(c *client.Client) ServerPlanAPI {
 	return &serverPlanOp{client: c}
 }
 
-func (op *serverPlanOp) List(ctx context.Context, zone string, req *client.ServerPlanFindRequest) (*client.ServerPlanFindResponseEnvelope, error) {
-	params := client.ServerPlanOpFindParams{Zone: zone}
+func (op *serverPlanOp) List(ctx context.Context, req *client.ServerPlanFindRequest) (*client.ServerPlanFindResponseEnvelope, error) {
+	params := client.ServerPlanOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -51,8 +51,8 @@ func (op *serverPlanOp) List(ctx context.Context, zone string, req *client.Serve
 	return resp, nil
 }
 
-func (op *serverPlanOp) Read(ctx context.Context, zone string, id string) (*client.ServerPlanReadResponseEnvelope, error) {
-	params := client.ServerPlanOpReadParams{Zone: zone, ID: id}
+func (op *serverPlanOp) Read(ctx context.Context, id string) (*client.ServerPlanReadResponseEnvelope, error) {
+	params := client.ServerPlanOpReadParams{ID: id}
 	resp, err := op.client.ServerPlanOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("ServerPlan.Read", err)

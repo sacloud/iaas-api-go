@@ -24,7 +24,7 @@ import (
 
 // LocalRouterAPI は LocalRouter リソースに対する操作インターフェース。
 type LocalRouterAPI interface {
-	MonitorLocalRouter(ctx context.Context, zone string, id string, request *client.LocalRouterOpMonitorLocalRouterReq) (*client.LocalRouterMonitorLocalRouterResponseEnvelope, error)
+	MonitorLocalRouter(ctx context.Context, id string, request *client.LocalRouterOpMonitorLocalRouterReq) (*client.LocalRouterMonitorLocalRouterResponseEnvelope, error)
 }
 
 var _ LocalRouterAPI = (*localRouterOp)(nil)
@@ -38,8 +38,8 @@ func NewLocalRouterOp(c *client.Client) LocalRouterAPI {
 	return &localRouterOp{client: c}
 }
 
-func (op *localRouterOp) MonitorLocalRouter(ctx context.Context, zone string, id string, request *client.LocalRouterOpMonitorLocalRouterReq) (*client.LocalRouterMonitorLocalRouterResponseEnvelope, error) {
-	params := client.LocalRouterOpMonitorLocalRouterParams{Zone: zone, ID: id}
+func (op *localRouterOp) MonitorLocalRouter(ctx context.Context, id string, request *client.LocalRouterOpMonitorLocalRouterReq) (*client.LocalRouterMonitorLocalRouterResponseEnvelope, error) {
+	params := client.LocalRouterOpMonitorLocalRouterParams{ID: id}
 	resp, err := op.client.LocalRouterOpMonitorLocalRouter(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("LocalRouter.MonitorLocalRouter", err)

@@ -24,11 +24,11 @@ import (
 
 // PacketFilterAPI は PacketFilter リソースに対する操作インターフェース。
 type PacketFilterAPI interface {
-	Create(ctx context.Context, zone string, request *client.PacketFilterCreateRequestEnvelope) (*client.PacketFilterCreateResponseEnvelope, error)
-	Delete(ctx context.Context, zone string, id string) error
-	List(ctx context.Context, zone string, req *client.PacketFilterFindRequest) (*client.PacketFilterFindResponseEnvelope, error)
-	Read(ctx context.Context, zone string, id string) (*client.PacketFilterReadResponseEnvelope, error)
-	Update(ctx context.Context, zone string, id string, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error)
+	Create(ctx context.Context, request *client.PacketFilterCreateRequestEnvelope) (*client.PacketFilterCreateResponseEnvelope, error)
+	Delete(ctx context.Context, id string) error
+	List(ctx context.Context, req *client.PacketFilterFindRequest) (*client.PacketFilterFindResponseEnvelope, error)
+	Read(ctx context.Context, id string) (*client.PacketFilterReadResponseEnvelope, error)
+	Update(ctx context.Context, id string, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error)
 }
 
 var _ PacketFilterAPI = (*packetFilterOp)(nil)
@@ -42,17 +42,16 @@ func NewPacketFilterOp(c *client.Client) PacketFilterAPI {
 	return &packetFilterOp{client: c}
 }
 
-func (op *packetFilterOp) Create(ctx context.Context, zone string, request *client.PacketFilterCreateRequestEnvelope) (*client.PacketFilterCreateResponseEnvelope, error) {
-	params := client.PacketFilterOpCreateParams{Zone: zone}
-	resp, err := op.client.PacketFilterOpCreate(ctx, request, params)
+func (op *packetFilterOp) Create(ctx context.Context, request *client.PacketFilterCreateRequestEnvelope) (*client.PacketFilterCreateResponseEnvelope, error) {
+	resp, err := op.client.PacketFilterOpCreate(ctx, request)
 	if err != nil {
 		return nil, wrapOpErr("PacketFilter.Create", err)
 	}
 	return resp, nil
 }
 
-func (op *packetFilterOp) Delete(ctx context.Context, zone string, id string) error {
-	params := client.PacketFilterOpDeleteParams{Zone: zone, ID: id}
+func (op *packetFilterOp) Delete(ctx context.Context, id string) error {
+	params := client.PacketFilterOpDeleteParams{ID: id}
 	_, err := op.client.PacketFilterOpDelete(ctx, params)
 	if err != nil {
 		return wrapOpErr("PacketFilter.Delete", err)
@@ -60,8 +59,8 @@ func (op *packetFilterOp) Delete(ctx context.Context, zone string, id string) er
 	return nil
 }
 
-func (op *packetFilterOp) List(ctx context.Context, zone string, req *client.PacketFilterFindRequest) (*client.PacketFilterFindResponseEnvelope, error) {
-	params := client.PacketFilterOpFindParams{Zone: zone}
+func (op *packetFilterOp) List(ctx context.Context, req *client.PacketFilterFindRequest) (*client.PacketFilterFindResponseEnvelope, error) {
+	params := client.PacketFilterOpFindParams{}
 	if req != nil {
 		params.Q = req.ToOptString()
 	}
@@ -72,8 +71,8 @@ func (op *packetFilterOp) List(ctx context.Context, zone string, req *client.Pac
 	return resp, nil
 }
 
-func (op *packetFilterOp) Read(ctx context.Context, zone string, id string) (*client.PacketFilterReadResponseEnvelope, error) {
-	params := client.PacketFilterOpReadParams{Zone: zone, ID: id}
+func (op *packetFilterOp) Read(ctx context.Context, id string) (*client.PacketFilterReadResponseEnvelope, error) {
+	params := client.PacketFilterOpReadParams{ID: id}
 	resp, err := op.client.PacketFilterOpRead(ctx, params)
 	if err != nil {
 		return nil, wrapOpErr("PacketFilter.Read", err)
@@ -81,8 +80,8 @@ func (op *packetFilterOp) Read(ctx context.Context, zone string, id string) (*cl
 	return resp, nil
 }
 
-func (op *packetFilterOp) Update(ctx context.Context, zone string, id string, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error) {
-	params := client.PacketFilterOpUpdateParams{Zone: zone, ID: id}
+func (op *packetFilterOp) Update(ctx context.Context, id string, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error) {
+	params := client.PacketFilterOpUpdateParams{ID: id}
 	resp, err := op.client.PacketFilterOpUpdate(ctx, request, params)
 	if err != nil {
 		return nil, wrapOpErr("PacketFilter.Update", err)
