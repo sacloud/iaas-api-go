@@ -24,9 +24,9 @@ import (
 
 // ESMEAPI は ESME リソースに対する操作インターフェース。
 type ESMEAPI interface {
-	Logs(ctx context.Context, id string) (*client.ESMELogsResponseEnvelope, error)
-	SendMessageWithGeneratedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error)
-	SendMessageWithInputtedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error)
+	Logs(ctx context.Context, id int64) (*client.ESMELogsResponseEnvelope, error)
+	SendMessageWithGeneratedOTP(ctx context.Context, id int64, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error)
+	SendMessageWithInputtedOTP(ctx context.Context, id int64, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error)
 }
 
 var _ ESMEAPI = (*esmeOp)(nil)
@@ -40,7 +40,7 @@ func NewESMEOp(c *client.Client) ESMEAPI {
 	return &esmeOp{client: c}
 }
 
-func (op *esmeOp) Logs(ctx context.Context, id string) (*client.ESMELogsResponseEnvelope, error) {
+func (op *esmeOp) Logs(ctx context.Context, id int64) (*client.ESMELogsResponseEnvelope, error) {
 	params := client.ESMEOpLogsParams{ID: id}
 	resp, err := op.client.ESMEOpLogs(ctx, params)
 	if err != nil {
@@ -49,7 +49,7 @@ func (op *esmeOp) Logs(ctx context.Context, id string) (*client.ESMELogsResponse
 	return resp, nil
 }
 
-func (op *esmeOp) SendMessageWithGeneratedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error) {
+func (op *esmeOp) SendMessageWithGeneratedOTP(ctx context.Context, id int64, request *client.ESMEOpSendMessageWithGeneratedOTPReq) (*client.ESMESendMessageWithGeneratedOTPResponseEnvelope, error) {
 	params := client.ESMEOpSendMessageWithGeneratedOTPParams{ID: id}
 	resp, err := op.client.ESMEOpSendMessageWithGeneratedOTP(ctx, request, params)
 	if err != nil {
@@ -58,7 +58,7 @@ func (op *esmeOp) SendMessageWithGeneratedOTP(ctx context.Context, id string, re
 	return resp, nil
 }
 
-func (op *esmeOp) SendMessageWithInputtedOTP(ctx context.Context, id string, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error) {
+func (op *esmeOp) SendMessageWithInputtedOTP(ctx context.Context, id int64, request *client.ESMEOpSendMessageWithInputtedOTPReq) (*client.ESMESendMessageWithInputtedOTPResponseEnvelope, error) {
 	params := client.ESMEOpSendMessageWithInputtedOTPParams{ID: id}
 	resp, err := op.client.ESMEOpSendMessageWithInputtedOTP(ctx, request, params)
 	if err != nil {

@@ -122,8 +122,7 @@ func main() {
 
 	// マッチしたサーバーを順に起動
 	for _, s := range findResp.Servers {
-		id := fmt.Sprintf("%d", s.ID.Value)
-		if err := serverOp.Boot(ctx, zone, id, &client.ServerBootRequestEnvelope{}); err != nil {
+		if err := serverOp.Boot(ctx, zone, s.ID.Value, &client.ServerBootRequestEnvelope{}); err != nil {
 			panic(err)
 		}
 		fmt.Printf("Booted: %d (%s)\n", s.ID.Value, s.Name.Value)

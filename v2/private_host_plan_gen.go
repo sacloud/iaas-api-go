@@ -25,7 +25,7 @@ import (
 // PrivateHostPlanAPI は PrivateHostPlan リソースに対する操作インターフェース。
 type PrivateHostPlanAPI interface {
 	List(ctx context.Context, req *client.PrivateHostPlanFindRequest) (*client.PrivateHostPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.PrivateHostPlanReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.PrivateHostPlanReadResponseEnvelope, error)
 }
 
 var _ PrivateHostPlanAPI = (*privateHostPlanOp)(nil)
@@ -51,7 +51,7 @@ func (op *privateHostPlanOp) List(ctx context.Context, req *client.PrivateHostPl
 	return resp, nil
 }
 
-func (op *privateHostPlanOp) Read(ctx context.Context, id string) (*client.PrivateHostPlanReadResponseEnvelope, error) {
+func (op *privateHostPlanOp) Read(ctx context.Context, id int64) (*client.PrivateHostPlanReadResponseEnvelope, error) {
 	params := client.PrivateHostPlanOpReadParams{ID: id}
 	resp, err := op.client.PrivateHostPlanOpRead(ctx, params)
 	if err != nil {

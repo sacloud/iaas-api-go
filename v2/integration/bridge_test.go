@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"strings"
 	"testing"
@@ -49,12 +48,11 @@ func TestBridgeCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	bridgeID := createResp.Bridge.ID.Value
-	bridgeIDStr := fmt.Sprintf("%d", bridgeID)
 	t.Logf("Created Bridge ID: %d", bridgeID)
 	require.Equal(t, "test-bridge", createResp.Bridge.Name.Value)
 
 	// 2. Read
-	readResp, err := c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeIDStr})
+	readResp, err := c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeID})
 	require.NoError(t, err)
 	require.Equal(t, bridgeID, readResp.Bridge.ID.Value)
 	require.Equal(t, "test-bridge", readResp.Bridge.Name.Value)
@@ -65,7 +63,7 @@ func TestBridgeCRUD(t *testing.T) {
 			Name:        client.NewOptString("test-bridge-updated"),
 			Description: "desc-updated",
 		},
-	}, client.BridgeOpUpdateParams{ID: bridgeIDStr})
+	}, client.BridgeOpUpdateParams{ID: bridgeID})
 	require.NoError(t, err)
 	require.Equal(t, "test-bridge-updated", updateResp.Bridge.Name.Value)
 
@@ -82,11 +80,11 @@ func TestBridgeCRUD(t *testing.T) {
 	require.True(t, found, "作成した Bridge がリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: bridgeIDStr})
+	_, err = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: bridgeID})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeIDStr})
+	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeID})
 	require.Error(t, err)
 }
 
@@ -109,9 +107,8 @@ func TestSwitchBridgeConnect(t *testing.T) {
 	})
 	require.NoError(t, err)
 	bridgeID := bridgeResp.Bridge.ID.Value
-	bridgeIDStr := fmt.Sprintf("%d", bridgeID)
 	defer func() {
-		_, _ = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: bridgeIDStr})
+		_, _ = c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: bridgeID})
 	}()
 
 	// Switch を作成。tk1a は `switch: 1` per zone quota なので既存の switch があると 409 になる。
@@ -130,27 +127,26 @@ func TestSwitchBridgeConnect(t *testing.T) {
 		t.Fatalf("unexpected SwitchOpCreate error: %v", err)
 	}
 	switchID := swResp.Switch.ID.Value
-	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchID})
 	}()
 
 	// ConnectToBridge
-	_, err = c.SwitchOpConnectToBridge(ctx, client.SwitchOpConnectToBridgeParams{ID: switchIDStr, BridgeID: bridgeIDStr,
+	_, err = c.SwitchOpConnectToBridge(ctx, client.SwitchOpConnectToBridgeParams{ID: switchID, BridgeID: bridgeID,
 	})
 	require.NoError(t, err)
 
 	// Switch 側 Bridge 参照確認
-	readSwitch, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID: switchIDStr})
+	readSwitch, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID: switchID})
 	require.NoError(t, err)
 	require.Equal(t, bridgeID, readSwitch.Switch.Bridge.Value.ID, "Switch.Bridge.ID が接続先の Bridge を指すこと")
 
 	// Bridge 側 SwitchInZone は fieldmanifest allowlist で除外しているため、
 	// 接続関係の確認は Switch.Bridge 側（上の assertion）のみで行う。
-	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeIDStr})
+	_, err = c.BridgeOpRead(ctx, client.BridgeOpReadParams{ID: bridgeID})
 	require.NoError(t, err)
 
 	// DisconnectFromBridge
-	_, err = c.SwitchOpDisconnectFromBridge(ctx, client.SwitchOpDisconnectFromBridgeParams{ID: switchIDStr})
+	_, err = c.SwitchOpDisconnectFromBridge(ctx, client.SwitchOpDisconnectFromBridgeParams{ID: switchID})
 	require.NoError(t, err)
 }

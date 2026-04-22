@@ -44,10 +44,10 @@ interface SSHKeyOp {
   @route("/sshkey/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): SSHKeyReadResponseEnvelope | ApiError;
 
   @summary("SSHKey 更新")
@@ -55,10 +55,10 @@ interface SSHKeyOp {
   @route("/sshkey/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: SSHKeyUpdateRequestEnvelope,
   ): SSHKeyUpdateResponseEnvelope | ApiError;
@@ -68,10 +68,10 @@ interface SSHKeyOp {
   @route("/sshkey/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

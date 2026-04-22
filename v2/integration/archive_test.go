@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -25,7 +24,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func waitArchiveAvailable(t *testing.T, ctx context.Context, c *client.Client, zone, id string) {
+func waitArchiveAvailable(t *testing.T, ctx context.Context, c *client.Client, zone string, id int64) {
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
@@ -36,7 +35,7 @@ func waitArchiveAvailable(t *testing.T, ctx context.Context, c *client.Client, z
 		}
 		time.Sleep(3 * time.Second)
 	}
-	t.Fatalf("archive %s did not become available within timeout", id)
+	t.Fatalf("archive %d did not become available within timeout", id)
 }
 
 // TestArchiveFindWithQuery は `?q={json}` 書き換え + FindRequest/FindFilter の動作を
@@ -106,21 +105,20 @@ func TestArchiveCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	archiveID := createResp.Archive.ID.Value
-	archiveIDStr := fmt.Sprintf("%d", archiveID)
 	t.Logf("Created archive ID: %d", archiveID)
 	require.Equal(t, "test-archive", createResp.Archive.Name.Value)
 
 	// SizeMB 指定で作成するとサーバ側で FTP アップロード用セッションが開くことがある。
 	// 本テストでは実データ転送は行わないのでセッションを閉じる（既に閉じている場合はエラーは無視）。
-	if _, err := c.ArchiveOpCloseFTP(ctx, client.ArchiveOpCloseFTPParams{ID: archiveIDStr}); err != nil {
+	if _, err := c.ArchiveOpCloseFTP(ctx, client.ArchiveOpCloseFTPParams{ID: archiveID}); err != nil {
 		t.Logf("close FTP (ignorable if already closed): %v", err)
 	}
 
 	// 作成直後は migrating 状態なので available を待つ
-	waitArchiveAvailable(t, ctx, c, zone, archiveIDStr)
+	waitArchiveAvailable(t, ctx, c, zone, archiveID)
 
 	// 2. Read
-	readResp, err := c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: archiveIDStr})
+	readResp, err := c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: archiveID})
 	require.NoError(t, err)
 	require.Equal(t, "test-archive", readResp.Archive.Name.Value)
 	require.Equal(t, archiveID, readResp.Archive.ID.Value)
@@ -132,7 +130,7 @@ func TestArchiveCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ArchiveOpUpdateParams{ID: archiveIDStr})
+	}, client.ArchiveOpUpdateParams{ID: archiveID})
 	require.NoError(t, err)
 	require.Equal(t, "test-archive-updated", updateResp.Archive.Name.Value)
 
@@ -151,10 +149,10 @@ func TestArchiveCRUD(t *testing.T) {
 	require.True(t, found, "作成したアーカイブがリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.ArchiveOpDelete(ctx, client.ArchiveOpDeleteParams{ID: archiveIDStr})
+	_, err = c.ArchiveOpDelete(ctx, client.ArchiveOpDeleteParams{ID: archiveID})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: archiveIDStr})
+	_, err = c.ArchiveOpRead(ctx, client.ArchiveOpReadParams{ID: archiveID})
 	require.Error(t, err)
 }

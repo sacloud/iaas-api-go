@@ -24,16 +24,16 @@ import (
 
 // DiskAPI は Disk リソースに対する操作インターフェース。
 type DiskAPI interface {
-	Config(ctx context.Context, id string, request *client.DiskConfigRequestEnvelope) error
-	ConnectToServer(ctx context.Context, id string, serverID string) error
+	Config(ctx context.Context, id int64, request *client.DiskConfigRequestEnvelope) error
+	ConnectToServer(ctx context.Context, id int64, serverID int64) error
 	Create(ctx context.Context, request *client.DiskCreateRequestEnvelope) (*client.DiskCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
-	DisconnectFromServer(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
+	DisconnectFromServer(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.DiskFindRequest) (*client.DiskFindResponseEnvelope, error)
-	Monitor(ctx context.Context, id string, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.DiskReadResponseEnvelope, error)
-	ResizePartition(ctx context.Context, id string, request *client.DiskResizePartitionRequestEnvelope) error
-	Update(ctx context.Context, id string, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error)
+	Monitor(ctx context.Context, id int64, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.DiskReadResponseEnvelope, error)
+	ResizePartition(ctx context.Context, id int64, request *client.DiskResizePartitionRequestEnvelope) error
+	Update(ctx context.Context, id int64, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error)
 }
 
 var _ DiskAPI = (*diskOp)(nil)
@@ -47,7 +47,7 @@ func NewDiskOp(c *client.Client) DiskAPI {
 	return &diskOp{client: c}
 }
 
-func (op *diskOp) Config(ctx context.Context, id string, request *client.DiskConfigRequestEnvelope) error {
+func (op *diskOp) Config(ctx context.Context, id int64, request *client.DiskConfigRequestEnvelope) error {
 	params := client.DiskOpConfigParams{ID: id}
 	_, err := op.client.DiskOpConfig(ctx, request, params)
 	if err != nil {
@@ -56,7 +56,7 @@ func (op *diskOp) Config(ctx context.Context, id string, request *client.DiskCon
 	return nil
 }
 
-func (op *diskOp) ConnectToServer(ctx context.Context, id string, serverID string) error {
+func (op *diskOp) ConnectToServer(ctx context.Context, id int64, serverID int64) error {
 	params := client.DiskOpConnectToServerParams{ID: id, ServerID: serverID}
 	_, err := op.client.DiskOpConnectToServer(ctx, params)
 	if err != nil {
@@ -73,7 +73,7 @@ func (op *diskOp) Create(ctx context.Context, request *client.DiskCreateRequestE
 	return resp, nil
 }
 
-func (op *diskOp) Delete(ctx context.Context, id string) error {
+func (op *diskOp) Delete(ctx context.Context, id int64) error {
 	params := client.DiskOpDeleteParams{ID: id}
 	_, err := op.client.DiskOpDelete(ctx, params)
 	if err != nil {
@@ -82,7 +82,7 @@ func (op *diskOp) Delete(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *diskOp) DisconnectFromServer(ctx context.Context, id string) error {
+func (op *diskOp) DisconnectFromServer(ctx context.Context, id int64) error {
 	params := client.DiskOpDisconnectFromServerParams{ID: id}
 	_, err := op.client.DiskOpDisconnectFromServer(ctx, params)
 	if err != nil {
@@ -103,7 +103,7 @@ func (op *diskOp) List(ctx context.Context, req *client.DiskFindRequest) (*clien
 	return resp, nil
 }
 
-func (op *diskOp) Monitor(ctx context.Context, id string, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error) {
+func (op *diskOp) Monitor(ctx context.Context, id int64, request *client.DiskMonitorRequestEnvelope) (*client.DiskMonitorResponseEnvelope, error) {
 	params := client.DiskOpMonitorParams{ID: id}
 	resp, err := op.client.DiskOpMonitor(ctx, request, params)
 	if err != nil {
@@ -112,7 +112,7 @@ func (op *diskOp) Monitor(ctx context.Context, id string, request *client.DiskMo
 	return resp, nil
 }
 
-func (op *diskOp) Read(ctx context.Context, id string) (*client.DiskReadResponseEnvelope, error) {
+func (op *diskOp) Read(ctx context.Context, id int64) (*client.DiskReadResponseEnvelope, error) {
 	params := client.DiskOpReadParams{ID: id}
 	resp, err := op.client.DiskOpRead(ctx, params)
 	if err != nil {
@@ -121,7 +121,7 @@ func (op *diskOp) Read(ctx context.Context, id string) (*client.DiskReadResponse
 	return resp, nil
 }
 
-func (op *diskOp) ResizePartition(ctx context.Context, id string, request *client.DiskResizePartitionRequestEnvelope) error {
+func (op *diskOp) ResizePartition(ctx context.Context, id int64, request *client.DiskResizePartitionRequestEnvelope) error {
 	params := client.DiskOpResizePartitionParams{ID: id}
 	_, err := op.client.DiskOpResizePartition(ctx, request, params)
 	if err != nil {
@@ -130,7 +130,7 @@ func (op *diskOp) ResizePartition(ctx context.Context, id string, request *clien
 	return nil
 }
 
-func (op *diskOp) Update(ctx context.Context, id string, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error) {
+func (op *diskOp) Update(ctx context.Context, id int64, request *client.DiskUpdateRequestEnvelope) (*client.DiskUpdateResponseEnvelope, error) {
 	params := client.DiskOpUpdateParams{ID: id}
 	resp, err := op.client.DiskOpUpdate(ctx, request, params)
 	if err != nil {

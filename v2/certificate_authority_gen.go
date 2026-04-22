@@ -24,20 +24,20 @@ import (
 
 // CertificateAuthorityAPI は CertificateAuthority リソースに対する操作インターフェース。
 type CertificateAuthorityAPI interface {
-	AddClient(ctx context.Context, id string, request *client.CertificateAuthorityOpAddClientReq) (*client.CertificateAuthorityAddClientResponseEnvelope, error)
-	AddServer(ctx context.Context, id string, request *client.CertificateAuthorityOpAddServerReq) (*client.CertificateAuthorityAddServerResponseEnvelope, error)
-	DenyClient(ctx context.Context, id string, clientID string) error
-	Detail(ctx context.Context, id string) (*client.CertificateAuthorityDetailResponseEnvelope, error)
-	HoldClient(ctx context.Context, id string, clientID string) error
-	HoldServer(ctx context.Context, id string, serverID string) error
-	ListClients(ctx context.Context, id string) (*client.CertificateAuthorityListClientsResponseEnvelope, error)
-	ListServers(ctx context.Context, id string) (*client.CertificateAuthorityListServersResponseEnvelope, error)
-	ReadClient(ctx context.Context, id string, clientID string) (*client.CertificateAuthorityReadClientResponseEnvelope, error)
-	ReadServer(ctx context.Context, id string, serverID string) (*client.CertificateAuthorityReadServerResponseEnvelope, error)
-	ResumeClient(ctx context.Context, id string, clientID string) error
-	ResumeServer(ctx context.Context, id string, serverID string) error
-	RevokeClient(ctx context.Context, id string, clientID string) error
-	RevokeServer(ctx context.Context, id string, serverID string) error
+	AddClient(ctx context.Context, id int64, request *client.CertificateAuthorityOpAddClientReq) (*client.CertificateAuthorityAddClientResponseEnvelope, error)
+	AddServer(ctx context.Context, id int64, request *client.CertificateAuthorityOpAddServerReq) (*client.CertificateAuthorityAddServerResponseEnvelope, error)
+	DenyClient(ctx context.Context, id int64, clientID string) error
+	Detail(ctx context.Context, id int64) (*client.CertificateAuthorityDetailResponseEnvelope, error)
+	HoldClient(ctx context.Context, id int64, clientID string) error
+	HoldServer(ctx context.Context, id int64, serverID int64) error
+	ListClients(ctx context.Context, id int64) (*client.CertificateAuthorityListClientsResponseEnvelope, error)
+	ListServers(ctx context.Context, id int64) (*client.CertificateAuthorityListServersResponseEnvelope, error)
+	ReadClient(ctx context.Context, id int64, clientID string) (*client.CertificateAuthorityReadClientResponseEnvelope, error)
+	ReadServer(ctx context.Context, id int64, serverID int64) (*client.CertificateAuthorityReadServerResponseEnvelope, error)
+	ResumeClient(ctx context.Context, id int64, clientID string) error
+	ResumeServer(ctx context.Context, id int64, serverID int64) error
+	RevokeClient(ctx context.Context, id int64, clientID string) error
+	RevokeServer(ctx context.Context, id int64, serverID int64) error
 }
 
 var _ CertificateAuthorityAPI = (*certificateAuthorityOp)(nil)
@@ -51,7 +51,7 @@ func NewCertificateAuthorityOp(c *client.Client) CertificateAuthorityAPI {
 	return &certificateAuthorityOp{client: c}
 }
 
-func (op *certificateAuthorityOp) AddClient(ctx context.Context, id string, request *client.CertificateAuthorityOpAddClientReq) (*client.CertificateAuthorityAddClientResponseEnvelope, error) {
+func (op *certificateAuthorityOp) AddClient(ctx context.Context, id int64, request *client.CertificateAuthorityOpAddClientReq) (*client.CertificateAuthorityAddClientResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpAddClientParams{ID: id}
 	resp, err := op.client.CertificateAuthorityOpAddClient(ctx, request, params)
 	if err != nil {
@@ -60,7 +60,7 @@ func (op *certificateAuthorityOp) AddClient(ctx context.Context, id string, requ
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) AddServer(ctx context.Context, id string, request *client.CertificateAuthorityOpAddServerReq) (*client.CertificateAuthorityAddServerResponseEnvelope, error) {
+func (op *certificateAuthorityOp) AddServer(ctx context.Context, id int64, request *client.CertificateAuthorityOpAddServerReq) (*client.CertificateAuthorityAddServerResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpAddServerParams{ID: id}
 	resp, err := op.client.CertificateAuthorityOpAddServer(ctx, request, params)
 	if err != nil {
@@ -69,7 +69,7 @@ func (op *certificateAuthorityOp) AddServer(ctx context.Context, id string, requ
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) DenyClient(ctx context.Context, id string, clientID string) error {
+func (op *certificateAuthorityOp) DenyClient(ctx context.Context, id int64, clientID string) error {
 	params := client.CertificateAuthorityOpDenyClientParams{ID: id, ClientID: clientID}
 	_, err := op.client.CertificateAuthorityOpDenyClient(ctx, params)
 	if err != nil {
@@ -78,7 +78,7 @@ func (op *certificateAuthorityOp) DenyClient(ctx context.Context, id string, cli
 	return nil
 }
 
-func (op *certificateAuthorityOp) Detail(ctx context.Context, id string) (*client.CertificateAuthorityDetailResponseEnvelope, error) {
+func (op *certificateAuthorityOp) Detail(ctx context.Context, id int64) (*client.CertificateAuthorityDetailResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpDetailParams{ID: id}
 	resp, err := op.client.CertificateAuthorityOpDetail(ctx, params)
 	if err != nil {
@@ -87,7 +87,7 @@ func (op *certificateAuthorityOp) Detail(ctx context.Context, id string) (*clien
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) HoldClient(ctx context.Context, id string, clientID string) error {
+func (op *certificateAuthorityOp) HoldClient(ctx context.Context, id int64, clientID string) error {
 	params := client.CertificateAuthorityOpHoldClientParams{ID: id, ClientID: clientID}
 	_, err := op.client.CertificateAuthorityOpHoldClient(ctx, params)
 	if err != nil {
@@ -96,7 +96,7 @@ func (op *certificateAuthorityOp) HoldClient(ctx context.Context, id string, cli
 	return nil
 }
 
-func (op *certificateAuthorityOp) HoldServer(ctx context.Context, id string, serverID string) error {
+func (op *certificateAuthorityOp) HoldServer(ctx context.Context, id int64, serverID int64) error {
 	params := client.CertificateAuthorityOpHoldServerParams{ID: id, ServerID: serverID}
 	_, err := op.client.CertificateAuthorityOpHoldServer(ctx, params)
 	if err != nil {
@@ -105,7 +105,7 @@ func (op *certificateAuthorityOp) HoldServer(ctx context.Context, id string, ser
 	return nil
 }
 
-func (op *certificateAuthorityOp) ListClients(ctx context.Context, id string) (*client.CertificateAuthorityListClientsResponseEnvelope, error) {
+func (op *certificateAuthorityOp) ListClients(ctx context.Context, id int64) (*client.CertificateAuthorityListClientsResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpListClientsParams{ID: id}
 	resp, err := op.client.CertificateAuthorityOpListClients(ctx, params)
 	if err != nil {
@@ -114,7 +114,7 @@ func (op *certificateAuthorityOp) ListClients(ctx context.Context, id string) (*
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) ListServers(ctx context.Context, id string) (*client.CertificateAuthorityListServersResponseEnvelope, error) {
+func (op *certificateAuthorityOp) ListServers(ctx context.Context, id int64) (*client.CertificateAuthorityListServersResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpListServersParams{ID: id}
 	resp, err := op.client.CertificateAuthorityOpListServers(ctx, params)
 	if err != nil {
@@ -123,7 +123,7 @@ func (op *certificateAuthorityOp) ListServers(ctx context.Context, id string) (*
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) ReadClient(ctx context.Context, id string, clientID string) (*client.CertificateAuthorityReadClientResponseEnvelope, error) {
+func (op *certificateAuthorityOp) ReadClient(ctx context.Context, id int64, clientID string) (*client.CertificateAuthorityReadClientResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpReadClientParams{ID: id, ClientID: clientID}
 	resp, err := op.client.CertificateAuthorityOpReadClient(ctx, params)
 	if err != nil {
@@ -132,7 +132,7 @@ func (op *certificateAuthorityOp) ReadClient(ctx context.Context, id string, cli
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) ReadServer(ctx context.Context, id string, serverID string) (*client.CertificateAuthorityReadServerResponseEnvelope, error) {
+func (op *certificateAuthorityOp) ReadServer(ctx context.Context, id int64, serverID int64) (*client.CertificateAuthorityReadServerResponseEnvelope, error) {
 	params := client.CertificateAuthorityOpReadServerParams{ID: id, ServerID: serverID}
 	resp, err := op.client.CertificateAuthorityOpReadServer(ctx, params)
 	if err != nil {
@@ -141,7 +141,7 @@ func (op *certificateAuthorityOp) ReadServer(ctx context.Context, id string, ser
 	return resp, nil
 }
 
-func (op *certificateAuthorityOp) ResumeClient(ctx context.Context, id string, clientID string) error {
+func (op *certificateAuthorityOp) ResumeClient(ctx context.Context, id int64, clientID string) error {
 	params := client.CertificateAuthorityOpResumeClientParams{ID: id, ClientID: clientID}
 	_, err := op.client.CertificateAuthorityOpResumeClient(ctx, params)
 	if err != nil {
@@ -150,7 +150,7 @@ func (op *certificateAuthorityOp) ResumeClient(ctx context.Context, id string, c
 	return nil
 }
 
-func (op *certificateAuthorityOp) ResumeServer(ctx context.Context, id string, serverID string) error {
+func (op *certificateAuthorityOp) ResumeServer(ctx context.Context, id int64, serverID int64) error {
 	params := client.CertificateAuthorityOpResumeServerParams{ID: id, ServerID: serverID}
 	_, err := op.client.CertificateAuthorityOpResumeServer(ctx, params)
 	if err != nil {
@@ -159,7 +159,7 @@ func (op *certificateAuthorityOp) ResumeServer(ctx context.Context, id string, s
 	return nil
 }
 
-func (op *certificateAuthorityOp) RevokeClient(ctx context.Context, id string, clientID string) error {
+func (op *certificateAuthorityOp) RevokeClient(ctx context.Context, id int64, clientID string) error {
 	params := client.CertificateAuthorityOpRevokeClientParams{ID: id, ClientID: clientID}
 	_, err := op.client.CertificateAuthorityOpRevokeClient(ctx, params)
 	if err != nil {
@@ -168,7 +168,7 @@ func (op *certificateAuthorityOp) RevokeClient(ctx context.Context, id string, c
 	return nil
 }
 
-func (op *certificateAuthorityOp) RevokeServer(ctx context.Context, id string, serverID string) error {
+func (op *certificateAuthorityOp) RevokeServer(ctx context.Context, id int64, serverID int64) error {
 	params := client.CertificateAuthorityOpRevokeServerParams{ID: id, ServerID: serverID}
 	_, err := op.client.CertificateAuthorityOpRevokeServer(ctx, params)
 	if err != nil {

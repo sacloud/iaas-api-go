@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -51,8 +50,7 @@ func TestNoteCRUD(t *testing.T) {
 	require.Equal(t, "shell", createResp.Note.Class.Value)
 
 	// 2. Read - スクリプト取得
-	readResp, err := c.NoteOpRead(ctx, client.NoteOpReadParams{ID:   fmt.Sprintf("%d", noteID),
-	})
+	readResp, err := c.NoteOpRead(ctx, client.NoteOpReadParams{ID: noteID})
 	require.NoError(t, err)
 	require.Equal(t, "test-note", readResp.Note.Name.Value)
 	require.Equal(t, noteID, readResp.Note.ID.Value)
@@ -65,8 +63,7 @@ func TestNoteCRUD(t *testing.T) {
 			Class:   client.NewOptString("shell"),
 			Content: client.NewOptString("#!/bin/bash\necho updated"),
 		},
-	}, client.NoteOpUpdateParams{ID:   fmt.Sprintf("%d", noteID),
-	})
+	}, client.NoteOpUpdateParams{ID: noteID})
 	require.NoError(t, err)
 	require.Equal(t, "test-note-updated", updateResp.Note.Name.Value)
 
@@ -85,12 +82,10 @@ func TestNoteCRUD(t *testing.T) {
 	require.True(t, found, "作成したスクリプトがリストに含まれていること")
 
 	// 5. Delete - スクリプト削除
-	_, err = c.NoteOpDelete(ctx, client.NoteOpDeleteParams{ID:   fmt.Sprintf("%d", noteID),
-	})
+	_, err = c.NoteOpDelete(ctx, client.NoteOpDeleteParams{ID: noteID})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.NoteOpRead(ctx, client.NoteOpReadParams{ID:   fmt.Sprintf("%d", noteID),
-	})
+	_, err = c.NoteOpRead(ctx, client.NoteOpReadParams{ID: noteID})
 	require.Error(t, err)
 }

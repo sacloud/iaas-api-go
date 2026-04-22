@@ -24,9 +24,9 @@ import (
 
 // EnhancedDBAPI は EnhancedDB リソースに対する操作インターフェース。
 type EnhancedDBAPI interface {
-	GetConfig(ctx context.Context, id string) (*client.EnhancedDBGetConfigResponseEnvelope, error)
-	SetConfig(ctx context.Context, id string, request *client.EnhancedDBOpSetConfigReq) error
-	SetPassword(ctx context.Context, id string, request *client.EnhancedDBOpSetPasswordReq) error
+	GetConfig(ctx context.Context, id int64) (*client.EnhancedDBGetConfigResponseEnvelope, error)
+	SetConfig(ctx context.Context, id int64, request *client.EnhancedDBOpSetConfigReq) error
+	SetPassword(ctx context.Context, id int64, request *client.EnhancedDBOpSetPasswordReq) error
 }
 
 var _ EnhancedDBAPI = (*enhancedDBOp)(nil)
@@ -40,7 +40,7 @@ func NewEnhancedDBOp(c *client.Client) EnhancedDBAPI {
 	return &enhancedDBOp{client: c}
 }
 
-func (op *enhancedDBOp) GetConfig(ctx context.Context, id string) (*client.EnhancedDBGetConfigResponseEnvelope, error) {
+func (op *enhancedDBOp) GetConfig(ctx context.Context, id int64) (*client.EnhancedDBGetConfigResponseEnvelope, error) {
 	params := client.EnhancedDBOpGetConfigParams{ID: id}
 	resp, err := op.client.EnhancedDBOpGetConfig(ctx, params)
 	if err != nil {
@@ -49,7 +49,7 @@ func (op *enhancedDBOp) GetConfig(ctx context.Context, id string) (*client.Enhan
 	return resp, nil
 }
 
-func (op *enhancedDBOp) SetConfig(ctx context.Context, id string, request *client.EnhancedDBOpSetConfigReq) error {
+func (op *enhancedDBOp) SetConfig(ctx context.Context, id int64, request *client.EnhancedDBOpSetConfigReq) error {
 	params := client.EnhancedDBOpSetConfigParams{ID: id}
 	_, err := op.client.EnhancedDBOpSetConfig(ctx, request, params)
 	if err != nil {
@@ -58,7 +58,7 @@ func (op *enhancedDBOp) SetConfig(ctx context.Context, id string, request *clien
 	return nil
 }
 
-func (op *enhancedDBOp) SetPassword(ctx context.Context, id string, request *client.EnhancedDBOpSetPasswordReq) error {
+func (op *enhancedDBOp) SetPassword(ctx context.Context, id int64, request *client.EnhancedDBOpSetPasswordReq) error {
 	params := client.EnhancedDBOpSetPasswordParams{ID: id}
 	_, err := op.client.EnhancedDBOpSetPassword(ctx, request, params)
 	if err != nil {

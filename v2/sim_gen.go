@@ -24,16 +24,16 @@ import (
 
 // SIMAPI は SIM リソースに対する操作インターフェース。
 type SIMAPI interface {
-	Activate(ctx context.Context, id string) error
-	AssignIP(ctx context.Context, id string, request *client.SIMOpAssignIPReq) error
-	ClearIP(ctx context.Context, id string) error
-	Deactivate(ctx context.Context, id string) error
-	GetNetworkOperator(ctx context.Context, id string) (*client.SIMGetNetworkOperatorResponseEnvelope, error)
-	ImeiLock(ctx context.Context, id string, request *client.SIMOpImeiLockReq) error
-	ImeiUnlock(ctx context.Context, id string) error
-	Logs(ctx context.Context, id string) (*client.SIMLogsResponseEnvelope, error)
-	MonitorSIM(ctx context.Context, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error)
-	SetNetworkOperator(ctx context.Context, id string, request *client.SIMOpSetNetworkOperatorReq) error
+	Activate(ctx context.Context, id int64) error
+	AssignIP(ctx context.Context, id int64, request *client.SIMOpAssignIPReq) error
+	ClearIP(ctx context.Context, id int64) error
+	Deactivate(ctx context.Context, id int64) error
+	GetNetworkOperator(ctx context.Context, id int64) (*client.SIMGetNetworkOperatorResponseEnvelope, error)
+	ImeiLock(ctx context.Context, id int64, request *client.SIMOpImeiLockReq) error
+	ImeiUnlock(ctx context.Context, id int64) error
+	Logs(ctx context.Context, id int64) (*client.SIMLogsResponseEnvelope, error)
+	MonitorSIM(ctx context.Context, id int64, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error)
+	SetNetworkOperator(ctx context.Context, id int64, request *client.SIMOpSetNetworkOperatorReq) error
 }
 
 var _ SIMAPI = (*simOp)(nil)
@@ -47,7 +47,7 @@ func NewSIMOp(c *client.Client) SIMAPI {
 	return &simOp{client: c}
 }
 
-func (op *simOp) Activate(ctx context.Context, id string) error {
+func (op *simOp) Activate(ctx context.Context, id int64) error {
 	params := client.SIMOpActivateParams{ID: id}
 	_, err := op.client.SIMOpActivate(ctx, params)
 	if err != nil {
@@ -56,7 +56,7 @@ func (op *simOp) Activate(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *simOp) AssignIP(ctx context.Context, id string, request *client.SIMOpAssignIPReq) error {
+func (op *simOp) AssignIP(ctx context.Context, id int64, request *client.SIMOpAssignIPReq) error {
 	params := client.SIMOpAssignIPParams{ID: id}
 	_, err := op.client.SIMOpAssignIP(ctx, request, params)
 	if err != nil {
@@ -65,7 +65,7 @@ func (op *simOp) AssignIP(ctx context.Context, id string, request *client.SIMOpA
 	return nil
 }
 
-func (op *simOp) ClearIP(ctx context.Context, id string) error {
+func (op *simOp) ClearIP(ctx context.Context, id int64) error {
 	params := client.SIMOpClearIPParams{ID: id}
 	_, err := op.client.SIMOpClearIP(ctx, params)
 	if err != nil {
@@ -74,7 +74,7 @@ func (op *simOp) ClearIP(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *simOp) Deactivate(ctx context.Context, id string) error {
+func (op *simOp) Deactivate(ctx context.Context, id int64) error {
 	params := client.SIMOpDeactivateParams{ID: id}
 	_, err := op.client.SIMOpDeactivate(ctx, params)
 	if err != nil {
@@ -83,7 +83,7 @@ func (op *simOp) Deactivate(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *simOp) GetNetworkOperator(ctx context.Context, id string) (*client.SIMGetNetworkOperatorResponseEnvelope, error) {
+func (op *simOp) GetNetworkOperator(ctx context.Context, id int64) (*client.SIMGetNetworkOperatorResponseEnvelope, error) {
 	params := client.SIMOpGetNetworkOperatorParams{ID: id}
 	resp, err := op.client.SIMOpGetNetworkOperator(ctx, params)
 	if err != nil {
@@ -92,7 +92,7 @@ func (op *simOp) GetNetworkOperator(ctx context.Context, id string) (*client.SIM
 	return resp, nil
 }
 
-func (op *simOp) ImeiLock(ctx context.Context, id string, request *client.SIMOpImeiLockReq) error {
+func (op *simOp) ImeiLock(ctx context.Context, id int64, request *client.SIMOpImeiLockReq) error {
 	params := client.SIMOpImeiLockParams{ID: id}
 	_, err := op.client.SIMOpImeiLock(ctx, request, params)
 	if err != nil {
@@ -101,7 +101,7 @@ func (op *simOp) ImeiLock(ctx context.Context, id string, request *client.SIMOpI
 	return nil
 }
 
-func (op *simOp) ImeiUnlock(ctx context.Context, id string) error {
+func (op *simOp) ImeiUnlock(ctx context.Context, id int64) error {
 	params := client.SIMOpImeiUnlockParams{ID: id}
 	_, err := op.client.SIMOpImeiUnlock(ctx, params)
 	if err != nil {
@@ -110,7 +110,7 @@ func (op *simOp) ImeiUnlock(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *simOp) Logs(ctx context.Context, id string) (*client.SIMLogsResponseEnvelope, error) {
+func (op *simOp) Logs(ctx context.Context, id int64) (*client.SIMLogsResponseEnvelope, error) {
 	params := client.SIMOpLogsParams{ID: id}
 	resp, err := op.client.SIMOpLogs(ctx, params)
 	if err != nil {
@@ -119,7 +119,7 @@ func (op *simOp) Logs(ctx context.Context, id string) (*client.SIMLogsResponseEn
 	return resp, nil
 }
 
-func (op *simOp) MonitorSIM(ctx context.Context, id string, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error) {
+func (op *simOp) MonitorSIM(ctx context.Context, id int64, request *client.SIMOpMonitorSIMReq) (*client.SIMMonitorSIMResponseEnvelope, error) {
 	params := client.SIMOpMonitorSIMParams{ID: id}
 	resp, err := op.client.SIMOpMonitorSIM(ctx, request, params)
 	if err != nil {
@@ -128,7 +128,7 @@ func (op *simOp) MonitorSIM(ctx context.Context, id string, request *client.SIMO
 	return resp, nil
 }
 
-func (op *simOp) SetNetworkOperator(ctx context.Context, id string, request *client.SIMOpSetNetworkOperatorReq) error {
+func (op *simOp) SetNetworkOperator(ctx context.Context, id int64, request *client.SIMOpSetNetworkOperatorReq) error {
 	params := client.SIMOpSetNetworkOperatorParams{ID: id}
 	_, err := op.client.SIMOpSetNetworkOperator(ctx, request, params)
 	if err != nil {

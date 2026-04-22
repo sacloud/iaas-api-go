@@ -25,7 +25,7 @@ import (
 // SimpleNotificationGroupAPI は SimpleNotificationGroup リソースに対する操作インターフェース。
 type SimpleNotificationGroupAPI interface {
 	History(ctx context.Context) (*client.SimpleNotificationGroupHistoryResponseEnvelope, error)
-	PostMessage(ctx context.Context, id string, request *client.SimpleNotificationGroupOpPostMessageReq) error
+	PostMessage(ctx context.Context, id int64, request *client.SimpleNotificationGroupOpPostMessageReq) error
 }
 
 var _ SimpleNotificationGroupAPI = (*simpleNotificationGroupOp)(nil)
@@ -47,7 +47,7 @@ func (op *simpleNotificationGroupOp) History(ctx context.Context) (*client.Simpl
 	return resp, nil
 }
 
-func (op *simpleNotificationGroupOp) PostMessage(ctx context.Context, id string, request *client.SimpleNotificationGroupOpPostMessageReq) error {
+func (op *simpleNotificationGroupOp) PostMessage(ctx context.Context, id int64, request *client.SimpleNotificationGroupOpPostMessageReq) error {
 	params := client.SimpleNotificationGroupOpPostMessageParams{ID: id}
 	_, err := op.client.SimpleNotificationGroupOpPostMessage(ctx, request, params)
 	if err != nil {

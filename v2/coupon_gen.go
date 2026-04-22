@@ -24,7 +24,7 @@ import (
 
 // CouponAPI は Coupon リソースに対する操作インターフェース。
 type CouponAPI interface {
-	List(ctx context.Context, accountID string) (*client.CouponFindResponseEnvelope, error)
+	List(ctx context.Context, accountID int64) (*client.CouponFindResponseEnvelope, error)
 }
 
 var _ CouponAPI = (*couponOp)(nil)
@@ -38,7 +38,7 @@ func NewCouponOp(c *client.Client) CouponAPI {
 	return &couponOp{client: c}
 }
 
-func (op *couponOp) List(ctx context.Context, accountID string) (*client.CouponFindResponseEnvelope, error) {
+func (op *couponOp) List(ctx context.Context, accountID int64) (*client.CouponFindResponseEnvelope, error) {
 	params := client.CouponOpFindParams{AccountID: accountID}
 	resp, err := op.client.CouponOpFind(ctx, params)
 	if err != nil {

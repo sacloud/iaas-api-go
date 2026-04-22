@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -57,12 +56,11 @@ func TestLicenseCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	licenseID := createResp.License.ID.Value
-	licenseIDStr := fmt.Sprintf("%d", licenseID)
 	t.Logf("Created License ID: %d", licenseID)
 	require.Equal(t, "test-license", createResp.License.Name.Value)
 
 	// 3. Read
-	readResp, err := c.LicenseOpRead(ctx, client.LicenseOpReadParams{ID: licenseIDStr})
+	readResp, err := c.LicenseOpRead(ctx, client.LicenseOpReadParams{ID: licenseID})
 	require.NoError(t, err)
 	require.Equal(t, licenseID, readResp.License.ID.Value)
 	require.Equal(t, "test-license", readResp.License.Name.Value)
@@ -72,7 +70,7 @@ func TestLicenseCRUD(t *testing.T) {
 		License: client.LicenseUpdateRequest{
 			Name: client.NewOptString("test-license-updated"),
 		},
-	}, client.LicenseOpUpdateParams{ID: licenseIDStr})
+	}, client.LicenseOpUpdateParams{ID: licenseID})
 	require.NoError(t, err)
 	require.Equal(t, "test-license-updated", updateResp.License.Name.Value)
 
@@ -89,10 +87,10 @@ func TestLicenseCRUD(t *testing.T) {
 	require.True(t, found, "作成した License がリストに含まれていること")
 
 	// 6. Delete
-	_, err = c.LicenseOpDelete(ctx, client.LicenseOpDeleteParams{ID: licenseIDStr})
+	_, err = c.LicenseOpDelete(ctx, client.LicenseOpDeleteParams{ID: licenseID})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.LicenseOpRead(ctx, client.LicenseOpReadParams{ID: licenseIDStr})
+	_, err = c.LicenseOpRead(ctx, client.LicenseOpReadParams{ID: licenseID})
 	require.Error(t, err)
 }

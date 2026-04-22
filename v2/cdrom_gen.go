@@ -24,13 +24,13 @@ import (
 
 // CDROMAPI は CDROM リソースに対する操作インターフェース。
 type CDROMAPI interface {
-	CloseFTP(ctx context.Context, id string) error
+	CloseFTP(ctx context.Context, id int64) error
 	Create(ctx context.Context, request *client.CDROMCreateRequestEnvelope) (*client.CDROMCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.CDROMFindRequest) (*client.CDROMFindResponseEnvelope, error)
-	OpenFTP(ctx context.Context, id string, request *client.CDROMOpenFTPRequestEnvelope) (*client.CDROMOpenFTPResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.CDROMReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.CDROMUpdateRequestEnvelope) (*client.CDROMUpdateResponseEnvelope, error)
+	OpenFTP(ctx context.Context, id int64, request *client.CDROMOpenFTPRequestEnvelope) (*client.CDROMOpenFTPResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.CDROMReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.CDROMUpdateRequestEnvelope) (*client.CDROMUpdateResponseEnvelope, error)
 }
 
 var _ CDROMAPI = (*cdromOp)(nil)
@@ -44,7 +44,7 @@ func NewCDROMOp(c *client.Client) CDROMAPI {
 	return &cdromOp{client: c}
 }
 
-func (op *cdromOp) CloseFTP(ctx context.Context, id string) error {
+func (op *cdromOp) CloseFTP(ctx context.Context, id int64) error {
 	params := client.CDROMOpCloseFTPParams{ID: id}
 	_, err := op.client.CDROMOpCloseFTP(ctx, params)
 	if err != nil {
@@ -61,7 +61,7 @@ func (op *cdromOp) Create(ctx context.Context, request *client.CDROMCreateReques
 	return resp, nil
 }
 
-func (op *cdromOp) Delete(ctx context.Context, id string) error {
+func (op *cdromOp) Delete(ctx context.Context, id int64) error {
 	params := client.CDROMOpDeleteParams{ID: id}
 	_, err := op.client.CDROMOpDelete(ctx, params)
 	if err != nil {
@@ -82,7 +82,7 @@ func (op *cdromOp) List(ctx context.Context, req *client.CDROMFindRequest) (*cli
 	return resp, nil
 }
 
-func (op *cdromOp) OpenFTP(ctx context.Context, id string, request *client.CDROMOpenFTPRequestEnvelope) (*client.CDROMOpenFTPResponseEnvelope, error) {
+func (op *cdromOp) OpenFTP(ctx context.Context, id int64, request *client.CDROMOpenFTPRequestEnvelope) (*client.CDROMOpenFTPResponseEnvelope, error) {
 	params := client.CDROMOpOpenFTPParams{ID: id}
 	resp, err := op.client.CDROMOpOpenFTP(ctx, request, params)
 	if err != nil {
@@ -91,7 +91,7 @@ func (op *cdromOp) OpenFTP(ctx context.Context, id string, request *client.CDROM
 	return resp, nil
 }
 
-func (op *cdromOp) Read(ctx context.Context, id string) (*client.CDROMReadResponseEnvelope, error) {
+func (op *cdromOp) Read(ctx context.Context, id int64) (*client.CDROMReadResponseEnvelope, error) {
 	params := client.CDROMOpReadParams{ID: id}
 	resp, err := op.client.CDROMOpRead(ctx, params)
 	if err != nil {
@@ -100,7 +100,7 @@ func (op *cdromOp) Read(ctx context.Context, id string) (*client.CDROMReadRespon
 	return resp, nil
 }
 
-func (op *cdromOp) Update(ctx context.Context, id string, request *client.CDROMUpdateRequestEnvelope) (*client.CDROMUpdateResponseEnvelope, error) {
+func (op *cdromOp) Update(ctx context.Context, id int64, request *client.CDROMUpdateRequestEnvelope) (*client.CDROMUpdateResponseEnvelope, error) {
 	params := client.CDROMOpUpdateParams{ID: id}
 	resp, err := op.client.CDROMOpUpdate(ctx, request, params)
 	if err != nil {

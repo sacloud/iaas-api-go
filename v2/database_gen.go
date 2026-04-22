@@ -24,9 +24,9 @@ import (
 
 // DatabaseAPI は Database リソースに対する操作インターフェース。
 type DatabaseAPI interface {
-	GetParameter(ctx context.Context, id string) (*client.DatabaseGetParameterResponseEnvelope, error)
-	MonitorDisk(ctx context.Context, id string, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error)
-	SetParameter(ctx context.Context, id string, request *client.DatabaseOpSetParameterReq) error
+	GetParameter(ctx context.Context, id int64) (*client.DatabaseGetParameterResponseEnvelope, error)
+	MonitorDisk(ctx context.Context, id int64, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error)
+	SetParameter(ctx context.Context, id int64, request *client.DatabaseOpSetParameterReq) error
 }
 
 var _ DatabaseAPI = (*databaseOp)(nil)
@@ -40,7 +40,7 @@ func NewDatabaseOp(c *client.Client) DatabaseAPI {
 	return &databaseOp{client: c}
 }
 
-func (op *databaseOp) GetParameter(ctx context.Context, id string) (*client.DatabaseGetParameterResponseEnvelope, error) {
+func (op *databaseOp) GetParameter(ctx context.Context, id int64) (*client.DatabaseGetParameterResponseEnvelope, error) {
 	params := client.DatabaseOpGetParameterParams{ID: id}
 	resp, err := op.client.DatabaseOpGetParameter(ctx, params)
 	if err != nil {
@@ -49,7 +49,7 @@ func (op *databaseOp) GetParameter(ctx context.Context, id string) (*client.Data
 	return resp, nil
 }
 
-func (op *databaseOp) MonitorDisk(ctx context.Context, id string, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error) {
+func (op *databaseOp) MonitorDisk(ctx context.Context, id int64, request *client.DatabaseOpMonitorDiskReq) (*client.DatabaseMonitorDiskResponseEnvelope, error) {
 	params := client.DatabaseOpMonitorDiskParams{ID: id}
 	resp, err := op.client.DatabaseOpMonitorDisk(ctx, request, params)
 	if err != nil {
@@ -58,7 +58,7 @@ func (op *databaseOp) MonitorDisk(ctx context.Context, id string, request *clien
 	return resp, nil
 }
 
-func (op *databaseOp) SetParameter(ctx context.Context, id string, request *client.DatabaseOpSetParameterReq) error {
+func (op *databaseOp) SetParameter(ctx context.Context, id int64, request *client.DatabaseOpSetParameterReq) error {
 	params := client.DatabaseOpSetParameterParams{ID: id}
 	_, err := op.client.DatabaseOpSetParameter(ctx, request, params)
 	if err != nil {

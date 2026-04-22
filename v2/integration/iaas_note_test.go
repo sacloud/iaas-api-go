@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -51,15 +50,14 @@ func TestIaasNoteCRUD(t *testing.T) {
 	require.NotNil(t, createResp)
 	noteID := createResp.Note.ID.Value
 	t.Logf("Created note ID (wrapper): %d", noteID)
-	idStr := fmt.Sprintf("%d", noteID)
 
 	// Read
-	readResp, err := noteOp.Read(ctx, idStr)
+	readResp, err := noteOp.Read(ctx, noteID)
 	require.NoError(t, err)
 	require.Equal(t, "test-note-wrapper", readResp.Note.Name.Value)
 
 	// Update
-	updateResp, err := noteOp.Update(ctx, idStr, &client.NoteUpdateRequestEnvelope{
+	updateResp, err := noteOp.Update(ctx, noteID, &client.NoteUpdateRequestEnvelope{
 		Note: client.NoteUpdateRequest{
 			Name:    client.NewOptString("test-note-wrapper-updated"),
 			Tags:    []string{"test", "integration", "wrapper", "updated"},
@@ -88,10 +86,10 @@ func TestIaasNoteCRUD(t *testing.T) {
 	require.True(t, found, "作成した Note が Find 結果に含まれていること")
 
 	// Delete
-	err = noteOp.Delete(ctx, idStr)
+	err = noteOp.Delete(ctx, noteID)
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = noteOp.Read(ctx, idStr)
+	_, err = noteOp.Read(ctx, noteID)
 	require.Error(t, err)
 }

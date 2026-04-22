@@ -24,12 +24,12 @@ import (
 
 // ProxyLBAPI は ProxyLB リソースに対する操作インターフェース。
 type ProxyLBAPI interface {
-	ChangePlan(ctx context.Context, id string, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error)
-	DeleteCertificates(ctx context.Context, id string) error
-	GetCertificates(ctx context.Context, id string) (*client.ProxyLBGetCertificatesResponseEnvelope, error)
-	MonitorConnection(ctx context.Context, id string, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error)
-	RenewLetsEncryptCert(ctx context.Context, id string) error
-	SetCertificates(ctx context.Context, id string, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error)
+	ChangePlan(ctx context.Context, id int64, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error)
+	DeleteCertificates(ctx context.Context, id int64) error
+	GetCertificates(ctx context.Context, id int64) (*client.ProxyLBGetCertificatesResponseEnvelope, error)
+	MonitorConnection(ctx context.Context, id int64, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error)
+	RenewLetsEncryptCert(ctx context.Context, id int64) error
+	SetCertificates(ctx context.Context, id int64, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error)
 }
 
 var _ ProxyLBAPI = (*proxyLBOp)(nil)
@@ -43,7 +43,7 @@ func NewProxyLBOp(c *client.Client) ProxyLBAPI {
 	return &proxyLBOp{client: c}
 }
 
-func (op *proxyLBOp) ChangePlan(ctx context.Context, id string, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error) {
+func (op *proxyLBOp) ChangePlan(ctx context.Context, id int64, request *client.ProxyLBOpChangePlanReq) (*client.ProxyLBChangePlanResponseEnvelope, error) {
 	params := client.ProxyLBOpChangePlanParams{ID: id}
 	resp, err := op.client.ProxyLBOpChangePlan(ctx, request, params)
 	if err != nil {
@@ -52,7 +52,7 @@ func (op *proxyLBOp) ChangePlan(ctx context.Context, id string, request *client.
 	return resp, nil
 }
 
-func (op *proxyLBOp) DeleteCertificates(ctx context.Context, id string) error {
+func (op *proxyLBOp) DeleteCertificates(ctx context.Context, id int64) error {
 	params := client.ProxyLBOpDeleteCertificatesParams{ID: id}
 	_, err := op.client.ProxyLBOpDeleteCertificates(ctx, params)
 	if err != nil {
@@ -61,7 +61,7 @@ func (op *proxyLBOp) DeleteCertificates(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *proxyLBOp) GetCertificates(ctx context.Context, id string) (*client.ProxyLBGetCertificatesResponseEnvelope, error) {
+func (op *proxyLBOp) GetCertificates(ctx context.Context, id int64) (*client.ProxyLBGetCertificatesResponseEnvelope, error) {
 	params := client.ProxyLBOpGetCertificatesParams{ID: id}
 	resp, err := op.client.ProxyLBOpGetCertificates(ctx, params)
 	if err != nil {
@@ -70,7 +70,7 @@ func (op *proxyLBOp) GetCertificates(ctx context.Context, id string) (*client.Pr
 	return resp, nil
 }
 
-func (op *proxyLBOp) MonitorConnection(ctx context.Context, id string, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error) {
+func (op *proxyLBOp) MonitorConnection(ctx context.Context, id int64, request *client.ProxyLBOpMonitorConnectionReq) (*client.ProxyLBMonitorConnectionResponseEnvelope, error) {
 	params := client.ProxyLBOpMonitorConnectionParams{ID: id}
 	resp, err := op.client.ProxyLBOpMonitorConnection(ctx, request, params)
 	if err != nil {
@@ -79,7 +79,7 @@ func (op *proxyLBOp) MonitorConnection(ctx context.Context, id string, request *
 	return resp, nil
 }
 
-func (op *proxyLBOp) RenewLetsEncryptCert(ctx context.Context, id string) error {
+func (op *proxyLBOp) RenewLetsEncryptCert(ctx context.Context, id int64) error {
 	params := client.ProxyLBOpRenewLetsEncryptCertParams{ID: id}
 	_, err := op.client.ProxyLBOpRenewLetsEncryptCert(ctx, params)
 	if err != nil {
@@ -88,7 +88,7 @@ func (op *proxyLBOp) RenewLetsEncryptCert(ctx context.Context, id string) error 
 	return nil
 }
 
-func (op *proxyLBOp) SetCertificates(ctx context.Context, id string, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error) {
+func (op *proxyLBOp) SetCertificates(ctx context.Context, id int64, request *client.ProxyLBOpSetCertificatesReq) (*client.ProxyLBSetCertificatesResponseEnvelope, error) {
 	params := client.ProxyLBOpSetCertificatesParams{ID: id}
 	resp, err := op.client.ProxyLBOpSetCertificates(ctx, request, params)
 	if err != nil {

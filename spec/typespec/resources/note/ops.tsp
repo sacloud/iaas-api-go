@@ -46,10 +46,10 @@ interface NoteOp {
   @route("/note/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): NoteReadResponseEnvelope | ApiError;
 
   @summary("Note 更新")
@@ -57,10 +57,10 @@ interface NoteOp {
   @route("/note/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: NoteUpdateRequestEnvelope,
   ): NoteUpdateResponseEnvelope | ApiError;
@@ -70,10 +70,10 @@ interface NoteOp {
   @route("/note/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

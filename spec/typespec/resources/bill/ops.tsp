@@ -18,7 +18,7 @@ interface BillOp {
       契約（アカウント）の ID。
       """)
     @path
-    accountID: string,
+    accountID: int64,
   ): BillByContractResponseEnvelope | ApiError;
 
   @summary("契約・年別請求情報取得")
@@ -29,10 +29,10 @@ interface BillOp {
       契約（アカウント）の ID。
       """)
     @path
-    accountID: string,
+    accountID: int64,
 
     @doc("""
-      対象年（西暦 4 桁）。
+      対象年（西暦 4 桁の 10 進文字列）。
       """)
     @path
     year: string,
@@ -46,16 +46,16 @@ interface BillOp {
       契約（アカウント）の ID。
       """)
     @path
-    accountID: string,
+    accountID: int64,
 
     @doc("""
-      対象年（西暦 4 桁）。
+      対象年（西暦 4 桁の 10 進文字列）。
       """)
     @path
     year: string,
 
     @doc("""
-      対象月（1〜12）。
+      対象月（1〜12 の 10 進文字列）。
       """)
     @path
     month: string,
@@ -66,10 +66,10 @@ interface BillOp {
   @route("/bill/id/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): BillReadResponseEnvelope | ApiError;
 
   @summary("請求明細取得")
@@ -83,10 +83,10 @@ interface BillOp {
     MemberCode: string,
 
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): BillDetailsResponseEnvelope | ApiError;
 
   @summary("請求明細 CSV 取得")
@@ -100,9 +100,9 @@ interface BillOp {
     MemberCode: string,
 
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): BillDetailsCSVResponseEnvelope | ApiError;
 }

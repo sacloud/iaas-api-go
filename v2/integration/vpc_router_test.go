@@ -17,7 +17,6 @@ package integration
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"os"
 	"testing"
 
@@ -63,17 +62,16 @@ func TestVPCRouterApplianceCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	vpcID := createResp.Appliance.ID.Value
-	vpcIDStr := fmt.Sprintf("%d", vpcID)
 	t.Logf("Created VPCRouter appliance ID: %d", vpcID)
 	require.Equal(t, "test-vpc-router", createResp.Appliance.Name.Value)
 	require.Equal(t, "vpcrouter", createResp.Appliance.Class.Value)
 
 	// VPCRouter は create 直後 Instance.Status=="down" のまま。明示的に Boot しない限り
 	// 起動しない。本テストは CRUD round-trip の検証が目的なので down のまま Availability のみ待つ。
-	waitApplianceAvailableOpt(t, ctx, c, zone, vpcIDStr, false)
+	waitApplianceAvailableOpt(t, ctx, c, zone, vpcID, false)
 
 	// Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: vpcIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: vpcID})
 	require.NoError(t, err)
 	require.Equal(t, "test-vpc-router", readResp.Appliance.Name.Value)
 	require.Equal(t, "vpcrouter", readResp.Appliance.Class.Value)
@@ -85,11 +83,11 @@ func TestVPCRouterApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{ID: vpcIDStr})
+	}, client.ApplianceOpUpdateParams{ID: vpcID})
 	require.NoError(t, err)
 	require.Equal(t, "test-vpc-router-updated", updateResp.Appliance.Name.Value)
 
 	// Delete（既に down なので shutdown 不要）
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: vpcIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: vpcID})
 	require.NoError(t, err)
 }

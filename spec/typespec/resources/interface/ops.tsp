@@ -44,10 +44,10 @@ interface InterfaceOp {
   @route("/interface/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): InterfaceReadResponseEnvelope | ApiError;
 
   @summary("Interface 更新")
@@ -55,10 +55,10 @@ interface InterfaceOp {
   @route("/interface/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: InterfaceUpdateRequestEnvelope,
   ): InterfaceUpdateResponseEnvelope | ApiError;
@@ -68,10 +68,10 @@ interface InterfaceOp {
   @route("/interface/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -82,10 +82,10 @@ interface InterfaceOp {
   @route("/interface/{id}/monitor")
   monitor(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: InterfaceMonitorRequestEnvelope,
   ): InterfaceMonitorResponseEnvelope | ApiError;
@@ -95,10 +95,10 @@ interface InterfaceOp {
   @route("/interface/{id}/to/switch/shared")
   connectToSharedSegment(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -109,16 +109,16 @@ interface InterfaceOp {
   @route("/interface/{id}/to/switch/{switchID}")
   connectToSwitch(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
       スイッチ ID。
       """)
     @path
-    switchID: string,
+    switchID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -129,10 +129,10 @@ interface InterfaceOp {
   @route("/interface/{id}/to/switch")
   disconnectFromSwitch(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -143,16 +143,16 @@ interface InterfaceOp {
   @route("/interface/{id}/to/packetfilter/{packetFilterID}")
   connectToPacketFilter(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
       パケットフィルタ ID。
       """)
     @path
-    packetFilterID: string,
+    packetFilterID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -163,10 +163,10 @@ interface InterfaceOp {
   @route("/interface/{id}/to/packetfilter")
   disconnectFromPacketFilter(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

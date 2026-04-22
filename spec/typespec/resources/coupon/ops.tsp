@@ -18,6 +18,6 @@ interface CouponOp {
       契約（アカウント）の ID。
       """)
     @path
-    accountID: string,
+    accountID: int64,
   ): CouponFindResponseEnvelope | ApiError;
 }

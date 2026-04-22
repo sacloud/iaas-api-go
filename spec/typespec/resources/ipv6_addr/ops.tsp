@@ -42,10 +42,10 @@ interface IPv6AddrOp {
   @route("/ipv6addr/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): IPv6AddrReadResponseEnvelope | ApiError;
 
   @summary("IPv6Addr 更新")
@@ -53,10 +53,10 @@ interface IPv6AddrOp {
   @route("/ipv6addr/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: IPv6AddrUpdateRequestEnvelope,
   ): IPv6AddrUpdateResponseEnvelope | ApiError;
@@ -66,10 +66,10 @@ interface IPv6AddrOp {
   @route("/ipv6addr/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

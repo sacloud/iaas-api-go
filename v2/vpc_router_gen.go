@@ -24,9 +24,9 @@ import (
 
 // VPCRouterAPI は VPCRouter リソースに対する操作インターフェース。
 type VPCRouterAPI interface {
-	ConnectToSwitch(ctx context.Context, id string, nicIndex string, switchID string) error
-	DisconnectFromSwitch(ctx context.Context, id string, nicIndex string) error
-	Ping(ctx context.Context, id string, destination string) (*client.VPCRouterPingResponseEnvelope, error)
+	ConnectToSwitch(ctx context.Context, id int64, nicIndex string, switchID int64) error
+	DisconnectFromSwitch(ctx context.Context, id int64, nicIndex string) error
+	Ping(ctx context.Context, id int64, destination string) (*client.VPCRouterPingResponseEnvelope, error)
 }
 
 var _ VPCRouterAPI = (*vPCRouterOp)(nil)
@@ -40,7 +40,7 @@ func NewVPCRouterOp(c *client.Client) VPCRouterAPI {
 	return &vPCRouterOp{client: c}
 }
 
-func (op *vPCRouterOp) ConnectToSwitch(ctx context.Context, id string, nicIndex string, switchID string) error {
+func (op *vPCRouterOp) ConnectToSwitch(ctx context.Context, id int64, nicIndex string, switchID int64) error {
 	params := client.VPCRouterOpConnectToSwitchParams{ID: id, NicIndex: nicIndex, SwitchID: switchID}
 	_, err := op.client.VPCRouterOpConnectToSwitch(ctx, params)
 	if err != nil {
@@ -49,7 +49,7 @@ func (op *vPCRouterOp) ConnectToSwitch(ctx context.Context, id string, nicIndex 
 	return nil
 }
 
-func (op *vPCRouterOp) DisconnectFromSwitch(ctx context.Context, id string, nicIndex string) error {
+func (op *vPCRouterOp) DisconnectFromSwitch(ctx context.Context, id int64, nicIndex string) error {
 	params := client.VPCRouterOpDisconnectFromSwitchParams{ID: id, NicIndex: nicIndex}
 	_, err := op.client.VPCRouterOpDisconnectFromSwitch(ctx, params)
 	if err != nil {
@@ -58,7 +58,7 @@ func (op *vPCRouterOp) DisconnectFromSwitch(ctx context.Context, id string, nicI
 	return nil
 }
 
-func (op *vPCRouterOp) Ping(ctx context.Context, id string, destination string) (*client.VPCRouterPingResponseEnvelope, error) {
+func (op *vPCRouterOp) Ping(ctx context.Context, id int64, destination string) (*client.VPCRouterPingResponseEnvelope, error) {
 	params := client.VPCRouterOpPingParams{ID: id, Destination: destination}
 	resp, err := op.client.VPCRouterOpPing(ctx, params)
 	if err != nil {

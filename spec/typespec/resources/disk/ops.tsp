@@ -46,10 +46,10 @@ interface DiskOp {
   @route("/disk/{id}/config")
   config(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: DiskConfigRequestEnvelope,
   ): {
@@ -62,10 +62,10 @@ interface DiskOp {
   @route("/disk/{id}/resize-partition")
   resizePartition(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: DiskResizePartitionRequestEnvelope,
   ): {
@@ -78,16 +78,16 @@ interface DiskOp {
   @route("/disk/{id}/to/server/{serverID}")
   connectToServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
       サーバ ID。
       """)
     @path
-    serverID: string,
+    serverID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -98,10 +98,10 @@ interface DiskOp {
   @route("/disk/{id}/to/server")
   disconnectFromServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -112,10 +112,10 @@ interface DiskOp {
   @route("/disk/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): DiskReadResponseEnvelope | ApiError;
 
   @summary("Disk 更新")
@@ -123,10 +123,10 @@ interface DiskOp {
   @route("/disk/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: DiskUpdateRequestEnvelope,
   ): DiskUpdateResponseEnvelope | ApiError;
@@ -136,10 +136,10 @@ interface DiskOp {
   @route("/disk/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -150,10 +150,10 @@ interface DiskOp {
   @route("/disk/{id}/monitor")
   monitor(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: DiskMonitorRequestEnvelope,
   ): DiskMonitorResponseEnvelope | ApiError;

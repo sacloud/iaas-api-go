@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -50,8 +49,7 @@ func TestSwitchCRUD(t *testing.T) {
 	require.Equal(t, "test-switch", createResp.Switch.Name.Value)
 
 	// 2. Read - スイッチ取得
-	readResp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID:   fmt.Sprintf("%d", switchID),
-	})
+	readResp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID: switchID})
 	require.NoError(t, err)
 	require.Equal(t, "test-switch", readResp.Switch.Name.Value)
 	require.Equal(t, switchID, readResp.Switch.ID.Value)
@@ -63,8 +61,7 @@ func TestSwitchCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.SwitchOpUpdateParams{ID:   fmt.Sprintf("%d", switchID),
-	})
+	}, client.SwitchOpUpdateParams{ID: switchID})
 	require.NoError(t, err)
 	require.Equal(t, "test-switch-updated", updateResp.Switch.Name.Value)
 
@@ -83,12 +80,10 @@ func TestSwitchCRUD(t *testing.T) {
 	require.True(t, found, "作成したスイッチがリストに含まれていること")
 
 	// 5. Delete - スイッチ削除
-	_, err = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID:   fmt.Sprintf("%d", switchID),
-	})
+	_, err = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchID})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID:   fmt.Sprintf("%d", switchID),
-	})
+	_, err = c.SwitchOpRead(ctx, client.SwitchOpReadParams{ID: switchID})
 	require.Error(t, err)
 }

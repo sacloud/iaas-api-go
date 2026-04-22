@@ -25,7 +25,7 @@ import (
 // SubnetAPI は Subnet リソースに対する操作インターフェース。
 type SubnetAPI interface {
 	List(ctx context.Context, req *client.SubnetFindRequest) (*client.SubnetFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.SubnetReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.SubnetReadResponseEnvelope, error)
 }
 
 var _ SubnetAPI = (*subnetOp)(nil)
@@ -51,7 +51,7 @@ func (op *subnetOp) List(ctx context.Context, req *client.SubnetFindRequest) (*c
 	return resp, nil
 }
 
-func (op *subnetOp) Read(ctx context.Context, id string) (*client.SubnetReadResponseEnvelope, error) {
+func (op *subnetOp) Read(ctx context.Context, id int64) (*client.SubnetReadResponseEnvelope, error) {
 	params := client.SubnetOpReadParams{ID: id}
 	resp, err := op.client.SubnetOpRead(ctx, params)
 	if err != nil {

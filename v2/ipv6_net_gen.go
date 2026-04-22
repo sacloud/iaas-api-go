@@ -25,7 +25,7 @@ import (
 // IPv6NetAPI は IPv6Net リソースに対する操作インターフェース。
 type IPv6NetAPI interface {
 	List(ctx context.Context, request *client.IPv6NetListRequestEnvelope) (*client.IPv6NetListResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.IPv6NetReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.IPv6NetReadResponseEnvelope, error)
 }
 
 var _ IPv6NetAPI = (*iPv6NetOp)(nil)
@@ -47,7 +47,7 @@ func (op *iPv6NetOp) List(ctx context.Context, request *client.IPv6NetListReques
 	return resp, nil
 }
 
-func (op *iPv6NetOp) Read(ctx context.Context, id string) (*client.IPv6NetReadResponseEnvelope, error) {
+func (op *iPv6NetOp) Read(ctx context.Context, id int64) (*client.IPv6NetReadResponseEnvelope, error) {
 	params := client.IPv6NetOpReadParams{ID: id}
 	resp, err := op.client.IPv6NetOpRead(ctx, params)
 	if err != nil {

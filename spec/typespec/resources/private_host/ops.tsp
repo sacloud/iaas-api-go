@@ -45,10 +45,10 @@ interface PrivateHostOp {
   @route("/privatehost/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): PrivateHostReadResponseEnvelope | ApiError;
 
   @summary("PrivateHost 更新")
@@ -56,10 +56,10 @@ interface PrivateHostOp {
   @route("/privatehost/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: PrivateHostUpdateRequestEnvelope,
   ): PrivateHostUpdateResponseEnvelope | ApiError;
@@ -69,10 +69,10 @@ interface PrivateHostOp {
   @route("/privatehost/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

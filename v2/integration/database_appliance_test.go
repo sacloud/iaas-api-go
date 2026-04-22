@@ -44,9 +44,8 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
-	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchID})
 	}()
 
 	// 2. Appliance Create (Class=database, Plan=DB10GB / ID=10)
@@ -55,7 +54,8 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 	// - Settings.DBConf.Common (ServicePort 等), Settings.Replication, Settings.MonitoringSuite
 	const dbPlanID = int64(10)
 
-	switchRaw, _ := json.Marshal(map[string]any{"ID": switchIDStr})
+	// 実 API は Remark.Switch.ID を文字列で受け付けるため、ここで文字列化する
+	switchRaw, _ := json.Marshal(map[string]any{"ID": fmt.Sprintf("%d", switchID)})
 
 	// v1 test (test/database_op_test.go) と同じ Settings。
 	settings := map[string]any{
@@ -110,7 +110,6 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	dbID := createResp.Appliance.ID.Value
-	dbIDStr := fmt.Sprintf("%d", dbID)
 	t.Logf("Created DB appliance ID: %d", dbID)
 	require.Equal(t, "test-db", createResp.Appliance.Name.Value)
 	require.Equal(t, "database", createResp.Appliance.Class.Value)
@@ -118,19 +117,19 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 	// DB の up までは数分かかる。ここでは available 到達は待たず、すぐ shutdown/delete する
 	// （mapconv 確認が目的なので round-trip が取れればよい）。
 	// ただし作成直後だと shutdown 不可なことがあるので少しだけ待つ。
-	waitApplianceAvailable(t, ctx, c, zone, dbIDStr)
+	waitApplianceAvailable(t, ctx, c, zone, dbID)
 
 	// 3. Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: dbIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: dbID})
 	require.NoError(t, err)
 	require.Equal(t, "test-db", readResp.Appliance.Name.Value)
 	require.Equal(t, "database", readResp.Appliance.Class.Value)
 
 	// 4. Shutdown → Delete
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: dbIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: dbID})
 	require.NoError(t, err)
-	waitApplianceShutdown(t, ctx, c, zone, dbIDStr)
+	waitApplianceShutdown(t, ctx, c, zone, dbID)
 
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: dbIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: dbID})
 	require.NoError(t, err)
 }

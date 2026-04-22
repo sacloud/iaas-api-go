@@ -84,12 +84,12 @@ func findNFSPlanID(t *testing.T, ctx context.Context, c *client.Client, zone str
 // しばらく "" のまま（VM 起動中）。shutdown/update を走らせる前に Instance が "up" に
 // 達していないと 423 Locked で弾かれる。
 // VPCRouter のように create 後 Instance が自動起動しない appliance は useStatusUp=false で呼ぶ。
-func waitApplianceAvailable(t *testing.T, ctx context.Context, c *client.Client, zone, id string) {
+func waitApplianceAvailable(t *testing.T, ctx context.Context, c *client.Client, zone string, id int64) {
 	t.Helper()
 	waitApplianceAvailableOpt(t, ctx, c, zone, id, true)
 }
 
-func waitApplianceAvailableOpt(t *testing.T, ctx context.Context, c *client.Client, zone, id string, requireUp bool) {
+func waitApplianceAvailableOpt(t *testing.T, ctx context.Context, c *client.Client, zone string, id int64, requireUp bool) {
 	t.Helper()
 	deadline := time.Now().Add(15 * time.Minute)
 	for time.Now().Before(deadline) {
@@ -104,11 +104,11 @@ func waitApplianceAvailableOpt(t *testing.T, ctx context.Context, c *client.Clie
 		}
 		time.Sleep(10 * time.Second)
 	}
-	t.Fatalf("appliance %s did not become available(+up=%v) within timeout", id, requireUp)
+	t.Fatalf("appliance %d did not become available(+up=%v) within timeout", id, requireUp)
 }
 
 // waitApplianceShutdown は Appliance の Instance.Status が "down" になるまで待つ。
-func waitApplianceShutdown(t *testing.T, ctx context.Context, c *client.Client, zone, id string) {
+func waitApplianceShutdown(t *testing.T, ctx context.Context, c *client.Client, zone string, id int64) {
 	t.Helper()
 	deadline := time.Now().Add(5 * time.Minute)
 	for time.Now().Before(deadline) {
@@ -118,7 +118,7 @@ func waitApplianceShutdown(t *testing.T, ctx context.Context, c *client.Client, 
 		}
 		time.Sleep(5 * time.Second)
 	}
-	t.Fatalf("appliance %s did not shut down within timeout", id)
+	t.Fatalf("appliance %d did not shut down within timeout", id)
 }
 
 func TestNFSApplianceCRUD(t *testing.T) {
@@ -139,9 +139,8 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
-	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchID})
 	}()
 
 	// 2. NFSPlan ID を sys-nfs Note から検索。SSD/100GB を使う。
@@ -152,7 +151,8 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	// 3. Appliance Create (Class=nfs)
 	//    実 API は `{"Appliance": {"Class":"nfs", "Remark":{"Plan":{"ID":...}, "Switch":{"ID":"..."}, "Servers":[{"IPAddress":"..."}], "Network":{...}}, "Name":...}}` を要求する。
 	//    v2 fat model は Remark.Switch が jx.Raw なので手で JSON を作る。
-	switchRaw, _ := json.Marshal(map[string]any{"ID": switchIDStr})
+	// 実 API は Remark.Switch.ID を文字列で受け付けるため、ここで文字列化する
+	switchRaw, _ := json.Marshal(map[string]any{"ID": fmt.Sprintf("%d", switchID)})
 	createReq := &client.ApplianceCreateRequestEnvelope{
 		Appliance: client.ApplianceCreateRequest{
 			Class: "nfs",
@@ -177,15 +177,14 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	nfsID := createResp.Appliance.ID.Value
-	nfsIDStr := fmt.Sprintf("%d", nfsID)
 	t.Logf("Created NFS appliance ID: %d", nfsID)
 	require.Equal(t, "test-nfs", createResp.Appliance.Name.Value)
 	require.Equal(t, "nfs", createResp.Appliance.Class.Value)
 
-	waitApplianceAvailable(t, ctx, c, zone, nfsIDStr)
+	waitApplianceAvailable(t, ctx, c, zone, nfsID)
 
 	// 4. Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: nfsIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: nfsID})
 	require.NoError(t, err)
 	require.Equal(t, "test-nfs", readResp.Appliance.Name.Value)
 	require.Equal(t, "nfs", readResp.Appliance.Class.Value)
@@ -197,7 +196,7 @@ func TestNFSApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{ID: nfsIDStr})
+	}, client.ApplianceOpUpdateParams{ID: nfsID})
 	require.NoError(t, err)
 	require.Equal(t, "test-nfs-updated", updateResp.Appliance.Name.Value)
 
@@ -214,15 +213,15 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	require.True(t, found, "作成した NFS がリストに含まれていること")
 
 	// 7. Shutdown (force)
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: nfsIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: nfsID})
 	require.NoError(t, err)
-	waitApplianceShutdown(t, ctx, c, zone, nfsIDStr)
+	waitApplianceShutdown(t, ctx, c, zone, nfsID)
 
 	// 8. Delete
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: nfsIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: nfsID})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: nfsIDStr})
+	_, err = c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: nfsID})
 	require.Error(t, err)
 }

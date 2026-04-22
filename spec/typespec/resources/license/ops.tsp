@@ -44,10 +44,10 @@ interface LicenseOp {
   @route("/license/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): LicenseReadResponseEnvelope | ApiError;
 
   @summary("License 更新")
@@ -55,10 +55,10 @@ interface LicenseOp {
   @route("/license/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: LicenseUpdateRequestEnvelope,
   ): LicenseUpdateResponseEnvelope | ApiError;
@@ -68,10 +68,10 @@ interface LicenseOp {
   @route("/license/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

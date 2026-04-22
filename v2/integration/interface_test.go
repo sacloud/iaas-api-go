@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -49,9 +48,8 @@ func TestInterfaceCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	serverID := serverResp.Server.ID.Value
-	serverIDStr := fmt.Sprintf("%d", serverID)
 	defer func() {
-		_, _ = c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{ID: serverIDStr})
+		_, _ = c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{ID: serverID})
 	}()
 
 	// 前提の Switch（後で ConnectToSwitch に使う）
@@ -63,10 +61,9 @@ func TestInterfaceCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
-	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
 		// Switch は Interface から切断されてから削除する
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchID})
 	}()
 
 	// 2. Interface Create - Server に紐付ける
@@ -78,12 +75,11 @@ func TestInterfaceCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	ifaceID := createResp.Interface.ID.Value
-	ifaceIDStr := fmt.Sprintf("%d", ifaceID)
 	t.Logf("Created Interface ID: %d (on server %d)", ifaceID, serverID)
 	require.Equal(t, serverID, createResp.Interface.Server.Value.ID)
 
 	// 3. Read
-	readResp, err := c.InterfaceOpRead(ctx, client.InterfaceOpReadParams{ID: ifaceIDStr})
+	readResp, err := c.InterfaceOpRead(ctx, client.InterfaceOpReadParams{ID: ifaceID})
 	require.NoError(t, err)
 	require.Equal(t, ifaceID, readResp.Interface.ID.Value)
 
@@ -92,7 +88,7 @@ func TestInterfaceCRUD(t *testing.T) {
 		Interface: client.InterfaceUpdateRequest{
 			UserIPAddress: client.NewOptString("192.2.0.1"),
 		},
-	}, client.InterfaceOpUpdateParams{ID: ifaceIDStr})
+	}, client.InterfaceOpUpdateParams{ID: ifaceID})
 	require.NoError(t, err)
 	require.Equal(t, "192.2.0.1", updateResp.Interface.UserIPAddress.Value)
 
@@ -109,32 +105,31 @@ func TestInterfaceCRUD(t *testing.T) {
 	require.True(t, found, "作成した Interface がリストに含まれていること")
 
 	// 6. ConnectToSwitch
-	_, err = c.InterfaceOpConnectToSwitch(ctx, client.InterfaceOpConnectToSwitchParams{ID: ifaceIDStr, SwitchID: switchIDStr,
-	})
+	_, err = c.InterfaceOpConnectToSwitch(ctx, client.InterfaceOpConnectToSwitchParams{ID: ifaceID, SwitchID: switchID})
 	require.NoError(t, err)
 
 	// 接続確認
-	readResp2, err := c.InterfaceOpRead(ctx, client.InterfaceOpReadParams{ID: ifaceIDStr})
+	readResp2, err := c.InterfaceOpRead(ctx, client.InterfaceOpReadParams{ID: ifaceID})
 	require.NoError(t, err)
 	require.Equal(t, switchID, readResp2.Interface.Switch.Value.ID.Value, "Switch が接続されていること")
 
 	// 7. DisconnectFromSwitch
-	_, err = c.InterfaceOpDisconnectFromSwitch(ctx, client.InterfaceOpDisconnectFromSwitchParams{ID: ifaceIDStr})
+	_, err = c.InterfaceOpDisconnectFromSwitch(ctx, client.InterfaceOpDisconnectFromSwitchParams{ID: ifaceID})
 	require.NoError(t, err)
 
 	// 8. ConnectToSharedSegment（共有セグメントへ）
-	_, err = c.InterfaceOpConnectToSharedSegment(ctx, client.InterfaceOpConnectToSharedSegmentParams{ID: ifaceIDStr})
+	_, err = c.InterfaceOpConnectToSharedSegment(ctx, client.InterfaceOpConnectToSharedSegmentParams{ID: ifaceID})
 	require.NoError(t, err)
 
 	// 9. DisconnectFromSwitch（shared から外す）
-	_, err = c.InterfaceOpDisconnectFromSwitch(ctx, client.InterfaceOpDisconnectFromSwitchParams{ID: ifaceIDStr})
+	_, err = c.InterfaceOpDisconnectFromSwitch(ctx, client.InterfaceOpDisconnectFromSwitchParams{ID: ifaceID})
 	require.NoError(t, err)
 
 	// 10. Delete
-	_, err = c.InterfaceOpDelete(ctx, client.InterfaceOpDeleteParams{ID: ifaceIDStr})
+	_, err = c.InterfaceOpDelete(ctx, client.InterfaceOpDeleteParams{ID: ifaceID})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.InterfaceOpRead(ctx, client.InterfaceOpReadParams{ID: ifaceIDStr})
+	_, err = c.InterfaceOpRead(ctx, client.InterfaceOpReadParams{ID: ifaceID})
 	require.Error(t, err)
 }

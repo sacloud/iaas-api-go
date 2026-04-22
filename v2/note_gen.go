@@ -25,10 +25,10 @@ import (
 // NoteAPI は Note リソースに対する操作インターフェース。
 type NoteAPI interface {
 	Create(ctx context.Context, request *client.NoteCreateRequestEnvelope) (*client.NoteCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.NoteFindRequest) (*client.NoteFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.NoteReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.NoteUpdateRequestEnvelope) (*client.NoteUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.NoteReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.NoteUpdateRequestEnvelope) (*client.NoteUpdateResponseEnvelope, error)
 }
 
 var _ NoteAPI = (*noteOp)(nil)
@@ -50,7 +50,7 @@ func (op *noteOp) Create(ctx context.Context, request *client.NoteCreateRequestE
 	return resp, nil
 }
 
-func (op *noteOp) Delete(ctx context.Context, id string) error {
+func (op *noteOp) Delete(ctx context.Context, id int64) error {
 	params := client.NoteOpDeleteParams{ID: id}
 	_, err := op.client.NoteOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *noteOp) List(ctx context.Context, req *client.NoteFindRequest) (*clien
 	return resp, nil
 }
 
-func (op *noteOp) Read(ctx context.Context, id string) (*client.NoteReadResponseEnvelope, error) {
+func (op *noteOp) Read(ctx context.Context, id int64) (*client.NoteReadResponseEnvelope, error) {
 	params := client.NoteOpReadParams{ID: id}
 	resp, err := op.client.NoteOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *noteOp) Read(ctx context.Context, id string) (*client.NoteReadResponse
 	return resp, nil
 }
 
-func (op *noteOp) Update(ctx context.Context, id string, request *client.NoteUpdateRequestEnvelope) (*client.NoteUpdateResponseEnvelope, error) {
+func (op *noteOp) Update(ctx context.Context, id int64, request *client.NoteUpdateRequestEnvelope) (*client.NoteUpdateResponseEnvelope, error) {
 	params := client.NoteOpUpdateParams{ID: id}
 	resp, err := op.client.NoteOpUpdate(ctx, request, params)
 	if err != nil {

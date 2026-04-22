@@ -25,10 +25,10 @@ import (
 // LicenseAPI は License リソースに対する操作インターフェース。
 type LicenseAPI interface {
 	Create(ctx context.Context, request *client.LicenseCreateRequestEnvelope) (*client.LicenseCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.LicenseFindRequest) (*client.LicenseFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.LicenseReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.LicenseReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error)
 }
 
 var _ LicenseAPI = (*licenseOp)(nil)
@@ -50,7 +50,7 @@ func (op *licenseOp) Create(ctx context.Context, request *client.LicenseCreateRe
 	return resp, nil
 }
 
-func (op *licenseOp) Delete(ctx context.Context, id string) error {
+func (op *licenseOp) Delete(ctx context.Context, id int64) error {
 	params := client.LicenseOpDeleteParams{ID: id}
 	_, err := op.client.LicenseOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *licenseOp) List(ctx context.Context, req *client.LicenseFindRequest) (
 	return resp, nil
 }
 
-func (op *licenseOp) Read(ctx context.Context, id string) (*client.LicenseReadResponseEnvelope, error) {
+func (op *licenseOp) Read(ctx context.Context, id int64) (*client.LicenseReadResponseEnvelope, error) {
 	params := client.LicenseOpReadParams{ID: id}
 	resp, err := op.client.LicenseOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *licenseOp) Read(ctx context.Context, id string) (*client.LicenseReadRe
 	return resp, nil
 }
 
-func (op *licenseOp) Update(ctx context.Context, id string, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error) {
+func (op *licenseOp) Update(ctx context.Context, id int64, request *client.LicenseUpdateRequestEnvelope) (*client.LicenseUpdateResponseEnvelope, error) {
 	params := client.LicenseOpUpdateParams{ID: id}
 	resp, err := op.client.LicenseOpUpdate(ctx, request, params)
 	if err != nil {

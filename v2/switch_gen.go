@@ -24,14 +24,14 @@ import (
 
 // SwitchAPI は Switch リソースに対する操作インターフェース。
 type SwitchAPI interface {
-	ConnectToBridge(ctx context.Context, id string, bridgeID string) error
+	ConnectToBridge(ctx context.Context, id int64, bridgeID int64) error
 	Create(ctx context.Context, request *client.SwitchCreateRequestEnvelope) (*client.SwitchCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
-	DisconnectFromBridge(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
+	DisconnectFromBridge(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.SwitchFindRequest) (*client.SwitchFindResponseEnvelope, error)
-	GetServers(ctx context.Context, id string) (*client.SwitchGetServersResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.SwitchReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error)
+	GetServers(ctx context.Context, id int64) (*client.SwitchGetServersResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.SwitchReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error)
 }
 
 var _ SwitchAPI = (*switchOp)(nil)
@@ -45,7 +45,7 @@ func NewSwitchOp(c *client.Client) SwitchAPI {
 	return &switchOp{client: c}
 }
 
-func (op *switchOp) ConnectToBridge(ctx context.Context, id string, bridgeID string) error {
+func (op *switchOp) ConnectToBridge(ctx context.Context, id int64, bridgeID int64) error {
 	params := client.SwitchOpConnectToBridgeParams{ID: id, BridgeID: bridgeID}
 	_, err := op.client.SwitchOpConnectToBridge(ctx, params)
 	if err != nil {
@@ -62,7 +62,7 @@ func (op *switchOp) Create(ctx context.Context, request *client.SwitchCreateRequ
 	return resp, nil
 }
 
-func (op *switchOp) Delete(ctx context.Context, id string) error {
+func (op *switchOp) Delete(ctx context.Context, id int64) error {
 	params := client.SwitchOpDeleteParams{ID: id}
 	_, err := op.client.SwitchOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *switchOp) Delete(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *switchOp) DisconnectFromBridge(ctx context.Context, id string) error {
+func (op *switchOp) DisconnectFromBridge(ctx context.Context, id int64) error {
 	params := client.SwitchOpDisconnectFromBridgeParams{ID: id}
 	_, err := op.client.SwitchOpDisconnectFromBridge(ctx, params)
 	if err != nil {
@@ -92,7 +92,7 @@ func (op *switchOp) List(ctx context.Context, req *client.SwitchFindRequest) (*c
 	return resp, nil
 }
 
-func (op *switchOp) GetServers(ctx context.Context, id string) (*client.SwitchGetServersResponseEnvelope, error) {
+func (op *switchOp) GetServers(ctx context.Context, id int64) (*client.SwitchGetServersResponseEnvelope, error) {
 	params := client.SwitchOpGetServersParams{ID: id}
 	resp, err := op.client.SwitchOpGetServers(ctx, params)
 	if err != nil {
@@ -101,7 +101,7 @@ func (op *switchOp) GetServers(ctx context.Context, id string) (*client.SwitchGe
 	return resp, nil
 }
 
-func (op *switchOp) Read(ctx context.Context, id string) (*client.SwitchReadResponseEnvelope, error) {
+func (op *switchOp) Read(ctx context.Context, id int64) (*client.SwitchReadResponseEnvelope, error) {
 	params := client.SwitchOpReadParams{ID: id}
 	resp, err := op.client.SwitchOpRead(ctx, params)
 	if err != nil {
@@ -110,7 +110,7 @@ func (op *switchOp) Read(ctx context.Context, id string) (*client.SwitchReadResp
 	return resp, nil
 }
 
-func (op *switchOp) Update(ctx context.Context, id string, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error) {
+func (op *switchOp) Update(ctx context.Context, id int64, request *client.SwitchUpdateRequestEnvelope) (*client.SwitchUpdateResponseEnvelope, error) {
 	params := client.SwitchOpUpdateParams{ID: id}
 	resp, err := op.client.SwitchOpUpdate(ctx, request, params)
 	if err != nil {

@@ -25,10 +25,10 @@ import (
 // PrivateHostAPI は PrivateHost リソースに対する操作インターフェース。
 type PrivateHostAPI interface {
 	Create(ctx context.Context, request *client.PrivateHostCreateRequestEnvelope) (*client.PrivateHostCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.PrivateHostFindRequest) (*client.PrivateHostFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.PrivateHostReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.PrivateHostReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error)
 }
 
 var _ PrivateHostAPI = (*privateHostOp)(nil)
@@ -50,7 +50,7 @@ func (op *privateHostOp) Create(ctx context.Context, request *client.PrivateHost
 	return resp, nil
 }
 
-func (op *privateHostOp) Delete(ctx context.Context, id string) error {
+func (op *privateHostOp) Delete(ctx context.Context, id int64) error {
 	params := client.PrivateHostOpDeleteParams{ID: id}
 	_, err := op.client.PrivateHostOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *privateHostOp) List(ctx context.Context, req *client.PrivateHostFindRe
 	return resp, nil
 }
 
-func (op *privateHostOp) Read(ctx context.Context, id string) (*client.PrivateHostReadResponseEnvelope, error) {
+func (op *privateHostOp) Read(ctx context.Context, id int64) (*client.PrivateHostReadResponseEnvelope, error) {
 	params := client.PrivateHostOpReadParams{ID: id}
 	resp, err := op.client.PrivateHostOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *privateHostOp) Read(ctx context.Context, id string) (*client.PrivateHo
 	return resp, nil
 }
 
-func (op *privateHostOp) Update(ctx context.Context, id string, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error) {
+func (op *privateHostOp) Update(ctx context.Context, id int64, request *client.PrivateHostUpdateRequestEnvelope) (*client.PrivateHostUpdateResponseEnvelope, error) {
 	params := client.PrivateHostOpUpdateParams{ID: id}
 	resp, err := op.client.PrivateHostOpUpdate(ctx, request, params)
 	if err != nil {

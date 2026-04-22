@@ -1455,7 +1455,7 @@ func (c *Client) sendApplianceOpBoot(ctx context.Context, params ApplianceOpBoot
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -1544,7 +1544,7 @@ func (c *Client) sendApplianceOpConfig(ctx context.Context, params ApplianceOpCo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -1715,7 +1715,7 @@ func (c *Client) sendApplianceOpDelete(ctx context.Context, params ApplianceOpDe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -1893,7 +1893,7 @@ func (c *Client) sendApplianceOpMonitorCPU(ctx context.Context, request *Monitor
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -1985,7 +1985,7 @@ func (c *Client) sendApplianceOpMonitorDatabase(ctx context.Context, request *Mo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2077,7 +2077,7 @@ func (c *Client) sendApplianceOpMonitorInterface(ctx context.Context, request *M
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2169,7 +2169,7 @@ func (c *Client) sendApplianceOpMonitorInterfaceByIndex(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2277,7 +2277,7 @@ func (c *Client) sendApplianceOpRead(ctx context.Context, params ApplianceOpRead
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2365,7 +2365,7 @@ func (c *Client) sendApplianceOpReset(ctx context.Context, params ApplianceOpRes
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2454,7 +2454,7 @@ func (c *Client) sendApplianceOpShutdown(ctx context.Context, request *ShutdownO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2546,7 +2546,7 @@ func (c *Client) sendApplianceOpStatus(ctx context.Context, params ApplianceOpSt
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2644,7 +2644,7 @@ func (c *Client) sendApplianceOpUpdate(ctx context.Context, request *ApplianceUp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2735,7 +2735,7 @@ func (c *Client) sendArchiveOpCloseFTP(ctx context.Context, params ArchiveOpClos
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -2906,7 +2906,7 @@ func (c *Client) sendArchiveOpDelete(ctx context.Context, params ArchiveOpDelete
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3084,7 +3084,7 @@ func (c *Client) sendArchiveOpRead(ctx context.Context, params ArchiveOpReadPara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3172,7 +3172,7 @@ func (c *Client) sendArchiveOpShare(ctx context.Context, request *ArchiveShareRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3273,7 +3273,7 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SourceArchiveID))
+			return e.EncodeValue(conv.Int64ToString(params.SourceArchiveID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3292,7 +3292,7 @@ func (c *Client) sendArchiveOpTransfer(ctx context.Context, request *ArchiveTran
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.DestZoneID))
+			return e.EncodeValue(conv.Int64ToString(params.DestZoneID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3392,7 +3392,7 @@ func (c *Client) sendArchiveOpUpdate(ctx context.Context, request *ArchiveUpdate
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3553,7 +3553,7 @@ func (c *Client) sendAutoScaleOpScaleDown(ctx context.Context, params AutoScaleO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3642,7 +3642,7 @@ func (c *Client) sendAutoScaleOpScaleUp(ctx context.Context, params AutoScaleOpS
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3731,7 +3731,7 @@ func (c *Client) sendAutoScaleOpStatus(ctx context.Context, params AutoScaleOpSt
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3820,7 +3820,7 @@ func (c *Client) sendBillOpByContract(ctx context.Context, params BillOpByContra
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AccountID))
+			return e.EncodeValue(conv.Int64ToString(params.AccountID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -3908,7 +3908,7 @@ func (c *Client) sendBillOpByContractYear(ctx context.Context, params BillOpByCo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AccountID))
+			return e.EncodeValue(conv.Int64ToString(params.AccountID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4015,7 +4015,7 @@ func (c *Client) sendBillOpByContractYearMonth(ctx context.Context, params BillO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AccountID))
+			return e.EncodeValue(conv.Int64ToString(params.AccountID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4160,7 +4160,7 @@ func (c *Client) sendBillOpDetails(ctx context.Context, params BillOpDetailsPara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4267,7 +4267,7 @@ func (c *Client) sendBillOpDetailsCSV(ctx context.Context, params BillOpDetailsC
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4356,7 +4356,7 @@ func (c *Client) sendBillOpRead(ctx context.Context, params BillOpReadParams) (r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4517,7 +4517,7 @@ func (c *Client) sendBridgeOpDelete(ctx context.Context, params BridgeOpDeletePa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4695,7 +4695,7 @@ func (c *Client) sendBridgeOpRead(ctx context.Context, params BridgeOpReadParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4783,7 +4783,7 @@ func (c *Client) sendBridgeOpUpdate(ctx context.Context, request *BridgeUpdateRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -4874,7 +4874,7 @@ func (c *Client) sendCDROMOpCloseFTP(ctx context.Context, params CDROMOpCloseFTP
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5045,7 +5045,7 @@ func (c *Client) sendCDROMOpDelete(ctx context.Context, params CDROMOpDeletePara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5223,7 +5223,7 @@ func (c *Client) sendCDROMOpOpenFTP(ctx context.Context, request *CDROMOpenFTPRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5315,7 +5315,7 @@ func (c *Client) sendCDROMOpRead(ctx context.Context, params CDROMOpReadParams) 
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5412,7 +5412,7 @@ func (c *Client) sendCDROMOpUpdate(ctx context.Context, request *CDROMUpdateRequ
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5503,7 +5503,7 @@ func (c *Client) sendCertificateAuthorityOpAddClient(ctx context.Context, reques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5604,7 +5604,7 @@ func (c *Client) sendCertificateAuthorityOpAddServer(ctx context.Context, reques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5696,7 +5696,7 @@ func (c *Client) sendCertificateAuthorityOpDenyClient(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5804,7 +5804,7 @@ func (c *Client) sendCertificateAuthorityOpDetail(ctx context.Context, params Ce
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -5893,7 +5893,7 @@ func (c *Client) sendCertificateAuthorityOpHoldClient(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6001,7 +6001,7 @@ func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6020,7 +6020,7 @@ func (c *Client) sendCertificateAuthorityOpHoldServer(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ServerID))
+			return e.EncodeValue(conv.Int64ToString(params.ServerID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6109,7 +6109,7 @@ func (c *Client) sendCertificateAuthorityOpListClients(ctx context.Context, para
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6198,7 +6198,7 @@ func (c *Client) sendCertificateAuthorityOpListServers(ctx context.Context, para
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6287,7 +6287,7 @@ func (c *Client) sendCertificateAuthorityOpReadClient(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6394,7 +6394,7 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6413,7 +6413,7 @@ func (c *Client) sendCertificateAuthorityOpReadServer(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ServerID))
+			return e.EncodeValue(conv.Int64ToString(params.ServerID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6501,7 +6501,7 @@ func (c *Client) sendCertificateAuthorityOpResumeClient(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6609,7 +6609,7 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6628,7 +6628,7 @@ func (c *Client) sendCertificateAuthorityOpResumeServer(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ServerID))
+			return e.EncodeValue(conv.Int64ToString(params.ServerID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6717,7 +6717,7 @@ func (c *Client) sendCertificateAuthorityOpRevokeClient(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6825,7 +6825,7 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -6844,7 +6844,7 @@ func (c *Client) sendCertificateAuthorityOpRevokeServer(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ServerID))
+			return e.EncodeValue(conv.Int64ToString(params.ServerID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7015,7 +7015,7 @@ func (c *Client) sendCommonServiceItemOpDelete(ctx context.Context, params Commo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7193,7 +7193,7 @@ func (c *Client) sendCommonServiceItemOpHealthStatus(ctx context.Context, params
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7282,7 +7282,7 @@ func (c *Client) sendCommonServiceItemOpRead(ctx context.Context, params CommonS
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7379,7 +7379,7 @@ func (c *Client) sendCommonServiceItemOpUpdate(ctx context.Context, request *Com
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7470,7 +7470,7 @@ func (c *Client) sendContainerRegistryOpAddUser(ctx context.Context, request *Co
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7562,7 +7562,7 @@ func (c *Client) sendContainerRegistryOpDeleteUser(ctx context.Context, params C
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7669,7 +7669,7 @@ func (c *Client) sendContainerRegistryOpListUsers(ctx context.Context, params Co
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7758,7 +7758,7 @@ func (c *Client) sendContainerRegistryOpUpdateUser(ctx context.Context, request 
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7868,7 +7868,7 @@ func (c *Client) sendCouponOpFind(ctx context.Context, params CouponOpFindParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.AccountID))
+			return e.EncodeValue(conv.Int64ToString(params.AccountID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -7956,7 +7956,7 @@ func (c *Client) sendDatabaseOpGetParameter(ctx context.Context, params Database
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8045,7 +8045,7 @@ func (c *Client) sendDatabaseOpMonitorDisk(ctx context.Context, request *Databas
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8137,7 +8137,7 @@ func (c *Client) sendDatabaseOpSetParameter(ctx context.Context, request *Databa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8229,7 +8229,7 @@ func (c *Client) sendDiskOpConfig(ctx context.Context, request *DiskConfigReques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8321,7 +8321,7 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8340,7 +8340,7 @@ func (c *Client) sendDiskOpConnectToServer(ctx context.Context, params DiskOpCon
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ServerID))
+			return e.EncodeValue(conv.Int64ToString(params.ServerID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8510,7 +8510,7 @@ func (c *Client) sendDiskOpDelete(ctx context.Context, params DiskOpDeleteParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8598,7 +8598,7 @@ func (c *Client) sendDiskOpDisconnectFromServer(ctx context.Context, params Disk
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8777,7 +8777,7 @@ func (c *Client) sendDiskOpMonitor(ctx context.Context, request *DiskMonitorRequ
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8869,7 +8869,7 @@ func (c *Client) sendDiskOpRead(ctx context.Context, params DiskOpReadParams) (r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -8957,7 +8957,7 @@ func (c *Client) sendDiskOpResizePartition(ctx context.Context, request *DiskRes
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9058,7 +9058,7 @@ func (c *Client) sendDiskOpUpdate(ctx context.Context, request *DiskUpdateReques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9239,7 +9239,7 @@ func (c *Client) sendDiskPlanOpRead(ctx context.Context, params DiskPlanOpReadPa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9327,7 +9327,7 @@ func (c *Client) sendESMEOpLogs(ctx context.Context, params ESMEOpLogsParams) (r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9416,7 +9416,7 @@ func (c *Client) sendESMEOpSendMessageWithGeneratedOTP(ctx context.Context, requ
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9508,7 +9508,7 @@ func (c *Client) sendESMEOpSendMessageWithInputtedOTP(ctx context.Context, reque
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9600,7 +9600,7 @@ func (c *Client) sendEnhancedDBOpGetConfig(ctx context.Context, params EnhancedD
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9698,7 +9698,7 @@ func (c *Client) sendEnhancedDBOpSetConfig(ctx context.Context, request *Enhance
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -9790,7 +9790,7 @@ func (c *Client) sendEnhancedDBOpSetPassword(ctx context.Context, request *Enhan
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -10204,7 +10204,7 @@ func (c *Client) sendIPv6AddrOpDelete(ctx context.Context, params IPv6AddrOpDele
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -10382,7 +10382,7 @@ func (c *Client) sendIPv6AddrOpRead(ctx context.Context, params IPv6AddrOpReadPa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -10470,7 +10470,7 @@ func (c *Client) sendIPv6AddrOpUpdate(ctx context.Context, request *IPv6AddrUpda
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -10634,7 +10634,7 @@ func (c *Client) sendIPv6NetOpRead(ctx context.Context, params IPv6NetOpReadPara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -10804,7 +10804,7 @@ func (c *Client) sendIconOpDelete(ctx context.Context, params IconOpDeleteParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -10982,7 +10982,7 @@ func (c *Client) sendIconOpRead(ctx context.Context, params IconOpReadParams) (r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11079,7 +11079,7 @@ func (c *Client) sendIconOpUpdate(ctx context.Context, request *IconUpdateReques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11170,7 +11170,7 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11189,7 +11189,7 @@ func (c *Client) sendInterfaceOpConnectToPacketFilter(ctx context.Context, param
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.PacketFilterID))
+			return e.EncodeValue(conv.Int64ToString(params.PacketFilterID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11277,7 +11277,7 @@ func (c *Client) sendInterfaceOpConnectToSharedSegment(ctx context.Context, para
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11366,7 +11366,7 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11385,7 +11385,7 @@ func (c *Client) sendInterfaceOpConnectToSwitch(ctx context.Context, params Inte
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SwitchID))
+			return e.EncodeValue(conv.Int64ToString(params.SwitchID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11546,7 +11546,7 @@ func (c *Client) sendInterfaceOpDelete(ctx context.Context, params InterfaceOpDe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11634,7 +11634,7 @@ func (c *Client) sendInterfaceOpDisconnectFromPacketFilter(ctx context.Context, 
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11723,7 +11723,7 @@ func (c *Client) sendInterfaceOpDisconnectFromSwitch(ctx context.Context, params
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11902,7 +11902,7 @@ func (c *Client) sendInterfaceOpMonitor(ctx context.Context, request *InterfaceM
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -11994,7 +11994,7 @@ func (c *Client) sendInterfaceOpRead(ctx context.Context, params InterfaceOpRead
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12082,7 +12082,7 @@ func (c *Client) sendInterfaceOpUpdate(ctx context.Context, request *InterfaceUp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12173,7 +12173,7 @@ func (c *Client) sendInternetOpAddSubnet(ctx context.Context, request *InternetA
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12347,7 +12347,7 @@ func (c *Client) sendInternetOpDelete(ctx context.Context, params InternetOpDele
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12435,7 +12435,7 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12454,7 +12454,7 @@ func (c *Client) sendInternetOpDeleteSubnet(ctx context.Context, params Internet
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SubnetID))
+			return e.EncodeValue(conv.Int64ToString(params.SubnetID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12542,7 +12542,7 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12561,7 +12561,7 @@ func (c *Client) sendInternetOpDisableIPv6(ctx context.Context, params InternetO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.Ipv6netID))
+			return e.EncodeValue(conv.Int64ToString(params.Ipv6netID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12649,7 +12649,7 @@ func (c *Client) sendInternetOpEnableIPv6(ctx context.Context, params InternetOp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12828,7 +12828,7 @@ func (c *Client) sendInternetOpMonitor(ctx context.Context, request *InternetMon
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -12920,7 +12920,7 @@ func (c *Client) sendInternetOpRead(ctx context.Context, params InternetOpReadPa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13017,7 +13017,7 @@ func (c *Client) sendInternetOpUpdate(ctx context.Context, request *InternetUpda
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13108,7 +13108,7 @@ func (c *Client) sendInternetOpUpdateBandWidth(ctx context.Context, request *Int
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13200,7 +13200,7 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13219,7 +13219,7 @@ func (c *Client) sendInternetOpUpdateSubnet(ctx context.Context, request *Intern
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SubnetID))
+			return e.EncodeValue(conv.Int64ToString(params.SubnetID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13400,7 +13400,7 @@ func (c *Client) sendInternetPlanOpRead(ctx context.Context, params InternetPlan
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13578,7 +13578,7 @@ func (c *Client) sendLicenseInfoOpRead(ctx context.Context, params LicenseInfoOp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13739,7 +13739,7 @@ func (c *Client) sendLicenseOpDelete(ctx context.Context, params LicenseOpDelete
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -13917,7 +13917,7 @@ func (c *Client) sendLicenseOpRead(ctx context.Context, params LicenseOpReadPara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14005,7 +14005,7 @@ func (c *Client) sendLicenseOpUpdate(ctx context.Context, request *LicenseUpdate
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14096,7 +14096,7 @@ func (c *Client) sendLocalRouterOpMonitorLocalRouter(ctx context.Context, reques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14188,7 +14188,7 @@ func (c *Client) sendMobileGatewayOpAddSIM(ctx context.Context, request *MobileG
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14280,7 +14280,7 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14299,7 +14299,7 @@ func (c *Client) sendMobileGatewayOpConnectToSwitch(ctx context.Context, params 
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SwitchID))
+			return e.EncodeValue(conv.Int64ToString(params.SwitchID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14387,7 +14387,7 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14406,7 +14406,7 @@ func (c *Client) sendMobileGatewayOpDeleteSIM(ctx context.Context, params Mobile
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SimID))
+			return e.EncodeValue(conv.Int64ToString(params.SimID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14494,7 +14494,7 @@ func (c *Client) sendMobileGatewayOpDeleteTrafficConfig(ctx context.Context, par
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14583,7 +14583,7 @@ func (c *Client) sendMobileGatewayOpDisconnectFromSwitch(ctx context.Context, pa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14672,7 +14672,7 @@ func (c *Client) sendMobileGatewayOpGetDNS(ctx context.Context, params MobileGat
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14761,7 +14761,7 @@ func (c *Client) sendMobileGatewayOpGetSIMRoutes(ctx context.Context, params Mob
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14850,7 +14850,7 @@ func (c *Client) sendMobileGatewayOpGetTrafficConfig(ctx context.Context, params
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -14939,7 +14939,7 @@ func (c *Client) sendMobileGatewayOpListSIM(ctx context.Context, params MobileGa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15028,7 +15028,7 @@ func (c *Client) sendMobileGatewayOpLogs(ctx context.Context, params MobileGatew
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15117,7 +15117,7 @@ func (c *Client) sendMobileGatewayOpSetDNS(ctx context.Context, request *MobileG
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15218,7 +15218,7 @@ func (c *Client) sendMobileGatewayOpSetSIMRoutes(ctx context.Context, request *M
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15310,7 +15310,7 @@ func (c *Client) sendMobileGatewayOpSetTrafficConfig(ctx context.Context, reques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15402,7 +15402,7 @@ func (c *Client) sendMobileGatewayOpTrafficStatus(ctx context.Context, params Mo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15573,7 +15573,7 @@ func (c *Client) sendNoteOpDelete(ctx context.Context, params NoteOpDeleteParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15751,7 +15751,7 @@ func (c *Client) sendNoteOpRead(ctx context.Context, params NoteOpReadParams) (r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -15848,7 +15848,7 @@ func (c *Client) sendNoteOpUpdate(ctx context.Context, request *NoteUpdateReques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16021,7 +16021,7 @@ func (c *Client) sendPacketFilterOpDelete(ctx context.Context, params PacketFilt
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16199,7 +16199,7 @@ func (c *Client) sendPacketFilterOpRead(ctx context.Context, params PacketFilter
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16296,7 +16296,7 @@ func (c *Client) sendPacketFilterOpUpdate(ctx context.Context, request *PacketFi
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16469,7 +16469,7 @@ func (c *Client) sendPrivateHostOpDelete(ctx context.Context, params PrivateHost
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16647,7 +16647,7 @@ func (c *Client) sendPrivateHostOpRead(ctx context.Context, params PrivateHostOp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16744,7 +16744,7 @@ func (c *Client) sendPrivateHostOpUpdate(ctx context.Context, request *PrivateHo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -16925,7 +16925,7 @@ func (c *Client) sendPrivateHostPlanOpRead(ctx context.Context, params PrivateHo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17013,7 +17013,7 @@ func (c *Client) sendProxyLBOpChangePlan(ctx context.Context, request *ProxyLBOp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17105,7 +17105,7 @@ func (c *Client) sendProxyLBOpDeleteCertificates(ctx context.Context, params Pro
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17194,7 +17194,7 @@ func (c *Client) sendProxyLBOpGetCertificates(ctx context.Context, params ProxyL
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17283,7 +17283,7 @@ func (c *Client) sendProxyLBOpMonitorConnection(ctx context.Context, request *Pr
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17375,7 +17375,7 @@ func (c *Client) sendProxyLBOpRenewLetsEncryptCert(ctx context.Context, params P
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17473,7 +17473,7 @@ func (c *Client) sendProxyLBOpSetCertificates(ctx context.Context, request *Prox
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17655,7 +17655,7 @@ func (c *Client) sendRegionOpRead(ctx context.Context, params RegionOpReadParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17743,7 +17743,7 @@ func (c *Client) sendSIMOpActivate(ctx context.Context, params SIMOpActivatePara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17832,7 +17832,7 @@ func (c *Client) sendSIMOpAssignIP(ctx context.Context, request *SIMOpAssignIPRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -17924,7 +17924,7 @@ func (c *Client) sendSIMOpClearIP(ctx context.Context, params SIMOpClearIPParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18013,7 +18013,7 @@ func (c *Client) sendSIMOpDeactivate(ctx context.Context, params SIMOpDeactivate
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18102,7 +18102,7 @@ func (c *Client) sendSIMOpGetNetworkOperator(ctx context.Context, params SIMOpGe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18191,7 +18191,7 @@ func (c *Client) sendSIMOpImeiLock(ctx context.Context, request *SIMOpImeiLockRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18283,7 +18283,7 @@ func (c *Client) sendSIMOpImeiUnlock(ctx context.Context, params SIMOpImeiUnlock
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18372,7 +18372,7 @@ func (c *Client) sendSIMOpLogs(ctx context.Context, params SIMOpLogsParams) (res
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18461,7 +18461,7 @@ func (c *Client) sendSIMOpMonitorSIM(ctx context.Context, request *SIMOpMonitorS
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18562,7 +18562,7 @@ func (c *Client) sendSIMOpSetNetworkOperator(ctx context.Context, request *SIMOp
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18727,7 +18727,7 @@ func (c *Client) sendSSHKeyOpDelete(ctx context.Context, params SSHKeyOpDeletePa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18905,7 +18905,7 @@ func (c *Client) sendSSHKeyOpRead(ctx context.Context, params SSHKeyOpReadParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -18993,7 +18993,7 @@ func (c *Client) sendSSHKeyOpUpdate(ctx context.Context, request *SSHKeyUpdateRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19084,7 +19084,7 @@ func (c *Client) sendServerOpBoot(ctx context.Context, request *ServerBootReques
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19176,7 +19176,7 @@ func (c *Client) sendServerOpChangePlan(ctx context.Context, request *ServerChan
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19350,7 +19350,7 @@ func (c *Client) sendServerOpDelete(ctx context.Context, request *ServerDeleteRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19441,7 +19441,7 @@ func (c *Client) sendServerOpEjectCDROM(ctx context.Context, request *ServerEjec
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19623,7 +19623,7 @@ func (c *Client) sendServerOpGetVNCProxy(ctx context.Context, params ServerOpGet
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19712,7 +19712,7 @@ func (c *Client) sendServerOpInsertCDROM(ctx context.Context, request *ServerIns
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19804,7 +19804,7 @@ func (c *Client) sendServerOpMonitor(ctx context.Context, request *ServerMonitor
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19896,7 +19896,7 @@ func (c *Client) sendServerOpRead(ctx context.Context, params ServerOpReadParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -19984,7 +19984,7 @@ func (c *Client) sendServerOpReset(ctx context.Context, params ServerOpResetPara
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20073,7 +20073,7 @@ func (c *Client) sendServerOpSendKey(ctx context.Context, request *ServerSendKey
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20165,7 +20165,7 @@ func (c *Client) sendServerOpSendNMI(ctx context.Context, params ServerOpSendNMI
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20254,7 +20254,7 @@ func (c *Client) sendServerOpShutdown(ctx context.Context, request *ServerShutdo
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20355,7 +20355,7 @@ func (c *Client) sendServerOpUpdate(ctx context.Context, request *ServerUpdateRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20536,7 +20536,7 @@ func (c *Client) sendServerPlanOpRead(ctx context.Context, params ServerPlanOpRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20714,7 +20714,7 @@ func (c *Client) sendSimpleMonitorOpMonitorResponseTime(ctx context.Context, req
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -20876,7 +20876,7 @@ func (c *Client) sendSimpleNotificationGroupOpPostMessage(ctx context.Context, r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21058,7 +21058,7 @@ func (c *Client) sendSubnetOpRead(ctx context.Context, params SubnetOpReadParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21146,7 +21146,7 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21165,7 +21165,7 @@ func (c *Client) sendSwitchOpConnectToBridge(ctx context.Context, params SwitchO
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.BridgeID))
+			return e.EncodeValue(conv.Int64ToString(params.BridgeID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21335,7 +21335,7 @@ func (c *Client) sendSwitchOpDelete(ctx context.Context, params SwitchOpDeletePa
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21423,7 +21423,7 @@ func (c *Client) sendSwitchOpDisconnectFromBridge(ctx context.Context, params Sw
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21602,7 +21602,7 @@ func (c *Client) sendSwitchOpGetServers(ctx context.Context, params SwitchOpGetS
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21691,7 +21691,7 @@ func (c *Client) sendSwitchOpRead(ctx context.Context, params SwitchOpReadParams
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21788,7 +21788,7 @@ func (c *Client) sendSwitchOpUpdate(ctx context.Context, request *SwitchUpdateRe
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21879,7 +21879,7 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -21917,7 +21917,7 @@ func (c *Client) sendVPCRouterOpConnectToSwitch(ctx context.Context, params VPCR
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.SwitchID))
+			return e.EncodeValue(conv.Int64ToString(params.SwitchID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -22005,7 +22005,7 @@ func (c *Client) sendVPCRouterOpDisconnectFromSwitch(ctx context.Context, params
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -22113,7 +22113,7 @@ func (c *Client) sendVPCRouterOpPing(ctx context.Context, params VPCRouterOpPing
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}
@@ -22310,7 +22310,7 @@ func (c *Client) sendZoneOpRead(ctx context.Context, params ZoneOpReadParams) (r
 			Explode: false,
 		})
 		if err := func() error {
-			return e.EncodeValue(conv.StringToString(params.ID))
+			return e.EncodeValue(conv.Int64ToString(params.ID))
 		}(); err != nil {
 			return res, errors.Wrap(err, "encode path")
 		}

@@ -25,7 +25,7 @@ import (
 // LicenseInfoAPI は LicenseInfo リソースに対する操作インターフェース。
 type LicenseInfoAPI interface {
 	List(ctx context.Context, req *client.LicenseInfoFindRequest) (*client.LicenseInfoFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.LicenseInfoReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.LicenseInfoReadResponseEnvelope, error)
 }
 
 var _ LicenseInfoAPI = (*licenseInfoOp)(nil)
@@ -51,7 +51,7 @@ func (op *licenseInfoOp) List(ctx context.Context, req *client.LicenseInfoFindRe
 	return resp, nil
 }
 
-func (op *licenseInfoOp) Read(ctx context.Context, id string) (*client.LicenseInfoReadResponseEnvelope, error) {
+func (op *licenseInfoOp) Read(ctx context.Context, id int64) (*client.LicenseInfoReadResponseEnvelope, error) {
 	params := client.LicenseInfoOpReadParams{ID: id}
 	resp, err := op.client.LicenseInfoOpRead(ctx, params)
 	if err != nil {

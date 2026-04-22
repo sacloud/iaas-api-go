@@ -46,10 +46,10 @@ interface CDROMOp {
   @route("/cdrom/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): CDROMReadResponseEnvelope | ApiError;
 
   @summary("CDROM 更新")
@@ -57,10 +57,10 @@ interface CDROMOp {
   @route("/cdrom/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: CDROMUpdateRequestEnvelope,
   ): CDROMUpdateResponseEnvelope | ApiError;
@@ -70,10 +70,10 @@ interface CDROMOp {
   @route("/cdrom/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -84,10 +84,10 @@ interface CDROMOp {
   @route("/cdrom/{id}/ftp")
   openFTP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: CDROMOpenFTPRequestEnvelope,
   ): CDROMOpenFTPResponseEnvelope | ApiError;
@@ -97,10 +97,10 @@ interface CDROMOp {
   @route("/cdrom/{id}/ftp")
   closeFTP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

@@ -25,7 +25,7 @@ import (
 // ServerPlanAPI は ServerPlan リソースに対する操作インターフェース。
 type ServerPlanAPI interface {
 	List(ctx context.Context, req *client.ServerPlanFindRequest) (*client.ServerPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.ServerPlanReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.ServerPlanReadResponseEnvelope, error)
 }
 
 var _ ServerPlanAPI = (*serverPlanOp)(nil)
@@ -51,7 +51,7 @@ func (op *serverPlanOp) List(ctx context.Context, req *client.ServerPlanFindRequ
 	return resp, nil
 }
 
-func (op *serverPlanOp) Read(ctx context.Context, id string) (*client.ServerPlanReadResponseEnvelope, error) {
+func (op *serverPlanOp) Read(ctx context.Context, id int64) (*client.ServerPlanReadResponseEnvelope, error) {
 	params := client.ServerPlanOpReadParams{ID: id}
 	resp, err := op.client.ServerPlanOpRead(ctx, params)
 	if err != nil {

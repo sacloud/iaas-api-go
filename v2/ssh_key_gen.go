@@ -25,10 +25,10 @@ import (
 // SSHKeyAPI は SSHKey リソースに対する操作インターフェース。
 type SSHKeyAPI interface {
 	Create(ctx context.Context, request *client.SSHKeyCreateRequestEnvelope) (*client.SSHKeyCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.SSHKeyFindRequest) (*client.SSHKeyFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.SSHKeyReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.SSHKeyReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error)
 }
 
 var _ SSHKeyAPI = (*sSHKeyOp)(nil)
@@ -50,7 +50,7 @@ func (op *sSHKeyOp) Create(ctx context.Context, request *client.SSHKeyCreateRequ
 	return resp, nil
 }
 
-func (op *sSHKeyOp) Delete(ctx context.Context, id string) error {
+func (op *sSHKeyOp) Delete(ctx context.Context, id int64) error {
 	params := client.SSHKeyOpDeleteParams{ID: id}
 	_, err := op.client.SSHKeyOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *sSHKeyOp) List(ctx context.Context, req *client.SSHKeyFindRequest) (*c
 	return resp, nil
 }
 
-func (op *sSHKeyOp) Read(ctx context.Context, id string) (*client.SSHKeyReadResponseEnvelope, error) {
+func (op *sSHKeyOp) Read(ctx context.Context, id int64) (*client.SSHKeyReadResponseEnvelope, error) {
 	params := client.SSHKeyOpReadParams{ID: id}
 	resp, err := op.client.SSHKeyOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *sSHKeyOp) Read(ctx context.Context, id string) (*client.SSHKeyReadResp
 	return resp, nil
 }
 
-func (op *sSHKeyOp) Update(ctx context.Context, id string, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error) {
+func (op *sSHKeyOp) Update(ctx context.Context, id int64, request *client.SSHKeyUpdateRequestEnvelope) (*client.SSHKeyUpdateResponseEnvelope, error) {
 	params := client.SSHKeyOpUpdateParams{ID: id}
 	resp, err := op.client.SSHKeyOpUpdate(ctx, request, params)
 	if err != nil {

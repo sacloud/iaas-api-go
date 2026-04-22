@@ -25,10 +25,10 @@ import (
 // BridgeAPI は Bridge リソースに対する操作インターフェース。
 type BridgeAPI interface {
 	Create(ctx context.Context, request *client.BridgeCreateRequestEnvelope) (*client.BridgeCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.BridgeFindRequest) (*client.BridgeFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.BridgeReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.BridgeReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error)
 }
 
 var _ BridgeAPI = (*bridgeOp)(nil)
@@ -50,7 +50,7 @@ func (op *bridgeOp) Create(ctx context.Context, request *client.BridgeCreateRequ
 	return resp, nil
 }
 
-func (op *bridgeOp) Delete(ctx context.Context, id string) error {
+func (op *bridgeOp) Delete(ctx context.Context, id int64) error {
 	params := client.BridgeOpDeleteParams{ID: id}
 	_, err := op.client.BridgeOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *bridgeOp) List(ctx context.Context, req *client.BridgeFindRequest) (*c
 	return resp, nil
 }
 
-func (op *bridgeOp) Read(ctx context.Context, id string) (*client.BridgeReadResponseEnvelope, error) {
+func (op *bridgeOp) Read(ctx context.Context, id int64) (*client.BridgeReadResponseEnvelope, error) {
 	params := client.BridgeOpReadParams{ID: id}
 	resp, err := op.client.BridgeOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *bridgeOp) Read(ctx context.Context, id string) (*client.BridgeReadResp
 	return resp, nil
 }
 
-func (op *bridgeOp) Update(ctx context.Context, id string, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error) {
+func (op *bridgeOp) Update(ctx context.Context, id int64, request *client.BridgeUpdateRequestEnvelope) (*client.BridgeUpdateResponseEnvelope, error) {
 	params := client.BridgeOpUpdateParams{ID: id}
 	resp, err := op.client.BridgeOpUpdate(ctx, request, params)
 	if err != nil {

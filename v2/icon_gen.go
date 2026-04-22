@@ -25,10 +25,10 @@ import (
 // IconAPI は Icon リソースに対する操作インターフェース。
 type IconAPI interface {
 	Create(ctx context.Context, request *client.IconCreateRequestEnvelope) (*client.IconCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.IconFindRequest) (*client.IconFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.IconReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.IconReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error)
 }
 
 var _ IconAPI = (*iconOp)(nil)
@@ -50,7 +50,7 @@ func (op *iconOp) Create(ctx context.Context, request *client.IconCreateRequestE
 	return resp, nil
 }
 
-func (op *iconOp) Delete(ctx context.Context, id string) error {
+func (op *iconOp) Delete(ctx context.Context, id int64) error {
 	params := client.IconOpDeleteParams{ID: id}
 	_, err := op.client.IconOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *iconOp) List(ctx context.Context, req *client.IconFindRequest) (*clien
 	return resp, nil
 }
 
-func (op *iconOp) Read(ctx context.Context, id string) (*client.IconReadResponseEnvelope, error) {
+func (op *iconOp) Read(ctx context.Context, id int64) (*client.IconReadResponseEnvelope, error) {
 	params := client.IconOpReadParams{ID: id}
 	resp, err := op.client.IconOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *iconOp) Read(ctx context.Context, id string) (*client.IconReadResponse
 	return resp, nil
 }
 
-func (op *iconOp) Update(ctx context.Context, id string, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error) {
+func (op *iconOp) Update(ctx context.Context, id int64, request *client.IconUpdateRequestEnvelope) (*client.IconUpdateResponseEnvelope, error) {
 	params := client.IconOpUpdateParams{ID: id}
 	resp, err := op.client.IconOpUpdate(ctx, request, params)
 	if err != nil {

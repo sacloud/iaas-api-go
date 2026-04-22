@@ -45,10 +45,10 @@ interface ServerOp {
   @route("/server/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ServerReadResponseEnvelope | ApiError;
 
   @summary("Server 更新")
@@ -56,10 +56,10 @@ interface ServerOp {
   @route("/server/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerUpdateRequestEnvelope,
   ): ServerUpdateResponseEnvelope | ApiError;
@@ -69,10 +69,10 @@ interface ServerOp {
   @route("/server/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerDeleteRequestEnvelope,
   ): {
@@ -85,10 +85,10 @@ interface ServerOp {
   @route("/server/{id}/plan")
   changePlan(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerChangePlanRequestEnvelope,
   ): ServerChangePlanResponseEnvelope | ApiError;
@@ -98,10 +98,10 @@ interface ServerOp {
   @route("/server/{id}/cdrom")
   insertCDROM(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerInsertCDROMRequestEnvelope,
   ): {
@@ -114,10 +114,10 @@ interface ServerOp {
   @route("/server/{id}/cdrom")
   ejectCDROM(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerEjectCDROMRequestEnvelope,
   ): {
@@ -130,10 +130,10 @@ interface ServerOp {
   @route("/server/{id}/power")
   boot(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerBootRequestEnvelope,
   ): {
@@ -146,10 +146,10 @@ interface ServerOp {
   @route("/server/{id}/power")
   shutdown(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerShutdownRequestEnvelope,
   ): {
@@ -162,10 +162,10 @@ interface ServerOp {
   @route("/server/{id}/reset")
   reset(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -176,10 +176,10 @@ interface ServerOp {
   @route("/server/{id}/keyboard")
   sendKey(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerSendKeyRequestEnvelope,
   ): {
@@ -192,10 +192,10 @@ interface ServerOp {
   @route("/server/{id}/qemu/nmi")
   sendNMI(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -206,10 +206,10 @@ interface ServerOp {
   @route("/server/{id}/vnc/proxy")
   getVNCProxy(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ServerGetVNCProxyResponseEnvelope | ApiError;
 
   @summary("Server モニター情報取得")
@@ -217,10 +217,10 @@ interface ServerOp {
   @route("/server/{id}/monitor")
   monitor(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ServerMonitorRequestEnvelope,
   ): ServerMonitorResponseEnvelope | ApiError;

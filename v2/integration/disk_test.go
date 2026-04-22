@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -30,7 +29,7 @@ const diskPlanSSD int64 = 4
 
 // waitDiskAvailable は Disk が migrating → available に遷移するまでポーリングする。
 // create 直後は migrating 状態のため、update/delete する前に available を待つ。
-func waitDiskAvailable(t *testing.T, ctx context.Context, c *client.Client, zone, id string) {
+func waitDiskAvailable(t *testing.T, ctx context.Context, c *client.Client, zone string, id int64) {
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
@@ -41,7 +40,7 @@ func waitDiskAvailable(t *testing.T, ctx context.Context, c *client.Client, zone
 		}
 		time.Sleep(3 * time.Second)
 	}
-	t.Fatalf("disk %s did not become available within timeout", id)
+	t.Fatalf("disk %d did not become available within timeout", id)
 }
 
 func TestDiskCRUD(t *testing.T) {
@@ -69,15 +68,14 @@ func TestDiskCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	diskID := createResp.Disk.ID.Value
-	diskIDStr := fmt.Sprintf("%d", diskID)
 	t.Logf("Created disk ID: %d", diskID)
 	require.Equal(t, "test-disk", createResp.Disk.Name.Value)
 
 	// 作成直後は migrating 状態なので available を待つ
-	waitDiskAvailable(t, ctx, c, zone, diskIDStr)
+	waitDiskAvailable(t, ctx, c, zone, diskID)
 
 	// 2. Read - ディスク取得
-	readResp, err := c.DiskOpRead(ctx, client.DiskOpReadParams{ID: diskIDStr})
+	readResp, err := c.DiskOpRead(ctx, client.DiskOpReadParams{ID: diskID})
 	require.NoError(t, err)
 	require.Equal(t, "test-disk", readResp.Disk.Name.Value)
 	require.Equal(t, diskID, readResp.Disk.ID.Value)
@@ -89,7 +87,7 @@ func TestDiskCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.DiskOpUpdateParams{ID: diskIDStr})
+	}, client.DiskOpUpdateParams{ID: diskID})
 	require.NoError(t, err)
 	require.Equal(t, "test-disk-updated", updateResp.Disk.Name.Value)
 
@@ -108,10 +106,10 @@ func TestDiskCRUD(t *testing.T) {
 	require.True(t, found, "作成したディスクがリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.DiskOpDelete(ctx, client.DiskOpDeleteParams{ID: diskIDStr})
+	_, err = c.DiskOpDelete(ctx, client.DiskOpDeleteParams{ID: diskID})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.DiskOpRead(ctx, client.DiskOpReadParams{ID: diskIDStr})
+	_, err = c.DiskOpRead(ctx, client.DiskOpReadParams{ID: diskID})
 	require.Error(t, err)
 }

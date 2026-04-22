@@ -24,9 +24,9 @@ import (
 
 // AutoScaleAPI は AutoScale リソースに対する操作インターフェース。
 type AutoScaleAPI interface {
-	ScaleDown(ctx context.Context, id string) error
-	ScaleUp(ctx context.Context, id string) error
-	Status(ctx context.Context, id string) (*client.AutoScaleStatusResponseEnvelope, error)
+	ScaleDown(ctx context.Context, id int64) error
+	ScaleUp(ctx context.Context, id int64) error
+	Status(ctx context.Context, id int64) (*client.AutoScaleStatusResponseEnvelope, error)
 }
 
 var _ AutoScaleAPI = (*autoScaleOp)(nil)
@@ -40,7 +40,7 @@ func NewAutoScaleOp(c *client.Client) AutoScaleAPI {
 	return &autoScaleOp{client: c}
 }
 
-func (op *autoScaleOp) ScaleDown(ctx context.Context, id string) error {
+func (op *autoScaleOp) ScaleDown(ctx context.Context, id int64) error {
 	params := client.AutoScaleOpScaleDownParams{ID: id}
 	_, err := op.client.AutoScaleOpScaleDown(ctx, params)
 	if err != nil {
@@ -49,7 +49,7 @@ func (op *autoScaleOp) ScaleDown(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *autoScaleOp) ScaleUp(ctx context.Context, id string) error {
+func (op *autoScaleOp) ScaleUp(ctx context.Context, id int64) error {
 	params := client.AutoScaleOpScaleUpParams{ID: id}
 	_, err := op.client.AutoScaleOpScaleUp(ctx, params)
 	if err != nil {
@@ -58,7 +58,7 @@ func (op *autoScaleOp) ScaleUp(ctx context.Context, id string) error {
 	return nil
 }
 
-func (op *autoScaleOp) Status(ctx context.Context, id string) (*client.AutoScaleStatusResponseEnvelope, error) {
+func (op *autoScaleOp) Status(ctx context.Context, id int64) (*client.AutoScaleStatusResponseEnvelope, error) {
 	params := client.AutoScaleOpStatusParams{ID: id}
 	resp, err := op.client.AutoScaleOpStatus(ctx, params)
 	if err != nil {

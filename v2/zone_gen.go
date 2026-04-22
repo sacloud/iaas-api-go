@@ -25,7 +25,7 @@ import (
 // ZoneAPI は Zone リソースに対する操作インターフェース。
 type ZoneAPI interface {
 	List(ctx context.Context, req *client.ZoneFindRequest) (*client.ZoneFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.ZoneReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.ZoneReadResponseEnvelope, error)
 }
 
 var _ ZoneAPI = (*zoneOp)(nil)
@@ -51,7 +51,7 @@ func (op *zoneOp) List(ctx context.Context, req *client.ZoneFindRequest) (*clien
 	return resp, nil
 }
 
-func (op *zoneOp) Read(ctx context.Context, id string) (*client.ZoneReadResponseEnvelope, error) {
+func (op *zoneOp) Read(ctx context.Context, id int64) (*client.ZoneReadResponseEnvelope, error) {
 	params := client.ZoneOpReadParams{ID: id}
 	resp, err := op.client.ZoneOpRead(ctx, params)
 	if err != nil {

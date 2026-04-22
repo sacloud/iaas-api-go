@@ -25,10 +25,10 @@ import (
 // PacketFilterAPI は PacketFilter リソースに対する操作インターフェース。
 type PacketFilterAPI interface {
 	Create(ctx context.Context, request *client.PacketFilterCreateRequestEnvelope) (*client.PacketFilterCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.PacketFilterFindRequest) (*client.PacketFilterFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.PacketFilterReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.PacketFilterReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error)
 }
 
 var _ PacketFilterAPI = (*packetFilterOp)(nil)
@@ -50,7 +50,7 @@ func (op *packetFilterOp) Create(ctx context.Context, request *client.PacketFilt
 	return resp, nil
 }
 
-func (op *packetFilterOp) Delete(ctx context.Context, id string) error {
+func (op *packetFilterOp) Delete(ctx context.Context, id int64) error {
 	params := client.PacketFilterOpDeleteParams{ID: id}
 	_, err := op.client.PacketFilterOpDelete(ctx, params)
 	if err != nil {
@@ -71,7 +71,7 @@ func (op *packetFilterOp) List(ctx context.Context, req *client.PacketFilterFind
 	return resp, nil
 }
 
-func (op *packetFilterOp) Read(ctx context.Context, id string) (*client.PacketFilterReadResponseEnvelope, error) {
+func (op *packetFilterOp) Read(ctx context.Context, id int64) (*client.PacketFilterReadResponseEnvelope, error) {
 	params := client.PacketFilterOpReadParams{ID: id}
 	resp, err := op.client.PacketFilterOpRead(ctx, params)
 	if err != nil {
@@ -80,7 +80,7 @@ func (op *packetFilterOp) Read(ctx context.Context, id string) (*client.PacketFi
 	return resp, nil
 }
 
-func (op *packetFilterOp) Update(ctx context.Context, id string, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error) {
+func (op *packetFilterOp) Update(ctx context.Context, id int64, request *client.PacketFilterUpdateRequestEnvelope) (*client.PacketFilterUpdateResponseEnvelope, error) {
 	params := client.PacketFilterOpUpdateParams{ID: id}
 	resp, err := op.client.PacketFilterOpUpdate(ctx, request, params)
 	if err != nil {

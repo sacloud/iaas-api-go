@@ -228,36 +228,51 @@ func resolveOpPath(op *dsl.Operation, api *dsl.Resource) string {
 	return pf
 }
 
-// pathParamDocs は @path パラメータ名に対して付与する @doc 文言。
-// 未登録のキーは @doc 無しで出力される。
-// zone は @server のサーバー変数として扱うため、パスパラメータには出現しない。
-var pathParamDocs = map[string]string{
-	"id": "対象リソースの ID。数値を 10 進文字列で指定する。",
-	"accountID":       "契約（アカウント）の ID。",
-	"bridgeID":        "ブリッジ ID。",
-	"clientID":        "CA クライアント証明書の ID（`cli_xxxx` 形式）。",
-	"destZoneID":      "転送先ゾーンの ID。",
-	"destination":     "ping の宛先 IP アドレスまたはホスト名。",
-	"index":           "インターフェースのインデックス（0 始まり）。",
-	"ipAddress":       "対象の IPv4 アドレス。",
-	"MemberCode":      "会員コード。",
-	"month":           "対象月（1〜12）。",
-	"nicIndex":        "NIC のインデックス（0 始まり）。",
-	"packetFilterID":  "パケットフィルタ ID。",
-	"serverID":        "サーバ ID。",
-	"simID":           "SIM ID。",
-	"sourceArchiveID": "コピー元アーカイブ ID。",
-	"subnetID":        "サブネット ID。",
-	"switchID":        "スイッチ ID。",
-	"username":        "コンテナレジストリのユーザ名。",
-	"year":            "対象年（西暦 4 桁）。",
+// pathParamSpec は @path パラメータ 1 つの型と @doc 文言を表す。
+// Type が空文字列の場合は "string" として扱う（多くの string 識別子はデフォルトでよい）。
+type pathParamSpec struct {
+	Doc  string
+	Type string
 }
 
-// newPathParam は @path パラメータを 1 つ組み立てる。pathParamDocs に該当キーがあれば @doc を付与する。
+// pathParamDocs は @path パラメータ名に対する型と @doc 文言。
+// 未登録のキーは @doc 無し・string で出力される。
+// zone は @server のサーバー変数として扱うため、パスパラメータには出現しない。
+//
+// 数値リソース ID は int64 で出す。文字列識別子（cli_xxxx, IP, ユーザ名など）と
+// 桁ゼロ書式の懸念がある index/nicIndex/year/month は string のまま据え置く。
+var pathParamDocs = map[string]pathParamSpec{
+	"id":              {Doc: "対象リソースの ID。", Type: "int64"},
+	"accountID":       {Doc: "契約（アカウント）の ID。", Type: "int64"},
+	"bridgeID":        {Doc: "ブリッジ ID。", Type: "int64"},
+	"clientID":        {Doc: "CA クライアント証明書の ID（`cli_xxxx` 形式）。"},
+	"destZoneID":      {Doc: "転送先ゾーンの ID。", Type: "int64"},
+	"destination":     {Doc: "ping の宛先 IP アドレスまたはホスト名。"},
+	"index":           {Doc: "インターフェースのインデックス（0 始まり、10 進文字列）。"},
+	"ipAddress":       {Doc: "対象の IPv4 アドレス。"},
+	"ipv6netID":       {Doc: "IPv6 ネットワーク ID。", Type: "int64"},
+	"MemberCode":      {Doc: "会員コード。"},
+	"month":           {Doc: "対象月（1〜12 の 10 進文字列）。"},
+	"nicIndex":        {Doc: "NIC のインデックス（0 始まり、10 進文字列）。"},
+	"packetFilterID":  {Doc: "パケットフィルタ ID。", Type: "int64"},
+	"serverID":        {Doc: "サーバ ID。", Type: "int64"},
+	"simID":           {Doc: "SIM ID。", Type: "int64"},
+	"sourceArchiveID": {Doc: "コピー元アーカイブ ID。", Type: "int64"},
+	"subnetID":        {Doc: "サブネット ID。", Type: "int64"},
+	"switchID":        {Doc: "スイッチ ID。", Type: "int64"},
+	"username":        {Doc: "コンテナレジストリのユーザ名。"},
+	"year":            {Doc: "対象年（西暦 4 桁の 10 進文字列）。"},
+}
+
+// newPathParam は @path パラメータを 1 つ組み立てる。pathParamDocs に該当キーがあれば
+// 型と @doc を上書きする。未登録キーは string + @doc 無しで出る。
 func newPathParam(name string) opParam {
 	p := opParam{Decorator: "@path", Name: name, TSType: "string"}
-	if doc, ok := pathParamDocs[name]; ok {
-		p.Doc = doc
+	if spec, ok := pathParamDocs[name]; ok {
+		p.Doc = spec.Doc
+		if spec.Type != "" {
+			p.TSType = spec.Type
+		}
 	}
 	return p
 }

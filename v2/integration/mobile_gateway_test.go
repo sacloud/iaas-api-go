@@ -17,7 +17,6 @@ package integration
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"os"
 	"testing"
 
@@ -82,15 +81,14 @@ func TestMobileGatewayApplianceCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	mgwID := createResp.Appliance.ID.Value
-	mgwIDStr := fmt.Sprintf("%d", mgwID)
 	t.Logf("Created MobileGateway appliance ID: %d", mgwID)
 	require.Equal(t, "test-mgw", createResp.Appliance.Name.Value)
 	require.Equal(t, "mobilegateway", createResp.Appliance.Class.Value)
 
-	waitApplianceAvailable(t, ctx, c, zone, mgwIDStr)
+	waitApplianceAvailable(t, ctx, c, zone, mgwID)
 
 	// Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: mgwIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: mgwID})
 	require.NoError(t, err)
 	require.Equal(t, "test-mgw", readResp.Appliance.Name.Value)
 	require.Equal(t, "mobilegateway", readResp.Appliance.Class.Value)
@@ -102,15 +100,15 @@ func TestMobileGatewayApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{ID: mgwIDStr})
+	}, client.ApplianceOpUpdateParams{ID: mgwID})
 	require.NoError(t, err)
 	require.Equal(t, "test-mgw-updated", updateResp.Appliance.Name.Value)
 
 	// Shutdown → Delete
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: mgwIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: mgwID})
 	require.NoError(t, err)
-	waitApplianceShutdown(t, ctx, c, zone, mgwIDStr)
+	waitApplianceShutdown(t, ctx, c, zone, mgwID)
 
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: mgwIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: mgwID})
 	require.NoError(t, err)
 }

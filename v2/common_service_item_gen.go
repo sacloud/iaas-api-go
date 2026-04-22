@@ -25,11 +25,11 @@ import (
 // CommonServiceItemAPI は CommonServiceItem リソースに対する操作インターフェース。
 type CommonServiceItemAPI interface {
 	Create(ctx context.Context, request *client.CommonServiceItemCreateRequestEnvelope) (*client.AutoBackupCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, q client.OptString) (*client.AutoBackupFindResponseEnvelope, error)
-	HealthStatus(ctx context.Context, id string) (*client.LocalRouterHealthStatusResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.AutoBackupReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error)
+	HealthStatus(ctx context.Context, id int64) (*client.LocalRouterHealthStatusResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.AutoBackupReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error)
 }
 
 var _ CommonServiceItemAPI = (*commonServiceItemOp)(nil)
@@ -51,7 +51,7 @@ func (op *commonServiceItemOp) Create(ctx context.Context, request *client.Commo
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) Delete(ctx context.Context, id string) error {
+func (op *commonServiceItemOp) Delete(ctx context.Context, id int64) error {
 	params := client.CommonServiceItemOpDeleteParams{ID: id}
 	_, err := op.client.CommonServiceItemOpDelete(ctx, params)
 	if err != nil {
@@ -69,7 +69,7 @@ func (op *commonServiceItemOp) List(ctx context.Context, q client.OptString) (*c
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) HealthStatus(ctx context.Context, id string) (*client.LocalRouterHealthStatusResponseEnvelope, error) {
+func (op *commonServiceItemOp) HealthStatus(ctx context.Context, id int64) (*client.LocalRouterHealthStatusResponseEnvelope, error) {
 	params := client.CommonServiceItemOpHealthStatusParams{ID: id}
 	resp, err := op.client.CommonServiceItemOpHealthStatus(ctx, params)
 	if err != nil {
@@ -78,7 +78,7 @@ func (op *commonServiceItemOp) HealthStatus(ctx context.Context, id string) (*cl
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) Read(ctx context.Context, id string) (*client.AutoBackupReadResponseEnvelope, error) {
+func (op *commonServiceItemOp) Read(ctx context.Context, id int64) (*client.AutoBackupReadResponseEnvelope, error) {
 	params := client.CommonServiceItemOpReadParams{ID: id}
 	resp, err := op.client.CommonServiceItemOpRead(ctx, params)
 	if err != nil {
@@ -87,7 +87,7 @@ func (op *commonServiceItemOp) Read(ctx context.Context, id string) (*client.Aut
 	return resp, nil
 }
 
-func (op *commonServiceItemOp) Update(ctx context.Context, id string, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error) {
+func (op *commonServiceItemOp) Update(ctx context.Context, id int64, request *client.CommonServiceItemUpdateRequestEnvelope) (*client.AutoBackupUpdateResponseEnvelope, error) {
 	params := client.CommonServiceItemOpUpdateParams{ID: id}
 	resp, err := op.client.CommonServiceItemOpUpdate(ctx, request, params)
 	if err != nil {

@@ -25,7 +25,7 @@ import (
 // RegionAPI は Region リソースに対する操作インターフェース。
 type RegionAPI interface {
 	List(ctx context.Context, req *client.RegionFindRequest) (*client.RegionFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.RegionReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.RegionReadResponseEnvelope, error)
 }
 
 var _ RegionAPI = (*regionOp)(nil)
@@ -51,7 +51,7 @@ func (op *regionOp) List(ctx context.Context, req *client.RegionFindRequest) (*c
 	return resp, nil
 }
 
-func (op *regionOp) Read(ctx context.Context, id string) (*client.RegionReadResponseEnvelope, error) {
+func (op *regionOp) Read(ctx context.Context, id int64) (*client.RegionReadResponseEnvelope, error) {
 	params := client.RegionOpReadParams{ID: id}
 	resp, err := op.client.RegionOpRead(ctx, params)
 	if err != nil {

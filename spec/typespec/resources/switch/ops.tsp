@@ -46,10 +46,10 @@ interface SwitchOp {
   @route("/switch/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): SwitchReadResponseEnvelope | ApiError;
 
   @summary("Switch 更新")
@@ -57,10 +57,10 @@ interface SwitchOp {
   @route("/switch/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: SwitchUpdateRequestEnvelope,
   ): SwitchUpdateResponseEnvelope | ApiError;
@@ -70,10 +70,10 @@ interface SwitchOp {
   @route("/switch/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -84,16 +84,16 @@ interface SwitchOp {
   @route("/switch/{id}/to/bridge/{bridgeID}")
   connectToBridge(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
       ブリッジ ID。
       """)
     @path
-    bridgeID: string,
+    bridgeID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -104,10 +104,10 @@ interface SwitchOp {
   @route("/switch/{id}/to/bridge")
   disconnectFromBridge(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -118,9 +118,9 @@ interface SwitchOp {
   @route("/switch/{id}/server")
   getServers(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): SwitchGetServersResponseEnvelope | ApiError;
 }

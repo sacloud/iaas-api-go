@@ -25,7 +25,7 @@ import (
 // InternetPlanAPI は InternetPlan リソースに対する操作インターフェース。
 type InternetPlanAPI interface {
 	List(ctx context.Context, req *client.InternetPlanFindRequest) (*client.InternetPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.InternetPlanReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.InternetPlanReadResponseEnvelope, error)
 }
 
 var _ InternetPlanAPI = (*internetPlanOp)(nil)
@@ -51,7 +51,7 @@ func (op *internetPlanOp) List(ctx context.Context, req *client.InternetPlanFind
 	return resp, nil
 }
 
-func (op *internetPlanOp) Read(ctx context.Context, id string) (*client.InternetPlanReadResponseEnvelope, error) {
+func (op *internetPlanOp) Read(ctx context.Context, id int64) (*client.InternetPlanReadResponseEnvelope, error) {
 	params := client.InternetPlanOpReadParams{ID: id}
 	resp, err := op.client.InternetPlanOpRead(ctx, params)
 	if err != nil {

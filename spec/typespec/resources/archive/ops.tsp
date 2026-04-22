@@ -46,10 +46,10 @@ interface ArchiveOp {
   @route("/archive/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ArchiveReadResponseEnvelope | ApiError;
 
   @summary("Archive 更新")
@@ -57,10 +57,10 @@ interface ArchiveOp {
   @route("/archive/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ArchiveUpdateRequestEnvelope,
   ): ArchiveUpdateResponseEnvelope | ApiError;
@@ -70,10 +70,10 @@ interface ArchiveOp {
   @route("/archive/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -84,10 +84,10 @@ interface ArchiveOp {
   @route("/archive/{id}/ftp")
   share(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ArchiveShareRequestEnvelope,
   ): ArchiveShareResponseEnvelope | ApiError;
@@ -97,10 +97,10 @@ interface ArchiveOp {
   @route("/archive/{id}/ftp")
   closeFTP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -114,13 +114,13 @@ interface ArchiveOp {
       コピー元アーカイブ ID。
       """)
     @path
-    sourceArchiveID: string,
+    sourceArchiveID: int64,
 
     @doc("""
       転送先ゾーンの ID。
       """)
     @path
-    destZoneID: string,
+    destZoneID: int64,
 
     @body body: ArchiveTransferRequestEnvelope,
   ): {

@@ -279,10 +279,10 @@ interface CommonServiceItemOp {
   @route("/commonserviceitem/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): AutoBackupReadResponseEnvelope | ApiError;
 
   @summary("CommonServiceItem 更新")
@@ -290,10 +290,10 @@ interface CommonServiceItemOp {
   @route("/commonserviceitem/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: CommonServiceItemUpdateRequestEnvelope,
   ): AutoBackupUpdateResponseEnvelope | ApiError;
@@ -303,10 +303,10 @@ interface CommonServiceItemOp {
   @route("/commonserviceitem/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -317,10 +317,10 @@ interface CommonServiceItemOp {
   @route("/commonserviceitem/{id}/health")
   healthStatus(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): LocalRouterHealthStatusResponseEnvelope | ApiError;
 }
 
@@ -331,10 +331,10 @@ interface AutoScaleOp {
   @route("/commonserviceitem/{id}/autoscale/status")
   status(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): AutoScaleStatusResponseEnvelope | ApiError;
 
   @summary("AutoScale スケールアップ")
@@ -342,10 +342,10 @@ interface AutoScaleOp {
   @route("/commonserviceitem/{id}/autoscale/up")
   scaleUp(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -356,10 +356,10 @@ interface AutoScaleOp {
   @route("/commonserviceitem/{id}/autoscale/down")
   scaleDown(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -373,10 +373,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority")
   detail(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): CertificateAuthorityDetailResponseEnvelope | ApiError;
 
   @summary("CertificateAuthority クライアント追加")
@@ -384,10 +384,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients")
   addClient(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: CertificateAuthorityAddClientParam,
   ): {
     @statusCode _: 201;
@@ -399,10 +399,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients")
   listClients(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): CertificateAuthorityListClientsResponseEnvelope | ApiError;
 
   @summary("CertificateAuthority クライアント取得")
@@ -410,10 +410,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}")
   readClient(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       CA クライアント証明書の ID（`cli_xxxx` 形式）。
       """)
@@ -426,10 +426,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/revoke")
   revokeClient(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       CA クライアント証明書の ID（`cli_xxxx` 形式）。
       """)
@@ -445,10 +445,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/hold")
   holdClient(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       CA クライアント証明書の ID（`cli_xxxx` 形式）。
       """)
@@ -464,10 +464,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/resume")
   resumeClient(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       CA クライアント証明書の ID（`cli_xxxx` 形式）。
       """)
@@ -483,10 +483,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/clients/{clientID}/deny")
   denyClient(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       CA クライアント証明書の ID（`cli_xxxx` 形式）。
       """)
@@ -502,10 +502,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/servers")
   addServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: CertificateAuthorityAddServerParam,
   ): {
     @statusCode _: 201;
@@ -517,10 +517,10 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/servers")
   listServers(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): CertificateAuthorityListServersResponseEnvelope | ApiError;
 
   @summary("CertificateAuthority サーバー取得")
@@ -528,15 +528,15 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}")
   readServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       サーバ ID。
       """)
     @path
-    serverID: string,
+    serverID: int64,
   ): CertificateAuthorityReadServerResponseEnvelope | ApiError;
 
   @summary("CertificateAuthority サーバー破棄")
@@ -544,15 +544,15 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}/revoke")
   revokeServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       サーバ ID。
       """)
     @path
-    serverID: string,
+    serverID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -563,15 +563,15 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}/hold")
   holdServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       サーバ ID。
       """)
     @path
-    serverID: string,
+    serverID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -582,15 +582,15 @@ interface CertificateAuthorityOp {
   @route("/commonserviceitem/{id}/certificateauthority/servers/{serverID}/resume")
   resumeServer(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       サーバ ID。
       """)
     @path
-    serverID: string,
+    serverID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -604,10 +604,10 @@ interface ContainerRegistryOp {
   @route("/commonserviceitem/{id}/containerregistry/users")
   listUsers(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ContainerRegistryListUsersResponseEnvelope | ApiError;
 
   @summary("ContainerRegistry ユーザー追加")
@@ -615,10 +615,10 @@ interface ContainerRegistryOp {
   @route("/commonserviceitem/{id}/containerregistry/users")
   addUser(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: ContainerRegistryUserCreateRequest,
   ): {
     @statusCode _: 200;
@@ -630,10 +630,10 @@ interface ContainerRegistryOp {
   @route("/commonserviceitem/{id}/containerregistry/users/{username}")
   updateUser(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       コンテナレジストリのユーザ名。
       """)
@@ -650,10 +650,10 @@ interface ContainerRegistryOp {
   @route("/commonserviceitem/{id}/containerregistry/users/{username}")
   deleteUser(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       コンテナレジストリのユーザ名。
       """)
@@ -672,10 +672,10 @@ interface ESMEOp {
   @route("/commonserviceitem/{id}/esme/2fa/otp")
   sendMessageWithGeneratedOTP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: ESMESendMessageWithGeneratedOTPRequest,
   ): ESMESendMessageWithGeneratedOTPResponseEnvelope | ApiError;
 
@@ -684,10 +684,10 @@ interface ESMEOp {
   @route("/commonserviceitem/{id}/esme/2fa")
   sendMessageWithInputtedOTP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: ESMESendMessageWithInputtedOTPRequest,
   ): ESMESendMessageWithInputtedOTPResponseEnvelope | ApiError;
 
@@ -696,10 +696,10 @@ interface ESMEOp {
   @route("/commonserviceitem/{id}/esme/logs")
   logs(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ESMELogsResponseEnvelope | ApiError;
 }
 
@@ -710,10 +710,10 @@ interface EnhancedDBOp {
   @route("/commonserviceitem/{id}/enhanceddb/set-password")
   setPassword(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: EnhancedDBSetPasswordRequest,
   ): {
     @statusCode _: 200;
@@ -725,10 +725,10 @@ interface EnhancedDBOp {
   @route("/commonserviceitem/{id}/enhanceddb/config")
   getConfig(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): EnhancedDBGetConfigResponseEnvelope | ApiError;
 
   @summary("EnhancedDB 設定更新")
@@ -736,10 +736,10 @@ interface EnhancedDBOp {
   @route("/commonserviceitem/{id}/enhanceddb/config")
   setConfig(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: EnhancedDBSetConfigRequest,
   ): {
     @statusCode _: 200;
@@ -754,10 +754,10 @@ interface LocalRouterOp {
   @route("/commonserviceitem/{id}/activity/localrouter/monitor")
   monitorLocalRouter(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     condition: MonitorCondition,
   ): LocalRouterMonitorLocalRouterResponseEnvelope | ApiError;
 }
@@ -769,10 +769,10 @@ interface ProxyLBOp {
   @route("/commonserviceitem/{id}/plan")
   changePlan(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: ProxyLBChangePlanRequest,
   ): ProxyLBChangePlanResponseEnvelope | ApiError;
 
@@ -781,10 +781,10 @@ interface ProxyLBOp {
   @route("/commonserviceitem/{id}/proxylb/sslcertificate")
   getCertificates(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ProxyLBGetCertificatesResponseEnvelope | ApiError;
 
   @summary("ProxyLB 証明書設定")
@@ -792,10 +792,10 @@ interface ProxyLBOp {
   @route("/commonserviceitem/{id}/proxylb/sslcertificate")
   setCertificates(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: ProxyLBSetCertificatesRequest,
   ): ProxyLBSetCertificatesResponseEnvelope | ApiError;
 
@@ -804,10 +804,10 @@ interface ProxyLBOp {
   @route("/commonserviceitem/{id}/proxylb/sslcertificate")
   deleteCertificates(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -818,10 +818,10 @@ interface ProxyLBOp {
   @route("/commonserviceitem/{id}/proxylb/letsencryptrenew")
   renewLetsEncryptCert(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -832,10 +832,10 @@ interface ProxyLBOp {
   @route("/commonserviceitem/{id}/activity/proxylb/monitor")
   monitorConnection(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     condition: MonitorCondition,
   ): ProxyLBMonitorConnectionResponseEnvelope | ApiError;
 }
@@ -847,10 +847,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/activate")
   activate(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -861,10 +861,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/deactivate")
   deactivate(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -875,10 +875,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/ip")
   assignIP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: SIMAssignIPRequest,
   ): {
     @statusCode _: 200;
@@ -890,10 +890,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/ip")
   clearIP(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -904,10 +904,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/imeilock")
   imeiLock(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: SIMIMEILockRequest,
   ): {
     @statusCode _: 200;
@@ -919,10 +919,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/imeilock")
   imeiUnlock(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -933,10 +933,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/sessionlog")
   logs(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): SIMLogsResponseEnvelope | ApiError;
 
   @summary("SIM 通信キャリア取得")
@@ -944,10 +944,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/network_operator_config")
   getNetworkOperator(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): SIMGetNetworkOperatorResponseEnvelope | ApiError;
 
   @summary("SIM 通信キャリア設定")
@@ -955,10 +955,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/network_operator_config")
   setNetworkOperator(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     configs: SIMNetworkOperatorConfig[],
   ): {
     @statusCode _: 200;
@@ -970,10 +970,10 @@ interface SIMOp {
   @route("/commonserviceitem/{id}/sim/metrics/monitor")
   monitorSIM(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     condition: MonitorCondition,
   ): SIMMonitorSIMResponseEnvelope | ApiError;
 }
@@ -985,10 +985,10 @@ interface SimpleMonitorOp {
   @route("/commonserviceitem/{id}/activity/responsetimesec/monitor")
   monitorResponseTime(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     condition: MonitorCondition,
   ): SimpleMonitorMonitorResponseTimeResponseEnvelope | ApiError;
 }
@@ -1000,10 +1000,10 @@ interface SimpleNotificationGroupOp {
   @route("/commonserviceitem/{id}/simplenotification/message")
   postMessage(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     message: string,
   ): {
     @statusCode _: 200;

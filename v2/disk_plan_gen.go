@@ -25,7 +25,7 @@ import (
 // DiskPlanAPI は DiskPlan リソースに対する操作インターフェース。
 type DiskPlanAPI interface {
 	List(ctx context.Context, req *client.DiskPlanFindRequest) (*client.DiskPlanFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.DiskPlanReadResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.DiskPlanReadResponseEnvelope, error)
 }
 
 var _ DiskPlanAPI = (*diskPlanOp)(nil)
@@ -51,7 +51,7 @@ func (op *diskPlanOp) List(ctx context.Context, req *client.DiskPlanFindRequest)
 	return resp, nil
 }
 
-func (op *diskPlanOp) Read(ctx context.Context, id string) (*client.DiskPlanReadResponseEnvelope, error) {
+func (op *diskPlanOp) Read(ctx context.Context, id int64) (*client.DiskPlanReadResponseEnvelope, error) {
 	params := client.DiskPlanOpReadParams{ID: id}
 	resp, err := op.client.DiskPlanOpRead(ctx, params)
 	if err != nil {

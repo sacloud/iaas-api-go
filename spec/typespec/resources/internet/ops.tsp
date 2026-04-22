@@ -45,10 +45,10 @@ interface InternetOp {
   @route("/internet/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): InternetReadResponseEnvelope | ApiError;
 
   @summary("Internet 更新")
@@ -56,10 +56,10 @@ interface InternetOp {
   @route("/internet/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: InternetUpdateRequestEnvelope,
   ): InternetUpdateResponseEnvelope | ApiError;
@@ -69,10 +69,10 @@ interface InternetOp {
   @route("/internet/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -83,10 +83,10 @@ interface InternetOp {
   @route("/internet/{id}/bandwidth")
   updateBandWidth(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: InternetUpdateBandWidthRequestEnvelope,
   ): InternetUpdateBandWidthResponseEnvelope | ApiError;
@@ -96,10 +96,10 @@ interface InternetOp {
   @route("/internet/{id}/subnet")
   addSubnet(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: InternetAddSubnetRequestEnvelope,
   ): {
@@ -112,16 +112,16 @@ interface InternetOp {
   @route("/internet/{id}/subnet/{subnetID}")
   updateSubnet(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
       サブネット ID。
       """)
     @path
-    subnetID: string,
+    subnetID: int64,
 
     @body body: InternetUpdateSubnetRequestEnvelope,
   ): InternetUpdateSubnetResponseEnvelope | ApiError;
@@ -131,16 +131,16 @@ interface InternetOp {
   @route("/internet/{id}/subnet/{subnetID}")
   deleteSubnet(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
       サブネット ID。
       """)
     @path
-    subnetID: string,
+    subnetID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -151,10 +151,10 @@ interface InternetOp {
   @route("/internet/{id}/monitor")
   monitor(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: InternetMonitorRequestEnvelope,
   ): InternetMonitorResponseEnvelope | ApiError;
@@ -164,10 +164,10 @@ interface InternetOp {
   @route("/internet/{id}/ipv6net")
   enableIPv6(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     ...InternetEnableIPv6ResponseEnvelope;
@@ -178,12 +178,16 @@ interface InternetOp {
   @route("/internet/{id}/ipv6net/{ipv6netID}")
   disableIPv6(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
-    @path ipv6netID: string,
+    @doc("""
+      IPv6 ネットワーク ID。
+      """)
+    @path
+    ipv6netID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;

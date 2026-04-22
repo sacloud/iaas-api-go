@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -43,8 +42,7 @@ func TestDiskPlanFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.NotEmpty(t, first.Name.Value)
 
-	readResp, err := c.DiskPlanOpRead(ctx, client.DiskPlanOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
-	})
+	readResp, err := c.DiskPlanOpRead(ctx, client.DiskPlanOpReadParams{ID: first.ID.Value})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.DiskPlan.ID.Value)
 }
@@ -65,8 +63,7 @@ func TestInternetPlanFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.Greater(t, first.BandWidthMbps.Value, int32(0))
 
-	readResp, err := c.InternetPlanOpRead(ctx, client.InternetPlanOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
-	})
+	readResp, err := c.InternetPlanOpRead(ctx, client.InternetPlanOpReadParams{ID: first.ID.Value})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.InternetPlan.ID.Value)
 }
@@ -88,8 +85,7 @@ func TestServerPlanFindRead(t *testing.T) {
 	require.Greater(t, first.CPU.Value, int32(0))
 	require.Greater(t, first.MemoryMB.Value, int32(0))
 
-	readResp, err := c.ServerPlanOpRead(ctx, client.ServerPlanOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
-	})
+	readResp, err := c.ServerPlanOpRead(ctx, client.ServerPlanOpReadParams{ID: first.ID.Value})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.ServerPlan.ID.Value)
 }
@@ -113,8 +109,7 @@ func TestLicenseInfoFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.NotEmpty(t, first.Name.Value)
 
-	readResp, err := c.LicenseInfoOpRead(ctx, client.LicenseInfoOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
-	})
+	readResp, err := c.LicenseInfoOpRead(ctx, client.LicenseInfoOpReadParams{ID: first.ID.Value})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.LicenseInfo.ID.Value)
 }

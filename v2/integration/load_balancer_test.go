@@ -44,9 +44,8 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 	})
 	require.NoError(t, err)
 	switchID := swResp.Switch.ID.Value
-	switchIDStr := fmt.Sprintf("%d", switchID)
 	defer func() {
-		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchIDStr})
+		_, _ = c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: switchID})
 	}()
 
 	// 2. Appliance Create (Class=loadbalancer, Plan=Standard/ID=1)
@@ -54,7 +53,8 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 	// Settings.LoadBalancer に VirtualIPAddress を最低 1 つ登録する。
 	const lbPlanStandard = int64(1)
 
-	switchRaw, _ := json.Marshal(map[string]any{"ID": switchIDStr})
+	// 実 API は Remark.Switch.ID を文字列で受け付けるため、ここで文字列化する
+	switchRaw, _ := json.Marshal(map[string]any{"ID": fmt.Sprintf("%d", switchID)})
 
 	settings := map[string]any{
 		"LoadBalancer": []map[string]any{
@@ -108,15 +108,14 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	lbID := createResp.Appliance.ID.Value
-	lbIDStr := fmt.Sprintf("%d", lbID)
 	t.Logf("Created LoadBalancer appliance ID: %d", lbID)
 	require.Equal(t, "test-lb", createResp.Appliance.Name.Value)
 	require.Equal(t, "loadbalancer", createResp.Appliance.Class.Value)
 
-	waitApplianceAvailable(t, ctx, c, zone, lbIDStr)
+	waitApplianceAvailable(t, ctx, c, zone, lbID)
 
 	// 3. Read
-	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: lbIDStr})
+	readResp, err := c.ApplianceOpRead(ctx, client.ApplianceOpReadParams{ID: lbID})
 	require.NoError(t, err)
 	require.Equal(t, "test-lb", readResp.Appliance.Name.Value)
 	require.Equal(t, "loadbalancer", readResp.Appliance.Class.Value)
@@ -128,15 +127,15 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ApplianceOpUpdateParams{ID: lbIDStr})
+	}, client.ApplianceOpUpdateParams{ID: lbID})
 	require.NoError(t, err)
 	require.Equal(t, "test-lb-updated", updateResp.Appliance.Name.Value)
 
 	// 5. Shutdown → Delete
-	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: lbIDStr})
+	_, err = c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: lbID})
 	require.NoError(t, err)
-	waitApplianceShutdown(t, ctx, c, zone, lbIDStr)
+	waitApplianceShutdown(t, ctx, c, zone, lbID)
 
-	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: lbIDStr})
+	_, err = c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: lbID})
 	require.NoError(t, err)
 }

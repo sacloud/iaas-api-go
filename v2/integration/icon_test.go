@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -52,8 +51,7 @@ func TestIconCRUD(t *testing.T) {
 	require.Equal(t, "test-icon", createResp.Icon.Name.Value)
 
 	// 2. Read - アイコン取得
-	readParams := client.IconOpReadParams{ID:   fmt.Sprintf("%d", iconID),
-	}
+	readParams := client.IconOpReadParams{ID: iconID}
 
 	readResp, err := c.IconOpRead(ctx, readParams)
 	require.NoError(t, err)
@@ -68,8 +66,7 @@ func TestIconCRUD(t *testing.T) {
 			Tags: []string{"test", "integration", "updated"},
 		},
 	}
-	updateParams := client.IconOpUpdateParams{ID:   fmt.Sprintf("%d", iconID),
-	}
+	updateParams := client.IconOpUpdateParams{ID: iconID}
 
 	updateResp, err := c.IconOpUpdate(ctx, updateReq, updateParams)
 	require.NoError(t, err)
@@ -95,8 +92,7 @@ func TestIconCRUD(t *testing.T) {
 	require.True(t, found, "作成したアイコンがリストに含まれていること")
 
 	// 5. Delete - アイコン削除
-	deleteParams := client.IconOpDeleteParams{ID:   fmt.Sprintf("%d", iconID),
-	}
+	deleteParams := client.IconOpDeleteParams{ID: iconID}
 
 	_, err = c.IconOpDelete(ctx, deleteParams) //nolint:errcheck
 	require.NoError(t, err)

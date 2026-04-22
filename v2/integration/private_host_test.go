@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -43,15 +42,15 @@ func TestPrivateHostPlanFind(t *testing.T) {
 	require.LessOrEqual(t, len(findResp.PrivateHostPlans), 1, "Count=1 が反映されていること")
 
 	plan := findResp.PrivateHostPlans[0]
-	planIDStr := fmt.Sprintf("%d", plan.ID.Value)
-	t.Logf("First plan: id=%s name=%s class=%s dedicated=%v", planIDStr, plan.Name.Value, plan.Class.Value, plan.Dedicated)
+	planID := plan.ID.Value
+	t.Logf("First plan: id=%d name=%s class=%s dedicated=%v", planID, plan.Name.Value, plan.Class.Value, plan.Dedicated)
 	require.NotZero(t, plan.ID.Value)
 	require.NotEmpty(t, plan.Name.Value)
 	require.NotEmpty(t, plan.Class.Value)
 	require.Greater(t, plan.CPU.Value, int32(0))
 	require.Greater(t, plan.MemoryMB.Value, int32(0))
 
-	readResp, err := c.PrivateHostPlanOpRead(ctx, client.PrivateHostPlanOpReadParams{ID: planIDStr})
+	readResp, err := c.PrivateHostPlanOpRead(ctx, client.PrivateHostPlanOpReadParams{ID: planID})
 	require.NoError(t, err)
 	require.Equal(t, plan.ID.Value, readResp.PrivateHostPlan.ID.Value)
 }
@@ -94,12 +93,11 @@ func TestPrivateHostCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	phID := createResp.PrivateHost.ID
-	phIDStr := fmt.Sprintf("%d", phID)
 	t.Logf("Created PrivateHost ID: %d", phID)
 	require.Equal(t, "test-private-host", createResp.PrivateHost.Name.Value)
 
 	// 2. Read
-	readResp, err := c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{ID: phIDStr})
+	readResp, err := c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{ID: phID})
 	require.NoError(t, err)
 	require.Equal(t, "test-private-host", readResp.PrivateHost.Name.Value)
 	require.Equal(t, phID, readResp.PrivateHost.ID)
@@ -111,7 +109,7 @@ func TestPrivateHostCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.PrivateHostOpUpdateParams{ID: phIDStr})
+	}, client.PrivateHostOpUpdateParams{ID: phID})
 	require.NoError(t, err)
 	require.Equal(t, "test-private-host-updated", updateResp.PrivateHost.Name.Value)
 
@@ -128,10 +126,10 @@ func TestPrivateHostCRUD(t *testing.T) {
 	require.True(t, found, "作成した PrivateHost がリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{ID: phIDStr})
+	_, err = c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{ID: phID})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{ID: phIDStr})
+	_, err = c.PrivateHostOpRead(ctx, client.PrivateHostOpReadParams{ID: phID})
 	require.Error(t, err)
 }

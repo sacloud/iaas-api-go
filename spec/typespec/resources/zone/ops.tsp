@@ -36,9 +36,9 @@ interface ZoneOp {
   @route("/zone/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): ZoneReadResponseEnvelope | ApiError;
 }

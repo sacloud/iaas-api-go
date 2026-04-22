@@ -22,9 +22,9 @@ interface IPv6NetOp {
   @route("/ipv6net/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): IPv6NetReadResponseEnvelope | ApiError;
 }

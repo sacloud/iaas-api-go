@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -48,13 +47,12 @@ func TestSSHKeyCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	sshKeyID := createResp.SSHKey.ID.Value
-	sshKeyIDStr := fmt.Sprintf("%d", sshKeyID)
 	t.Logf("Created SSH key ID: %d", sshKeyID)
 	require.Equal(t, "test-sshkey", createResp.SSHKey.Name.Value)
 	require.NotEmpty(t, createResp.SSHKey.Fingerprint.Value, "fingerprint must be returned on create")
 
 	// 2. Read
-	readResp, err := c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{ID: sshKeyIDStr})
+	readResp, err := c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{ID: sshKeyID})
 	require.NoError(t, err)
 	require.Equal(t, "test-sshkey", readResp.SSHKey.Name.Value)
 	require.Equal(t, sshKeyID, readResp.SSHKey.ID.Value)
@@ -66,7 +64,7 @@ func TestSSHKeyCRUD(t *testing.T) {
 			Name:        client.NewOptString("test-sshkey-updated"),
 			Description: "desc-updated",
 		},
-	}, client.SSHKeyOpUpdateParams{ID: sshKeyIDStr})
+	}, client.SSHKeyOpUpdateParams{ID: sshKeyID})
 	require.NoError(t, err)
 	require.Equal(t, "test-sshkey-updated", updateResp.SSHKey.Name.Value)
 	require.Equal(t, "desc-updated", updateResp.SSHKey.Description)
@@ -86,10 +84,10 @@ func TestSSHKeyCRUD(t *testing.T) {
 	require.True(t, found, "作成した SSH キーがリストに含まれていること")
 
 	// 5. Delete
-	_, err = c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{ID: sshKeyIDStr})
+	_, err = c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{ID: sshKeyID})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{ID: sshKeyIDStr})
+	_, err = c.SSHKeyOpRead(ctx, client.SSHKeyOpReadParams{ID: sshKeyID})
 	require.Error(t, err)
 }

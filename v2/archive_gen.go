@@ -24,14 +24,14 @@ import (
 
 // ArchiveAPI は Archive リソースに対する操作インターフェース。
 type ArchiveAPI interface {
-	CloseFTP(ctx context.Context, id string) error
+	CloseFTP(ctx context.Context, id int64) error
 	Create(ctx context.Context, request *client.ArchiveCreateRequestEnvelope) (*client.ArchiveCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, req *client.ArchiveFindRequest) (*client.ArchiveFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.ArchiveReadResponseEnvelope, error)
-	Share(ctx context.Context, id string, request *client.ArchiveShareRequestEnvelope) (*client.ArchiveShareResponseEnvelope, error)
-	Transfer(ctx context.Context, sourceArchiveID string, destZoneID string, request *client.ArchiveTransferRequestEnvelope) (*client.ArchiveTransferResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.ArchiveUpdateRequestEnvelope) (*client.ArchiveUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.ArchiveReadResponseEnvelope, error)
+	Share(ctx context.Context, id int64, request *client.ArchiveShareRequestEnvelope) (*client.ArchiveShareResponseEnvelope, error)
+	Transfer(ctx context.Context, sourceArchiveID int64, destZoneID int64, request *client.ArchiveTransferRequestEnvelope) (*client.ArchiveTransferResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.ArchiveUpdateRequestEnvelope) (*client.ArchiveUpdateResponseEnvelope, error)
 }
 
 var _ ArchiveAPI = (*archiveOp)(nil)
@@ -45,7 +45,7 @@ func NewArchiveOp(c *client.Client) ArchiveAPI {
 	return &archiveOp{client: c}
 }
 
-func (op *archiveOp) CloseFTP(ctx context.Context, id string) error {
+func (op *archiveOp) CloseFTP(ctx context.Context, id int64) error {
 	params := client.ArchiveOpCloseFTPParams{ID: id}
 	_, err := op.client.ArchiveOpCloseFTP(ctx, params)
 	if err != nil {
@@ -62,7 +62,7 @@ func (op *archiveOp) Create(ctx context.Context, request *client.ArchiveCreateRe
 	return resp, nil
 }
 
-func (op *archiveOp) Delete(ctx context.Context, id string) error {
+func (op *archiveOp) Delete(ctx context.Context, id int64) error {
 	params := client.ArchiveOpDeleteParams{ID: id}
 	_, err := op.client.ArchiveOpDelete(ctx, params)
 	if err != nil {
@@ -83,7 +83,7 @@ func (op *archiveOp) List(ctx context.Context, req *client.ArchiveFindRequest) (
 	return resp, nil
 }
 
-func (op *archiveOp) Read(ctx context.Context, id string) (*client.ArchiveReadResponseEnvelope, error) {
+func (op *archiveOp) Read(ctx context.Context, id int64) (*client.ArchiveReadResponseEnvelope, error) {
 	params := client.ArchiveOpReadParams{ID: id}
 	resp, err := op.client.ArchiveOpRead(ctx, params)
 	if err != nil {
@@ -92,7 +92,7 @@ func (op *archiveOp) Read(ctx context.Context, id string) (*client.ArchiveReadRe
 	return resp, nil
 }
 
-func (op *archiveOp) Share(ctx context.Context, id string, request *client.ArchiveShareRequestEnvelope) (*client.ArchiveShareResponseEnvelope, error) {
+func (op *archiveOp) Share(ctx context.Context, id int64, request *client.ArchiveShareRequestEnvelope) (*client.ArchiveShareResponseEnvelope, error) {
 	params := client.ArchiveOpShareParams{ID: id}
 	resp, err := op.client.ArchiveOpShare(ctx, request, params)
 	if err != nil {
@@ -101,7 +101,7 @@ func (op *archiveOp) Share(ctx context.Context, id string, request *client.Archi
 	return resp, nil
 }
 
-func (op *archiveOp) Transfer(ctx context.Context, sourceArchiveID string, destZoneID string, request *client.ArchiveTransferRequestEnvelope) (*client.ArchiveTransferResponseEnvelope, error) {
+func (op *archiveOp) Transfer(ctx context.Context, sourceArchiveID int64, destZoneID int64, request *client.ArchiveTransferRequestEnvelope) (*client.ArchiveTransferResponseEnvelope, error) {
 	params := client.ArchiveOpTransferParams{SourceArchiveID: sourceArchiveID, DestZoneID: destZoneID}
 	resp, err := op.client.ArchiveOpTransfer(ctx, request, params)
 	if err != nil {
@@ -110,7 +110,7 @@ func (op *archiveOp) Transfer(ctx context.Context, sourceArchiveID string, destZ
 	return resp, nil
 }
 
-func (op *archiveOp) Update(ctx context.Context, id string, request *client.ArchiveUpdateRequestEnvelope) (*client.ArchiveUpdateResponseEnvelope, error) {
+func (op *archiveOp) Update(ctx context.Context, id int64, request *client.ArchiveUpdateRequestEnvelope) (*client.ArchiveUpdateResponseEnvelope, error) {
 	params := client.ArchiveOpUpdateParams{ID: id}
 	resp, err := op.client.ArchiveOpUpdate(ctx, request, params)
 	if err != nil {

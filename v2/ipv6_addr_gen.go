@@ -25,10 +25,10 @@ import (
 // IPv6AddrAPI は IPv6Addr リソースに対する操作インターフェース。
 type IPv6AddrAPI interface {
 	Create(ctx context.Context, request *client.IPv6AddrCreateRequestEnvelope) (*client.IPv6AddrCreateResponseEnvelope, error)
-	Delete(ctx context.Context, id string) error
+	Delete(ctx context.Context, id int64) error
 	List(ctx context.Context, q client.OptString) (*client.IPv6AddrFindResponseEnvelope, error)
-	Read(ctx context.Context, id string) (*client.IPv6AddrReadResponseEnvelope, error)
-	Update(ctx context.Context, id string, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error)
+	Read(ctx context.Context, id int64) (*client.IPv6AddrReadResponseEnvelope, error)
+	Update(ctx context.Context, id int64, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error)
 }
 
 var _ IPv6AddrAPI = (*iPv6AddrOp)(nil)
@@ -50,7 +50,7 @@ func (op *iPv6AddrOp) Create(ctx context.Context, request *client.IPv6AddrCreate
 	return resp, nil
 }
 
-func (op *iPv6AddrOp) Delete(ctx context.Context, id string) error {
+func (op *iPv6AddrOp) Delete(ctx context.Context, id int64) error {
 	params := client.IPv6AddrOpDeleteParams{ID: id}
 	_, err := op.client.IPv6AddrOpDelete(ctx, params)
 	if err != nil {
@@ -68,7 +68,7 @@ func (op *iPv6AddrOp) List(ctx context.Context, q client.OptString) (*client.IPv
 	return resp, nil
 }
 
-func (op *iPv6AddrOp) Read(ctx context.Context, id string) (*client.IPv6AddrReadResponseEnvelope, error) {
+func (op *iPv6AddrOp) Read(ctx context.Context, id int64) (*client.IPv6AddrReadResponseEnvelope, error) {
 	params := client.IPv6AddrOpReadParams{ID: id}
 	resp, err := op.client.IPv6AddrOpRead(ctx, params)
 	if err != nil {
@@ -77,7 +77,7 @@ func (op *iPv6AddrOp) Read(ctx context.Context, id string) (*client.IPv6AddrRead
 	return resp, nil
 }
 
-func (op *iPv6AddrOp) Update(ctx context.Context, id string, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error) {
+func (op *iPv6AddrOp) Update(ctx context.Context, id int64, request *client.IPv6AddrUpdateRequestEnvelope) (*client.IPv6AddrUpdateResponseEnvelope, error) {
 	params := client.IPv6AddrOpUpdateParams{ID: id}
 	resp, err := op.client.IPv6AddrOpUpdate(ctx, request, params)
 	if err != nil {

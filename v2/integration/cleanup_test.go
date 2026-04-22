@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"strings"
 	"testing"
@@ -42,21 +41,21 @@ func TestCleanupInternet(t *testing.T) {
 		if !hasTestTag(ii.Tags) && !strings.HasPrefix(ii.Name.Value, "test-internet") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", ii.ID.Value)
-		t.Logf("Deleting internet %s (name=%s)", idStr, ii.Name.Value)
+		id := ii.ID.Value
+		t.Logf("Deleting internet %d (name=%s)", id, ii.Name.Value)
 		// Internet 配下の IPv6Net を先に外す（そうしないと delete が 409 になる）
 		if ii.Switch.Set && !ii.Switch.Null {
 			for _, ipv6 := range ii.Switch.Value.IPv6Nets {
-				ipv6IDStr := fmt.Sprintf("%d", ipv6.ID.Value)
-				if _, err := c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{ID:        idStr,
-					Ipv6netID: ipv6IDStr,
+				ipv6ID := ipv6.ID.Value
+				if _, err := c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{ID: id,
+					Ipv6netID: ipv6ID,
 				}); err != nil {
-					t.Logf("disable ipv6 %s on internet %s failed: %v", ipv6IDStr, idStr, err)
+					t.Logf("disable ipv6 %d on internet %d failed: %v", ipv6ID, id, err)
 				}
 			}
 		}
-		if _, err := c.InternetOpDelete(ctx, client.InternetOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete internet %s failed: %v", idStr, err)
+		if _, err := c.InternetOpDelete(ctx, client.InternetOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete internet %d failed: %v", id, err)
 		}
 	}
 }
@@ -78,10 +77,10 @@ func TestCleanupSwitchTK1a(t *testing.T) {
 		if !hasTestTag(sw.Tags) && !strings.HasPrefix(sw.Name.Value, "test-switch") && !strings.HasPrefix(sw.Name.Value, "switch-for-") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", sw.ID.Value)
-		t.Logf("Deleting switch %s (name=%s)", idStr, sw.Name.Value)
-		if _, err := c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete switch %s failed: %v", idStr, err)
+		id := sw.ID.Value
+		t.Logf("Deleting switch %d (name=%s)", id, sw.Name.Value)
+		if _, err := c.SwitchOpDelete(ctx, client.SwitchOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete switch %d failed: %v", id, err)
 		}
 	}
 }
@@ -103,11 +102,11 @@ func TestCleanupBridge(t *testing.T) {
 		if !strings.HasPrefix(b.Name.Value, "test-bridge") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", b.ID.Value)
-		t.Logf("Deleting bridge %s (name=%s)", idStr, b.Name.Value)
+		id := b.ID.Value
+		t.Logf("Deleting bridge %d (name=%s)", id, b.Name.Value)
 		// 接続中の Switch があれば先に disconnect する必要があるが、このテストでは defer で済ませているので不要
-		if _, err := c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete bridge %s failed: %v", idStr, err)
+		if _, err := c.BridgeOpDelete(ctx, client.BridgeOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete bridge %d failed: %v", id, err)
 		}
 	}
 }
@@ -129,17 +128,17 @@ func TestCleanupAppliance(t *testing.T) {
 		if !hasTestTag(app.Tags) && !strings.HasPrefix(app.Name.Value, "test-") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", app.ID.Value)
-		t.Logf("Deleting appliance %s (name=%s class=%s status=%s)", idStr, app.Name.Value, app.Class.Value, app.Instance.Value.Status.Value)
+		id := app.ID.Value
+		t.Logf("Deleting appliance %d (name=%s class=%s status=%s)", id, app.Name.Value, app.Class.Value, app.Instance.Value.Status.Value)
 		if app.Instance.Value.Status.Value == "up" {
-			if _, err := c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: idStr}); err != nil {
-				t.Logf("force shutdown %s failed: %v", idStr, err)
+			if _, err := c.ApplianceOpShutdown(ctx, &client.ShutdownOption{Force: true}, client.ApplianceOpShutdownParams{ID: id}); err != nil {
+				t.Logf("force shutdown %d failed: %v", id, err)
 			}
 			// wait a bit for status to flip
 			time.Sleep(10 * time.Second)
 		}
-		if _, err := c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete appliance %s failed: %v", idStr, err)
+		if _, err := c.ApplianceOpDelete(ctx, client.ApplianceOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete appliance %d failed: %v", id, err)
 		}
 	}
 }
@@ -161,10 +160,10 @@ func TestCleanupPrivateHost(t *testing.T) {
 		if !hasTestTag(ph.Tags) && !strings.HasPrefix(ph.Name.Value, "test-private-host") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", ph.ID)
-		t.Logf("Deleting privatehost %s (name=%s)", idStr, ph.Name.Value)
-		if _, err := c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete privatehost %s failed: %v", idStr, err)
+		id := ph.ID
+		t.Logf("Deleting privatehost %d (name=%s)", id, ph.Name.Value)
+		if _, err := c.PrivateHostOpDelete(ctx, client.PrivateHostOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete privatehost %d failed: %v", id, err)
 		}
 	}
 }
@@ -186,15 +185,15 @@ func TestCleanupCDROM(t *testing.T) {
 		if !hasTestTag(cd.Tags) && !strings.HasPrefix(cd.Name.Value, "test-cdrom") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", cd.ID.Value)
-		t.Logf("Deleting cdrom %s (name=%s avail=%s)", idStr, cd.Name.Value, cd.Availability.Value)
+		id := cd.ID.Value
+		t.Logf("Deleting cdrom %d (name=%s avail=%s)", id, cd.Name.Value, cd.Availability.Value)
 		if cd.Availability.Value == "uploading" {
-			if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{ID: idStr}); err != nil {
-				t.Logf("close FTP on cdrom %s failed: %v", idStr, err)
+			if _, err := c.CDROMOpCloseFTP(ctx, client.CDROMOpCloseFTPParams{ID: id}); err != nil {
+				t.Logf("close FTP on cdrom %d failed: %v", id, err)
 			}
 		}
-		if _, err := c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete cdrom %s failed: %v", idStr, err)
+		if _, err := c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete cdrom %d failed: %v", id, err)
 		}
 	}
 }
@@ -216,18 +215,18 @@ func TestCleanupServer(t *testing.T) {
 		if !hasTestTag(s.Tags) && !strings.HasPrefix(s.Name.Value, "test-server") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", s.ID.Value)
+		id := s.ID.Value
 		status := ""
 		if s.Instance.Set {
 			status = string(s.Instance.Value.Status.Value)
 		}
 		if status != "" && status != "down" {
-			t.Logf("Skipping running server %s (name=%s status=%s)", idStr, s.Name.Value, status)
+			t.Logf("Skipping running server %d (name=%s status=%s)", id, s.Name.Value, status)
 			continue
 		}
-		t.Logf("Deleting server %s (name=%s)", idStr, s.Name.Value)
-		if _, err := c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete server %s failed: %v", idStr, err)
+		t.Logf("Deleting server %d (name=%s)", id, s.Name.Value)
+		if _, err := c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete server %d failed: %v", id, err)
 		}
 	}
 }
@@ -250,10 +249,10 @@ func TestCleanupNote(t *testing.T) {
 		if !hasTestTag(n.Tags) && !strings.HasPrefix(n.Name.Value, "test-note") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", n.ID.Value)
-		t.Logf("Deleting note %s (name=%s)", idStr, n.Name.Value)
-		if _, err := c.NoteOpDelete(ctx, client.NoteOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete note %s failed: %v", idStr, err)
+		id := n.ID.Value
+		t.Logf("Deleting note %d (name=%s)", id, n.Name.Value)
+		if _, err := c.NoteOpDelete(ctx, client.NoteOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete note %d failed: %v", id, err)
 		}
 	}
 }
@@ -275,10 +274,10 @@ func TestCleanupSSHKey(t *testing.T) {
 		if !strings.HasPrefix(k.Name.Value, "test-sshkey") {
 			continue
 		}
-		idStr := fmt.Sprintf("%d", k.ID.Value)
-		t.Logf("Deleting sshkey %s (name=%s)", idStr, k.Name.Value)
-		if _, err := c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{ID: idStr}); err != nil {
-			t.Logf("delete sshkey %s failed: %v", idStr, err)
+		id := k.ID.Value
+		t.Logf("Deleting sshkey %d (name=%s)", id, k.Name.Value)
+		if _, err := c.SSHKeyOpDelete(ctx, client.SSHKeyOpDeleteParams{ID: id}); err != nil {
+			t.Logf("delete sshkey %d failed: %v", id, err)
 		}
 	}
 }

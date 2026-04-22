@@ -24,10 +24,10 @@ import (
 
 // ContainerRegistryAPI は ContainerRegistry リソースに対する操作インターフェース。
 type ContainerRegistryAPI interface {
-	AddUser(ctx context.Context, id string, request *client.ContainerRegistryOpAddUserReq) error
-	DeleteUser(ctx context.Context, id string, username string) error
-	ListUsers(ctx context.Context, id string) (*client.ContainerRegistryListUsersResponseEnvelope, error)
-	UpdateUser(ctx context.Context, id string, username string, request *client.ContainerRegistryOpUpdateUserReq) error
+	AddUser(ctx context.Context, id int64, request *client.ContainerRegistryOpAddUserReq) error
+	DeleteUser(ctx context.Context, id int64, username string) error
+	ListUsers(ctx context.Context, id int64) (*client.ContainerRegistryListUsersResponseEnvelope, error)
+	UpdateUser(ctx context.Context, id int64, username string, request *client.ContainerRegistryOpUpdateUserReq) error
 }
 
 var _ ContainerRegistryAPI = (*containerRegistryOp)(nil)
@@ -41,7 +41,7 @@ func NewContainerRegistryOp(c *client.Client) ContainerRegistryAPI {
 	return &containerRegistryOp{client: c}
 }
 
-func (op *containerRegistryOp) AddUser(ctx context.Context, id string, request *client.ContainerRegistryOpAddUserReq) error {
+func (op *containerRegistryOp) AddUser(ctx context.Context, id int64, request *client.ContainerRegistryOpAddUserReq) error {
 	params := client.ContainerRegistryOpAddUserParams{ID: id}
 	_, err := op.client.ContainerRegistryOpAddUser(ctx, request, params)
 	if err != nil {
@@ -50,7 +50,7 @@ func (op *containerRegistryOp) AddUser(ctx context.Context, id string, request *
 	return nil
 }
 
-func (op *containerRegistryOp) DeleteUser(ctx context.Context, id string, username string) error {
+func (op *containerRegistryOp) DeleteUser(ctx context.Context, id int64, username string) error {
 	params := client.ContainerRegistryOpDeleteUserParams{ID: id, Username: username}
 	_, err := op.client.ContainerRegistryOpDeleteUser(ctx, params)
 	if err != nil {
@@ -59,7 +59,7 @@ func (op *containerRegistryOp) DeleteUser(ctx context.Context, id string, userna
 	return nil
 }
 
-func (op *containerRegistryOp) ListUsers(ctx context.Context, id string) (*client.ContainerRegistryListUsersResponseEnvelope, error) {
+func (op *containerRegistryOp) ListUsers(ctx context.Context, id int64) (*client.ContainerRegistryListUsersResponseEnvelope, error) {
 	params := client.ContainerRegistryOpListUsersParams{ID: id}
 	resp, err := op.client.ContainerRegistryOpListUsers(ctx, params)
 	if err != nil {
@@ -68,7 +68,7 @@ func (op *containerRegistryOp) ListUsers(ctx context.Context, id string) (*clien
 	return resp, nil
 }
 
-func (op *containerRegistryOp) UpdateUser(ctx context.Context, id string, username string, request *client.ContainerRegistryOpUpdateUserReq) error {
+func (op *containerRegistryOp) UpdateUser(ctx context.Context, id int64, username string, request *client.ContainerRegistryOpUpdateUserReq) error {
 	params := client.ContainerRegistryOpUpdateUserParams{ID: id, Username: username}
 	_, err := op.client.ContainerRegistryOpUpdateUser(ctx, request, params)
 	if err != nil {

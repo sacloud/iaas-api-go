@@ -127,10 +127,10 @@ interface ApplianceOp {
   @route("/appliance/{id}")
   read(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): DatabaseReadResponseEnvelope | ApiError;
 
   @summary("Appliance 更新")
@@ -138,10 +138,10 @@ interface ApplianceOp {
   @route("/appliance/{id}")
   update(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ApplianceUpdateRequestEnvelope,
   ): DatabaseUpdateResponseEnvelope | ApiError;
@@ -151,10 +151,10 @@ interface ApplianceOp {
   @route("/appliance/{id}")
   delete(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -165,10 +165,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/config")
   config(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -179,10 +179,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/power")
   boot(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -193,10 +193,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/power")
   shutdown(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: ShutdownOption,
   ): {
@@ -209,10 +209,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/reset")
   reset(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -223,10 +223,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/cpu/monitor")
   monitorCPU(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: MonitorCondition,
   ): DatabaseMonitorCPUResponseEnvelope | ApiError;
@@ -236,10 +236,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/interface/monitor")
   monitorInterface(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: MonitorCondition,
   ): DatabaseMonitorInterfaceResponseEnvelope | ApiError;
@@ -249,10 +249,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/database/monitor")
   monitorDatabase(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @body body: MonitorCondition,
   ): DatabaseMonitorDatabaseResponseEnvelope | ApiError;
@@ -262,10 +262,10 @@ interface ApplianceOp {
   @route("/appliance/{id}/status")
   status(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): DatabaseStatusResponseEnvelope | ApiError;
 
   @summary("Appliance インターフェイスモニター情報取得")
@@ -273,13 +273,13 @@ interface ApplianceOp {
   @route("/appliance/{id}/interface/{index}/monitor")
   monitorInterfaceByIndex(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
 
     @doc("""
-      インターフェースのインデックス（0 始まり）。
+      インターフェースのインデックス（0 始まり、10 進文字列）。
       """)
     @path
     index: string,
@@ -293,10 +293,10 @@ interface DatabaseOp {
   @route("/appliance/{id}/disk/0/monitor")
   monitorDisk(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     condition: MonitorCondition,
   ): DatabaseMonitorDiskResponseEnvelope | ApiError;
 
@@ -305,10 +305,10 @@ interface DatabaseOp {
   @route("/appliance/{id}/database/parameter")
   getParameter(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): DatabaseGetParameterResponseEnvelope | ApiError;
 
   @summary("Database パラメータ設定")
@@ -316,10 +316,10 @@ interface DatabaseOp {
   @route("/appliance/{id}/database/parameter")
   setParameter(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: Record<unknown>,
   ): {
     @statusCode _: 200;
@@ -334,15 +334,15 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/interface/1/to/switch/{switchID}")
   connectToSwitch(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       スイッチ ID。
       """)
     @path
-    switchID: string,
+    switchID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -353,10 +353,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/interface/1/to/switch")
   disconnectFromSwitch(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -367,10 +367,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/dnsresolver")
   getDNS(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): MobileGatewayGetDNSResponseEnvelope | ApiError;
 
   @summary("MobileGateway DNS 設定")
@@ -378,10 +378,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/dnsresolver")
   setDNS(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: MobileGatewayDNSSetting,
   ): {
     @statusCode _: 200;
@@ -393,10 +393,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/simroutes")
   getSIMRoutes(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): MobileGatewayGetSIMRoutesResponseEnvelope | ApiError;
 
   @summary("MobileGateway SIM ルート設定")
@@ -404,10 +404,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/simroutes")
   setSIMRoutes(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: MobileGatewaySIMRouteParam[],
   ): {
     @statusCode _: 200;
@@ -419,10 +419,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/sims")
   listSIM(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): MobileGatewayListSIMResponseEnvelope | ApiError;
 
   @summary("MobileGateway SIM 追加")
@@ -430,10 +430,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/sims")
   addSIM(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: MobileGatewayAddSIMRequest,
   ): {
     @statusCode _: 200;
@@ -445,15 +445,15 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/sims/{simID}")
   deleteSIM(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       SIM ID。
       """)
     @path
-    simID: string,
+    simID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -464,10 +464,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/sessionlog")
   logs(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): MobileGatewayLogsResponseEnvelope | ApiError;
 
   @summary("MobileGateway トラフィック設定取得")
@@ -475,10 +475,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/traffic_monitoring")
   getTrafficConfig(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): MobileGatewayGetTrafficConfigResponseEnvelope | ApiError;
 
   @summary("MobileGateway トラフィック設定更新")
@@ -486,10 +486,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/traffic_monitoring")
   setTrafficConfig(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     param: MobileGatewayTrafficControl,
   ): {
     @statusCode _: 200;
@@ -501,10 +501,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/traffic_monitoring")
   deleteTrafficConfig(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -515,10 +515,10 @@ interface MobileGatewayOp {
   @route("/appliance/{id}/mobilegateway/traffic_status")
   trafficStatus(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
   ): MobileGatewayTrafficStatusResponseEnvelope | ApiError;
 }
 
@@ -529,12 +529,12 @@ interface VPCRouterOp {
   @route("/appliance/{id}/interface/{nicIndex}/to/switch/{switchID}")
   connectToSwitch(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
-      NIC のインデックス（0 始まり）。
+      NIC のインデックス（0 始まり、10 進文字列）。
       """)
     @path
     nicIndex: string,
@@ -542,7 +542,7 @@ interface VPCRouterOp {
       スイッチ ID。
       """)
     @path
-    switchID: string,
+    switchID: int64,
   ): {
     @statusCode _: 200;
     is_ok: boolean;
@@ -553,12 +553,12 @@ interface VPCRouterOp {
   @route("/appliance/{id}/interface/{nicIndex}/to/switch")
   disconnectFromSwitch(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
-      NIC のインデックス（0 始まり）。
+      NIC のインデックス（0 始まり、10 進文字列）。
       """)
     @path
     nicIndex: string,
@@ -572,10 +572,10 @@ interface VPCRouterOp {
   @route("/appliance/{id}/vpcrouter/ping/{destination}")
   ping(
     @doc("""
-      対象リソースの ID。数値を 10 進文字列で指定する。
+      対象リソースの ID。
       """)
     @path
-    id: string,
+    id: int64,
     @doc("""
       ping の宛先 IP アドレスまたはホスト名。
       """)

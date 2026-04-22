@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -27,7 +26,7 @@ import (
 
 // waitInternetSwitchReady は ルータ+スイッチ作成後に Switch 側のサブネット割当が完了するのを待つ。
 // 作成直後は Switch そのものがまだ 404 を返すことがあるので、エラーは握りつぶしてリトライする。
-func waitInternetSwitchReady(t *testing.T, ctx context.Context, c *client.Client, zone, switchID string) {
+func waitInternetSwitchReady(t *testing.T, ctx context.Context, c *client.Client, zone string, switchID int64) {
 	t.Helper()
 	deadline := time.Now().Add(2 * time.Minute)
 	for time.Now().Before(deadline) {
@@ -39,7 +38,7 @@ func waitInternetSwitchReady(t *testing.T, ctx context.Context, c *client.Client
 		}
 		time.Sleep(3 * time.Second)
 	}
-	t.Fatalf("switch %s did not get subnet assigned within timeout", switchID)
+	t.Fatalf("switch %d did not get subnet assigned within timeout", switchID)
 }
 
 func TestInternetCRUD(t *testing.T) {
@@ -66,18 +65,17 @@ func TestInternetCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	internetID := createResp.Internet.ID.Value
-	internetIDStr := fmt.Sprintf("%d", internetID)
 	t.Logf("Created internet ID: %d", internetID)
 	require.Equal(t, "test-internet", createResp.Internet.Name.Value)
 	require.Equal(t, int32(28), createResp.Internet.NetworkMaskLen.Value)
 	require.Equal(t, int32(100), createResp.Internet.BandWidthMbps.Value)
 
 	// 作成直後はサブネット割当がまだ完了していないため待機
-	switchID := fmt.Sprintf("%d", createResp.Internet.Switch.Value.ID.Value)
+	switchID := createResp.Internet.Switch.Value.ID.Value
 	waitInternetSwitchReady(t, ctx, c, zone, switchID)
 
 	// 2. Read
-	readResp, err := c.InternetOpRead(ctx, client.InternetOpReadParams{ID: internetIDStr})
+	readResp, err := c.InternetOpRead(ctx, client.InternetOpReadParams{ID: internetID})
 	require.NoError(t, err)
 	require.Equal(t, "test-internet", readResp.Internet.Name.Value)
 	require.Equal(t, internetID, readResp.Internet.ID.Value)
@@ -89,7 +87,7 @@ func TestInternetCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.InternetOpUpdateParams{ID: internetIDStr})
+	}, client.InternetOpUpdateParams{ID: internetID})
 	require.NoError(t, err)
 	require.Equal(t, "test-internet-updated", updateResp.Internet.Name.Value)
 
@@ -107,23 +105,21 @@ func TestInternetCRUD(t *testing.T) {
 	require.True(t, found, "作成したルータがリストに含まれていること")
 
 	// 5. EnableIPv6
-	ipv6Resp, err := c.InternetOpEnableIPv6(ctx, client.InternetOpEnableIPv6Params{ID: internetIDStr})
+	ipv6Resp, err := c.InternetOpEnableIPv6(ctx, client.InternetOpEnableIPv6Params{ID: internetID})
 	require.NoError(t, err)
 	ipv6NetID := ipv6Resp.IPv6Net.ID.Value
 	require.NotZero(t, ipv6NetID)
 	t.Logf("Enabled IPv6 net ID: %d", ipv6NetID)
 
 	// 6. DisableIPv6
-	_, err = c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{ID:        internetIDStr,
-		Ipv6netID: fmt.Sprintf("%d", ipv6NetID),
-	})
+	_, err = c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{ID: internetID, Ipv6netID: ipv6NetID})
 	require.NoError(t, err)
 
 	// 7. Delete
-	_, err = c.InternetOpDelete(ctx, client.InternetOpDeleteParams{ID: internetIDStr})
+	_, err = c.InternetOpDelete(ctx, client.InternetOpDeleteParams{ID: internetID})
 	require.NoError(t, err)
 
 	// 削除後は 404
-	_, err = c.InternetOpRead(ctx, client.InternetOpReadParams{ID: internetIDStr})
+	_, err = c.InternetOpRead(ctx, client.InternetOpReadParams{ID: internetID})
 	require.Error(t, err)
 }

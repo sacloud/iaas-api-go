@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -43,8 +42,7 @@ func TestRegionFindRead(t *testing.T) {
 	require.NotZero(t, first.ID.Value)
 	require.NotEmpty(t, first.Name.Value)
 
-	readResp, err := c.RegionOpRead(ctx, client.RegionOpReadParams{ID:   fmt.Sprintf("%d", first.ID.Value),
-	})
+	readResp, err := c.RegionOpRead(ctx, client.RegionOpReadParams{ID: first.ID.Value})
 	require.NoError(t, err)
 	require.Equal(t, first.ID.Value, readResp.Region.ID.Value)
 	require.Equal(t, first.Name.Value, readResp.Region.Name.Value)
@@ -74,8 +72,7 @@ func TestZoneFindRead(t *testing.T) {
 	require.NotZero(t, target.ID.Value)
 	t.Logf("Current zone: id=%d name=%s description=%s", target.ID.Value, target.Name.Value, target.Description.Value)
 
-	readResp, err := c.ZoneOpRead(ctx, client.ZoneOpReadParams{ID:   fmt.Sprintf("%d", target.ID.Value),
-	})
+	readResp, err := c.ZoneOpRead(ctx, client.ZoneOpReadParams{ID: target.ID.Value})
 	require.NoError(t, err)
 	require.Equal(t, target.ID.Value, readResp.Zone.ID.Value)
 	require.Equal(t, zone, readResp.Zone.Name.Value)

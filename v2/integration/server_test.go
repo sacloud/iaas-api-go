@@ -16,7 +16,6 @@ package integration
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"testing"
 
@@ -54,12 +53,11 @@ func TestServerCRUD(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, createResp)
 	serverID := createResp.Server.ID.Value
-	serverIDStr := fmt.Sprintf("%d", serverID)
 	t.Logf("Created server ID: %d", serverID)
 	require.Equal(t, "test-server", createResp.Server.Name.Value)
 
 	// 2. Read
-	readResp, err := c.ServerOpRead(ctx, client.ServerOpReadParams{ID: serverIDStr})
+	readResp, err := c.ServerOpRead(ctx, client.ServerOpReadParams{ID: serverID})
 	require.NoError(t, err)
 	require.Equal(t, "test-server", readResp.Server.Name.Value)
 	require.Equal(t, serverID, readResp.Server.ID.Value)
@@ -71,7 +69,7 @@ func TestServerCRUD(t *testing.T) {
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},
-	}, client.ServerOpUpdateParams{ID: serverIDStr})
+	}, client.ServerOpUpdateParams{ID: serverID})
 	require.NoError(t, err)
 	require.Equal(t, "test-server-updated", updateResp.Server.Name.Value)
 
@@ -92,10 +90,10 @@ func TestServerCRUD(t *testing.T) {
 	// 5. Delete（ディスクを接続していないので WithDisk は空）
 	_, err = c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{
 		WithDisk: []client.ID{},
-	}, client.ServerOpDeleteParams{ID: serverIDStr})
+	}, client.ServerOpDeleteParams{ID: serverID})
 	require.NoError(t, err)
 
 	// 削除後は 404 になることを確認
-	_, err = c.ServerOpRead(ctx, client.ServerOpReadParams{ID: serverIDStr})
+	_, err = c.ServerOpRead(ctx, client.ServerOpReadParams{ID: serverID})
 	require.Error(t, err)
 }

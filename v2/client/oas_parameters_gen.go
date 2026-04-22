@@ -4,20 +4,20 @@ package client
 
 // ApplianceOpBootParams is parameters of ApplianceOp_boot operation.
 type ApplianceOpBootParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpConfigParams is parameters of ApplianceOp_config operation.
 type ApplianceOpConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpDeleteParams is parameters of ApplianceOp_delete operation.
 type ApplianceOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpFindParams is parameters of ApplianceOp_find operation.
@@ -36,70 +36,70 @@ type ApplianceOpFindParams struct {
 
 // ApplianceOpMonitorCPUParams is parameters of ApplianceOp_monitorCPU operation.
 type ApplianceOpMonitorCPUParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpMonitorDatabaseParams is parameters of ApplianceOp_monitorDatabase operation.
 type ApplianceOpMonitorDatabaseParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpMonitorInterfaceParams is parameters of ApplianceOp_monitorInterface operation.
 type ApplianceOpMonitorInterfaceParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpMonitorInterfaceByIndexParams is parameters of ApplianceOp_monitorInterfaceByIndex operation.
 type ApplianceOpMonitorInterfaceByIndexParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
-	// インターフェースのインデックス（0 始まり）。.
+	// 対象リソースの ID。.
+	ID int64
+	// インターフェースのインデックス（0 始まり、10 進文字列）。.
 	Index string
 }
 
 // ApplianceOpReadParams is parameters of ApplianceOp_read operation.
 type ApplianceOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpResetParams is parameters of ApplianceOp_reset operation.
 type ApplianceOpResetParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpShutdownParams is parameters of ApplianceOp_shutdown operation.
 type ApplianceOpShutdownParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpStatusParams is parameters of ApplianceOp_status operation.
 type ApplianceOpStatusParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ApplianceOpUpdateParams is parameters of ApplianceOp_update operation.
 type ApplianceOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ArchiveOpCloseFTPParams is parameters of ArchiveOp_closeFTP operation.
 type ArchiveOpCloseFTPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ArchiveOpDeleteParams is parameters of ArchiveOp_delete operation.
 type ArchiveOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ArchiveOpFindParams is parameters of ArchiveOp_find operation.
@@ -117,69 +117,69 @@ type ArchiveOpFindParams struct {
 
 // ArchiveOpReadParams is parameters of ArchiveOp_read operation.
 type ArchiveOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ArchiveOpShareParams is parameters of ArchiveOp_share operation.
 type ArchiveOpShareParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ArchiveOpTransferParams is parameters of ArchiveOp_transfer operation.
 type ArchiveOpTransferParams struct {
 	// コピー元アーカイブ ID。.
-	SourceArchiveID string
+	SourceArchiveID int64
 	// 転送先ゾーンの ID。.
-	DestZoneID string
+	DestZoneID int64
 }
 
 // ArchiveOpUpdateParams is parameters of ArchiveOp_update operation.
 type ArchiveOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // AutoScaleOpScaleDownParams is parameters of AutoScaleOp_scaleDown operation.
 type AutoScaleOpScaleDownParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // AutoScaleOpScaleUpParams is parameters of AutoScaleOp_scaleUp operation.
 type AutoScaleOpScaleUpParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // AutoScaleOpStatusParams is parameters of AutoScaleOp_status operation.
 type AutoScaleOpStatusParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // BillOpByContractParams is parameters of BillOp_byContract operation.
 type BillOpByContractParams struct {
 	// 契約（アカウント）の ID。.
-	AccountID string
+	AccountID int64
 }
 
 // BillOpByContractYearParams is parameters of BillOp_byContractYear operation.
 type BillOpByContractYearParams struct {
 	// 契約（アカウント）の ID。.
-	AccountID string
-	// 対象年（西暦 4 桁）。.
+	AccountID int64
+	// 対象年（西暦 4 桁の 10 進文字列）。.
 	Year string
 }
 
 // BillOpByContractYearMonthParams is parameters of BillOp_byContractYearMonth operation.
 type BillOpByContractYearMonthParams struct {
 	// 契約（アカウント）の ID。.
-	AccountID string
-	// 対象年（西暦 4 桁）。.
+	AccountID int64
+	// 対象年（西暦 4 桁の 10 進文字列）。.
 	Year string
-	// 対象月（1〜12）。.
+	// 対象月（1〜12 の 10 進文字列）。.
 	Month string
 }
 
@@ -187,28 +187,28 @@ type BillOpByContractYearMonthParams struct {
 type BillOpDetailsParams struct {
 	// 会員コード。.
 	MemberCode string
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // BillOpDetailsCSVParams is parameters of BillOp_detailsCSV operation.
 type BillOpDetailsCSVParams struct {
 	// 会員コード。.
 	MemberCode string
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // BillOpReadParams is parameters of BillOp_read operation.
 type BillOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // BridgeOpDeleteParams is parameters of BridgeOp_delete operation.
 type BridgeOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // BridgeOpFindParams is parameters of BridgeOp_find operation.
@@ -224,26 +224,26 @@ type BridgeOpFindParams struct {
 
 // BridgeOpReadParams is parameters of BridgeOp_read operation.
 type BridgeOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // BridgeOpUpdateParams is parameters of BridgeOp_update operation.
 type BridgeOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CDROMOpCloseFTPParams is parameters of CDROMOp_closeFTP operation.
 type CDROMOpCloseFTPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CDROMOpDeleteParams is parameters of CDROMOp_delete operation.
 type CDROMOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CDROMOpFindParams is parameters of CDROMOp_find operation.
@@ -261,128 +261,128 @@ type CDROMOpFindParams struct {
 
 // CDROMOpOpenFTPParams is parameters of CDROMOp_openFTP operation.
 type CDROMOpOpenFTPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CDROMOpReadParams is parameters of CDROMOp_read operation.
 type CDROMOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CDROMOpUpdateParams is parameters of CDROMOp_update operation.
 type CDROMOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CertificateAuthorityOpAddClientParams is parameters of CertificateAuthorityOp_addClient operation.
 type CertificateAuthorityOpAddClientParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CertificateAuthorityOpAddServerParams is parameters of CertificateAuthorityOp_addServer operation.
 type CertificateAuthorityOpAddServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CertificateAuthorityOpDenyClientParams is parameters of CertificateAuthorityOp_denyClient operation.
 type CertificateAuthorityOpDenyClientParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
 	ClientID string
 }
 
 // CertificateAuthorityOpDetailParams is parameters of CertificateAuthorityOp_detail operation.
 type CertificateAuthorityOpDetailParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CertificateAuthorityOpHoldClientParams is parameters of CertificateAuthorityOp_holdClient operation.
 type CertificateAuthorityOpHoldClientParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
 	ClientID string
 }
 
 // CertificateAuthorityOpHoldServerParams is parameters of CertificateAuthorityOp_holdServer operation.
 type CertificateAuthorityOpHoldServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サーバ ID。.
-	ServerID string
+	ServerID int64
 }
 
 // CertificateAuthorityOpListClientsParams is parameters of CertificateAuthorityOp_listClients operation.
 type CertificateAuthorityOpListClientsParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CertificateAuthorityOpListServersParams is parameters of CertificateAuthorityOp_listServers operation.
 type CertificateAuthorityOpListServersParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CertificateAuthorityOpReadClientParams is parameters of CertificateAuthorityOp_readClient operation.
 type CertificateAuthorityOpReadClientParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
 	ClientID string
 }
 
 // CertificateAuthorityOpReadServerParams is parameters of CertificateAuthorityOp_readServer operation.
 type CertificateAuthorityOpReadServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サーバ ID。.
-	ServerID string
+	ServerID int64
 }
 
 // CertificateAuthorityOpResumeClientParams is parameters of CertificateAuthorityOp_resumeClient operation.
 type CertificateAuthorityOpResumeClientParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
 	ClientID string
 }
 
 // CertificateAuthorityOpResumeServerParams is parameters of CertificateAuthorityOp_resumeServer operation.
 type CertificateAuthorityOpResumeServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サーバ ID。.
-	ServerID string
+	ServerID int64
 }
 
 // CertificateAuthorityOpRevokeClientParams is parameters of CertificateAuthorityOp_revokeClient operation.
 type CertificateAuthorityOpRevokeClientParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// CA クライアント証明書の ID（`cli_xxxx` 形式）。.
 	ClientID string
 }
 
 // CertificateAuthorityOpRevokeServerParams is parameters of CertificateAuthorityOp_revokeServer operation.
 type CertificateAuthorityOpRevokeServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サーバ ID。.
-	ServerID string
+	ServerID int64
 }
 
 // CommonServiceItemOpDeleteParams is parameters of CommonServiceItemOp_delete operation.
 type CommonServiceItemOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CommonServiceItemOpFindParams is parameters of CommonServiceItemOp_find operation.
@@ -400,46 +400,46 @@ type CommonServiceItemOpFindParams struct {
 
 // CommonServiceItemOpHealthStatusParams is parameters of CommonServiceItemOp_healthStatus operation.
 type CommonServiceItemOpHealthStatusParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CommonServiceItemOpReadParams is parameters of CommonServiceItemOp_read operation.
 type CommonServiceItemOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // CommonServiceItemOpUpdateParams is parameters of CommonServiceItemOp_update operation.
 type CommonServiceItemOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ContainerRegistryOpAddUserParams is parameters of ContainerRegistryOp_addUser operation.
 type ContainerRegistryOpAddUserParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ContainerRegistryOpDeleteUserParams is parameters of ContainerRegistryOp_deleteUser operation.
 type ContainerRegistryOpDeleteUserParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// コンテナレジストリのユーザ名。.
 	Username string
 }
 
 // ContainerRegistryOpListUsersParams is parameters of ContainerRegistryOp_listUsers operation.
 type ContainerRegistryOpListUsersParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ContainerRegistryOpUpdateUserParams is parameters of ContainerRegistryOp_updateUser operation.
 type ContainerRegistryOpUpdateUserParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// コンテナレジストリのユーザ名。.
 	Username string
 }
@@ -447,51 +447,51 @@ type ContainerRegistryOpUpdateUserParams struct {
 // CouponOpFindParams is parameters of CouponOp_find operation.
 type CouponOpFindParams struct {
 	// 契約（アカウント）の ID。.
-	AccountID string
+	AccountID int64
 }
 
 // DatabaseOpGetParameterParams is parameters of DatabaseOp_getParameter operation.
 type DatabaseOpGetParameterParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DatabaseOpMonitorDiskParams is parameters of DatabaseOp_monitorDisk operation.
 type DatabaseOpMonitorDiskParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DatabaseOpSetParameterParams is parameters of DatabaseOp_setParameter operation.
 type DatabaseOpSetParameterParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpConfigParams is parameters of DiskOp_config operation.
 type DiskOpConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpConnectToServerParams is parameters of DiskOp_connectToServer operation.
 type DiskOpConnectToServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サーバ ID。.
-	ServerID string
+	ServerID int64
 }
 
 // DiskOpDeleteParams is parameters of DiskOp_delete operation.
 type DiskOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpDisconnectFromServerParams is parameters of DiskOp_disconnectFromServer operation.
 type DiskOpDisconnectFromServerParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpFindParams is parameters of DiskOp_find operation.
@@ -509,26 +509,26 @@ type DiskOpFindParams struct {
 
 // DiskOpMonitorParams is parameters of DiskOp_monitor operation.
 type DiskOpMonitorParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpReadParams is parameters of DiskOp_read operation.
 type DiskOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpResizePartitionParams is parameters of DiskOp_resizePartition operation.
 type DiskOpResizePartitionParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskOpUpdateParams is parameters of DiskOp_update operation.
 type DiskOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // DiskPlanOpFindParams is parameters of DiskPlanOp_find operation.
@@ -544,44 +544,44 @@ type DiskPlanOpFindParams struct {
 
 // DiskPlanOpReadParams is parameters of DiskPlanOp_read operation.
 type DiskPlanOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ESMEOpLogsParams is parameters of ESMEOp_logs operation.
 type ESMEOpLogsParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ESMEOpSendMessageWithGeneratedOTPParams is parameters of ESMEOp_sendMessageWithGeneratedOTP operation.
 type ESMEOpSendMessageWithGeneratedOTPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ESMEOpSendMessageWithInputtedOTPParams is parameters of ESMEOp_sendMessageWithInputtedOTP operation.
 type ESMEOpSendMessageWithInputtedOTPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // EnhancedDBOpGetConfigParams is parameters of EnhancedDBOp_getConfig operation.
 type EnhancedDBOpGetConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // EnhancedDBOpSetConfigParams is parameters of EnhancedDBOp_setConfig operation.
 type EnhancedDBOpSetConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // EnhancedDBOpSetPasswordParams is parameters of EnhancedDBOp_setPassword operation.
 type EnhancedDBOpSetPasswordParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IPAddressOpReadParams is parameters of IPAddressOp_read operation.
@@ -598,8 +598,8 @@ type IPAddressOpUpdateHostNameParams struct {
 
 // IPv6AddrOpDeleteParams is parameters of IPv6AddrOp_delete operation.
 type IPv6AddrOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IPv6AddrOpFindParams is parameters of IPv6AddrOp_find operation.
@@ -613,26 +613,26 @@ type IPv6AddrOpFindParams struct {
 
 // IPv6AddrOpReadParams is parameters of IPv6AddrOp_read operation.
 type IPv6AddrOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IPv6AddrOpUpdateParams is parameters of IPv6AddrOp_update operation.
 type IPv6AddrOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IPv6NetOpReadParams is parameters of IPv6NetOp_read operation.
 type IPv6NetOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IconOpDeleteParams is parameters of IconOp_delete operation.
 type IconOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IconOpFindParams is parameters of IconOp_find operation.
@@ -650,54 +650,54 @@ type IconOpFindParams struct {
 
 // IconOpReadParams is parameters of IconOp_read operation.
 type IconOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // IconOpUpdateParams is parameters of IconOp_update operation.
 type IconOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpConnectToPacketFilterParams is parameters of InterfaceOp_connectToPacketFilter operation.
 type InterfaceOpConnectToPacketFilterParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// パケットフィルタ ID。.
-	PacketFilterID string
+	PacketFilterID int64
 }
 
 // InterfaceOpConnectToSharedSegmentParams is parameters of InterfaceOp_connectToSharedSegment operation.
 type InterfaceOpConnectToSharedSegmentParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpConnectToSwitchParams is parameters of InterfaceOp_connectToSwitch operation.
 type InterfaceOpConnectToSwitchParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// スイッチ ID。.
-	SwitchID string
+	SwitchID int64
 }
 
 // InterfaceOpDeleteParams is parameters of InterfaceOp_delete operation.
 type InterfaceOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpDisconnectFromPacketFilterParams is parameters of InterfaceOp_disconnectFromPacketFilter operation.
 type InterfaceOpDisconnectFromPacketFilterParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpDisconnectFromSwitchParams is parameters of InterfaceOp_disconnectFromSwitch operation.
 type InterfaceOpDisconnectFromSwitchParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpFindParams is parameters of InterfaceOp_find operation.
@@ -713,53 +713,54 @@ type InterfaceOpFindParams struct {
 
 // InterfaceOpMonitorParams is parameters of InterfaceOp_monitor operation.
 type InterfaceOpMonitorParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpReadParams is parameters of InterfaceOp_read operation.
 type InterfaceOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InterfaceOpUpdateParams is parameters of InterfaceOp_update operation.
 type InterfaceOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpAddSubnetParams is parameters of InternetOp_addSubnet operation.
 type InternetOpAddSubnetParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpDeleteParams is parameters of InternetOp_delete operation.
 type InternetOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpDeleteSubnetParams is parameters of InternetOp_deleteSubnet operation.
 type InternetOpDeleteSubnetParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サブネット ID。.
-	SubnetID string
+	SubnetID int64
 }
 
 // InternetOpDisableIPv6Params is parameters of InternetOp_disableIPv6 operation.
 type InternetOpDisableIPv6Params struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID        string
-	Ipv6netID string
+	// 対象リソースの ID。.
+	ID int64
+	// IPv6 ネットワーク ID。.
+	Ipv6netID int64
 }
 
 // InternetOpEnableIPv6Params is parameters of InternetOp_enableIPv6 operation.
 type InternetOpEnableIPv6Params struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpFindParams is parameters of InternetOp_find operation.
@@ -776,34 +777,34 @@ type InternetOpFindParams struct {
 
 // InternetOpMonitorParams is parameters of InternetOp_monitor operation.
 type InternetOpMonitorParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpReadParams is parameters of InternetOp_read operation.
 type InternetOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpUpdateParams is parameters of InternetOp_update operation.
 type InternetOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpUpdateBandWidthParams is parameters of InternetOp_updateBandWidth operation.
 type InternetOpUpdateBandWidthParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // InternetOpUpdateSubnetParams is parameters of InternetOp_updateSubnet operation.
 type InternetOpUpdateSubnetParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// サブネット ID。.
-	SubnetID string
+	SubnetID int64
 }
 
 // InternetPlanOpFindParams is parameters of InternetPlanOp_find operation.
@@ -819,8 +820,8 @@ type InternetPlanOpFindParams struct {
 
 // InternetPlanOpReadParams is parameters of InternetPlanOp_read operation.
 type InternetPlanOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // LicenseInfoOpFindParams is parameters of LicenseInfoOp_find operation.
@@ -836,14 +837,14 @@ type LicenseInfoOpFindParams struct {
 
 // LicenseInfoOpReadParams is parameters of LicenseInfoOp_read operation.
 type LicenseInfoOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // LicenseOpDeleteParams is parameters of LicenseOp_delete operation.
 type LicenseOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // LicenseOpFindParams is parameters of LicenseOp_find operation.
@@ -859,114 +860,114 @@ type LicenseOpFindParams struct {
 
 // LicenseOpReadParams is parameters of LicenseOp_read operation.
 type LicenseOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // LicenseOpUpdateParams is parameters of LicenseOp_update operation.
 type LicenseOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // LocalRouterOpMonitorLocalRouterParams is parameters of LocalRouterOp_monitorLocalRouter operation.
 type LocalRouterOpMonitorLocalRouterParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpAddSIMParams is parameters of MobileGatewayOp_addSIM operation.
 type MobileGatewayOpAddSIMParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpConnectToSwitchParams is parameters of MobileGatewayOp_connectToSwitch operation.
 type MobileGatewayOpConnectToSwitchParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// スイッチ ID。.
-	SwitchID string
+	SwitchID int64
 }
 
 // MobileGatewayOpDeleteSIMParams is parameters of MobileGatewayOp_deleteSIM operation.
 type MobileGatewayOpDeleteSIMParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// SIM ID。.
-	SimID string
+	SimID int64
 }
 
 // MobileGatewayOpDeleteTrafficConfigParams is parameters of MobileGatewayOp_deleteTrafficConfig operation.
 type MobileGatewayOpDeleteTrafficConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpDisconnectFromSwitchParams is parameters of MobileGatewayOp_disconnectFromSwitch operation.
 type MobileGatewayOpDisconnectFromSwitchParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpGetDNSParams is parameters of MobileGatewayOp_getDNS operation.
 type MobileGatewayOpGetDNSParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpGetSIMRoutesParams is parameters of MobileGatewayOp_getSIMRoutes operation.
 type MobileGatewayOpGetSIMRoutesParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpGetTrafficConfigParams is parameters of MobileGatewayOp_getTrafficConfig operation.
 type MobileGatewayOpGetTrafficConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpListSIMParams is parameters of MobileGatewayOp_listSIM operation.
 type MobileGatewayOpListSIMParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpLogsParams is parameters of MobileGatewayOp_logs operation.
 type MobileGatewayOpLogsParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpSetDNSParams is parameters of MobileGatewayOp_setDNS operation.
 type MobileGatewayOpSetDNSParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpSetSIMRoutesParams is parameters of MobileGatewayOp_setSIMRoutes operation.
 type MobileGatewayOpSetSIMRoutesParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpSetTrafficConfigParams is parameters of MobileGatewayOp_setTrafficConfig operation.
 type MobileGatewayOpSetTrafficConfigParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // MobileGatewayOpTrafficStatusParams is parameters of MobileGatewayOp_trafficStatus operation.
 type MobileGatewayOpTrafficStatusParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // NoteOpDeleteParams is parameters of NoteOp_delete operation.
 type NoteOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // NoteOpFindParams is parameters of NoteOp_find operation.
@@ -984,20 +985,20 @@ type NoteOpFindParams struct {
 
 // NoteOpReadParams is parameters of NoteOp_read operation.
 type NoteOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // NoteOpUpdateParams is parameters of NoteOp_update operation.
 type NoteOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PacketFilterOpDeleteParams is parameters of PacketFilterOp_delete operation.
 type PacketFilterOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PacketFilterOpFindParams is parameters of PacketFilterOp_find operation.
@@ -1013,20 +1014,20 @@ type PacketFilterOpFindParams struct {
 
 // PacketFilterOpReadParams is parameters of PacketFilterOp_read operation.
 type PacketFilterOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PacketFilterOpUpdateParams is parameters of PacketFilterOp_update operation.
 type PacketFilterOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PrivateHostOpDeleteParams is parameters of PrivateHostOp_delete operation.
 type PrivateHostOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PrivateHostOpFindParams is parameters of PrivateHostOp_find operation.
@@ -1043,14 +1044,14 @@ type PrivateHostOpFindParams struct {
 
 // PrivateHostOpReadParams is parameters of PrivateHostOp_read operation.
 type PrivateHostOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PrivateHostOpUpdateParams is parameters of PrivateHostOp_update operation.
 type PrivateHostOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // PrivateHostPlanOpFindParams is parameters of PrivateHostPlanOp_find operation.
@@ -1068,44 +1069,44 @@ type PrivateHostPlanOpFindParams struct {
 
 // PrivateHostPlanOpReadParams is parameters of PrivateHostPlanOp_read operation.
 type PrivateHostPlanOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ProxyLBOpChangePlanParams is parameters of ProxyLBOp_changePlan operation.
 type ProxyLBOpChangePlanParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ProxyLBOpDeleteCertificatesParams is parameters of ProxyLBOp_deleteCertificates operation.
 type ProxyLBOpDeleteCertificatesParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ProxyLBOpGetCertificatesParams is parameters of ProxyLBOp_getCertificates operation.
 type ProxyLBOpGetCertificatesParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ProxyLBOpMonitorConnectionParams is parameters of ProxyLBOp_monitorConnection operation.
 type ProxyLBOpMonitorConnectionParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ProxyLBOpRenewLetsEncryptCertParams is parameters of ProxyLBOp_renewLetsEncryptCert operation.
 type ProxyLBOpRenewLetsEncryptCertParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ProxyLBOpSetCertificatesParams is parameters of ProxyLBOp_setCertificates operation.
 type ProxyLBOpSetCertificatesParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // RegionOpFindParams is parameters of RegionOp_find operation.
@@ -1121,74 +1122,74 @@ type RegionOpFindParams struct {
 
 // RegionOpReadParams is parameters of RegionOp_read operation.
 type RegionOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpActivateParams is parameters of SIMOp_activate operation.
 type SIMOpActivateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpAssignIPParams is parameters of SIMOp_assignIP operation.
 type SIMOpAssignIPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpClearIPParams is parameters of SIMOp_clearIP operation.
 type SIMOpClearIPParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpDeactivateParams is parameters of SIMOp_deactivate operation.
 type SIMOpDeactivateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpGetNetworkOperatorParams is parameters of SIMOp_getNetworkOperator operation.
 type SIMOpGetNetworkOperatorParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpImeiLockParams is parameters of SIMOp_imeiLock operation.
 type SIMOpImeiLockParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpImeiUnlockParams is parameters of SIMOp_imeiUnlock operation.
 type SIMOpImeiUnlockParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpLogsParams is parameters of SIMOp_logs operation.
 type SIMOpLogsParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpMonitorSIMParams is parameters of SIMOp_monitorSIM operation.
 type SIMOpMonitorSIMParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SIMOpSetNetworkOperatorParams is parameters of SIMOp_setNetworkOperator operation.
 type SIMOpSetNetworkOperatorParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SSHKeyOpDeleteParams is parameters of SSHKeyOp_delete operation.
 type SSHKeyOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SSHKeyOpFindParams is parameters of SSHKeyOp_find operation.
@@ -1204,38 +1205,38 @@ type SSHKeyOpFindParams struct {
 
 // SSHKeyOpReadParams is parameters of SSHKeyOp_read operation.
 type SSHKeyOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SSHKeyOpUpdateParams is parameters of SSHKeyOp_update operation.
 type SSHKeyOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpBootParams is parameters of ServerOp_boot operation.
 type ServerOpBootParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpChangePlanParams is parameters of ServerOp_changePlan operation.
 type ServerOpChangePlanParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpDeleteParams is parameters of ServerOp_delete operation.
 type ServerOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpEjectCDROMParams is parameters of ServerOp_ejectCDROM operation.
 type ServerOpEjectCDROMParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpFindParams is parameters of ServerOp_find operation.
@@ -1252,56 +1253,56 @@ type ServerOpFindParams struct {
 
 // ServerOpGetVNCProxyParams is parameters of ServerOp_getVNCProxy operation.
 type ServerOpGetVNCProxyParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpInsertCDROMParams is parameters of ServerOp_insertCDROM operation.
 type ServerOpInsertCDROMParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpMonitorParams is parameters of ServerOp_monitor operation.
 type ServerOpMonitorParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpReadParams is parameters of ServerOp_read operation.
 type ServerOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpResetParams is parameters of ServerOp_reset operation.
 type ServerOpResetParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpSendKeyParams is parameters of ServerOp_sendKey operation.
 type ServerOpSendKeyParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpSendNMIParams is parameters of ServerOp_sendNMI operation.
 type ServerOpSendNMIParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpShutdownParams is parameters of ServerOp_shutdown operation.
 type ServerOpShutdownParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerOpUpdateParams is parameters of ServerOp_update operation.
 type ServerOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServerPlanOpFindParams is parameters of ServerPlanOp_find operation.
@@ -1317,8 +1318,8 @@ type ServerPlanOpFindParams struct {
 
 // ServerPlanOpReadParams is parameters of ServerPlanOp_read operation.
 type ServerPlanOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // ServiceClassOpFindParams is parameters of ServiceClassOp_find operation.
@@ -1334,14 +1335,14 @@ type ServiceClassOpFindParams struct {
 
 // SimpleMonitorOpMonitorResponseTimeParams is parameters of SimpleMonitorOp_monitorResponseTime operation.
 type SimpleMonitorOpMonitorResponseTimeParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SimpleNotificationGroupOpPostMessageParams is parameters of SimpleNotificationGroupOp_postMessage operation.
 type SimpleNotificationGroupOpPostMessageParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SubnetOpFindParams is parameters of SubnetOp_find operation.
@@ -1357,28 +1358,28 @@ type SubnetOpFindParams struct {
 
 // SubnetOpReadParams is parameters of SubnetOp_read operation.
 type SubnetOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SwitchOpConnectToBridgeParams is parameters of SwitchOp_connectToBridge operation.
 type SwitchOpConnectToBridgeParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// ブリッジ ID。.
-	BridgeID string
+	BridgeID int64
 }
 
 // SwitchOpDeleteParams is parameters of SwitchOp_delete operation.
 type SwitchOpDeleteParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SwitchOpDisconnectFromBridgeParams is parameters of SwitchOp_disconnectFromBridge operation.
 type SwitchOpDisconnectFromBridgeParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SwitchOpFindParams is parameters of SwitchOp_find operation.
@@ -1396,44 +1397,44 @@ type SwitchOpFindParams struct {
 
 // SwitchOpGetServersParams is parameters of SwitchOp_getServers operation.
 type SwitchOpGetServersParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SwitchOpReadParams is parameters of SwitchOp_read operation.
 type SwitchOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // SwitchOpUpdateParams is parameters of SwitchOp_update operation.
 type SwitchOpUpdateParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
 
 // VPCRouterOpConnectToSwitchParams is parameters of VPCRouterOp_connectToSwitch operation.
 type VPCRouterOpConnectToSwitchParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
-	// NIC のインデックス（0 始まり）。.
+	// 対象リソースの ID。.
+	ID int64
+	// NIC のインデックス（0 始まり、10 進文字列）。.
 	NicIndex string
 	// スイッチ ID。.
-	SwitchID string
+	SwitchID int64
 }
 
 // VPCRouterOpDisconnectFromSwitchParams is parameters of VPCRouterOp_disconnectFromSwitch operation.
 type VPCRouterOpDisconnectFromSwitchParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
-	// NIC のインデックス（0 始まり）。.
+	// 対象リソースの ID。.
+	ID int64
+	// NIC のインデックス（0 始まり、10 進文字列）。.
 	NicIndex string
 }
 
 // VPCRouterOpPingParams is parameters of VPCRouterOp_ping operation.
 type VPCRouterOpPingParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 	// Ping の宛先 IP アドレスまたはホスト名。.
 	Destination string
 }
@@ -1451,6 +1452,6 @@ type ZoneOpFindParams struct {
 
 // ZoneOpReadParams is parameters of ZoneOp_read operation.
 type ZoneOpReadParams struct {
-	// 対象リソースの ID。数値を 10 進文字列で指定する。.
-	ID string
+	// 対象リソースの ID。.
+	ID int64
 }
