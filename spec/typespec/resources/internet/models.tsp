@@ -5,78 +5,78 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Internet {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  BandWidthMbps?: int32 | null;
-  NetworkMaskLen?: int32 | null;
+  BandWidthMbps?: int32;
+  NetworkMaskLen?: int32;
   Switch?: SwitchInfo | null;
 }
 
 model SwitchInfo {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description?: string | null;
   Tags?: string[] | null;
-  Scope?: EScope | null;
-  Subnets?: InternetSubnet[] | null;
-  IPv6Nets?: IPv6NetInfo[] | null;
+  Scope?: EScope;
+  Subnets?: InternetSubnet[];
+  IPv6Nets?: IPv6NetInfo[];
 }
 
 model InternetSubnet {
-  ID?: int64 | null;
-  DefaultRoute?: string | null;
+  ID?: int64;
+  DefaultRoute?: string;
   NextHop?: string | null;
   StaticRoute?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string;
+  NetworkMaskLen?: int32;
 }
 
 model IPv6NetInfo {
-  ID?: int64 | null;
-  IPv6Prefix?: string | null;
-  IPv6PrefixLen?: int32 | null;
+  ID?: int64;
+  IPv6Prefix?: string;
+  IPv6PrefixLen?: int32;
 }
 
 model InternetCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  NetworkMaskLen?: int32 | null;
-  BandWidthMbps?: int32 | null;
+  NetworkMaskLen?: int32;
+  BandWidthMbps?: int32;
 }
 
 model InternetUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model InternetUpdateBandWidthRequest {
-  BandWidthMbps?: int32 | null;
+  BandWidthMbps?: int32;
 }
 
 model InternetSubnetOperationResult {
-  ID?: int64 | null;
-  DefaultRoute?: string | null;
-  NextHop?: string | null;
-  StaticRoute?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
-  IPAddresses?: string[] | null;
+  ID?: int64;
+  DefaultRoute?: string;
+  NextHop?: string;
+  StaticRoute?: string;
+  NetworkAddress?: string;
+  NetworkMaskLen?: int32;
+  IPAddresses?: string[];
 }
 
 model InternetAddSubnetRequest {
-  NetworkMaskLen?: int32 | null;
-  NextHop?: string | null;
+  NetworkMaskLen?: int32;
+  NextHop?: string;
 }
 
 model InternetUpdateSubnetRequest {
-  NextHop?: string | null;
+  NextHop?: string;
 }
 
 model RouterActivity {

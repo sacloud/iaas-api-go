@@ -54,8 +54,8 @@ func TestCDROMCRUD(t *testing.T) {
 	// create 時点で FTP セッションが開き、レスポンスに FTPServer（HostName/User/Password）が含まれる。
 	createReq := &client.CDROMCreateRequestEnvelope{
 		CDROM: client.CDROMCreateRequest{
-			SizeMB:      client.NewOptNilInt32(5 * 1024),
-			Name:        client.NewOptNilString("test-cdrom"),
+			SizeMB:      client.NewOptInt32(5 * 1024),
+			Name:        client.NewOptString("test-cdrom"),
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
 		},
@@ -87,7 +87,7 @@ func TestCDROMCRUD(t *testing.T) {
 	// 3. Update - 名前・タグ更新
 	updateResp, err := c.CDROMOpUpdate(ctx, &client.CDROMUpdateRequestEnvelope{
 		CDROM: client.CDROMUpdateRequest{
-			Name:        client.NewOptNilString("test-cdrom-updated"),
+			Name:        client.NewOptString("test-cdrom-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

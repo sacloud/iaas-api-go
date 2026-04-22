@@ -6327,15 +6327,6 @@ func (c *Client) CertificateAuthorityOpAddClient(ctx context.Context, request *C
 }
 
 func (c *Client) sendCertificateAuthorityOpAddClient(ctx context.Context, request *CertificateAuthorityOpAddClientReq, params CertificateAuthorityOpAddClientParams) (res *CertificateAuthorityAddClientResponseEnvelope, err error) {
-	// Validate request before sending.
-	if err := func() error {
-		if err := request.Validate(); err != nil {
-			return err
-		}
-		return nil
-	}(); err != nil {
-		return res, errors.Wrap(err, "validate")
-	}
 
 	u := uri.Clone(c.requestURL(ctx))
 	var pathParts [5]string

@@ -11,13 +11,13 @@ model AuthStatus {
 }
 
 model AuthStatusAccount {
-  ID?: int64 | null;
-  Name?: string | null;
-  Code?: string | null;
-  Class?: string | null;
+  ID?: int64;
+  Name?: string;
+  Code?: string;
+  Class?: string;
 }
 
 model AuthStatusMember {
-  Code?: string | null;
-  Class?: string | null;
+  Code?: string;
+  Class?: string;
 }

@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SIM {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Class: string;
@@ -15,30 +15,30 @@ model SIM {
 }
 
 model SIMStatus {
-  ICCID?: string | null;
+  ICCID?: string;
   SIMInfo?: SIMInfo | null;
 }
 
 model SIMInfo {
-  ICCID?: string | null;
-  IMSI?: string[] | null;
-  IMEI?: string | null;
-  IP?: string | null;
-  SessionStatus?: string | null;
+  ICCID?: string;
+  IMSI?: string[];
+  IMEI?: string;
+  IP?: string;
+  SessionStatus?: string;
   IMEILock: boolean;
   Registered: boolean;
   Activated: boolean;
-  ResourceID?: string | null;
-  RegisteredDate?: utcDateTime | null;
-  ActivatedDate?: utcDateTime | null;
-  DeactivatedDate?: utcDateTime | null;
-  SIMGroupID?: string | null;
+  ResourceID?: string;
+  RegisteredDate?: utcDateTime;
+  ActivatedDate?: utcDateTime;
+  DeactivatedDate?: utcDateTime;
+  SIMGroupID?: string;
   TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
-  ConnectedIMEI?: string | null;
+  ConnectedIMEI?: string;
 }
 
 model SIMCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -47,15 +47,15 @@ model SIMCreateRequest {
 }
 
 model SIMCreateRequestStatus {
-  ICCID?: string | null;
+  ICCID?: string;
 }
 
 model SIMCreateRequestRemark {
-  PassCode?: string | null;
+  PassCode?: string;
 }
 
 model SIMUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -71,16 +71,16 @@ model SIMIMEILockRequest {
 
 model SIMLog {
   Date?: utcDateTime | null;
-  SessionStatus?: string | null;
-  ResourceID?: string | null;
-  IMEI?: string | null;
-  IMSI?: string | null;
+  SessionStatus?: string;
+  ResourceID?: string;
+  IMEI?: string;
+  IMSI?: string;
 }
 
 model SIMNetworkOperatorConfig {
   Allow: boolean;
-  CountryCode?: string | null;
-  Name?: string | null;
+  CountryCode?: string;
+  Name?: string;
 }
 
 model LinkActivity {

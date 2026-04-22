@@ -5,14 +5,14 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model DNS {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Records: DNSRecord[];
   Settings?: DNSSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: DNSStatus | null;
 }
 
@@ -25,8 +25,8 @@ model DNSSettingsDNS {
 }
 
 model DNSStatus {
-  Zone?: string | null;
-  NS?: string[] | null;
+  Zone?: string;
+  NS?: string[];
 }
 
 model DNSRecord {
@@ -41,7 +41,7 @@ model MonitoringSuiteLog {
 }
 
 model DNSCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Records: DNSRecord[];
   Settings?: DNSCreateRequestSettings | null;
   Description: string;
@@ -62,5 +62,5 @@ model DNSUpdateRequest {
   Tags: string[];
   Icon?: ResourceRef | null;
   Records: DNSRecord[];
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }

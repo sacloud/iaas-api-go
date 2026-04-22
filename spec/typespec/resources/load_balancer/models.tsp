@@ -5,30 +5,30 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LoadBalancer {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
-  Class?: string | null;
+  Availability?: EAvailability;
+  Class?: string;
   Icon?: ResourceRef | null;
   Instance?: LoadBalancerInstance | null;
   Remark?: LoadBalancerRemark | null;
   IPAddresses: string[];
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
-  SettingsHash?: string | null;
-  Interfaces?: InterfaceView[] | null;
+  SettingsHash?: string;
+  Interfaces?: InterfaceView[];
 }
 
 model LoadBalancerInstance {
   Host?: LoadBalancerInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
+  Status?: EServerInstanceStatus;
   StatusChangedAt?: utcDateTime | null;
 }
 
 model LoadBalancerInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+  Name?: string;
+  InfoURL?: string;
 }
 
 model LoadBalancerRemark {
@@ -38,12 +38,12 @@ model LoadBalancerRemark {
 }
 
 model LoadBalancerRemarkNetwork {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string;
+  NetworkMaskLen?: int32;
 }
 
 model LoadBalancerRemarkVRRP {
-  VRID?: int32 | null;
+  VRID?: int32;
 }
 
 model LoadBalancerVirtualIPAddress {
@@ -73,7 +73,7 @@ model LoadBalancerServerHealthCheck {
 model LoadBalancerCreateRequest {
   Remark?: LoadBalancerCreateRequestRemark | null;
   IPAddresses: string[];
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -88,19 +88,19 @@ model LoadBalancerCreateRequestRemark {
 }
 
 model LoadBalancerCreateRequestRemarkVRRP {
-  VRID?: int32 | null;
+  VRID?: int32;
 }
 
 model LoadBalancerCreateRequestRemarkNetwork {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32;
+  DefaultRoute?: string;
 }
 
 model LoadBalancerUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }

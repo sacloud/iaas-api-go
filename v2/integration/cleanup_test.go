@@ -47,7 +47,7 @@ func TestCleanupInternet(t *testing.T) {
 		t.Logf("Deleting internet %s (name=%s)", idStr, ii.Name.Value)
 		// Internet 配下の IPv6Net を先に外す（そうしないと delete が 409 になる）
 		if ii.Switch.Set && !ii.Switch.Null {
-			for _, ipv6 := range ii.Switch.Value.IPv6Nets.Value {
+			for _, ipv6 := range ii.Switch.Value.IPv6Nets {
 				ipv6IDStr := fmt.Sprintf("%d", ipv6.ID.Value)
 				if _, err := c.InternetOpDisableIPv6(ctx, client.InternetOpDisableIPv6Params{
 					Zone:      zone,
@@ -200,6 +200,67 @@ func TestCleanupCDROM(t *testing.T) {
 		}
 		if _, err := c.CDROMOpDelete(ctx, client.CDROMOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
 			t.Logf("delete cdrom %s failed: %v", idStr, err)
+		}
+	}
+}
+
+// TestCleanupServer は "test" タグ or test-server* の Server リソースを一括削除する。
+// 停止中のみ削除可能。起動中の場合はログだけ出してスキップする。
+func TestCleanupServer(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	findResp, err := c.ServerOpFind(ctx, client.ServerOpFindParams{Zone: zone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, s := range findResp.Servers {
+		if !hasTestTag(s.Tags) && !strings.HasPrefix(s.Name.Value, "test-server") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", s.ID.Value)
+		status := ""
+		if s.Instance.Set {
+			status = string(s.Instance.Value.Status.Value)
+		}
+		if status != "" && status != "down" {
+			t.Logf("Skipping running server %s (name=%s status=%s)", idStr, s.Name.Value, status)
+			continue
+		}
+		t.Logf("Deleting server %s (name=%s)", idStr, s.Name.Value)
+		if _, err := c.ServerOpDelete(ctx, &client.ServerDeleteRequestEnvelope{}, client.ServerOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+			t.Logf("delete server %s failed: %v", idStr, err)
+		}
+	}
+}
+
+// TestCleanupNote は "test" タグ or test-note* の Note リソースを一括削除する。
+// TestIaasNoteCRUD の List が Count=50 で検索するため、アカウント内の Note が
+// 50 件を超えると新規作成分が先頭ページに出なくなってテストが落ちる。
+func TestCleanupNote(t *testing.T) {
+	if os.Getenv("TEST_ACC_CLEANUP") == "" {
+		t.Skip("TEST_ACC_CLEANUP=1 env var required")
+	}
+	c := newClient(t)
+	ctx := context.Background()
+	zone := getZone()
+
+	findResp, err := c.NoteOpFind(ctx, client.NoteOpFindParams{Zone: zone})
+	if err != nil {
+		t.Fatalf("find failed: %v", err)
+	}
+	for _, n := range findResp.Notes {
+		if !hasTestTag(n.Tags) && !strings.HasPrefix(n.Name.Value, "test-note") {
+			continue
+		}
+		idStr := fmt.Sprintf("%d", n.ID.Value)
+		t.Logf("Deleting note %s (name=%s)", idStr, n.Name.Value)
+		if _, err := c.NoteOpDelete(ctx, client.NoteOpDeleteParams{Zone: zone, ID: idStr}); err != nil {
+			t.Logf("delete note %s failed: %v", idStr, err)
 		}
 	}
 }

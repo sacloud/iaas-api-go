@@ -5,7 +5,7 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6Net {
-  ID?: int64 | null;
-  IPv6Prefix?: string | null;
-  IPv6PrefixLen?: int32 | null;
+  ID?: int64;
+  IPv6Prefix?: string;
+  IPv6PrefixLen?: int32;
 }

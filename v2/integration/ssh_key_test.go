@@ -39,9 +39,9 @@ func TestSSHKeyCRUD(t *testing.T) {
 	// 1. Create - 公開鍵登録
 	createReq := &client.SSHKeyCreateRequestEnvelope{
 		SSHKey: client.SSHKeyCreateRequest{
-			Name:        client.NewOptNilString("test-sshkey"),
+			Name:        client.NewOptString("test-sshkey"),
 			Description: "desc",
-			PublicKey:   client.NewOptNilString(testSSHPublicKey),
+			PublicKey:   client.NewOptString(testSSHPublicKey),
 		},
 	}
 
@@ -64,7 +64,7 @@ func TestSSHKeyCRUD(t *testing.T) {
 	// 3. Update - 名前・説明の更新（PublicKey は update では変更不可）
 	updateResp, err := c.SSHKeyOpUpdate(ctx, &client.SSHKeyUpdateRequestEnvelope{
 		SSHKey: client.SSHKeyUpdateRequest{
-			Name:        client.NewOptNilString("test-sshkey-updated"),
+			Name:        client.NewOptString("test-sshkey-updated"),
 			Description: "desc-updated",
 		},
 	}, client.SSHKeyOpUpdateParams{Zone: zone, ID: sshKeyIDStr})

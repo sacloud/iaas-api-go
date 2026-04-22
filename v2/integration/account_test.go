@@ -52,7 +52,7 @@ func TestLicenseCRUD(t *testing.T) {
 	// 2. License Create
 	createResp, err := c.LicenseOpCreate(ctx, &client.LicenseCreateRequestEnvelope{
 		License: client.LicenseCreateRequest{
-			Name:        client.NewOptNilString("test-license"),
+			Name:        client.NewOptString("test-license"),
 			LicenseInfo: client.NewOptNilResourceRef(client.ResourceRef{ID: licenseInfoID}),
 		},
 	}, client.LicenseOpCreateParams{Zone: zone})
@@ -71,7 +71,7 @@ func TestLicenseCRUD(t *testing.T) {
 	// 4. Update (Name 変更)
 	updateResp, err := c.LicenseOpUpdate(ctx, &client.LicenseUpdateRequestEnvelope{
 		License: client.LicenseUpdateRequest{
-			Name: client.NewOptNilString("test-license-updated"),
+			Name: client.NewOptString("test-license-updated"),
 		},
 	}, client.LicenseOpUpdateParams{Zone: zone, ID: licenseIDStr})
 	require.NoError(t, err)

@@ -332,12 +332,34 @@ type tsModelField struct {
 }
 
 // nakedFieldIsNullable は naked 型の指定フィールドが null になりえるかを返す。
-// json タグに omitempty が含まれる場合、または フィールドがポインタ型の場合に true を返す。
+// ポインタ型 `*T` の場合のみ true を返す。json `omitempty` は「リクエスト側で未指定時に
+// 送信しない」用途でも付与されるため、レスポンスで null が返る根拠にはしない。
+// レスポンスで実測 null が返ると確認できたフィールドは fieldNullabilityOverrides で明示する。
 func nakedFieldIsNullable(nakedRT reflect.Type, fieldName string) bool {
 	if nakedRT == nil {
 		return false
 	}
 	// スライス・ポインタ型は要素型まで辿る
+	for nakedRT.Kind() == reflect.Slice || nakedRT.Kind() == reflect.Ptr {
+		nakedRT = nakedRT.Elem()
+	}
+	if nakedRT.Kind() != reflect.Struct {
+		return false
+	}
+	sf, ok := nakedRT.FieldByName(fieldName)
+	if !ok {
+		return false
+	}
+	return sf.Type.Kind() == reflect.Ptr
+}
+
+// nakedFieldIsOptional は naked 型の指定フィールドが TypeSpec で optional (`?`) にすべきかを返す。
+// ポインタ型または json タグに omitempty が含まれる場合に true。
+// optional は「存在しない可能性がある」のみを意味し、`| null` は付けない。
+func nakedFieldIsOptional(nakedRT reflect.Type, fieldName string) bool {
+	if nakedRT == nil {
+		return false
+	}
 	for nakedRT.Kind() == reflect.Slice || nakedRT.Kind() == reflect.Ptr {
 		nakedRT = nakedRT.Elem()
 	}
@@ -407,12 +429,51 @@ var fieldNullabilityOverrides = map[string]map[string]bool{
 		"InterfaceSettings": true,
 		"IPAddresses":       true,
 		"Disk":              true,
+		// VPCRouter/他 Appliance で Settings 未設定時に実 API が `"SettingsHash": null` を返す
+		// （TestVPCRouterApplianceCRUD で観測）。
+		"SettingsHash": true,
 	},
 	// DatabaseSettingCommon の WebUI / SourceNetwork は実 API レスポンスで省略されることがある
 	// （ユーザが指定しない場合、API は WebUI を返さない）。required のままだと decode が失敗する。
 	"DatabaseSettingCommon": {
 		"WebUI":         true,
 		"SourceNetwork": true,
+	},
+	// Interface.UserIPAddress は NIC に IP が未割り当てのとき実 API が `null` を返す
+	// （naked 側は `string` + omitempty のみだが、レスポンスで null が観測されている）。
+	"Interface": {
+		"UserIPAddress": true,
+	},
+	// ServerInstance.BeforeStatus は enum 値型 + omitempty だが、電源操作前の
+	// 新規サーバでは実 API が `null` を返す（TestInterfaceCRUD で観測）。
+	"ServerInstance": {
+		"BeforeStatus": true,
+	},
+	// SwitchSubnet / Subnet / InternetSubnet の NextHop / StaticRoute は未設定時に
+	// 実 API が `null` を返す。naked は `string` + omitempty だが実測で null 確認済み。
+	// （TestSwitchCRUD, TestCleanupInternet 他で観測）
+	"SwitchSubnet": {
+		"NextHop":     true,
+		"StaticRoute": true,
+	},
+	"Subnet": {
+		"NextHop":     true,
+		"StaticRoute": true,
+	},
+	"InternetSubnet": {
+		"NextHop":     true,
+		"StaticRoute": true,
+	},
+	// Note.Description はユーザが明示設定しないと実 API が `null` を返す
+	// （TestNoteCRUD の Update 後に観測）。
+	"Note": {
+		"Description": true,
+	},
+	// InterfaceView.UserIPAddress / IPAddress は Server.Interfaces[] 配下で値が
+	// 未設定のとき実 API が `null` を返す（TestServerCRUD で観測）。
+	"InterfaceView": {
+		"UserIPAddress": true,
+		"IPAddress":     true,
 	},
 }
 
@@ -547,6 +608,8 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 		if overrides, ok := fieldNullabilityOverrides[modelName]; ok && overrides[child.name] {
 			nullable = true
 		}
+		// optional は nullable を包含する superset。
+		optional := nullable || nakedFieldIsOptional(nakedRT, child.name)
 
 		// 葉ノード
 		if child.leafField != nil && len(child.children) == 0 {
@@ -561,7 +624,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 			mainFields = append(mainFields, tsModelField{
 				Name:      child.name,
 				TSType:    tsType,
-				Optional:  nullable,
+				Optional:  optional,
 				TSDefault: tsDefault,
 				EnumDefault: func() string {
 					if tsDefault == "" {
@@ -580,7 +643,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 		}
 
 		// 中間ノード
-		// `.ID` のみを持つ → ResourceRef | null に短縮
+		// `.ID` のみを持つ → ResourceRef に短縮（nullable なら `| null`）
 		subName := modelName + child.name
 		_, reuseExisting := allModelsByName[subName]
 
@@ -589,7 +652,9 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 			if child.leafIsArr {
 				tsType += "[]"
 			}
-			tsType += " | null"
+			if nullable {
+				tsType += " | null"
+			}
 			mainFields = append(mainFields, tsModelField{
 				Name:     child.name,
 				TSType:   tsType,
@@ -626,7 +691,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 		mainFields = append(mainFields, tsModelField{
 			Name:     child.name,
 			TSType:   tsType,
-			Optional: nullable,
+			Optional: optional,
 		})
 	}
 

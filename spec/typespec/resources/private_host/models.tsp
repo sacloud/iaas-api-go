@@ -6,22 +6,22 @@ namespace Sacloud.IaaS;
 
 model PrivateHost {
   ID: int64;
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Plan?: PrivateHostPlan | null;
-  AssignedCPU?: int32 | null;
-  AssignedMemoryMB?: int32 | null;
+  AssignedCPU?: int32;
+  AssignedMemoryMB?: int32;
   Host?: PrivateHostHost | null;
 }
 
 model PrivateHostHost {
-  Name?: string | null;
+  Name?: string;
 }
 
 model PrivateHostCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -29,7 +29,7 @@ model PrivateHostCreateRequest {
 }
 
 model PrivateHostUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;

@@ -5,23 +5,23 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationDestination {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: SimpleNotificationDestinationSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model SimpleNotificationDestinationSettings {
-  Type?: ESimpleNotificationDestinationTypes | null;
+  Type?: ESimpleNotificationDestinationTypes;
   Disabled: boolean;
-  Value?: string | null;
+  Value?: string;
 }
 
 model SimpleNotificationDestinationCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -29,18 +29,18 @@ model SimpleNotificationDestinationCreateRequest {
 }
 
 model SimpleNotificationDestinationCreateRequestSettings {
-  Type?: ESimpleNotificationDestinationTypes | null;
+  Type?: ESimpleNotificationDestinationTypes;
   Disabled: boolean;
-  Value?: string | null;
+  Value?: string;
 }
 
 model SimpleNotificationDestinationUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: SimpleNotificationDestinationUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model SimpleNotificationDestinationUpdateRequestSettings {

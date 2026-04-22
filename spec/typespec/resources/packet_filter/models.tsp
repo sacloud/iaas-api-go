@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PacketFilter {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Expression: PacketFilterExpression[];
 }
@@ -21,13 +21,13 @@ model PacketFilterExpression {
 }
 
 model PacketFilterCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Expression: PacketFilterExpression[];
 }
 
 model PacketFilterUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Expression: PacketFilterExpression[];
 }

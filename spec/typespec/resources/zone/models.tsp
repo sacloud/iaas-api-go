@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Zone {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description?: string | null;
+  ID?: int64;
+  Name?: string;
+  Description?: string;
   Region?: Region | null;
 }

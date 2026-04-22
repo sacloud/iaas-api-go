@@ -5,13 +5,13 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ContainerRegistry {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: ContainerRegistrySettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: ContainerRegistryStatus | null;
 }
 
@@ -26,11 +26,11 @@ model ContainerRegistrySettingsContainerRegistry {
 
 model ContainerRegistryStatus {
   RegistryName: string;
-  FQDN?: string | null;
+  FQDN?: string;
 }
 
 model ContainerRegistryCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -52,12 +52,12 @@ model ContainerRegistryCreateRequestStatus {
 }
 
 model ContainerRegistryUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: ContainerRegistryUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model ContainerRegistryUpdateRequestSettings {
@@ -69,16 +69,16 @@ model ContainerRegistryUpdateRequestSettingsContainerRegistry {
 }
 
 model ContainerRegistryUsers {
-  Users?: ContainerRegistryUser[] | null;
+  Users?: ContainerRegistryUser[];
 }
 
 model ContainerRegistryUser {
-  UserName?: string | null;
+  UserName?: string;
   Permission: EContainerRegistryPermission;
 }
 
 model ContainerRegistryUserCreateRequest {
-  UserName?: string | null;
+  UserName?: string;
   Password: string;
   Permission: EContainerRegistryPermission;
 }

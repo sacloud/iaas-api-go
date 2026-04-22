@@ -5710,9 +5710,13 @@ func (s *AutoBackupSettingsAutobackup) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *AutoBackupSettingsAutobackup) encodeFields(e *jx.Encoder) {
 	{
-		if s.BackupSpanWeekdays.Set {
+		if s.BackupSpanWeekdays != nil {
 			e.FieldStart("BackupSpanWeekdays")
-			s.BackupSpanWeekdays.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.BackupSpanWeekdays {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -5738,8 +5742,15 @@ func (s *AutoBackupSettingsAutobackup) Decode(d *jx.Decoder) error {
 		switch string(k) {
 		case "BackupSpanWeekdays":
 			if err := func() error {
-				s.BackupSpanWeekdays.Reset()
-				if err := s.BackupSpanWeekdays.Decode(d); err != nil {
+				s.BackupSpanWeekdays = make([]EDayOfTheWeek, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem EDayOfTheWeek
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.BackupSpanWeekdays = append(s.BackupSpanWeekdays, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -11076,9 +11087,13 @@ func (s *CertificateAuthorityAddClientParam) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.OrganizationUnit.Set {
+		if s.OrganizationUnit != nil {
 			e.FieldStart("OrganizationUnit")
-			s.OrganizationUnit.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.OrganizationUnit {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -11161,8 +11176,17 @@ func (s *CertificateAuthorityAddClientParam) Decode(d *jx.Decoder) error {
 			}
 		case "OrganizationUnit":
 			if err := func() error {
-				s.OrganizationUnit.Reset()
-				if err := s.OrganizationUnit.Decode(d); err != nil {
+				s.OrganizationUnit = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.OrganizationUnit = append(s.OrganizationUnit, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -11386,9 +11410,13 @@ func (s *CertificateAuthorityAddServerParam) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.OrganizationUnit.Set {
+		if s.OrganizationUnit != nil {
 			e.FieldStart("OrganizationUnit")
-			s.OrganizationUnit.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.OrganizationUnit {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -11467,8 +11495,17 @@ func (s *CertificateAuthorityAddServerParam) Decode(d *jx.Decoder) error {
 			}
 		case "OrganizationUnit":
 			if err := func() error {
-				s.OrganizationUnit.Reset()
-				if err := s.OrganizationUnit.Decode(d); err != nil {
+				s.OrganizationUnit = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.OrganizationUnit = append(s.OrganizationUnit, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -13476,9 +13513,13 @@ func (s *CertificateAuthorityServer) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.SANs.Set {
+		if s.SANs != nil {
 			e.FieldStart("SANs")
-			s.SANs.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.SANs {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -13540,8 +13581,17 @@ func (s *CertificateAuthorityServer) Decode(d *jx.Decoder) error {
 			}
 		case "SANs":
 			if err := func() error {
-				s.SANs.Reset()
-				if err := s.SANs.Decode(d); err != nil {
+				s.SANs = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.SANs = append(s.SANs, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -19228,9 +19278,13 @@ func (s *ContainerRegistryUsers) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *ContainerRegistryUsers) encodeFields(e *jx.Encoder) {
 	{
-		if s.Users.Set {
+		if s.Users != nil {
 			e.FieldStart("Users")
-			s.Users.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Users {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -19249,8 +19303,15 @@ func (s *ContainerRegistryUsers) Decode(d *jx.Decoder) error {
 		switch string(k) {
 		case "Users":
 			if err := func() error {
-				s.Users.Reset()
-				if err := s.Users.Decode(d); err != nil {
+				s.Users = make([]ContainerRegistryUser, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem ContainerRegistryUser
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Users = append(s.Users, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -22963,9 +23024,13 @@ func (s *DatabaseSettingBackup) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.DayOfWeek.Set {
+		if s.DayOfWeek != nil {
 			e.FieldStart("DayOfWeek")
-			s.DayOfWeek.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.DayOfWeek {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -23006,8 +23071,15 @@ func (s *DatabaseSettingBackup) Decode(d *jx.Decoder) error {
 			}
 		case "DayOfWeek":
 			if err := func() error {
-				s.DayOfWeek.Reset()
-				if err := s.DayOfWeek.Decode(d); err != nil {
+				s.DayOfWeek = make([]EDayOfTheWeek, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem EDayOfTheWeek
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.DayOfWeek = append(s.DayOfWeek, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -23060,9 +23132,13 @@ func (s *DatabaseSettingBackupv2View) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.DayOfWeek.Set {
+		if s.DayOfWeek != nil {
 			e.FieldStart("DayOfWeek")
-			s.DayOfWeek.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.DayOfWeek {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -23110,8 +23186,15 @@ func (s *DatabaseSettingBackupv2View) Decode(d *jx.Decoder) error {
 			}
 		case "DayOfWeek":
 			if err := func() error {
-				s.DayOfWeek.Reset()
-				if err := s.DayOfWeek.Decode(d); err != nil {
+				s.DayOfWeek = make([]EDayOfTheWeek, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem EDayOfTheWeek
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.DayOfWeek = append(s.DayOfWeek, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -25951,9 +26034,13 @@ func (s *DiskEditRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.SSHKeys.Set {
+		if s.SSHKeys != nil {
 			e.FieldStart("SSHKeys")
-			s.SSHKeys.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.SSHKeys {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -25981,9 +26068,13 @@ func (s *DiskEditRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Notes.Set {
+		if s.Notes != nil {
 			e.FieldStart("Notes")
-			s.Notes.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Notes {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -26054,8 +26145,15 @@ func (s *DiskEditRequest) Decode(d *jx.Decoder) error {
 			}
 		case "SSHKeys":
 			if err := func() error {
-				s.SSHKeys.Reset()
-				if err := s.SSHKeys.Decode(d); err != nil {
+				s.SSHKeys = make([]DiskEditSSHKey, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem DiskEditSSHKey
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.SSHKeys = append(s.SSHKeys, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -26104,8 +26202,15 @@ func (s *DiskEditRequest) Decode(d *jx.Decoder) error {
 			}
 		case "Notes":
 			if err := func() error {
-				s.Notes.Reset()
-				if err := s.Notes.Decode(d); err != nil {
+				s.Notes = make([]DiskEditNote, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem DiskEditNote
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Notes = append(s.Notes, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -27344,9 +27449,13 @@ func (s *DiskPlan) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Size.Set {
+		if s.Size != nil {
 			e.FieldStart("Size")
-			s.Size.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Size {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -27409,8 +27518,15 @@ func (s *DiskPlan) Decode(d *jx.Decoder) error {
 			}
 		case "Size":
 			if err := func() error {
-				s.Size.Reset()
-				if err := s.Size.Decode(d); err != nil {
+				s.Size = make([]DiskPlanSizeInfo, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem DiskPlanSizeInfo
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Size = append(s.Size, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -49707,6 +49823,40 @@ func (s *OptDatabaseDisk) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes DatabaseParameterParameterAttr as json.
+func (o OptDatabaseParameterParameterAttr) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes DatabaseParameterParameterAttr from json.
+func (o *OptDatabaseParameterParameterAttr) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptDatabaseParameterParameterAttr to nil")
+	}
+	o.Set = true
+	o.Value = make(DatabaseParameterParameterAttr)
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptDatabaseParameterParameterAttr) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptDatabaseParameterParameterAttr) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes time.Time as json.
 func (o OptDateTime) Encode(e *jx.Encoder, format func(*jx.Encoder, time.Time)) {
 	if !o.Set {
@@ -49740,6 +49890,40 @@ func (s OptDateTime) MarshalJSON() ([]byte, error) {
 func (s *OptDateTime) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d, json.DecodeDateTime)
+}
+
+// Encode encodes DiskEditNoteVariables as json.
+func (o OptDiskEditNoteVariables) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes DiskEditNoteVariables from json.
+func (o *OptDiskEditNoteVariables) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptDiskEditNoteVariables to nil")
+	}
+	o.Set = true
+	o.Value = make(DiskEditNoteVariables)
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptDiskEditNoteVariables) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptDiskEditNoteVariables) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
 }
 
 // Encode encodes DiskEditRequest as json.
@@ -49874,6 +50058,105 @@ func (s *OptEAutoScaleTriggerType) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes EAvailability as json.
+func (o OptEAvailability) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EAvailability from json.
+func (o *OptEAvailability) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEAvailability to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEAvailability) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEAvailability) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes ECertificateAuthorityIssuanceMethod as json.
+func (o OptECertificateAuthorityIssuanceMethod) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes ECertificateAuthorityIssuanceMethod from json.
+func (o *OptECertificateAuthorityIssuanceMethod) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptECertificateAuthorityIssuanceMethod to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptECertificateAuthorityIssuanceMethod) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptECertificateAuthorityIssuanceMethod) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes ECommitment as json.
+func (o OptECommitment) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes ECommitment from json.
+func (o *OptECommitment) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptECommitment to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptECommitment) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptECommitment) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes EContainerRegistryAccessLevel as json.
 func (o OptEContainerRegistryAccessLevel) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -49907,6 +50190,204 @@ func (s *OptEContainerRegistryAccessLevel) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
+// Encode encodes EDatabaseReplicationModel as json.
+func (o OptEDatabaseReplicationModel) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EDatabaseReplicationModel from json.
+func (o *OptEDatabaseReplicationModel) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEDatabaseReplicationModel to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEDatabaseReplicationModel) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEDatabaseReplicationModel) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EDiskConnection as json.
+func (o OptEDiskConnection) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EDiskConnection from json.
+func (o *OptEDiskConnection) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEDiskConnection to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEDiskConnection) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEDiskConnection) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EDiskEncryptionAlgorithm as json.
+func (o OptEDiskEncryptionAlgorithm) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EDiskEncryptionAlgorithm from json.
+func (o *OptEDiskEncryptionAlgorithm) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEDiskEncryptionAlgorithm to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEDiskEncryptionAlgorithm) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEDiskEncryptionAlgorithm) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EGSLBHealthCheckProtocol as json.
+func (o OptEGSLBHealthCheckProtocol) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EGSLBHealthCheckProtocol from json.
+func (o *OptEGSLBHealthCheckProtocol) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEGSLBHealthCheckProtocol to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEGSLBHealthCheckProtocol) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEGSLBHealthCheckProtocol) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EInterfaceDriver as json.
+func (o OptEInterfaceDriver) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EInterfaceDriver from json.
+func (o *OptEInterfaceDriver) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEInterfaceDriver to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEInterfaceDriver) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEInterfaceDriver) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EPlanGeneration as json.
+func (o OptEPlanGeneration) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EPlanGeneration from json.
+func (o *OptEPlanGeneration) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEPlanGeneration to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEPlanGeneration) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEPlanGeneration) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
 // Encode encodes EProxyLBPlan as json.
 func (o OptEProxyLBPlan) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -49936,6 +50417,105 @@ func (s OptEProxyLBPlan) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptEProxyLBPlan) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EProxyLBRegion as json.
+func (o OptEProxyLBRegion) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EProxyLBRegion from json.
+func (o *OptEProxyLBRegion) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEProxyLBRegion to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEProxyLBRegion) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEProxyLBRegion) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EScope as json.
+func (o OptEScope) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EScope from json.
+func (o *OptEScope) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEScope to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEScope) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEScope) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes EServerInstanceStatus as json.
+func (o OptEServerInstanceStatus) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes EServerInstanceStatus from json.
+func (o *OptEServerInstanceStatus) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptEServerInstanceStatus to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptEServerInstanceStatus) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptEServerInstanceStatus) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -50553,57 +51133,6 @@ func (s *OptNilAutoBackupStatus) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes bool as json.
-func (o OptNilBool) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.Bool(bool(o.Value))
-}
-
-// Decode decodes bool from json.
-func (o *OptNilBool) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilBool to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v bool
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	v, err := d.Bool()
-	if err != nil {
-		return err
-	}
-	o.Value = bool(v)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilBool) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilBool) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes CertificateData as json.
 func (o OptNilCertificateData) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -50649,128 +51178,6 @@ func (s OptNilCertificateData) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilCertificateData) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []ConnectedSwitch as json.
-func (o OptNilConnectedSwitchArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []ConnectedSwitch from json.
-func (o *OptNilConnectedSwitchArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilConnectedSwitchArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []ConnectedSwitch
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]ConnectedSwitch, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem ConnectedSwitch
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilConnectedSwitchArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilConnectedSwitchArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []ContainerRegistryUser as json.
-func (o OptNilContainerRegistryUserArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []ContainerRegistryUser from json.
-func (o *OptNilContainerRegistryUserArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilContainerRegistryUserArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []ContainerRegistryUser
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]ContainerRegistryUser, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem ContainerRegistryUser
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilContainerRegistryUserArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilContainerRegistryUserArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -51065,56 +51472,6 @@ func (s OptNilDatabaseParameterParameter) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilDatabaseParameterParameter) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes DatabaseParameterParameterAttr as json.
-func (o OptNilDatabaseParameterParameterAttr) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes DatabaseParameterParameterAttr from json.
-func (o *OptNilDatabaseParameterParameterAttr) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilDatabaseParameterParameterAttr to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v DatabaseParameterParameterAttr
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make(DatabaseParameterParameterAttr)
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilDatabaseParameterParameterAttr) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilDatabaseParameterParameterAttr) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -51721,117 +52078,6 @@ func (s *OptNilDateTime) UnmarshalJSON(data []byte) error {
 	return s.Decode(d, json.DecodeDateTime)
 }
 
-// Encode encodes []DiskEditNote as json.
-func (o OptNilDiskEditNoteArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []DiskEditNote from json.
-func (o *OptNilDiskEditNoteArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilDiskEditNoteArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []DiskEditNote
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]DiskEditNote, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem DiskEditNote
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilDiskEditNoteArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilDiskEditNoteArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes DiskEditNoteVariables as json.
-func (o OptNilDiskEditNoteVariables) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes DiskEditNoteVariables from json.
-func (o *OptNilDiskEditNoteVariables) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilDiskEditNoteVariables to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v DiskEditNoteVariables
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make(DiskEditNoteVariables)
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilDiskEditNoteVariables) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilDiskEditNoteVariables) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes DiskEditSSHKey as json.
 func (o OptNilDiskEditSSHKey) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -51877,67 +52123,6 @@ func (s OptNilDiskEditSSHKey) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilDiskEditSSHKey) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []DiskEditSSHKey as json.
-func (o OptNilDiskEditSSHKeyArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []DiskEditSSHKey from json.
-func (o *OptNilDiskEditSSHKeyArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilDiskEditSSHKeyArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []DiskEditSSHKey
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]DiskEditSSHKey, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem DiskEditSSHKey
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilDiskEditSSHKeyArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilDiskEditSSHKeyArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -52089,67 +52274,6 @@ func (s *OptNilDiskPlan) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes []DiskPlanSizeInfo as json.
-func (o OptNilDiskPlanSizeInfoArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []DiskPlanSizeInfo from json.
-func (o *OptNilDiskPlanSizeInfoArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilDiskPlanSizeInfoArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []DiskPlanSizeInfo
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]DiskPlanSizeInfo, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem DiskPlanSizeInfo
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilDiskPlanSizeInfoArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilDiskPlanSizeInfoArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes DiskServer as json.
 func (o OptNilDiskServer) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -52293,606 +52417,6 @@ func (s OptNilDiskSourceDisk) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilDiskSourceDisk) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EAvailability as json.
-func (o OptNilEAvailability) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EAvailability from json.
-func (o *OptNilEAvailability) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEAvailability to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EAvailability
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEAvailability) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEAvailability) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes ECertificateAuthorityIssuanceMethod as json.
-func (o OptNilECertificateAuthorityIssuanceMethod) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes ECertificateAuthorityIssuanceMethod from json.
-func (o *OptNilECertificateAuthorityIssuanceMethod) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilECertificateAuthorityIssuanceMethod to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v ECertificateAuthorityIssuanceMethod
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilECertificateAuthorityIssuanceMethod) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilECertificateAuthorityIssuanceMethod) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes ECommitment as json.
-func (o OptNilECommitment) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes ECommitment from json.
-func (o *OptNilECommitment) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilECommitment to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v ECommitment
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilECommitment) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilECommitment) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EDatabaseReplicationModel as json.
-func (o OptNilEDatabaseReplicationModel) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EDatabaseReplicationModel from json.
-func (o *OptNilEDatabaseReplicationModel) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEDatabaseReplicationModel to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EDatabaseReplicationModel
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEDatabaseReplicationModel) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEDatabaseReplicationModel) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []EDayOfTheWeek as json.
-func (o OptNilEDayOfTheWeekArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []EDayOfTheWeek from json.
-func (o *OptNilEDayOfTheWeekArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEDayOfTheWeekArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []EDayOfTheWeek
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]EDayOfTheWeek, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem EDayOfTheWeek
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEDayOfTheWeekArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEDayOfTheWeekArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EDiskConnection as json.
-func (o OptNilEDiskConnection) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EDiskConnection from json.
-func (o *OptNilEDiskConnection) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEDiskConnection to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EDiskConnection
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEDiskConnection) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEDiskConnection) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EDiskEncryptionAlgorithm as json.
-func (o OptNilEDiskEncryptionAlgorithm) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EDiskEncryptionAlgorithm from json.
-func (o *OptNilEDiskEncryptionAlgorithm) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEDiskEncryptionAlgorithm to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EDiskEncryptionAlgorithm
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEDiskEncryptionAlgorithm) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEDiskEncryptionAlgorithm) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EGSLBHealthCheckProtocol as json.
-func (o OptNilEGSLBHealthCheckProtocol) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EGSLBHealthCheckProtocol from json.
-func (o *OptNilEGSLBHealthCheckProtocol) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEGSLBHealthCheckProtocol to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EGSLBHealthCheckProtocol
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEGSLBHealthCheckProtocol) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEGSLBHealthCheckProtocol) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EInterfaceDriver as json.
-func (o OptNilEInterfaceDriver) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EInterfaceDriver from json.
-func (o *OptNilEInterfaceDriver) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEInterfaceDriver to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EInterfaceDriver
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEInterfaceDriver) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEInterfaceDriver) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EPlanGeneration as json.
-func (o OptNilEPlanGeneration) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EPlanGeneration from json.
-func (o *OptNilEPlanGeneration) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEPlanGeneration to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EPlanGeneration
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEPlanGeneration) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEPlanGeneration) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EProxyLBRegion as json.
-func (o OptNilEProxyLBRegion) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EProxyLBRegion from json.
-func (o *OptNilEProxyLBRegion) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEProxyLBRegion to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EProxyLBRegion
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEProxyLBRegion) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEProxyLBRegion) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes EScope as json.
-func (o OptNilEScope) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes EScope from json.
-func (o *OptNilEScope) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilEScope to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v EScope
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilEScope) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilEScope) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -53044,67 +52568,6 @@ func (s *OptNilFTPServerInfo) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes []IPv6NetInfo as json.
-func (o OptNilIPv6NetInfoArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []IPv6NetInfo from json.
-func (o *OptNilIPv6NetInfoArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilIPv6NetInfoArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []IPv6NetInfo
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]IPv6NetInfo, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem IPv6NetInfo
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilIPv6NetInfoArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilIPv6NetInfoArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes int32 as json.
 func (o OptNilInt32) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -53156,57 +52619,6 @@ func (s *OptNilInt32) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes int64 as json.
-func (o OptNilInt64) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.Int64(int64(o.Value))
-}
-
-// Decode decodes int64 from json.
-func (o *OptNilInt64) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilInt64 to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v int64
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	v, err := d.Int64()
-	if err != nil {
-		return err
-	}
-	o.Value = int64(v)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilInt64) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilInt64) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes InterfaceSwitch as json.
 func (o OptNilInterfaceSwitch) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -53252,67 +52664,6 @@ func (s OptNilInterfaceSwitch) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilInterfaceSwitch) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []InterfaceView as json.
-func (o OptNilInterfaceViewArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []InterfaceView from json.
-func (o *OptNilInterfaceViewArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilInterfaceViewArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []InterfaceView
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]InterfaceView, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem InterfaceView
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilInterfaceViewArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilInterfaceViewArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -53607,67 +52958,6 @@ func (s OptNilInternetInfo) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilInternetInfo) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []InternetSubnet as json.
-func (o OptNilInternetSubnetArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []InternetSubnet from json.
-func (o *OptNilInternetSubnetArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilInternetSubnetArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []InternetSubnet
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]InternetSubnet, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem InternetSubnet
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilInternetSubnetArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilInternetSubnetArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -54260,55 +53550,6 @@ func (s *OptNilProxyLBStatus) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes ProxyLBTimeout as json.
-func (o OptNilProxyLBTimeout) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes ProxyLBTimeout from json.
-func (o *OptNilProxyLBTimeout) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilProxyLBTimeout to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v ProxyLBTimeout
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilProxyLBTimeout) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilProxyLBTimeout) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes Region as json.
 func (o OptNilRegion) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -54452,67 +53693,6 @@ func (s OptNilSIMTrafficBytes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilSIMTrafficBytes) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []ServerConnectedDisk as json.
-func (o OptNilServerConnectedDiskArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []ServerConnectedDisk from json.
-func (o *OptNilServerConnectedDiskArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilServerConnectedDiskArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []ServerConnectedDisk
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]ServerConnectedDisk, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem ServerConnectedDisk
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilServerConnectedDiskArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilServerConnectedDiskArray) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -54762,67 +53942,6 @@ func (s *OptNilServerServerPlan) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes []SimpleNotificationHistory as json.
-func (o OptNilSimpleNotificationHistoryArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []SimpleNotificationHistory from json.
-func (o *OptNilSimpleNotificationHistoryArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilSimpleNotificationHistoryArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []SimpleNotificationHistory
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]SimpleNotificationHistory, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem SimpleNotificationHistory
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilSimpleNotificationHistoryArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilSimpleNotificationHistoryArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes SimpleNotificationHistoryMessage as json.
 func (o OptNilSimpleNotificationHistoryMessage) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -55035,67 +54154,6 @@ func (s *OptNilStringArray) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes []SubnetIPAddress as json.
-func (o OptNilSubnetIPAddressArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []SubnetIPAddress from json.
-func (o *OptNilSubnetIPAddressArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilSubnetIPAddressArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []SubnetIPAddress
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]SubnetIPAddress, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem SubnetIPAddress
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilSubnetIPAddressArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilSubnetIPAddressArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes SubnetSwitch as json.
 func (o OptNilSubnetSwitch) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -55190,116 +54248,6 @@ func (s OptNilSwitchInfo) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptNilSwitchInfo) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes []SwitchSubnet as json.
-func (o OptNilSwitchSubnetArray) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	e.ArrStart()
-	for _, elem := range o.Value {
-		elem.Encode(e)
-	}
-	e.ArrEnd()
-}
-
-// Decode decodes []SwitchSubnet from json.
-func (o *OptNilSwitchSubnetArray) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilSwitchSubnetArray to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v []SwitchSubnet
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	o.Value = make([]SwitchSubnet, 0)
-	if err := d.Arr(func(d *jx.Decoder) error {
-		var elem SwitchSubnet
-		if err := elem.Decode(d); err != nil {
-			return err
-		}
-		o.Value = append(o.Value, elem)
-		return nil
-	}); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilSwitchSubnetArray) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilSwitchSubnetArray) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
-// Encode encodes SwitchSubnetIPAddresses as json.
-func (o OptNilSwitchSubnetIPAddresses) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	if o.Null {
-		e.Null()
-		return
-	}
-	o.Value.Encode(e)
-}
-
-// Decode decodes SwitchSubnetIPAddresses from json.
-func (o *OptNilSwitchSubnetIPAddresses) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptNilSwitchSubnetIPAddresses to nil")
-	}
-	if d.Next() == jx.Null {
-		if err := d.Null(); err != nil {
-			return err
-		}
-
-		var v SwitchSubnetIPAddresses
-		o.Value = v
-		o.Set = true
-		o.Null = true
-		return nil
-	}
-	o.Set = true
-	o.Null = false
-	if err := o.Value.Decode(d); err != nil {
-		return err
-	}
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptNilSwitchSubnetIPAddresses) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptNilSwitchSubnetIPAddresses) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -55796,6 +54744,39 @@ func (s OptString) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptString) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes SwitchSubnetIPAddresses as json.
+func (o OptSwitchSubnetIPAddresses) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	o.Value.Encode(e)
+}
+
+// Decode decodes SwitchSubnetIPAddresses from json.
+func (o *OptSwitchSubnetIPAddresses) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptSwitchSubnetIPAddresses to nil")
+	}
+	o.Set = true
+	if err := o.Value.Decode(d); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptSwitchSubnetIPAddresses) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptSwitchSubnetIPAddresses) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -63134,9 +62115,13 @@ func (s *ProxyLBStatus) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.ProxyNetworks.Set {
+		if s.ProxyNetworks != nil {
 			e.FieldStart("ProxyNetworks")
-			s.ProxyNetworks.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.ProxyNetworks {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -63194,8 +62179,17 @@ func (s *ProxyLBStatus) Decode(d *jx.Decoder) error {
 			}
 		case "ProxyNetworks":
 			if err := func() error {
-				s.ProxyNetworks.Reset()
-				if err := s.ProxyNetworks.Decode(d); err != nil {
+				s.ProxyNetworks = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.ProxyNetworks = append(s.ProxyNetworks, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -63630,9 +62624,13 @@ func (s *Region) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.NameServers.Set {
+		if s.NameServers != nil {
 			e.FieldStart("NameServers")
-			s.NameServers.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.NameServers {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -63684,8 +62682,17 @@ func (s *Region) Decode(d *jx.Decoder) error {
 			}
 		case "NameServers":
 			if err := func() error {
-				s.NameServers.Reset()
-				if err := s.NameServers.Decode(d); err != nil {
+				s.NameServers = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.NameServers = append(s.NameServers, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -64411,9 +63418,13 @@ func (s *SIMInfo) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.IMSI.Set {
+		if s.IMSI != nil {
 			e.FieldStart("IMSI")
-			s.IMSI.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.IMSI {
+				e.Str(elem)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -64529,8 +63540,17 @@ func (s *SIMInfo) Decode(d *jx.Decoder) error {
 			}
 		case "IMSI":
 			if err := func() error {
-				s.IMSI.Reset()
-				if err := s.IMSI.Decode(d); err != nil {
+				s.IMSI = make([]string, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem string
+					v, err := d.Str()
+					elem = string(v)
+					if err != nil {
+						return err
+					}
+					s.IMSI = append(s.IMSI, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -67687,15 +66707,23 @@ func (s *Server) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Disks.Set {
+		if s.Disks != nil {
 			e.FieldStart("Disks")
-			s.Disks.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Disks {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
-		if s.Interfaces.Set {
+		if s.Interfaces != nil {
 			e.FieldStart("Interfaces")
-			s.Interfaces.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Interfaces {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -67852,8 +66880,15 @@ func (s *Server) Decode(d *jx.Decoder) error {
 			}
 		case "Disks":
 			if err := func() error {
-				s.Disks.Reset()
-				if err := s.Disks.Decode(d); err != nil {
+				s.Disks = make([]ServerConnectedDisk, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem ServerConnectedDisk
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Disks = append(s.Disks, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -67862,8 +66897,15 @@ func (s *Server) Decode(d *jx.Decoder) error {
 			}
 		case "Interfaces":
 			if err := func() error {
-				s.Interfaces.Reset()
-				if err := s.Interfaces.Decode(d); err != nil {
+				s.Interfaces = make([]InterfaceView, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem InterfaceView
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Interfaces = append(s.Interfaces, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -68737,9 +67779,13 @@ func (s *ServerCreateRequest) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.ConnectedSwitches.Set {
+		if s.ConnectedSwitches != nil {
 			e.FieldStart("ConnectedSwitches")
-			s.ConnectedSwitches.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.ConnectedSwitches {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -68812,8 +67858,15 @@ func (s *ServerCreateRequest) Decode(d *jx.Decoder) error {
 			}
 		case "ConnectedSwitches":
 			if err := func() error {
-				s.ConnectedSwitches.Reset()
-				if err := s.ConnectedSwitches.Decode(d); err != nil {
+				s.ConnectedSwitches = make([]ConnectedSwitch, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem ConnectedSwitch
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.ConnectedSwitches = append(s.ConnectedSwitches, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -73994,9 +73047,13 @@ func (s *SimpleNotificationHistories) Encode(e *jx.Encoder) {
 // encodeFields encodes fields.
 func (s *SimpleNotificationHistories) encodeFields(e *jx.Encoder) {
 	{
-		if s.NotificationHistories.Set {
+		if s.NotificationHistories != nil {
 			e.FieldStart("NotificationHistories")
-			s.NotificationHistories.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.NotificationHistories {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -74015,8 +73072,15 @@ func (s *SimpleNotificationHistories) Decode(d *jx.Decoder) error {
 		switch string(k) {
 		case "NotificationHistories":
 			if err := func() error {
-				s.NotificationHistories.Reset()
-				if err := s.NotificationHistories.Decode(d); err != nil {
+				s.NotificationHistories = make([]SimpleNotificationHistory, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem SimpleNotificationHistory
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.NotificationHistories = append(s.NotificationHistories, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -74771,9 +73835,13 @@ func (s *Subnet) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.IPAddresses.Set {
+		if s.IPAddresses != nil {
 			e.FieldStart("IPAddresses")
-			s.IPAddresses.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.IPAddresses {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -74847,8 +73915,15 @@ func (s *Subnet) Decode(d *jx.Decoder) error {
 			}
 		case "IPAddresses":
 			if err := func() error {
-				s.IPAddresses.Reset()
-				if err := s.IPAddresses.Decode(d); err != nil {
+				s.IPAddresses = make([]SubnetIPAddress, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem SubnetIPAddress
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.IPAddresses = append(s.IPAddresses, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -75386,9 +74461,13 @@ func (s *Switch) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Subnets.Set {
+		if s.Subnets != nil {
 			e.FieldStart("Subnets")
-			s.Subnets.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Subnets {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
@@ -75493,8 +74572,15 @@ func (s *Switch) Decode(d *jx.Decoder) error {
 			}
 		case "Subnets":
 			if err := func() error {
-				s.Subnets.Reset()
-				if err := s.Subnets.Decode(d); err != nil {
+				s.Subnets = make([]SwitchSubnet, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem SwitchSubnet
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Subnets = append(s.Subnets, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -76285,15 +75371,23 @@ func (s *SwitchInfo) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Subnets.Set {
+		if s.Subnets != nil {
 			e.FieldStart("Subnets")
-			s.Subnets.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.Subnets {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 	{
-		if s.IPv6Nets.Set {
+		if s.IPv6Nets != nil {
 			e.FieldStart("IPv6Nets")
-			s.IPv6Nets.Encode(e)
+			e.ArrStart()
+			for _, elem := range s.IPv6Nets {
+				elem.Encode(e)
+			}
+			e.ArrEnd()
 		}
 	}
 }
@@ -76368,8 +75462,15 @@ func (s *SwitchInfo) Decode(d *jx.Decoder) error {
 			}
 		case "Subnets":
 			if err := func() error {
-				s.Subnets.Reset()
-				if err := s.Subnets.Decode(d); err != nil {
+				s.Subnets = make([]InternetSubnet, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem InternetSubnet
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.Subnets = append(s.Subnets, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil
@@ -76378,8 +75479,15 @@ func (s *SwitchInfo) Decode(d *jx.Decoder) error {
 			}
 		case "IPv6Nets":
 			if err := func() error {
-				s.IPv6Nets.Reset()
-				if err := s.IPv6Nets.Decode(d); err != nil {
+				s.IPv6Nets = make([]IPv6NetInfo, 0)
+				if err := d.Arr(func(d *jx.Decoder) error {
+					var elem IPv6NetInfo
+					if err := elem.Decode(d); err != nil {
+						return err
+					}
+					s.IPv6Nets = append(s.IPv6Nets, elem)
+					return nil
+				}); err != nil {
 					return err
 				}
 				return nil

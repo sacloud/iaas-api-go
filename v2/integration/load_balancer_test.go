@@ -38,7 +38,7 @@ func TestLoadBalancerApplianceCRUD(t *testing.T) {
 	// 1. 前提の Switch
 	swResp, err := c.SwitchOpCreate(ctx, &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
-			Name: client.NewOptNilString("switch-for-lb"),
+			Name: client.NewOptString("switch-for-lb"),
 			Tags: []string{"test", "integration"},
 		},
 	}, client.SwitchOpCreateParams{Zone: zone})

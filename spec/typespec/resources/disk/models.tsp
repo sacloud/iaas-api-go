@@ -5,15 +5,15 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Disk {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
-  Connection?: EDiskConnection | null;
-  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+  Availability?: EAvailability;
+  Connection?: EDiskConnection;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
   EncryptionKey?: DiskEncryptionKey | null;
-  SizeMB?: int32 | null;
+  SizeMB?: int32;
   Plan?: DiskPlan | null;
   SourceDisk?: DiskSourceDisk | null;
   SourceArchive?: DiskSourceArchive | null;
@@ -23,59 +23,59 @@ model Disk {
 }
 
 model DiskEncryptionKey {
-  KMSKeyID?: int64 | null;
+  KMSKeyID?: int64;
 }
 
 model DiskSourceDisk {
-  ID?: int64 | null;
-  Availability?: EAvailability | null;
+  ID?: int64;
+  Availability?: EAvailability;
 }
 
 model DiskSourceArchive {
-  ID?: int64 | null;
-  Availability?: EAvailability | null;
+  ID?: int64;
+  Availability?: EAvailability;
 }
 
 model DiskServer {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
 }
 
 model JobStatus {
-  Status?: string | null;
+  Status?: string;
   ConfigError?: JobConfigError | null;
 }
 
 model JobConfigError {
-  ErrorCode?: string | null;
-  ErrorMsg?: string | null;
-  Status?: string | null;
+  ErrorCode?: string;
+  ErrorMsg?: string;
+  Status?: string;
 }
 
 model DiskCreateRequest {
   Plan?: ResourceRef | null;
-  Connection?: EDiskConnection | null;
-  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+  Connection?: EDiskConnection;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
   SourceDisk?: ResourceRef | null;
   SourceArchive?: ResourceRef | null;
-  SizeMB?: int32 | null;
-  Name?: string | null;
+  SizeMB?: int32;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model DiskEditRequest {
-  Background?: boolean | null;
-  Password?: string | null;
+  Background?: boolean;
+  Password?: string;
   SSHKey?: DiskEditSSHKey | null;
-  SSHKeys?: DiskEditSSHKey[] | null;
-  DisablePWAuth?: boolean | null;
-  EnableDHCP?: boolean | null;
-  ChangePartitionUUID?: boolean | null;
-  HostName?: string | null;
-  Notes?: DiskEditNote[] | null;
-  UserIPAddress?: string | null;
+  SSHKeys?: DiskEditSSHKey[];
+  DisablePWAuth?: boolean;
+  EnableDHCP?: boolean;
+  ChangePartitionUUID?: boolean;
+  HostName?: string;
+  Notes?: DiskEditNote[];
+  UserIPAddress?: string;
   UserSubnet?: DiskEditUserSubnet | null;
 }
 
@@ -85,9 +85,9 @@ model DiskEditSSHKey {
 }
 
 model DiskEditNote {
-  ID?: int64 | null;
+  ID?: int64;
   APIKey?: ResourceRef | null;
-  Variables?: Record<unknown> | null;
+  Variables?: Record<unknown>;
 }
 
 model DiskEditUserSubnet {
@@ -100,9 +100,9 @@ model DiskResizePartitionRequest {
 }
 
 model DiskUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Connection?: EDiskConnection | null;
+  Connection?: EDiskConnection;
 }

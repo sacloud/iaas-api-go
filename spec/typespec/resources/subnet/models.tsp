@@ -5,20 +5,20 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Subnet {
-  ID?: int64 | null;
+  ID?: int64;
   Switch?: SubnetSwitch | null;
   NextHop?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
-  IPAddresses?: SubnetIPAddress[] | null;
+  NetworkAddress?: string;
+  NetworkMaskLen?: int32;
+  IPAddresses?: SubnetIPAddress[];
 }
 
 model SubnetSwitch {
-  ID?: int64 | null;
+  ID?: int64;
   Internet?: ResourceRef | null;
 }
 
 model SubnetIPAddress {
   HostName: string;
-  IPAddress?: string | null;
+  IPAddress?: string;
 }

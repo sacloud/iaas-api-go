@@ -96,10 +96,10 @@ func TestArchiveCRUD(t *testing.T) {
 	// 1. Create - 20GiB の空アーカイブを作成（SizeMB 指定）
 	createReq := &client.ArchiveCreateRequestEnvelope{
 		Archive: client.ArchiveCreateRequest{
-			Name:        client.NewOptNilString("test-archive"),
+			Name:        client.NewOptString("test-archive"),
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
-			SizeMB:      client.NewOptNilInt32(20 * 1024),
+			SizeMB:      client.NewOptInt32(20 * 1024),
 		},
 	}
 
@@ -129,7 +129,7 @@ func TestArchiveCRUD(t *testing.T) {
 	// 3. Update
 	updateResp, err := c.ArchiveOpUpdate(ctx, &client.ArchiveUpdateRequestEnvelope{
 		Archive: client.ArchiveUpdateRequest{
-			Name:        client.NewOptNilString("test-archive-updated"),
+			Name:        client.NewOptString("test-archive-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

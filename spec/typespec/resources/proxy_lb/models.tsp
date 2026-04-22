@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ProxyLB {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -15,7 +15,7 @@ model ProxyLB {
   BindPorts: ProxyLBBindPort[];
   Servers: ProxyLBServer[];
   Rules: ProxyLBRule[];
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: ProxyLBStatus | null;
 }
 
@@ -33,15 +33,15 @@ model ProxyLBSettingsProxyLB {
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
   ProxyProtocol: ProxyLBProxyProtocol;
   Syslog: ProxyLBSyslog;
-  Timeout?: ProxyLBTimeout | null;
+  Timeout?: ProxyLBTimeout;
 }
 
 model ProxyLBStatus {
   UseVIPFailover: boolean;
-  Region?: EProxyLBRegion | null;
-  ProxyNetworks?: string[] | null;
-  FQDN?: string | null;
-  VirtualIPAddress?: string | null;
+  Region?: EProxyLBRegion;
+  ProxyNetworks?: string[];
+  FQDN?: string;
+  VirtualIPAddress?: string;
 }
 
 model ProxyLBHealthCheck {
@@ -134,7 +134,7 @@ model ProxyLBCreateRequest {
   Servers: ProxyLBServer[];
   Rules: ProxyLBRule[];
   Status?: ProxyLBCreateRequestStatus | null;
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -149,7 +149,7 @@ model ProxyLBCreateRequestSettingsProxyLB {
   SorryServer: ProxyLBSorryServer;
   LetsEncrypt?: ProxyLBACMESetting | null;
   StickySession: ProxyLBStickySession;
-  Timeout?: ProxyLBTimeout | null;
+  Timeout?: ProxyLBTimeout;
   Gzip: ProxyLBGzip;
   BackendHttpKeepAlive?: ProxyLBBackendHttpKeepAlive | null;
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
@@ -159,13 +159,13 @@ model ProxyLBCreateRequestSettingsProxyLB {
 
 model ProxyLBCreateRequestStatus {
   UseVIPFailover: boolean;
-  Region?: EProxyLBRegion | null;
+  Region?: EProxyLBRegion;
 }
 
 model ProxyLBUpdateRequest {
   Settings?: ProxyLBUpdateRequestSettings | null;
-  SettingsHash?: string | null;
-  Name?: string | null;
+  SettingsHash?: string;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -180,7 +180,7 @@ model ProxyLBUpdateRequestSettingsProxyLB {
 }
 
 model ProxyLBChangePlanRequest {
-  ServiceClass?: string | null;
+  ServiceClass?: string;
 }
 
 model ProxyLBCertificates {
@@ -212,10 +212,10 @@ model ProxyLBSetCertificatesRequest {
 }
 
 model ProxyLBHealth {
-  ActiveConn?: int32 | null;
-  CPS?: float64 | null;
-  CurrentVIP?: string | null;
-  Servers?: LoadBalancerServerStatus[] | null;
+  ActiveConn?: int32;
+  CPS?: float64;
+  CurrentVIP?: string;
+  Servers?: LoadBalancerServerStatus[];
 }
 
 model LoadBalancerServerStatus {

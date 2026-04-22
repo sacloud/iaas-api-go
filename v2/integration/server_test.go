@@ -38,14 +38,14 @@ func TestServerCRUD(t *testing.T) {
 	createReq := &client.ServerCreateRequestEnvelope{
 		Server: client.ServerCreateRequest{
 			ServerPlan: client.NewOptNilServerCreateRequestServerPlan(client.ServerCreateRequestServerPlan{
-				CPU:      client.NewOptNilInt32(1),
-				MemoryMB: client.NewOptNilInt32(1024),
+				CPU:      client.NewOptInt32(1),
+				MemoryMB: client.NewOptInt32(1024),
 			}),
-			ConnectedSwitches: client.NewOptNilConnectedSwitchArray([]client.ConnectedSwitch{
-				{Scope: client.NewOptNilEScope("shared")},
-			}),
-			InterfaceDriver: client.NewOptNilEInterfaceDriver("virtio"),
-			Name:            client.NewOptNilString("test-server"),
+			ConnectedSwitches: []client.ConnectedSwitch{
+				{Scope: client.NewOptEScope("shared")},
+			},
+			InterfaceDriver: client.NewOptEInterfaceDriver("virtio"),
+			Name:            client.NewOptString("test-server"),
 			Description:     "desc",
 			Tags:            []string{"test", "integration"},
 		},
@@ -68,7 +68,7 @@ func TestServerCRUD(t *testing.T) {
 	// 3. Update
 	updateResp, err := c.ServerOpUpdate(ctx, &client.ServerUpdateRequestEnvelope{
 		Server: client.ServerUpdateRequest{
-			Name:        client.NewOptNilString("test-server-updated"),
+			Name:        client.NewOptString("test-server-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

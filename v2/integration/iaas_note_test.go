@@ -42,10 +42,10 @@ func TestIaasNoteCRUD(t *testing.T) {
 	// Create
 	createResp, err := noteOp.Create(ctx, zone, &client.NoteCreateRequestEnvelope{
 		Note: client.NoteCreateRequest{
-			Name:    client.NewOptNilString("test-note-wrapper"),
+			Name:    client.NewOptString("test-note-wrapper"),
 			Tags:    []string{"test", "integration", "wrapper"},
-			Class:   client.NewOptNilString("shell"),
-			Content: client.NewOptNilString("#!/bin/bash\necho hello from wrapper"),
+			Class:   client.NewOptString("shell"),
+			Content: client.NewOptString("#!/bin/bash\necho hello from wrapper"),
 		},
 	})
 	require.NoError(t, err)
@@ -62,19 +62,21 @@ func TestIaasNoteCRUD(t *testing.T) {
 	// Update
 	updateResp, err := noteOp.Update(ctx, zone, idStr, &client.NoteUpdateRequestEnvelope{
 		Note: client.NoteUpdateRequest{
-			Name:    client.NewOptNilString("test-note-wrapper-updated"),
+			Name:    client.NewOptString("test-note-wrapper-updated"),
 			Tags:    []string{"test", "integration", "wrapper", "updated"},
-			Class:   client.NewOptNilString("shell"),
-			Content: client.NewOptNilString("#!/bin/bash\necho updated"),
+			Class:   client.NewOptString("shell"),
+			Content: client.NewOptString("#!/bin/bash\necho updated"),
 		},
 	})
 	require.NoError(t, err)
 	require.Equal(t, "test-note-wrapper-updated", updateResp.Note.Name.Value)
 
 	// List（ラッパーの Find クエリ書き換えミドルウェアの動作確認。
-	//        メソッド名は List だが内部は ogen の NoteOpFind を呼んでいる）
+	//        メソッド名は List だが内部は ogen の NoteOpFind を呼んでいる。
+	//        アカウント内 Note の累積に影響されないよう Name で絞り込む）
 	findResp, err := noteOp.List(ctx, zone, &client.NoteFindRequest{
-		Count: 50,
+		Count:  50,
+		Filter: client.NoteFindFilter{Name: "test-note-wrapper-updated"},
 	})
 	require.NoError(t, err)
 	var found bool

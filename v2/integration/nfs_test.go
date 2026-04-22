@@ -133,7 +133,7 @@ func TestNFSApplianceCRUD(t *testing.T) {
 	// 1. 前提の Switch を作成
 	swResp, err := c.SwitchOpCreate(ctx, &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
-			Name: client.NewOptNilString("switch-for-nfs"),
+			Name: client.NewOptString("switch-for-nfs"),
 			Tags: []string{"test", "integration"},
 		},
 	}, client.SwitchOpCreateParams{Zone: zone})

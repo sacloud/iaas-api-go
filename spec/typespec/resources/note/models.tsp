@@ -5,27 +5,27 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Note {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description?: string | null;
   Tags: string[];
-  Class?: string | null;
-  Content?: string | null;
+  Class?: string;
+  Content?: string;
   Icon?: ResourceRef | null;
 }
 
 model NoteCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Class?: string | null;
-  Content?: string | null;
+  Class?: string;
+  Content?: string;
 }
 
 model NoteUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  Class?: string | null;
-  Content?: string | null;
+  Class?: string;
+  Content?: string;
 }

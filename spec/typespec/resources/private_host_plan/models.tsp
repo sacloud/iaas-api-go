@@ -5,11 +5,11 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PrivateHostPlan {
-  ID?: int64 | null;
-  Name?: string | null;
-  Class?: string | null;
-  CPU?: int32 | null;
+  ID?: int64;
+  Name?: string;
+  Class?: string;
+  CPU?: int32;
   Dedicated: boolean;
-  MemoryMB?: int32 | null;
-  Availability?: EAvailability | null;
+  MemoryMB?: int32;
+  Availability?: EAvailability;
 }

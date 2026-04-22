@@ -5,24 +5,24 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model CDROM {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
+  Availability?: EAvailability;
   Icon?: ResourceRef | null;
 }
 
 model CDROMCreateRequest {
-  SizeMB?: int32 | null;
-  Name?: string | null;
+  SizeMB?: int32;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model CDROMUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;

@@ -5,12 +5,12 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6Addr {
-  IPv6Addr?: string | null;
+  IPv6Addr?: string;
   HostName: string;
 }
 
 model IPv6AddrCreateRequest {
-  IPv6Addr?: string | null;
+  IPv6Addr?: string;
   HostName: string;
 }
 

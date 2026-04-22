@@ -5,19 +5,19 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model GSLB {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: GSLBStatus | null;
   Settings?: GSLBSettings | null;
   DestinationServers: GSLBServer[];
 }
 
 model GSLBStatus {
-  FQDN?: string | null;
+  FQDN?: string;
 }
 
 model GSLBSettings {
@@ -25,19 +25,19 @@ model GSLBSettings {
 }
 
 model GSLBSettingsGSLB {
-  DelayLoop?: int32 | null = 10;
+  DelayLoop?: int32 = 10;
   Weighted: string;
   HealthCheck?: GSLBHealthCheck | null;
-  SorryServer?: string | null;
+  SorryServer?: string;
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model GSLBHealthCheck {
-  Protocol?: EGSLBHealthCheckProtocol | null;
-  Host?: string | null;
-  Path?: string | null;
-  Status?: int32 | null;
-  Port?: int32 | null;
+  Protocol?: EGSLBHealthCheckProtocol;
+  Host?: string;
+  Path?: string;
+  Status?: int32;
+  Port?: int32;
 }
 
 model GSLBServer {
@@ -49,7 +49,7 @@ model GSLBServer {
 model GSLBCreateRequest {
   Settings?: GSLBCreateRequestSettings | null;
   DestinationServers: GSLBServer[];
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -61,19 +61,19 @@ model GSLBCreateRequestSettings {
 
 model GSLBCreateRequestSettingsGSLB {
   HealthCheck?: GSLBHealthCheck | null;
-  DelayLoop?: int32 | null = 10;
+  DelayLoop?: int32 = 10;
   Weighted: string;
-  SorryServer?: string | null;
+  SorryServer?: string;
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model GSLBUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: GSLBUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model GSLBUpdateRequestSettings {

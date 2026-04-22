@@ -5,65 +5,65 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Server {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
-  HostName?: string | null;
+  Availability?: EAvailability;
+  HostName?: string;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver?: EInterfaceDriver | null;
+  InterfaceDriver?: EInterfaceDriver;
 
   ServerPlan?: ServerServerPlan | null;
   Zone?: ZoneInfo | null;
   Instance?: ServerInstance | null;
-  Disks?: ServerConnectedDisk[] | null;
-  Interfaces?: InterfaceView[] | null;
+  Disks?: ServerConnectedDisk[];
+  Interfaces?: InterfaceView[];
   PrivateHost?: ServerPrivateHost | null;
   Icon?: ResourceRef | null;
 }
 
 model ServerServerPlan {
-  ID?: int64 | null;
-  Name?: string | null;
-  CPU?: int32 | null;
-  MemoryMB?: int32 | null;
-  GPU?: int32 | null;
-  GPUModel?: string | null;
-  CPUModel?: string | null;
+  ID?: int64;
+  Name?: string;
+  CPU?: int32;
+  MemoryMB?: int32;
+  GPU?: int32;
+  GPUModel?: string;
+  CPUModel?: string;
 
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment?: ECommitment | null;
+  Commitment?: ECommitment;
 
-  Generation?: EPlanGeneration | null;
+  Generation?: EPlanGeneration;
   ConfidentialVM: boolean;
 }
 
 model ServerInstance {
   Host?: ServerInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
+  Status?: EServerInstanceStatus;
   BeforeStatus?: EServerInstanceStatus | null;
   StatusChangedAt?: utcDateTime | null;
-  Warnings?: string | null;
-  WarningsValue?: int32 | null;
+  Warnings?: string;
+  WarningsValue?: int32;
   CDROM?: ResourceRef | null;
 }
 
 model ServerInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+  Name?: string;
+  InfoURL?: string;
 }
 
 model ServerPrivateHost {
   ID: int64;
-  Name?: string | null;
+  Name?: string;
 }
 
 model ZoneInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description?: string | null;
+  ID?: int64;
+  Name?: string;
+  Description?: string;
   IsDummy: boolean;
   VNCProxy?: VNCProxy | null;
   FTPServer?: FTPServerInfo | null;
@@ -71,36 +71,36 @@ model ZoneInfo {
 }
 
 model VNCProxy {
-  HostName?: string | null;
-  IPAddress?: string | null;
+  HostName?: string;
+  IPAddress?: string;
 }
 
 model FTPServerInfo {
-  HostName?: string | null;
-  IPAddress?: string | null;
+  HostName?: string;
+  IPAddress?: string;
 }
 
 model ServerConnectedDisk {
-  ID?: int64 | null;
-  Name?: string | null;
-  Availability?: EAvailability | null;
-  Connection?: EDiskConnection | null;
-  ConnectionOrder?: int32 | null;
-  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
-  ReinstallCount?: int32 | null;
-  SizeMB?: int32 | null;
+  ID?: int64;
+  Name?: string;
+  Availability?: EAvailability;
+  Connection?: EDiskConnection;
+  ConnectionOrder?: int32;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
+  ReinstallCount?: int32;
+  SizeMB?: int32;
   Plan?: ResourceRef | null;
   Storage?: Storage | null;
 }
 
 model ServerCreateRequest {
   ServerPlan?: ServerCreateRequestServerPlan | null;
-  ConnectedSwitches?: ConnectedSwitch[] | null;
+  ConnectedSwitches?: ConnectedSwitch[];
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver?: EInterfaceDriver | null;
+  InterfaceDriver?: EInterfaceDriver;
 
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -108,33 +108,33 @@ model ServerCreateRequest {
 }
 
 model ServerCreateRequestServerPlan {
-  CPU?: int32 | null;
-  MemoryMB?: int32 | null;
-  GPU?: int32 | null;
-  GPUModel?: string | null;
-  CPUModel?: string | null;
+  CPU?: int32;
+  MemoryMB?: int32;
+  GPU?: int32;
+  GPUModel?: string;
+  CPUModel?: string;
 
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment?: ECommitment | null;
+  Commitment?: ECommitment;
 
-  Generation?: EPlanGeneration | null;
+  Generation?: EPlanGeneration;
   ConfidentialVM: boolean;
 }
 
 model ConnectedSwitch {
-  ID?: int64 | null;
-  Scope?: EScope | null;
+  ID?: int64;
+  Scope?: EScope;
 }
 
 model ServerUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   PrivateHost?: ResourceRef | null;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
-  InterfaceDriver?: EInterfaceDriver | null;
+  InterfaceDriver?: EInterfaceDriver;
 }
 
 model ServerDeleteWithDisksRequest {
@@ -142,23 +142,23 @@ model ServerDeleteWithDisksRequest {
 }
 
 model ServerChangePlanRequest {
-  CPU?: int32 | null;
-  MemoryMB?: int32 | null;
-  GPU?: int32 | null;
-  GPUModel?: string | null;
-  CPUModel?: string | null;
-  Generation?: EPlanGeneration | null;
+  CPU?: int32;
+  MemoryMB?: int32;
+  GPU?: int32;
+  GPUModel?: string;
+  CPUModel?: string;
+  Generation?: EPlanGeneration;
 
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
-  Commitment?: ECommitment | null;
+  Commitment?: ECommitment;
 }
 
 model InsertCDROMRequest {
-  ID?: int64 | null;
+  ID?: int64;
 }
 
 model EjectCDROMRequest {
-  ID?: int64 | null;
+  ID?: int64;
 }
 
 model ServerBootVariables {
@@ -175,10 +175,10 @@ model SendKeyRequest {
 }
 
 model VNCProxyInfo {
-  Status?: string | null;
-  Host?: string | null;
-  IOServerHost?: string | null;
-  Port?: int32 | null;
-  Password?: string | null;
-  VNCFile?: string | null;
+  Status?: string;
+  Host?: string;
+  IOServerHost?: string;
+  Port?: int32;
+  Password?: string;
+  VNCFile?: string;
 }

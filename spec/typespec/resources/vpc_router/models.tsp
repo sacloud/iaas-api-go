@@ -5,18 +5,18 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model VPCRouter {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
-  Class?: string | null;
+  Availability?: EAvailability;
+  Class?: string;
   Icon?: ResourceRef | null;
   Remark?: VPCRouterRemark | null;
   Settings?: VPCRouterSetting | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Instance?: VPCRouterInstance | null;
-  Interfaces?: VPCRouterInterface[] | null;
+  Interfaces?: VPCRouterInterface[];
 }
 
 model VPCRouterRemark {
@@ -25,18 +25,18 @@ model VPCRouterRemark {
 }
 
 model VPCRouterRemarkRouter {
-  VPCRouterVersion?: int32 | null = 2;
+  VPCRouterVersion?: int32 = 2;
 }
 
 model VPCRouterInstance {
   Host?: VPCRouterInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
+  Status?: EServerInstanceStatus;
   StatusChangedAt?: utcDateTime | null;
 }
 
 model VPCRouterInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+  Name?: string;
+  InfoURL?: string;
 }
 
 model VPCRouterSetting {
@@ -52,14 +52,14 @@ model VPCRouterSetting {
 }
 
 model VPCRouterSettingRouter {
-  VRID?: int32 | null;
+  VRID?: int32;
   InternetConnection?: VPCRouterSettingRouterInternetConnection | null;
   DNSForwarding?: VPCRouterDNSForwarding | null;
   PPTPServer?: VPCRouterSettingRouterPPTPServer | null;
   L2TPIPsecServer?: VPCRouterSettingRouterL2TPIPsecServer | null;
   WireGuard?: VPCRouterSettingRouterWireGuard | null;
   SiteToSiteIPsecVPN?: VPCRouterSiteToSiteIPsecVPN | null;
-  SyslogHost?: string | null;
+  SyslogHost?: string;
   ScheduledMaintenance?: VPCRouterScheduledMaintenance | null;
   MonitoringSuite?: MonitoringSuite | null;
 }
@@ -84,25 +84,25 @@ model VPCRouterSettingRouterWireGuard {
 }
 
 model VPCRouterInterfaceSetting {
-  IPAddress?: string[] | null;
-  VirtualIPAddress?: string | null;
-  IPAliases?: string[] | null;
-  NetworkMaskLen?: int32 | null;
+  IPAddress?: string[];
+  VirtualIPAddress?: string;
+  IPAliases?: string[];
+  NetworkMaskLen?: int32;
   Index: int32;
 }
 
 model VPCRouterStaticNAT {
-  GlobalAddress?: string | null;
-  PrivateAddress?: string | null;
+  GlobalAddress?: string;
+  PrivateAddress?: string;
   Description: string;
 }
 
 model VPCRouterPortForwarding {
-  Protocol?: EVPCRouterPortForwardingProtocol | null;
-  GlobalPort?: int32 | null;
-  PrivateAddress?: string | null;
-  PrivatePort?: int32 | null;
-  Description?: string | null;
+  Protocol?: EVPCRouterPortForwardingProtocol;
+  GlobalPort?: int32;
+  PrivateAddress?: string;
+  PrivatePort?: int32;
+  Description?: string;
 }
 
 model VPCRouterFirewall {
@@ -112,42 +112,42 @@ model VPCRouterFirewall {
 }
 
 model VPCRouterFirewallRule {
-  Protocol?: Protocol | null;
-  SourceNetwork?: string | null;
-  SourcePort?: string | null;
-  DestinationNetwork?: string | null;
-  DestinationPort?: string | null;
-  Action?: Action | null;
+  Protocol?: Protocol;
+  SourceNetwork?: string;
+  SourcePort?: string;
+  DestinationNetwork?: string;
+  DestinationPort?: string;
+  Action?: Action;
   Logging: string;
   Description: string;
 }
 
 model VPCRouterDHCPServer {
-  Interface?: string | null;
-  RangeStart?: string | null;
-  RangeStop?: string | null;
-  DNSServers?: string[] | null;
+  Interface?: string;
+  RangeStart?: string;
+  RangeStop?: string;
+  DNSServers?: string[];
 }
 
 model VPCRouterDHCPStaticMapping {
-  MACAddress?: string | null;
-  IPAddress?: string | null;
+  MACAddress?: string;
+  IPAddress?: string;
 }
 
 model VPCRouterDNSForwarding {
-  Interface?: string | null;
+  Interface?: string;
   DNSServers: string[];
 }
 
 model VPCRouterPPTPServer {
-  RangeStart?: string | null;
-  RangeStop?: string | null;
+  RangeStart?: string;
+  RangeStop?: string;
 }
 
 model VPCRouterL2TPIPsecServer {
-  RangeStart?: string | null;
-  RangeStop?: string | null;
-  PreSharedSecret?: string | null;
+  RangeStart?: string;
+  RangeStop?: string;
+  PreSharedSecret?: string;
 }
 
 model VPCRouterWireGuard {
@@ -156,31 +156,31 @@ model VPCRouterWireGuard {
 }
 
 model VPCRouterWireGuardPeer {
-  Name?: string | null;
-  IPAddress?: string | null;
-  PublicKey?: string | null;
+  Name?: string;
+  IPAddress?: string;
+  PublicKey?: string;
 }
 
 model VPCRouterRemoteAccessUser {
-  UserName?: string | null;
-  Password?: string | null;
+  UserName?: string;
+  Password?: string;
 }
 
 model VPCRouterSiteToSiteIPsecVPN {
-  Config?: VPCRouterSiteToSiteIPsecVPNConfig[] | null;
+  Config?: VPCRouterSiteToSiteIPsecVPNConfig[];
   IKE?: VPCRouterSiteToSiteIPsecVPNIKE | null;
   ESP?: VPCRouterSiteToSiteIPsecVPNESP | null;
-  EncryptionAlgo?: string | null;
-  HashAlgo?: string | null;
-  DHGroup?: string | null;
+  EncryptionAlgo?: string;
+  HashAlgo?: string;
+  DHGroup?: string;
 }
 
 model VPCRouterSiteToSiteIPsecVPNConfig {
-  Peer?: string | null;
-  PreSharedSecret?: string | null;
-  RemoteID?: string | null;
-  Routes?: string[] | null;
-  LocalPrefix?: string[] | null;
+  Peer?: string;
+  PreSharedSecret?: string;
+  RemoteID?: string;
+  Routes?: string[];
+  LocalPrefix?: string[];
 }
 
 model VPCRouterSiteToSiteIPsecVPNIKE {
@@ -198,8 +198,8 @@ model VPCRouterSiteToSiteIPsecVPNESP {
 }
 
 model VPCRouterStaticRoute {
-  Prefix?: string | null;
-  NextHop?: string | null;
+  Prefix?: string;
+  NextHop?: string;
 }
 
 model VPCRouterScheduledMaintenance {
@@ -208,16 +208,16 @@ model VPCRouterScheduledMaintenance {
 }
 
 model VPCRouterInterface {
-  ID?: int64 | null;
-  IPAddress?: string | null;
+  ID?: int64;
+  IPAddress?: string;
   Switch?: VPCRouterInterfaceSwitch | null;
   PacketFilter?: VPCRouterInterfacePacketFilter | null;
 }
 
 model VPCRouterInterfaceSwitch {
-  ID?: int64 | null;
-  Name?: string | null;
-  Scope?: EScope | null;
+  ID?: int64;
+  Name?: string;
+  Scope?: EScope;
   UserSubnet?: VPCRouterInterfaceSwitchUserSubnet | null;
   Subnet?: VPCRouterInterfaceSwitchSubnet | null;
 }
@@ -228,22 +228,22 @@ model VPCRouterInterfaceSwitchUserSubnet {
 }
 
 model VPCRouterInterfaceSwitchSubnet {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
-  NetworkAddress?: string | null;
+  DefaultRoute?: string;
+  NetworkMaskLen?: int32;
+  NetworkAddress?: string;
   Internet?: VPCRouterInterfaceSwitchSubnetInternet | null;
 }
 
 model VPCRouterInterfaceSwitchSubnetInternet {
-  BandWidthMbps?: int32 | null;
+  BandWidthMbps?: int32;
 }
 
 model VPCRouterInterfacePacketFilter {
-  ID?: int64 | null;
+  ID?: int64;
 }
 
 model VPCRouterCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -259,34 +259,34 @@ model VPCRouterCreateRequestRemark {
 }
 
 model VPCRouterCreateRequestRemarkRouter {
-  VPCRouterVersion?: int32 | null = 2;
+  VPCRouterVersion?: int32 = 2;
 }
 
 model ApplianceConnectedSwitch {
-  ID?: int64 | null;
-  Scope?: EScope | null;
+  ID?: int64;
+  Scope?: EScope;
 }
 
 model VPCRouterUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: VPCRouterSetting | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model VPCRouterStatus {
-  FirewallReceiveLogs?: string[] | null;
-  FirewallSendLogs?: string[] | null;
-  VPNLogs?: string[] | null;
-  SessionCount?: int32 | null;
-  PercentageOfMemoryFree?: int32[] | null;
+  FirewallReceiveLogs?: string[];
+  FirewallSendLogs?: string[];
+  VPNLogs?: string[];
+  SessionCount?: int32;
+  PercentageOfMemoryFree?: int32[];
   WireGuard?: WireGuardStatus | null;
-  DHCPServerLeases?: VPCRouterDHCPServerLease[] | null;
-  L2TPIPsecServerSessions?: VPCRouterL2TPIPsecServerSession[] | null;
-  PPTPServerSessions?: VPCRouterPPTPServerSession[] | null;
-  SiteToSiteIPsecVPNPeers?: VPCRouterSiteToSiteIPsecVPNPeer[] | null;
+  DHCPServerLeases?: VPCRouterDHCPServerLease[];
+  L2TPIPsecServerSessions?: VPCRouterL2TPIPsecServerSession[];
+  PPTPServerSessions?: VPCRouterPPTPServerSession[];
+  SiteToSiteIPsecVPNPeers?: VPCRouterSiteToSiteIPsecVPNPeer[];
   SessionAnalysis?: VPCRouterSessionAnalysis | null;
 }
 
@@ -324,8 +324,8 @@ model VPCRouterSessionAnalysis {
 }
 
 model VPCRouterStatisticsValue {
-  Name?: string | null;
-  Count?: int32 | null;
+  Name?: string;
+  Count?: int32;
 }
 
 model VPCRouterPingResults {

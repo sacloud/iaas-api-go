@@ -44,7 +44,7 @@ func TestBridgeCRUD(t *testing.T) {
 	// 1. Create
 	createResp, err := c.BridgeOpCreate(ctx, &client.BridgeCreateRequestEnvelope{
 		Bridge: client.BridgeCreateRequest{
-			Name:        client.NewOptNilString("test-bridge"),
+			Name:        client.NewOptString("test-bridge"),
 			Description: "desc",
 		},
 	}, client.BridgeOpCreateParams{Zone: zone})
@@ -63,7 +63,7 @@ func TestBridgeCRUD(t *testing.T) {
 	// 3. Update
 	updateResp, err := c.BridgeOpUpdate(ctx, &client.BridgeUpdateRequestEnvelope{
 		Bridge: client.BridgeUpdateRequest{
-			Name:        client.NewOptNilString("test-bridge-updated"),
+			Name:        client.NewOptString("test-bridge-updated"),
 			Description: "desc-updated",
 		},
 	}, client.BridgeOpUpdateParams{Zone: zone, ID: bridgeIDStr})
@@ -105,7 +105,7 @@ func TestSwitchBridgeConnect(t *testing.T) {
 	// Bridge を作成
 	bridgeResp, err := c.BridgeOpCreate(ctx, &client.BridgeCreateRequestEnvelope{
 		Bridge: client.BridgeCreateRequest{
-			Name: client.NewOptNilString("test-bridge-for-switch"),
+			Name: client.NewOptString("test-bridge-for-switch"),
 		},
 	}, client.BridgeOpCreateParams{Zone: zone})
 	require.NoError(t, err)
@@ -119,7 +119,7 @@ func TestSwitchBridgeConnect(t *testing.T) {
 	// その場合は envelope 部分までは動作確認できているので skip してラップアップする。
 	swResp, err := c.SwitchOpCreate(ctx, &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
-			Name: client.NewOptNilString("test-switch-for-bridge"),
+			Name: client.NewOptString("test-switch-for-bridge"),
 			Tags: []string{"test", "integration"},
 		},
 	}, client.SwitchOpCreateParams{Zone: zone})

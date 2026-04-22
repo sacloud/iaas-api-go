@@ -6,18 +6,18 @@ namespace Sacloud.IaaS;
 
 model Icon {
   ID: int64;
-  Name?: string | null;
+  Name?: string;
   Tags: string[];
-  URL?: string | null;
+  URL?: string;
 }
 
 model IconCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Tags: string[];
-  Image?: string | null;
+  Image?: string;
 }
 
 model IconUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Tags: string[];
 }

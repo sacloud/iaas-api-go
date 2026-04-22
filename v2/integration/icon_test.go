@@ -39,9 +39,9 @@ func TestIconCRUD(t *testing.T) {
 
 	createReq := &client.IconCreateRequestEnvelope{
 		Icon: client.IconCreateRequest{
-			Name:  client.NewOptNilString("test-icon"),
+			Name:  client.NewOptString("test-icon"),
 			Tags:  []string{"test", "integration"},
-			Image: client.NewOptNilString(base64Image),
+			Image: client.NewOptString(base64Image),
 		},
 	}
 
@@ -71,7 +71,7 @@ func TestIconCRUD(t *testing.T) {
 	// 3. Update - アイコン更新
 	updateReq := &client.IconUpdateRequestEnvelope{
 		Icon: client.IconUpdateRequest{
-			Name: client.NewOptNilString("test-icon-updated"),
+			Name: client.NewOptString("test-icon-updated"),
 			Tags: []string{"test", "integration", "updated"},
 		},
 	}

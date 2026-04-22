@@ -5,7 +5,7 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LicenseInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  TermsOfUse?: string | null;
+  ID?: int64;
+  Name?: string;
+  TermsOfUse?: string;
 }

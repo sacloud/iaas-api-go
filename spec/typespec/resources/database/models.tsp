@@ -5,12 +5,12 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Database {
-  ID?: int64 | null;
-  Class?: string | null;
-  Name?: string | null;
+  ID?: int64;
+  Class?: string;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
+  Availability?: EAvailability;
   Icon?: ResourceRef | null;
   Settings?: DatabaseSettings | null;
   InterfaceSettings?: DatabaseSettingsInterface[] | null;
@@ -35,13 +35,13 @@ model DatabaseSettingsDBConf {
 
 model DatabaseInstance {
   Host?: DatabaseInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
+  Status?: EServerInstanceStatus;
   StatusChangedAt?: utcDateTime | null;
 }
 
 model DatabaseInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+  Name?: string;
+  InfoURL?: string;
 }
 
 model DatabaseRemark {
@@ -55,44 +55,44 @@ model DatabaseRemarkDBConf {
 }
 
 model DatabaseRemarkNetwork {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string;
+  NetworkMaskLen?: int32;
 }
 
 model DatabaseSettingCommon {
   WebUI?: string | null;
-  ServicePort?: int32 | null;
+  ServicePort?: int32;
   SourceNetwork?: string[] | null;
-  DefaultUser?: string | null;
-  UserPassword?: string | null;
-  ReplicaUser?: string | null;
-  ReplicaPassword?: string | null;
+  DefaultUser?: string;
+  UserPassword?: string;
+  ReplicaUser?: string;
+  ReplicaPassword?: string;
 }
 
 model DatabaseSettingBackup {
-  Rotate?: int32 | null;
-  Time?: string | null;
-  DayOfWeek?: EDayOfTheWeek[] | null;
+  Rotate?: int32;
+  Time?: string;
+  DayOfWeek?: EDayOfTheWeek[];
 }
 
 model DatabaseSettingBackupv2View {
-  Rotate?: int32 | null;
-  Time?: string | null;
-  DayOfWeek?: EDayOfTheWeek[] | null;
-  Connect?: string | null;
+  Rotate?: int32;
+  Time?: string;
+  DayOfWeek?: EDayOfTheWeek[];
+  Connect?: string;
 }
 
 model DatabaseReplicationSetting {
-  Model?: EDatabaseReplicationModel | null;
-  IPAddress?: string | null;
-  Port?: int32 | null;
-  User?: string | null;
-  Password?: string | null;
+  Model?: EDatabaseReplicationModel;
+  IPAddress?: string;
+  Port?: int32;
+  User?: string;
+  Password?: string;
   Appliance?: ResourceRef | null;
 }
 
 model DatabaseSettingsInterface {
-  VirtualIPAddress?: string | null;
+  VirtualIPAddress?: string;
   Index: int32;
 }
 
@@ -101,16 +101,16 @@ model MonitoringSuite {
 }
 
 model DatabaseRemarkDBConfCommon {
-  DatabaseName?: string | null;
-  DatabaseVersion?: string | null;
-  DatabaseRevision?: string | null;
-  DefaultUser?: string | null;
-  UserPassword?: string | null;
+  DatabaseName?: string;
+  DatabaseVersion?: string;
+  DatabaseRevision?: string;
+  DefaultUser?: string;
+  UserPassword?: string;
 }
 
 model InterfaceView {
-  ID?: int64 | null;
-  MACAddress?: string | null;
+  ID?: int64;
+  MACAddress?: string;
   IPAddress?: string | null;
   UserIPAddress?: string | null;
   Switch?: InterfaceViewSwitch | null;
@@ -118,9 +118,9 @@ model InterfaceView {
 }
 
 model InterfaceViewSwitch {
-  ID?: int64 | null;
-  Name?: string | null;
-  Scope?: EScope | null;
+  ID?: int64;
+  Name?: string;
+  Scope?: EScope;
   UserSubnet?: InterfaceViewSwitchUserSubnet | null;
   Subnet?: InterfaceViewSwitchSubnet | null;
 }
@@ -131,27 +131,27 @@ model InterfaceViewSwitchUserSubnet {
 }
 
 model InterfaceViewSwitchSubnet {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
-  NetworkAddress?: string | null;
+  DefaultRoute?: string;
+  NetworkMaskLen?: int32;
+  NetworkAddress?: string;
   Internet?: InterfaceViewSwitchSubnetInternet | null;
 }
 
 model InterfaceViewSwitchSubnetInternet {
-  BandWidthMbps?: int32 | null;
+  BandWidthMbps?: int32;
 }
 
 model InterfaceViewPacketFilter {
-  ID?: int64 | null;
+  ID?: int64;
 }
 
 model DatabaseDisk {
-  EncryptionAlgorithm?: EDiskEncryptionAlgorithm | null;
+  EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
   EncryptionKey?: DatabaseDiskEncryptionKey | null;
 }
 
 model DatabaseDiskEncryptionKey {
-  KMSKeyID?: int64 | null;
+  KMSKeyID?: int64;
 }
 
 model DatabaseCreateRequest {
@@ -160,7 +160,7 @@ model DatabaseCreateRequest {
   Settings?: DatabaseCreateRequestSettings | null;
   InterfaceSettings: DatabaseSettingsInterface[];
   Disk?: DatabaseDisk | null;
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -175,8 +175,8 @@ model DatabaseCreateRequestRemark {
 }
 
 model DatabaseCreateRequestRemarkNetwork {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32;
+  DefaultRoute?: string;
 }
 
 model DatabaseCreateRequestRemarkDBConf {
@@ -196,19 +196,19 @@ model DatabaseCreateRequestSettingsDBConf {
 }
 
 model DatabaseSettingBackupv2 {
-  Rotate?: int32 | null;
-  Time?: string | null;
-  DayOfWeek?: EDayOfTheWeek[] | null;
-  Connect?: string | null;
+  Rotate?: int32;
+  Time?: string;
+  DayOfWeek?: EDayOfTheWeek[];
+  Connect?: string;
 }
 
 model DatabaseUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: DatabaseUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model DatabaseUpdateRequestSettings {
@@ -303,24 +303,24 @@ model DatabaseStatusSettingsResponseDBConfPostgres {
 }
 
 model DatabaseVersionInfo {
-  LastModified?: string | null;
-  CommitHash?: string | null;
-  Status?: string | null;
-  Tag?: string | null;
-  Expire?: string | null;
+  LastModified?: string;
+  CommitHash?: string;
+  Status?: string;
+  Tag?: string;
+  Expire?: string;
 }
 
 model DatabaseLog {
-  Name?: string | null;
-  Data?: string | null;
-  Size?: int32 | null;
+  Name?: string;
+  Data?: string;
+  Size?: int32;
 }
 
 model DatabaseBackupHistory {
-  CreatedAt?: utcDateTime | null;
-  Availability?: string | null;
+  CreatedAt?: utcDateTime;
+  Availability?: string;
   RecoveredAt?: utcDateTime | null;
-  Size?: int64 | null;
+  Size?: int64;
 }
 
 model DatabaseParameter {
@@ -329,7 +329,7 @@ model DatabaseParameter {
 }
 
 model DatabaseParameterParameter {
-  Attr?: Record<unknown> | null;
+  Attr?: Record<unknown>;
 }
 
 model DatabaseParameterMeta {

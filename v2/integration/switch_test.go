@@ -37,7 +37,7 @@ func TestSwitchCRUD(t *testing.T) {
 	// 注: UserSubnet は fieldmanifest allowlist で除外済み (downstream が未指定のため)。
 	createReq := &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
-			Name:        client.NewOptNilString("test-switch"),
+			Name:        client.NewOptString("test-switch"),
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
 		},
@@ -62,7 +62,7 @@ func TestSwitchCRUD(t *testing.T) {
 	// 3. Update - スイッチ更新
 	updateResp, err := c.SwitchOpUpdate(ctx, &client.SwitchUpdateRequestEnvelope{
 		Switch: client.SwitchUpdateRequest{
-			Name:        client.NewOptNilString("test-switch-updated"),
+			Name:        client.NewOptString("test-switch-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

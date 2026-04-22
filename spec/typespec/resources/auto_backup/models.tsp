@@ -5,13 +5,13 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoBackup {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: AutoBackupSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: AutoBackupStatus | null;
 }
 
@@ -20,25 +20,25 @@ model AutoBackupSettings {
 }
 
 model AutoBackupSettingsAutobackup {
-  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
-  MaximumNumberOfArchives?: int32 | null;
+  BackupSpanWeekdays?: EDayOfTheWeek[];
+  MaximumNumberOfArchives?: int32;
 }
 
 model AutoBackupStatus {
-  DiskID?: int64 | null;
+  DiskID?: int64;
 }
 
 model AutoBackupCreateRequest {
   Status?: AutoBackupCreateRequestStatus | null;
   Settings?: AutoBackupCreateRequestSettings | null;
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model AutoBackupCreateRequestStatus {
-  DiskID?: int64 | null;
+  DiskID?: int64;
 }
 
 model AutoBackupCreateRequestSettings {
@@ -46,17 +46,17 @@ model AutoBackupCreateRequestSettings {
 }
 
 model AutoBackupCreateRequestSettingsAutobackup {
-  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
-  MaximumNumberOfArchives?: int32 | null;
+  BackupSpanWeekdays?: EDayOfTheWeek[];
+  MaximumNumberOfArchives?: int32;
 }
 
 model AutoBackupUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: AutoBackupUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model AutoBackupUpdateRequestSettings {
@@ -64,5 +64,5 @@ model AutoBackupUpdateRequestSettings {
 }
 
 model AutoBackupUpdateRequestSettingsAutobackup {
-  BackupSpanWeekdays?: EDayOfTheWeek[] | null;
+  BackupSpanWeekdays?: EDayOfTheWeek[];
 }

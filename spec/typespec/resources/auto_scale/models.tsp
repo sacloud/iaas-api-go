@@ -5,20 +5,20 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoScale {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: AutoScaleSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: AutoScaleStatus | null;
 }
 
 model AutoScaleSettings {
   Disabled: boolean;
   Zones: string[];
-  Config?: string | null;
+  Config?: string;
   TriggerType: EAutoScaleTriggerType;
   CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
   RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
@@ -26,15 +26,15 @@ model AutoScaleSettings {
 }
 
 model AutoScaleCPUThresholdScaling {
-  ServerPrefix?: string | null;
-  Up?: int32 | null;
-  Down?: int32 | null;
+  ServerPrefix?: string;
+  Up?: int32;
+  Down?: int32;
 }
 
 model AutoScaleRouterThresholdScaling {
-  RouterPrefix?: string | null;
-  Direction?: string | null;
-  Mbps?: int32 | null;
+  RouterPrefix?: string;
+  Direction?: string;
+  Mbps?: int32;
 }
 
 model AutoScaleScheduleScaling {
@@ -45,7 +45,7 @@ model AutoScaleScheduleScaling {
 }
 
 model AutoScaleCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -56,7 +56,7 @@ model AutoScaleCreateRequest {
 model AutoScaleCreateRequestSettings {
   Disabled: boolean;
   Zones: string[];
-  Config?: string | null;
+  Config?: string;
   TriggerType: EAutoScaleTriggerType;
   CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
   RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
@@ -68,12 +68,12 @@ model AutoScaleCreateRequestStatus {
 }
 
 model AutoScaleUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: AutoScaleUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model AutoScaleUpdateRequestSettings {

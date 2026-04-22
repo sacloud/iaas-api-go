@@ -58,8 +58,8 @@ func TestDiskCRUD(t *testing.T) {
 	createReq := &client.DiskCreateRequestEnvelope{
 		Disk: client.DiskCreateRequest{
 			Plan:        client.NewOptNilResourceRef(client.ResourceRef{ID: diskPlanSSD}),
-			SizeMB:      client.NewOptNilInt32(20 * 1024), // 20 GiB
-			Name:        client.NewOptNilString("test-disk"),
+			SizeMB:      client.NewOptInt32(20 * 1024), // 20 GiB
+			Name:        client.NewOptString("test-disk"),
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
 		},
@@ -85,7 +85,7 @@ func TestDiskCRUD(t *testing.T) {
 	// 3. Update - 名前・タグ更新
 	updateResp, err := c.DiskOpUpdate(ctx, &client.DiskUpdateRequestEnvelope{
 		Disk: client.DiskUpdateRequest{
-			Name:        client.NewOptNilString("test-disk-updated"),
+			Name:        client.NewOptString("test-disk-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

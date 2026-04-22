@@ -5,43 +5,43 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Bridge {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
 }
 
 model Region {
-  ID?: int64 | null;
-  Name?: string | null;
-  Description?: string | null;
-  NameServers?: string[] | null;
+  ID?: int64;
+  Name?: string;
+  Description?: string;
+  NameServers?: string[];
 }
 
 model BridgeInfo {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Zone?: BridgeInfoZone | null;
 }
 
 model BridgeInfoZone {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
 }
 
 model BridgeSwitchInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  Scope?: EScope | null;
-  ServerCount?: int32 | null;
-  ApplianceCount?: int32 | null;
+  ID?: int64;
+  Name?: string;
+  Scope?: EScope;
+  ServerCount?: int32;
+  ApplianceCount?: int32;
 }
 
 model BridgeCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
 }
 
 model BridgeUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
 }

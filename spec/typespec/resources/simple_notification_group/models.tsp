@@ -5,13 +5,13 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationGroup {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: SimpleNotificationGroupSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model SimpleNotificationGroupSettings {
@@ -21,7 +21,7 @@ model SimpleNotificationGroupSettings {
 }
 
 model SimpleNotificationGroupCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -35,12 +35,12 @@ model SimpleNotificationGroupCreateRequestSettings {
 }
 
 model SimpleNotificationGroupUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
   Settings?: SimpleNotificationGroupUpdateRequestSettings | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model SimpleNotificationGroupUpdateRequestSettings {
@@ -48,7 +48,7 @@ model SimpleNotificationGroupUpdateRequestSettings {
 }
 
 model SimpleNotificationHistories {
-  NotificationHistories?: SimpleNotificationHistory[] | null;
+  NotificationHistories?: SimpleNotificationHistory[];
 }
 
 model SimpleNotificationHistory {

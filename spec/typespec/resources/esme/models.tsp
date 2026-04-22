@@ -5,52 +5,52 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ESME {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model ESMECreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model ESMEUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model ESMESendMessageResult {
-  MessageID?: string | null;
-  Status?: string | null;
-  OTP?: string | null;
+  MessageID?: string;
+  Status?: string;
+  OTP?: string;
 }
 
 model ESMESendMessageWithGeneratedOTPRequest {
-  Destination?: string | null;
-  Sender?: string | null;
-  DomainName?: string | null;
+  Destination?: string;
+  Sender?: string;
+  DomainName?: string;
 }
 
 model ESMESendMessageWithInputtedOTPRequest {
-  Destination?: string | null;
-  Sender?: string | null;
-  DomainName?: string | null;
-  OTP?: string | null;
+  Destination?: string;
+  Sender?: string;
+  DomainName?: string;
+  OTP?: string;
 }
 
 model ESMELogs {
-  MessageID?: string | null;
-  Status?: string | null;
-  OTP?: string | null;
-  Destination?: string | null;
+  MessageID?: string;
+  Status?: string;
+  OTP?: string;
+  Destination?: string;
   SentAt?: utcDateTime | null;
   DoneAt?: utcDateTime | null;
-  RetryCount?: int32 | null;
+  RetryCount?: int32;
 }

@@ -5,15 +5,15 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Interface {
-  ID?: int64 | null;
+  ID?: int64;
   UserIPAddress?: string | null;
   Switch?: InterfaceSwitch | null;
   Server?: ResourceRef | null;
 }
 
 model InterfaceSwitch {
-  ID?: int64 | null;
-  Scope?: EScope | null;
+  ID?: int64;
+  Scope?: EScope;
 }
 
 model InterfaceCreateRequest {
@@ -21,5 +21,5 @@ model InterfaceCreateRequest {
 }
 
 model InterfaceUpdateRequest {
-  UserIPAddress?: string | null;
+  UserIPAddress?: string;
 }

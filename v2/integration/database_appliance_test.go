@@ -38,7 +38,7 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 	// 1. 前提の Switch を作成
 	swResp, err := c.SwitchOpCreate(ctx, &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
-			Name: client.NewOptNilString("switch-for-db"),
+			Name: client.NewOptString("switch-for-db"),
 			Tags: []string{"test", "integration"},
 		},
 	}, client.SwitchOpCreateParams{Zone: zone})
@@ -93,9 +93,9 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 				}),
 				DBConf: client.NewOptApplianceCreateRequestRemarkDBConf(client.ApplianceCreateRequestRemarkDBConf{
 					Common: client.DatabaseRemarkDBConfCommon{
-						DatabaseName: client.NewOptNilString("MariaDB"),
-						DefaultUser:  client.NewOptNilString("exa.mple"),
-						UserPassword: client.NewOptNilString("LibsacloudExamplePassword01"),
+						DatabaseName: client.NewOptString("MariaDB"),
+						DefaultUser:  client.NewOptString("exa.mple"),
+						UserPassword: client.NewOptString("LibsacloudExamplePassword01"),
 					},
 				}),
 			},

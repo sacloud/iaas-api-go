@@ -5,26 +5,26 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Archive {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
-  SizeMB?: int32 | null;
+  Availability?: EAvailability;
+  SizeMB?: int32;
   Icon?: ResourceRef | null;
 }
 
 model BundleInfo {
-  ID?: int64 | null;
-  HostClass?: string | null;
-  ServiceClass?: string | null;
+  ID?: int64;
+  HostClass?: string;
+  ServiceClass?: string;
 }
 
 model Storage {
-  ID?: int64 | null;
-  Name?: string | null;
-  Class?: string | null;
-  Generation?: int32 | null;
+  ID?: int64;
+  Name?: string;
+  Class?: string;
+  Generation?: int32;
   DedicatedStorageContract?: ResourceRef | null;
 }
 
@@ -34,7 +34,7 @@ model SourceArchiveInfo {
 
 model SourceArchiveInfoArchiveUnderZone {
   ID: int64;
-  Account?: ResourceRef | null;
+  Account?: ResourceRef;
   Zone: SourceArchiveInfoArchiveUnderZoneZone;
 }
 
@@ -51,22 +51,22 @@ model FindCondition {
 model ArchiveCreateRequest {
   SourceDisk?: ResourceRef | null;
   SourceArchive?: ResourceRef | null;
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  SizeMB?: int32 | null;
+  SizeMB?: int32;
 }
 
 model FTPServer {
-  HostName?: string | null;
-  IPAddress?: string | null;
-  User?: string | null;
-  Password?: string | null;
+  HostName?: string;
+  IPAddress?: string;
+  User?: string;
+  Password?: string;
 }
 
 model ArchiveUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -81,10 +81,10 @@ model ArchiveShareInfo {
 }
 
 model ArchiveTransferRequest {
-  SizeMB?: int32 | null;
-  Name?: string | null;
+  SizeMB?: int32;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  SourceSharedKey?: string | null;
+  SourceSharedKey?: string;
 }

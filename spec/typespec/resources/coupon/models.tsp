@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Coupon {
-  ID?: int64 | null;
-  Discount?: int64 | null;
+  ID?: int64;
+  Discount?: int64;
   AppliedAt?: utcDateTime | null;
   UntilAt?: utcDateTime | null;
 }

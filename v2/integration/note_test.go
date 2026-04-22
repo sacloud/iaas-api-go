@@ -36,10 +36,10 @@ func TestNoteCRUD(t *testing.T) {
 	// 1. Create - スクリプト作成
 	createReq := &client.NoteCreateRequestEnvelope{
 		Note: client.NoteCreateRequest{
-			Name:    client.NewOptNilString("test-note"),
+			Name:    client.NewOptString("test-note"),
 			Tags:    []string{"test", "integration"},
-			Class:   client.NewOptNilString("shell"),
-			Content: client.NewOptNilString("#!/bin/bash\necho hello"),
+			Class:   client.NewOptString("shell"),
+			Content: client.NewOptString("#!/bin/bash\necho hello"),
 		},
 	}
 
@@ -63,10 +63,10 @@ func TestNoteCRUD(t *testing.T) {
 	// 3. Update - スクリプト更新
 	updateResp, err := c.NoteOpUpdate(ctx, &client.NoteUpdateRequestEnvelope{
 		Note: client.NoteUpdateRequest{
-			Name:    client.NewOptNilString("test-note-updated"),
+			Name:    client.NewOptString("test-note-updated"),
 			Tags:    []string{"test", "integration", "updated"},
-			Class:   client.NewOptNilString("shell"),
-			Content: client.NewOptNilString("#!/bin/bash\necho updated"),
+			Class:   client.NewOptString("shell"),
+			Content: client.NewOptString("#!/bin/bash\necho updated"),
 		},
 	}, client.NoteOpUpdateParams{
 		Zone: zone,

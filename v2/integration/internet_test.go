@@ -33,7 +33,7 @@ func waitInternetSwitchReady(t *testing.T, ctx context.Context, c *client.Client
 	for time.Now().Before(deadline) {
 		resp, err := c.SwitchOpRead(ctx, client.SwitchOpReadParams{Zone: zone, ID: switchID})
 		if err == nil {
-			if len(resp.Switch.Subnets.Value) > 0 && resp.Switch.Subnets.Value[0].IPAddresses.Value.Min != "" {
+			if len(resp.Switch.Subnets) > 0 && resp.Switch.Subnets[0].IPAddresses.Value.Min != "" {
 				return
 			}
 		}
@@ -54,11 +54,11 @@ func TestInternetCRUD(t *testing.T) {
 	// 1. Create - 最小構成のルータ+スイッチ（/28, 100Mbps）
 	createReq := &client.InternetCreateRequestEnvelope{
 		Internet: client.InternetCreateRequest{
-			Name:           client.NewOptNilString("test-internet"),
+			Name:           client.NewOptString("test-internet"),
 			Description:    "desc",
 			Tags:           []string{"test", "integration"},
-			NetworkMaskLen: client.NewOptNilInt32(28),
-			BandWidthMbps:  client.NewOptNilInt32(100),
+			NetworkMaskLen: client.NewOptInt32(28),
+			BandWidthMbps:  client.NewOptInt32(100),
 		},
 	}
 
@@ -85,7 +85,7 @@ func TestInternetCRUD(t *testing.T) {
 	// 3. Update - 名前・タグ・説明の更新
 	updateResp, err := c.InternetOpUpdate(ctx, &client.InternetUpdateRequestEnvelope{
 		Internet: client.InternetUpdateRequest{
-			Name:        client.NewOptNilString("test-internet-updated"),
+			Name:        client.NewOptString("test-internet-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

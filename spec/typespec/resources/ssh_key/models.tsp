@@ -5,20 +5,20 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SSHKey {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
-  PublicKey?: string | null;
-  Fingerprint?: string | null;
+  PublicKey?: string;
+  Fingerprint?: string;
 }
 
 model SSHKeyCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
-  PublicKey?: string | null;
+  PublicKey?: string;
 }
 
 model SSHKeyUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
 }

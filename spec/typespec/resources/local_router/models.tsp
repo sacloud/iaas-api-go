@@ -5,16 +5,16 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LocalRouter {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
+  Availability?: EAvailability;
   Icon?: ResourceRef | null;
   Settings?: LocalRouterSettings | null;
   Peers: LocalRouterPeer[];
   StaticRoutes: LocalRouterStaticRoute[];
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: LocalRouterStatus | null;
 }
 
@@ -28,7 +28,7 @@ model LocalRouterSettingsLocalRouter {
 }
 
 model LocalRouterStatus {
-  SecretKeys?: string[] | null;
+  SecretKeys?: string[];
 }
 
 model LocalRouterSwitch {
@@ -57,7 +57,7 @@ model LocalRouterStaticRoute {
 }
 
 model LocalRouterCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -65,8 +65,8 @@ model LocalRouterCreateRequest {
 
 model LocalRouterUpdateRequest {
   Settings?: LocalRouterUpdateRequestSettings | null;
-  SettingsHash?: string | null;
-  Name?: string | null;
+  SettingsHash?: string;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;

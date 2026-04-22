@@ -890,7 +890,14 @@ func (s *AutoBackupSettings) SetFake() {
 func (s *AutoBackupSettingsAutobackup) SetFake() {
 	{
 		{
-			s.BackupSpanWeekdays.SetFake()
+			s.BackupSpanWeekdays = nil
+			for i := 0; i < 0; i++ {
+				var elem EDayOfTheWeek
+				{
+					elem.SetFake()
+				}
+				s.BackupSpanWeekdays = append(s.BackupSpanWeekdays, elem)
+			}
 		}
 	}
 	{
@@ -1762,7 +1769,14 @@ func (s *CertificateAuthorityAddClientParam) SetFake() {
 	}
 	{
 		{
-			s.OrganizationUnit.SetFake()
+			s.OrganizationUnit = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.OrganizationUnit = append(s.OrganizationUnit, elem)
+			}
 		}
 	}
 	{
@@ -1825,7 +1839,14 @@ func (s *CertificateAuthorityAddServerParam) SetFake() {
 	}
 	{
 		{
-			s.OrganizationUnit.SetFake()
+			s.OrganizationUnit = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.OrganizationUnit = append(s.OrganizationUnit, elem)
+			}
 		}
 	}
 	{
@@ -2128,7 +2149,14 @@ func (s *CertificateAuthorityServer) SetFake() {
 	}
 	{
 		{
-			s.SANs.SetFake()
+			s.SANs = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.SANs = append(s.SANs, elem)
+			}
 		}
 	}
 	{
@@ -3342,7 +3370,14 @@ func (s *ContainerRegistryUserUpdateRequest) SetFake() {
 func (s *ContainerRegistryUsers) SetFake() {
 	{
 		{
-			s.Users.SetFake()
+			s.Users = nil
+			for i := 0; i < 0; i++ {
+				var elem ContainerRegistryUser
+				{
+					elem.SetFake()
+				}
+				s.Users = append(s.Users, elem)
+			}
 		}
 	}
 }
@@ -3991,7 +4026,14 @@ func (s *DatabaseSettingBackup) SetFake() {
 	}
 	{
 		{
-			s.DayOfWeek.SetFake()
+			s.DayOfWeek = nil
+			for i := 0; i < 0; i++ {
+				var elem EDayOfTheWeek
+				{
+					elem.SetFake()
+				}
+				s.DayOfWeek = append(s.DayOfWeek, elem)
+			}
 		}
 	}
 }
@@ -4010,7 +4052,14 @@ func (s *DatabaseSettingBackupv2View) SetFake() {
 	}
 	{
 		{
-			s.DayOfWeek.SetFake()
+			s.DayOfWeek = nil
+			for i := 0; i < 0; i++ {
+				var elem EDayOfTheWeek
+				{
+					elem.SetFake()
+				}
+				s.DayOfWeek = append(s.DayOfWeek, elem)
+			}
 		}
 	}
 	{
@@ -4581,7 +4630,14 @@ func (s *DiskEditRequest) SetFake() {
 	}
 	{
 		{
-			s.SSHKeys.SetFake()
+			s.SSHKeys = nil
+			for i := 0; i < 0; i++ {
+				var elem DiskEditSSHKey
+				{
+					elem.SetFake()
+				}
+				s.SSHKeys = append(s.SSHKeys, elem)
+			}
 		}
 	}
 	{
@@ -4606,7 +4662,14 @@ func (s *DiskEditRequest) SetFake() {
 	}
 	{
 		{
-			s.Notes.SetFake()
+			s.Notes = nil
+			for i := 0; i < 0; i++ {
+				var elem DiskEditNote
+				{
+					elem.SetFake()
+				}
+				s.Notes = append(s.Notes, elem)
+			}
 		}
 	}
 	{
@@ -4786,7 +4849,14 @@ func (s *DiskPlan) SetFake() {
 	}
 	{
 		{
-			s.Size.SetFake()
+			s.Size = nil
+			for i := 0; i < 0; i++ {
+				var elem DiskPlanSizeInfo
+				{
+					elem.SetFake()
+				}
+				s.Size = append(s.Size, elem)
+			}
 		}
 	}
 }
@@ -8299,10 +8369,28 @@ func (s *OptDatabaseDisk) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptDatabaseParameterParameterAttr) SetFake() {
+	var elem DatabaseParameterParameterAttr
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptDateTime) SetFake() {
 	var elem time.Time
 	{
 		elem = time.Now()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptDiskEditNoteVariables) SetFake() {
+	var elem DiskEditNoteVariables
+	{
+		elem.SetFake()
 	}
 	s.SetTo(elem)
 }
@@ -8344,6 +8432,33 @@ func (s *OptEAutoScaleTriggerType) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptEAvailability) SetFake() {
+	var elem EAvailability
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptECertificateAuthorityIssuanceMethod) SetFake() {
+	var elem ECertificateAuthorityIssuanceMethod
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptECommitment) SetFake() {
+	var elem ECommitment
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptEContainerRegistryAccessLevel) SetFake() {
 	var elem EContainerRegistryAccessLevel
 	{
@@ -8353,8 +8468,89 @@ func (s *OptEContainerRegistryAccessLevel) SetFake() {
 }
 
 // SetFake set fake values.
+func (s *OptEDatabaseReplicationModel) SetFake() {
+	var elem EDatabaseReplicationModel
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEDiskConnection) SetFake() {
+	var elem EDiskConnection
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEDiskEncryptionAlgorithm) SetFake() {
+	var elem EDiskEncryptionAlgorithm
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEGSLBHealthCheckProtocol) SetFake() {
+	var elem EGSLBHealthCheckProtocol
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEInterfaceDriver) SetFake() {
+	var elem EInterfaceDriver
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEPlanGeneration) SetFake() {
+	var elem EPlanGeneration
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
 func (s *OptEProxyLBPlan) SetFake() {
 	var elem EProxyLBPlan
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEProxyLBRegion) SetFake() {
+	var elem EProxyLBRegion
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEScope) SetFake() {
+	var elem EScope
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptEServerInstanceStatus) SetFake() {
+	var elem EServerInstanceStatus
 	{
 		elem.SetFake()
 	}
@@ -8491,25 +8687,7 @@ func (s *OptNilAutoBackupStatus) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilBool) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilCertificateData) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilConnectedSwitchArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilContainerRegistryUserArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8546,12 +8724,6 @@ func (s *OptNilDatabaseParameterMetaOptions) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilDatabaseParameterParameter) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilDatabaseParameterParameterAttr) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8629,25 +8801,7 @@ func (s *OptNilDateTime) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilDiskEditNoteArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilDiskEditNoteVariables) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilDiskEditSSHKey) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilDiskEditSSHKeyArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8671,12 +8825,6 @@ func (s *OptNilDiskPlan) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilDiskPlanSizeInfoArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilDiskServer) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -8690,78 +8838,6 @@ func (s *OptNilDiskSourceArchive) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilDiskSourceDisk) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEAvailability) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilECertificateAuthorityIssuanceMethod) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilECommitment) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEDatabaseReplicationModel) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEDayOfTheWeekArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEDiskConnection) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEDiskEncryptionAlgorithm) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEGSLBHealthCheckProtocol) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEInterfaceDriver) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEPlanGeneration) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEProxyLBRegion) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilEScope) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8785,31 +8861,13 @@ func (s *OptNilFTPServerInfo) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilIPv6NetInfoArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilInt32) SetFake() {
 	s.Null = true
 	s.Set = true
 }
 
 // SetFake set fake values.
-func (s *OptNilInt64) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilInterfaceSwitch) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilInterfaceViewArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8846,12 +8904,6 @@ func (s *OptNilInterfaceViewSwitchUserSubnet) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilInternetInfo) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilInternetSubnetArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8929,12 +8981,6 @@ func (s *OptNilProxyLBStatus) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilProxyLBTimeout) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilRegion) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -8948,12 +8994,6 @@ func (s *OptNilResourceRef) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilSIMTrafficBytes) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilServerConnectedDiskArray) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -8989,12 +9029,6 @@ func (s *OptNilServerServerPlan) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilSimpleNotificationHistoryArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilSimpleNotificationHistoryMessage) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9019,12 +9053,6 @@ func (s *OptNilStringArray) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptNilSubnetIPAddressArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
 func (s *OptNilSubnetSwitch) SetFake() {
 	s.Null = true
 	s.Set = true
@@ -9032,18 +9060,6 @@ func (s *OptNilSubnetSwitch) SetFake() {
 
 // SetFake set fake values.
 func (s *OptNilSwitchInfo) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilSwitchSubnetArray) SetFake() {
-	s.Null = true
-	s.Set = true
-}
-
-// SetFake set fake values.
-func (s *OptNilSwitchSubnetIPAddresses) SetFake() {
 	s.Null = true
 	s.Set = true
 }
@@ -9164,6 +9180,15 @@ func (s *OptString) SetFake() {
 	var elem string
 	{
 		elem = "string"
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptSwitchSubnetIPAddresses) SetFake() {
+	var elem SwitchSubnetIPAddresses
+	{
+		elem.SetFake()
 	}
 	s.SetTo(elem)
 }
@@ -10422,7 +10447,14 @@ func (s *ProxyLBStatus) SetFake() {
 	}
 	{
 		{
-			s.ProxyNetworks.SetFake()
+			s.ProxyNetworks = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.ProxyNetworks = append(s.ProxyNetworks, elem)
+			}
 		}
 	}
 	{
@@ -10493,7 +10525,14 @@ func (s *Region) SetFake() {
 	}
 	{
 		{
-			s.NameServers.SetFake()
+			s.NameServers = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.NameServers = append(s.NameServers, elem)
+			}
 		}
 	}
 }
@@ -10600,7 +10639,14 @@ func (s *SIMInfo) SetFake() {
 	}
 	{
 		{
-			s.IMSI.SetFake()
+			s.IMSI = nil
+			for i := 0; i < 0; i++ {
+				var elem string
+				{
+					elem = "string"
+				}
+				s.IMSI = append(s.IMSI, elem)
+			}
 		}
 	}
 	{
@@ -11106,12 +11152,26 @@ func (s *Server) SetFake() {
 	}
 	{
 		{
-			s.Disks.SetFake()
+			s.Disks = nil
+			for i := 0; i < 0; i++ {
+				var elem ServerConnectedDisk
+				{
+					elem.SetFake()
+				}
+				s.Disks = append(s.Disks, elem)
+			}
 		}
 	}
 	{
 		{
-			s.Interfaces.SetFake()
+			s.Interfaces = nil
+			for i := 0; i < 0; i++ {
+				var elem InterfaceView
+				{
+					elem.SetFake()
+				}
+				s.Interfaces = append(s.Interfaces, elem)
+			}
 		}
 	}
 	{
@@ -11269,7 +11329,14 @@ func (s *ServerCreateRequest) SetFake() {
 	}
 	{
 		{
-			s.ConnectedSwitches.SetFake()
+			s.ConnectedSwitches = nil
+			for i := 0; i < 0; i++ {
+				var elem ConnectedSwitch
+				{
+					elem.SetFake()
+				}
+				s.ConnectedSwitches = append(s.ConnectedSwitches, elem)
+			}
 		}
 	}
 	{
@@ -12112,7 +12179,14 @@ func (s *SimpleNotificationGroupOpPostMessageReq) SetFake() {
 func (s *SimpleNotificationHistories) SetFake() {
 	{
 		{
-			s.NotificationHistories.SetFake()
+			s.NotificationHistories = nil
+			for i := 0; i < 0; i++ {
+				var elem SimpleNotificationHistory
+				{
+					elem.SetFake()
+				}
+				s.NotificationHistories = append(s.NotificationHistories, elem)
+			}
 		}
 	}
 }
@@ -12284,7 +12358,14 @@ func (s *Subnet) SetFake() {
 	}
 	{
 		{
-			s.IPAddresses.SetFake()
+			s.IPAddresses = nil
+			for i := 0; i < 0; i++ {
+				var elem SubnetIPAddress
+				{
+					elem.SetFake()
+				}
+				s.IPAddresses = append(s.IPAddresses, elem)
+			}
 		}
 	}
 }
@@ -12403,7 +12484,14 @@ func (s *Switch) SetFake() {
 	}
 	{
 		{
-			s.Subnets.SetFake()
+			s.Subnets = nil
+			for i := 0; i < 0; i++ {
+				var elem SwitchSubnet
+				{
+					elem.SetFake()
+				}
+				s.Subnets = append(s.Subnets, elem)
+			}
 		}
 	}
 	{
@@ -12558,12 +12646,26 @@ func (s *SwitchInfo) SetFake() {
 	}
 	{
 		{
-			s.Subnets.SetFake()
+			s.Subnets = nil
+			for i := 0; i < 0; i++ {
+				var elem InternetSubnet
+				{
+					elem.SetFake()
+				}
+				s.Subnets = append(s.Subnets, elem)
+			}
 		}
 	}
 	{
 		{
-			s.IPv6Nets.SetFake()
+			s.IPv6Nets = nil
+			for i := 0; i < 0; i++ {
+				var elem IPv6NetInfo
+				{
+					elem.SetFake()
+				}
+				s.IPv6Nets = append(s.IPv6Nets, elem)
+			}
 		}
 	}
 }

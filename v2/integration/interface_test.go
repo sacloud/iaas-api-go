@@ -39,11 +39,11 @@ func TestInterfaceCRUD(t *testing.T) {
 	serverResp, err := c.ServerOpCreate(ctx, &client.ServerCreateRequestEnvelope{
 		Server: client.ServerCreateRequest{
 			ServerPlan: client.NewOptNilServerCreateRequestServerPlan(client.ServerCreateRequestServerPlan{
-				CPU:      client.NewOptNilInt32(1),
-				MemoryMB: client.NewOptNilInt32(1024),
+				CPU:      client.NewOptInt32(1),
+				MemoryMB: client.NewOptInt32(1024),
 			}),
-			InterfaceDriver: client.NewOptNilEInterfaceDriver("virtio"),
-			Name:            client.NewOptNilString("test-server-for-interface"),
+			InterfaceDriver: client.NewOptEInterfaceDriver("virtio"),
+			Name:            client.NewOptString("test-server-for-interface"),
 			Description:     "desc",
 			Tags:            []string{"test", "integration"},
 		},
@@ -58,7 +58,7 @@ func TestInterfaceCRUD(t *testing.T) {
 	// 前提の Switch（後で ConnectToSwitch に使う）
 	swResp, err := c.SwitchOpCreate(ctx, &client.SwitchCreateRequestEnvelope{
 		Switch: client.SwitchCreateRequest{
-			Name: client.NewOptNilString("switch-for-interface"),
+			Name: client.NewOptString("switch-for-interface"),
 			Tags: []string{"test", "integration"},
 		},
 	}, client.SwitchOpCreateParams{Zone: zone})
@@ -91,7 +91,7 @@ func TestInterfaceCRUD(t *testing.T) {
 	// 4. Update - UserIPAddress を設定
 	updateResp, err := c.InterfaceOpUpdate(ctx, &client.InterfaceUpdateRequestEnvelope{
 		Interface: client.InterfaceUpdateRequest{
-			UserIPAddress: client.NewOptNilString("192.2.0.1"),
+			UserIPAddress: client.NewOptString("192.2.0.1"),
 		},
 	}, client.InterfaceOpUpdateParams{Zone: zone, ID: ifaceIDStr})
 	require.NoError(t, err)

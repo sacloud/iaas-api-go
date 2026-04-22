@@ -84,7 +84,7 @@ func TestPrivateHostCRUD(t *testing.T) {
 	// 1. Create
 	createReq := &client.PrivateHostCreateRequestEnvelope{
 		PrivateHost: client.PrivateHostCreateRequest{
-			Name:        client.NewOptNilString("test-private-host"),
+			Name:        client.NewOptString("test-private-host"),
 			Description: "desc",
 			Tags:        []string{"test", "integration"},
 			Plan:        client.NewOptNilResourceRef(client.ResourceRef{ID: planID}),
@@ -107,7 +107,7 @@ func TestPrivateHostCRUD(t *testing.T) {
 	// 3. Update
 	updateResp, err := c.PrivateHostOpUpdate(ctx, &client.PrivateHostUpdateRequestEnvelope{
 		PrivateHost: client.PrivateHostUpdateRequest{
-			Name:        client.NewOptNilString("test-private-host-updated"),
+			Name:        client.NewOptString("test-private-host-updated"),
 			Description: "desc-updated",
 			Tags:        []string{"test", "integration", "updated"},
 		},

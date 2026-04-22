@@ -5,25 +5,25 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Switch {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  ServerCount?: int32 | null;
-  Subnets?: SwitchSubnet[] | null;
+  ServerCount?: int32;
+  Subnets?: SwitchSubnet[];
   Bridge?: ResourceRef | null;
 }
 
 model SwitchSubnet {
-  ID?: int64 | null;
-  DefaultRoute?: string | null;
+  ID?: int64;
+  DefaultRoute?: string;
   NextHop?: string | null;
   StaticRoute?: string | null;
-  NetworkAddress?: string | null;
-  NetworkMaskLen?: int32 | null;
+  NetworkAddress?: string;
+  NetworkMaskLen?: int32;
   Internet?: InternetInfo | null;
-  IPAddresses?: SwitchSubnetIPAddresses | null;
+  IPAddresses?: SwitchSubnetIPAddresses;
 }
 
 model SwitchSubnetIPAddresses {
@@ -32,22 +32,22 @@ model SwitchSubnetIPAddresses {
 }
 
 model InternetInfo {
-  ID?: int64 | null;
-  Name?: string | null;
-  BandWidthMbps?: int32 | null;
-  Scope?: EScope | null;
-  ServiceClass?: string | null;
+  ID?: int64;
+  Name?: string;
+  BandWidthMbps?: int32;
+  Scope?: EScope;
+  ServiceClass?: string;
 }
 
 model SwitchCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
 }
 
 model SwitchUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;

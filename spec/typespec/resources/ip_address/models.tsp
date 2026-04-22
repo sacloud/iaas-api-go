@@ -6,5 +6,5 @@ namespace Sacloud.IaaS;
 
 model IPAddress {
   HostName: string;
-  IPAddress?: string | null;
+  IPAddress?: string;
 }

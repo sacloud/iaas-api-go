@@ -5,25 +5,25 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model EnhancedDB {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
   Status?: EnhancedDBStatus | null;
 }
 
 model EnhancedDBStatus {
-  DatabaseName?: string | null;
-  DatabaseType?: string | null;
-  Region?: string | null;
-  HostName?: string | null;
-  Port?: int32 | null;
+  DatabaseName?: string;
+  DatabaseType?: string;
+  Region?: string;
+  HostName?: string;
+  Port?: int32;
 }
 
 model EnhancedDBCreateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -31,17 +31,17 @@ model EnhancedDBCreateRequest {
 }
 
 model EnhancedDBCreateRequestStatus {
-  DatabaseName?: string | null;
-  DatabaseType?: string | null;
-  Region?: string | null;
+  DatabaseName?: string;
+  DatabaseType?: string;
+  Region?: string;
 }
 
 model EnhancedDBUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
-  SettingsHash?: string | null;
+  SettingsHash?: string;
 }
 
 model EnhancedDBSetPasswordRequest {
@@ -53,7 +53,7 @@ model EnhancedDBSetPasswordRequestEnhancedDB {
 }
 
 model EnhancedDBConfig {
-  MaxConnections?: int32 | null;
+  MaxConnections?: int32;
   AllowedNetworks: string[];
 }
 

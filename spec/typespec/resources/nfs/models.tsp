@@ -5,14 +5,14 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model NFS {
-  ID?: int64 | null;
-  Name?: string | null;
+  ID?: int64;
+  Name?: string;
   Description: string;
   Tags: string[];
-  Availability?: EAvailability | null;
-  Class?: string | null;
+  Availability?: EAvailability;
+  Class?: string;
   Instance?: NFSInstance | null;
-  Interfaces?: InterfaceView[] | null;
+  Interfaces?: InterfaceView[];
   Remark?: NFSRemark | null;
   IPAddresses: string[];
   Icon?: ResourceRef | null;
@@ -21,13 +21,13 @@ model NFS {
 
 model NFSInstance {
   Host?: NFSInstanceHost | null;
-  Status?: EServerInstanceStatus | null;
+  Status?: EServerInstanceStatus;
   StatusChangedAt?: utcDateTime | null;
 }
 
 model NFSInstanceHost {
-  Name?: string | null;
-  InfoURL?: string | null;
+  Name?: string;
+  InfoURL?: string;
 }
 
 model NFSRemark {
@@ -36,18 +36,18 @@ model NFSRemark {
 }
 
 model NFSRemarkNetwork {
-  DefaultRoute?: string | null;
-  NetworkMaskLen?: int32 | null;
+  DefaultRoute?: string;
+  NetworkMaskLen?: int32;
 }
 
 model NFSSwitch {
-  Name?: string | null;
+  Name?: string;
 }
 
 model NFSCreateRequest {
   Remark?: NFSCreateRequestRemark | null;
   IPAddresses: string[];
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;
@@ -60,12 +60,12 @@ model NFSCreateRequestRemark {
 }
 
 model NFSCreateRequestRemarkNetwork {
-  NetworkMaskLen?: int32 | null;
-  DefaultRoute?: string | null;
+  NetworkMaskLen?: int32;
+  DefaultRoute?: string;
 }
 
 model NFSUpdateRequest {
-  Name?: string | null;
+  Name?: string;
   Description: string;
   Tags: string[];
   Icon?: ResourceRef | null;

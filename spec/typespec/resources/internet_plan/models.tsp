@@ -5,8 +5,8 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model InternetPlan {
-  ID?: int64 | null;
-  Name?: string | null;
-  BandWidthMbps?: int32 | null;
-  Availability?: EAvailability | null;
+  ID?: int64;
+  Name?: string;
+  BandWidthMbps?: int32;
+  Availability?: EAvailability;
 }
