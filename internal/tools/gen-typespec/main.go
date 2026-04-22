@@ -386,7 +386,7 @@ GET /bridge?{"Count":3}
 以下のいずれかで辻褄合わせを行う必要がある。
 
 - HTTP 送信直前に URL の @BT@q=<urlencoded-json>@BT@ を @BT@<rawjson>@BT@ に書き換える
-  （参考実装: @BT@v2/client/find_transport.go@BT@ の @BT@findQueryRewriteTransport@BT@）
+  （参考実装: @BT@v2/middleware.go@BT@ の @BT@findQueryRewriteMiddleware@BT@）
 - あるいは独自に検索条件を組み立てて @BT@?{JSON}@BT@ を直接生成する
 
 将来サーバー側が本定義どおり @BT@?q={JSON}@BT@ を受理するようになれば、書き換え層は不要になる。

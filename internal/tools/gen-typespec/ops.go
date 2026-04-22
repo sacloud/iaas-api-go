@@ -458,7 +458,7 @@ func generateIndividualFile(api *dsl.Resource, outputPath string) {
 		if envelopeName, ok := envelopeNameByKey[g.key]; ok && envelopeName != "" {
 			// Find 系 (GET + XxxFindRequestEnvelope) は @query q?: string に差し替える。
 			// サーバーは将来 `?q={json}` を受け付ける予定（未実装）。OpenAPI はその未来形で記述し、
-			// ワイヤーレベルでは findQueryRewriteTransport が `q=` を剥がして `?{json}` に変換する。
+			// ワイヤーレベルでは findQueryRewriteMiddleware が `q=` を剥がして `?{json}` に変換する。
 			if strings.ToLower(g.key.method) == "get" && strings.HasSuffix(envelopeName, "FindRequestEnvelope") {
 				params = append(params, opParam{
 					Decorator: "@query",

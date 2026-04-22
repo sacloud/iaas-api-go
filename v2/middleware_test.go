@@ -1,4 +1,4 @@
-// Copyright 2022-2025 The sacloud/iaas-api-go Authors
+// Copyright 2022-2026 The sacloud/iaas-api-go Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package client
+package iaas
 
 import (
 	"io"
@@ -20,9 +20,11 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/sacloud/saclient-go"
 )
 
-func TestFindQueryRewriteTransport(t *testing.T) {
+func TestFindQueryRewriteMiddleware(t *testing.T) {
 	var gotRawQuery string
 	var gotMethod string
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -33,19 +35,24 @@ func TestFindQueryRewriteTransport(t *testing.T) {
 	}))
 	defer srv.Close()
 
+	run := func(t *testing.T, req *http.Request) {
+		t.Helper()
+		mw := findQueryRewriteMiddleware()
+		resp, err := mw(req, singlePull(terminalMiddleware()))
+		if err != nil {
+			t.Fatalf("middleware: %v", err)
+		}
+		_ = resp.Body.Close()
+	}
+
 	t.Run("rewrites q= prefix to raw JSON", func(t *testing.T) {
-		hc := &http.Client{Transport: NewFindQueryRewriteTransport(nil)}
 		req, err := http.NewRequest(http.MethodGet, srv.URL, nil)
 		if err != nil {
 			t.Fatalf("NewRequest: %v", err)
 		}
 		// クライアントが組み立てた URL は `?q=%7B%22Count%22%3A3%7D` 相当
 		req.URL.RawQuery = "q=" + urlEncode(`{"Count":3}`)
-		resp, err := hc.Do(req)
-		if err != nil {
-			t.Fatalf("Do: %v", err)
-		}
-		_ = resp.Body.Close()
+		run(t, req)
 
 		if gotMethod != http.MethodGet {
 			t.Errorf("method = %q, want GET", gotMethod)
@@ -56,16 +63,11 @@ func TestFindQueryRewriteTransport(t *testing.T) {
 	})
 
 	t.Run("leaves non-GET requests untouched", func(t *testing.T) {
-		hc := &http.Client{Transport: NewFindQueryRewriteTransport(nil)}
 		req, err := http.NewRequest(http.MethodPost, srv.URL+"?q="+urlEncode(`{"Count":3}`), strings.NewReader("body"))
 		if err != nil {
 			t.Fatalf("NewRequest: %v", err)
 		}
-		resp, err := hc.Do(req)
-		if err != nil {
-			t.Fatalf("Do: %v", err)
-		}
-		_ = resp.Body.Close()
+		run(t, req)
 		// POST は書き換えない (URL-encoded のまま)
 		if gotRawQuery != "q="+urlEncode(`{"Count":3}`) {
 			t.Errorf("POST RawQuery = %q, want URL-encoded passthrough", gotRawQuery)
@@ -73,36 +75,43 @@ func TestFindQueryRewriteTransport(t *testing.T) {
 	})
 
 	t.Run("leaves non-JSON q= untouched", func(t *testing.T) {
-		hc := &http.Client{Transport: NewFindQueryRewriteTransport(nil)}
 		req, err := http.NewRequest(http.MethodGet, srv.URL+"?q=foo", nil)
 		if err != nil {
 			t.Fatalf("NewRequest: %v", err)
 		}
-		resp, err := hc.Do(req)
-		if err != nil {
-			t.Fatalf("Do: %v", err)
-		}
-		_ = resp.Body.Close()
+		run(t, req)
 		if gotRawQuery != "q=foo" {
 			t.Errorf("non-JSON RawQuery = %q, want unchanged", gotRawQuery)
 		}
 	})
 
 	t.Run("leaves empty query untouched", func(t *testing.T) {
-		hc := &http.Client{Transport: NewFindQueryRewriteTransport(nil)}
 		req, err := http.NewRequest(http.MethodGet, srv.URL, nil)
 		if err != nil {
 			t.Fatalf("NewRequest: %v", err)
 		}
-		resp, err := hc.Do(req)
-		if err != nil {
-			t.Fatalf("Do: %v", err)
-		}
-		_ = resp.Body.Close()
+		run(t, req)
 		if gotRawQuery != "" {
 			t.Errorf("empty RawQuery = %q, want empty", gotRawQuery)
 		}
 	})
+}
+
+func terminalMiddleware() saclient.Middleware {
+	return func(req *http.Request, _ func() (saclient.Middleware, bool)) (*http.Response, error) {
+		return http.DefaultClient.Do(req)
+	}
+}
+
+func singlePull(next saclient.Middleware) func() (saclient.Middleware, bool) {
+	called := false
+	return func() (saclient.Middleware, bool) {
+		if called {
+			return nil, false
+		}
+		called = true
+		return next, true
+	}
 }
 
 // urlEncode は url.QueryEscape 相当だが、テストケースの可読性のために

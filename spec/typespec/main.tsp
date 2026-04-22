@@ -121,7 +121,7 @@ using TypeSpec.OpenAPI;
   以下のいずれかで辻褄合わせを行う必要がある。
   
   - HTTP 送信直前に URL の `q=<urlencoded-json>` を `<rawjson>` に書き換える
-    （参考実装: `v2/client/find_transport.go` の `findQueryRewriteTransport`）
+    （参考実装: `v2/middleware.go` の `findQueryRewriteMiddleware`）
   - あるいは独自に検索条件を組み立てて `?{JSON}` を直接生成する
   
   将来サーバー側が本定義どおり `?q={JSON}` を受理するようになれば、書き換え層は不要になる。
