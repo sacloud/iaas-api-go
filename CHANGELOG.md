@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.28.0](https://github.com/sacloud/iaas-api-go/compare/v1.27.0...v1.28.0) - 2026-04-23
+- update: bump Go version to 1.25.0 and upgrade packages-go by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/470
+- fix: add zone parameter to NFS plan queries by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/469
+- refactor: remove text/template dependency from buildURL by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/472
+
 ## [v1.27.0](https://github.com/sacloud/iaas-api-go/compare/v1.26.0...v1.27.0) - 2026-04-22
 - typo by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/458
 - Remove ReadWrite in ContainerRegistry public setting by @u5surf in https://github.com/sacloud/iaas-api-go/pull/464
