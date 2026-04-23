@@ -75,12 +75,6 @@ func (s *ApiError) encodeFields(e *jx.Encoder) {
 		}
 	}
 	{
-		if s.Status.Set {
-			e.FieldStart("status")
-			s.Status.Encode(e)
-		}
-	}
-	{
 		if s.ErrorCode.Set {
 			e.FieldStart("error_code")
 			s.ErrorCode.Encode(e)
@@ -94,12 +88,11 @@ func (s *ApiError) encodeFields(e *jx.Encoder) {
 	}
 }
 
-var jsonFieldsNameOfApiError = [5]string{
+var jsonFieldsNameOfApiError = [4]string{
 	0: "is_fatal",
 	1: "serial",
-	2: "status",
-	3: "error_code",
-	4: "error_msg",
+	2: "error_code",
+	3: "error_msg",
 }
 
 // Decode decodes ApiError from json.
@@ -129,16 +122,6 @@ func (s *ApiError) Decode(d *jx.Decoder) error {
 				return nil
 			}(); err != nil {
 				return errors.Wrap(err, "decode field \"serial\"")
-			}
-		case "status":
-			if err := func() error {
-				s.Status.Reset()
-				if err := s.Status.Decode(d); err != nil {
-					return err
-				}
-				return nil
-			}(); err != nil {
-				return errors.Wrap(err, "decode field \"status\"")
 			}
 		case "error_code":
 			if err := func() error {

@@ -20,7 +20,6 @@ type Action string
 type ApiError struct {
 	IsFatal   OptBool   `json:"is_fatal"`
 	Serial    OptString `json:"serial"`
-	Status    OptString `json:"status"`
 	ErrorCode OptString `json:"error_code"`
 	ErrorMsg  OptString `json:"error_msg"`
 }
@@ -33,11 +32,6 @@ func (s *ApiError) GetIsFatal() OptBool {
 // GetSerial returns the value of Serial.
 func (s *ApiError) GetSerial() OptString {
 	return s.Serial
-}
-
-// GetStatus returns the value of Status.
-func (s *ApiError) GetStatus() OptString {
-	return s.Status
 }
 
 // GetErrorCode returns the value of ErrorCode.
@@ -58,11 +52,6 @@ func (s *ApiError) SetIsFatal(val OptBool) {
 // SetSerial sets the value of Serial.
 func (s *ApiError) SetSerial(val OptString) {
 	s.Serial = val
-}
-
-// SetStatus sets the value of Status.
-func (s *ApiError) SetStatus(val OptString) {
-	s.Status = val
 }
 
 // SetErrorCode sets the value of ErrorCode.

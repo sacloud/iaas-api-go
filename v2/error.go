@@ -44,6 +44,53 @@ func (e *Error) Unwrap() error {
 	return e.err
 }
 
+// apiErrorStatusCode は内部で *client.ApiErrorStatusCode を取り出すヘルパ。
+// 各アクセサ共通のボイラープレートを畳む。
+func (e *Error) apiErrorStatusCode() *client.ApiErrorStatusCode {
+	var se *client.ApiErrorStatusCode
+	if errors.As(e.err, &se) {
+		return se
+	}
+	return nil
+}
+
+// ResponseCode は HTTP レスポンスコードを返す。取得できなければ 0。
+func (e *Error) ResponseCode() int {
+	if se := e.apiErrorStatusCode(); se != nil {
+		return se.StatusCode
+	}
+	return 0
+}
+
+// Code は API が返した error_code を返す（例: "still_creating"）。
+func (e *Error) Code() string {
+	if se := e.apiErrorStatusCode(); se != nil {
+		return se.Response.ErrorCode.Value
+	}
+	return ""
+}
+
+// Message は API が返した error_msg を返す。
+func (e *Error) Message() string {
+	if se := e.apiErrorStatusCode(); se != nil {
+		return se.Response.ErrorMsg.Value
+	}
+	return ""
+}
+
+// Serial は API が返した追跡用 serial を返す。
+func (e *Error) Serial() string {
+	if se := e.apiErrorStatusCode(); se != nil {
+		return se.Response.Serial.Value
+	}
+	return ""
+}
+
+// IsNotFoundError は err が 404 を含む *Error かを判定する。
+// v1 `iaas.IsNotFoundError` と同名にし downstream 移行を機械的にする目的で、
+// saclient.IsNotFoundError に委譲する薄いエイリアス。
+var IsNotFoundError = saclient.IsNotFoundError
+
 // NewError は一般的なラップ用コンストラクタ。argument 検証失敗など
 // HTTP 呼び出しを伴わないエラーに利用する。
 func NewError(msg string, err error) *Error {

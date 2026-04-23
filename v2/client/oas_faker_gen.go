@@ -32,11 +32,6 @@ func (s *ApiError) SetFake() {
 	}
 	{
 		{
-			s.Status.SetFake()
-		}
-	}
-	{
-		{
 			s.ErrorCode.SetFake()
 		}
 	}
