@@ -159,52 +159,6 @@ type AutoScaleOpStatusParams struct {
 	ID int64
 }
 
-// BillOpByContractParams is parameters of BillOp_byContract operation.
-type BillOpByContractParams struct {
-	// 契約（アカウント）の ID。.
-	AccountID int64
-}
-
-// BillOpByContractYearParams is parameters of BillOp_byContractYear operation.
-type BillOpByContractYearParams struct {
-	// 契約（アカウント）の ID。.
-	AccountID int64
-	// 対象年（西暦 4 桁の 10 進文字列）。.
-	Year string
-}
-
-// BillOpByContractYearMonthParams is parameters of BillOp_byContractYearMonth operation.
-type BillOpByContractYearMonthParams struct {
-	// 契約（アカウント）の ID。.
-	AccountID int64
-	// 対象年（西暦 4 桁の 10 進文字列）。.
-	Year string
-	// 対象月（1〜12 の 10 進文字列）。.
-	Month string
-}
-
-// BillOpDetailsParams is parameters of BillOp_details operation.
-type BillOpDetailsParams struct {
-	// 会員コード。.
-	MemberCode string
-	// 対象リソースの ID。.
-	ID int64
-}
-
-// BillOpDetailsCSVParams is parameters of BillOp_detailsCSV operation.
-type BillOpDetailsCSVParams struct {
-	// 会員コード。.
-	MemberCode string
-	// 対象リソースの ID。.
-	ID int64
-}
-
-// BillOpReadParams is parameters of BillOp_read operation.
-type BillOpReadParams struct {
-	// 対象リソースの ID。.
-	ID int64
-}
-
 // BridgeOpDeleteParams is parameters of BridgeOp_delete operation.
 type BridgeOpDeleteParams struct {
 	// 対象リソースの ID。.

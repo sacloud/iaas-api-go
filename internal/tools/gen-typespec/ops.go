@@ -396,6 +396,9 @@ func generateOps() {
 	var pathNameOrder []string
 	seen := map[string]bool{}
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		pn := api.GetPathName()
 		if !seen[pn] {
 			seen[pn] = true

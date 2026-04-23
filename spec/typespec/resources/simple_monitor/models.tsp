@@ -76,7 +76,10 @@ model SimpleMonitorHealthCheck {
   SNI: string;
   Host: string;
   BasicAuthUsername: string;
+
+  @visibility(Lifecycle.Create, Lifecycle.Update)
   BasicAuthPassword: string;
+
   ContainsString: string;
   QName: string;
   ExpectedData: string;

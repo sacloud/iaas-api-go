@@ -60,14 +60,6 @@ allowlist に含まれず TypeSpec / OpenAPI / v2 Go client に emit されな�
 | CreatedAt |
 | ModifiedAt |
 
-## Bill
-
-| Field |
-|---|
-| MemberID |
-| PayLimit |
-| PaymentClassID |
-
 ## Bridge
 
 | Field |

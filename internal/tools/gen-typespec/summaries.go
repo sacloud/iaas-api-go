@@ -173,15 +173,6 @@ var actionSummaries = map[string]string{
 // というケースでここに登録する。マニュアル参照ページ URL をコメントで残すこと。
 // 参照: https://manual.sakura.ad.jp/cloud/
 var summaryOverrides = map[string]string{
-	// 請求情報: "Bill 取得" では語感が弱い
-	// https://manual.sakura.ad.jp/cloud/api/billing.html
-	"Bill.read":                "請求情報取得",
-	"Bill.details":             "請求明細取得",
-	"Bill.detailsCSV":          "請求明細 CSV 取得",
-	"Bill.byContract":          "契約別請求情報取得",
-	"Bill.byContractYear":      "契約・年別請求情報取得",
-	"Bill.byContractYearMonth": "契約・年月別請求情報取得",
-
 	// ESME: SMS メッセージ送信サービス。"ESME 〜メッセージ送信" は意味が重複するのでマニュアル表記に寄せる
 	// https://manual.sakura.ad.jp/cloud/appliance/esme/
 	"ESME.logs":                        "SMS 送信ログ取得",

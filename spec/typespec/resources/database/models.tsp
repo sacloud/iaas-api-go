@@ -99,8 +99,13 @@ model DatabaseSettingCommon {
   ServicePort?: int32;
   SourceNetwork?: string[] | null;
   DefaultUser?: string;
+
+  @visibility(Lifecycle.Create, Lifecycle.Update)
   UserPassword?: string;
+
   ReplicaUser?: string;
+
+  @visibility(Lifecycle.Create, Lifecycle.Update)
   ReplicaPassword?: string;
 }
 
@@ -130,6 +135,7 @@ model DatabaseReplicationSetting {
   User?: string;
 
   @doc("FTP 接続のパスワード")
+  @visibility(Lifecycle.Create, Lifecycle.Update)
   Password?: string;
 
   @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
@@ -153,6 +159,8 @@ model DatabaseRemarkDBConfCommon {
   DatabaseVersion?: string;
   DatabaseRevision?: string;
   DefaultUser?: string;
+
+  @visibility(Lifecycle.Create, Lifecycle.Update)
   UserPassword?: string;
 }
 

@@ -248,6 +248,7 @@ model VPCRouterRemoteAccessUser {
   UserName?: string;
 
   @doc("FTP 接続のパスワード")
+  @visibility(Lifecycle.Create, Lifecycle.Update)
   Password?: string;
 }
 

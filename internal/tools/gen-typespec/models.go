@@ -51,6 +51,9 @@ func init() {
 func buildAllModels() {
 	allModelsByName = map[string]*dsl.Model{}
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		for _, m := range resourceModelsForAPI(api) {
 			if _, exists := allModelsByName[m.Name]; !exists {
 				allModelsByName[m.Name] = m
@@ -284,6 +287,21 @@ func modelFieldTypeToTS(goType string) string {
 	}
 }
 
+// modelFieldVisibility は特定モデル・フィールドに付与する @visibility 引数を指定する。
+// 値は @visibility(...) のカンマ区切り内側そのまま (例: `Lifecycle.Create, Lifecycle.Update`)。
+// request 系では emit するが response からは落としたいフィールド (ユーザ入力 password の echo 等)
+// に使う。
+var modelFieldVisibility = map[string]map[string]string{
+	// 設定値の echo であり、レスポンスに載せると平文 password が wire を流れる。
+	// create / update では受け取る必要があるため、Lifecycle.Create + Lifecycle.Update に絞って
+	// Read レスポンスから除外する。
+	"VPCRouterRemoteAccessUser":  {"Password": "Lifecycle.Create, Lifecycle.Update"},
+	"DatabaseSettingCommon":      {"UserPassword": "Lifecycle.Create, Lifecycle.Update", "ReplicaPassword": "Lifecycle.Create, Lifecycle.Update"},
+	"DatabaseRemarkDBConfCommon": {"UserPassword": "Lifecycle.Create, Lifecycle.Update"},
+	"DatabaseReplicationSetting": {"Password": "Lifecycle.Create, Lifecycle.Update"},
+	"SimpleMonitorHealthCheck":   {"BasicAuthPassword": "Lifecycle.Create, Lifecycle.Update"},
+}
+
 // modelFieldExclusions は特定モデルで TypeSpec 出力をスキップするフィールド名のセット。
 // DSL 定義には存在するが OpenAPI ドキュメントに含めないフィールドを指定する。
 var modelFieldExclusions = map[string]map[string]bool{
@@ -330,6 +348,7 @@ type tsModelField struct {
 	EnumDefault  string // enum デフォルトのコメント用
 	OtherDefault string // その他デフォルト値のコメント用
 	Description  string // @doc("...") として emit する説明 (空なら emit しない)
+	Visibility   string // @visibility(...) の引数（空なら emit しない）
 }
 
 // nakedFieldIsNullable は naked 型の指定フィールドが null になりえるかを返す。
@@ -613,6 +632,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 		optional := nullable || nakedFieldIsOptional(nakedRT, child.name)
 
 		description := lookupFieldDescription(modelName, child.name)
+		visibility := modelFieldVisibility[modelName][child.name]
 
 		// 葉ノード
 		if child.leafField != nil && len(child.children) == 0 {
@@ -642,6 +662,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 					return ""
 				}(),
 				Description: description,
+				Visibility:  visibility,
 			})
 			continue
 		}
@@ -664,6 +685,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 				TSType:      tsType,
 				Optional:    true,
 				Description: description,
+				Visibility:  visibility,
 			})
 			continue
 		}
@@ -698,6 +720,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 			TSType:      tsType,
 			Optional:    optional,
 			Description: description,
+			Visibility:  visibility,
 		})
 	}
 
@@ -719,6 +742,9 @@ model {{ .Name }} {
 	{{- range .Fields }}
 	{{- if .Description }}
 	@doc("{{ .Description | docEscape }}")
+	{{- end }}
+	{{- if .Visibility }}
+	@visibility({{ .Visibility }})
 	{{- end }}
 	{{- if .TSDefault }}
 	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}} = {{.TSDefault}};
@@ -881,6 +907,9 @@ func generateModels() {
 	outputtedModels := map[string]bool{}
 
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		allModels := filteredModelsForAPI(api)
 		merges, skipSet := computeRequestModelMerges(api)
 

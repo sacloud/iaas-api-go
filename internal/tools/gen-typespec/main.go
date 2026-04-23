@@ -69,6 +69,9 @@ func runDumpFields() {
 	var entries []entry
 
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		resource := api.TypeName()
 
 		// モデル (DSL から合成されるサブモデル含む) を dump
@@ -233,6 +236,9 @@ func generateResourcesTsp() {
 	seenGroup := map[string]bool{}
 
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		pn := api.GetPathName()
 		if isSharedGroup(pn) {
 			// 共有グループ ops ディレクトリを登録
@@ -330,6 +336,9 @@ func generateResourcesTsp() {
 // 共有グループ判定に使用する。
 func apiPathNameForDir(dirName string) string {
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		if api.FileSafeName() == dirName {
 			return api.GetPathName()
 		}
@@ -374,7 +383,6 @@ var sidebarTagGroups = []struct {
 	{"設備関連のAPI", []string{"Region", "Zone"}},
 	{"商品関連のAPI", []string{"ServerPlan", "DiskPlan", "InternetPlan", "PrivateHostPlan", "License", "LicenseInfo", "ServiceClass"}},
 	{"ユーザ・プロジェクト関連のAPI", []string{"AuthStatus", "Coupon"}},
-	{"請求関連のAPI", []string{"Bill"}},
 }
 
 // buildTagGroupsTsp は sidebarTagGroups を TypeSpec の @extension 呼び出し文字列に整形する。

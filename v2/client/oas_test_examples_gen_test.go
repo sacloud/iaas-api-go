@@ -1059,288 +1059,6 @@ func TestAutoScaleStatusResponseEnvelope_Examples(t *testing.T) {
 		})
 	}
 }
-func TestBill_EncodeDecode(t *testing.T) {
-	var typ Bill
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 Bill
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBillByContractResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ BillByContractResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillByContractResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-
-func TestBillByContractResponseEnvelope_Examples(t *testing.T) {
-
-	for i, tc := range []struct {
-		Input string
-	}{
-		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
-	} {
-		tc := tc
-		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
-			var typ BillByContractResponseEnvelope
-
-			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
-				if validateErr, ok := errors.Into[*validate.Error](err); ok {
-					t.Skipf("Validation error: %v", validateErr)
-					return
-				}
-				require.NoErrorf(t, err, "Input: %s", tc.Input)
-			}
-
-			e := jx.Encoder{}
-			typ.Encode(&e)
-			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
-
-			var typ2 BillByContractResponseEnvelope
-			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
-		})
-	}
-}
-func TestBillByContractYearMonthResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ BillByContractYearMonthResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillByContractYearMonthResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-
-func TestBillByContractYearMonthResponseEnvelope_Examples(t *testing.T) {
-
-	for i, tc := range []struct {
-		Input string
-	}{
-		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
-	} {
-		tc := tc
-		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
-			var typ BillByContractYearMonthResponseEnvelope
-
-			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
-				if validateErr, ok := errors.Into[*validate.Error](err); ok {
-					t.Skipf("Validation error: %v", validateErr)
-					return
-				}
-				require.NoErrorf(t, err, "Input: %s", tc.Input)
-			}
-
-			e := jx.Encoder{}
-			typ.Encode(&e)
-			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
-
-			var typ2 BillByContractYearMonthResponseEnvelope
-			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
-		})
-	}
-}
-func TestBillByContractYearResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ BillByContractYearResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillByContractYearResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-
-func TestBillByContractYearResponseEnvelope_Examples(t *testing.T) {
-
-	for i, tc := range []struct {
-		Input string
-	}{
-		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
-	} {
-		tc := tc
-		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
-			var typ BillByContractYearResponseEnvelope
-
-			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
-				if validateErr, ok := errors.Into[*validate.Error](err); ok {
-					t.Skipf("Validation error: %v", validateErr)
-					return
-				}
-				require.NoErrorf(t, err, "Input: %s", tc.Input)
-			}
-
-			e := jx.Encoder{}
-			typ.Encode(&e)
-			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
-
-			var typ2 BillByContractYearResponseEnvelope
-			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
-		})
-	}
-}
-func TestBillDetail_EncodeDecode(t *testing.T) {
-	var typ BillDetail
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillDetail
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBillDetailCSV_EncodeDecode(t *testing.T) {
-	var typ BillDetailCSV
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillDetailCSV
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-func TestBillDetailsCSVResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ BillDetailsCSVResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillDetailsCSVResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-
-func TestBillDetailsCSVResponseEnvelope_Examples(t *testing.T) {
-
-	for i, tc := range []struct {
-		Input string
-	}{
-		{Input: "{\"CSV\":{\"BodyRows\":[],\"HeaderRow\":[]},\"is_ok\":true}"},
-	} {
-		tc := tc
-		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
-			var typ BillDetailsCSVResponseEnvelope
-
-			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
-				if validateErr, ok := errors.Into[*validate.Error](err); ok {
-					t.Skipf("Validation error: %v", validateErr)
-					return
-				}
-				require.NoErrorf(t, err, "Input: %s", tc.Input)
-			}
-
-			e := jx.Encoder{}
-			typ.Encode(&e)
-			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
-
-			var typ2 BillDetailsCSVResponseEnvelope
-			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
-		})
-	}
-}
-func TestBillDetailsResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ BillDetailsResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillDetailsResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-
-func TestBillDetailsResponseEnvelope_Examples(t *testing.T) {
-
-	for i, tc := range []struct {
-		Input string
-	}{
-		{Input: "{\"BillDetails\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
-	} {
-		tc := tc
-		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
-			var typ BillDetailsResponseEnvelope
-
-			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
-				if validateErr, ok := errors.Into[*validate.Error](err); ok {
-					t.Skipf("Validation error: %v", validateErr)
-					return
-				}
-				require.NoErrorf(t, err, "Input: %s", tc.Input)
-			}
-
-			e := jx.Encoder{}
-			typ.Encode(&e)
-			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
-
-			var typ2 BillDetailsResponseEnvelope
-			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
-		})
-	}
-}
-func TestBillReadResponseEnvelope_EncodeDecode(t *testing.T) {
-	var typ BillReadResponseEnvelope
-	typ.SetFake()
-
-	e := jx.Encoder{}
-	typ.Encode(&e)
-	data := e.Bytes()
-	require.True(t, std.Valid(data), "Encoded: %s", data)
-
-	var typ2 BillReadResponseEnvelope
-	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
-}
-
-func TestBillReadResponseEnvelope_Examples(t *testing.T) {
-
-	for i, tc := range []struct {
-		Input string
-	}{
-		{Input: "{\"Bills\":[],\"Count\":0,\"From\":0,\"Total\":0}"},
-	} {
-		tc := tc
-		t.Run(fmt.Sprintf("Test%d", i+1), func(t *testing.T) {
-			var typ BillReadResponseEnvelope
-
-			if err := typ.Decode(jx.DecodeStr(tc.Input)); err != nil {
-				if validateErr, ok := errors.Into[*validate.Error](err); ok {
-					t.Skipf("Validation error: %v", validateErr)
-					return
-				}
-				require.NoErrorf(t, err, "Input: %s", tc.Input)
-			}
-
-			e := jx.Encoder{}
-			typ.Encode(&e)
-			require.True(t, std.Valid(e.Bytes()), "Encoded: %s", e.Bytes())
-
-			var typ2 BillReadResponseEnvelope
-			require.NoError(t, typ2.Decode(jx.DecodeBytes(e.Bytes())))
-		})
-	}
-}
 func TestBridge_EncodeDecode(t *testing.T) {
 	var typ Bridge
 	typ.SetFake()
@@ -3489,6 +3207,18 @@ func TestDatabaseRemarkDBConfCommon_EncodeDecode(t *testing.T) {
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
 	var typ2 DatabaseRemarkDBConfCommon
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestDatabaseRemarkDBConfCommonCreate_EncodeDecode(t *testing.T) {
+	var typ DatabaseRemarkDBConfCommonCreate
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 DatabaseRemarkDBConfCommonCreate
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestDatabaseRemarkNetwork_EncodeDecode(t *testing.T) {
@@ -10769,8 +10499,8 @@ func TestShutdownOption_EncodeDecode(t *testing.T) {
 	var typ2 ShutdownOption
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
-func TestSimpleMonitorHealthCheck_EncodeDecode(t *testing.T) {
-	var typ SimpleMonitorHealthCheck
+func TestSimpleMonitorHealthCheckCreate_EncodeDecode(t *testing.T) {
+	var typ SimpleMonitorHealthCheckCreate
 	typ.SetFake()
 
 	e := jx.Encoder{}
@@ -10778,7 +10508,19 @@ func TestSimpleMonitorHealthCheck_EncodeDecode(t *testing.T) {
 	data := e.Bytes()
 	require.True(t, std.Valid(data), "Encoded: %s", data)
 
-	var typ2 SimpleMonitorHealthCheck
+	var typ2 SimpleMonitorHealthCheckCreate
+	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
+}
+func TestSimpleMonitorHealthCheckCreateOrUpdate_EncodeDecode(t *testing.T) {
+	var typ SimpleMonitorHealthCheckCreateOrUpdate
+	typ.SetFake()
+
+	e := jx.Encoder{}
+	typ.Encode(&e)
+	data := e.Bytes()
+	require.True(t, std.Valid(data), "Encoded: %s", data)
+
+	var typ2 SimpleMonitorHealthCheckCreateOrUpdate
 	require.NoError(t, typ2.Decode(jx.DecodeBytes(data)))
 }
 func TestSimpleMonitorMonitorResponseTimeResponseEnvelope_EncodeDecode(t *testing.T) {

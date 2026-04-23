@@ -71,6 +71,9 @@ model {{ .ResultTypeName }} {
 
 func generateResults() {
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		var results []resultInfo
 
 		for _, op := range api.Operations {

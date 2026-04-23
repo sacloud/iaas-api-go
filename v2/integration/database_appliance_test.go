@@ -92,7 +92,7 @@ func TestDatabaseApplianceCRUD(t *testing.T) {
 					DefaultRoute:   client.NewOptString("192.168.0.1"),
 				}),
 				DBConf: client.NewOptApplianceCreateRequestRemarkDBConf(client.ApplianceCreateRequestRemarkDBConf{
-					Common: client.DatabaseRemarkDBConfCommon{
+					Common: client.DatabaseRemarkDBConfCommonCreate{
 						DatabaseName: client.NewOptString("MariaDB"),
 						DefaultUser:  client.NewOptString("exa.mple"),
 						UserPassword: client.NewOptString("LibsacloudExamplePassword01"),

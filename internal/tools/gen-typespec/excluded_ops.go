@@ -16,6 +16,17 @@ package main
 
 import "github.com/sacloud/iaas-api-go/internal/dsl"
 
+// excludedAPIs は v2 TypeSpec の生成対象から除外する API (リソース) の集合。
+// iaas-api-go としてサポート対象外となったカテゴリをここで丸ごと除外する。
+var excludedAPIs = map[string]bool{
+	// 請求関連 API は iaas-api-go ではサポート対象外
+	"Bill": true,
+}
+
+func apiIsExcluded(api *dsl.Resource) bool {
+	return excludedAPIs[api.Name]
+}
+
 // excludedOps は v2 TypeSpec の生成対象から除外する DSL オペレーションの集合。
 // キー = API（リソース）名、値 = 除外する op 名のセット。
 //
@@ -42,6 +53,9 @@ var excludedOps = map[string]map[string]bool{
 }
 
 func opIsExcluded(api *dsl.Resource, op *dsl.Operation) bool {
+	if apiIsExcluded(api) {
+		return true
+	}
 	if s, ok := excludedOps[api.Name]; ok {
 		return s[op.Name]
 	}

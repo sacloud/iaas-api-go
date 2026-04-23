@@ -779,15 +779,6 @@ var Manifest = map[string]map[string]bool{
 		"UserIPAddress": true, // Update の結果確認
 	},
 
-	// ----- Bill -----
-	// usacloud only。MemberID, PayLimit, PaymentClassID は未使用。
-	"Bill": {
-		"ID":     true,
-		"Amount": true,
-		"Date":   true,
-		"Paid":   true,
-	},
-
 	// ----- Coupon -----
 	// usacloud only。MemberID, ContractID, ServiceClassID は未使用。
 	"Coupon": {

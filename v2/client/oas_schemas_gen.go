@@ -343,16 +343,16 @@ func (s *ApplianceCreateRequestRemark) SetRouter(val OptApplianceCreateRequestRe
 
 // Ref: #/components/schemas/ApplianceCreateRequestRemarkDBConf
 type ApplianceCreateRequestRemarkDBConf struct {
-	Common DatabaseRemarkDBConfCommon `json:"Common"`
+	Common DatabaseRemarkDBConfCommonCreate `json:"Common"`
 }
 
 // GetCommon returns the value of Common.
-func (s *ApplianceCreateRequestRemarkDBConf) GetCommon() DatabaseRemarkDBConfCommon {
+func (s *ApplianceCreateRequestRemarkDBConf) GetCommon() DatabaseRemarkDBConfCommonCreate {
 	return s.Common
 }
 
 // SetCommon sets the value of Common.
-func (s *ApplianceCreateRequestRemarkDBConf) SetCommon(val DatabaseRemarkDBConfCommon) {
+func (s *ApplianceCreateRequestRemarkDBConf) SetCommon(val DatabaseRemarkDBConfCommonCreate) {
 	s.Common = val
 }
 
@@ -1975,552 +1975,6 @@ func (s *BasicAuth) SetPassword(val string) {
 // SetRoles sets the value of Roles.
 func (s *BasicAuth) SetRoles(val []string) {
 	s.Roles = val
-}
-
-// Ref: #/components/schemas/Bill
-type Bill struct {
-	// リソースを一意に識別するID.
-	ID OptInt64 `json:"ID"`
-	// 請求金額 (税込、円).
-	Amount OptInt64 `json:"Amount"`
-	// 請求対象月の締日.
-	Date OptNilDateTime `json:"Date"`
-	// 支払済みかどうか.
-	Paid bool `json:"Paid"`
-}
-
-// GetID returns the value of ID.
-func (s *Bill) GetID() OptInt64 {
-	return s.ID
-}
-
-// GetAmount returns the value of Amount.
-func (s *Bill) GetAmount() OptInt64 {
-	return s.Amount
-}
-
-// GetDate returns the value of Date.
-func (s *Bill) GetDate() OptNilDateTime {
-	return s.Date
-}
-
-// GetPaid returns the value of Paid.
-func (s *Bill) GetPaid() bool {
-	return s.Paid
-}
-
-// SetID sets the value of ID.
-func (s *Bill) SetID(val OptInt64) {
-	s.ID = val
-}
-
-// SetAmount sets the value of Amount.
-func (s *Bill) SetAmount(val OptInt64) {
-	s.Amount = val
-}
-
-// SetDate sets the value of Date.
-func (s *Bill) SetDate(val OptNilDateTime) {
-	s.Date = val
-}
-
-// SetPaid sets the value of Paid.
-func (s *Bill) SetPaid(val bool) {
-	s.Paid = val
-}
-
-// Response envelope for billByContractResponseEnvelope.
-// Ref: #/components/schemas/BillByContractResponseEnvelope
-type BillByContractResponseEnvelope struct {
-	// 対象リソースの総件数.
-	Total int32 `json:"Total"`
-	// 現在のページ番号.
-	From int32 `json:"From"`
-	// 現在のページの件数.
-	Count int32 `json:"Count"`
-	// Bills.
-	Bills []Bill `json:"Bills"`
-}
-
-// GetTotal returns the value of Total.
-func (s *BillByContractResponseEnvelope) GetTotal() int32 {
-	return s.Total
-}
-
-// GetFrom returns the value of From.
-func (s *BillByContractResponseEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetCount returns the value of Count.
-func (s *BillByContractResponseEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetBills returns the value of Bills.
-func (s *BillByContractResponseEnvelope) GetBills() []Bill {
-	return s.Bills
-}
-
-// SetTotal sets the value of Total.
-func (s *BillByContractResponseEnvelope) SetTotal(val int32) {
-	s.Total = val
-}
-
-// SetFrom sets the value of From.
-func (s *BillByContractResponseEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetCount sets the value of Count.
-func (s *BillByContractResponseEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetBills sets the value of Bills.
-func (s *BillByContractResponseEnvelope) SetBills(val []Bill) {
-	s.Bills = val
-}
-
-// Response envelope for billByContractYearMonthResponseEnvelope.
-// Ref: #/components/schemas/BillByContractYearMonthResponseEnvelope
-type BillByContractYearMonthResponseEnvelope struct {
-	// 対象リソースの総件数.
-	Total int32 `json:"Total"`
-	// 現在のページ番号.
-	From int32 `json:"From"`
-	// 現在のページの件数.
-	Count int32 `json:"Count"`
-	// Bills.
-	Bills []Bill `json:"Bills"`
-}
-
-// GetTotal returns the value of Total.
-func (s *BillByContractYearMonthResponseEnvelope) GetTotal() int32 {
-	return s.Total
-}
-
-// GetFrom returns the value of From.
-func (s *BillByContractYearMonthResponseEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetCount returns the value of Count.
-func (s *BillByContractYearMonthResponseEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetBills returns the value of Bills.
-func (s *BillByContractYearMonthResponseEnvelope) GetBills() []Bill {
-	return s.Bills
-}
-
-// SetTotal sets the value of Total.
-func (s *BillByContractYearMonthResponseEnvelope) SetTotal(val int32) {
-	s.Total = val
-}
-
-// SetFrom sets the value of From.
-func (s *BillByContractYearMonthResponseEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetCount sets the value of Count.
-func (s *BillByContractYearMonthResponseEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetBills sets the value of Bills.
-func (s *BillByContractYearMonthResponseEnvelope) SetBills(val []Bill) {
-	s.Bills = val
-}
-
-// Response envelope for billByContractYearResponseEnvelope.
-// Ref: #/components/schemas/BillByContractYearResponseEnvelope
-type BillByContractYearResponseEnvelope struct {
-	// 対象リソースの総件数.
-	Total int32 `json:"Total"`
-	// 現在のページ番号.
-	From int32 `json:"From"`
-	// 現在のページの件数.
-	Count int32 `json:"Count"`
-	// Bills.
-	Bills []Bill `json:"Bills"`
-}
-
-// GetTotal returns the value of Total.
-func (s *BillByContractYearResponseEnvelope) GetTotal() int32 {
-	return s.Total
-}
-
-// GetFrom returns the value of From.
-func (s *BillByContractYearResponseEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetCount returns the value of Count.
-func (s *BillByContractYearResponseEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetBills returns the value of Bills.
-func (s *BillByContractYearResponseEnvelope) GetBills() []Bill {
-	return s.Bills
-}
-
-// SetTotal sets the value of Total.
-func (s *BillByContractYearResponseEnvelope) SetTotal(val int32) {
-	s.Total = val
-}
-
-// SetFrom sets the value of From.
-func (s *BillByContractYearResponseEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetCount sets the value of Count.
-func (s *BillByContractYearResponseEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetBills sets the value of Bills.
-func (s *BillByContractYearResponseEnvelope) SetBills(val []Bill) {
-	s.Bills = val
-}
-
-// Ref: #/components/schemas/BillDetail
-type BillDetail struct {
-	// リソースを一意に識別するID.
-	ID OptInt64 `json:"ID"`
-	// 明細金額 (円).
-	Amount OptInt64 `json:"Amount"`
-	// 明細の内容説明.
-	Description string `json:"Description"`
-	// サービスクラス ID.
-	ServiceClassID OptInt64 `json:"ServiceClassID"`
-	// サービスクラスの階層パス.
-	ServiceClassPath OptString `json:"ServiceClassPath"`
-	// 使用量 (数値).
-	Usage OptInt64 `json:"Usage"`
-	// 表示用にフォーマットされた使用量 (例: "123時間").
-	FormattedUsage OptString `json:"FormattedUsage"`
-	// 利用量リソースのパス.
-	ServiceUsagePath OptString `json:"ServiceUsagePath"`
-	// サービスが提供されているゾーン名.
-	Zone OptString `json:"Zone"`
-	// 契約終了日時 (解約済みリソースの場合).
-	ContractEndAt OptNilDateTime `json:"ContractEndAt"`
-}
-
-// GetID returns the value of ID.
-func (s *BillDetail) GetID() OptInt64 {
-	return s.ID
-}
-
-// GetAmount returns the value of Amount.
-func (s *BillDetail) GetAmount() OptInt64 {
-	return s.Amount
-}
-
-// GetDescription returns the value of Description.
-func (s *BillDetail) GetDescription() string {
-	return s.Description
-}
-
-// GetServiceClassID returns the value of ServiceClassID.
-func (s *BillDetail) GetServiceClassID() OptInt64 {
-	return s.ServiceClassID
-}
-
-// GetServiceClassPath returns the value of ServiceClassPath.
-func (s *BillDetail) GetServiceClassPath() OptString {
-	return s.ServiceClassPath
-}
-
-// GetUsage returns the value of Usage.
-func (s *BillDetail) GetUsage() OptInt64 {
-	return s.Usage
-}
-
-// GetFormattedUsage returns the value of FormattedUsage.
-func (s *BillDetail) GetFormattedUsage() OptString {
-	return s.FormattedUsage
-}
-
-// GetServiceUsagePath returns the value of ServiceUsagePath.
-func (s *BillDetail) GetServiceUsagePath() OptString {
-	return s.ServiceUsagePath
-}
-
-// GetZone returns the value of Zone.
-func (s *BillDetail) GetZone() OptString {
-	return s.Zone
-}
-
-// GetContractEndAt returns the value of ContractEndAt.
-func (s *BillDetail) GetContractEndAt() OptNilDateTime {
-	return s.ContractEndAt
-}
-
-// SetID sets the value of ID.
-func (s *BillDetail) SetID(val OptInt64) {
-	s.ID = val
-}
-
-// SetAmount sets the value of Amount.
-func (s *BillDetail) SetAmount(val OptInt64) {
-	s.Amount = val
-}
-
-// SetDescription sets the value of Description.
-func (s *BillDetail) SetDescription(val string) {
-	s.Description = val
-}
-
-// SetServiceClassID sets the value of ServiceClassID.
-func (s *BillDetail) SetServiceClassID(val OptInt64) {
-	s.ServiceClassID = val
-}
-
-// SetServiceClassPath sets the value of ServiceClassPath.
-func (s *BillDetail) SetServiceClassPath(val OptString) {
-	s.ServiceClassPath = val
-}
-
-// SetUsage sets the value of Usage.
-func (s *BillDetail) SetUsage(val OptInt64) {
-	s.Usage = val
-}
-
-// SetFormattedUsage sets the value of FormattedUsage.
-func (s *BillDetail) SetFormattedUsage(val OptString) {
-	s.FormattedUsage = val
-}
-
-// SetServiceUsagePath sets the value of ServiceUsagePath.
-func (s *BillDetail) SetServiceUsagePath(val OptString) {
-	s.ServiceUsagePath = val
-}
-
-// SetZone sets the value of Zone.
-func (s *BillDetail) SetZone(val OptString) {
-	s.Zone = val
-}
-
-// SetContractEndAt sets the value of ContractEndAt.
-func (s *BillDetail) SetContractEndAt(val OptNilDateTime) {
-	s.ContractEndAt = val
-}
-
-// Ref: #/components/schemas/BillDetailCSV
-type BillDetailCSV struct {
-	// 明細件数.
-	Count OptInt32 `json:"Count"`
-	// CSV 生成時刻.
-	ResponsedAt OptNilDateTime `json:"ResponsedAt"`
-	// 推奨ファイル名.
-	Filename OptString `json:"Filename"`
-	// CSV 本文 (エスケープ済み文字列).
-	RawBody OptString `json:"RawBody"`
-	// CSV ヘッダ行.
-	HeaderRow []string `json:"HeaderRow"`
-	// CSV 本文行の配列.
-	BodyRows [][]string `json:"BodyRows"`
-}
-
-// GetCount returns the value of Count.
-func (s *BillDetailCSV) GetCount() OptInt32 {
-	return s.Count
-}
-
-// GetResponsedAt returns the value of ResponsedAt.
-func (s *BillDetailCSV) GetResponsedAt() OptNilDateTime {
-	return s.ResponsedAt
-}
-
-// GetFilename returns the value of Filename.
-func (s *BillDetailCSV) GetFilename() OptString {
-	return s.Filename
-}
-
-// GetRawBody returns the value of RawBody.
-func (s *BillDetailCSV) GetRawBody() OptString {
-	return s.RawBody
-}
-
-// GetHeaderRow returns the value of HeaderRow.
-func (s *BillDetailCSV) GetHeaderRow() []string {
-	return s.HeaderRow
-}
-
-// GetBodyRows returns the value of BodyRows.
-func (s *BillDetailCSV) GetBodyRows() [][]string {
-	return s.BodyRows
-}
-
-// SetCount sets the value of Count.
-func (s *BillDetailCSV) SetCount(val OptInt32) {
-	s.Count = val
-}
-
-// SetResponsedAt sets the value of ResponsedAt.
-func (s *BillDetailCSV) SetResponsedAt(val OptNilDateTime) {
-	s.ResponsedAt = val
-}
-
-// SetFilename sets the value of Filename.
-func (s *BillDetailCSV) SetFilename(val OptString) {
-	s.Filename = val
-}
-
-// SetRawBody sets the value of RawBody.
-func (s *BillDetailCSV) SetRawBody(val OptString) {
-	s.RawBody = val
-}
-
-// SetHeaderRow sets the value of HeaderRow.
-func (s *BillDetailCSV) SetHeaderRow(val []string) {
-	s.HeaderRow = val
-}
-
-// SetBodyRows sets the value of BodyRows.
-func (s *BillDetailCSV) SetBodyRows(val [][]string) {
-	s.BodyRows = val
-}
-
-// Response envelope for billDetailsCSVResponseEnvelope.
-// Ref: #/components/schemas/BillDetailsCSVResponseEnvelope
-type BillDetailsCSVResponseEnvelope struct {
-	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
-	IsOk bool `json:"is_ok"`
-	// CSV.
-	CSV BillDetailCSV `json:"CSV"`
-}
-
-// GetIsOk returns the value of IsOk.
-func (s *BillDetailsCSVResponseEnvelope) GetIsOk() bool {
-	return s.IsOk
-}
-
-// GetCSV returns the value of CSV.
-func (s *BillDetailsCSVResponseEnvelope) GetCSV() BillDetailCSV {
-	return s.CSV
-}
-
-// SetIsOk sets the value of IsOk.
-func (s *BillDetailsCSVResponseEnvelope) SetIsOk(val bool) {
-	s.IsOk = val
-}
-
-// SetCSV sets the value of CSV.
-func (s *BillDetailsCSVResponseEnvelope) SetCSV(val BillDetailCSV) {
-	s.CSV = val
-}
-
-// Response envelope for billDetailsResponseEnvelope.
-// Ref: #/components/schemas/BillDetailsResponseEnvelope
-type BillDetailsResponseEnvelope struct {
-	// 対象リソースの総件数.
-	Total int32 `json:"Total"`
-	// 現在のページ番号.
-	From int32 `json:"From"`
-	// 現在のページの件数.
-	Count int32 `json:"Count"`
-	// BillDetails.
-	BillDetails []BillDetail `json:"BillDetails"`
-}
-
-// GetTotal returns the value of Total.
-func (s *BillDetailsResponseEnvelope) GetTotal() int32 {
-	return s.Total
-}
-
-// GetFrom returns the value of From.
-func (s *BillDetailsResponseEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetCount returns the value of Count.
-func (s *BillDetailsResponseEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetBillDetails returns the value of BillDetails.
-func (s *BillDetailsResponseEnvelope) GetBillDetails() []BillDetail {
-	return s.BillDetails
-}
-
-// SetTotal sets the value of Total.
-func (s *BillDetailsResponseEnvelope) SetTotal(val int32) {
-	s.Total = val
-}
-
-// SetFrom sets the value of From.
-func (s *BillDetailsResponseEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetCount sets the value of Count.
-func (s *BillDetailsResponseEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetBillDetails sets the value of BillDetails.
-func (s *BillDetailsResponseEnvelope) SetBillDetails(val []BillDetail) {
-	s.BillDetails = val
-}
-
-// Response envelope for billReadResponseEnvelope.
-// Ref: #/components/schemas/BillReadResponseEnvelope
-type BillReadResponseEnvelope struct {
-	// 対象リソースの総件数.
-	Total int32 `json:"Total"`
-	// 現在のページ番号.
-	From int32 `json:"From"`
-	// 現在のページの件数.
-	Count int32 `json:"Count"`
-	// Bills.
-	Bills []Bill `json:"Bills"`
-}
-
-// GetTotal returns the value of Total.
-func (s *BillReadResponseEnvelope) GetTotal() int32 {
-	return s.Total
-}
-
-// GetFrom returns the value of From.
-func (s *BillReadResponseEnvelope) GetFrom() int32 {
-	return s.From
-}
-
-// GetCount returns the value of Count.
-func (s *BillReadResponseEnvelope) GetCount() int32 {
-	return s.Count
-}
-
-// GetBills returns the value of Bills.
-func (s *BillReadResponseEnvelope) GetBills() []Bill {
-	return s.Bills
-}
-
-// SetTotal sets the value of Total.
-func (s *BillReadResponseEnvelope) SetTotal(val int32) {
-	s.Total = val
-}
-
-// SetFrom sets the value of From.
-func (s *BillReadResponseEnvelope) SetFrom(val int32) {
-	s.From = val
-}
-
-// SetCount sets the value of Count.
-func (s *BillReadResponseEnvelope) SetCount(val int32) {
-	s.Count = val
-}
-
-// SetBills sets the value of Bills.
-func (s *BillReadResponseEnvelope) SetBills(val []Bill) {
-	s.Bills = val
 }
 
 // Ref: #/components/schemas/Bridge
@@ -4750,7 +4204,7 @@ type CommonServiceItemCreateRequestSettingsSimpleMonitor struct {
 	RetryInterval      OptInt32                                                          `json:"RetryInterval"`
 	DelayLoop          OptInt32                                                          `json:"DelayLoop"`
 	Enabled            OptString                                                         `json:"Enabled"`
-	HealthCheck        OptSimpleMonitorHealthCheck                                       `json:"HealthCheck"`
+	HealthCheck        OptSimpleMonitorHealthCheckCreate                                 `json:"HealthCheck"`
 	NotifyEmail        OptCommonServiceItemCreateRequestSettingsSimpleMonitorNotifyEmail `json:"NotifyEmail"`
 	NotifySlack        OptCommonServiceItemCreateRequestSettingsSimpleMonitorNotifySlack `json:"NotifySlack"`
 	NotifyInterval     OptInt32                                                          `json:"NotifyInterval"`
@@ -4779,7 +4233,7 @@ func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) GetEnabled() OptSt
 }
 
 // GetHealthCheck returns the value of HealthCheck.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) GetHealthCheck() OptSimpleMonitorHealthCheck {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) GetHealthCheck() OptSimpleMonitorHealthCheckCreate {
 	return s.HealthCheck
 }
 
@@ -4829,7 +4283,7 @@ func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetEnabled(val Opt
 }
 
 // SetHealthCheck sets the value of HealthCheck.
-func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetHealthCheck(val OptSimpleMonitorHealthCheck) {
+func (s *CommonServiceItemCreateRequestSettingsSimpleMonitor) SetHealthCheck(val OptSimpleMonitorHealthCheckCreate) {
 	s.HealthCheck = val
 }
 
@@ -5715,7 +5169,7 @@ type CommonServiceItemUpdateRequestSettingsSimpleMonitor struct {
 	RetryInterval      OptInt32                                                          `json:"RetryInterval"`
 	DelayLoop          OptInt32                                                          `json:"DelayLoop"`
 	Enabled            OptString                                                         `json:"Enabled"`
-	HealthCheck        OptSimpleMonitorHealthCheck                                       `json:"HealthCheck"`
+	HealthCheck        OptSimpleMonitorHealthCheckCreateOrUpdate                         `json:"HealthCheck"`
 	NotifyEmail        OptCommonServiceItemUpdateRequestSettingsSimpleMonitorNotifyEmail `json:"NotifyEmail"`
 	NotifySlack        OptCommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack `json:"NotifySlack"`
 	NotifyInterval     OptInt32                                                          `json:"NotifyInterval"`
@@ -5744,7 +5198,7 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) GetEnabled() OptSt
 }
 
 // GetHealthCheck returns the value of HealthCheck.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) GetHealthCheck() OptSimpleMonitorHealthCheck {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) GetHealthCheck() OptSimpleMonitorHealthCheckCreateOrUpdate {
 	return s.HealthCheck
 }
 
@@ -5794,7 +5248,7 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetEnabled(val Opt
 }
 
 // SetHealthCheck sets the value of HealthCheck.
-func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetHealthCheck(val OptSimpleMonitorHealthCheck) {
+func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitor) SetHealthCheck(val OptSimpleMonitorHealthCheckCreateOrUpdate) {
 	s.HealthCheck = val
 }
 
@@ -7185,7 +6639,6 @@ type DatabaseRemarkDBConfCommon struct {
 	DatabaseVersion  OptString `json:"DatabaseVersion"`
 	DatabaseRevision OptString `json:"DatabaseRevision"`
 	DefaultUser      OptString `json:"DefaultUser"`
-	UserPassword     OptString `json:"UserPassword"`
 }
 
 // GetDatabaseName returns the value of DatabaseName.
@@ -7208,11 +6661,6 @@ func (s *DatabaseRemarkDBConfCommon) GetDefaultUser() OptString {
 	return s.DefaultUser
 }
 
-// GetUserPassword returns the value of UserPassword.
-func (s *DatabaseRemarkDBConfCommon) GetUserPassword() OptString {
-	return s.UserPassword
-}
-
 // SetDatabaseName sets the value of DatabaseName.
 func (s *DatabaseRemarkDBConfCommon) SetDatabaseName(val OptString) {
 	s.DatabaseName = val
@@ -7233,8 +6681,62 @@ func (s *DatabaseRemarkDBConfCommon) SetDefaultUser(val OptString) {
 	s.DefaultUser = val
 }
 
+// Ref: #/components/schemas/DatabaseRemarkDBConfCommonCreate
+type DatabaseRemarkDBConfCommonCreate struct {
+	DatabaseName     OptString `json:"DatabaseName"`
+	DatabaseVersion  OptString `json:"DatabaseVersion"`
+	DatabaseRevision OptString `json:"DatabaseRevision"`
+	DefaultUser      OptString `json:"DefaultUser"`
+	UserPassword     OptString `json:"UserPassword"`
+}
+
+// GetDatabaseName returns the value of DatabaseName.
+func (s *DatabaseRemarkDBConfCommonCreate) GetDatabaseName() OptString {
+	return s.DatabaseName
+}
+
+// GetDatabaseVersion returns the value of DatabaseVersion.
+func (s *DatabaseRemarkDBConfCommonCreate) GetDatabaseVersion() OptString {
+	return s.DatabaseVersion
+}
+
+// GetDatabaseRevision returns the value of DatabaseRevision.
+func (s *DatabaseRemarkDBConfCommonCreate) GetDatabaseRevision() OptString {
+	return s.DatabaseRevision
+}
+
+// GetDefaultUser returns the value of DefaultUser.
+func (s *DatabaseRemarkDBConfCommonCreate) GetDefaultUser() OptString {
+	return s.DefaultUser
+}
+
+// GetUserPassword returns the value of UserPassword.
+func (s *DatabaseRemarkDBConfCommonCreate) GetUserPassword() OptString {
+	return s.UserPassword
+}
+
+// SetDatabaseName sets the value of DatabaseName.
+func (s *DatabaseRemarkDBConfCommonCreate) SetDatabaseName(val OptString) {
+	s.DatabaseName = val
+}
+
+// SetDatabaseVersion sets the value of DatabaseVersion.
+func (s *DatabaseRemarkDBConfCommonCreate) SetDatabaseVersion(val OptString) {
+	s.DatabaseVersion = val
+}
+
+// SetDatabaseRevision sets the value of DatabaseRevision.
+func (s *DatabaseRemarkDBConfCommonCreate) SetDatabaseRevision(val OptString) {
+	s.DatabaseRevision = val
+}
+
+// SetDefaultUser sets the value of DefaultUser.
+func (s *DatabaseRemarkDBConfCommonCreate) SetDefaultUser(val OptString) {
+	s.DefaultUser = val
+}
+
 // SetUserPassword sets the value of UserPassword.
-func (s *DatabaseRemarkDBConfCommon) SetUserPassword(val OptString) {
+func (s *DatabaseRemarkDBConfCommonCreate) SetUserPassword(val OptString) {
 	s.UserPassword = val
 }
 
@@ -7275,8 +6777,6 @@ type DatabaseReplicationSetting struct {
 	Port OptInt32 `json:"Port"`
 	// FTP 接続のユーザ名.
 	User OptString `json:"User"`
-	// FTP 接続のパスワード.
-	Password OptString `json:"Password"`
 	// アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード.
 	Appliance OptNilResourceRef `json:"Appliance"`
 }
@@ -7299,11 +6799,6 @@ func (s *DatabaseReplicationSetting) GetPort() OptInt32 {
 // GetUser returns the value of User.
 func (s *DatabaseReplicationSetting) GetUser() OptString {
 	return s.User
-}
-
-// GetPassword returns the value of Password.
-func (s *DatabaseReplicationSetting) GetPassword() OptString {
-	return s.Password
 }
 
 // GetAppliance returns the value of Appliance.
@@ -7329,11 +6824,6 @@ func (s *DatabaseReplicationSetting) SetPort(val OptInt32) {
 // SetUser sets the value of User.
 func (s *DatabaseReplicationSetting) SetUser(val OptString) {
 	s.User = val
-}
-
-// SetPassword sets the value of Password.
-func (s *DatabaseReplicationSetting) SetPassword(val OptString) {
-	s.Password = val
 }
 
 // SetAppliance sets the value of Appliance.
@@ -7428,13 +6918,11 @@ func (s *DatabaseSettingBackupv2View) SetConnect(val OptString) {
 
 // Ref: #/components/schemas/DatabaseSettingCommon
 type DatabaseSettingCommon struct {
-	WebUI           OptNilString      `json:"WebUI"`
-	ServicePort     OptInt32          `json:"ServicePort"`
-	SourceNetwork   OptNilStringArray `json:"SourceNetwork"`
-	DefaultUser     OptString         `json:"DefaultUser"`
-	UserPassword    OptString         `json:"UserPassword"`
-	ReplicaUser     OptString         `json:"ReplicaUser"`
-	ReplicaPassword OptString         `json:"ReplicaPassword"`
+	WebUI         OptNilString      `json:"WebUI"`
+	ServicePort   OptInt32          `json:"ServicePort"`
+	SourceNetwork OptNilStringArray `json:"SourceNetwork"`
+	DefaultUser   OptString         `json:"DefaultUser"`
+	ReplicaUser   OptString         `json:"ReplicaUser"`
 }
 
 // GetWebUI returns the value of WebUI.
@@ -7457,19 +6945,9 @@ func (s *DatabaseSettingCommon) GetDefaultUser() OptString {
 	return s.DefaultUser
 }
 
-// GetUserPassword returns the value of UserPassword.
-func (s *DatabaseSettingCommon) GetUserPassword() OptString {
-	return s.UserPassword
-}
-
 // GetReplicaUser returns the value of ReplicaUser.
 func (s *DatabaseSettingCommon) GetReplicaUser() OptString {
 	return s.ReplicaUser
-}
-
-// GetReplicaPassword returns the value of ReplicaPassword.
-func (s *DatabaseSettingCommon) GetReplicaPassword() OptString {
-	return s.ReplicaPassword
 }
 
 // SetWebUI sets the value of WebUI.
@@ -7492,19 +6970,9 @@ func (s *DatabaseSettingCommon) SetDefaultUser(val OptString) {
 	s.DefaultUser = val
 }
 
-// SetUserPassword sets the value of UserPassword.
-func (s *DatabaseSettingCommon) SetUserPassword(val OptString) {
-	s.UserPassword = val
-}
-
 // SetReplicaUser sets the value of ReplicaUser.
 func (s *DatabaseSettingCommon) SetReplicaUser(val OptString) {
 	s.ReplicaUser = val
-}
-
-// SetReplicaPassword sets the value of ReplicaPassword.
-func (s *DatabaseSettingCommon) SetReplicaPassword(val OptString) {
-	s.ReplicaPassword = val
 }
 
 // Ref: #/components/schemas/DatabaseSettings
@@ -22591,38 +22059,38 @@ func (o OptServerBootVariables) Or(d ServerBootVariables) ServerBootVariables {
 	return d
 }
 
-// NewOptSimpleMonitorHealthCheck returns new OptSimpleMonitorHealthCheck with value set to v.
-func NewOptSimpleMonitorHealthCheck(v SimpleMonitorHealthCheck) OptSimpleMonitorHealthCheck {
-	return OptSimpleMonitorHealthCheck{
+// NewOptSimpleMonitorHealthCheckCreate returns new OptSimpleMonitorHealthCheckCreate with value set to v.
+func NewOptSimpleMonitorHealthCheckCreate(v SimpleMonitorHealthCheckCreate) OptSimpleMonitorHealthCheckCreate {
+	return OptSimpleMonitorHealthCheckCreate{
 		Value: v,
 		Set:   true,
 	}
 }
 
-// OptSimpleMonitorHealthCheck is optional SimpleMonitorHealthCheck.
-type OptSimpleMonitorHealthCheck struct {
-	Value SimpleMonitorHealthCheck
+// OptSimpleMonitorHealthCheckCreate is optional SimpleMonitorHealthCheckCreate.
+type OptSimpleMonitorHealthCheckCreate struct {
+	Value SimpleMonitorHealthCheckCreate
 	Set   bool
 }
 
-// IsSet returns true if OptSimpleMonitorHealthCheck was set.
-func (o OptSimpleMonitorHealthCheck) IsSet() bool { return o.Set }
+// IsSet returns true if OptSimpleMonitorHealthCheckCreate was set.
+func (o OptSimpleMonitorHealthCheckCreate) IsSet() bool { return o.Set }
 
 // Reset unsets value.
-func (o *OptSimpleMonitorHealthCheck) Reset() {
-	var v SimpleMonitorHealthCheck
+func (o *OptSimpleMonitorHealthCheckCreate) Reset() {
+	var v SimpleMonitorHealthCheckCreate
 	o.Value = v
 	o.Set = false
 }
 
 // SetTo sets value to v.
-func (o *OptSimpleMonitorHealthCheck) SetTo(v SimpleMonitorHealthCheck) {
+func (o *OptSimpleMonitorHealthCheckCreate) SetTo(v SimpleMonitorHealthCheckCreate) {
 	o.Set = true
 	o.Value = v
 }
 
 // Get returns value and boolean that denotes whether value was set.
-func (o OptSimpleMonitorHealthCheck) Get() (v SimpleMonitorHealthCheck, ok bool) {
+func (o OptSimpleMonitorHealthCheckCreate) Get() (v SimpleMonitorHealthCheckCreate, ok bool) {
 	if !o.Set {
 		return v, false
 	}
@@ -22630,7 +22098,53 @@ func (o OptSimpleMonitorHealthCheck) Get() (v SimpleMonitorHealthCheck, ok bool)
 }
 
 // Or returns value if set, or given parameter if does not.
-func (o OptSimpleMonitorHealthCheck) Or(d SimpleMonitorHealthCheck) SimpleMonitorHealthCheck {
+func (o OptSimpleMonitorHealthCheckCreate) Or(d SimpleMonitorHealthCheckCreate) SimpleMonitorHealthCheckCreate {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptSimpleMonitorHealthCheckCreateOrUpdate returns new OptSimpleMonitorHealthCheckCreateOrUpdate with value set to v.
+func NewOptSimpleMonitorHealthCheckCreateOrUpdate(v SimpleMonitorHealthCheckCreateOrUpdate) OptSimpleMonitorHealthCheckCreateOrUpdate {
+	return OptSimpleMonitorHealthCheckCreateOrUpdate{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptSimpleMonitorHealthCheckCreateOrUpdate is optional SimpleMonitorHealthCheckCreateOrUpdate.
+type OptSimpleMonitorHealthCheckCreateOrUpdate struct {
+	Value SimpleMonitorHealthCheckCreateOrUpdate
+	Set   bool
+}
+
+// IsSet returns true if OptSimpleMonitorHealthCheckCreateOrUpdate was set.
+func (o OptSimpleMonitorHealthCheckCreateOrUpdate) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptSimpleMonitorHealthCheckCreateOrUpdate) Reset() {
+	var v SimpleMonitorHealthCheckCreateOrUpdate
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptSimpleMonitorHealthCheckCreateOrUpdate) SetTo(v SimpleMonitorHealthCheckCreateOrUpdate) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptSimpleMonitorHealthCheckCreateOrUpdate) Get() (v SimpleMonitorHealthCheckCreateOrUpdate, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptSimpleMonitorHealthCheckCreateOrUpdate) Or(d SimpleMonitorHealthCheckCreateOrUpdate) SimpleMonitorHealthCheckCreateOrUpdate {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -28082,8 +27596,8 @@ func (s *ShutdownOption) SetForce(val bool) {
 	s.Force = val
 }
 
-// Ref: #/components/schemas/SimpleMonitorHealthCheck
-type SimpleMonitorHealthCheck struct {
+// Ref: #/components/schemas/SimpleMonitorHealthCheckCreate
+type SimpleMonitorHealthCheckCreate struct {
 	// プロトコル ("tcp", "udp", "http", "https" など).
 	Protocol ESimpleMonitorProtocol `json:"Protocol"`
 	// ポート番号.
@@ -28107,182 +27621,386 @@ type SimpleMonitorHealthCheck struct {
 }
 
 // GetProtocol returns the value of Protocol.
-func (s *SimpleMonitorHealthCheck) GetProtocol() ESimpleMonitorProtocol {
+func (s *SimpleMonitorHealthCheckCreate) GetProtocol() ESimpleMonitorProtocol {
 	return s.Protocol
 }
 
 // GetPort returns the value of Port.
-func (s *SimpleMonitorHealthCheck) GetPort() int32 {
+func (s *SimpleMonitorHealthCheckCreate) GetPort() int32 {
 	return s.Port
 }
 
 // GetPath returns the value of Path.
-func (s *SimpleMonitorHealthCheck) GetPath() string {
+func (s *SimpleMonitorHealthCheckCreate) GetPath() string {
 	return s.Path
 }
 
 // GetStatus returns the value of Status.
-func (s *SimpleMonitorHealthCheck) GetStatus() int32 {
+func (s *SimpleMonitorHealthCheckCreate) GetStatus() int32 {
 	return s.Status
 }
 
 // GetSNI returns the value of SNI.
-func (s *SimpleMonitorHealthCheck) GetSNI() string {
+func (s *SimpleMonitorHealthCheckCreate) GetSNI() string {
 	return s.SNI
 }
 
 // GetHost returns the value of Host.
-func (s *SimpleMonitorHealthCheck) GetHost() string {
+func (s *SimpleMonitorHealthCheckCreate) GetHost() string {
 	return s.Host
 }
 
 // GetBasicAuthUsername returns the value of BasicAuthUsername.
-func (s *SimpleMonitorHealthCheck) GetBasicAuthUsername() string {
+func (s *SimpleMonitorHealthCheckCreate) GetBasicAuthUsername() string {
 	return s.BasicAuthUsername
 }
 
 // GetBasicAuthPassword returns the value of BasicAuthPassword.
-func (s *SimpleMonitorHealthCheck) GetBasicAuthPassword() string {
+func (s *SimpleMonitorHealthCheckCreate) GetBasicAuthPassword() string {
 	return s.BasicAuthPassword
 }
 
 // GetContainsString returns the value of ContainsString.
-func (s *SimpleMonitorHealthCheck) GetContainsString() string {
+func (s *SimpleMonitorHealthCheckCreate) GetContainsString() string {
 	return s.ContainsString
 }
 
 // GetQName returns the value of QName.
-func (s *SimpleMonitorHealthCheck) GetQName() string {
+func (s *SimpleMonitorHealthCheckCreate) GetQName() string {
 	return s.QName
 }
 
 // GetExpectedData returns the value of ExpectedData.
-func (s *SimpleMonitorHealthCheck) GetExpectedData() string {
+func (s *SimpleMonitorHealthCheckCreate) GetExpectedData() string {
 	return s.ExpectedData
 }
 
 // GetCommunity returns the value of Community.
-func (s *SimpleMonitorHealthCheck) GetCommunity() string {
+func (s *SimpleMonitorHealthCheckCreate) GetCommunity() string {
 	return s.Community
 }
 
 // GetSNMPVersion returns the value of SNMPVersion.
-func (s *SimpleMonitorHealthCheck) GetSNMPVersion() string {
+func (s *SimpleMonitorHealthCheckCreate) GetSNMPVersion() string {
 	return s.SNMPVersion
 }
 
 // GetOID returns the value of OID.
-func (s *SimpleMonitorHealthCheck) GetOID() string {
+func (s *SimpleMonitorHealthCheckCreate) GetOID() string {
 	return s.OID
 }
 
 // GetRemainingDays returns the value of RemainingDays.
-func (s *SimpleMonitorHealthCheck) GetRemainingDays() int32 {
+func (s *SimpleMonitorHealthCheckCreate) GetRemainingDays() int32 {
 	return s.RemainingDays
 }
 
 // GetHTTP2 returns the value of HTTP2.
-func (s *SimpleMonitorHealthCheck) GetHTTP2() string {
+func (s *SimpleMonitorHealthCheckCreate) GetHTTP2() string {
 	return s.HTTP2
 }
 
 // GetFTPS returns the value of FTPS.
-func (s *SimpleMonitorHealthCheck) GetFTPS() ESimpleMonitorFTPS {
+func (s *SimpleMonitorHealthCheckCreate) GetFTPS() ESimpleMonitorFTPS {
 	return s.FTPS
 }
 
 // GetVerifySNI returns the value of VerifySNI.
-func (s *SimpleMonitorHealthCheck) GetVerifySNI() string {
+func (s *SimpleMonitorHealthCheckCreate) GetVerifySNI() string {
 	return s.VerifySNI
 }
 
 // SetProtocol sets the value of Protocol.
-func (s *SimpleMonitorHealthCheck) SetProtocol(val ESimpleMonitorProtocol) {
+func (s *SimpleMonitorHealthCheckCreate) SetProtocol(val ESimpleMonitorProtocol) {
 	s.Protocol = val
 }
 
 // SetPort sets the value of Port.
-func (s *SimpleMonitorHealthCheck) SetPort(val int32) {
+func (s *SimpleMonitorHealthCheckCreate) SetPort(val int32) {
 	s.Port = val
 }
 
 // SetPath sets the value of Path.
-func (s *SimpleMonitorHealthCheck) SetPath(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetPath(val string) {
 	s.Path = val
 }
 
 // SetStatus sets the value of Status.
-func (s *SimpleMonitorHealthCheck) SetStatus(val int32) {
+func (s *SimpleMonitorHealthCheckCreate) SetStatus(val int32) {
 	s.Status = val
 }
 
 // SetSNI sets the value of SNI.
-func (s *SimpleMonitorHealthCheck) SetSNI(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetSNI(val string) {
 	s.SNI = val
 }
 
 // SetHost sets the value of Host.
-func (s *SimpleMonitorHealthCheck) SetHost(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetHost(val string) {
 	s.Host = val
 }
 
 // SetBasicAuthUsername sets the value of BasicAuthUsername.
-func (s *SimpleMonitorHealthCheck) SetBasicAuthUsername(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetBasicAuthUsername(val string) {
 	s.BasicAuthUsername = val
 }
 
 // SetBasicAuthPassword sets the value of BasicAuthPassword.
-func (s *SimpleMonitorHealthCheck) SetBasicAuthPassword(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetBasicAuthPassword(val string) {
 	s.BasicAuthPassword = val
 }
 
 // SetContainsString sets the value of ContainsString.
-func (s *SimpleMonitorHealthCheck) SetContainsString(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetContainsString(val string) {
 	s.ContainsString = val
 }
 
 // SetQName sets the value of QName.
-func (s *SimpleMonitorHealthCheck) SetQName(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetQName(val string) {
 	s.QName = val
 }
 
 // SetExpectedData sets the value of ExpectedData.
-func (s *SimpleMonitorHealthCheck) SetExpectedData(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetExpectedData(val string) {
 	s.ExpectedData = val
 }
 
 // SetCommunity sets the value of Community.
-func (s *SimpleMonitorHealthCheck) SetCommunity(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetCommunity(val string) {
 	s.Community = val
 }
 
 // SetSNMPVersion sets the value of SNMPVersion.
-func (s *SimpleMonitorHealthCheck) SetSNMPVersion(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetSNMPVersion(val string) {
 	s.SNMPVersion = val
 }
 
 // SetOID sets the value of OID.
-func (s *SimpleMonitorHealthCheck) SetOID(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetOID(val string) {
 	s.OID = val
 }
 
 // SetRemainingDays sets the value of RemainingDays.
-func (s *SimpleMonitorHealthCheck) SetRemainingDays(val int32) {
+func (s *SimpleMonitorHealthCheckCreate) SetRemainingDays(val int32) {
 	s.RemainingDays = val
 }
 
 // SetHTTP2 sets the value of HTTP2.
-func (s *SimpleMonitorHealthCheck) SetHTTP2(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetHTTP2(val string) {
 	s.HTTP2 = val
 }
 
 // SetFTPS sets the value of FTPS.
-func (s *SimpleMonitorHealthCheck) SetFTPS(val ESimpleMonitorFTPS) {
+func (s *SimpleMonitorHealthCheckCreate) SetFTPS(val ESimpleMonitorFTPS) {
 	s.FTPS = val
 }
 
 // SetVerifySNI sets the value of VerifySNI.
-func (s *SimpleMonitorHealthCheck) SetVerifySNI(val string) {
+func (s *SimpleMonitorHealthCheckCreate) SetVerifySNI(val string) {
+	s.VerifySNI = val
+}
+
+// Ref: #/components/schemas/SimpleMonitorHealthCheckCreateOrUpdate
+type SimpleMonitorHealthCheckCreateOrUpdate struct {
+	// プロトコル ("tcp", "udp", "http", "https" など).
+	Protocol ESimpleMonitorProtocol `json:"Protocol"`
+	// ポート番号.
+	Port              int32              `json:"Port"`
+	Path              string             `json:"Path"`
+	Status            int32              `json:"Status"`
+	SNI               string             `json:"SNI"`
+	Host              string             `json:"Host"`
+	BasicAuthUsername string             `json:"BasicAuthUsername"`
+	BasicAuthPassword string             `json:"BasicAuthPassword"`
+	ContainsString    string             `json:"ContainsString"`
+	QName             string             `json:"QName"`
+	ExpectedData      string             `json:"ExpectedData"`
+	Community         string             `json:"Community"`
+	SNMPVersion       string             `json:"SNMPVersion"`
+	OID               string             `json:"OID"`
+	RemainingDays     int32              `json:"RemainingDays"`
+	HTTP2             string             `json:"HTTP2"`
+	FTPS              ESimpleMonitorFTPS `json:"FTPS"`
+	VerifySNI         string             `json:"VerifySNI"`
+}
+
+// GetProtocol returns the value of Protocol.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetProtocol() ESimpleMonitorProtocol {
+	return s.Protocol
+}
+
+// GetPort returns the value of Port.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetPort() int32 {
+	return s.Port
+}
+
+// GetPath returns the value of Path.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetPath() string {
+	return s.Path
+}
+
+// GetStatus returns the value of Status.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetStatus() int32 {
+	return s.Status
+}
+
+// GetSNI returns the value of SNI.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetSNI() string {
+	return s.SNI
+}
+
+// GetHost returns the value of Host.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetHost() string {
+	return s.Host
+}
+
+// GetBasicAuthUsername returns the value of BasicAuthUsername.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetBasicAuthUsername() string {
+	return s.BasicAuthUsername
+}
+
+// GetBasicAuthPassword returns the value of BasicAuthPassword.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetBasicAuthPassword() string {
+	return s.BasicAuthPassword
+}
+
+// GetContainsString returns the value of ContainsString.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetContainsString() string {
+	return s.ContainsString
+}
+
+// GetQName returns the value of QName.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetQName() string {
+	return s.QName
+}
+
+// GetExpectedData returns the value of ExpectedData.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetExpectedData() string {
+	return s.ExpectedData
+}
+
+// GetCommunity returns the value of Community.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetCommunity() string {
+	return s.Community
+}
+
+// GetSNMPVersion returns the value of SNMPVersion.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetSNMPVersion() string {
+	return s.SNMPVersion
+}
+
+// GetOID returns the value of OID.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetOID() string {
+	return s.OID
+}
+
+// GetRemainingDays returns the value of RemainingDays.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetRemainingDays() int32 {
+	return s.RemainingDays
+}
+
+// GetHTTP2 returns the value of HTTP2.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetHTTP2() string {
+	return s.HTTP2
+}
+
+// GetFTPS returns the value of FTPS.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetFTPS() ESimpleMonitorFTPS {
+	return s.FTPS
+}
+
+// GetVerifySNI returns the value of VerifySNI.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) GetVerifySNI() string {
+	return s.VerifySNI
+}
+
+// SetProtocol sets the value of Protocol.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetProtocol(val ESimpleMonitorProtocol) {
+	s.Protocol = val
+}
+
+// SetPort sets the value of Port.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetPort(val int32) {
+	s.Port = val
+}
+
+// SetPath sets the value of Path.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetPath(val string) {
+	s.Path = val
+}
+
+// SetStatus sets the value of Status.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetStatus(val int32) {
+	s.Status = val
+}
+
+// SetSNI sets the value of SNI.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetSNI(val string) {
+	s.SNI = val
+}
+
+// SetHost sets the value of Host.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetHost(val string) {
+	s.Host = val
+}
+
+// SetBasicAuthUsername sets the value of BasicAuthUsername.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetBasicAuthUsername(val string) {
+	s.BasicAuthUsername = val
+}
+
+// SetBasicAuthPassword sets the value of BasicAuthPassword.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetBasicAuthPassword(val string) {
+	s.BasicAuthPassword = val
+}
+
+// SetContainsString sets the value of ContainsString.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetContainsString(val string) {
+	s.ContainsString = val
+}
+
+// SetQName sets the value of QName.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetQName(val string) {
+	s.QName = val
+}
+
+// SetExpectedData sets the value of ExpectedData.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetExpectedData(val string) {
+	s.ExpectedData = val
+}
+
+// SetCommunity sets the value of Community.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetCommunity(val string) {
+	s.Community = val
+}
+
+// SetSNMPVersion sets the value of SNMPVersion.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetSNMPVersion(val string) {
+	s.SNMPVersion = val
+}
+
+// SetOID sets the value of OID.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetOID(val string) {
+	s.OID = val
+}
+
+// SetRemainingDays sets the value of RemainingDays.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetRemainingDays(val int32) {
+	s.RemainingDays = val
+}
+
+// SetHTTP2 sets the value of HTTP2.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetHTTP2(val string) {
+	s.HTTP2 = val
+}
+
+// SetFTPS sets the value of FTPS.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetFTPS(val ESimpleMonitorFTPS) {
+	s.FTPS = val
+}
+
+// SetVerifySNI sets the value of VerifySNI.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetVerifySNI(val string) {
 	s.VerifySNI = val
 }
 

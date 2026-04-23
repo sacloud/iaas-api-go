@@ -60,11 +60,7 @@ using TypeSpec.OpenAPI;
         "ServiceClass"
       ],
     },
-    #{
-      name: "ユーザ・プロジェクト関連のAPI",
-      tags: #["AuthStatus", "Coupon"],
-    },
-    #{ name: "請求関連のAPI", tags: #["Bill"] }
+    #{ name: "ユーザ・プロジェクト関連のAPI", tags: #["AuthStatus", "Coupon"] }
   ]
 )
 @server(

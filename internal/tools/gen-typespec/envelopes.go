@@ -565,6 +565,9 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 
 func generateEnvelopes() {
 	for _, api := range define.APIs {
+		if apiIsExcluded(api) {
+			continue
+		}
 		envelopes, _ := buildMergedEnvelopeInfos(api)
 
 		if len(envelopes) == 0 {

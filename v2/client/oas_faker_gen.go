@@ -1053,308 +1053,6 @@ func (s *AutoScaleStatusResponseEnvelope) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *Bill) SetFake() {
-	{
-		{
-			s.ID.SetFake()
-		}
-	}
-	{
-		{
-			s.Amount.SetFake()
-		}
-	}
-	{
-		{
-			s.Date.SetFake()
-		}
-	}
-	{
-		{
-			s.Paid = true
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillByContractResponseEnvelope) SetFake() {
-	{
-		{
-			s.Total = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.Bills = nil
-			for i := 0; i < 0; i++ {
-				var elem Bill
-				{
-					elem.SetFake()
-				}
-				s.Bills = append(s.Bills, elem)
-			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillByContractYearMonthResponseEnvelope) SetFake() {
-	{
-		{
-			s.Total = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.Bills = nil
-			for i := 0; i < 0; i++ {
-				var elem Bill
-				{
-					elem.SetFake()
-				}
-				s.Bills = append(s.Bills, elem)
-			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillByContractYearResponseEnvelope) SetFake() {
-	{
-		{
-			s.Total = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.Bills = nil
-			for i := 0; i < 0; i++ {
-				var elem Bill
-				{
-					elem.SetFake()
-				}
-				s.Bills = append(s.Bills, elem)
-			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillDetail) SetFake() {
-	{
-		{
-			s.ID.SetFake()
-		}
-	}
-	{
-		{
-			s.Amount.SetFake()
-		}
-	}
-	{
-		{
-			s.Description = "string"
-		}
-	}
-	{
-		{
-			s.ServiceClassID.SetFake()
-		}
-	}
-	{
-		{
-			s.ServiceClassPath.SetFake()
-		}
-	}
-	{
-		{
-			s.Usage.SetFake()
-		}
-	}
-	{
-		{
-			s.FormattedUsage.SetFake()
-		}
-	}
-	{
-		{
-			s.ServiceUsagePath.SetFake()
-		}
-	}
-	{
-		{
-			s.Zone.SetFake()
-		}
-	}
-	{
-		{
-			s.ContractEndAt.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillDetailCSV) SetFake() {
-	{
-		{
-			s.Count.SetFake()
-		}
-	}
-	{
-		{
-			s.ResponsedAt.SetFake()
-		}
-	}
-	{
-		{
-			s.Filename.SetFake()
-		}
-	}
-	{
-		{
-			s.RawBody.SetFake()
-		}
-	}
-	{
-		{
-			s.HeaderRow = nil
-			for i := 0; i < 0; i++ {
-				var elem string
-				{
-					elem = "string"
-				}
-				s.HeaderRow = append(s.HeaderRow, elem)
-			}
-		}
-	}
-	{
-		{
-			s.BodyRows = nil
-			for i := 0; i < 0; i++ {
-				var elem []string
-				{
-					elem = nil
-					for i := 0; i < 0; i++ {
-						var elemElem string
-						{
-							elemElem = "string"
-						}
-						elem = append(elem, elemElem)
-					}
-				}
-				s.BodyRows = append(s.BodyRows, elem)
-			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillDetailsCSVResponseEnvelope) SetFake() {
-	{
-		{
-			s.IsOk = true
-		}
-	}
-	{
-		{
-			s.CSV.SetFake()
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillDetailsResponseEnvelope) SetFake() {
-	{
-		{
-			s.Total = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.BillDetails = nil
-			for i := 0; i < 0; i++ {
-				var elem BillDetail
-				{
-					elem.SetFake()
-				}
-				s.BillDetails = append(s.BillDetails, elem)
-			}
-		}
-	}
-}
-
-// SetFake set fake values.
-func (s *BillReadResponseEnvelope) SetFake() {
-	{
-		{
-			s.Total = int32(0)
-		}
-	}
-	{
-		{
-			s.From = int32(0)
-		}
-	}
-	{
-		{
-			s.Count = int32(0)
-		}
-	}
-	{
-		{
-			s.Bills = nil
-			for i := 0; i < 0; i++ {
-				var elem Bill
-				{
-					elem.SetFake()
-				}
-				s.Bills = append(s.Bills, elem)
-			}
-		}
-	}
-}
-
-// SetFake set fake values.
 func (s *Bridge) SetFake() {
 	{
 		{
@@ -3957,6 +3655,30 @@ func (s *DatabaseRemarkDBConfCommon) SetFake() {
 			s.DefaultUser.SetFake()
 		}
 	}
+}
+
+// SetFake set fake values.
+func (s *DatabaseRemarkDBConfCommonCreate) SetFake() {
+	{
+		{
+			s.DatabaseName.SetFake()
+		}
+	}
+	{
+		{
+			s.DatabaseVersion.SetFake()
+		}
+	}
+	{
+		{
+			s.DatabaseRevision.SetFake()
+		}
+	}
+	{
+		{
+			s.DefaultUser.SetFake()
+		}
+	}
 	{
 		{
 			s.UserPassword.SetFake()
@@ -3998,11 +3720,6 @@ func (s *DatabaseReplicationSetting) SetFake() {
 	{
 		{
 			s.User.SetFake()
-		}
-	}
-	{
-		{
-			s.Password.SetFake()
 		}
 	}
 	{
@@ -4093,17 +3810,7 @@ func (s *DatabaseSettingCommon) SetFake() {
 	}
 	{
 		{
-			s.UserPassword.SetFake()
-		}
-	}
-	{
-		{
 			s.ReplicaUser.SetFake()
-		}
-	}
-	{
-		{
-			s.ReplicaPassword.SetFake()
 		}
 	}
 }
@@ -9167,8 +8874,17 @@ func (s *OptServerBootVariables) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *OptSimpleMonitorHealthCheck) SetFake() {
-	var elem SimpleMonitorHealthCheck
+func (s *OptSimpleMonitorHealthCheckCreate) SetFake() {
+	var elem SimpleMonitorHealthCheckCreate
+	{
+		elem.SetFake()
+	}
+	s.SetTo(elem)
+}
+
+// SetFake set fake values.
+func (s *OptSimpleMonitorHealthCheckCreateOrUpdate) SetFake() {
+	var elem SimpleMonitorHealthCheckCreateOrUpdate
 	{
 		elem.SetFake()
 	}
@@ -12027,7 +11743,101 @@ func (s *ShutdownOption) SetFake() {
 }
 
 // SetFake set fake values.
-func (s *SimpleMonitorHealthCheck) SetFake() {
+func (s *SimpleMonitorHealthCheckCreate) SetFake() {
+	{
+		{
+			s.Protocol.SetFake()
+		}
+	}
+	{
+		{
+			s.Port = int32(0)
+		}
+	}
+	{
+		{
+			s.Path = "string"
+		}
+	}
+	{
+		{
+			s.Status = int32(0)
+		}
+	}
+	{
+		{
+			s.SNI = "string"
+		}
+	}
+	{
+		{
+			s.Host = "string"
+		}
+	}
+	{
+		{
+			s.BasicAuthUsername = "string"
+		}
+	}
+	{
+		{
+			s.BasicAuthPassword = "string"
+		}
+	}
+	{
+		{
+			s.ContainsString = "string"
+		}
+	}
+	{
+		{
+			s.QName = "string"
+		}
+	}
+	{
+		{
+			s.ExpectedData = "string"
+		}
+	}
+	{
+		{
+			s.Community = "string"
+		}
+	}
+	{
+		{
+			s.SNMPVersion = "string"
+		}
+	}
+	{
+		{
+			s.OID = "string"
+		}
+	}
+	{
+		{
+			s.RemainingDays = int32(0)
+		}
+	}
+	{
+		{
+			s.HTTP2 = "string"
+		}
+	}
+	{
+		{
+			s.FTPS.SetFake()
+		}
+	}
+	{
+		{
+			s.VerifySNI = "string"
+		}
+	}
+}
+
+// SetFake set fake values.
+func (s *SimpleMonitorHealthCheckCreateOrUpdate) SetFake() {
 	{
 		{
 			s.Protocol.SetFake()
