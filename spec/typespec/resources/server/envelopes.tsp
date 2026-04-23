@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for serverFindRequestEnvelope
  */
 model ServerFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -207,9 +201,7 @@ model ServerUpdateResponseEnvelope {
  * Request envelope for serverDeleteRequestEnvelope
  */
 model ServerDeleteRequestEnvelope {
-  /**
-   * WithDisk
-   */
+  @doc("サーバと一緒に削除するディスクのIDの配列。省略時はディスクを削除しない")
   WithDisk?: ID[];
 }
 
@@ -217,39 +209,25 @@ model ServerDeleteRequestEnvelope {
  * Request envelope for serverChangePlanRequestEnvelope
  */
 model ServerChangePlanRequestEnvelope {
-  /**
-   * CPU
-   */
+  @doc("変更後の CPU コア数")
   CPU: int32;
 
-  /**
-   * MemoryMB
-   */
+  @doc("変更後のメモリ容量 (MB)")
   MemoryMB: int32;
 
-  /**
-   * GPU
-   */
+  @doc("変更後の GPU 数")
   GPU: int32;
 
-  /**
-   * GPUModel
-   */
+  @doc("変更後の GPU モデル")
   GPUModel: string;
 
-  /**
-   * CPUModel
-   */
+  @doc("変更後の CPU モデル")
   CPUModel: string;
 
-  /**
-   * Generation
-   */
+  @doc("変更後のプラン世代")
   Generation: EPlanGeneration;
 
-  /**
-   * Commitment
-   */
+  @doc("変更後の CPU 割当コミット方式")
   Commitment: ECommitment;
 }
 /**
@@ -314,9 +292,7 @@ model ServerEjectCDROMRequestEnvelope {
  * Request envelope for serverBootRequestEnvelope
  */
 model ServerBootRequestEnvelope {
-  /**
-   * UserBootVariables
-   */
+  @doc("起動時に cloud-init 等へ渡すユーザ変数")
   UserBootVariables?: ServerBootVariables;
 }
 
@@ -324,9 +300,7 @@ model ServerBootRequestEnvelope {
  * Request envelope for serverShutdownRequestEnvelope
  */
 model ServerShutdownRequestEnvelope {
-  /**
-   * Force
-   */
+  @doc("true を指定すると強制停止 (ACPI シャットダウンではなく電源断相当)")
   Force: boolean;
 }
 
@@ -334,14 +308,10 @@ model ServerShutdownRequestEnvelope {
  * Request envelope for serverSendKeyRequestEnvelope
  */
 model ServerSendKeyRequestEnvelope {
-  /**
-   * Key
-   */
+  @doc("VNC コンソールに送る単一キー (\"ctrl-alt-delete\" 等)")
   Key: string;
 
-  /**
-   * Keys
-   */
+  @doc("VNC コンソールに送るキーのシーケンス")
   Keys?: string[];
 }
 

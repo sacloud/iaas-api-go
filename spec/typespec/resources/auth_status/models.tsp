@@ -5,19 +5,34 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AuthStatus {
+  @doc("アカウント情報")
   Account?: AuthStatusAccount | null;
+
+  @doc("ログイン中メンバー情報")
   Member?: AuthStatusMember | null;
+
+  @doc("API キーで認証しているかどうか (true なら API キー、false ならコントロールパネルセッション)")
   IsAPIKey: boolean;
 }
 
 model AuthStatusAccount {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("アカウントコード")
   Code?: string;
+
+  @doc("アカウントクラス")
   Class?: string;
 }
 
 model AuthStatusMember {
+  @doc("メンバー (ユーザ) コード")
   Code?: string;
+
+  @doc("メンバークラス")
   Class?: string;
 }

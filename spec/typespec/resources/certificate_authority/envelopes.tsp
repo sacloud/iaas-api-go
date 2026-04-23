@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for certificateAuthorityFindRequestEnvelope
  */
 model CertificateAuthorityFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -47,9 +41,7 @@ model CertificateAuthorityFindResponseEnvelope {
  * Request envelope for certificateAuthorityCreateRequestEnvelope
  */
 model CertificateAuthorityCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: CertificateAuthorityCreateRequest;
 }
 /**
@@ -68,9 +60,7 @@ model CertificateAuthorityCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: CertificateAuthority;
 }
 
@@ -90,9 +80,7 @@ model CertificateAuthorityReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: CertificateAuthority;
 }
 
@@ -100,9 +88,7 @@ model CertificateAuthorityReadResponseEnvelope {
  * Request envelope for certificateAuthorityUpdateRequestEnvelope
  */
 model CertificateAuthorityUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: CertificateAuthorityUpdateRequest;
 }
 /**
@@ -121,9 +107,7 @@ model CertificateAuthorityUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: CertificateAuthority;
 }
 

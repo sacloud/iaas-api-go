@@ -5,13 +5,28 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoBackup {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("自動バックアップ設定")
   Settings?: AutoBackupSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("対象ディスク情報")
   Status?: AutoBackupStatus | null;
 }
 
@@ -20,42 +35,72 @@ model AutoBackupSettings {
 }
 
 model AutoBackupSettingsAutobackup {
+  @doc("バックアップ取得する曜日の配列")
   BackupSpanWeekdays?: EDayOfTheWeek[];
+
+  @doc("保持世代数の上限")
   MaximumNumberOfArchives?: int32;
 }
 
 model AutoBackupStatus {
+  @doc("バックアップ対象ディスクのID")
   DiskID?: int64;
 }
 
 model AutoBackupCreateRequest {
+  @doc("対象ディスクのID")
   Status?: AutoBackupCreateRequestStatus | null;
+
+  @doc("自動バックアップ設定")
   Settings?: AutoBackupCreateRequestSettings | null;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model AutoBackupCreateRequestStatus {
+  @doc("バックアップ対象ディスクのID")
   DiskID?: int64;
 }
 
 model AutoBackupCreateRequestSettings {
+  @doc("バックアップ本体設定")
   Autobackup?: AutoBackupCreateRequestSettingsAutobackup | null;
 }
 
 model AutoBackupCreateRequestSettingsAutobackup {
+  @doc("バックアップ取得する曜日の配列 (\"mon\", \"tue\", ...)")
   BackupSpanWeekdays?: EDayOfTheWeek[];
+
+  @doc("保持する世代数の上限")
   MaximumNumberOfArchives?: int32;
 }
 
 model AutoBackupUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: AutoBackupUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
@@ -64,5 +109,6 @@ model AutoBackupUpdateRequestSettings {
 }
 
 model AutoBackupUpdateRequestSettingsAutobackup {
+  @doc("バックアップ取得する曜日の配列")
   BackupSpanWeekdays?: EDayOfTheWeek[];
 }

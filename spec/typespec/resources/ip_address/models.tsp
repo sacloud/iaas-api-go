@@ -5,6 +5,9 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPAddress {
+  @doc("逆引き用の PTR レコードに登録されているホスト名")
   HostName: string;
+
+  @doc("IPv4 アドレス")
   IPAddress?: string;
 }

@@ -5,17 +5,40 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ProxyLB {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("プラン (最大同時接続数による区分)")
   Plan: EProxyLBPlan;
+
+  @doc("エンハンスド LB 設定")
   Settings?: ProxyLBSettings | null;
+
+  @doc("待ち受けポート設定の配列 (HTTP/HTTPS)")
   BindPorts: ProxyLBBindPort[];
+
+  @doc("振り分け先サーバの配列")
   Servers: ProxyLBServer[];
+
+  @doc("振り分けルール (条件付きのバックエンド選択)")
   Rules: ProxyLBRule[];
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("状態情報 (FQDN、VIP、証明書有効期限 等)")
   Status?: ProxyLBStatus | null;
 }
 
@@ -45,23 +68,37 @@ model ProxyLBStatus {
 }
 
 model ProxyLBHealthCheck {
+  @doc("プロトコル (\"tcp\", \"udp\", \"http\", \"https\" など)")
   Protocol: EProxyLBHealthCheckProtocol;
+
   Path: string;
   Host: string;
   DelayLoop: int32;
 }
 
 model ProxyLBSorryServer {
+  @doc("IPv4 アドレス")
   IPAddress: string;
+
+  @doc("ポート番号")
   Port: int32;
 }
 
 model ProxyLBBindPort {
+  @doc("プロキシモード (\"http\", \"https\", \"tcp\")")
   ProxyMode: EProxyLBProxyMode;
+
+  @doc("待ち受けポート番号")
   Port: int32;
+
+  @doc("HTTP→HTTPS リダイレクトを有効化するか")
   RedirectToHTTPS: boolean;
+
   SupportHTTP2: boolean;
+
+  @doc("レスポンスに追加するヘッダの配列")
   AddResponseHeader: ProxyLBResponseHeader[];
+
   SSLPolicy: string;
 }
 
@@ -71,8 +108,12 @@ model ProxyLBResponseHeader {
 }
 
 model ProxyLBServer {
+  @doc("IPv4 アドレス")
   IPAddress: string;
+
+  @doc("ポート番号")
   Port: int32;
+
   ServerGroup: string;
   Enabled: boolean;
   ProxySSL: boolean;
@@ -96,8 +137,13 @@ model ProxyLBRule {
 }
 
 model ProxyLBACMESetting {
+  @doc("発行する証明書の CommonName")
   CommonName: string;
+
+  @doc("Let's Encrypt (ACME) を利用するかどうか")
   Enabled: boolean;
+
+  @doc("発行する証明書の SAN の配列")
   SubjectAltNames: string[];
 }
 
@@ -111,6 +157,7 @@ model ProxyLBGzip {
 }
 
 model ProxyLBBackendHttpKeepAlive {
+  @doc("バックエンドへの HTTP Keep-Alive モード")
   Mode: EProxyLBBackendHttpKeepAlive;
 }
 
@@ -120,6 +167,8 @@ model ProxyLBProxyProtocol {
 
 model ProxyLBSyslog {
   Server: string;
+
+  @doc("ポート番号")
   Port: int32 = 514;
 }
 
@@ -134,9 +183,17 @@ model ProxyLBCreateRequest {
   Servers: ProxyLBServer[];
   Rules: ProxyLBRule[];
   Status?: ProxyLBCreateRequestStatus | null;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -164,10 +221,20 @@ model ProxyLBCreateRequestStatus {
 
 model ProxyLBUpdateRequest {
   Settings?: ProxyLBUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -180,6 +247,7 @@ model ProxyLBUpdateRequestSettingsProxyLB {
 }
 
 model ProxyLBChangePlanRequest {
+  @doc("サービスクラス名。課金単価を特定する分類")
   ServiceClass?: string;
 }
 
@@ -198,11 +266,22 @@ model ProxyLBPrimaryCert {
 }
 
 model ProxyLBAdditionalCert {
+  @doc("サーバ証明書 (PEM)")
   ServerCertificate: string;
+
+  @doc("中間 CA 証明書 (PEM)")
   IntermediateCertificate: string;
+
+  @doc("秘密鍵 (PEM)")
   PrivateKey: string;
+
+  @doc("証明書の有効期限")
   CertificateEndDate: utcDateTime;
+
+  @doc("証明書の CommonName")
   CertificateCommonName: string;
+
+  @doc("証明書の SAN")
   CertificateAltNames: string;
 }
 
@@ -219,10 +298,19 @@ model ProxyLBHealth {
 }
 
 model LoadBalancerServerStatus {
+  @doc("現在のアクティブ接続数")
   ActiveConn: int32;
+
+  @doc("振り分け先サーバの状態 (\"up\" / \"down\")")
   Status: EServerInstanceStatus;
+
+  @doc("振り分け先サーバの IPv4")
   IPAddress: string;
+
+  @doc("振り分け先ポート")
   Port: int32;
+
+  @doc("秒間接続数")
   CPS: float64;
 }
 

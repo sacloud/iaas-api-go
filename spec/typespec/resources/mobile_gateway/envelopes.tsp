@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for mobileGatewayFindRequestEnvelope
  */
 model MobileGatewayFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -47,9 +41,7 @@ model MobileGatewayFindResponseEnvelope {
  * Request envelope for mobileGatewayCreateRequestEnvelope
  */
 model MobileGatewayCreateRequestEnvelope {
-  /**
-   * Appliance
-   */
+  @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
   Appliance?: MobileGatewayCreateRequest;
 }
 /**
@@ -70,9 +62,7 @@ model MobileGatewayCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * Appliance
-   */
+  @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
   Appliance: MobileGateway;
 }
 
@@ -94,9 +84,7 @@ model MobileGatewayReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * Appliance
-   */
+  @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
   Appliance: MobileGateway;
 }
 
@@ -104,9 +92,7 @@ model MobileGatewayReadResponseEnvelope {
  * Request envelope for mobileGatewayUpdateRequestEnvelope
  */
 model MobileGatewayUpdateRequestEnvelope {
-  /**
-   * Appliance
-   */
+  @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
   Appliance?: MobileGatewayUpdateRequest;
 }
 /**
@@ -127,9 +113,7 @@ model MobileGatewayUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * Appliance
-   */
+  @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
   Appliance: MobileGateway;
 }
 
@@ -212,9 +196,7 @@ model MobileGatewayListSIMResponseEnvelope {
  * Request envelope for mobileGatewayAddSIMRequestEnvelope
  */
 model MobileGatewayAddSIMRequestEnvelope {
-  /**
-   * SIM
-   */
+  @doc("追加する SIM のリソース ID")
   SIM?: MobileGatewayAddSIMRequest;
 }
 

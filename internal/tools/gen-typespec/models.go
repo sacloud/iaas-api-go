@@ -323,12 +323,13 @@ var modelFieldExclusions = map[string]map[string]bool{
 // tsModelField はテンプレートに渡す TypeSpec フィールド情報。
 // mapconv で Foo.ID にマッピングされるフィールドは Foo?: { ID: int64 } に変換済み。
 type tsModelField struct {
-	Name       string
-	TSType     string
-	Optional   bool
-	TSDefault  string // TypeSpec デフォルト値（空なら省略）
-	EnumDefault string // enum デフォルトのコメント用
+	Name         string
+	TSType       string
+	Optional     bool
+	TSDefault    string // TypeSpec デフォルト値（空なら省略）
+	EnumDefault  string // enum デフォルトのコメント用
 	OtherDefault string // その他デフォルト値のコメント用
+	Description  string // @doc("...") として emit する説明 (空なら emit しない)
 }
 
 // nakedFieldIsNullable は naked 型の指定フィールドが null になりえるかを返す。
@@ -611,6 +612,8 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 		// optional は nullable を包含する superset。
 		optional := nullable || nakedFieldIsOptional(nakedRT, child.name)
 
+		description := lookupFieldDescription(modelName, child.name)
+
 		// 葉ノード
 		if child.leafField != nil && len(child.children) == 0 {
 			tsType := modelFieldTypeToTS(child.leafField.TypeName())
@@ -638,6 +641,7 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 					}
 					return ""
 				}(),
+				Description: description,
 			})
 			continue
 		}
@@ -656,9 +660,10 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 				tsType += " | null"
 			}
 			mainFields = append(mainFields, tsModelField{
-				Name:     child.name,
-				TSType:   tsType,
-				Optional: true,
+				Name:        child.name,
+				TSType:      tsType,
+				Optional:    true,
+				Description: description,
 			})
 			continue
 		}
@@ -689,9 +694,10 @@ func emitFromFieldTree(modelName string, node *fieldNode, nakedRT reflect.Type) 
 			tsType += " | null"
 		}
 		mainFields = append(mainFields, tsModelField{
-			Name:     child.name,
-			TSType:   tsType,
-			Optional: optional,
+			Name:        child.name,
+			TSType:      tsType,
+			Optional:    optional,
+			Description: description,
 		})
 	}
 
@@ -711,6 +717,9 @@ namespace Sacloud.IaaS;
 {{ range .Models }}
 model {{ .Name }} {
 	{{- range .Fields }}
+	{{- if .Description }}
+	@doc("{{ .Description | docEscape }}")
+	{{- end }}
 	{{- if .TSDefault }}
 	{{.Name}}{{ if .Optional }}?{{ end }}: {{.TSType}} = {{.TSDefault}};
 	{{- else if .EnumDefault }}
@@ -909,6 +918,6 @@ func generateModels() {
 		}
 
 		outFile := filepath.Join(resourcesDir, api.FileSafeName(), "models.tsp")
-		writeFile(modelsTmpl, resourceModels{Models: newModels}, outFile, nil)
+		writeFile(modelsTmpl, resourceModels{Models: newModels}, outFile, descriptionFuncs)
 	}
 }

@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for eSMEFindRequestEnvelope
  */
 model ESMEFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -47,9 +41,7 @@ model ESMEFindResponseEnvelope {
  * Request envelope for eSMECreateRequestEnvelope
  */
 model ESMECreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: ESMECreateRequest;
 }
 /**
@@ -68,9 +60,7 @@ model ESMECreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ESME;
 }
 
@@ -90,9 +80,7 @@ model ESMEReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ESME;
 }
 
@@ -100,9 +88,7 @@ model ESMEReadResponseEnvelope {
  * Request envelope for eSMEUpdateRequestEnvelope
  */
 model ESMEUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: ESMEUpdateRequest;
 }
 /**
@@ -121,9 +107,7 @@ model ESMEUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ESME;
 }
 

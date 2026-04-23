@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for dNSFindRequestEnvelope
  */
 model DNSFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -47,9 +41,7 @@ model DNSFindResponseEnvelope {
  * Request envelope for dNSCreateRequestEnvelope
  */
 model DNSCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: DNSCreateRequest;
 }
 /**
@@ -69,9 +61,7 @@ model DNSCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: DNS;
 }
 
@@ -92,9 +82,7 @@ model DNSReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: DNS;
 }
 
@@ -102,9 +90,7 @@ model DNSReadResponseEnvelope {
  * Request envelope for dNSUpdateRequestEnvelope
  */
 model DNSUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: DNSUpdateRequest;
 }
 /**
@@ -124,8 +110,6 @@ model DNSUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: DNS;
 }

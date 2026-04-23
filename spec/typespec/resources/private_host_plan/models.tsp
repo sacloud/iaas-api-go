@@ -5,11 +5,24 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PrivateHostPlan {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("専用ホストのクラス (\"dynamic\" 等)")
   Class?: string;
+
+  @doc("このプランで提供される CPU コア数")
   CPU?: int32;
+
+  @doc("専用ホスト (占有) かどうか")
   Dedicated: boolean;
+
+  @doc("このプランで提供されるメモリ容量 (MB)")
   MemoryMB?: int32;
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
 }

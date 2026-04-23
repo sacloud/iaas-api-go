@@ -5,14 +5,33 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ServerPlan {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("CPU コア数")
   CPU?: int32;
+
+  @doc("メモリ容量 (MB)")
   MemoryMB?: int32;
+
+  @doc("GPU 数 (GPU プランの場合)")
   GPU?: int32;
+
+  @doc("GPU モデル名")
   GPUModel?: string;
+
+  @doc("CPU モデル (\"uncategorized\" など)")
   CPUModel?: string;
+
+  @doc("CPU 割当コミット方式 (\"standard\" / \"dedicatedcpu\")")
   Commitment?: ECommitment;
+
+  @doc("プラン世代 (100=第1、200=第2(新) 等)")
   Generation?: EPlanGeneration;
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
 }

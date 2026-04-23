@@ -15,10 +15,12 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/sacloud/iaas-api-go/internal/define"
@@ -30,6 +32,14 @@ func init() {
 }
 
 func main() {
+	dumpFields := flag.Bool("dump-fields", false, "リソース別の (resource, model, field) 一覧を stdout に出力して終了 (description 辞書投入の補助用)")
+	flag.Parse()
+
+	if *dumpFields {
+		runDumpFields()
+		return
+	}
+
 	// 生成前に resources/ 配下の古い .tsp ファイルをすべて削除する。
 	// これにより、前回の実行で生成されたが今回は不要なファイルが残るのを防ぐ。
 	cleanResourcesDir()
@@ -44,6 +54,86 @@ func main() {
 	removeObsoleteFiles()
 	// fieldmanifest により除外されたフィールド一覧をレポート出力する
 	writeExcludedFieldsReport()
+}
+
+// runDumpFields は define.APIs を走査して TypeSpec 上の (resource, model, field) 一覧を
+// タブ区切りで stdout に出力する。description 辞書の初期投入を効率化するための一時機能。
+// 全リソースの説明文が揃ったら削除して構わない。
+func runDumpFields() {
+	type entry struct {
+		Resource string
+		Model    string
+		Field    string
+	}
+	seen := map[string]bool{}
+	var entries []entry
+
+	for _, api := range define.APIs {
+		resource := api.TypeName()
+
+		// モデル (DSL から合成されるサブモデル含む) を dump
+		allModels := filteredModelsForAPI(api)
+		_, skipSet := computeRequestModelMerges(api)
+		emitted := map[string]bool{}
+		for _, m := range allModels {
+			if skipSet[m.Name] {
+				continue
+			}
+			for _, rm := range resolveModel(m) {
+				if emitted[rm.Name] {
+					continue
+				}
+				emitted[rm.Name] = true
+				for _, f := range rm.Fields {
+					k := resource + "\t" + rm.Name + "\t" + f.Name
+					if seen[k] {
+						continue
+					}
+					seen[k] = true
+					entries = append(entries, entry{resource, rm.Name, f.Name})
+				}
+			}
+		}
+
+		// リクエスト/レスポンスエンベロープの payload を dump
+		envelopes, _ := buildMergedEnvelopeInfos(api)
+		for _, e := range envelopes {
+			if e.HasRequestEnvelope {
+				for _, p := range e.RequestPayloads {
+					k := resource + "\t" + e.RequestEnvelopeTypeSpecName + "\t" + p.Name
+					if seen[k] {
+						continue
+					}
+					seen[k] = true
+					entries = append(entries, entry{resource, e.RequestEnvelopeTypeSpecName, p.Name})
+				}
+			}
+			if e.HasResponseEnvelope {
+				for _, p := range e.ResponsePayloads {
+					k := resource + "\t" + e.ResponseEnvelopeTypeSpecName + "\t" + p.Name
+					if seen[k] {
+						continue
+					}
+					seen[k] = true
+					entries = append(entries, entry{resource, e.ResponseEnvelopeTypeSpecName, p.Name})
+				}
+			}
+		}
+	}
+
+	sort.Slice(entries, func(i, j int) bool {
+		if entries[i].Resource != entries[j].Resource {
+			return entries[i].Resource < entries[j].Resource
+		}
+		if entries[i].Model != entries[j].Model {
+			return entries[i].Model < entries[j].Model
+		}
+		return entries[i].Field < entries[j].Field
+	})
+
+	for _, e := range entries {
+		fmt.Printf("%s\t%s\t%s\n", e.Resource, e.Model, e.Field)
+	}
 }
 
 // removeObsoleteFiles は旧ディレクトリ構造の残存ファイル・ディレクトリを削除する。

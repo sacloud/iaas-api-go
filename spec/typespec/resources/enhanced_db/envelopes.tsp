@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for enhancedDBFindRequestEnvelope
  */
 model EnhancedDBFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -47,9 +41,7 @@ model EnhancedDBFindResponseEnvelope {
  * Request envelope for enhancedDBCreateRequestEnvelope
  */
 model EnhancedDBCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: EnhancedDBCreateRequest;
 }
 /**
@@ -68,9 +60,7 @@ model EnhancedDBCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: EnhancedDB;
 }
 
@@ -90,9 +80,7 @@ model EnhancedDBReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: EnhancedDB;
 }
 
@@ -100,9 +88,7 @@ model EnhancedDBReadResponseEnvelope {
  * Request envelope for enhancedDBUpdateRequestEnvelope
  */
 model EnhancedDBUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: EnhancedDBUpdateRequest;
 }
 /**
@@ -121,9 +107,7 @@ model EnhancedDBUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: EnhancedDB;
 }
 
@@ -131,9 +115,7 @@ model EnhancedDBUpdateResponseEnvelope {
  * Request envelope for enhancedDBSetPasswordRequestEnvelope
  */
 model EnhancedDBSetPasswordRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: EnhancedDBSetPasswordRequest;
 }
 
@@ -155,8 +137,6 @@ model EnhancedDBGetConfigResponseEnvelope {
  * Request envelope for enhancedDBSetConfigRequestEnvelope
  */
 model EnhancedDBSetConfigRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: EnhancedDBSetConfigRequest;
 }

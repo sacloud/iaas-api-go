@@ -5,27 +5,58 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Note {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description?: string | null;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("スタートアップスクリプトの種別 (\"shell\" / \"yaml_cloud_config\")")
   Class?: string;
+
+  @doc("スタートアップスクリプトの本文")
   Content?: string;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model NoteCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("スタートアップスクリプトの種別 (\"shell\" / \"yaml_cloud_config\")")
   Class?: string;
+
+  @doc("スタートアップスクリプトの本文")
   Content?: string;
 }
 
 model NoteUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("スタートアップスクリプトの種別")
   Class?: string;
+
+  @doc("スタートアップスクリプトの本文")
   Content?: string;
 }

@@ -629,13 +629,21 @@ func (s *ApplianceUpdateRequestIcon) SetID(val int64) {
 
 // Ref: #/components/schemas/Archive
 type Archive struct {
-	ID           OptInt64          `json:"ID"`
-	Name         OptString         `json:"Name"`
-	Description  string            `json:"Description"`
-	Tags         []string          `json:"Tags"`
-	Availability OptEAvailability  `json:"Availability"`
-	SizeMB       OptInt32          `json:"SizeMB"`
-	Icon         OptNilResourceRef `json:"Icon"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// アーカイブサイズ (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -710,13 +718,20 @@ func (s *Archive) SetIcon(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/ArchiveCreateRequest
 type ArchiveCreateRequest struct {
-	SourceDisk    OptNilResourceRef `json:"SourceDisk"`
+	// 複製元ディスク。SourceArchive と排他.
+	SourceDisk OptNilResourceRef `json:"SourceDisk"`
+	// 複製元アーカイブ。SourceDisk と排他.
 	SourceArchive OptNilResourceRef `json:"SourceArchive"`
-	Name          OptString         `json:"Name"`
-	Description   string            `json:"Description"`
-	Tags          []string          `json:"Tags"`
-	Icon          OptNilResourceRef `json:"Icon"`
-	SizeMB        OptInt32          `json:"SizeMB"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// アーカイブサイズ (MB)。ブランクアーカイブ作成時に指定する.
+	SizeMB OptInt32 `json:"SizeMB"`
 }
 
 // GetSourceDisk returns the value of SourceDisk.
@@ -959,6 +974,7 @@ func (s *ArchiveReadResponseEnvelope) SetArchive(val Archive) {
 
 // Ref: #/components/schemas/ArchiveShareInfo
 type ArchiveShareInfo struct {
+	// 他アカウント/ゾーンへアーカイブを転送する際に利用する共有キー.
 	SharedKey string `json:"SharedKey"`
 }
 
@@ -975,9 +991,9 @@ func (s *ArchiveShareInfo) SetSharedKey(val string) {
 // Request envelope for archiveShareRequestEnvelope.
 // Ref: #/components/schemas/ArchiveShareRequestEnvelope
 type ArchiveShareRequestEnvelope struct {
-	// Shared.
+	// アーカイブの共有を有効にするかどうか.
 	Shared OptBool `json:"Shared"`
-	// ChangePassword.
+	// 共有キーを再発行するかどうか.
 	ChangePassword OptBool `json:"ChangePassword"`
 }
 
@@ -1044,10 +1060,15 @@ func (s *ArchiveShareResponseEnvelope) SetFTPServer(val OptFTPServer) {
 
 // Ref: #/components/schemas/ArchiveTransferRequest
 type ArchiveTransferRequest struct {
-	SizeMB          OptInt32          `json:"SizeMB"`
-	Name            OptString         `json:"Name"`
-	Description     string            `json:"Description"`
-	Tags            []string          `json:"Tags"`
+	// 転送先アーカイブのサイズ (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon            OptNilResourceRef `json:"Icon"`
 	SourceSharedKey OptString         `json:"SourceSharedKey"`
 }
@@ -1160,10 +1181,14 @@ func (s *ArchiveTransferResponseEnvelope) SetArchive(val Archive) {
 
 // Ref: #/components/schemas/ArchiveUpdateRequest
 type ArchiveUpdateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
@@ -1254,9 +1279,13 @@ func (s *ArchiveUpdateResponseEnvelope) SetArchive(val Archive) {
 
 // Ref: #/components/schemas/AuthStatus
 type AuthStatus struct {
-	Account  OptNilAuthStatusAccount `json:"Account"`
-	Member   OptNilAuthStatusMember  `json:"Member"`
-	IsAPIKey bool                    `json:"IsAPIKey"`
+	// アカウント情報.
+	Account OptNilAuthStatusAccount `json:"Account"`
+	// ログイン中メンバー情報.
+	Member OptNilAuthStatusMember `json:"Member"`
+	// API キーで認証しているかどうか (true なら API キー、false
+	// ならコントロールパネルセッション).
+	IsAPIKey bool `json:"IsAPIKey"`
 }
 
 // GetAccount returns the value of Account.
@@ -1291,9 +1320,13 @@ func (s *AuthStatus) SetIsAPIKey(val bool) {
 
 // Ref: #/components/schemas/AuthStatusAccount
 type AuthStatusAccount struct {
-	ID    OptInt64  `json:"ID"`
-	Name  OptString `json:"Name"`
-	Code  OptString `json:"Code"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// アカウントコード.
+	Code OptString `json:"Code"`
+	// アカウントクラス.
 	Class OptString `json:"Class"`
 }
 
@@ -1339,7 +1372,9 @@ func (s *AuthStatusAccount) SetClass(val OptString) {
 
 // Ref: #/components/schemas/AuthStatusMember
 type AuthStatusMember struct {
-	Code  OptString `json:"Code"`
+	// メンバー (ユーザ) コード.
+	Code OptString `json:"Code"`
+	// メンバークラス.
 	Class OptString `json:"Class"`
 }
 
@@ -1394,14 +1429,22 @@ func (s *AuthStatusReadResponseEnvelope) SetAuthStatus(val AuthStatus) {
 
 // Ref: #/components/schemas/AutoBackup
 type AutoBackup struct {
-	ID           OptInt64                 `json:"ID"`
-	Name         OptString                `json:"Name"`
-	Description  string                   `json:"Description"`
-	Tags         []string                 `json:"Tags"`
-	Icon         OptNilResourceRef        `json:"Icon"`
-	Settings     OptNilAutoBackupSettings `json:"Settings"`
-	SettingsHash OptString                `json:"SettingsHash"`
-	Status       OptNilAutoBackupStatus   `json:"Status"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// 自動バックアップ設定.
+	Settings OptNilAutoBackupSettings `json:"Settings"`
+	// 設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る.
+	SettingsHash OptString `json:"SettingsHash"`
+	// 対象ディスク情報.
+	Status OptNilAutoBackupStatus `json:"Status"`
 }
 
 // GetID returns the value of ID.
@@ -1489,7 +1532,7 @@ func (s *AutoBackup) SetStatus(val OptNilAutoBackupStatus) {
 type AutoBackupCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// CommonServiceItem.
+	// CommonServiceItem (各種付加サービス) の設定ペイロード.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
 
@@ -1571,7 +1614,7 @@ func (s *AutoBackupFindResponseEnvelope) SetCommonServiceItems(val []AutoBackup)
 type AutoBackupReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// CommonServiceItem.
+	// CommonServiceItem (各種付加サービス) の設定ペイロード.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
 
@@ -1612,8 +1655,10 @@ func (s *AutoBackupSettings) SetAutobackup(val OptNilAutoBackupSettingsAutobacku
 
 // Ref: #/components/schemas/AutoBackupSettingsAutobackup
 type AutoBackupSettingsAutobackup struct {
-	BackupSpanWeekdays      []EDayOfTheWeek `json:"BackupSpanWeekdays"`
-	MaximumNumberOfArchives OptInt32        `json:"MaximumNumberOfArchives"`
+	// バックアップ取得する曜日の配列.
+	BackupSpanWeekdays []EDayOfTheWeek `json:"BackupSpanWeekdays"`
+	// 保持世代数の上限.
+	MaximumNumberOfArchives OptInt32 `json:"MaximumNumberOfArchives"`
 }
 
 // GetBackupSpanWeekdays returns the value of BackupSpanWeekdays.
@@ -1638,6 +1683,7 @@ func (s *AutoBackupSettingsAutobackup) SetMaximumNumberOfArchives(val OptInt32) 
 
 // Ref: #/components/schemas/AutoBackupStatus
 type AutoBackupStatus struct {
+	// バックアップ対象ディスクのID.
 	DiskID OptInt64 `json:"DiskID"`
 }
 
@@ -1656,7 +1702,7 @@ func (s *AutoBackupStatus) SetDiskID(val OptInt64) {
 type AutoBackupUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// CommonServiceItem.
+	// CommonServiceItem (各種付加サービス) の設定ペイロード.
 	CommonServiceItem AutoBackup `json:"CommonServiceItem"`
 }
 
@@ -1682,9 +1728,12 @@ func (s *AutoBackupUpdateResponseEnvelope) SetCommonServiceItem(val AutoBackup) 
 
 // Ref: #/components/schemas/AutoScaleCPUThresholdScaling
 type AutoScaleCPUThresholdScaling struct {
+	// 対象サーバ名の接頭辞.
 	ServerPrefix OptString `json:"ServerPrefix"`
-	Up           OptInt32  `json:"Up"`
-	Down         OptInt32  `json:"Down"`
+	// スケールアウト閾値 (CPU 使用率 %).
+	Up OptInt32 `json:"Up"`
+	// スケールイン閾値 (CPU 使用率 %).
+	Down OptInt32 `json:"Down"`
 }
 
 // GetServerPrefix returns the value of ServerPrefix.
@@ -1747,9 +1796,12 @@ func (s *AutoScaleOpScaleUpOK) SetIsOk(val bool) {
 
 // Ref: #/components/schemas/AutoScaleRouterThresholdScaling
 type AutoScaleRouterThresholdScaling struct {
+	// 対象ルータ名の接頭辞.
 	RouterPrefix OptString `json:"RouterPrefix"`
-	Direction    OptString `json:"Direction"`
-	Mbps         OptInt32  `json:"Mbps"`
+	// 監視方向 ("in" / "out").
+	Direction OptString `json:"Direction"`
+	// 閾値 (Mbps).
+	Mbps OptInt32 `json:"Mbps"`
 }
 
 // GetRouterPrefix returns the value of RouterPrefix.
@@ -1784,10 +1836,14 @@ func (s *AutoScaleRouterThresholdScaling) SetMbps(val OptInt32) {
 
 // Ref: #/components/schemas/AutoScaleScheduleScaling
 type AutoScaleScheduleScaling struct {
-	Action    EAutoScaleAction `json:"Action"`
-	Hour      int32            `json:"Hour"`
-	Minute    int32            `json:"Minute"`
-	DayOfWeek []EDayOfTheWeek  `json:"DayOfWeek"`
+	// スケール動作 ("up" / "down").
+	Action EAutoScaleAction `json:"Action"`
+	// 動作時刻 (時).
+	Hour int32 `json:"Hour"`
+	// 動作時刻 (分).
+	Minute int32 `json:"Minute"`
+	// 動作させる曜日の配列.
+	DayOfWeek []EDayOfTheWeek `json:"DayOfWeek"`
 }
 
 // GetAction returns the value of Action.
@@ -1923,10 +1979,14 @@ func (s *BasicAuth) SetRoles(val []string) {
 
 // Ref: #/components/schemas/Bill
 type Bill struct {
-	ID     OptInt64       `json:"ID"`
-	Amount OptInt64       `json:"Amount"`
-	Date   OptNilDateTime `json:"Date"`
-	Paid   bool           `json:"Paid"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// 請求金額 (税込、円).
+	Amount OptInt64 `json:"Amount"`
+	// 請求対象月の締日.
+	Date OptNilDateTime `json:"Date"`
+	// 支払済みかどうか.
+	Paid bool `json:"Paid"`
 }
 
 // GetID returns the value of ID.
@@ -2130,16 +2190,26 @@ func (s *BillByContractYearResponseEnvelope) SetBills(val []Bill) {
 
 // Ref: #/components/schemas/BillDetail
 type BillDetail struct {
-	ID               OptInt64       `json:"ID"`
-	Amount           OptInt64       `json:"Amount"`
-	Description      string         `json:"Description"`
-	ServiceClassID   OptInt64       `json:"ServiceClassID"`
-	ServiceClassPath OptString      `json:"ServiceClassPath"`
-	Usage            OptInt64       `json:"Usage"`
-	FormattedUsage   OptString      `json:"FormattedUsage"`
-	ServiceUsagePath OptString      `json:"ServiceUsagePath"`
-	Zone             OptString      `json:"Zone"`
-	ContractEndAt    OptNilDateTime `json:"ContractEndAt"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// 明細金額 (円).
+	Amount OptInt64 `json:"Amount"`
+	// 明細の内容説明.
+	Description string `json:"Description"`
+	// サービスクラス ID.
+	ServiceClassID OptInt64 `json:"ServiceClassID"`
+	// サービスクラスの階層パス.
+	ServiceClassPath OptString `json:"ServiceClassPath"`
+	// 使用量 (数値).
+	Usage OptInt64 `json:"Usage"`
+	// 表示用にフォーマットされた使用量 (例: "123時間").
+	FormattedUsage OptString `json:"FormattedUsage"`
+	// 利用量リソースのパス.
+	ServiceUsagePath OptString `json:"ServiceUsagePath"`
+	// サービスが提供されているゾーン名.
+	Zone OptString `json:"Zone"`
+	// 契約終了日時 (解約済みリソースの場合).
+	ContractEndAt OptNilDateTime `json:"ContractEndAt"`
 }
 
 // GetID returns the value of ID.
@@ -2244,12 +2314,18 @@ func (s *BillDetail) SetContractEndAt(val OptNilDateTime) {
 
 // Ref: #/components/schemas/BillDetailCSV
 type BillDetailCSV struct {
-	Count       OptInt32       `json:"Count"`
+	// 明細件数.
+	Count OptInt32 `json:"Count"`
+	// CSV 生成時刻.
 	ResponsedAt OptNilDateTime `json:"ResponsedAt"`
-	Filename    OptString      `json:"Filename"`
-	RawBody     OptString      `json:"RawBody"`
-	HeaderRow   []string       `json:"HeaderRow"`
-	BodyRows    [][]string     `json:"BodyRows"`
+	// 推奨ファイル名.
+	Filename OptString `json:"Filename"`
+	// CSV 本文 (エスケープ済み文字列).
+	RawBody OptString `json:"RawBody"`
+	// CSV ヘッダ行.
+	HeaderRow []string `json:"HeaderRow"`
+	// CSV 本文行の配列.
+	BodyRows [][]string `json:"BodyRows"`
 }
 
 // GetCount returns the value of Count.
@@ -2449,9 +2525,12 @@ func (s *BillReadResponseEnvelope) SetBills(val []Bill) {
 
 // Ref: #/components/schemas/Bridge
 type Bridge struct {
-	ID          OptInt64  `json:"ID"`
-	Name        OptString `json:"Name"`
-	Description string    `json:"Description"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
 }
 
 // GetID returns the value of ID.
@@ -2486,8 +2565,10 @@ func (s *Bridge) SetDescription(val string) {
 
 // Ref: #/components/schemas/BridgeCreateRequest
 type BridgeCreateRequest struct {
-	Name        OptString `json:"Name"`
-	Description string    `json:"Description"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
 }
 
 // GetName returns the value of Name.
@@ -2654,8 +2735,10 @@ func (s *BridgeReadResponseEnvelope) SetBridge(val Bridge) {
 
 // Ref: #/components/schemas/BridgeUpdateRequest
 type BridgeUpdateRequest struct {
-	Name        OptString `json:"Name"`
-	Description string    `json:"Description"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
 }
 
 // GetName returns the value of Name.
@@ -2726,12 +2809,19 @@ func (s *BridgeUpdateResponseEnvelope) SetBridge(val Bridge) {
 
 // Ref: #/components/schemas/CDROM
 type CDROM struct {
-	ID           OptInt64          `json:"ID"`
-	Name         OptString         `json:"Name"`
-	Description  string            `json:"Description"`
-	Tags         []string          `json:"Tags"`
-	Availability OptEAvailability  `json:"Availability"`
-	Icon         OptNilResourceRef `json:"Icon"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -2796,11 +2886,16 @@ func (s *CDROM) SetIcon(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/CDROMCreateRequest
 type CDROMCreateRequest struct {
-	SizeMB      OptInt32          `json:"SizeMB"`
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// CDROM (ISO イメージ) のサイズ (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetSizeMB returns the value of SizeMB.
@@ -2995,7 +3090,8 @@ func (s *CDROMOpDeleteOK) SetIsOk(val bool) {
 // Request envelope for cDROMOpenFTPRequestEnvelope.
 // Ref: #/components/schemas/CDROMOpenFTPRequestEnvelope
 type CDROMOpenFTPRequestEnvelope struct {
-	// ChangePassword.
+	// FTP のパスワードを再発行するかどうか。true
+	// で新しいパスワードを採番する.
 	ChangePassword bool `json:"ChangePassword"`
 }
 
@@ -3069,10 +3165,14 @@ func (s *CDROMReadResponseEnvelope) SetCDROM(val CDROM) {
 
 // Ref: #/components/schemas/CDROMUpdateRequest
 type CDROMUpdateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
@@ -3163,6 +3263,7 @@ func (s *CDROMUpdateResponseEnvelope) SetCDROM(val CDROM) {
 
 // Ref: #/components/schemas/CertificateAuthorityAddClientOrServerResult
 type CertificateAuthorityAddClientOrServerResult struct {
+	// 発行された証明書のID.
 	ID OptString `json:"ID"`
 }
 
@@ -3178,15 +3279,24 @@ func (s *CertificateAuthorityAddClientOrServerResult) SetID(val OptString) {
 
 // Ref: #/components/schemas/CertificateAuthorityAddClientParam
 type CertificateAuthorityAddClientParam struct {
-	Country                   OptString                              `json:"Country"`
-	Organization              OptString                              `json:"Organization"`
-	OrganizationUnit          []string                               `json:"OrganizationUnit"`
-	CommonName                OptString                              `json:"CommonName"`
-	NotAfter                  OptDateTime                            `json:"NotAfter"`
-	IssuanceMethod            OptECertificateAuthorityIssuanceMethod `json:"IssuanceMethod"`
-	EMail                     OptString                              `json:"EMail"`
-	CertificateSigningRequest OptString                              `json:"CertificateSigningRequest"`
-	PublicKey                 OptString                              `json:"PublicKey"`
+	// Subject Country.
+	Country OptString `json:"Country"`
+	// Subject Organization.
+	Organization OptString `json:"Organization"`
+	// Subject OrganizationUnit.
+	OrganizationUnit []string `json:"OrganizationUnit"`
+	// Subject CommonName.
+	CommonName OptString `json:"CommonName"`
+	// 証明書の有効期限.
+	NotAfter OptDateTime `json:"NotAfter"`
+	// 発行方式 ("csr" / "public_key" / "email" / "url").
+	IssuanceMethod OptECertificateAuthorityIssuanceMethod `json:"IssuanceMethod"`
+	// 通知先メールアドレス.
+	EMail OptString `json:"EMail"`
+	// CSR (PEM)。IssuanceMethod が "csr" のとき指定.
+	CertificateSigningRequest OptString `json:"CertificateSigningRequest"`
+	// 公開鍵 (PEM)。IssuanceMethod が "public_key" のとき指定.
+	PublicKey OptString `json:"PublicKey"`
 }
 
 // GetCountry returns the value of Country.
@@ -3310,14 +3420,22 @@ func (s *CertificateAuthorityAddClientResponseEnvelope) SetCertificateAuthority(
 
 // Ref: #/components/schemas/CertificateAuthorityAddServerParam
 type CertificateAuthorityAddServerParam struct {
-	Country                   OptString   `json:"Country"`
-	Organization              OptString   `json:"Organization"`
-	OrganizationUnit          []string    `json:"OrganizationUnit"`
-	CommonName                OptString   `json:"CommonName"`
-	NotAfter                  OptDateTime `json:"NotAfter"`
-	SANs                      []string    `json:"SANs"`
-	CertificateSigningRequest OptString   `json:"CertificateSigningRequest"`
-	PublicKey                 OptString   `json:"PublicKey"`
+	// Subject Country.
+	Country OptString `json:"Country"`
+	// Subject Organization.
+	Organization OptString `json:"Organization"`
+	// Subject OrganizationUnit.
+	OrganizationUnit []string `json:"OrganizationUnit"`
+	// Subject CommonName.
+	CommonName OptString `json:"CommonName"`
+	// 証明書の有効期限.
+	NotAfter OptDateTime `json:"NotAfter"`
+	// Subject Alternative Name の配列.
+	SANs []string `json:"SANs"`
+	// CSR (PEM).
+	CertificateSigningRequest OptString `json:"CertificateSigningRequest"`
+	// 公開鍵 (PEM).
+	PublicKey OptString `json:"PublicKey"`
 }
 
 // GetCountry returns the value of Country.
@@ -3431,13 +3549,20 @@ func (s *CertificateAuthorityAddServerResponseEnvelope) SetCertificateAuthority(
 
 // Ref: #/components/schemas/CertificateAuthorityClient
 type CertificateAuthorityClient struct {
-	ID              OptString                              `json:"ID"`
-	Subject         OptString                              `json:"Subject"`
-	EMail           OptString                              `json:"EMail"`
-	IssuanceMethod  OptECertificateAuthorityIssuanceMethod `json:"IssuanceMethod"`
-	IssueState      OptString                              `json:"IssueState"`
-	URL             OptString                              `json:"URL"`
-	CertificateData OptNilCertificateData                  `json:"CertificateData"`
+	// リソースを一意に識別するID.
+	ID OptString `json:"ID"`
+	// Subject DN.
+	Subject OptString `json:"Subject"`
+	// 通知先メールアドレス.
+	EMail OptString `json:"EMail"`
+	// 発行方式.
+	IssuanceMethod OptECertificateAuthorityIssuanceMethod `json:"IssuanceMethod"`
+	// 発行状態 ("approved" / "approving" / "denied" / "revoked" 等).
+	IssueState OptString `json:"IssueState"`
+	// IssuanceMethod が "url" の場合のダウンロード URL.
+	URL OptString `json:"URL"`
+	// 発行済みクライアント証明書 (PEM).
+	CertificateData OptNilCertificateData `json:"CertificateData"`
 }
 
 // GetID returns the value of ID.
@@ -3857,6 +3982,7 @@ func (s *CertificateAuthorityReadServerResponseEnvelope) SetCertificateAuthority
 
 // Ref: #/components/schemas/CertificateAuthorityServer
 type CertificateAuthorityServer struct {
+	// リソースを一意に識別するID.
 	ID              OptString             `json:"ID"`
 	Subject         OptString             `json:"Subject"`
 	SANs            []string              `json:"SANs"`
@@ -5751,7 +5877,9 @@ func (s *CommonServiceItemUpdateRequestSettingsSimpleMonitorNotifySlack) SetInco
 
 // Ref: #/components/schemas/ConnectedSwitch
 type ConnectedSwitch struct {
-	ID    OptInt64  `json:"ID"`
+	// 接続先スイッチのID (shared の場合は 0 相当).
+	ID OptInt64 `json:"ID"`
+	// "shared" で共有セグメント、"user" でユーザスイッチ.
 	Scope OptEScope `json:"Scope"`
 }
 
@@ -5902,7 +6030,8 @@ func (s *ContainerRegistryUser) SetPermission(val EContainerRegistryPermission) 
 
 // Ref: #/components/schemas/ContainerRegistryUserCreateRequest
 type ContainerRegistryUserCreateRequest struct {
-	UserName   OptString                    `json:"UserName"`
+	UserName OptString `json:"UserName"`
+	// FTP 接続のパスワード.
 	Password   string                       `json:"Password"`
 	Permission EContainerRegistryPermission `json:"Permission"`
 }
@@ -5939,6 +6068,7 @@ func (s *ContainerRegistryUserCreateRequest) SetPermission(val EContainerRegistr
 
 // Ref: #/components/schemas/ContainerRegistryUserUpdateRequest
 type ContainerRegistryUserUpdateRequest struct {
+	// FTP 接続のパスワード.
 	Password   string                       `json:"Password"`
 	Permission EContainerRegistryPermission `json:"Permission"`
 }
@@ -5980,10 +6110,14 @@ func (s *ContainerRegistryUsers) SetUsers(val []ContainerRegistryUser) {
 
 // Ref: #/components/schemas/Coupon
 type Coupon struct {
-	ID        OptInt64       `json:"ID"`
-	Discount  OptInt64       `json:"Discount"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// 割引残高 (円).
+	Discount OptInt64 `json:"Discount"`
+	// クーポンが適用された日時.
 	AppliedAt OptNilDateTime `json:"AppliedAt"`
-	UntilAt   OptNilDateTime `json:"UntilAt"`
+	// クーポンの有効期限.
+	UntilAt OptNilDateTime `json:"UntilAt"`
 }
 
 // GetID returns the value of ID.
@@ -6081,10 +6215,14 @@ func (s *CouponFindResponseEnvelope) SetCoupon(val []Coupon) {
 
 // Ref: #/components/schemas/DNSRecord
 type DNSRecord struct {
-	Name  string         `json:"Name"`
-	Type  EDNSRecordType `json:"Type"`
-	RData string         `json:"RData"`
-	TTL   int32          `json:"TTL"`
+	// レコード名 (サブドメイン部).
+	Name string `json:"Name"`
+	// レコードタイプ ("A", "AAAA", "CNAME", "MX", "TXT" など).
+	Type EDNSRecordType `json:"Type"`
+	// レコードデータ。TTL のほか、MX なら "10 mail.example.com." 形式等.
+	RData string `json:"RData"`
+	// TTL (秒)。未指定ならゾーンのデフォルトが適用される.
+	TTL int32 `json:"TTL"`
 }
 
 // GetName returns the value of Name.
@@ -6129,20 +6267,35 @@ func (s *DNSRecord) SetTTL(val int32) {
 
 // Ref: #/components/schemas/Database
 type Database struct {
-	ID                OptInt64                             `json:"ID"`
-	Class             OptString                            `json:"Class"`
-	Name              OptString                            `json:"Name"`
-	Description       string                               `json:"Description"`
-	Tags              []string                             `json:"Tags"`
-	Availability      OptEAvailability                     `json:"Availability"`
-	Icon              OptNilResourceRef                    `json:"Icon"`
-	Settings          OptNilDatabaseSettings               `json:"Settings"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの内部分類 (API 種別ごとの識別子).
+	Class OptString `json:"Class"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// データベースの可変設定 (DB
+	// 設定、バックアップ、レプリケーション、監視).
+	Settings OptNilDatabaseSettings `json:"Settings"`
+	// インターフェース設定の配列 (IPv4/マスク長等).
 	InterfaceSettings OptNilDatabaseSettingsInterfaceArray `json:"InterfaceSettings"`
-	SettingsHash      OptNilString                         `json:"SettingsHash"`
-	Instance          OptNilDatabaseInstance               `json:"Instance"`
-	Remark            OptNilDatabaseRemark                 `json:"Remark"`
-	IPAddresses       OptNilStringArray                    `json:"IPAddresses"`
-	Disk              OptNilDatabaseDisk                   `json:"Disk"`
+	// 設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る.
+	SettingsHash OptNilString           `json:"SettingsHash"`
+	Instance     OptNilDatabaseInstance `json:"Instance"`
+	// 不変情報 (プラン/接続スイッチ/DB 種別/ソース・アプライアンス).
+	Remark OptNilDatabaseRemark `json:"Remark"`
+	// 実インターフェースに割り当てる IPv4 の配列.
+	IPAddresses OptNilStringArray `json:"IPAddresses"`
+	// データ格納ディスク情報 (暗号化情報含む).
+	Disk OptNilDatabaseDisk `json:"Disk"`
 }
 
 // GetID returns the value of ID.
@@ -6287,10 +6440,15 @@ func (s *Database) SetDisk(val OptNilDatabaseDisk) {
 
 // Ref: #/components/schemas/DatabaseBackupHistory
 type DatabaseBackupHistory struct {
-	CreatedAt    OptDateTime    `json:"CreatedAt"`
-	Availability OptString      `json:"Availability"`
-	RecoveredAt  OptNilDateTime `json:"RecoveredAt"`
-	Size         OptInt64       `json:"Size"`
+	// 作成日時 (ISO 8601 / UTC).
+	CreatedAt OptDateTime `json:"CreatedAt"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptString `json:"Availability"`
+	// リストア (リカバリ) に利用された日時。未使用なら null.
+	RecoveredAt OptNilDateTime `json:"RecoveredAt"`
+	// バックアップサイズ (バイト).
+	Size OptInt64 `json:"Size"`
 }
 
 // GetCreatedAt returns the value of CreatedAt.
@@ -6338,7 +6496,7 @@ func (s *DatabaseBackupHistory) SetSize(val OptInt64) {
 type DatabaseCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Appliance.
+	// アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード.
 	Appliance Database `json:"Appliance"`
 }
 
@@ -6364,8 +6522,10 @@ func (s *DatabaseCreateResponseEnvelope) SetAppliance(val Database) {
 
 // Ref: #/components/schemas/DatabaseDisk
 type DatabaseDisk struct {
-	EncryptionAlgorithm OptEDiskEncryptionAlgorithm     `json:"EncryptionAlgorithm"`
-	EncryptionKey       OptNilDatabaseDiskEncryptionKey `json:"EncryptionKey"`
+	// ディスク暗号化アルゴリズム.
+	EncryptionAlgorithm OptEDiskEncryptionAlgorithm `json:"EncryptionAlgorithm"`
+	// KMS 暗号化キー情報.
+	EncryptionKey OptNilDatabaseDiskEncryptionKey `json:"EncryptionKey"`
 }
 
 // GetEncryptionAlgorithm returns the value of EncryptionAlgorithm.
@@ -6390,6 +6550,7 @@ func (s *DatabaseDisk) SetEncryptionKey(val OptNilDatabaseDiskEncryptionKey) {
 
 // Ref: #/components/schemas/DatabaseDiskEncryptionKey
 type DatabaseDiskEncryptionKey struct {
+	// KMS キーID.
 	KMSKeyID OptInt64 `json:"KMSKeyID"`
 }
 
@@ -6487,9 +6648,11 @@ func (s *DatabaseGetParameterResponseEnvelope) SetDatabase(val DatabaseParameter
 
 // Ref: #/components/schemas/DatabaseInstance
 type DatabaseInstance struct {
-	Host            OptNilDatabaseInstanceHost `json:"Host"`
-	Status          OptEServerInstanceStatus   `json:"Status"`
-	StatusChangedAt OptNilDateTime             `json:"StatusChangedAt"`
+	// 配置先ホスト情報.
+	Host OptNilDatabaseInstanceHost `json:"Host"`
+	// データベースアプライアンスの稼働状態.
+	Status          OptEServerInstanceStatus `json:"Status"`
+	StatusChangedAt OptNilDateTime           `json:"StatusChangedAt"`
 }
 
 // GetHost returns the value of Host.
@@ -6524,6 +6687,7 @@ func (s *DatabaseInstance) SetStatusChangedAt(val OptNilDateTime) {
 
 // Ref: #/components/schemas/DatabaseInstanceHost
 type DatabaseInstanceHost struct {
+	// リソースの名前.
 	Name    OptString `json:"Name"`
 	InfoURL OptString `json:"InfoURL"`
 }
@@ -6550,9 +6714,12 @@ func (s *DatabaseInstanceHost) SetInfoURL(val OptString) {
 
 // Ref: #/components/schemas/DatabaseLog
 type DatabaseLog struct {
+	// ログ名 (エラーログ / スローログ等).
 	Name OptString `json:"Name"`
+	// ログ本文.
 	Data OptString `json:"Data"`
-	Size OptInt32  `json:"Size"`
+	// ログサイズ.
+	Size OptInt32 `json:"Size"`
 }
 
 // GetName returns the value of Name.
@@ -6756,8 +6923,10 @@ func (s *DatabaseOpSetParameterReqParam) init() DatabaseOpSetParameterReqParam {
 
 // Ref: #/components/schemas/DatabaseParameter
 type DatabaseParameter struct {
+	// 現在適用中のパラメータ.
 	Parameter OptNilDatabaseParameterParameter `json:"Parameter"`
-	MetaInfo  []DatabaseParameterMeta          `json:"MetaInfo"`
+	// DB パラメータメタ情報 (利用可能な範囲や例).
+	MetaInfo []DatabaseParameterMeta `json:"MetaInfo"`
 }
 
 // GetParameter returns the value of Parameter.
@@ -6782,9 +6951,12 @@ func (s *DatabaseParameter) SetMetaInfo(val []DatabaseParameterMeta) {
 
 // Ref: #/components/schemas/DatabaseParameterMeta
 type DatabaseParameterMeta struct {
+	// 取り得る値の制約 (最大値、例示).
 	Options OptNilDatabaseParameterMetaOptions `json:"Options"`
-	Name    string                             `json:"Name"`
-	Label   string                             `json:"Label"`
+	// パラメータ名.
+	Name string `json:"Name"`
+	// パラメータのラベル.
+	Label string `json:"Label"`
 }
 
 // GetOptions returns the value of Options.
@@ -6819,13 +6991,15 @@ func (s *DatabaseParameterMeta) SetLabel(val string) {
 
 // Ref: #/components/schemas/DatabaseParameterMetaOptions
 type DatabaseParameterMetaOptions struct {
-	Type    string  `json:"Type"`
-	Text    string  `json:"Text"`
+	Type string `json:"Type"`
+	Text string `json:"Text"`
+	// 例示値.
 	Example string  `json:"Example"`
 	Min     float64 `json:"Min"`
-	Max     float64 `json:"Max"`
-	MaxLen  int32   `json:"MaxLen"`
-	Reboot  string  `json:"Reboot"`
+	// 最大値.
+	Max    float64 `json:"Max"`
+	MaxLen int32   `json:"MaxLen"`
+	Reboot string  `json:"Reboot"`
 }
 
 // GetType returns the value of Type.
@@ -6929,7 +7103,7 @@ func (s *DatabaseParameterParameterAttr) init() DatabaseParameterParameterAttr {
 type DatabaseReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Appliance.
+	// アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード.
 	Appliance Database `json:"Appliance"`
 }
 
@@ -7066,8 +7240,10 @@ func (s *DatabaseRemarkDBConfCommon) SetUserPassword(val OptString) {
 
 // Ref: #/components/schemas/DatabaseRemarkNetwork
 type DatabaseRemarkNetwork struct {
-	DefaultRoute   OptString `json:"DefaultRoute"`
-	NetworkMaskLen OptInt32  `json:"NetworkMaskLen"`
+	// デフォルトルートの IP アドレス.
+	DefaultRoute OptString `json:"DefaultRoute"`
+	// ネットワークマスク長 (プレフィックス長).
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
 }
 
 // GetDefaultRoute returns the value of DefaultRoute.
@@ -7092,12 +7268,17 @@ func (s *DatabaseRemarkNetwork) SetNetworkMaskLen(val OptInt32) {
 
 // Ref: #/components/schemas/DatabaseReplicationSetting
 type DatabaseReplicationSetting struct {
-	Model     OptEDatabaseReplicationModel `json:"Model"`
-	IPAddress OptString                    `json:"IPAddress"`
-	Port      OptInt32                     `json:"Port"`
-	User      OptString                    `json:"User"`
-	Password  OptString                    `json:"Password"`
-	Appliance OptNilResourceRef            `json:"Appliance"`
+	Model OptEDatabaseReplicationModel `json:"Model"`
+	// IPv4 アドレス.
+	IPAddress OptString `json:"IPAddress"`
+	// ポート番号.
+	Port OptInt32 `json:"Port"`
+	// FTP 接続のユーザ名.
+	User OptString `json:"User"`
+	// FTP 接続のパスワード.
+	Password OptString `json:"Password"`
+	// アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード.
+	Appliance OptNilResourceRef `json:"Appliance"`
 }
 
 // GetModel returns the value of Model.
@@ -7403,7 +7584,8 @@ func (s *DatabaseSettingsDBConf) SetReplication(val OptNilDatabaseReplicationSet
 // Ref: #/components/schemas/DatabaseSettingsInterface
 type DatabaseSettingsInterface struct {
 	VirtualIPAddress OptString `json:"VirtualIPAddress"`
-	Index            int32     `json:"Index"`
+	// 配列内での順序を表すインデックス.
+	Index int32 `json:"Index"`
 }
 
 // GetVirtualIPAddress returns the value of VirtualIPAddress.
@@ -7468,7 +7650,7 @@ func (s *DatabaseStatus) SetBackups(val []DatabaseBackupHistory) {
 type DatabaseStatusResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Appliance.
+	// アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード.
 	Appliance DatabaseStatus `json:"Appliance"`
 }
 
@@ -7601,7 +7783,7 @@ func (s *DatabaseStatusSettingsResponseDBConfPostgres) SetStatus(val string) {
 type DatabaseUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Appliance.
+	// アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード.
 	Appliance Database `json:"Appliance"`
 }
 
@@ -7686,21 +7868,37 @@ func (s *DatabaseVersionInfo) SetExpire(val OptString) {
 
 // Ref: #/components/schemas/Disk
 type Disk struct {
-	ID                  OptInt64                    `json:"ID"`
-	Name                OptString                   `json:"Name"`
-	Description         string                      `json:"Description"`
-	Tags                []string                    `json:"Tags"`
-	Availability        OptEAvailability            `json:"Availability"`
-	Connection          OptEDiskConnection          `json:"Connection"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// サーバへの接続方式。"virtio" (推奨) または "ide".
+	Connection OptEDiskConnection `json:"Connection"`
+	// ディスク暗号化アルゴリズム。"none" または "aes256_xts".
 	EncryptionAlgorithm OptEDiskEncryptionAlgorithm `json:"EncryptionAlgorithm"`
-	EncryptionKey       OptNilDiskEncryptionKey     `json:"EncryptionKey"`
-	SizeMB              OptInt32                    `json:"SizeMB"`
-	Plan                OptNilDiskPlan              `json:"Plan"`
-	SourceDisk          OptNilDiskSourceDisk        `json:"SourceDisk"`
-	SourceArchive       OptNilDiskSourceArchive     `json:"SourceArchive"`
-	Storage             OptNilStorage               `json:"Storage"`
-	Server              OptNilDiskServer            `json:"Server"`
-	Icon                OptNilResourceRef           `json:"Icon"`
+	// 暗号化ディスクに紐付く KMS キー情報.
+	EncryptionKey OptNilDiskEncryptionKey `json:"EncryptionKey"`
+	// ディスクサイズ (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
+	// ディスクプラン (SSD / 標準 など).
+	Plan OptNilDiskPlan `json:"Plan"`
+	// 複製元ディスク。SourceArchive と排他。どちらか片方のみ指定する.
+	SourceDisk OptNilDiskSourceDisk `json:"SourceDisk"`
+	// 複製元アーカイブ。SourceDisk と排他。どちらか片方のみ指定する.
+	SourceArchive OptNilDiskSourceArchive `json:"SourceArchive"`
+	// 配置先ストレージ情報.
+	Storage OptNilStorage `json:"Storage"`
+	// 接続先サーバ (未接続なら null).
+	Server OptNilDiskServer `json:"Server"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -7856,27 +8054,27 @@ func (s *Disk) SetIcon(val OptNilResourceRef) {
 // Request envelope for diskConfigRequestEnvelope.
 // Ref: #/components/schemas/DiskConfigRequestEnvelope
 type DiskConfigRequestEnvelope struct {
-	// Background.
+	// ディスク修正を非同期で実行するかどうか.
 	Background bool `json:"Background"`
-	// Password.
+	// ゲスト OS の administrator/root パスワード.
 	Password string `json:"Password"`
-	// SSHKey.
+	// 登録する SSH 公開鍵 (単一).
 	SSHKey OptDiskEditSSHKey `json:"SSHKey"`
-	// SSHKeys.
+	// 登録する SSH 公開鍵の配列.
 	SSHKeys []DiskEditSSHKey `json:"SSHKeys"`
-	// DisablePWAuth.
+	// SSH パスワード認証を無効化するかどうか.
 	DisablePWAuth bool `json:"DisablePWAuth"`
-	// EnableDHCP.
+	// DHCP を有効化するかどうか.
 	EnableDHCP bool `json:"EnableDHCP"`
-	// ChangePartitionUUID.
+	// ディスクのパーティション UUID を再生成するかどうか.
 	ChangePartitionUUID bool `json:"ChangePartitionUUID"`
-	// HostName.
+	// ゲスト OS に設定するホスト名.
 	HostName string `json:"HostName"`
-	// Notes.
+	// 起動時に適用するスタートアップスクリプト (Note) の配列.
 	Notes []DiskEditNote `json:"Notes"`
-	// UserIPAddress.
+	// ゲスト OS に設定する IPv4 アドレス.
 	UserIPAddress string `json:"UserIPAddress"`
-	// UserSubnet.
+	// ゲスト OS に設定するサブネット情報.
 	UserSubnet OptDiskEditUserSubnet `json:"UserSubnet"`
 }
 
@@ -7992,16 +8190,26 @@ func (s *DiskConfigRequestEnvelope) SetUserSubnet(val OptDiskEditUserSubnet) {
 
 // Ref: #/components/schemas/DiskCreateRequest
 type DiskCreateRequest struct {
-	Plan                OptNilResourceRef           `json:"Plan"`
-	Connection          OptEDiskConnection          `json:"Connection"`
+	// ディスクプラン (ResourceRef で ID 指定).
+	Plan OptNilResourceRef `json:"Plan"`
+	// サーバへの接続方式。"virtio" (推奨) または "ide".
+	Connection OptEDiskConnection `json:"Connection"`
+	// ディスク暗号化アルゴリズム。"none" または "aes256_xts".
 	EncryptionAlgorithm OptEDiskEncryptionAlgorithm `json:"EncryptionAlgorithm"`
-	SourceDisk          OptNilResourceRef           `json:"SourceDisk"`
-	SourceArchive       OptNilResourceRef           `json:"SourceArchive"`
-	SizeMB              OptInt32                    `json:"SizeMB"`
-	Name                OptString                   `json:"Name"`
-	Description         string                      `json:"Description"`
-	Tags                []string                    `json:"Tags"`
-	Icon                OptNilResourceRef           `json:"Icon"`
+	// 複製元ディスク。SourceArchive と排他.
+	SourceDisk OptNilResourceRef `json:"SourceDisk"`
+	// 複製元アーカイブ。SourceDisk と排他.
+	SourceArchive OptNilResourceRef `json:"SourceArchive"`
+	// ディスクサイズ (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetPlan returns the value of Plan.
@@ -8107,17 +8315,18 @@ func (s *DiskCreateRequest) SetIcon(val OptNilResourceRef) {
 // Request envelope for diskCreateRequestEnvelope.
 // Ref: #/components/schemas/DiskCreateRequestEnvelope
 type DiskCreateRequestEnvelope struct {
-	// Disk.
+	// ディスク作成パラメータ.
 	Disk DiskCreateRequest `json:"Disk"`
-	// DistantFrom.
+	// 他ディスクの物理配置と分散させたい場合の対向ディスクIDの配列.
 	DistantFrom []ID `json:"DistantFrom"`
-	// KMSKey.
+	// 暗号化に利用する KMS キー情報.
 	KMSKey jx.Raw `json:"KMSKey"`
-	// TargetDedicatedStorageContract.
+	// 配置先の専有ストレージ契約ID.
 	TargetDedicatedStorageContract jx.Raw `json:"TargetDedicatedStorageContract"`
-	// Config.
+	// 作成と同時に適用するディスクの修正パラメータ
+	// (ホスト名/SSHキー/IPアドレス等).
 	Config OptDiskEditRequest `json:"Config"`
-	// BootAtAvailable.
+	// ディスク作成完了後に接続サーバを起動するかどうか.
 	BootAtAvailable OptBool `json:"BootAtAvailable"`
 }
 
@@ -8212,8 +8421,11 @@ func (s *DiskCreateResponseEnvelope) SetDisk(val Disk) {
 
 // Ref: #/components/schemas/DiskEditNote
 type DiskEditNote struct {
-	ID        OptInt64                 `json:"ID"`
-	APIKey    OptNilResourceRef        `json:"APIKey"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// Note 実行時に渡す API キー (ResourceRef で ID 指定).
+	APIKey OptNilResourceRef `json:"APIKey"`
+	// Note に渡す変数 (key-value マップ).
 	Variables OptDiskEditNoteVariables `json:"Variables"`
 }
 
@@ -8247,6 +8459,7 @@ func (s *DiskEditNote) SetVariables(val OptDiskEditNoteVariables) {
 	s.Variables = val
 }
 
+// Note に渡す変数 (key-value マップ).
 type DiskEditNoteVariables map[string]jx.Raw
 
 func (s *DiskEditNoteVariables) init() DiskEditNoteVariables {
@@ -8260,17 +8473,28 @@ func (s *DiskEditNoteVariables) init() DiskEditNoteVariables {
 
 // Ref: #/components/schemas/DiskEditRequest
 type DiskEditRequest struct {
-	Background          OptBool                  `json:"Background"`
-	Password            OptString                `json:"Password"`
-	SSHKey              OptNilDiskEditSSHKey     `json:"SSHKey"`
-	SSHKeys             []DiskEditSSHKey         `json:"SSHKeys"`
-	DisablePWAuth       OptBool                  `json:"DisablePWAuth"`
-	EnableDHCP          OptBool                  `json:"EnableDHCP"`
-	ChangePartitionUUID OptBool                  `json:"ChangePartitionUUID"`
-	HostName            OptString                `json:"HostName"`
-	Notes               []DiskEditNote           `json:"Notes"`
-	UserIPAddress       OptString                `json:"UserIPAddress"`
-	UserSubnet          OptNilDiskEditUserSubnet `json:"UserSubnet"`
+	// ディスク修正を非同期で実行するかどうか.
+	Background OptBool `json:"Background"`
+	// ゲスト OS の administrator/root パスワード.
+	Password OptString `json:"Password"`
+	// 登録する SSH 公開鍵 (単一).
+	SSHKey OptNilDiskEditSSHKey `json:"SSHKey"`
+	// 登録する SSH 公開鍵の配列.
+	SSHKeys []DiskEditSSHKey `json:"SSHKeys"`
+	// SSH パスワード認証を無効化するかどうか.
+	DisablePWAuth OptBool `json:"DisablePWAuth"`
+	// DHCP を有効化するかどうか.
+	EnableDHCP OptBool `json:"EnableDHCP"`
+	// ディスクのパーティション UUID を再生成するかどうか.
+	ChangePartitionUUID OptBool `json:"ChangePartitionUUID"`
+	// ゲスト OS に設定するホスト名.
+	HostName OptString `json:"HostName"`
+	// 起動時に適用するスタートアップスクリプト (Note) の配列.
+	Notes []DiskEditNote `json:"Notes"`
+	// ゲスト OS に設定する IPv4 アドレス.
+	UserIPAddress OptString `json:"UserIPAddress"`
+	// ゲスト OS に設定するサブネット情報 (マスク長/デフォルトルート).
+	UserSubnet OptNilDiskEditUserSubnet `json:"UserSubnet"`
 }
 
 // GetBackground returns the value of Background.
@@ -8385,7 +8609,9 @@ func (s *DiskEditRequest) SetUserSubnet(val OptNilDiskEditUserSubnet) {
 
 // Ref: #/components/schemas/DiskEditSSHKey
 type DiskEditSSHKey struct {
-	ID        int64  `json:"ID"`
+	// リソースを一意に識別するID.
+	ID int64 `json:"ID"`
+	// 登録する SSH 公開鍵文字列.
 	PublicKey string `json:"PublicKey"`
 }
 
@@ -8411,8 +8637,10 @@ func (s *DiskEditSSHKey) SetPublicKey(val string) {
 
 // Ref: #/components/schemas/DiskEditUserSubnet
 type DiskEditUserSubnet struct {
-	DefaultRoute   string `json:"DefaultRoute"`
-	NetworkMaskLen int32  `json:"NetworkMaskLen"`
+	// ゲスト OS に設定するデフォルトルート.
+	DefaultRoute string `json:"DefaultRoute"`
+	// ゲスト OS に設定するネットワークマスク長.
+	NetworkMaskLen int32 `json:"NetworkMaskLen"`
 }
 
 // GetDefaultRoute returns the value of DefaultRoute.
@@ -8437,6 +8665,7 @@ func (s *DiskEditUserSubnet) SetNetworkMaskLen(val int32) {
 
 // Ref: #/components/schemas/DiskEncryptionKey
 type DiskEncryptionKey struct {
+	// KMS キーのID.
 	KMSKeyID OptInt64 `json:"KMSKeyID"`
 }
 
@@ -8633,11 +8862,17 @@ func (s *DiskOpResizePartitionOK) SetIsOk(val bool) {
 
 // Ref: #/components/schemas/DiskPlan
 type DiskPlan struct {
-	ID           OptInt64           `json:"ID"`
-	Name         OptString          `json:"Name"`
-	StorageClass OptString          `json:"StorageClass"`
-	Availability OptEAvailability   `json:"Availability"`
-	Size         []DiskPlanSizeInfo `json:"Size"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 配置ストレージクラス ("iscsi1204" 等).
+	StorageClass OptString `json:"StorageClass"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// このプランで選択可能なサイズ情報の配列.
+	Size []DiskPlanSizeInfo `json:"Size"`
 }
 
 // GetID returns the value of ID.
@@ -8774,10 +9009,15 @@ func (s *DiskPlanReadResponseEnvelope) SetDiskPlan(val DiskPlan) {
 
 // Ref: #/components/schemas/DiskPlanSizeInfo
 type DiskPlanSizeInfo struct {
-	Availability  OptEAvailability `json:"Availability"`
-	DisplaySize   OptInt32         `json:"DisplaySize"`
-	DisplaySuffix OptString        `json:"DisplaySuffix"`
-	SizeMB        OptInt32         `json:"SizeMB"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// 表示用のサイズ数値.
+	DisplaySize OptInt32 `json:"DisplaySize"`
+	// 表示用の単位 ("GB" 等).
+	DisplaySuffix OptString `json:"DisplaySuffix"`
+	// 実サイズ (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
 }
 
 // GetAvailability returns the value of Availability.
@@ -8852,7 +9092,7 @@ func (s *DiskReadResponseEnvelope) SetDisk(val Disk) {
 // Request envelope for diskResizePartitionRequestEnvelope.
 // Ref: #/components/schemas/DiskResizePartitionRequestEnvelope
 type DiskResizePartitionRequestEnvelope struct {
-	// Background.
+	// パーティションリサイズを非同期で実行するかどうか.
 	Background bool `json:"Background"`
 }
 
@@ -8868,7 +9108,9 @@ func (s *DiskResizePartitionRequestEnvelope) SetBackground(val bool) {
 
 // Ref: #/components/schemas/DiskServer
 type DiskServer struct {
-	ID   OptInt64  `json:"ID"`
+	// 接続先サーバのID.
+	ID OptInt64 `json:"ID"`
+	// 接続先サーバの名前.
 	Name OptString `json:"Name"`
 }
 
@@ -8894,7 +9136,9 @@ func (s *DiskServer) SetName(val OptString) {
 
 // Ref: #/components/schemas/DiskSourceArchive
 type DiskSourceArchive struct {
-	ID           OptInt64         `json:"ID"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// 複製元アーカイブの利用状態.
 	Availability OptEAvailability `json:"Availability"`
 }
 
@@ -8920,7 +9164,9 @@ func (s *DiskSourceArchive) SetAvailability(val OptEAvailability) {
 
 // Ref: #/components/schemas/DiskSourceDisk
 type DiskSourceDisk struct {
-	ID           OptInt64         `json:"ID"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// 複製元ディスクの利用状態.
 	Availability OptEAvailability `json:"Availability"`
 }
 
@@ -8946,11 +9192,16 @@ func (s *DiskSourceDisk) SetAvailability(val OptEAvailability) {
 
 // Ref: #/components/schemas/DiskUpdateRequest
 type DiskUpdateRequest struct {
-	Name        OptString          `json:"Name"`
-	Description string             `json:"Description"`
-	Tags        []string           `json:"Tags"`
-	Icon        OptNilResourceRef  `json:"Icon"`
-	Connection  OptEDiskConnection `json:"Connection"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// サーバへの接続方式 ("virtio" / "ide").
+	Connection OptEDiskConnection `json:"Connection"`
 }
 
 // GetName returns the value of Name.
@@ -9170,13 +9421,20 @@ type EProxyLBRuleAction string
 
 // Ref: #/components/schemas/ESMELogs
 type ESMELogs struct {
-	MessageID   OptString      `json:"MessageID"`
-	Status      OptString      `json:"Status"`
-	OTP         OptString      `json:"OTP"`
-	Destination OptString      `json:"Destination"`
-	SentAt      OptNilDateTime `json:"SentAt"`
-	DoneAt      OptNilDateTime `json:"DoneAt"`
-	RetryCount  OptInt32       `json:"RetryCount"`
+	// メッセージID.
+	MessageID OptString `json:"MessageID"`
+	// 最新の送信ステータス.
+	Status OptString `json:"Status"`
+	// OTP 値.
+	OTP OptString `json:"OTP"`
+	// 送信先電話番号.
+	Destination OptString `json:"Destination"`
+	// 送信実行日時.
+	SentAt OptNilDateTime `json:"SentAt"`
+	// 最終ステータス確定日時.
+	DoneAt OptNilDateTime `json:"DoneAt"`
+	// 送信リトライ回数.
+	RetryCount OptInt32 `json:"RetryCount"`
 }
 
 // GetMessageID returns the value of MessageID.
@@ -9308,9 +9566,12 @@ func (s *ESMEOpSendMessageWithInputtedOTPReq) SetParam(val ESMESendMessageWithIn
 
 // Ref: #/components/schemas/ESMESendMessageResult
 type ESMESendMessageResult struct {
+	// 送信メッセージのID.
 	MessageID OptString `json:"MessageID"`
-	Status    OptString `json:"Status"`
-	OTP       OptString `json:"OTP"`
+	// 送信リクエストの受付ステータス.
+	Status OptString `json:"Status"`
+	// 自動発行された OTP (generated モードのみ).
+	OTP OptString `json:"OTP"`
 }
 
 // GetMessageID returns the value of MessageID.
@@ -9345,9 +9606,12 @@ func (s *ESMESendMessageResult) SetOTP(val OptString) {
 
 // Ref: #/components/schemas/ESMESendMessageWithGeneratedOTPRequest
 type ESMESendMessageWithGeneratedOTPRequest struct {
+	// SMS 送信先電話番号 (E.164 形式、"+81901234567" 等).
 	Destination OptString `json:"Destination"`
-	Sender      OptString `json:"Sender"`
-	DomainName  OptString `json:"DomainName"`
+	// SMS 送信元名 (英数字).
+	Sender OptString `json:"Sender"`
+	// OTP 送信時に利用するドメイン名 (任意).
+	DomainName OptString `json:"DomainName"`
 }
 
 // GetDestination returns the value of Destination.
@@ -9411,10 +9675,14 @@ func (s *ESMESendMessageWithGeneratedOTPResponseEnvelope) SetESME(val ESMESendMe
 
 // Ref: #/components/schemas/ESMESendMessageWithInputtedOTPRequest
 type ESMESendMessageWithInputtedOTPRequest struct {
+	// SMS 送信先電話番号.
 	Destination OptString `json:"Destination"`
-	Sender      OptString `json:"Sender"`
-	DomainName  OptString `json:"DomainName"`
-	OTP         OptString `json:"OTP"`
+	// SMS 送信元名.
+	Sender OptString `json:"Sender"`
+	// OTP 送信時に利用するドメイン名 (任意).
+	DomainName OptString `json:"DomainName"`
+	// 送信したいワンタイムパスワード文字列.
+	OTP OptString `json:"OTP"`
 }
 
 // GetDestination returns the value of Destination.
@@ -9498,6 +9766,7 @@ type ESimpleNotificationDestinationTypes string
 
 // Ref: #/components/schemas/EjectCDROMRequest
 type EjectCDROMRequest struct {
+	// 排出する CDROM のID (現在挿入されている CDROM のID).
 	ID OptInt64 `json:"ID"`
 }
 
@@ -9513,7 +9782,9 @@ func (s *EjectCDROMRequest) SetID(val OptInt64) {
 
 // Ref: #/components/schemas/EnhancedDBConfig
 type EnhancedDBConfig struct {
-	MaxConnections  OptInt32 `json:"MaxConnections"`
+	// 最大同時接続数.
+	MaxConnections OptInt32 `json:"MaxConnections"`
+	// 接続を許可する CIDR の配列.
 	AllowedNetworks []string `json:"AllowedNetworks"`
 }
 
@@ -9624,6 +9895,7 @@ func (s *EnhancedDBOpSetPasswordReq) SetParam(val EnhancedDBSetPasswordRequest) 
 
 // Ref: #/components/schemas/EnhancedDBSetConfigRequest
 type EnhancedDBSetConfigRequest struct {
+	// 設定値のラッパー.
 	EnhancedDB OptNilEnhancedDBSetConfigRequestEnhancedDB `json:"EnhancedDB"`
 }
 
@@ -9639,6 +9911,7 @@ func (s *EnhancedDBSetConfigRequest) SetEnhancedDB(val OptNilEnhancedDBSetConfig
 
 // Ref: #/components/schemas/EnhancedDBSetConfigRequestEnhancedDB
 type EnhancedDBSetConfigRequestEnhancedDB struct {
+	// 接続を許可する CIDR の配列.
 	AllowedNetworks []string `json:"AllowedNetworks"`
 }
 
@@ -9654,6 +9927,7 @@ func (s *EnhancedDBSetConfigRequestEnhancedDB) SetAllowedNetworks(val []string) 
 
 // Ref: #/components/schemas/EnhancedDBSetPasswordRequest
 type EnhancedDBSetPasswordRequest struct {
+	// パスワード再設定のラッパー.
 	EnhancedDB EnhancedDBSetPasswordRequestEnhancedDB `json:"EnhancedDB"`
 }
 
@@ -9669,6 +9943,7 @@ func (s *EnhancedDBSetPasswordRequest) SetEnhancedDB(val EnhancedDBSetPasswordRe
 
 // Ref: #/components/schemas/EnhancedDBSetPasswordRequestEnhancedDB
 type EnhancedDBSetPasswordRequestEnhancedDB struct {
+	// 新しいパスワード.
 	Password string `json:"Password"`
 }
 
@@ -9684,10 +9959,14 @@ func (s *EnhancedDBSetPasswordRequestEnhancedDB) SetPassword(val string) {
 
 // Ref: #/components/schemas/FTPServer
 type FTPServer struct {
-	HostName  OptString `json:"HostName"`
+	// FTP サーバのホスト名.
+	HostName OptString `json:"HostName"`
+	// FTP サーバの IPv4 アドレス.
 	IPAddress OptString `json:"IPAddress"`
-	User      OptString `json:"User"`
-	Password  OptString `json:"Password"`
+	// FTP 接続ユーザ名.
+	User OptString `json:"User"`
+	// FTP 接続パスワード.
+	Password OptString `json:"Password"`
 }
 
 // GetHostName returns the value of HostName.
@@ -9732,7 +10011,9 @@ func (s *FTPServer) SetPassword(val OptString) {
 
 // Ref: #/components/schemas/FTPServerInfo
 type FTPServerInfo struct {
-	HostName  OptString `json:"HostName"`
+	// FTP サーバのホスト名.
+	HostName OptString `json:"HostName"`
+	// FTP サーバの IPv4 アドレス.
 	IPAddress OptString `json:"IPAddress"`
 }
 
@@ -9758,11 +10039,16 @@ func (s *FTPServerInfo) SetIPAddress(val OptString) {
 
 // Ref: #/components/schemas/GSLBHealthCheck
 type GSLBHealthCheck struct {
+	// プロトコル ("http", "https", "tcp", "ping").
 	Protocol OptEGSLBHealthCheckProtocol `json:"Protocol"`
-	Host     OptString                   `json:"Host"`
-	Path     OptString                   `json:"Path"`
-	Status   OptInt32                    `json:"Status"`
-	Port     OptInt32                    `json:"Port"`
+	// HTTP(S) 時の Host ヘッダに設定する FQDN.
+	Host OptString `json:"Host"`
+	// HTTP(S) 時のチェックパス.
+	Path OptString `json:"Path"`
+	// HTTP(S) 時に期待するステータスコード.
+	Status OptInt32 `json:"Status"`
+	// HTTP(S)/TCP 時のチェックポート.
+	Port OptInt32 `json:"Port"`
 }
 
 // GetProtocol returns the value of Protocol.
@@ -9817,9 +10103,12 @@ func (s *GSLBHealthCheck) SetPort(val OptInt32) {
 
 // Ref: #/components/schemas/GSLBServer
 type GSLBServer struct {
+	// 振り分け先サーバの IPv4 アドレス.
 	IPAddress string `json:"IPAddress"`
-	Enabled   string `json:"Enabled"`
-	Weight    int32  `json:"Weight"`
+	// 振り分け対象にするか.
+	Enabled string `json:"Enabled"`
+	// 重み (1-10000)。大きいほど多く振り分けられる.
+	Weight int32 `json:"Weight"`
 }
 
 // GetIPAddress returns the value of IPAddress.
@@ -9856,7 +10145,9 @@ type ID string
 
 // Ref: #/components/schemas/IPAddress
 type IPAddress struct {
-	HostName  string    `json:"HostName"`
+	// 逆引き用の PTR レコードに登録されているホスト名.
+	HostName string `json:"HostName"`
+	// IPv4 アドレス.
 	IPAddress OptString `json:"IPAddress"`
 }
 
@@ -9889,7 +10180,7 @@ type IPAddressListResponseEnvelope struct {
 	From int32 `json:"From"`
 	// 現在のページの件数.
 	Count int32 `json:"Count"`
-	// IPAddress.
+	// IPv4 アドレス.
 	IPAddress []IPAddress `json:"IPAddress"`
 }
 
@@ -9938,7 +10229,7 @@ func (s *IPAddressListResponseEnvelope) SetIPAddress(val []IPAddress) {
 type IPAddressReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// IPAddress.
+	// IPv4 アドレス.
 	IPAddress IPAddress `json:"IPAddress"`
 }
 
@@ -9965,7 +10256,7 @@ func (s *IPAddressReadResponseEnvelope) SetIPAddress(val IPAddress) {
 // Request envelope for iPAddressUpdateHostNameRequestEnvelope.
 // Ref: #/components/schemas/IPAddressUpdateHostNameRequestEnvelope
 type IPAddressUpdateHostNameRequestEnvelope struct {
-	// IPAddress.
+	// IPv4 アドレス.
 	IPAddress IPAddress `json:"IPAddress"`
 }
 
@@ -9984,7 +10275,7 @@ func (s *IPAddressUpdateHostNameRequestEnvelope) SetIPAddress(val IPAddress) {
 type IPAddressUpdateHostNameResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// IPAddress.
+	// IPv4 アドレス.
 	IPAddress IPAddress `json:"IPAddress"`
 }
 
@@ -10010,8 +10301,10 @@ func (s *IPAddressUpdateHostNameResponseEnvelope) SetIPAddress(val IPAddress) {
 
 // Ref: #/components/schemas/IPv6Addr
 type IPv6Addr struct {
+	// IPv6 アドレス.
 	IPv6Addr OptString `json:"IPv6Addr"`
-	HostName string    `json:"HostName"`
+	// 逆引き用の PTR レコードに登録されているホスト名.
+	HostName string `json:"HostName"`
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
@@ -10036,8 +10329,10 @@ func (s *IPv6Addr) SetHostName(val string) {
 
 // Ref: #/components/schemas/IPv6AddrCreateRequest
 type IPv6AddrCreateRequest struct {
+	// 登録する IPv6 アドレス.
 	IPv6Addr OptString `json:"IPv6Addr"`
-	HostName string    `json:"HostName"`
+	// PTR レコードに登録するホスト名.
+	HostName string `json:"HostName"`
 }
 
 // GetIPv6Addr returns the value of IPv6Addr.
@@ -10204,6 +10499,7 @@ func (s *IPv6AddrReadResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 
 // Ref: #/components/schemas/IPv6AddrUpdateRequest
 type IPv6AddrUpdateRequest struct {
+	// PTR レコードに登録するホスト名.
 	HostName string `json:"HostName"`
 }
 
@@ -10265,9 +10561,12 @@ func (s *IPv6AddrUpdateResponseEnvelope) SetIPv6Addr(val IPv6Addr) {
 
 // Ref: #/components/schemas/IPv6Net
 type IPv6Net struct {
-	ID            OptInt64  `json:"ID"`
-	IPv6Prefix    OptString `json:"IPv6Prefix"`
-	IPv6PrefixLen OptInt32  `json:"IPv6PrefixLen"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// IPv6 プレフィックス.
+	IPv6Prefix OptString `json:"IPv6Prefix"`
+	// IPv6 プレフィックス長 (一般に 64).
+	IPv6PrefixLen OptInt32 `json:"IPv6PrefixLen"`
 }
 
 // GetID returns the value of ID.
@@ -10302,9 +10601,12 @@ func (s *IPv6Net) SetIPv6PrefixLen(val OptInt32) {
 
 // Ref: #/components/schemas/IPv6NetInfo
 type IPv6NetInfo struct {
-	ID            OptInt64  `json:"ID"`
-	IPv6Prefix    OptString `json:"IPv6Prefix"`
-	IPv6PrefixLen OptInt32  `json:"IPv6PrefixLen"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// IPv6 プレフィックス.
+	IPv6Prefix OptString `json:"IPv6Prefix"`
+	// IPv6 プレフィックス長 (一般に 64).
+	IPv6PrefixLen OptInt32 `json:"IPv6PrefixLen"`
 }
 
 // GetID returns the value of ID.
@@ -10340,11 +10642,12 @@ func (s *IPv6NetInfo) SetIPv6PrefixLen(val OptInt32) {
 // Request envelope for iPv6NetListRequestEnvelope.
 // Ref: #/components/schemas/IPv6NetListRequestEnvelope
 type IPv6NetListRequestEnvelope struct {
-	// Count.
+	// 取得する件数の上限 (ページングサイズ).
 	Count OptInt32 `json:"Count"`
-	// From.
+	// 取得開始位置 (0 始まりのオフセット).
 	From OptInt32 `json:"From"`
-	// Filter.
+	// 検索条件を表す JSON オブジェクト。キーは "{フィールド名}"
+	// の形式で、値に完全一致や部分一致の条件を指定する.
 	Filter OptIPv6NetListRequestEnvelopeFilter `json:"Filter"`
 }
 
@@ -10378,7 +10681,8 @@ func (s *IPv6NetListRequestEnvelope) SetFilter(val OptIPv6NetListRequestEnvelope
 	s.Filter = val
 }
 
-// Filter.
+// 検索条件を表す JSON オブジェクト。キーは "{フィールド名}"
+// の形式で、値に完全一致や部分一致の条件を指定する.
 type IPv6NetListRequestEnvelopeFilter map[string]jx.Raw
 
 func (s *IPv6NetListRequestEnvelopeFilter) init() IPv6NetListRequestEnvelopeFilter {
@@ -10474,10 +10778,14 @@ func (s *IPv6NetReadResponseEnvelope) SetIPv6Net(val IPv6Net) {
 
 // Ref: #/components/schemas/Icon
 type Icon struct {
-	ID   int64     `json:"ID"`
+	// リソースを一意に識別するID.
+	ID int64 `json:"ID"`
+	// リソースの名前.
 	Name OptString `json:"Name"`
-	Tags []string  `json:"Tags"`
-	URL  OptString `json:"URL"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン画像の取得 URL.
+	URL OptString `json:"URL"`
 }
 
 // GetID returns the value of ID.
@@ -10522,8 +10830,11 @@ func (s *Icon) SetURL(val OptString) {
 
 // Ref: #/components/schemas/IconCreateRequest
 type IconCreateRequest struct {
-	Name  OptString `json:"Name"`
-	Tags  []string  `json:"Tags"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン画像本体 (base64 エンコード済みの文字列).
 	Image OptString `json:"Image"`
 }
 
@@ -10560,7 +10871,7 @@ func (s *IconCreateRequest) SetImage(val OptString) {
 // Request envelope for iconCreateRequestEnvelope.
 // Ref: #/components/schemas/IconCreateRequestEnvelope
 type IconCreateRequestEnvelope struct {
-	// Icon.
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon IconCreateRequest `json:"Icon"`
 }
 
@@ -10579,7 +10890,7 @@ func (s *IconCreateRequestEnvelope) SetIcon(val IconCreateRequest) {
 type IconCreateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Icon.
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon Icon `json:"Icon"`
 }
 
@@ -10675,7 +10986,7 @@ func (s *IconOpDeleteOK) SetIsOk(val bool) {
 type IconReadResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Icon.
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon Icon `json:"Icon"`
 }
 
@@ -10701,8 +11012,10 @@ func (s *IconReadResponseEnvelope) SetIcon(val Icon) {
 
 // Ref: #/components/schemas/IconUpdateRequest
 type IconUpdateRequest struct {
+	// リソースの名前.
 	Name OptString `json:"Name"`
-	Tags []string  `json:"Tags"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
 }
 
 // GetName returns the value of Name.
@@ -10728,7 +11041,7 @@ func (s *IconUpdateRequest) SetTags(val []string) {
 // Request envelope for iconUpdateRequestEnvelope.
 // Ref: #/components/schemas/IconUpdateRequestEnvelope
 type IconUpdateRequestEnvelope struct {
-	// Icon.
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon IconUpdateRequest `json:"Icon"`
 }
 
@@ -10747,7 +11060,7 @@ func (s *IconUpdateRequestEnvelope) SetIcon(val IconUpdateRequest) {
 type IconUpdateResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// Icon.
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon Icon `json:"Icon"`
 }
 
@@ -10773,6 +11086,7 @@ func (s *IconUpdateResponseEnvelope) SetIcon(val Icon) {
 
 // Ref: #/components/schemas/InsertCDROMRequest
 type InsertCDROMRequest struct {
+	// 挿入する CDROM (ISO イメージ) のID.
 	ID OptInt64 `json:"ID"`
 }
 
@@ -10788,10 +11102,14 @@ func (s *InsertCDROMRequest) SetID(val OptInt64) {
 
 // Ref: #/components/schemas/Interface
 type Interface struct {
-	ID            OptInt64              `json:"ID"`
-	UserIPAddress OptNilString          `json:"UserIPAddress"`
-	Switch        OptNilInterfaceSwitch `json:"Switch"`
-	Server        OptNilResourceRef     `json:"Server"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// ユーザが手動で割り当てた IPv4 アドレス.
+	UserIPAddress OptNilString `json:"UserIPAddress"`
+	// 接続先スイッチ情報 (未接続なら null).
+	Switch OptNilInterfaceSwitch `json:"Switch"`
+	// 接続先サーバ情報 (未接続なら null).
+	Server OptNilResourceRef `json:"Server"`
 }
 
 // GetID returns the value of ID.
@@ -10836,6 +11154,7 @@ func (s *Interface) SetServer(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/InterfaceCreateRequest
 type InterfaceCreateRequest struct {
+	// NIC を作成して接続するサーバ (ResourceRef で ID 指定).
 	Server OptNilResourceRef `json:"Server"`
 }
 
@@ -11121,7 +11440,9 @@ func (s *InterfaceReadResponseEnvelope) SetInterface(val Interface) {
 
 // Ref: #/components/schemas/InterfaceSwitch
 type InterfaceSwitch struct {
-	ID    OptInt64  `json:"ID"`
+	// 接続先スイッチのID.
+	ID OptInt64 `json:"ID"`
+	// "shared" または "user".
 	Scope OptEScope `json:"Scope"`
 }
 
@@ -11147,6 +11468,7 @@ func (s *InterfaceSwitch) SetScope(val OptEScope) {
 
 // Ref: #/components/schemas/InterfaceUpdateRequest
 type InterfaceUpdateRequest struct {
+	// ユーザが手動で設定する IPv4 アドレス.
 	UserIPAddress OptString `json:"UserIPAddress"`
 }
 
@@ -11208,12 +11530,18 @@ func (s *InterfaceUpdateResponseEnvelope) SetInterface(val Interface) {
 
 // Ref: #/components/schemas/InterfaceView
 type InterfaceView struct {
-	ID            OptInt64                        `json:"ID"`
-	MACAddress    OptString                       `json:"MACAddress"`
-	IPAddress     OptNilString                    `json:"IPAddress"`
-	UserIPAddress OptNilString                    `json:"UserIPAddress"`
-	Switch        OptNilInterfaceViewSwitch       `json:"Switch"`
-	PacketFilter  OptNilInterfaceViewPacketFilter `json:"PacketFilter"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// MAC アドレス.
+	MACAddress OptString `json:"MACAddress"`
+	// 自動または静的に割り当てられた IPv4 アドレス.
+	IPAddress OptNilString `json:"IPAddress"`
+	// ユーザが手動で割り当てた IPv4 アドレス.
+	UserIPAddress OptNilString `json:"UserIPAddress"`
+	// 接続先スイッチ/ルータ+スイッチ/共有セグメントの情報.
+	Switch OptNilInterfaceViewSwitch `json:"Switch"`
+	// 割り当てられているパケットフィルタ.
+	PacketFilter OptNilInterfaceViewPacketFilter `json:"PacketFilter"`
 }
 
 // GetID returns the value of ID.
@@ -11278,6 +11606,7 @@ func (s *InterfaceView) SetPacketFilter(val OptNilInterfaceViewPacketFilter) {
 
 // Ref: #/components/schemas/InterfaceViewPacketFilter
 type InterfaceViewPacketFilter struct {
+	// リソースを一意に識別するID.
 	ID OptInt64 `json:"ID"`
 }
 
@@ -11293,11 +11622,16 @@ func (s *InterfaceViewPacketFilter) SetID(val OptInt64) {
 
 // Ref: #/components/schemas/InterfaceViewSwitch
 type InterfaceViewSwitch struct {
-	ID         OptInt64                            `json:"ID"`
-	Name       OptString                           `json:"Name"`
-	Scope      OptEScope                           `json:"Scope"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// スコープ。"shared" = 共有、"user" = ユーザ占有.
+	Scope OptEScope `json:"Scope"`
+	// ユーザが指定した論理サブネット (mask/デフォルトルート).
 	UserSubnet OptNilInterfaceViewSwitchUserSubnet `json:"UserSubnet"`
-	Subnet     OptNilInterfaceViewSwitchSubnet     `json:"Subnet"`
+	// スイッチに紐付くルータ+スイッチのサブネット情報.
+	Subnet OptNilInterfaceViewSwitchSubnet `json:"Subnet"`
 }
 
 // GetID returns the value of ID.
@@ -11352,10 +11686,14 @@ func (s *InterfaceViewSwitch) SetSubnet(val OptNilInterfaceViewSwitchSubnet) {
 
 // Ref: #/components/schemas/InterfaceViewSwitchSubnet
 type InterfaceViewSwitchSubnet struct {
-	DefaultRoute   OptString                               `json:"DefaultRoute"`
-	NetworkMaskLen OptInt32                                `json:"NetworkMaskLen"`
-	NetworkAddress OptString                               `json:"NetworkAddress"`
-	Internet       OptNilInterfaceViewSwitchSubnetInternet `json:"Internet"`
+	// サブネットのデフォルトルート.
+	DefaultRoute OptString `json:"DefaultRoute"`
+	// サブネットのマスク長.
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
+	// サブネットのネットワークアドレス.
+	NetworkAddress OptString `json:"NetworkAddress"`
+	// ルータ+スイッチの場合の回線情報.
+	Internet OptNilInterfaceViewSwitchSubnetInternet `json:"Internet"`
 }
 
 // GetDefaultRoute returns the value of DefaultRoute.
@@ -11400,6 +11738,7 @@ func (s *InterfaceViewSwitchSubnet) SetInternet(val OptNilInterfaceViewSwitchSub
 
 // Ref: #/components/schemas/InterfaceViewSwitchSubnetInternet
 type InterfaceViewSwitchSubnetInternet struct {
+	// ルータの帯域幅 (Mbps).
 	BandWidthMbps OptInt32 `json:"BandWidthMbps"`
 }
 
@@ -11415,8 +11754,10 @@ func (s *InterfaceViewSwitchSubnetInternet) SetBandWidthMbps(val OptInt32) {
 
 // Ref: #/components/schemas/InterfaceViewSwitchUserSubnet
 type InterfaceViewSwitchUserSubnet struct {
-	DefaultRoute   OptNilString `json:"DefaultRoute"`
-	NetworkMaskLen OptNilInt32  `json:"NetworkMaskLen"`
+	// デフォルトルートの IP アドレス.
+	DefaultRoute OptNilString `json:"DefaultRoute"`
+	// ネットワークマスク長 (プレフィックス長).
+	NetworkMaskLen OptNilInt32 `json:"NetworkMaskLen"`
 }
 
 // GetDefaultRoute returns the value of DefaultRoute.
@@ -11441,14 +11782,22 @@ func (s *InterfaceViewSwitchUserSubnet) SetNetworkMaskLen(val OptNilInt32) {
 
 // Ref: #/components/schemas/Internet
 type Internet struct {
-	ID             OptInt64          `json:"ID"`
-	Name           OptString         `json:"Name"`
-	Description    string            `json:"Description"`
-	Tags           []string          `json:"Tags"`
-	Icon           OptNilResourceRef `json:"Icon"`
-	BandWidthMbps  OptInt32          `json:"BandWidthMbps"`
-	NetworkMaskLen OptInt32          `json:"NetworkMaskLen"`
-	Switch         OptNilSwitchInfo  `json:"Switch"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// 回線帯域幅 (Mbps)。プランにより 100/250/500/1000/1500/2000/2500/3000/5000/10000 等.
+	BandWidthMbps OptInt32 `json:"BandWidthMbps"`
+	// サブネットマスク長 (28/27/26).
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
+	// 対応するスイッチの情報.
+	Switch OptNilSwitchInfo `json:"Switch"`
 }
 
 // GetID returns the value of ID.
@@ -11534,9 +11883,9 @@ func (s *Internet) SetSwitch(val OptNilSwitchInfo) {
 // Request envelope for internetAddSubnetRequestEnvelope.
 // Ref: #/components/schemas/InternetAddSubnetRequestEnvelope
 type InternetAddSubnetRequestEnvelope struct {
-	// NetworkMaskLen.
+	// 追加サブネットのマスク長.
 	NetworkMaskLen int32 `json:"NetworkMaskLen"`
-	// NextHop.
+	// 追加サブネットへのネクストホップ.
 	NextHop string `json:"NextHop"`
 }
 
@@ -11591,12 +11940,18 @@ func (s *InternetAddSubnetResponseEnvelope) SetSubnet(val Subnet) {
 
 // Ref: #/components/schemas/InternetCreateRequest
 type InternetCreateRequest struct {
-	Name           OptString         `json:"Name"`
-	Description    string            `json:"Description"`
-	Tags           []string          `json:"Tags"`
-	Icon           OptNilResourceRef `json:"Icon"`
-	NetworkMaskLen OptInt32          `json:"NetworkMaskLen"`
-	BandWidthMbps  OptInt32          `json:"BandWidthMbps"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// サブネットマスク長 (28/27/26).
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
+	// 回線帯域幅 (Mbps).
+	BandWidthMbps OptInt32 `json:"BandWidthMbps"`
 }
 
 // GetName returns the value of Name.
@@ -11789,11 +12144,16 @@ func (s *InternetFindResponseEnvelope) SetInternet(val []Internet) {
 
 // Ref: #/components/schemas/InternetInfo
 type InternetInfo struct {
-	ID            OptInt64  `json:"ID"`
-	Name          OptString `json:"Name"`
-	BandWidthMbps OptInt32  `json:"BandWidthMbps"`
-	Scope         OptEScope `json:"Scope"`
-	ServiceClass  OptString `json:"ServiceClass"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// ルータの帯域幅 (Mbps).
+	BandWidthMbps OptInt32 `json:"BandWidthMbps"`
+	// スコープ。"shared" = 共有、"user" = ユーザ占有.
+	Scope OptEScope `json:"Scope"`
+	// サービスクラス名。課金単価を特定する分類.
+	ServiceClass OptString `json:"ServiceClass"`
 }
 
 // GetID returns the value of ID.
@@ -11948,10 +12308,15 @@ func (s *InternetOpDisableIPv6OK) SetIsOk(val bool) {
 
 // Ref: #/components/schemas/InternetPlan
 type InternetPlan struct {
-	ID            OptInt64         `json:"ID"`
-	Name          OptString        `json:"Name"`
-	BandWidthMbps OptInt32         `json:"BandWidthMbps"`
-	Availability  OptEAvailability `json:"Availability"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 帯域幅 (Mbps).
+	BandWidthMbps OptInt32 `json:"BandWidthMbps"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
 }
 
 // GetID returns the value of ID.
@@ -12107,12 +12472,18 @@ func (s *InternetReadResponseEnvelope) SetInternet(val Internet) {
 
 // Ref: #/components/schemas/InternetSubnet
 type InternetSubnet struct {
-	ID             OptInt64     `json:"ID"`
-	DefaultRoute   OptString    `json:"DefaultRoute"`
-	NextHop        OptNilString `json:"NextHop"`
-	StaticRoute    OptNilString `json:"StaticRoute"`
-	NetworkAddress OptString    `json:"NetworkAddress"`
-	NetworkMaskLen OptInt32     `json:"NetworkMaskLen"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// デフォルトルートの IP アドレス.
+	DefaultRoute OptString `json:"DefaultRoute"`
+	// ネクストホップ IP アドレス.
+	NextHop OptNilString `json:"NextHop"`
+	// 静的ルート先 IP アドレス.
+	StaticRoute OptNilString `json:"StaticRoute"`
+	// ネットワークアドレス (IPv4).
+	NetworkAddress OptString `json:"NetworkAddress"`
+	// ネットワークマスク長 (プレフィックス長).
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
 }
 
 // GetID returns the value of ID.
@@ -12177,6 +12548,7 @@ func (s *InternetSubnet) SetNetworkMaskLen(val OptInt32) {
 
 // Ref: #/components/schemas/InternetUpdateBandWidthRequest
 type InternetUpdateBandWidthRequest struct {
+	// 変更後の回線帯域幅 (Mbps).
 	BandWidthMbps OptInt32 `json:"BandWidthMbps"`
 }
 
@@ -12238,10 +12610,14 @@ func (s *InternetUpdateBandWidthResponseEnvelope) SetInternet(val Internet) {
 
 // Ref: #/components/schemas/InternetUpdateRequest
 type InternetUpdateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
@@ -12333,7 +12709,7 @@ func (s *InternetUpdateResponseEnvelope) SetInternet(val Internet) {
 // Request envelope for internetUpdateSubnetRequestEnvelope.
 // Ref: #/components/schemas/InternetUpdateSubnetRequestEnvelope
 type InternetUpdateSubnetRequestEnvelope struct {
-	// NextHop.
+	// サブネットのネクストホップ.
 	NextHop string `json:"NextHop"`
 }
 
@@ -12378,8 +12754,11 @@ func (s *InternetUpdateSubnetResponseEnvelope) SetSubnet(val Subnet) {
 
 // Ref: #/components/schemas/License
 type License struct {
-	ID          OptInt64                 `json:"ID"`
-	Name        OptString                `json:"Name"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// ライセンス種別情報 (MS-SPLA ライセンス等).
 	LicenseInfo OptNilLicenseLicenseInfo `json:"LicenseInfo"`
 }
 
@@ -12415,7 +12794,9 @@ func (s *License) SetLicenseInfo(val OptNilLicenseLicenseInfo) {
 
 // Ref: #/components/schemas/LicenseCreateRequest
 type LicenseCreateRequest struct {
-	Name        OptString         `json:"Name"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 発行するライセンス種別 (ResourceRef で LicenseInfo ID 指定).
 	LicenseInfo OptNilResourceRef `json:"LicenseInfo"`
 }
 
@@ -12540,8 +12921,11 @@ func (s *LicenseFindResponseEnvelope) SetLicenses(val []License) {
 
 // Ref: #/components/schemas/LicenseInfo
 type LicenseInfo struct {
-	ID         OptInt64  `json:"ID"`
-	Name       OptString `json:"Name"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// ライセンス利用規約本文.
 	TermsOfUse OptString `json:"TermsOfUse"`
 }
 
@@ -12659,7 +13043,9 @@ func (s *LicenseInfoReadResponseEnvelope) SetLicenseInfo(val LicenseInfo) {
 
 // Ref: #/components/schemas/LicenseLicenseInfo
 type LicenseLicenseInfo struct {
-	ID   OptInt64  `json:"ID"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
 	Name OptString `json:"Name"`
 }
 
@@ -12728,6 +13114,7 @@ func (s *LicenseReadResponseEnvelope) SetLicense(val License) {
 
 // Ref: #/components/schemas/LicenseUpdateRequest
 type LicenseUpdateRequest struct {
+	// リソースの名前.
 	Name OptString `json:"Name"`
 }
 
@@ -12789,6 +13176,7 @@ func (s *LicenseUpdateResponseEnvelope) SetLicense(val License) {
 
 // Ref: #/components/schemas/LocalRouterHealth
 type LocalRouterHealth struct {
+	// 各ピアのヘルス状態.
 	Peers []LocalRouterHealthPeer `json:"Peers"`
 }
 
@@ -12804,9 +13192,12 @@ func (s *LocalRouterHealth) SetPeers(val []LocalRouterHealthPeer) {
 
 // Ref: #/components/schemas/LocalRouterHealthPeer
 type LocalRouterHealthPeer struct {
-	ID     int64                 `json:"ID"`
+	// ピア先のID.
+	ID int64 `json:"ID"`
+	// 接続状態.
 	Status EServerInstanceStatus `json:"Status"`
-	Routes []string              `json:"Routes"`
+	// このピア経由で受信しているルートの配列.
+	Routes []string `json:"Routes"`
 }
 
 // GetID returns the value of ID.
@@ -12870,10 +13261,14 @@ func (s *LocalRouterHealthStatusResponseEnvelope) SetLocalRouter(val LocalRouter
 
 // Ref: #/components/schemas/LocalRouterInterface
 type LocalRouterInterface struct {
-	VirtualIPAddress string   `json:"VirtualIPAddress"`
-	IPAddress        []string `json:"IPAddress"`
-	NetworkMaskLen   int32    `json:"NetworkMaskLen"`
-	VRID             int32    `json:"VRID"`
+	// VRRP の仮想 IPv4 アドレス.
+	VirtualIPAddress string `json:"VirtualIPAddress"`
+	// IPv4 アドレス.
+	IPAddress []string `json:"IPAddress"`
+	// ネットワークマスク長 (プレフィックス長).
+	NetworkMaskLen int32 `json:"NetworkMaskLen"`
+	// VRRP 仮想ルータ ID.
+	VRID int32 `json:"VRID"`
 }
 
 // GetVirtualIPAddress returns the value of VirtualIPAddress.
@@ -12961,9 +13356,13 @@ func (s *LocalRouterOpMonitorLocalRouterReq) SetCondition(val MonitorCondition) 
 
 // Ref: #/components/schemas/LocalRouterPeer
 type LocalRouterPeer struct {
-	ID          int64  `json:"ID"`
-	SecretKey   string `json:"SecretKey"`
-	Enabled     bool   `json:"Enabled"`
+	// ピア先ローカルルータのID.
+	ID int64 `json:"ID"`
+	// ピア間で共有するシークレットキー.
+	SecretKey string `json:"SecretKey"`
+	// ピア接続を有効化するか.
+	Enabled bool `json:"Enabled"`
+	// 説明.
 	Description string `json:"Description"`
 }
 
@@ -13009,7 +13408,8 @@ func (s *LocalRouterPeer) SetDescription(val string) {
 
 // Ref: #/components/schemas/LocalRouterStaticRoute
 type LocalRouterStaticRoute struct {
-	Prefix  string `json:"Prefix"`
+	Prefix string `json:"Prefix"`
+	// ネクストホップ IP アドレス.
 	NextHop string `json:"NextHop"`
 }
 
@@ -13072,6 +13472,7 @@ func (s *LocalRouterSwitch) SetZoneID(val string) {
 
 // Ref: #/components/schemas/MobileGatewayAddSIMRequest
 type MobileGatewayAddSIMRequest struct {
+	// 追加する SIM のリソース ID.
 	ResourceID OptString `json:"ResourceID"`
 }
 
@@ -13087,7 +13488,9 @@ func (s *MobileGatewayAddSIMRequest) SetResourceID(val OptString) {
 
 // Ref: #/components/schemas/MobileGatewayDNSSetting
 type MobileGatewayDNSSetting struct {
+	// プライマリ DNS サーバの IPv4.
 	DNS1 OptString `json:"DNS1"`
+	// セカンダリ DNS サーバの IPv4.
 	DNS2 OptString `json:"DNS2"`
 }
 
@@ -13710,6 +14113,7 @@ func (s *MonitorCondition) SetEnd(val time.Time) {
 
 // Ref: #/components/schemas/MonitoringSuite
 type MonitoringSuite struct {
+	// アクティビティモニタリングの有効化フラグ.
 	Enabled bool `json:"Enabled"`
 }
 
@@ -13725,6 +14129,7 @@ func (s *MonitoringSuite) SetEnabled(val bool) {
 
 // Ref: #/components/schemas/MonitoringSuiteLog
 type MonitoringSuiteLog struct {
+	// ログ収集機能を有効化するかどうか.
 	Enabled bool `json:"Enabled"`
 }
 
@@ -13740,13 +14145,20 @@ func (s *MonitoringSuiteLog) SetEnabled(val bool) {
 
 // Ref: #/components/schemas/Note
 type Note struct {
-	ID          OptInt64          `json:"ID"`
-	Name        OptString         `json:"Name"`
-	Description OptNilString      `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Class       OptString         `json:"Class"`
-	Content     OptString         `json:"Content"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description OptNilString `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// スタートアップスクリプトの種別 ("shell" / "yaml_cloud_config").
+	Class OptString `json:"Class"`
+	// スタートアップスクリプトの本文.
+	Content OptString `json:"Content"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -13821,11 +14233,16 @@ func (s *Note) SetIcon(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/NoteCreateRequest
 type NoteCreateRequest struct {
-	Name    OptString         `json:"Name"`
-	Tags    []string          `json:"Tags"`
-	Icon    OptNilResourceRef `json:"Icon"`
-	Class   OptString         `json:"Class"`
-	Content OptString         `json:"Content"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// スタートアップスクリプトの種別 ("shell" / "yaml_cloud_config").
+	Class OptString `json:"Class"`
+	// スタートアップスクリプトの本文.
+	Content OptString `json:"Content"`
 }
 
 // GetName returns the value of Name.
@@ -14022,11 +14439,16 @@ func (s *NoteReadResponseEnvelope) SetNote(val Note) {
 
 // Ref: #/components/schemas/NoteUpdateRequest
 type NoteUpdateRequest struct {
-	Name    OptString         `json:"Name"`
-	Tags    []string          `json:"Tags"`
-	Icon    OptNilResourceRef `json:"Icon"`
-	Class   OptString         `json:"Class"`
-	Content OptString         `json:"Content"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// スタートアップスクリプトの種別.
+	Class OptString `json:"Class"`
+	// スタートアップスクリプトの本文.
+	Content OptString `json:"Content"`
 }
 
 // GetName returns the value of Name.
@@ -22309,10 +22731,14 @@ func (o OptSwitchSubnetIPAddresses) Or(d SwitchSubnetIPAddresses) SwitchSubnetIP
 
 // Ref: #/components/schemas/PacketFilter
 type PacketFilter struct {
-	ID          OptInt64                 `json:"ID"`
-	Name        OptString                `json:"Name"`
-	Description string                   `json:"Description"`
-	Expression  []PacketFilterExpression `json:"Expression"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// フィルタルール (Expression) の配列。先頭から順に評価される.
+	Expression []PacketFilterExpression `json:"Expression"`
 }
 
 // GetID returns the value of ID.
@@ -22357,9 +22783,12 @@ func (s *PacketFilter) SetExpression(val []PacketFilterExpression) {
 
 // Ref: #/components/schemas/PacketFilterCreateRequest
 type PacketFilterCreateRequest struct {
-	Name        OptString                `json:"Name"`
-	Description string                   `json:"Description"`
-	Expression  []PacketFilterExpression `json:"Expression"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// フィルタルールの配列.
+	Expression []PacketFilterExpression `json:"Expression"`
 }
 
 // GetName returns the value of Name.
@@ -22440,12 +22869,18 @@ func (s *PacketFilterCreateResponseEnvelope) SetPacketFilter(val PacketFilter) {
 
 // Ref: #/components/schemas/PacketFilterExpression
 type PacketFilterExpression struct {
-	Protocol        Protocol `json:"Protocol"`
-	SourceNetwork   string   `json:"SourceNetwork"`
-	SourcePort      string   `json:"SourcePort"`
-	DestinationPort string   `json:"DestinationPort"`
-	Action          Action   `json:"Action"`
-	Description     string   `json:"Description"`
+	// プロトコル ("tcp", "udp", "icmp", "fragment", "ip").
+	Protocol Protocol `json:"Protocol"`
+	// 送信元ネットワーク (CIDR、"0.0.0.0/0" 相当でも可).
+	SourceNetwork string `json:"SourceNetwork"`
+	// 送信元ポート (単独または "1024-65535" のレンジ).
+	SourcePort string `json:"SourcePort"`
+	// 宛先ポート (単独またはレンジ).
+	DestinationPort string `json:"DestinationPort"`
+	// "allow" または "deny".
+	Action Action `json:"Action"`
+	// 説明.
+	Description string `json:"Description"`
 }
 
 // GetProtocol returns the value of Protocol.
@@ -22606,9 +23041,12 @@ func (s *PacketFilterReadResponseEnvelope) SetPacketFilter(val PacketFilter) {
 
 // Ref: #/components/schemas/PacketFilterUpdateRequest
 type PacketFilterUpdateRequest struct {
-	Name        OptString                `json:"Name"`
-	Description string                   `json:"Description"`
-	Expression  []PacketFilterExpression `json:"Expression"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// フィルタルールの配列.
+	Expression []PacketFilterExpression `json:"Expression"`
 }
 
 // GetName returns the value of Name.
@@ -22646,7 +23084,7 @@ func (s *PacketFilterUpdateRequest) SetExpression(val []PacketFilterExpression) 
 type PacketFilterUpdateRequestEnvelope struct {
 	// PacketFilter.
 	PacketFilter PacketFilterUpdateRequest `json:"PacketFilter"`
-	// OriginalExpressionHash.
+	// 楽観的排他制御用の元 Expression ハッシュ。同時更新衝突検知に利用される.
 	OriginalExpressionHash string `json:"OriginalExpressionHash"`
 }
 
@@ -22701,18 +23139,30 @@ func (s *PacketFilterUpdateResponseEnvelope) SetPacketFilter(val PacketFilter) {
 
 // Ref: #/components/schemas/Price
 type Price struct {
-	Base          int32  `json:"Base"`
-	Daily         int32  `json:"Daily"`
-	Hourly        int32  `json:"Hourly"`
-	Monthly       int32  `json:"Monthly"`
-	PerUse        int32  `json:"PerUse"`
-	Basic         int32  `json:"Basic"`
-	Traffic       int32  `json:"Traffic"`
-	DocomoTraffic int32  `json:"DocomoTraffic"`
-	KddiTraffic   int32  `json:"KddiTraffic"`
-	SbTraffic     int32  `json:"SbTraffic"`
-	SimSheet      int32  `json:"SimSheet"`
-	Zone          string `json:"Zone"`
+	// 基本料金.
+	Base int32 `json:"Base"`
+	// 日額料金.
+	Daily int32 `json:"Daily"`
+	// 時間料金.
+	Hourly int32 `json:"Hourly"`
+	// 月額料金.
+	Monthly int32 `json:"Monthly"`
+	// 使用量ベースの料金.
+	PerUse int32 `json:"PerUse"`
+	// ベース料金.
+	Basic int32 `json:"Basic"`
+	// トラフィック料金.
+	Traffic int32 `json:"Traffic"`
+	// NTT docomo 網トラフィック料金 (SIM).
+	DocomoTraffic int32 `json:"DocomoTraffic"`
+	// KDDI 網トラフィック料金 (SIM).
+	KddiTraffic int32 `json:"KddiTraffic"`
+	// SoftBank 網トラフィック料金 (SIM).
+	SbTraffic int32 `json:"SbTraffic"`
+	// SIM シート料金.
+	SimSheet int32 `json:"SimSheet"`
+	// ゾーン別料金情報.
+	Zone string `json:"Zone"`
 }
 
 // GetBase returns the value of Base.
@@ -22837,15 +23287,24 @@ func (s *Price) SetZone(val string) {
 
 // Ref: #/components/schemas/PrivateHost
 type PrivateHost struct {
-	ID               int64                 `json:"ID"`
-	Name             OptString             `json:"Name"`
-	Description      string                `json:"Description"`
-	Tags             []string              `json:"Tags"`
-	Icon             OptNilResourceRef     `json:"Icon"`
-	Plan             OptNilPrivateHostPlan `json:"Plan"`
-	AssignedCPU      OptInt32              `json:"AssignedCPU"`
-	AssignedMemoryMB OptInt32              `json:"AssignedMemoryMB"`
-	Host             OptNilPrivateHostHost `json:"Host"`
+	// リソースを一意に識別するID.
+	ID int64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// 専用ホストプラン.
+	Plan OptNilPrivateHostPlan `json:"Plan"`
+	// 専用ホストに現在割り当てられている CPU コア数の合計.
+	AssignedCPU OptInt32 `json:"AssignedCPU"`
+	// 専用ホストに現在割り当てられているメモリ容量合計 (MB).
+	AssignedMemoryMB OptInt32 `json:"AssignedMemoryMB"`
+	// 物理ホスト情報.
+	Host OptNilPrivateHostHost `json:"Host"`
 }
 
 // GetID returns the value of ID.
@@ -22940,11 +23399,16 @@ func (s *PrivateHost) SetHost(val OptNilPrivateHostHost) {
 
 // Ref: #/components/schemas/PrivateHostCreateRequest
 type PrivateHostCreateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
-	Plan        OptNilResourceRef `json:"Plan"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// 専用ホストプラン (ResourceRef で ID 指定).
+	Plan OptNilResourceRef `json:"Plan"`
 }
 
 // GetName returns the value of Name.
@@ -23002,7 +23466,7 @@ func (s *PrivateHostCreateRequest) SetPlan(val OptNilResourceRef) {
 type PrivateHostCreateRequestEnvelope struct {
 	// PrivateHost.
 	PrivateHost PrivateHostCreateRequest `json:"PrivateHost"`
-	// TargetDedicatedStorageContract.
+	// 配置先の専有ストレージ契約ID (任意).
 	TargetDedicatedStorageContract jx.Raw `json:"TargetDedicatedStorageContract"`
 }
 
@@ -23110,6 +23574,7 @@ func (s *PrivateHostFindResponseEnvelope) SetPrivateHosts(val []PrivateHost) {
 
 // Ref: #/components/schemas/PrivateHostHost
 type PrivateHostHost struct {
+	// 物理ホスト名.
 	Name OptString `json:"Name"`
 }
 
@@ -23139,12 +23604,20 @@ func (s *PrivateHostOpDeleteOK) SetIsOk(val bool) {
 
 // Ref: #/components/schemas/PrivateHostPlan
 type PrivateHostPlan struct {
-	ID           OptInt64         `json:"ID"`
-	Name         OptString        `json:"Name"`
-	Class        OptString        `json:"Class"`
-	CPU          OptInt32         `json:"CPU"`
-	Dedicated    bool             `json:"Dedicated"`
-	MemoryMB     OptInt32         `json:"MemoryMB"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 専用ホストのクラス ("dynamic" 等).
+	Class OptString `json:"Class"`
+	// このプランで提供される CPU コア数.
+	CPU OptInt32 `json:"CPU"`
+	// 専用ホスト (占有) かどうか.
+	Dedicated bool `json:"Dedicated"`
+	// このプランで提供されるメモリ容量 (MB).
+	MemoryMB OptInt32 `json:"MemoryMB"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
 	Availability OptEAvailability `json:"Availability"`
 }
 
@@ -23331,10 +23804,14 @@ func (s *PrivateHostReadResponseEnvelope) SetPrivateHost(val PrivateHost) {
 
 // Ref: #/components/schemas/PrivateHostUpdateRequest
 type PrivateHostUpdateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
@@ -23427,18 +23904,30 @@ type Protocol string
 
 // Ref: #/components/schemas/ProxyLB
 type ProxyLB struct {
-	ID           OptInt64              `json:"ID"`
-	Name         OptString             `json:"Name"`
-	Description  string                `json:"Description"`
-	Tags         []string              `json:"Tags"`
-	Icon         OptNilResourceRef     `json:"Icon"`
-	Plan         EProxyLBPlan          `json:"Plan"`
-	Settings     OptNilProxyLBSettings `json:"Settings"`
-	BindPorts    []ProxyLBBindPort     `json:"BindPorts"`
-	Servers      []ProxyLBServer       `json:"Servers"`
-	Rules        []ProxyLBRule         `json:"Rules"`
-	SettingsHash OptString             `json:"SettingsHash"`
-	Status       OptNilProxyLBStatus   `json:"Status"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// プラン (最大同時接続数による区分).
+	Plan EProxyLBPlan `json:"Plan"`
+	// エンハンスド LB 設定.
+	Settings OptNilProxyLBSettings `json:"Settings"`
+	// 待ち受けポート設定の配列 (HTTP/HTTPS).
+	BindPorts []ProxyLBBindPort `json:"BindPorts"`
+	// 振り分け先サーバの配列.
+	Servers []ProxyLBServer `json:"Servers"`
+	// 振り分けルール (条件付きのバックエンド選択).
+	Rules []ProxyLBRule `json:"Rules"`
+	// 設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る.
+	SettingsHash OptString `json:"SettingsHash"`
+	// 状態情報 (FQDN、VIP、証明書有効期限 等).
+	Status OptNilProxyLBStatus `json:"Status"`
 }
 
 // GetID returns the value of ID.
@@ -23563,8 +24052,11 @@ func (s *ProxyLB) SetStatus(val OptNilProxyLBStatus) {
 
 // Ref: #/components/schemas/ProxyLBACMESetting
 type ProxyLBACMESetting struct {
-	CommonName      string   `json:"CommonName"`
-	Enabled         bool     `json:"Enabled"`
+	// 発行する証明書の CommonName.
+	CommonName string `json:"CommonName"`
+	// Let's Encrypt (ACME) を利用するかどうか.
+	Enabled bool `json:"Enabled"`
+	// 発行する証明書の SAN の配列.
 	SubjectAltNames []string `json:"SubjectAltNames"`
 }
 
@@ -23600,12 +24092,18 @@ func (s *ProxyLBACMESetting) SetSubjectAltNames(val []string) {
 
 // Ref: #/components/schemas/ProxyLBAdditionalCert
 type ProxyLBAdditionalCert struct {
-	ServerCertificate       string    `json:"ServerCertificate"`
-	IntermediateCertificate string    `json:"IntermediateCertificate"`
-	PrivateKey              string    `json:"PrivateKey"`
-	CertificateEndDate      time.Time `json:"CertificateEndDate"`
-	CertificateCommonName   string    `json:"CertificateCommonName"`
-	CertificateAltNames     string    `json:"CertificateAltNames"`
+	// サーバ証明書 (PEM).
+	ServerCertificate string `json:"ServerCertificate"`
+	// 中間 CA 証明書 (PEM).
+	IntermediateCertificate string `json:"IntermediateCertificate"`
+	// 秘密鍵 (PEM).
+	PrivateKey string `json:"PrivateKey"`
+	// 証明書の有効期限.
+	CertificateEndDate time.Time `json:"CertificateEndDate"`
+	// 証明書の CommonName.
+	CertificateCommonName string `json:"CertificateCommonName"`
+	// 証明書の SAN.
+	CertificateAltNames string `json:"CertificateAltNames"`
 }
 
 // GetServerCertificate returns the value of ServerCertificate.
@@ -23670,6 +24168,7 @@ func (s *ProxyLBAdditionalCert) SetCertificateAltNames(val string) {
 
 // Ref: #/components/schemas/ProxyLBBackendHttpKeepAlive
 type ProxyLBBackendHttpKeepAlive struct {
+	// バックエンドへの HTTP Keep-Alive モード.
 	Mode EProxyLBBackendHttpKeepAlive `json:"Mode"`
 }
 
@@ -23685,10 +24184,14 @@ func (s *ProxyLBBackendHttpKeepAlive) SetMode(val EProxyLBBackendHttpKeepAlive) 
 
 // Ref: #/components/schemas/ProxyLBBindPort
 type ProxyLBBindPort struct {
-	ProxyMode         EProxyLBProxyMode       `json:"ProxyMode"`
-	Port              int32                   `json:"Port"`
-	RedirectToHTTPS   bool                    `json:"RedirectToHTTPS"`
-	SupportHTTP2      bool                    `json:"SupportHTTP2"`
+	// プロキシモード ("http", "https", "tcp").
+	ProxyMode EProxyLBProxyMode `json:"ProxyMode"`
+	// 待ち受けポート番号.
+	Port int32 `json:"Port"`
+	// HTTP→HTTPS リダイレクトを有効化するか.
+	RedirectToHTTPS bool `json:"RedirectToHTTPS"`
+	SupportHTTP2    bool `json:"SupportHTTP2"`
+	// レスポンスに追加するヘッダの配列.
 	AddResponseHeader []ProxyLBResponseHeader `json:"AddResponseHeader"`
 	SSLPolicy         string                  `json:"SSLPolicy"`
 }
@@ -23781,6 +24284,7 @@ func (s *ProxyLBCertificates) SetAdditionalCerts(val []ProxyLBAdditionalCert) {
 
 // Ref: #/components/schemas/ProxyLBChangePlanRequest
 type ProxyLBChangePlanRequest struct {
+	// サービスクラス名。課金単価を特定する分類.
 	ServiceClass OptString `json:"ServiceClass"`
 }
 
@@ -23799,7 +24303,7 @@ func (s *ProxyLBChangePlanRequest) SetServiceClass(val OptString) {
 type ProxyLBChangePlanResponseEnvelope struct {
 	// オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。.
 	IsOk bool `json:"is_ok"`
-	// CommonServiceItem.
+	// CommonServiceItem (各種付加サービス) の設定ペイロード.
 	CommonServiceItem ProxyLB `json:"CommonServiceItem"`
 }
 
@@ -23869,6 +24373,7 @@ func (s *ProxyLBGzip) SetEnabled(val bool) {
 
 // Ref: #/components/schemas/ProxyLBHealthCheck
 type ProxyLBHealthCheck struct {
+	// プロトコル ("tcp", "udp", "http", "https" など).
 	Protocol  EProxyLBHealthCheckProtocol `json:"Protocol"`
 	Path      string                      `json:"Path"`
 	Host      string                      `json:"Host"`
@@ -24285,7 +24790,9 @@ func (s *ProxyLBRule) SetFixedMessageBody(val string) {
 
 // Ref: #/components/schemas/ProxyLBServer
 type ProxyLBServer struct {
-	IPAddress   string `json:"IPAddress"`
+	// IPv4 アドレス.
+	IPAddress string `json:"IPAddress"`
+	// ポート番号.
 	Port        int32  `json:"Port"`
 	ServerGroup string `json:"ServerGroup"`
 	Enabled     bool   `json:"Enabled"`
@@ -24528,8 +25035,10 @@ func (s *ProxyLBSettingsProxyLB) SetTimeout(val OptProxyLBTimeout) {
 
 // Ref: #/components/schemas/ProxyLBSorryServer
 type ProxyLBSorryServer struct {
+	// IPv4 アドレス.
 	IPAddress string `json:"IPAddress"`
-	Port      int32  `json:"Port"`
+	// ポート番号.
+	Port int32 `json:"Port"`
 }
 
 // GetIPAddress returns the value of IPAddress.
@@ -24640,7 +25149,8 @@ func (s *ProxyLBStickySession) SetEnabled(val bool) {
 // Ref: #/components/schemas/ProxyLBSyslog
 type ProxyLBSyslog struct {
 	Server string `json:"Server"`
-	Port   int32  `json:"Port"`
+	// ポート番号.
+	Port int32 `json:"Port"`
 }
 
 // GetServer returns the value of Server.
@@ -24680,10 +25190,14 @@ func (s *ProxyLBTimeout) SetInactiveSec(val int32) {
 
 // Ref: #/components/schemas/Region
 type Region struct {
-	ID          OptInt64  `json:"ID"`
-	Name        OptString `json:"Name"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
 	Description OptString `json:"Description"`
-	NameServers []string  `json:"NameServers"`
+	// リージョンに紐付く権威 DNS の IP アドレス配列.
+	NameServers []string `json:"NameServers"`
 }
 
 // GetID returns the value of ID.
@@ -24825,6 +25339,7 @@ func (s *ResourceRef) SetID(val int64) {
 
 // Ref: #/components/schemas/SIMAssignIPRequest
 type SIMAssignIPRequest struct {
+	// SIM に割り当てる IPv4 アドレス.
 	IP string `json:"IP"`
 }
 
@@ -24869,6 +25384,7 @@ func (s *SIMGetNetworkOperatorResponseEnvelope) SetNetworkOperationConfigs(val [
 
 // Ref: #/components/schemas/SIMIMEILockRequest
 type SIMIMEILockRequest struct {
+	// ロック対象の IMEI (端末固有番号 15 桁).
 	IMEI string `json:"IMEI"`
 }
 
@@ -24884,21 +25400,27 @@ func (s *SIMIMEILockRequest) SetIMEI(val string) {
 
 // Ref: #/components/schemas/SIMInfo
 type SIMInfo struct {
-	ICCID                      OptString             `json:"ICCID"`
-	IMSI                       []string              `json:"IMSI"`
-	IMEI                       OptString             `json:"IMEI"`
-	IP                         OptString             `json:"IP"`
-	SessionStatus              OptString             `json:"SessionStatus"`
-	IMEILock                   bool                  `json:"IMEILock"`
-	Registered                 bool                  `json:"Registered"`
-	Activated                  bool                  `json:"Activated"`
-	ResourceID                 OptString             `json:"ResourceID"`
-	RegisteredDate             OptDateTime           `json:"RegisteredDate"`
-	ActivatedDate              OptDateTime           `json:"ActivatedDate"`
+	// SIM カードの ICCID.
+	ICCID OptString `json:"ICCID"`
+	IMSI  []string  `json:"IMSI"`
+	// ロック中の IMEI.
+	IMEI          OptString `json:"IMEI"`
+	IP            OptString `json:"IP"`
+	SessionStatus OptString `json:"SessionStatus"`
+	IMEILock      bool      `json:"IMEILock"`
+	Registered    bool      `json:"Registered"`
+	// SIM が有効化されているかどうか.
+	Activated      bool        `json:"Activated"`
+	ResourceID     OptString   `json:"ResourceID"`
+	RegisteredDate OptDateTime `json:"RegisteredDate"`
+	// 有効化日時.
+	ActivatedDate OptDateTime `json:"ActivatedDate"`
+	// 無効化日時.
 	DeactivatedDate            OptDateTime           `json:"DeactivatedDate"`
 	SIMGroupID                 OptString             `json:"SIMGroupID"`
 	TrafficBytesOfCurrentMonth OptNilSIMTrafficBytes `json:"TrafficBytesOfCurrentMonth"`
-	ConnectedIMEI              OptString             `json:"ConnectedIMEI"`
+	// 現在接続中の端末の IMEI.
+	ConnectedIMEI OptString `json:"ConnectedIMEI"`
 }
 
 // GetICCID returns the value of ICCID.
@@ -25196,7 +25718,8 @@ func (s *SIMMonitorSIMResponseEnvelope) SetData(val jx.Raw) {
 type SIMNetworkOperatorConfig struct {
 	Allow       bool      `json:"Allow"`
 	CountryCode OptString `json:"CountryCode"`
-	Name        OptString `json:"Name"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
 }
 
 // GetAllow returns the value of Allow.
@@ -25411,10 +25934,15 @@ func (s *SIMTrafficBytes) SetDownlinkBytes(val int64) {
 
 // Ref: #/components/schemas/SSHKey
 type SSHKey struct {
-	ID          OptInt64  `json:"ID"`
-	Name        OptString `json:"Name"`
-	Description string    `json:"Description"`
-	PublicKey   OptString `json:"PublicKey"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// SSH 公開鍵本体 (OpenSSH 形式).
+	PublicKey OptString `json:"PublicKey"`
+	// SSH 公開鍵のフィンガープリント.
 	Fingerprint OptString `json:"Fingerprint"`
 }
 
@@ -25470,9 +25998,12 @@ func (s *SSHKey) SetFingerprint(val OptString) {
 
 // Ref: #/components/schemas/SSHKeyCreateRequest
 type SSHKeyCreateRequest struct {
-	Name        OptString `json:"Name"`
-	Description string    `json:"Description"`
-	PublicKey   OptString `json:"PublicKey"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// SSH 公開鍵本体 (OpenSSH 形式).
+	PublicKey OptString `json:"PublicKey"`
 }
 
 // GetName returns the value of Name.
@@ -25649,8 +26180,10 @@ func (s *SSHKeyReadResponseEnvelope) SetSSHKey(val SSHKey) {
 
 // Ref: #/components/schemas/SSHKeyUpdateRequest
 type SSHKeyUpdateRequest struct {
-	Name        OptString `json:"Name"`
-	Description string    `json:"Description"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
 }
 
 // GetName returns the value of Name.
@@ -25721,20 +26254,36 @@ func (s *SSHKeyUpdateResponseEnvelope) SetSSHKey(val SSHKey) {
 
 // Ref: #/components/schemas/Server
 type Server struct {
-	ID              OptInt64                `json:"ID"`
-	Name            OptString               `json:"Name"`
-	Description     string                  `json:"Description"`
-	Tags            []string                `json:"Tags"`
-	Availability    OptEAvailability        `json:"Availability"`
-	HostName        OptString               `json:"HostName"`
-	InterfaceDriver OptEInterfaceDriver     `json:"InterfaceDriver"`
-	ServerPlan      OptNilServerServerPlan  `json:"ServerPlan"`
-	Zone            OptNilZoneInfo          `json:"Zone"`
-	Instance        OptNilServerInstance    `json:"Instance"`
-	Disks           []ServerConnectedDisk   `json:"Disks"`
-	Interfaces      []InterfaceView         `json:"Interfaces"`
-	PrivateHost     OptNilServerPrivateHost `json:"PrivateHost"`
-	Icon            OptNilResourceRef       `json:"Icon"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
+	// サーバに設定されるホスト名 (ゲスト OS 内部の hostname とは独立した API
+	// 上のラベル).
+	HostName OptString `json:"HostName"`
+	// NIC 仮想デバイスのドライバ種別。"virtio" (推奨) または "e1000".
+	InterfaceDriver OptEInterfaceDriver `json:"InterfaceDriver"`
+	// サーバプラン (CPU/メモリ/世代)。IDで特定するかプラン条件で指定する.
+	ServerPlan OptNilServerServerPlan `json:"ServerPlan"`
+	// サーバが所属するゾーンの情報.
+	Zone OptNilZoneInfo `json:"Zone"`
+	// サーバインスタンスの実行状態 (稼働状態や起動/停止情報).
+	Instance OptNilServerInstance `json:"Instance"`
+	// 接続されているディスクの配列.
+	Disks []ServerConnectedDisk `json:"Disks"`
+	// NIC (ネットワークインターフェース) の配列.
+	Interfaces []InterfaceView `json:"Interfaces"`
+	// 配置する専用ホスト。null または未指定なら共有ホストに配置される.
+	PrivateHost OptNilServerPrivateHost `json:"PrivateHost"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetID returns the value of ID.
@@ -25880,7 +26429,7 @@ func (s *Server) SetIcon(val OptNilResourceRef) {
 // Request envelope for serverBootRequestEnvelope.
 // Ref: #/components/schemas/ServerBootRequestEnvelope
 type ServerBootRequestEnvelope struct {
-	// UserBootVariables.
+	// 起動時に cloud-init 等へ渡すユーザ変数.
 	UserBootVariables OptServerBootVariables `json:"UserBootVariables"`
 }
 
@@ -25896,6 +26445,7 @@ func (s *ServerBootRequestEnvelope) SetUserBootVariables(val OptServerBootVariab
 
 // Ref: #/components/schemas/ServerBootVariables
 type ServerBootVariables struct {
+	// Cloud-init 用データ.
 	CloudInit ServerBootVariablesCloudInit `json:"CloudInit"`
 }
 
@@ -25911,6 +26461,7 @@ func (s *ServerBootVariables) SetCloudInit(val ServerBootVariablesCloudInit) {
 
 // Ref: #/components/schemas/ServerBootVariablesCloudInit
 type ServerBootVariablesCloudInit struct {
+	// Cloud-init user-data (YAML などの文字列).
 	UserData string `json:"UserData"`
 }
 
@@ -25927,19 +26478,19 @@ func (s *ServerBootVariablesCloudInit) SetUserData(val string) {
 // Request envelope for serverChangePlanRequestEnvelope.
 // Ref: #/components/schemas/ServerChangePlanRequestEnvelope
 type ServerChangePlanRequestEnvelope struct {
-	// CPU.
+	// 変更後の CPU コア数.
 	CPU int32 `json:"CPU"`
-	// MemoryMB.
+	// 変更後のメモリ容量 (MB).
 	MemoryMB int32 `json:"MemoryMB"`
-	// GPU.
+	// 変更後の GPU 数.
 	GPU int32 `json:"GPU"`
-	// GPUModel.
+	// 変更後の GPU モデル.
 	GPUModel string `json:"GPUModel"`
-	// CPUModel.
+	// 変更後の CPU モデル.
 	CPUModel string `json:"CPUModel"`
-	// Generation.
+	// 変更後のプラン世代.
 	Generation EPlanGeneration `json:"Generation"`
-	// Commitment.
+	// 変更後の CPU 割当コミット方式.
 	Commitment ECommitment `json:"Commitment"`
 }
 
@@ -26044,16 +26595,26 @@ func (s *ServerChangePlanResponseEnvelope) SetServer(val Server) {
 
 // Ref: #/components/schemas/ServerConnectedDisk
 type ServerConnectedDisk struct {
-	ID                  OptInt64                    `json:"ID"`
-	Name                OptString                   `json:"Name"`
-	Availability        OptEAvailability            `json:"Availability"`
-	Connection          OptEDiskConnection          `json:"Connection"`
-	ConnectionOrder     OptInt32                    `json:"ConnectionOrder"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// ディスクの利用状態.
+	Availability OptEAvailability `json:"Availability"`
+	// 接続方式 ("virtio" / "ide").
+	Connection OptEDiskConnection `json:"Connection"`
+	// 接続順序 (0 始まり、小さいほど先頭).
+	ConnectionOrder OptInt32 `json:"ConnectionOrder"`
+	// ディスク暗号化アルゴリズム。"none" または "aes256_xts".
 	EncryptionAlgorithm OptEDiskEncryptionAlgorithm `json:"EncryptionAlgorithm"`
-	ReinstallCount      OptInt32                    `json:"ReinstallCount"`
-	SizeMB              OptInt32                    `json:"SizeMB"`
-	Plan                OptNilResourceRef           `json:"Plan"`
-	Storage             OptNilStorage               `json:"Storage"`
+	// OS 再インストール回数.
+	ReinstallCount OptInt32 `json:"ReinstallCount"`
+	// ディスク容量 (MB).
+	SizeMB OptInt32 `json:"SizeMB"`
+	// ディスクプラン.
+	Plan OptNilResourceRef `json:"Plan"`
+	// 配置ストレージ.
+	Storage OptNilStorage `json:"Storage"`
 }
 
 // GetID returns the value of ID.
@@ -26158,14 +26719,23 @@ func (s *ServerConnectedDisk) SetStorage(val OptNilStorage) {
 
 // Ref: #/components/schemas/ServerCreateRequest
 type ServerCreateRequest struct {
-	ServerPlan        OptNilServerCreateRequestServerPlan `json:"ServerPlan"`
-	ConnectedSwitches []ConnectedSwitch                   `json:"ConnectedSwitches"`
-	InterfaceDriver   OptEInterfaceDriver                 `json:"InterfaceDriver"`
-	Name              OptString                           `json:"Name"`
-	Description       string                              `json:"Description"`
-	Tags              []string                            `json:"Tags"`
-	Icon              OptNilResourceRef                   `json:"Icon"`
-	PrivateHost       OptNilResourceRef                   `json:"PrivateHost"`
+	// 希望するサーバプラン。CPU/メモリ/世代の条件指定でマッチするプランが割り当てられる.
+	ServerPlan OptNilServerCreateRequestServerPlan `json:"ServerPlan"`
+	// 作成と同時に接続するスイッチ/ネットワークの配列 (0
+	// 番目が共有セグメントや特定スイッチ).
+	ConnectedSwitches []ConnectedSwitch `json:"ConnectedSwitches"`
+	// NIC ドライバ種別。指定しない場合は "virtio".
+	InterfaceDriver OptEInterfaceDriver `json:"InterfaceDriver"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// 配置する専用ホスト。指定しない場合は共有ホストに配置される.
+	PrivateHost OptNilResourceRef `json:"PrivateHost"`
 }
 
 // GetServerPlan returns the value of ServerPlan.
@@ -26267,14 +26837,22 @@ func (s *ServerCreateRequestEnvelope) SetServer(val ServerCreateRequest) {
 
 // Ref: #/components/schemas/ServerCreateRequestServerPlan
 type ServerCreateRequestServerPlan struct {
-	CPU            OptInt32           `json:"CPU"`
-	MemoryMB       OptInt32           `json:"MemoryMB"`
-	GPU            OptInt32           `json:"GPU"`
-	GPUModel       OptString          `json:"GPUModel"`
-	CPUModel       OptString          `json:"CPUModel"`
-	Commitment     OptECommitment     `json:"Commitment"`
-	Generation     OptEPlanGeneration `json:"Generation"`
-	ConfidentialVM bool               `json:"ConfidentialVM"`
+	// CPU コア数.
+	CPU OptInt32 `json:"CPU"`
+	// メモリ容量 (MB).
+	MemoryMB OptInt32 `json:"MemoryMB"`
+	// GPU 数 (GPU プランの場合).
+	GPU OptInt32 `json:"GPU"`
+	// GPU モデル名.
+	GPUModel OptString `json:"GPUModel"`
+	// CPU モデル ("uncategorized" や "amd_epyc_7713p_standard" 等).
+	CPUModel OptString `json:"CPUModel"`
+	// CPU 割当コミット方式。"standard" (共有) または "dedicatedcpu" (CPU 専有).
+	Commitment OptECommitment `json:"Commitment"`
+	// プラン世代。100 = 第1世代、200 = 第2世代(新プラン) 等.
+	Generation OptEPlanGeneration `json:"Generation"`
+	// Confidential VM (機密計算対応プラン) を有効化するかどうか.
+	ConfidentialVM bool `json:"ConfidentialVM"`
 }
 
 // GetCPU returns the value of CPU.
@@ -26389,7 +26967,7 @@ func (s *ServerCreateResponseEnvelope) SetServer(val Server) {
 // Request envelope for serverDeleteRequestEnvelope.
 // Ref: #/components/schemas/ServerDeleteRequestEnvelope
 type ServerDeleteRequestEnvelope struct {
-	// WithDisk.
+	// サーバと一緒に削除するディスクのIDの配列。省略時はディスクを削除しない.
 	WithDisk []ID `json:"WithDisk"`
 }
 
@@ -26521,13 +27099,20 @@ func (s *ServerInsertCDROMRequestEnvelope) SetCDROM(val OptInsertCDROMRequest) {
 
 // Ref: #/components/schemas/ServerInstance
 type ServerInstance struct {
-	Host            OptNilServerInstanceHost    `json:"Host"`
-	Status          OptEServerInstanceStatus    `json:"Status"`
-	BeforeStatus    OptNilEServerInstanceStatus `json:"BeforeStatus"`
-	StatusChangedAt OptNilDateTime              `json:"StatusChangedAt"`
-	Warnings        OptString                   `json:"Warnings"`
-	WarningsValue   OptInt32                    `json:"WarningsValue"`
-	CDROM           OptNilResourceRef           `json:"CDROM"`
+	// 現在サーバが配置されているホストの情報.
+	Host OptNilServerInstanceHost `json:"Host"`
+	// インスタンスの稼働状態 ("up" = 起動中、"down" = 停止中、"cleaning" 等).
+	Status OptEServerInstanceStatus `json:"Status"`
+	// 直前の稼働状態 (直前に起動/停止操作があった場合).
+	BeforeStatus OptNilEServerInstanceStatus `json:"BeforeStatus"`
+	// 稼働状態が最後に変化した日時.
+	StatusChangedAt OptNilDateTime `json:"StatusChangedAt"`
+	// インスタンスに関する警告メッセージ.
+	Warnings OptString `json:"Warnings"`
+	// 警告の数値コード.
+	WarningsValue OptInt32 `json:"WarningsValue"`
+	// 挿入されている CDROM (ISO イメージ).
+	CDROM OptNilResourceRef `json:"CDROM"`
 }
 
 // GetHost returns the value of Host.
@@ -26602,7 +27187,9 @@ func (s *ServerInstance) SetCDROM(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/ServerInstanceHost
 type ServerInstanceHost struct {
-	Name    OptString `json:"Name"`
+	// ホスト名.
+	Name OptString `json:"Name"`
+	// ホスト情報の参照 URL.
 	InfoURL OptString `json:"InfoURL"`
 }
 
@@ -26798,16 +27385,27 @@ func (s *ServerOpShutdownOK) SetIsOk(val bool) {
 
 // Ref: #/components/schemas/ServerPlan
 type ServerPlan struct {
-	ID           OptInt64           `json:"ID"`
-	Name         OptString          `json:"Name"`
-	CPU          OptInt32           `json:"CPU"`
-	MemoryMB     OptInt32           `json:"MemoryMB"`
-	GPU          OptInt32           `json:"GPU"`
-	GPUModel     OptString          `json:"GPUModel"`
-	CPUModel     OptString          `json:"CPUModel"`
-	Commitment   OptECommitment     `json:"Commitment"`
-	Generation   OptEPlanGeneration `json:"Generation"`
-	Availability OptEAvailability   `json:"Availability"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// CPU コア数.
+	CPU OptInt32 `json:"CPU"`
+	// メモリ容量 (MB).
+	MemoryMB OptInt32 `json:"MemoryMB"`
+	// GPU 数 (GPU プランの場合).
+	GPU OptInt32 `json:"GPU"`
+	// GPU モデル名.
+	GPUModel OptString `json:"GPUModel"`
+	// CPU モデル ("uncategorized" など).
+	CPUModel OptString `json:"CPUModel"`
+	// CPU 割当コミット方式 ("standard" / "dedicatedcpu").
+	Commitment OptECommitment `json:"Commitment"`
+	// プラン世代 (100=第1、200=第2(新) 等).
+	Generation OptEPlanGeneration `json:"Generation"`
+	// リソースの利用状態。"available" で利用可能、"migrating" で移行中、"uploading"
+	// でアップロード中など.
+	Availability OptEAvailability `json:"Availability"`
 }
 
 // GetID returns the value of ID.
@@ -26994,7 +27592,9 @@ func (s *ServerPlanReadResponseEnvelope) SetServerPlan(val ServerPlan) {
 
 // Ref: #/components/schemas/ServerPrivateHost
 type ServerPrivateHost struct {
-	ID   int64     `json:"ID"`
+	// リソースを一意に識別するID.
+	ID int64 `json:"ID"`
+	// リソースの名前.
 	Name OptString `json:"Name"`
 }
 
@@ -27050,9 +27650,9 @@ func (s *ServerReadResponseEnvelope) SetServer(val Server) {
 // Request envelope for serverSendKeyRequestEnvelope.
 // Ref: #/components/schemas/ServerSendKeyRequestEnvelope
 type ServerSendKeyRequestEnvelope struct {
-	// Key.
+	// VNC コンソールに送る単一キー ("ctrl-alt-delete" 等).
 	Key string `json:"Key"`
-	// Keys.
+	// VNC コンソールに送るキーのシーケンス.
 	Keys []string `json:"Keys"`
 }
 
@@ -27078,16 +27678,26 @@ func (s *ServerSendKeyRequestEnvelope) SetKeys(val []string) {
 
 // Ref: #/components/schemas/ServerServerPlan
 type ServerServerPlan struct {
-	ID             OptInt64           `json:"ID"`
-	Name           OptString          `json:"Name"`
-	CPU            OptInt32           `json:"CPU"`
-	MemoryMB       OptInt32           `json:"MemoryMB"`
-	GPU            OptInt32           `json:"GPU"`
-	GPUModel       OptString          `json:"GPUModel"`
-	CPUModel       OptString          `json:"CPUModel"`
-	Commitment     OptECommitment     `json:"Commitment"`
-	Generation     OptEPlanGeneration `json:"Generation"`
-	ConfidentialVM bool               `json:"ConfidentialVM"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// CPU コア数.
+	CPU OptInt32 `json:"CPU"`
+	// メモリ容量 (MB).
+	MemoryMB OptInt32 `json:"MemoryMB"`
+	// GPU 数.
+	GPU OptInt32 `json:"GPU"`
+	// GPU モデル名.
+	GPUModel OptString `json:"GPUModel"`
+	// CPU モデル名.
+	CPUModel OptString `json:"CPUModel"`
+	// CPU 割当コミット方式 ("standard" / "dedicatedcpu").
+	Commitment OptECommitment `json:"Commitment"`
+	// プラン世代.
+	Generation OptEPlanGeneration `json:"Generation"`
+	// Confidential VM プランであるか.
+	ConfidentialVM bool `json:"ConfidentialVM"`
 }
 
 // GetID returns the value of ID.
@@ -27193,7 +27803,7 @@ func (s *ServerServerPlan) SetConfidentialVM(val bool) {
 // Request envelope for serverShutdownRequestEnvelope.
 // Ref: #/components/schemas/ServerShutdownRequestEnvelope
 type ServerShutdownRequestEnvelope struct {
-	// Force.
+	// True を指定すると強制停止 (ACPI シャットダウンではなく電源断相当).
 	Force bool `json:"Force"`
 }
 
@@ -27209,9 +27819,13 @@ func (s *ServerShutdownRequestEnvelope) SetForce(val bool) {
 
 // Ref: #/components/schemas/ServerUpdateRequest
 type ServerUpdateRequest struct {
-	Name            OptString           `json:"Name"`
-	Description     string              `json:"Description"`
-	Tags            []string            `json:"Tags"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
 	Icon            OptNilResourceRef   `json:"Icon"`
 	PrivateHost     OptNilResourceRef   `json:"PrivateHost"`
 	InterfaceDriver OptEInterfaceDriver `json:"InterfaceDriver"`
@@ -27325,12 +27939,18 @@ func (s *ServerUpdateResponseEnvelope) SetServer(val Server) {
 
 // Ref: #/components/schemas/ServiceClass
 type ServiceClass struct {
-	ID               int64       `json:"ID"`
-	ServiceClassName string      `json:"ServiceClassName"`
-	ServiceClassPath string      `json:"ServiceClassPath"`
-	DisplayName      string      `json:"DisplayName"`
-	IsPublic         bool        `json:"IsPublic"`
-	Price            OptNilPrice `json:"Price"`
+	// リソースを一意に識別するID.
+	ID int64 `json:"ID"`
+	// サービスクラスの内部名.
+	ServiceClassName string `json:"ServiceClassName"`
+	// サービスクラスの階層パス.
+	ServiceClassPath string `json:"ServiceClassPath"`
+	// 画面表示用の名称.
+	DisplayName string `json:"DisplayName"`
+	// 公開されているサービスクラスかどうか.
+	IsPublic bool `json:"IsPublic"`
+	// 料金情報.
+	Price OptNilPrice `json:"Price"`
 }
 
 // GetID returns the value of ID.
@@ -27448,6 +28068,7 @@ func (s *ServiceClassFindResponseEnvelope) SetServiceClasses(val []ServiceClass)
 
 // Ref: #/components/schemas/ShutdownOption
 type ShutdownOption struct {
+	// True を指定すると強制停止 (ACPI シャットダウンではなく電源断相当).
 	Force bool `json:"Force"`
 }
 
@@ -27463,24 +28084,26 @@ func (s *ShutdownOption) SetForce(val bool) {
 
 // Ref: #/components/schemas/SimpleMonitorHealthCheck
 type SimpleMonitorHealthCheck struct {
-	Protocol          ESimpleMonitorProtocol `json:"Protocol"`
-	Port              int32                  `json:"Port"`
-	Path              string                 `json:"Path"`
-	Status            int32                  `json:"Status"`
-	SNI               string                 `json:"SNI"`
-	Host              string                 `json:"Host"`
-	BasicAuthUsername string                 `json:"BasicAuthUsername"`
-	BasicAuthPassword string                 `json:"BasicAuthPassword"`
-	ContainsString    string                 `json:"ContainsString"`
-	QName             string                 `json:"QName"`
-	ExpectedData      string                 `json:"ExpectedData"`
-	Community         string                 `json:"Community"`
-	SNMPVersion       string                 `json:"SNMPVersion"`
-	OID               string                 `json:"OID"`
-	RemainingDays     int32                  `json:"RemainingDays"`
-	HTTP2             string                 `json:"HTTP2"`
-	FTPS              ESimpleMonitorFTPS     `json:"FTPS"`
-	VerifySNI         string                 `json:"VerifySNI"`
+	// プロトコル ("tcp", "udp", "http", "https" など).
+	Protocol ESimpleMonitorProtocol `json:"Protocol"`
+	// ポート番号.
+	Port              int32              `json:"Port"`
+	Path              string             `json:"Path"`
+	Status            int32              `json:"Status"`
+	SNI               string             `json:"SNI"`
+	Host              string             `json:"Host"`
+	BasicAuthUsername string             `json:"BasicAuthUsername"`
+	BasicAuthPassword string             `json:"BasicAuthPassword"`
+	ContainsString    string             `json:"ContainsString"`
+	QName             string             `json:"QName"`
+	ExpectedData      string             `json:"ExpectedData"`
+	Community         string             `json:"Community"`
+	SNMPVersion       string             `json:"SNMPVersion"`
+	OID               string             `json:"OID"`
+	RemainingDays     int32              `json:"RemainingDays"`
+	HTTP2             string             `json:"HTTP2"`
+	FTPS              ESimpleMonitorFTPS `json:"FTPS"`
+	VerifySNI         string             `json:"VerifySNI"`
 }
 
 // GetProtocol returns the value of Protocol.
@@ -27909,13 +28532,15 @@ func (s *SimpleNotificationHistoryMessage) SetTitle(val string) {
 
 // Ref: #/components/schemas/SimpleNotificationHistoryStatus
 type SimpleNotificationHistoryStatus struct {
-	ID                    string    `json:"ID"`
-	Status                int32     `json:"Status"`
-	ErrorInfo             string    `json:"ErrorInfo"`
-	NotificationRequestID string    `json:"NotificationRequestID"`
-	GroupID               string    `json:"GroupID"`
-	CreatedAt             time.Time `json:"CreatedAt"`
-	UpdatedAt             time.Time `json:"UpdatedAt"`
+	// リソースを一意に識別するID.
+	ID                    string `json:"ID"`
+	Status                int32  `json:"Status"`
+	ErrorInfo             string `json:"ErrorInfo"`
+	NotificationRequestID string `json:"NotificationRequestID"`
+	GroupID               string `json:"GroupID"`
+	// 作成日時 (ISO 8601 / UTC).
+	CreatedAt time.Time `json:"CreatedAt"`
+	UpdatedAt time.Time `json:"UpdatedAt"`
 }
 
 // GetID returns the value of ID.
@@ -27990,10 +28615,15 @@ func (s *SimpleNotificationHistoryStatus) SetUpdatedAt(val time.Time) {
 
 // Ref: #/components/schemas/Storage
 type Storage struct {
-	ID                       OptInt64          `json:"ID"`
-	Name                     OptString         `json:"Name"`
-	Class                    OptString         `json:"Class"`
-	Generation               OptInt32          `json:"Generation"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// ストレージクラス.
+	Class OptString `json:"Class"`
+	// ストレージ世代.
+	Generation OptInt32 `json:"Generation"`
+	// 専有ストレージ契約情報.
 	DedicatedStorageContract OptNilResourceRef `json:"DedicatedStorageContract"`
 }
 
@@ -28049,12 +28679,18 @@ func (s *Storage) SetDedicatedStorageContract(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/Subnet
 type Subnet struct {
-	ID             OptInt64           `json:"ID"`
-	Switch         OptNilSubnetSwitch `json:"Switch"`
-	NextHop        OptNilString       `json:"NextHop"`
-	NetworkAddress OptString          `json:"NetworkAddress"`
-	NetworkMaskLen OptInt32           `json:"NetworkMaskLen"`
-	IPAddresses    []SubnetIPAddress  `json:"IPAddresses"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// 所属するスイッチ情報.
+	Switch OptNilSubnetSwitch `json:"Switch"`
+	// ネクストホップ IP アドレス.
+	NextHop OptNilString `json:"NextHop"`
+	// ネットワークアドレス (IPv4).
+	NetworkAddress OptString `json:"NetworkAddress"`
+	// ネットワークマスク長 (プレフィックス長).
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
+	// このサブネットで割り当て済みの IPv4 アドレス一覧.
+	IPAddresses []SubnetIPAddress `json:"IPAddresses"`
 }
 
 // GetID returns the value of ID.
@@ -28172,7 +28808,9 @@ func (s *SubnetFindResponseEnvelope) SetSubnets(val []Subnet) {
 
 // Ref: #/components/schemas/SubnetIPAddress
 type SubnetIPAddress struct {
-	HostName  string    `json:"HostName"`
+	// 逆引き用の PTR レコードに登録されているホスト名.
+	HostName string `json:"HostName"`
+	// IPv4 アドレス.
 	IPAddress OptString `json:"IPAddress"`
 }
 
@@ -28227,7 +28865,9 @@ func (s *SubnetReadResponseEnvelope) SetSubnet(val Subnet) {
 
 // Ref: #/components/schemas/SubnetSwitch
 type SubnetSwitch struct {
-	ID       OptInt64          `json:"ID"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// ルータ+スイッチの場合の回線情報.
 	Internet OptNilResourceRef `json:"Internet"`
 }
 
@@ -28253,14 +28893,22 @@ func (s *SubnetSwitch) SetInternet(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/Switch
 type Switch struct {
-	ID          OptInt64          `json:"ID"`
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
-	ServerCount OptInt32          `json:"ServerCount"`
-	Subnets     []SwitchSubnet    `json:"Subnets"`
-	Bridge      OptNilResourceRef `json:"Bridge"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
+	// このスイッチに接続されているサーバ台数.
+	ServerCount OptInt32 `json:"ServerCount"`
+	// このスイッチに紐付くサブネットの配列 (ルータ+スイッチ時のみ).
+	Subnets []SwitchSubnet `json:"Subnets"`
+	// スイッチ間接続用ブリッジ情報 (接続されている場合).
+	Bridge OptNilResourceRef `json:"Bridge"`
 }
 
 // GetID returns the value of ID.
@@ -28345,10 +28993,14 @@ func (s *Switch) SetBridge(val OptNilResourceRef) {
 
 // Ref: #/components/schemas/SwitchCreateRequest
 type SwitchCreateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
@@ -28545,13 +29197,20 @@ func (s *SwitchGetServersResponseEnvelope) SetServers(val []Server) {
 
 // Ref: #/components/schemas/SwitchInfo
 type SwitchInfo struct {
-	ID          OptInt64          `json:"ID"`
-	Name        OptString         `json:"Name"`
-	Description OptNilString      `json:"Description"`
-	Tags        OptNilStringArray `json:"Tags"`
-	Scope       OptEScope         `json:"Scope"`
-	Subnets     []InternetSubnet  `json:"Subnets"`
-	IPv6Nets    []IPv6NetInfo     `json:"IPv6Nets"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description OptNilString `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags OptNilStringArray `json:"Tags"`
+	// スコープ。"shared" = 共有、"user" = ユーザ占有.
+	Scope OptEScope `json:"Scope"`
+	// このスイッチに紐付くサブネットの配列.
+	Subnets []InternetSubnet `json:"Subnets"`
+	// このスイッチに紐付く IPv6 ネットワークの配列.
+	IPv6Nets []IPv6NetInfo `json:"IPv6Nets"`
 }
 
 // GetID returns the value of ID.
@@ -28697,14 +29356,22 @@ func (s *SwitchReadResponseEnvelope) SetSwitch(val Switch) {
 
 // Ref: #/components/schemas/SwitchSubnet
 type SwitchSubnet struct {
-	ID             OptInt64                   `json:"ID"`
-	DefaultRoute   OptString                  `json:"DefaultRoute"`
-	NextHop        OptNilString               `json:"NextHop"`
-	StaticRoute    OptNilString               `json:"StaticRoute"`
-	NetworkAddress OptString                  `json:"NetworkAddress"`
-	NetworkMaskLen OptInt32                   `json:"NetworkMaskLen"`
-	Internet       OptNilInternetInfo         `json:"Internet"`
-	IPAddresses    OptSwitchSubnetIPAddresses `json:"IPAddresses"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// デフォルトルートの IP アドレス.
+	DefaultRoute OptString `json:"DefaultRoute"`
+	// ネクストホップ IP アドレス.
+	NextHop OptNilString `json:"NextHop"`
+	// 静的ルート先 IP アドレス.
+	StaticRoute OptNilString `json:"StaticRoute"`
+	// ネットワークアドレス (IPv4).
+	NetworkAddress OptString `json:"NetworkAddress"`
+	// ネットワークマスク長 (プレフィックス長).
+	NetworkMaskLen OptInt32 `json:"NetworkMaskLen"`
+	// ルータ+スイッチの場合の回線情報.
+	Internet OptNilInternetInfo `json:"Internet"`
+	// このサブネットで割り当て可能な IPv4 範囲.
+	IPAddresses OptSwitchSubnetIPAddresses `json:"IPAddresses"`
 }
 
 // GetID returns the value of ID.
@@ -28789,7 +29456,9 @@ func (s *SwitchSubnet) SetIPAddresses(val OptSwitchSubnetIPAddresses) {
 
 // Ref: #/components/schemas/SwitchSubnetIPAddresses
 type SwitchSubnetIPAddresses struct {
+	// 割り当て可能な IPv4 範囲の上限.
 	Max string `json:"Max"`
+	// 割り当て可能な IPv4 範囲の下限.
 	Min string `json:"Min"`
 }
 
@@ -28815,10 +29484,14 @@ func (s *SwitchSubnetIPAddresses) SetMin(val string) {
 
 // Ref: #/components/schemas/SwitchUpdateRequest
 type SwitchUpdateRequest struct {
-	Name        OptString         `json:"Name"`
-	Description string            `json:"Description"`
-	Tags        []string          `json:"Tags"`
-	Icon        OptNilResourceRef `json:"Icon"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description string `json:"Description"`
+	// タグの配列。リソースのグルーピングや検索に利用する.
+	Tags []string `json:"Tags"`
+	// アイコン (ResourceRef で ID を指定、null で解除).
+	Icon OptNilResourceRef `json:"Icon"`
 }
 
 // GetName returns the value of Name.
@@ -28909,7 +29582,9 @@ func (s *SwitchUpdateResponseEnvelope) SetSwitch(val Switch) {
 
 // Ref: #/components/schemas/VNCProxy
 type VNCProxy struct {
-	HostName  OptString `json:"HostName"`
+	// VNC プロキシのホスト名.
+	HostName OptString `json:"HostName"`
+	// VNC プロキシの IPv4 アドレス.
 	IPAddress OptString `json:"IPAddress"`
 }
 
@@ -28935,12 +29610,18 @@ func (s *VNCProxy) SetIPAddress(val OptString) {
 
 // Ref: #/components/schemas/VNCProxyInfo
 type VNCProxyInfo struct {
-	Status       OptString `json:"Status"`
-	Host         OptString `json:"Host"`
+	// VNC プロキシの状態.
+	Status OptString `json:"Status"`
+	// VNC プロキシのホスト名.
+	Host OptString `json:"Host"`
+	// VNC IO サーバのホスト名.
 	IOServerHost OptString `json:"IOServerHost"`
-	Port         OptInt32  `json:"Port"`
-	Password     OptString `json:"Password"`
-	VNCFile      OptString `json:"VNCFile"`
+	// VNC プロキシのポート番号.
+	Port OptInt32 `json:"Port"`
+	// VNC 接続時のパスワード.
+	Password OptString `json:"Password"`
+	// VNC クライアント用の設定ファイル内容 (.vnc).
+	VNCFile OptString `json:"VNCFile"`
 }
 
 // GetStatus returns the value of Status.
@@ -29077,10 +29758,14 @@ func (s *VPCRouterPingResults) SetResult(val []string) {
 
 // Ref: #/components/schemas/Zone
 type Zone struct {
-	ID          OptInt64     `json:"ID"`
-	Name        OptString    `json:"Name"`
-	Description OptString    `json:"Description"`
-	Region      OptNilRegion `json:"Region"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description OptString `json:"Description"`
+	// 所属リージョンの情報.
+	Region OptNilRegion `json:"Region"`
 }
 
 // GetID returns the value of ID.
@@ -29178,13 +29863,20 @@ func (s *ZoneFindResponseEnvelope) SetZones(val []Zone) {
 
 // Ref: #/components/schemas/ZoneInfo
 type ZoneInfo struct {
-	ID          OptInt64            `json:"ID"`
-	Name        OptString           `json:"Name"`
-	Description OptString           `json:"Description"`
-	IsDummy     bool                `json:"IsDummy"`
-	VNCProxy    OptNilVNCProxy      `json:"VNCProxy"`
-	FTPServer   OptNilFTPServerInfo `json:"FTPServer"`
-	Region      OptNilRegion        `json:"Region"`
+	// リソースを一意に識別するID.
+	ID OptInt64 `json:"ID"`
+	// リソースの名前.
+	Name OptString `json:"Name"`
+	// 説明.
+	Description OptString `json:"Description"`
+	// テスト用のダミーゾーンかどうか.
+	IsDummy bool `json:"IsDummy"`
+	// VNC プロキシ情報.
+	VNCProxy OptNilVNCProxy `json:"VNCProxy"`
+	// 当該ゾーンの FTP サーバ情報.
+	FTPServer OptNilFTPServerInfo `json:"FTPServer"`
+	// 所属リージョン情報.
+	Region OptNilRegion `json:"Region"`
 }
 
 // GetID returns the value of ID.

@@ -5,38 +5,70 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model MobileGateway {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class?: string;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Instance?: MobileGatewayInstance | null;
   Interfaces?: MobileGatewayInterface[];
+
+  @doc("不変情報")
   Remark?: MobileGatewayRemark | null;
+
+  @doc("インターフェース設定")
   InterfaceSettings: MobileGatewayInterfaceSetting[];
+
+  @doc("スタティックルートの配列")
   StaticRoutes: MobileGatewayStaticRoute[];
+
+  @doc("モバイルゲートウェイ可変設定")
   Settings?: MobileGatewaySettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
 model MobileGatewayInstance {
+  @doc("配置先ホスト情報")
   Host?: MobileGatewayInstanceHost | null;
+
+  @doc("モバイルゲートウェイの稼働状態")
   Status?: EServerInstanceStatus;
+
   StatusChangedAt?: utcDateTime | null;
 }
 
 model MobileGatewayInstanceHost {
+  @doc("リソースの名前")
   Name?: string;
+
   InfoURL?: string;
 }
 
 model MobileGatewayRemark {
+  @doc("モバイルゲートウェイの不変情報")
   MobileGateway?: MobileGatewayRemarkMobileGateway | null;
 }
 
 model MobileGatewayRemarkMobileGateway {
+  @doc("モバイルゲートウェイのグローバル IP アドレス")
   GlobalAddress: string;
 }
 
@@ -58,32 +90,62 @@ model MobileGatewaySettingsMobileGatewayInterDeviceCommunication {
 }
 
 model MobileGatewayInterface {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("MAC アドレス")
   MACAddress?: string;
+
+  @doc("IPv4 アドレス")
   IPAddress?: string;
+
   UserIPAddress?: string;
+
+  @doc("インターフェースのホスト名")
   HostName?: string;
+
+  @doc("接続されているスイッチ")
   Switch?: MobileGatewayInterfaceSwitch | null;
+
+  @doc("割り当てられているパケットフィルタ")
   PacketFilter?: MobileGatewayInterfacePacketFilter | null;
 }
 
 model MobileGatewayInterfaceSwitch {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("スコープ。\"shared\" = 共有、\"user\" = ユーザ占有")
   Scope?: EScope;
+
+  @doc("ユーザが指定した論理サブネット情報")
   UserSubnet?: MobileGatewayInterfaceSwitchUserSubnet | null;
+
+  @doc("接続されているサブネット情報")
   Subnet?: MobileGatewayInterfaceSwitchSubnet | null;
 }
 
 model MobileGatewayInterfaceSwitchUserSubnet {
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen: int32;
 }
 
 model MobileGatewayInterfaceSwitchSubnet {
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
+
+  @doc("ネットワークアドレス (IPv4)")
   NetworkAddress?: string;
+
   Internet?: MobileGatewayInterfaceSwitchSubnetInternet | null;
 }
 
@@ -92,59 +154,101 @@ model MobileGatewayInterfaceSwitchSubnetInternet {
 }
 
 model MobileGatewayInterfacePacketFilter {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("このパケットフィルタが要求するホストバージョン (※ API 側のフィールド名のタイポを保持)")
   RequiredHostVersionn: int32;
 }
 
 model MobileGatewayInterfaceSetting {
+  @doc("割り当てる IPv4 の配列")
   IPAddress?: string[];
+
+  @doc("ネットワークマスク長")
   NetworkMaskLen?: int32;
+
+  @doc("インターフェース番号")
   Index: int32;
 }
 
 model MobileGatewayStaticRoute {
   Prefix?: string;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop?: string;
 }
 
 model MobileGatewayCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("スタティックルートの配列")
   StaticRoutes: MobileGatewayStaticRoute[];
+
+  @doc("モバイルゲートウェイ設定")
   Settings?: MobileGatewayCreateRequestSettings | null;
 }
 
 model MobileGatewayCreateRequestSettings {
+  @doc("モバイルゲートウェイ本体設定")
   MobileGateway?: MobileGatewayCreateRequestSettingsMobileGateway | null;
 }
 
 model MobileGatewayCreateRequestSettingsMobileGateway {
+  @doc("インターネット接続を許可するか")
   InternetConnection?: MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection | null;
+
+  @doc("セキュアモバイル接続機器同士の通信を許可するか")
   InterDeviceCommunication?: MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication | null;
 }
 
 model MobileGatewayCreateRequestSettingsMobileGatewayInternetConnection {
+  @doc("インターネット接続の有効化フラグ")
   Enabled: string;
 }
 
 model MobileGatewayCreateRequestSettingsMobileGatewayInterDeviceCommunication {
+  @doc("機器間通信の有効化フラグ")
   Enabled: string;
 }
 
 model MobileGatewayUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   InterfaceSettings: MobileGatewayInterfaceSetting[];
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
 model MobileGatewayDNSSetting {
+  @doc("プライマリ DNS サーバの IPv4")
   DNS1?: string;
+
+  @doc("セカンダリ DNS サーバの IPv4")
   DNS2?: string;
 }
 
@@ -167,7 +271,10 @@ model MobileGatewaySIMInfo {
   SessionStatus?: string;
   IMEILock: boolean;
   Registered: boolean;
+
+  @doc("SIM が有効化されているかどうか")
   Activated: boolean;
+
   ResourceID?: string;
   RegisteredDate?: utcDateTime;
   ActivatedDate?: utcDateTime;
@@ -183,6 +290,7 @@ model SIMTrafficBytes {
 }
 
 model MobileGatewayAddSIMRequest {
+  @doc("追加する SIM のリソース ID")
   ResourceID?: string;
 }
 

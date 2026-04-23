@@ -5,7 +5,12 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LicenseInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("ライセンス利用規約本文")
   TermsOfUse?: string;
 }

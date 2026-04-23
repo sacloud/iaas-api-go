@@ -5,77 +5,157 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Internet {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("回線帯域幅 (Mbps)。プランにより 100/250/500/1000/1500/2000/2500/3000/5000/10000 等")
   BandWidthMbps?: int32;
+
+  @doc("サブネットマスク長 (28/27/26)")
   NetworkMaskLen?: int32;
+
+  @doc("対応するスイッチの情報")
   Switch?: SwitchInfo | null;
 }
 
 model SwitchInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description?: string | null;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags?: string[] | null;
+
+  @doc("スコープ。\"shared\" = 共有、\"user\" = ユーザ占有")
   Scope?: EScope;
+
+  @doc("このスイッチに紐付くサブネットの配列")
   Subnets?: InternetSubnet[];
+
+  @doc("このスイッチに紐付く IPv6 ネットワークの配列")
   IPv6Nets?: IPv6NetInfo[];
 }
 
 model InternetSubnet {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop?: string | null;
+
+  @doc("静的ルート先 IP アドレス")
   StaticRoute?: string | null;
+
+  @doc("ネットワークアドレス (IPv4)")
   NetworkAddress?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
 }
 
 model IPv6NetInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("IPv6 プレフィックス")
   IPv6Prefix?: string;
+
+  @doc("IPv6 プレフィックス長 (一般に 64)")
   IPv6PrefixLen?: int32;
 }
 
 model InternetCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("サブネットマスク長 (28/27/26)")
   NetworkMaskLen?: int32;
+
+  @doc("回線帯域幅 (Mbps)")
   BandWidthMbps?: int32;
 }
 
 model InternetUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model InternetUpdateBandWidthRequest {
+  @doc("変更後の回線帯域幅 (Mbps)")
   BandWidthMbps?: int32;
 }
 
 model InternetSubnetOperationResult {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop?: string;
+
+  @doc("静的ルート先 IP アドレス")
   StaticRoute?: string;
+
+  @doc("ネットワークアドレス (IPv4)")
   NetworkAddress?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
+
+  @doc("サブネットで利用可能な IPv4 の配列")
   IPAddresses?: string[];
 }
 
 model InternetAddSubnetRequest {
+  @doc("追加サブネットのマスク長 (28/27/26)")
   NetworkMaskLen?: int32;
+
+  @doc("追加サブネットへのネクストホップ")
   NextHop?: string;
 }
 
 model InternetUpdateSubnetRequest {
+  @doc("サブネットのネクストホップ")
   NextHop?: string;
 }
 

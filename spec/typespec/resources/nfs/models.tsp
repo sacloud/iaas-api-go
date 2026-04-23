@@ -5,69 +5,128 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model NFS {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class?: string;
+
   Instance?: NFSInstance | null;
   Interfaces?: InterfaceView[];
+
+  @doc("不変情報 (プラン ID / 接続スイッチ / ネットワーク)")
   Remark?: NFSRemark | null;
+
+  @doc("実インターフェースに割り当てる IPv4 の配列")
   IPAddresses: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("接続されているスイッチ情報")
   Switch?: NFSSwitch | null;
 }
 
 model NFSInstance {
+  @doc("配置先ホスト情報")
   Host?: NFSInstanceHost | null;
+
+  @doc("NFS の稼働状態")
   Status?: EServerInstanceStatus;
+
   StatusChangedAt?: utcDateTime | null;
 }
 
 model NFSInstanceHost {
+  @doc("リソースの名前")
   Name?: string;
+
   InfoURL?: string;
 }
 
 model NFSRemark {
+  @doc("NFS プラン ID")
   Plan?: ResourceRef | null;
+
+  @doc("ネットワーク情報")
   Network?: NFSRemarkNetwork | null;
 }
 
 model NFSRemarkNetwork {
+  @doc("デフォルトルートの IPv4")
   DefaultRoute?: string;
+
+  @doc("ネットワークマスク長")
   NetworkMaskLen?: int32;
 }
 
 model NFSSwitch {
+  @doc("接続先スイッチ名")
   Name?: string;
 }
 
 model NFSCreateRequest {
+  @doc("不変情報")
   Remark?: NFSCreateRequestRemark | null;
+
+  @doc("実インターフェースに割り当てる IPv4 の配列")
   IPAddresses: string[];
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model NFSCreateRequestRemark {
+  @doc("接続するスイッチ")
   Switch?: ResourceRef | null;
+
+  @doc("NFS プラン ID (サイズとストレージ種別を特定)")
   Plan?: ResourceRef | null;
+
+  @doc("ネットワーク情報")
   Network?: NFSCreateRequestRemarkNetwork | null;
 }
 
 model NFSCreateRequestRemarkNetwork {
+  @doc("ネットワークマスク長")
   NetworkMaskLen?: int32;
+
+  @doc("デフォルトルートの IPv4")
   DefaultRoute?: string;
 }
 
 model NFSUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 

@@ -5,43 +5,78 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Bridge {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
 }
 
 model Region {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description?: string;
+
+  @doc("リージョンに紐付く権威 DNS の IP アドレス配列")
   NameServers?: string[];
 }
 
 model BridgeInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("別ゾーンで接続されているブリッジが所属するゾーン情報")
   Zone?: BridgeInfoZone | null;
 }
 
 model BridgeInfoZone {
+  @doc("別ゾーンのID")
   ID?: int64;
+
+  @doc("別ゾーン名")
   Name?: string;
 }
 
 model BridgeSwitchInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("スコープ。\"shared\" = 共有、\"user\" = ユーザ占有")
   Scope?: EScope;
+
+  @doc("このスイッチに接続されているサーバ数")
   ServerCount?: int32;
+
+  @doc("このスイッチに接続されているアプライアンス数")
   ApplianceCount?: int32;
 }
 
 model BridgeCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
 }
 
 model BridgeUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
 }

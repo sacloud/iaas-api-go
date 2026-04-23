@@ -5,19 +5,45 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Database {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class?: string;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("データベースの可変設定 (DB 設定、バックアップ、レプリケーション、監視)")
   Settings?: DatabaseSettings | null;
+
+  @doc("インターフェース設定の配列 (IPv4/マスク長等)")
   InterfaceSettings?: DatabaseSettingsInterface[] | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string | null;
+
   Instance?: DatabaseInstance | null;
+
+  @doc("不変情報 (プラン/接続スイッチ/DB 種別/ソース・アプライアンス)")
   Remark?: DatabaseRemark | null;
+
+  @doc("実インターフェースに割り当てる IPv4 の配列")
   IPAddresses?: string[] | null;
+
+  @doc("データ格納ディスク情報 (暗号化情報含む)")
   Disk?: DatabaseDisk | null;
 }
 
@@ -34,13 +60,19 @@ model DatabaseSettingsDBConf {
 }
 
 model DatabaseInstance {
+  @doc("配置先ホスト情報")
   Host?: DatabaseInstanceHost | null;
+
+  @doc("データベースアプライアンスの稼働状態")
   Status?: EServerInstanceStatus;
+
   StatusChangedAt?: utcDateTime | null;
 }
 
 model DatabaseInstanceHost {
+  @doc("リソースの名前")
   Name?: string;
+
   InfoURL?: string;
 }
 
@@ -55,7 +87,10 @@ model DatabaseRemarkDBConf {
 }
 
 model DatabaseRemarkNetwork {
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
 }
 
@@ -84,19 +119,32 @@ model DatabaseSettingBackupv2View {
 
 model DatabaseReplicationSetting {
   Model?: EDatabaseReplicationModel;
+
+  @doc("IPv4 アドレス")
   IPAddress?: string;
+
+  @doc("ポート番号")
   Port?: int32;
+
+  @doc("FTP 接続のユーザ名")
   User?: string;
+
+  @doc("FTP 接続のパスワード")
   Password?: string;
+
+  @doc("アプライアンス (VPC ルータ、ロードバランサ等) の設定ペイロード")
   Appliance?: ResourceRef | null;
 }
 
 model DatabaseSettingsInterface {
   VirtualIPAddress?: string;
+
+  @doc("配列内での順序を表すインデックス")
   Index: int32;
 }
 
 model MonitoringSuite {
+  @doc("アクティビティモニタリングの有効化フラグ")
   Enabled: boolean;
 }
 
@@ -109,89 +157,165 @@ model DatabaseRemarkDBConfCommon {
 }
 
 model InterfaceView {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("MAC アドレス")
   MACAddress?: string;
+
+  @doc("自動または静的に割り当てられた IPv4 アドレス")
   IPAddress?: string | null;
+
+  @doc("ユーザが手動で割り当てた IPv4 アドレス")
   UserIPAddress?: string | null;
+
+  @doc("接続先スイッチ/ルータ+スイッチ/共有セグメントの情報")
   Switch?: InterfaceViewSwitch | null;
+
+  @doc("割り当てられているパケットフィルタ")
   PacketFilter?: InterfaceViewPacketFilter | null;
 }
 
 model InterfaceViewSwitch {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("スコープ。\"shared\" = 共有、\"user\" = ユーザ占有")
   Scope?: EScope;
+
+  @doc("ユーザが指定した論理サブネット (mask/デフォルトルート)")
   UserSubnet?: InterfaceViewSwitchUserSubnet | null;
+
+  @doc("スイッチに紐付くルータ+スイッチのサブネット情報")
   Subnet?: InterfaceViewSwitchSubnet | null;
 }
 
 model InterfaceViewSwitchUserSubnet {
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string | null;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32 | null;
 }
 
 model InterfaceViewSwitchSubnet {
+  @doc("サブネットのデフォルトルート")
   DefaultRoute?: string;
+
+  @doc("サブネットのマスク長")
   NetworkMaskLen?: int32;
+
+  @doc("サブネットのネットワークアドレス")
   NetworkAddress?: string;
+
+  @doc("ルータ+スイッチの場合の回線情報")
   Internet?: InterfaceViewSwitchSubnetInternet | null;
 }
 
 model InterfaceViewSwitchSubnetInternet {
+  @doc("ルータの帯域幅 (Mbps)")
   BandWidthMbps?: int32;
 }
 
 model InterfaceViewPacketFilter {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
 }
 
 model DatabaseDisk {
+  @doc("ディスク暗号化アルゴリズム")
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
+
+  @doc("KMS 暗号化キー情報")
   EncryptionKey?: DatabaseDiskEncryptionKey | null;
 }
 
 model DatabaseDiskEncryptionKey {
+  @doc("KMS キーID")
   KMSKeyID?: int64;
 }
 
 model DatabaseCreateRequest {
+  @doc("不変情報")
   Remark?: DatabaseCreateRequestRemark | null;
+
+  @doc("実インターフェースに割り当てる IPv4 の配列")
   IPAddresses: string[];
+
+  @doc("データベース設定")
   Settings?: DatabaseCreateRequestSettings | null;
+
+  @doc("インターフェース設定の配列")
   InterfaceSettings: DatabaseSettingsInterface[];
+
+  @doc("データ格納ディスク設定")
   Disk?: DatabaseDisk | null;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model DatabaseCreateRequestRemark {
+  @doc("データベースプラン ID")
   Plan?: ResourceRef | null;
+
+  @doc("接続するスイッチ")
   Switch?: ResourceRef | null;
+
+  @doc("ネットワーク情報")
   Network?: DatabaseCreateRequestRemarkNetwork | null;
+
+  @doc("DB エンジン情報 (MariaDB / PostgreSQL の種別)")
   DBConf?: DatabaseCreateRequestRemarkDBConf | null;
+
+  @doc("マネージドレプリカのソース DB アプライアンス ID")
   SourceAppliance?: ResourceRef | null;
 }
 
 model DatabaseCreateRequestRemarkNetwork {
+  @doc("ネットワークマスク長")
   NetworkMaskLen?: int32;
+
+  @doc("デフォルトルートの IPv4")
   DefaultRoute?: string;
 }
 
 model DatabaseCreateRequestRemarkDBConf {
+  @doc("DB 共通設定 (バージョン等)")
   Common?: DatabaseRemarkDBConfCommon | null;
 }
 
 model DatabaseCreateRequestSettings {
+  @doc("DB 設定詳細")
   DBConf?: DatabaseCreateRequestSettingsDBConf | null;
+
+  @doc("アクティビティモニタリング設定")
   MonitoringSuite?: MonitoringSuite | null;
 }
 
 model DatabaseCreateRequestSettingsDBConf {
+  @doc("DB 共通設定 (管理ユーザ、パスワード、ポート、ソースネットワーク等)")
   Common?: DatabaseSettingCommon | null;
+
+  @doc("従来バックアップ設定 (v1)")
   Backup?: DatabaseSettingBackup | null;
+
+  @doc("バックアップ設定 (v2)")
   Backupv2?: DatabaseSettingBackupv2 | null;
+
+  @doc("レプリケーション設定")
   Replication?: DatabaseReplicationSetting | null;
 }
 
@@ -203,11 +327,21 @@ model DatabaseSettingBackupv2 {
 }
 
 model DatabaseUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: DatabaseUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
@@ -220,6 +354,7 @@ model DatabaseUpdateRequestSettingsDBConf {
 }
 
 model ShutdownOption {
+  @doc("true を指定すると強制停止 (ACPI シャットダウンではなく電源断相当)")
   Force: boolean;
 }
 
@@ -311,20 +446,35 @@ model DatabaseVersionInfo {
 }
 
 model DatabaseLog {
+  @doc("ログ名 (エラーログ / スローログ等)")
   Name?: string;
+
+  @doc("ログ本文")
   Data?: string;
+
+  @doc("ログサイズ")
   Size?: int32;
 }
 
 model DatabaseBackupHistory {
+  @doc("作成日時 (ISO 8601 / UTC)")
   CreatedAt?: utcDateTime;
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: string;
+
+  @doc("リストア (リカバリ) に利用された日時。未使用なら null")
   RecoveredAt?: utcDateTime | null;
+
+  @doc("バックアップサイズ (バイト)")
   Size?: int64;
 }
 
 model DatabaseParameter {
+  @doc("現在適用中のパラメータ")
   Parameter?: DatabaseParameterParameter | null;
+
+  @doc("DB パラメータメタ情報 (利用可能な範囲や例)")
   MetaInfo: DatabaseParameterMeta[];
 }
 
@@ -333,17 +483,28 @@ model DatabaseParameterParameter {
 }
 
 model DatabaseParameterMeta {
+  @doc("取り得る値の制約 (最大値、例示)")
   Options?: DatabaseParameterMetaOptions | null;
+
+  @doc("パラメータ名")
   Name: string;
+
+  @doc("パラメータのラベル")
   Label: string;
 }
 
 model DatabaseParameterMetaOptions {
   Type: string;
   Text: string;
+
+  @doc("例示値")
   Example: string;
+
   Min: float64;
+
+  @doc("最大値")
   Max: float64;
+
   MaxLen: int32;
   Reboot: string;
 }

@@ -5,19 +5,34 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Icon {
+  @doc("リソースを一意に識別するID")
   ID: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン画像の取得 URL")
   URL?: string;
 }
 
 model IconCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン画像本体 (base64 エンコード済みの文字列)")
   Image?: string;
 }
 
 model IconUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
 }

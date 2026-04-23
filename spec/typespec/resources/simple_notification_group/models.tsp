@@ -5,41 +5,82 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationGroup {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("通知グループ設定")
   Settings?: SimpleNotificationGroupSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
 model SimpleNotificationGroupSettings {
+  @doc("通知先のID配列")
   Destinations: string[];
+
+  @doc("無効化フラグ")
   Disabled: boolean;
+
+  @doc("通知元となるリソースIDの配列")
   Sources: string[];
 }
 
 model SimpleNotificationGroupCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: SimpleNotificationGroupCreateRequestSettings | null;
 }
 
 model SimpleNotificationGroupCreateRequestSettings {
+  @doc("通知先 (Destination) のID 配列")
   Destinations: string[];
+
+  @doc("このグループを一時的に無効化するか")
   Disabled: boolean;
+
+  @doc("通知元となるリソースID (もしくはグループ ID) の配列")
   Sources: string[];
 }
 
 model SimpleNotificationGroupUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: SimpleNotificationGroupUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
@@ -69,11 +110,16 @@ model SimpleNotificationHistoryMessage {
 }
 
 model SimpleNotificationHistoryStatus {
+  @doc("リソースを一意に識別するID")
   ID: string;
+
   Status: int32;
   ErrorInfo: string;
   NotificationRequestID: string;
   GroupID: string;
+
+  @doc("作成日時 (ISO 8601 / UTC)")
   CreatedAt: utcDateTime;
+
   UpdatedAt: utcDateTime;
 }

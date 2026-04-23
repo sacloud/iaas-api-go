@@ -5,25 +5,59 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ServiceClass {
+  @doc("リソースを一意に識別するID")
   ID: int64;
+
+  @doc("サービスクラスの内部名")
   ServiceClassName: string;
+
+  @doc("サービスクラスの階層パス")
   ServiceClassPath: string;
+
+  @doc("画面表示用の名称")
   DisplayName: string;
+
+  @doc("公開されているサービスクラスかどうか")
   IsPublic: boolean;
+
+  @doc("料金情報")
   Price?: Price | null;
 }
 
 model Price {
+  @doc("基本料金")
   Base: int32;
+
+  @doc("日額料金")
   Daily: int32;
+
+  @doc("時間料金")
   Hourly: int32;
+
+  @doc("月額料金")
   Monthly: int32;
+
+  @doc("使用量ベースの料金")
   PerUse: int32;
+
+  @doc("ベース料金")
   Basic: int32;
+
+  @doc("トラフィック料金")
   Traffic: int32;
+
+  @doc("NTT docomo 網トラフィック料金 (SIM)")
   DocomoTraffic: int32;
+
+  @doc("KDDI 網トラフィック料金 (SIM)")
   KddiTraffic: int32;
+
+  @doc("SoftBank 網トラフィック料金 (SIM)")
   SbTraffic: int32;
+
+  @doc("SIM シート料金")
   SimSheet: int32;
+
+  @doc("ゾーン別料金情報")
   Zone: string;
 }

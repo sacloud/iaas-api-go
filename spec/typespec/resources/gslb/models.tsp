@@ -5,14 +5,31 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model GSLB {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("GSLB の状態 (割り当てられた FQDN 等)")
   Status?: GSLBStatus | null;
+
+  @doc("GSLB 設定")
   Settings?: GSLBSettings | null;
+
+  @doc("振り分け先サーバの配列")
   DestinationServers: GSLBServer[];
 }
 
@@ -25,33 +42,64 @@ model GSLBSettings {
 }
 
 model GSLBSettingsGSLB {
+  @doc("ヘルスチェック間隔 (秒)")
   DelayLoop?: int32 = 10;
+
+  @doc("重み付けラウンドロビンを有効化するかどうか")
   Weighted: string;
+
+  @doc("ヘルスチェック設定")
   HealthCheck?: GSLBHealthCheck | null;
+
+  @doc("全サーバがダウンした場合に返すフォールバックサーバ IP")
   SorryServer?: string;
+
+  @doc("GSLB ヘルスチェック結果のログ収集設定")
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model GSLBHealthCheck {
+  @doc("プロトコル (\"http\", \"https\", \"tcp\", \"ping\")")
   Protocol?: EGSLBHealthCheckProtocol;
+
+  @doc("HTTP(S) 時の Host ヘッダに設定する FQDN")
   Host?: string;
+
+  @doc("HTTP(S) 時のチェックパス")
   Path?: string;
+
+  @doc("HTTP(S) 時に期待するステータスコード")
   Status?: int32;
+
+  @doc("HTTP(S)/TCP 時のチェックポート")
   Port?: int32;
 }
 
 model GSLBServer {
+  @doc("振り分け先サーバの IPv4 アドレス")
   IPAddress: string;
+
+  @doc("振り分け対象にするか")
   Enabled: string;
+
+  @doc("重み (1-10000)。大きいほど多く振り分けられる")
   Weight: int32;
 }
 
 model GSLBCreateRequest {
   Settings?: GSLBCreateRequestSettings | null;
   DestinationServers: GSLBServer[];
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -60,19 +108,38 @@ model GSLBCreateRequestSettings {
 }
 
 model GSLBCreateRequestSettingsGSLB {
+  @doc("ヘルスチェック設定")
   HealthCheck?: GSLBHealthCheck | null;
+
+  @doc("ヘルスチェック間隔 (秒)")
   DelayLoop?: int32 = 10;
+
+  @doc("重み付けラウンドロビン有効化")
   Weighted: string;
+
+  @doc("全サーバダウン時のフォールバック IP")
   SorryServer?: string;
+
+  @doc("ログ収集設定")
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model GSLBUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: GSLBUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 

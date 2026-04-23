@@ -5,102 +5,196 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LoadBalancer {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class?: string;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Instance?: LoadBalancerInstance | null;
+
+  @doc("ロードバランサの不変情報 (プランや接続スイッチ)")
   Remark?: LoadBalancerRemark | null;
+
+  @doc("実インターフェースに割り当てる IPv4 アドレスの配列 (冗長プランは 2 つ)")
   IPAddresses: string[];
+
+  @doc("仮想 IP (VIP) の配列。VIP ごとに振り分け先サーバを定義する")
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
   Interfaces?: InterfaceView[];
 }
 
 model LoadBalancerInstance {
+  @doc("配置先ホスト情報")
   Host?: LoadBalancerInstanceHost | null;
+
+  @doc("ロードバランサの稼働状態")
   Status?: EServerInstanceStatus;
+
   StatusChangedAt?: utcDateTime | null;
 }
 
 model LoadBalancerInstanceHost {
+  @doc("リソースの名前")
   Name?: string;
+
   InfoURL?: string;
 }
 
 model LoadBalancerRemark {
+  @doc("ロードバランサプラン ID")
   Plan?: ResourceRef | null;
+
+  @doc("ネットワーク情報")
   Network?: LoadBalancerRemarkNetwork | null;
+
+  @doc("VRRP 設定")
   VRRP?: LoadBalancerRemarkVRRP | null;
 }
 
 model LoadBalancerRemarkNetwork {
+  @doc("デフォルトルートの IPv4")
   DefaultRoute?: string;
+
+  @doc("ネットワークマスク長")
   NetworkMaskLen?: int32;
 }
 
 model LoadBalancerRemarkVRRP {
+  @doc("仮想ルータ ID")
   VRID?: int32;
 }
 
 model LoadBalancerVirtualIPAddress {
   VirtualIPAddress: string;
+
+  @doc("ポート番号")
   Port: int32;
+
   DelayLoop: int32 = 10;
   SorryServer: string;
+
+  @doc("説明")
   Description: string;
+
   Servers: LoadBalancerServer[];
 }
 
 model LoadBalancerServer {
+  @doc("振り分け先サーバの IPv4 アドレス")
   IPAddress: string;
+
+  @doc("振り分け先のポート番号")
   Port: int32;
+
+  @doc("このサーバをバランシング対象にするか")
   Enabled: string;
+
+  @doc("ヘルスチェック設定")
   HealthCheck: LoadBalancerServerHealthCheck;
 }
 
 model LoadBalancerServerHealthCheck {
+  @doc("ヘルスチェックプロトコル (\"tcp\", \"http\", \"https\", \"ping\")")
   Protocol: ELoadBalancerHealthCheckProtocol;
+
+  @doc("HTTP(S) 時のチェック用パス")
   Path: string;
+
+  @doc("HTTP(S) 時に期待するステータスコード")
   Status: int32;
+
+  @doc("リトライ回数")
   Retry: int32;
+
+  @doc("接続タイムアウト (秒)")
   ConnectTimeout: int32;
 }
 
 model LoadBalancerCreateRequest {
+  @doc("ロードバランサの不変情報 (プラン/スイッチ/VRRP)")
   Remark?: LoadBalancerCreateRequestRemark | null;
+
+  @doc("実インターフェースに割り当てる IPv4 の配列 (冗長プランは 2 つ)")
   IPAddresses: string[];
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("仮想 IP (VIP) の配列")
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
 }
 
 model LoadBalancerCreateRequestRemark {
+  @doc("接続するスイッチ")
   Switch?: ResourceRef | null;
+
+  @doc("ロードバランサプラン ID (1=standard, 2=highspec)")
   Plan?: ResourceRef | null;
+
+  @doc("VRRP 設定 (仮想ルータ ID)")
   VRRP?: LoadBalancerCreateRequestRemarkVRRP | null;
+
+  @doc("ネットワーク情報 (デフォルトルート、マスク長)")
   Network?: LoadBalancerCreateRequestRemarkNetwork | null;
 }
 
 model LoadBalancerCreateRequestRemarkVRRP {
+  @doc("仮想ルータ ID (1-255)。同一セグメントで重複禁止")
   VRID?: int32;
 }
 
 model LoadBalancerCreateRequestRemarkNetwork {
+  @doc("ネットワークマスク長")
   NetworkMaskLen?: int32;
+
+  @doc("デフォルトルートの IPv4")
   DefaultRoute?: string;
 }
 
 model LoadBalancerUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   VirtualIPAddresses: LoadBalancerVirtualIPAddress[];
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }

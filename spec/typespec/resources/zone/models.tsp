@@ -5,8 +5,15 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Zone {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description?: string;
+
+  @doc("所属リージョンの情報")
   Region?: Region | null;
 }

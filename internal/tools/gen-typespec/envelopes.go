@@ -202,9 +202,10 @@ func stripNakedTypeName(goType string) string {
 // resolvedPayload はエンベロープ内の1フィールド分の情報（TypeSpec型名解決済み）。
 // 同一 method+path の op 群を合成したエンベロープでは、一部 op のみに存在する payload は Optional になる。
 type resolvedPayload struct {
-	Name     string
-	TSType   string
-	Optional bool
+	Name        string
+	TSType      string
+	Optional    bool
+	Description string // @doc("...") として emit する説明 (空なら emit しない)
 }
 
 // resolveRequestPayloadTSType はオペレーションの引数からリクエストペイロードの TypeSpec 型名を解決する。
@@ -333,9 +334,13 @@ model {{ .Name }} {
 {{- $isPlural := .IsRequestPlural }}
 model {{ .RequestEnvelopeTypeSpecName }} {
 {{- range .RequestPayloads }}
+{{- if .Description }}
+	@doc("{{ .Description | docEscape }}")
+{{- else }}
 	/**
 	 * {{ .Name }}
 	 */
+{{- end }}
 	{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}{{ if $isPlural }}[]{{ end }};
 {{- end }}
 }
@@ -360,18 +365,26 @@ model {{ .ResponseEnvelopeTypeSpecName }} {
 	Count: int32;
 
 {{- range .ResponsePayloads }}
+{{- if .Description }}
+	@doc("{{ .Description | docEscape }}")
+{{- else }}
 	/**
 	 * {{ .Name }}
 	 */
+{{- end }}
 	{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }}{{ if $isPlural }}[]{{ end }};
 {{- end }}
 {{- else }}
 	@doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
 	is_ok: boolean;
 {{- range .ResponsePayloads }}
+{{- if .Description }}
+	@doc("{{ .Description | docEscape }}")
+{{- else }}
 	/**
 	 * {{ .Name }}
 	 */
+{{- end }}
 	{{ .Name }}{{ if .Optional }}?{{ end }}: {{ .TSType }};
 {{- end }}
 {{- end }}
@@ -510,6 +523,14 @@ func buildMergedEnvelopeInfos(api *dsl.Resource) ([]envelopeInfo, map[opKey]stri
 
 		reqTS := upperFirst(reqName)
 		respTS := upperFirst(respName)
+		// payload description を envelope 名に対して解決する。
+		// 例: (ServerDeleteRequestEnvelope, "WithDisk") → "サーバと一緒に削除する..."。
+		for i := range reqPayloads {
+			reqPayloads[i].Description = lookupFieldDescription(reqTS, reqPayloads[i].Name)
+		}
+		for i := range respPayloads {
+			respPayloads[i].Description = lookupFieldDescription(respTS, respPayloads[i].Name)
+		}
 		// 同名エンベロープが既に登録されていればスキップ（複数グループで primary が同じ名前になる稀ケース）
 		if (hasReq && seenEnvelope[reqTS]) || (hasResp && seenEnvelope[respTS]) {
 			continue
@@ -567,10 +588,14 @@ func generateEnvelopes() {
 		}
 
 		outFile := filepath.Join(resourcesDir, api.FileSafeName(), "envelopes.tsp")
-		writeFile(envelopesTmpl, resourceEnvelopes{Envelopes: envelopes, ExtraModels: extraModels}, outFile, template.FuncMap{
+		funcs := template.FuncMap{
 			"lowerFirst":       lowerFirst,
 			"goTypeToTypeSpec": envelopePayloadTypeToTS,
 			"exampleDecorator": renderEnvelopeExampleDecorator,
-		})
+		}
+		for k, v := range descriptionFuncs {
+			funcs[k] = v
+		}
+		writeFile(envelopesTmpl, resourceEnvelopes{Envelopes: envelopes, ExtraModels: extraModels}, outFile, funcs)
 	}
 }

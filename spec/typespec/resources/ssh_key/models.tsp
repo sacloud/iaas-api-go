@@ -5,20 +5,37 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SSHKey {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("SSH 公開鍵本体 (OpenSSH 形式)")
   PublicKey?: string;
+
+  @doc("SSH 公開鍵のフィンガープリント")
   Fingerprint?: string;
 }
 
 model SSHKeyCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("SSH 公開鍵本体 (OpenSSH 形式)")
   PublicKey?: string;
 }
 
 model SSHKeyUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
 }

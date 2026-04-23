@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for iconFindRequestEnvelope
  */
 model IconFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -71,9 +65,7 @@ model IconFindResponseEnvelope {
  * Request envelope for iconCreateRequestEnvelope
  */
 model IconCreateRequestEnvelope {
-  /**
-   * Icon
-   */
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon: IconCreateRequest;
 }
 /**
@@ -92,9 +84,7 @@ model IconCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * Icon
-   */
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon: Icon;
 }
 
@@ -114,9 +104,7 @@ model IconReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * Icon
-   */
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon: Icon;
 }
 
@@ -124,9 +112,7 @@ model IconReadResponseEnvelope {
  * Request envelope for iconUpdateRequestEnvelope
  */
 model IconUpdateRequestEnvelope {
-  /**
-   * Icon
-   */
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon: IconUpdateRequest;
 }
 /**
@@ -145,8 +131,6 @@ model IconUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * Icon
-   */
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon: Icon;
 }

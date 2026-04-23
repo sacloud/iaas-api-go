@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for internetFindRequestEnvelope
  */
 model InternetFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -191,14 +185,10 @@ model InternetUpdateBandWidthResponseEnvelope {
  * Request envelope for internetAddSubnetRequestEnvelope
  */
 model InternetAddSubnetRequestEnvelope {
-  /**
-   * NetworkMaskLen
-   */
+  @doc("追加サブネットのマスク長")
   NetworkMaskLen: int32;
 
-  /**
-   * NextHop
-   */
+  @doc("追加サブネットへのネクストホップ")
   NextHop: string;
 }
 /**
@@ -226,9 +216,7 @@ model InternetAddSubnetResponseEnvelope {
  * Request envelope for internetUpdateSubnetRequestEnvelope
  */
 model InternetUpdateSubnetRequestEnvelope {
-  /**
-   * NextHop
-   */
+  @doc("サブネットのネクストホップ")
   NextHop: string;
 }
 /**

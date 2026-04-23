@@ -5,50 +5,106 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Switch {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("このスイッチに接続されているサーバ台数")
   ServerCount?: int32;
+
+  @doc("このスイッチに紐付くサブネットの配列 (ルータ+スイッチ時のみ)")
   Subnets?: SwitchSubnet[];
+
+  @doc("スイッチ間接続用ブリッジ情報 (接続されている場合)")
   Bridge?: ResourceRef | null;
 }
 
 model SwitchSubnet {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop?: string | null;
+
+  @doc("静的ルート先 IP アドレス")
   StaticRoute?: string | null;
+
+  @doc("ネットワークアドレス (IPv4)")
   NetworkAddress?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
+
+  @doc("ルータ+スイッチの場合の回線情報")
   Internet?: InternetInfo | null;
+
+  @doc("このサブネットで割り当て可能な IPv4 範囲")
   IPAddresses?: SwitchSubnetIPAddresses;
 }
 
 model SwitchSubnetIPAddresses {
+  @doc("割り当て可能な IPv4 範囲の上限")
   Max: string;
+
+  @doc("割り当て可能な IPv4 範囲の下限")
   Min: string;
 }
 
 model InternetInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("ルータの帯域幅 (Mbps)")
   BandWidthMbps?: int32;
+
+  @doc("スコープ。\"shared\" = 共有、\"user\" = ユーザ占有")
   Scope?: EScope;
+
+  @doc("サービスクラス名。課金単価を特定する分類")
   ServiceClass?: string;
 }
 
 model SwitchCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model SwitchUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }

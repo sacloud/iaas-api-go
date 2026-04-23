@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for proxyLBFindRequestEnvelope
  */
 model ProxyLBFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -47,9 +41,7 @@ model ProxyLBFindResponseEnvelope {
  * Request envelope for proxyLBCreateRequestEnvelope
  */
 model ProxyLBCreateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: ProxyLBCreateRequest;
 }
 /**
@@ -72,9 +64,7 @@ model ProxyLBCreateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ProxyLB;
 }
 
@@ -98,9 +88,7 @@ model ProxyLBReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ProxyLB;
 }
 
@@ -108,9 +96,7 @@ model ProxyLBReadResponseEnvelope {
  * Request envelope for proxyLBUpdateRequestEnvelope
  */
 model ProxyLBUpdateRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: ProxyLBUpdateRequest;
 }
 /**
@@ -133,9 +119,7 @@ model ProxyLBUpdateResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ProxyLB;
 }
 
@@ -143,9 +127,7 @@ model ProxyLBUpdateResponseEnvelope {
  * Request envelope for proxyLBChangePlanRequestEnvelope
  */
 model ProxyLBChangePlanRequestEnvelope {
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem?: ProxyLBChangePlanRequest;
 }
 /**
@@ -168,9 +150,7 @@ model ProxyLBChangePlanResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * CommonServiceItem
-   */
+  @doc("CommonServiceItem (各種付加サービス) の設定ペイロード")
   CommonServiceItem: ProxyLB;
 }
 

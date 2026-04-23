@@ -5,16 +5,36 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model VPCRouter {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class?: string;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("VPC ルータのプランや接続スイッチなど不変的な情報 (作成時に決定)")
   Remark?: VPCRouterRemark | null;
+
+  @doc("VPC ルータの可変設定 (ファイアウォール、VPN、DHCP 等)")
   Settings?: VPCRouterSetting | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
   Instance?: VPCRouterInstance | null;
   Interfaces?: VPCRouterInterface[];
 }
@@ -29,13 +49,20 @@ model VPCRouterRemarkRouter {
 }
 
 model VPCRouterInstance {
+  @doc("配置先ホスト情報")
   Host?: VPCRouterInstanceHost | null;
+
+  @doc("VPC ルータの稼働状態")
   Status?: EServerInstanceStatus;
+
+  @doc("稼働状態が最後に変化した日時")
   StatusChangedAt?: utcDateTime | null;
 }
 
 model VPCRouterInstanceHost {
+  @doc("リソースの名前")
   Name?: string;
+
   InfoURL?: string;
 }
 
@@ -48,6 +75,8 @@ model VPCRouterSetting {
   DHCPServer: VPCRouterDHCPServer[];
   DHCPStaticMapping: VPCRouterDHCPStaticMapping[];
   RemoteAccessUsers: VPCRouterRemoteAccessUser[];
+
+  @doc("静的ルート先 IP アドレス")
   StaticRoute: VPCRouterStaticRoute[];
 }
 
@@ -84,58 +113,106 @@ model VPCRouterSettingRouterWireGuard {
 }
 
 model VPCRouterInterfaceSetting {
+  @doc("インターフェースに割り当てる IPv4 の配列 (プレミアムプランは冗長構成のため複数)")
   IPAddress?: string[];
+
+  @doc("VRRP の仮想 IPv4 アドレス (冗長化プラン用)")
   VirtualIPAddress?: string;
+
+  @doc("同一インターフェースに追加で割り当てる IPv4 エイリアス")
   IPAliases?: string[];
+
+  @doc("インターフェースに設定するネットワークマスク長")
   NetworkMaskLen?: int32;
+
+  @doc("インターフェース番号 (0 = eth0 / 実回線側、1 以降 = ユーザスイッチ側)")
   Index: int32;
 }
 
 model VPCRouterStaticNAT {
   GlobalAddress?: string;
   PrivateAddress?: string;
+
+  @doc("説明")
   Description: string;
 }
 
 model VPCRouterPortForwarding {
+  @doc("プロトコル (\"tcp\", \"udp\", \"http\", \"https\" など)")
   Protocol?: EVPCRouterPortForwardingProtocol;
+
   GlobalPort?: int32;
   PrivateAddress?: string;
   PrivatePort?: int32;
+
+  @doc("説明")
   Description?: string;
 }
 
 model VPCRouterFirewall {
+  @doc("送信方向 (outbound) のフィルタルール")
   Send: VPCRouterFirewallRule[];
+
+  @doc("受信方向 (inbound) のフィルタルール")
   Receive: VPCRouterFirewallRule[];
+
+  @doc("配列内での順序を表すインデックス")
   Index: int32;
 }
 
 model VPCRouterFirewallRule {
+  @doc("プロトコル (\"tcp\", \"udp\", \"icmp\", \"fragment\", \"ip\")")
   Protocol?: Protocol;
+
+  @doc("送信元ネットワーク (CIDR)")
   SourceNetwork?: string;
+
+  @doc("送信元ポート (単独/レンジ)")
   SourcePort?: string;
+
+  @doc("宛先ネットワーク (CIDR)")
   DestinationNetwork?: string;
+
+  @doc("宛先ポート (単独/レンジ)")
   DestinationPort?: string;
+
+  @doc("\"allow\" または \"deny\"")
   Action?: Action;
+
+  @doc("ルール一致時のロギング有無")
   Logging: string;
+
+  @doc("説明")
   Description: string;
 }
 
 model VPCRouterDHCPServer {
+  @doc("DHCP を有効化するインターフェース名 (例: \"eth1\")")
   Interface?: string;
+
+  @doc("DHCP で配布する IP レンジの開始アドレス")
   RangeStart?: string;
+
+  @doc("DHCP で配布する IP レンジの終了アドレス")
   RangeStop?: string;
+
+  @doc("クライアントに通知する DNS サーバの配列")
   DNSServers?: string[];
 }
 
 model VPCRouterDHCPStaticMapping {
+  @doc("対象クライアントの MAC アドレス")
   MACAddress?: string;
+
+  @doc("静的に割り当てる IPv4 アドレス")
   IPAddress?: string;
 }
 
 model VPCRouterDNSForwarding {
+  @doc("DNS フォワーディングを有効化するインターフェース")
   Interface?: string;
+
+  @doc("問い合わせを転送する DNS サーバ")
   DNSServers: string[];
 }
 
@@ -151,18 +228,26 @@ model VPCRouterL2TPIPsecServer {
 }
 
 model VPCRouterWireGuard {
+  @doc("IPv4 アドレス")
   IPAddress: string;
+
   Peers: VPCRouterWireGuardPeer[];
 }
 
 model VPCRouterWireGuardPeer {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("IPv4 アドレス")
   IPAddress?: string;
+
   PublicKey?: string;
 }
 
 model VPCRouterRemoteAccessUser {
   UserName?: string;
+
+  @doc("FTP 接続のパスワード")
   Password?: string;
 }
 
@@ -199,6 +284,8 @@ model VPCRouterSiteToSiteIPsecVPNESP {
 
 model VPCRouterStaticRoute {
   Prefix?: string;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop?: string;
 }
 
@@ -208,29 +295,51 @@ model VPCRouterScheduledMaintenance {
 }
 
 model VPCRouterInterface {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("IPv4 アドレス")
   IPAddress?: string;
+
+  @doc("接続先スイッチ")
   Switch?: VPCRouterInterfaceSwitch | null;
+
+  @doc("割り当てられているパケットフィルタ")
   PacketFilter?: VPCRouterInterfacePacketFilter | null;
 }
 
 model VPCRouterInterfaceSwitch {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("スコープ。\"shared\" = 共有、\"user\" = ユーザ占有")
   Scope?: EScope;
+
   UserSubnet?: VPCRouterInterfaceSwitchUserSubnet | null;
   Subnet?: VPCRouterInterfaceSwitchSubnet | null;
 }
 
 model VPCRouterInterfaceSwitchUserSubnet {
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string | null;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32 | null;
 }
 
 model VPCRouterInterfaceSwitchSubnet {
+  @doc("デフォルトルートの IP アドレス")
   DefaultRoute?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
+
+  @doc("ネットワークアドレス (IPv4)")
   NetworkAddress?: string;
+
   Internet?: VPCRouterInterfaceSwitchSubnetInternet | null;
 }
 
@@ -239,40 +348,73 @@ model VPCRouterInterfaceSwitchSubnetInternet {
 }
 
 model VPCRouterInterfacePacketFilter {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
 }
 
 model VPCRouterCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("VPC ルータプラン ID (1=standard, 2=premium, 3=highspec, 4=highspec4000)")
   Plan?: ResourceRef | null;
+
+  @doc("VPC ルータの不変情報 (プランや接続スイッチ)")
   Remark?: VPCRouterCreateRequestRemark | null;
+
+  @doc("プレミアムプラン以上で必須となる実インターフェースの IPv4 アドレスの配列")
   IPAddresses: string[];
+
+  @doc("VPC ルータの設定")
   Settings?: VPCRouterSetting | null;
 }
 
 model VPCRouterCreateRequestRemark {
+  @doc("接続するスイッチの情報")
   Switch?: ApplianceConnectedSwitch | null;
+
+  @doc("VPC ルータのバージョン情報")
   Router?: VPCRouterCreateRequestRemarkRouter | null;
 }
 
 model VPCRouterCreateRequestRemarkRouter {
+  @doc("VPC ルータの機能世代番号 (1 = 標準、2 = プレミアム版)")
   VPCRouterVersion?: int32 = 2;
 }
 
 model ApplianceConnectedSwitch {
+  @doc("接続先スイッチのID")
   ID?: int64;
+
+  @doc("\"shared\" = 共有セグメント、\"user\" = ユーザスイッチ")
   Scope?: EScope;
 }
 
 model VPCRouterUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: VPCRouterSetting | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
@@ -295,19 +437,30 @@ model WireGuardStatus {
 }
 
 model VPCRouterDHCPServerLease {
+  @doc("リース中の IPv4 アドレス")
   IPAddress: string;
+
+  @doc("クライアントの MAC アドレス")
   MACAddress: string;
 }
 
 model VPCRouterL2TPIPsecServerSession {
+  @doc("FTP 接続のユーザ名")
   User: string;
+
+  @doc("IPv4 アドレス")
   IPAddress: string;
+
   TimeSec: int32;
 }
 
 model VPCRouterPPTPServerSession {
+  @doc("FTP 接続のユーザ名")
   User: string;
+
+  @doc("IPv4 アドレス")
   IPAddress: string;
+
   TimeSec: int32;
 }
 
@@ -324,7 +477,10 @@ model VPCRouterSessionAnalysis {
 }
 
 model VPCRouterStatisticsValue {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count?: int32;
 }
 

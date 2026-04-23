@@ -5,104 +5,212 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Disk {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("サーバへの接続方式。\"virtio\" (推奨) または \"ide\"")
   Connection?: EDiskConnection;
+
+  @doc("ディスク暗号化アルゴリズム。\"none\" または \"aes256_xts\"")
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
+
+  @doc("暗号化ディスクに紐付く KMS キー情報")
   EncryptionKey?: DiskEncryptionKey | null;
+
+  @doc("ディスクサイズ (MB)")
   SizeMB?: int32;
+
+  @doc("ディスクプラン (SSD / 標準 など)")
   Plan?: DiskPlan | null;
+
+  @doc("複製元ディスク。SourceArchive と排他。どちらか片方のみ指定する")
   SourceDisk?: DiskSourceDisk | null;
+
+  @doc("複製元アーカイブ。SourceDisk と排他。どちらか片方のみ指定する")
   SourceArchive?: DiskSourceArchive | null;
+
+  @doc("配置先ストレージ情報")
   Storage?: Storage | null;
+
+  @doc("接続先サーバ (未接続なら null)")
   Server?: DiskServer | null;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model DiskEncryptionKey {
+  @doc("KMS キーのID")
   KMSKeyID?: int64;
 }
 
 model DiskSourceDisk {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("複製元ディスクの利用状態")
   Availability?: EAvailability;
 }
 
 model DiskSourceArchive {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("複製元アーカイブの利用状態")
   Availability?: EAvailability;
 }
 
 model DiskServer {
+  @doc("接続先サーバのID")
   ID?: int64;
+
+  @doc("接続先サーバの名前")
   Name?: string;
 }
 
 model JobStatus {
+  @doc("非同期ジョブの状態。\"done\" / \"running\" / \"failed\" 等")
   Status?: string;
+
+  @doc("ディスク修正ジョブで発生したエラー詳細 (正常終了時は null)")
   ConfigError?: JobConfigError | null;
 }
 
 model JobConfigError {
+  @doc("エラーコード")
   ErrorCode?: string;
+
+  @doc("エラーメッセージ")
   ErrorMsg?: string;
+
+  @doc("エラー発生時のジョブ状態")
   Status?: string;
 }
 
 model DiskCreateRequest {
+  @doc("ディスクプラン (ResourceRef で ID 指定)")
   Plan?: ResourceRef | null;
+
+  @doc("サーバへの接続方式。\"virtio\" (推奨) または \"ide\"")
   Connection?: EDiskConnection;
+
+  @doc("ディスク暗号化アルゴリズム。\"none\" または \"aes256_xts\"")
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
+
+  @doc("複製元ディスク。SourceArchive と排他")
   SourceDisk?: ResourceRef | null;
+
+  @doc("複製元アーカイブ。SourceDisk と排他")
   SourceArchive?: ResourceRef | null;
+
+  @doc("ディスクサイズ (MB)")
   SizeMB?: int32;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model DiskEditRequest {
+  @doc("ディスク修正を非同期で実行するかどうか")
   Background?: boolean;
+
+  @doc("ゲスト OS の administrator/root パスワード")
   Password?: string;
+
+  @doc("登録する SSH 公開鍵 (単一)")
   SSHKey?: DiskEditSSHKey | null;
+
+  @doc("登録する SSH 公開鍵の配列")
   SSHKeys?: DiskEditSSHKey[];
+
+  @doc("SSH パスワード認証を無効化するかどうか")
   DisablePWAuth?: boolean;
+
+  @doc("DHCP を有効化するかどうか")
   EnableDHCP?: boolean;
+
+  @doc("ディスクのパーティション UUID を再生成するかどうか")
   ChangePartitionUUID?: boolean;
+
+  @doc("ゲスト OS に設定するホスト名")
   HostName?: string;
+
+  @doc("起動時に適用するスタートアップスクリプト (Note) の配列")
   Notes?: DiskEditNote[];
+
+  @doc("ゲスト OS に設定する IPv4 アドレス")
   UserIPAddress?: string;
+
+  @doc("ゲスト OS に設定するサブネット情報 (マスク長/デフォルトルート)")
   UserSubnet?: DiskEditUserSubnet | null;
 }
 
 model DiskEditSSHKey {
+  @doc("リソースを一意に識別するID")
   ID: int64;
+
+  @doc("登録する SSH 公開鍵文字列")
   PublicKey: string;
 }
 
 model DiskEditNote {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("Note 実行時に渡す API キー (ResourceRef で ID 指定)")
   APIKey?: ResourceRef | null;
+
+  @doc("Note に渡す変数 (key-value マップ)")
   Variables?: Record<unknown>;
 }
 
 model DiskEditUserSubnet {
+  @doc("ゲスト OS に設定するデフォルトルート")
   DefaultRoute: string;
+
+  @doc("ゲスト OS に設定するネットワークマスク長")
   NetworkMaskLen: int32;
 }
 
 model DiskResizePartitionRequest {
+  @doc("パーティションリサイズを非同期で実行するかどうか")
   Background: boolean;
 }
 
 model DiskUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("サーバへの接続方式 (\"virtio\" / \"ide\")")
   Connection?: EDiskConnection;
 }

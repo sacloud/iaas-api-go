@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for packetFilterFindRequestEnvelope
  */
 model PacketFilterFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -105,9 +99,7 @@ model PacketFilterUpdateRequestEnvelope {
    */
   PacketFilter: PacketFilterUpdateRequest;
 
-  /**
-   * OriginalExpressionHash
-   */
+  @doc("楽観的排他制御用の元 Expression ハッシュ。同時更新衝突検知に利用される")
   OriginalExpressionHash: string;
 }
 /**

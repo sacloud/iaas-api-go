@@ -5,8 +5,15 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Coupon {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("割引残高 (円)")
   Discount?: int64;
+
+  @doc("クーポンが適用された日時")
   AppliedAt?: utcDateTime | null;
+
+  @doc("クーポンの有効期限")
   UntilAt?: utcDateTime | null;
 }

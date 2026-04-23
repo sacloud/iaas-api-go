@@ -5,29 +5,57 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PacketFilter {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("フィルタルール (Expression) の配列。先頭から順に評価される")
   Expression: PacketFilterExpression[];
 }
 
 model PacketFilterExpression {
+  @doc("プロトコル (\"tcp\", \"udp\", \"icmp\", \"fragment\", \"ip\")")
   Protocol: Protocol;
+
+  @doc("送信元ネットワーク (CIDR、\"0.0.0.0/0\" 相当でも可)")
   SourceNetwork: string;
+
+  @doc("送信元ポート (単独または \"1024-65535\" のレンジ)")
   SourcePort: string;
+
+  @doc("宛先ポート (単独またはレンジ)")
   DestinationPort: string;
+
+  @doc("\"allow\" または \"deny\"")
   Action: Action;
+
+  @doc("説明")
   Description: string;
 }
 
 model PacketFilterCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("フィルタルールの配列")
   Expression: PacketFilterExpression[];
 }
 
 model PacketFilterUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("フィルタルールの配列")
   Expression: PacketFilterExpression[];
 }

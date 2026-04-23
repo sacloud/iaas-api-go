@@ -5,20 +5,37 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Subnet {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("所属するスイッチ情報")
   Switch?: SubnetSwitch | null;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop?: string | null;
+
+  @doc("ネットワークアドレス (IPv4)")
   NetworkAddress?: string;
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen?: int32;
+
+  @doc("このサブネットで割り当て済みの IPv4 アドレス一覧")
   IPAddresses?: SubnetIPAddress[];
 }
 
 model SubnetSwitch {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("ルータ+スイッチの場合の回線情報")
   Internet?: ResourceRef | null;
 }
 
 model SubnetIPAddress {
+  @doc("逆引き用の PTR レコードに登録されているホスト名")
   HostName: string;
+
+  @doc("IPv4 アドレス")
   IPAddress?: string;
 }

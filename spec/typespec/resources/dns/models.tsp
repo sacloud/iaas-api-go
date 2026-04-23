@@ -5,62 +5,110 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model DNS {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("DNS レコードの配列")
   Records: DNSRecord[];
+
+  @doc("DNS 可変設定")
   Settings?: DNSSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("DNS の状態 (NS 割り当て、ゾーン名)")
   Status?: DNSStatus | null;
 }
 
 model DNSSettings {
+  @doc("DNS 設定本体")
   DNS?: DNSSettingsDNS | null;
 }
 
 model DNSSettingsDNS {
+  @doc("DNS クエリログ収集設定")
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model DNSStatus {
+  @doc("DNS ゾーン名 (対象ドメイン)")
   Zone?: string;
+
+  @doc("割り当てられた権威 NS サーバの配列")
   NS?: string[];
 }
 
 model DNSRecord {
+  @doc("レコード名 (サブドメイン部)")
   Name: string;
+
+  @doc("レコードタイプ (\"A\", \"AAAA\", \"CNAME\", \"MX\", \"TXT\" など)")
   Type: EDNSRecordType;
+
+  @doc("レコードデータ。TTL のほか、MX なら \"10 mail.example.com.\" 形式等")
   RData: string;
+
+  @doc("TTL (秒)。未指定ならゾーンのデフォルトが適用される")
   TTL: int32;
 }
 
 model MonitoringSuiteLog {
+  @doc("ログ収集機能を有効化するかどうか")
   Enabled: boolean;
 }
 
 model DNSCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
   Records: DNSRecord[];
   Settings?: DNSCreateRequestSettings | null;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model DNSCreateRequestSettings {
+  @doc("DNS 設定本体")
   DNS?: DNSCreateRequestSettingsDNS | null;
 }
 
 model DNSCreateRequestSettingsDNS {
+  @doc("DNS クエリログ収集設定")
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model DNSUpdateRequest {
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Records: DNSRecord[];
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }

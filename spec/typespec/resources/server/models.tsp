@@ -5,132 +5,268 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Server {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("サーバに設定されるホスト名 (ゲスト OS 内部の hostname とは独立した API 上のラベル)")
   HostName?: string;
 
+  @doc("NIC 仮想デバイスのドライバ種別。\"virtio\" (推奨) または \"e1000\"")
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
   InterfaceDriver?: EInterfaceDriver;
 
+  @doc("サーバプラン (CPU/メモリ/世代)。IDで特定するかプラン条件で指定する")
   ServerPlan?: ServerServerPlan | null;
+
+  @doc("サーバが所属するゾーンの情報")
   Zone?: ZoneInfo | null;
+
+  @doc("サーバインスタンスの実行状態 (稼働状態や起動/停止情報)")
   Instance?: ServerInstance | null;
+
+  @doc("接続されているディスクの配列")
   Disks?: ServerConnectedDisk[];
+
+  @doc("NIC (ネットワークインターフェース) の配列")
   Interfaces?: InterfaceView[];
+
+  @doc("配置する専用ホスト。null または未指定なら共有ホストに配置される")
   PrivateHost?: ServerPrivateHost | null;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model ServerServerPlan {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("CPU コア数")
   CPU?: int32;
+
+  @doc("メモリ容量 (MB)")
   MemoryMB?: int32;
+
+  @doc("GPU 数")
   GPU?: int32;
+
+  @doc("GPU モデル名")
   GPUModel?: string;
+
+  @doc("CPU モデル名")
   CPUModel?: string;
 
+  @doc("CPU 割当コミット方式 (\"standard\" / \"dedicatedcpu\")")
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment?: ECommitment;
 
+  @doc("プラン世代")
   Generation?: EPlanGeneration;
+
+  @doc("Confidential VM プランであるか")
   ConfidentialVM: boolean;
 }
 
 model ServerInstance {
+  @doc("現在サーバが配置されているホストの情報")
   Host?: ServerInstanceHost | null;
+
+  @doc("インスタンスの稼働状態 (\"up\" = 起動中、\"down\" = 停止中、\"cleaning\" 等)")
   Status?: EServerInstanceStatus;
+
+  @doc("直前の稼働状態 (直前に起動/停止操作があった場合)")
   BeforeStatus?: EServerInstanceStatus | null;
+
+  @doc("稼働状態が最後に変化した日時")
   StatusChangedAt?: utcDateTime | null;
+
+  @doc("インスタンスに関する警告メッセージ")
   Warnings?: string;
+
+  @doc("警告の数値コード")
   WarningsValue?: int32;
+
+  @doc("挿入されている CDROM (ISO イメージ)")
   CDROM?: ResourceRef | null;
 }
 
 model ServerInstanceHost {
+  @doc("ホスト名")
   Name?: string;
+
+  @doc("ホスト情報の参照 URL")
   InfoURL?: string;
 }
 
 model ServerPrivateHost {
+  @doc("リソースを一意に識別するID")
   ID: int64;
+
+  @doc("リソースの名前")
   Name?: string;
 }
 
 model ZoneInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description?: string;
+
+  @doc("テスト用のダミーゾーンかどうか")
   IsDummy: boolean;
+
+  @doc("VNC プロキシ情報")
   VNCProxy?: VNCProxy | null;
+
+  @doc("当該ゾーンの FTP サーバ情報")
   FTPServer?: FTPServerInfo | null;
+
+  @doc("所属リージョン情報")
   Region?: Region | null;
 }
 
 model VNCProxy {
+  @doc("VNC プロキシのホスト名")
   HostName?: string;
+
+  @doc("VNC プロキシの IPv4 アドレス")
   IPAddress?: string;
 }
 
 model FTPServerInfo {
+  @doc("FTP サーバのホスト名")
   HostName?: string;
+
+  @doc("FTP サーバの IPv4 アドレス")
   IPAddress?: string;
 }
 
 model ServerConnectedDisk {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("ディスクの利用状態")
   Availability?: EAvailability;
+
+  @doc("接続方式 (\"virtio\" / \"ide\")")
   Connection?: EDiskConnection;
+
+  @doc("接続順序 (0 始まり、小さいほど先頭)")
   ConnectionOrder?: int32;
+
+  @doc("ディスク暗号化アルゴリズム。\"none\" または \"aes256_xts\"")
   EncryptionAlgorithm?: EDiskEncryptionAlgorithm;
+
+  @doc("OS 再インストール回数")
   ReinstallCount?: int32;
+
+  @doc("ディスク容量 (MB)")
   SizeMB?: int32;
+
+  @doc("ディスクプラン")
   Plan?: ResourceRef | null;
+
+  @doc("配置ストレージ")
   Storage?: Storage | null;
 }
 
 model ServerCreateRequest {
+  @doc("希望するサーバプラン。CPU/メモリ/世代の条件指定でマッチするプランが割り当てられる")
   ServerPlan?: ServerCreateRequestServerPlan | null;
+
+  @doc("作成と同時に接続するスイッチ/ネットワークの配列 (0 番目が共有セグメントや特定スイッチ)")
   ConnectedSwitches?: ConnectedSwitch[];
 
+  @doc("NIC ドライバ種別。指定しない場合は \"virtio\"")
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
   InterfaceDriver?: EInterfaceDriver;
 
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("配置する専用ホスト。指定しない場合は共有ホストに配置される")
   PrivateHost?: ResourceRef | null;
 }
 
 model ServerCreateRequestServerPlan {
+  @doc("CPU コア数")
   CPU?: int32;
+
+  @doc("メモリ容量 (MB)")
   MemoryMB?: int32;
+
+  @doc("GPU 数 (GPU プランの場合)")
   GPU?: int32;
+
+  @doc("GPU モデル名")
   GPUModel?: string;
+
+  @doc("CPU モデル (\"uncategorized\" や \"amd_epyc_7713p_standard\" 等)")
   CPUModel?: string;
 
+  @doc("CPU 割当コミット方式。\"standard\" (共有) または \"dedicatedcpu\" (CPU 専有)")
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment?: ECommitment;
 
+  @doc("プラン世代。100 = 第1世代、200 = 第2世代(新プラン) 等")
   Generation?: EPlanGeneration;
+
+  @doc("Confidential VM (機密計算対応プラン) を有効化するかどうか")
   ConfidentialVM: boolean;
 }
 
 model ConnectedSwitch {
+  @doc("接続先スイッチのID (shared の場合は 0 相当)")
   ID?: int64;
+
+  @doc("\"shared\" で共有セグメント、\"user\" でユーザスイッチ")
   Scope?: EScope;
 }
 
 model ServerUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   PrivateHost?: ResourceRef | null;
 
   // Default: EInterfaceDriver.virtio (ogen の complex defaults 未対応のため省略)
@@ -138,47 +274,78 @@ model ServerUpdateRequest {
 }
 
 model ServerDeleteWithDisksRequest {
+  @doc("サーバと一緒に削除するディスクのIDの配列。省略時はディスクを削除しない")
   WithDisk: int64[];
 }
 
 model ServerChangePlanRequest {
+  @doc("変更後の CPU コア数")
   CPU?: int32;
+
+  @doc("変更後のメモリ容量 (MB)")
   MemoryMB?: int32;
+
+  @doc("変更後の GPU 数")
   GPU?: int32;
+
+  @doc("変更後の GPU モデル")
   GPUModel?: string;
+
+  @doc("変更後の CPU モデル")
   CPUModel?: string;
+
+  @doc("変更後のプラン世代")
   Generation?: EPlanGeneration;
 
+  @doc("変更後の CPU 割当コミット方式")
   // Default: ECommitment.standard (ogen の complex defaults 未対応のため省略)
   Commitment?: ECommitment;
 }
 
 model InsertCDROMRequest {
+  @doc("挿入する CDROM (ISO イメージ) のID")
   ID?: int64;
 }
 
 model EjectCDROMRequest {
+  @doc("排出する CDROM のID (現在挿入されている CDROM のID)")
   ID?: int64;
 }
 
 model ServerBootVariables {
+  @doc("cloud-init 用データ")
   CloudInit: ServerBootVariablesCloudInit;
 }
 
 model ServerBootVariablesCloudInit {
+  @doc("cloud-init user-data (YAML などの文字列)")
   UserData: string;
 }
 
 model SendKeyRequest {
+  @doc("VNC コンソールに送る単一キー")
   Key: string;
+
+  @doc("VNC コンソールに送るキーのシーケンス")
   Keys: string[];
 }
 
 model VNCProxyInfo {
+  @doc("VNC プロキシの状態")
   Status?: string;
+
+  @doc("VNC プロキシのホスト名")
   Host?: string;
+
+  @doc("VNC IO サーバのホスト名")
   IOServerHost?: string;
+
+  @doc("VNC プロキシのポート番号")
   Port?: int32;
+
+  @doc("VNC 接続時のパスワード")
   Password?: string;
+
+  @doc("VNC クライアント用の設定ファイル内容 (.vnc)")
   VNCFile?: string;
 }

@@ -5,12 +5,24 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SIM {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class: string;
+
   Status?: SIMStatus | null;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -20,52 +32,89 @@ model SIMStatus {
 }
 
 model SIMInfo {
+  @doc("SIM カードの ICCID")
   ICCID?: string;
+
   IMSI?: string[];
+
+  @doc("ロック中の IMEI")
   IMEI?: string;
+
   IP?: string;
   SessionStatus?: string;
   IMEILock: boolean;
   Registered: boolean;
+
+  @doc("SIM が有効化されているかどうか")
   Activated: boolean;
+
   ResourceID?: string;
   RegisteredDate?: utcDateTime;
+
+  @doc("有効化日時")
   ActivatedDate?: utcDateTime;
+
+  @doc("無効化日時")
   DeactivatedDate?: utcDateTime;
+
   SIMGroupID?: string;
   TrafficBytesOfCurrentMonth?: SIMTrafficBytes | null;
+
+  @doc("現在接続中の端末の IMEI")
   ConnectedIMEI?: string;
 }
 
 model SIMCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("SIM の状態 (ICCID 等)")
   Status?: SIMCreateRequestStatus | null;
+
+  @doc("SIM の不変情報 (パスコード等)")
   Remark?: SIMCreateRequestRemark | null;
 }
 
 model SIMCreateRequestStatus {
+  @doc("SIM カード裏面に記載の ICCID (19-20 桁の識別番号)")
   ICCID?: string;
 }
 
 model SIMCreateRequestRemark {
+  @doc("SIM アクティベート用パスコード")
   PassCode?: string;
 }
 
 model SIMUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model SIMAssignIPRequest {
+  @doc("SIM に割り当てる IPv4 アドレス")
   IP: string;
 }
 
 model SIMIMEILockRequest {
+  @doc("ロック対象の IMEI (端末固有番号 15 桁)")
   IMEI: string;
 }
 
@@ -80,6 +129,8 @@ model SIMLog {
 model SIMNetworkOperatorConfig {
   Allow: boolean;
   CountryCode?: string;
+
+  @doc("リソースの名前")
   Name?: string;
 }
 

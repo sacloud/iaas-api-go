@@ -5,62 +5,113 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model EnhancedDB {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("TiDB 情報 (データベース名、接続情報、リージョン)")
   Status?: EnhancedDBStatus | null;
 }
 
 model EnhancedDBStatus {
+  @doc("論理データベース名")
   DatabaseName?: string;
+
+  @doc("データベース種別")
   DatabaseType?: string;
+
+  @doc("配置リージョン")
   Region?: string;
+
+  @doc("接続用ホスト名")
   HostName?: string;
+
+  @doc("接続ポート")
   Port?: int32;
 }
 
 model EnhancedDBCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Status?: EnhancedDBCreateRequestStatus | null;
 }
 
 model EnhancedDBCreateRequestStatus {
+  @doc("論理データベース名")
   DatabaseName?: string;
+
+  @doc("データベース種別 (\"tidb\" または \"mariadb\")")
   DatabaseType?: string;
+
+  @doc("TiDB 配置リージョン (\"is1\" 等)")
   Region?: string;
 }
 
 model EnhancedDBUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
 model EnhancedDBSetPasswordRequest {
+  @doc("パスワード再設定のラッパー")
   EnhancedDB: EnhancedDBSetPasswordRequestEnhancedDB;
 }
 
 model EnhancedDBSetPasswordRequestEnhancedDB {
+  @doc("新しいパスワード")
   Password: string;
 }
 
 model EnhancedDBConfig {
+  @doc("最大同時接続数")
   MaxConnections?: int32;
+
+  @doc("接続を許可する CIDR の配列")
   AllowedNetworks: string[];
 }
 
 model EnhancedDBSetConfigRequest {
+  @doc("設定値のラッパー")
   EnhancedDB?: EnhancedDBSetConfigRequestEnhancedDB | null;
 }
 
 model EnhancedDBSetConfigRequestEnhancedDB {
+  @doc("接続を許可する CIDR の配列")
   AllowedNetworks: string[];
 }

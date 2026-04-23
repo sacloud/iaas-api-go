@@ -5,16 +5,32 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model DiskPlan {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("配置ストレージクラス (\"iscsi1204\" 等)")
   StorageClass?: string;
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("このプランで選択可能なサイズ情報の配列")
   Size?: DiskPlanSizeInfo[];
 }
 
 model DiskPlanSizeInfo {
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("表示用のサイズ数値")
   DisplaySize?: int32;
+
+  @doc("表示用の単位 (\"GB\" 等)")
   DisplaySuffix?: string;
+
+  @doc("実サイズ (MB)")
   SizeMB?: int32;
 }

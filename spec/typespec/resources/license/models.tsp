@@ -5,21 +5,33 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model License {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("ライセンス種別情報 (MS-SPLA ライセンス等)")
   LicenseInfo?: LicenseLicenseInfo | null;
 }
 
 model LicenseLicenseInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
 }
 
 model LicenseCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("発行するライセンス種別 (ResourceRef で LicenseInfo ID 指定)")
   LicenseInfo?: ResourceRef | null;
 }
 
 model LicenseUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
 }

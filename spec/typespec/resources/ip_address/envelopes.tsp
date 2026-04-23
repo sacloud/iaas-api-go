@@ -23,9 +23,7 @@ model IPAddressListResponseEnvelope {
   @doc("現在のページの件数")
   Count: int32;
 
-  /**
-   * IPAddress
-   */
+  @doc("IPv4 アドレス")
   IPAddress: IPAddress[];
 }
 
@@ -40,9 +38,7 @@ model IPAddressReadResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * IPAddress
-   */
+  @doc("IPv4 アドレス")
   IPAddress: IPAddress;
 }
 
@@ -50,9 +46,7 @@ model IPAddressReadResponseEnvelope {
  * Request envelope for iPAddressUpdateHostNameRequestEnvelope
  */
 model IPAddressUpdateHostNameRequestEnvelope {
-  /**
-   * IPAddress
-   */
+  @doc("IPv4 アドレス")
   IPAddress: IPAddress;
 }
 /**
@@ -66,8 +60,6 @@ model IPAddressUpdateHostNameResponseEnvelope {
   @doc("オペレーションが成功したかどうかを示すフラグ。成功判定にはこのフィールドを用いること。")
   is_ok: boolean;
 
-  /**
-   * IPAddress
-   */
+  @doc("IPv4 アドレス")
   IPAddress: IPAddress;
 }

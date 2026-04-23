@@ -5,11 +5,22 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model CertificateAuthority {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("CA の発行済証明書の状態・DN 情報")
   Status?: CertificateAuthorityStatus | null;
 }
 
@@ -23,25 +34,49 @@ model CertificateAuthorityStatus {
 }
 
 model CertificateAuthorityCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Status?: CertificateAuthorityCreateRequestStatus | null;
 }
 
 model CertificateAuthorityCreateRequestStatus {
+  @doc("証明書 Subject の Country (国コード、例 \"JP\")")
   Country?: string;
+
+  @doc("証明書 Subject の Organization (組織名)")
   Organization?: string;
+
+  @doc("証明書 Subject の OrganizationUnit (部署名)")
   OrganizationUnit?: string[];
+
+  @doc("証明書 Subject の CommonName")
   CommonName?: string;
+
+  @doc("証明書の有効期限 (ISO 8601)")
   NotAfter?: utcDateTime;
 }
 
 model CertificateAuthorityUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -59,44 +94,92 @@ model CertificateData {
 }
 
 model CertificateAuthorityAddClientOrServerResult {
+  @doc("発行された証明書のID")
   ID?: string;
 }
 
 model CertificateAuthorityAddClientParam {
+  @doc("Subject Country")
   Country?: string;
+
+  @doc("Subject Organization")
   Organization?: string;
+
+  @doc("Subject OrganizationUnit")
   OrganizationUnit?: string[];
+
+  @doc("Subject CommonName")
   CommonName?: string;
+
+  @doc("証明書の有効期限")
   NotAfter?: utcDateTime;
+
+  @doc("発行方式 (\"csr\" / \"public_key\" / \"email\" / \"url\")")
   IssuanceMethod?: ECertificateAuthorityIssuanceMethod;
+
+  @doc("通知先メールアドレス")
   EMail?: string;
+
+  @doc("CSR (PEM)。IssuanceMethod が \"csr\" のとき指定")
   CertificateSigningRequest?: string;
+
+  @doc("公開鍵 (PEM)。IssuanceMethod が \"public_key\" のとき指定")
   PublicKey?: string;
 }
 
 model CertificateAuthorityClient {
+  @doc("リソースを一意に識別するID")
   ID?: string;
+
+  @doc("Subject DN")
   Subject?: string;
+
+  @doc("通知先メールアドレス")
   EMail?: string;
+
+  @doc("発行方式")
   IssuanceMethod?: ECertificateAuthorityIssuanceMethod;
+
+  @doc("発行状態 (\"approved\" / \"approving\" / \"denied\" / \"revoked\" 等)")
   IssueState?: string;
+
+  @doc("IssuanceMethod が \"url\" の場合のダウンロード URL")
   URL?: string;
+
+  @doc("発行済みクライアント証明書 (PEM)")
   CertificateData?: CertificateData | null;
 }
 
 model CertificateAuthorityAddServerParam {
+  @doc("Subject Country")
   Country?: string;
+
+  @doc("Subject Organization")
   Organization?: string;
+
+  @doc("Subject OrganizationUnit")
   OrganizationUnit?: string[];
+
+  @doc("Subject CommonName")
   CommonName?: string;
+
+  @doc("証明書の有効期限")
   NotAfter?: utcDateTime;
+
+  @doc("Subject Alternative Name の配列")
   SANs: string[];
+
+  @doc("CSR (PEM)")
   CertificateSigningRequest?: string;
+
+  @doc("公開鍵 (PEM)")
   PublicKey?: string;
 }
 
 model CertificateAuthorityServer {
+  @doc("リソースを一意に識別するID")
   ID?: string;
+
   Subject?: string;
   SANs?: string[];
   EMail?: string;

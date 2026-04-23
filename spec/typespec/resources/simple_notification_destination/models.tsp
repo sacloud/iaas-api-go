@@ -5,41 +5,82 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleNotificationDestination {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("通知先設定")
   Settings?: SimpleNotificationDestinationSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
 model SimpleNotificationDestinationSettings {
+  @doc("通知先種別")
   Type?: ESimpleNotificationDestinationTypes;
+
+  @doc("無効化フラグ")
   Disabled: boolean;
+
+  @doc("通知先エンドポイント")
   Value?: string;
 }
 
 model SimpleNotificationDestinationCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: SimpleNotificationDestinationCreateRequestSettings | null;
 }
 
 model SimpleNotificationDestinationCreateRequestSettings {
+  @doc("通知先種別 (\"slack\" / \"email\" / \"webhook\" 等)")
   Type?: ESimpleNotificationDestinationTypes;
+
+  @doc("この通知先を一時的に無効化するか")
   Disabled: boolean;
+
+  @doc("通知先エンドポイント (Slack Webhook URL / メールアドレス等)")
   Value?: string;
 }
 
 model SimpleNotificationDestinationUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: SimpleNotificationDestinationUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 

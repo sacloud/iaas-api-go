@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for archiveFindRequestEnvelope
  */
 model ArchiveFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -160,14 +154,10 @@ model ArchiveUpdateResponseEnvelope {
  * Request envelope for archiveShareRequestEnvelope
  */
 model ArchiveShareRequestEnvelope {
-  /**
-   * Shared
-   */
+  @doc("アーカイブの共有を有効にするかどうか")
   Shared?: boolean;
 
-  /**
-   * ChangePassword
-   */
+  @doc("共有キーを再発行するかどうか")
   ChangePassword?: boolean;
 }
 /**

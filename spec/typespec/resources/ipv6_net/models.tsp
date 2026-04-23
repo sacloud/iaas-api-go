@@ -5,7 +5,12 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6Net {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("IPv6 プレフィックス")
   IPv6Prefix?: string;
+
+  @doc("IPv6 プレフィックス長 (一般に 64)")
   IPv6PrefixLen?: int32;
 }

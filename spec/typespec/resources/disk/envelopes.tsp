@@ -8,19 +8,13 @@ namespace Sacloud.IaaS;
  * Request envelope for diskFindRequestEnvelope
  */
 model DiskFindRequestEnvelope {
-  /**
-   * Count
-   */
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
 
-  /**
-   * From
-   */
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 
-  /**
-   * Filter
-   */
+  @doc("検索条件を表す JSON オブジェクト。キーは \"{フィールド名}\" の形式で、値に完全一致や部分一致の条件を指定する")
   Filter: Record<unknown>;
 }
 /**
@@ -69,34 +63,22 @@ model DiskFindResponseEnvelope {
  * Request envelope for diskCreateRequestEnvelope
  */
 model DiskCreateRequestEnvelope {
-  /**
-   * Disk
-   */
+  @doc("ディスク作成パラメータ")
   Disk: DiskCreateRequest;
 
-  /**
-   * DistantFrom
-   */
+  @doc("他ディスクの物理配置と分散させたい場合の対向ディスクIDの配列")
   DistantFrom?: ID[];
 
-  /**
-   * KMSKey
-   */
+  @doc("暗号化に利用する KMS キー情報")
   KMSKey?: unknown;
 
-  /**
-   * TargetDedicatedStorageContract
-   */
+  @doc("配置先の専有ストレージ契約ID")
   TargetDedicatedStorageContract?: unknown;
 
-  /**
-   * Config
-   */
+  @doc("作成と同時に適用するディスクの修正パラメータ (ホスト名/SSHキー/IPアドレス等)")
   Config?: DiskEditRequest;
 
-  /**
-   * BootAtAvailable
-   */
+  @doc("ディスク作成完了後に接続サーバを起動するかどうか")
   BootAtAvailable?: boolean;
 }
 /**
@@ -135,59 +117,37 @@ model DiskCreateResponseEnvelope {
  * Request envelope for diskConfigRequestEnvelope
  */
 model DiskConfigRequestEnvelope {
-  /**
-   * Background
-   */
+  @doc("ディスク修正を非同期で実行するかどうか")
   Background: boolean;
 
-  /**
-   * Password
-   */
+  @doc("ゲスト OS の administrator/root パスワード")
   Password: string;
 
-  /**
-   * SSHKey
-   */
+  @doc("登録する SSH 公開鍵 (単一)")
   SSHKey?: DiskEditSSHKey;
 
-  /**
-   * SSHKeys
-   */
+  @doc("登録する SSH 公開鍵の配列")
   SSHKeys?: DiskEditSSHKey[];
 
-  /**
-   * DisablePWAuth
-   */
+  @doc("SSH パスワード認証を無効化するかどうか")
   DisablePWAuth: boolean;
 
-  /**
-   * EnableDHCP
-   */
+  @doc("DHCP を有効化するかどうか")
   EnableDHCP: boolean;
 
-  /**
-   * ChangePartitionUUID
-   */
+  @doc("ディスクのパーティション UUID を再生成するかどうか")
   ChangePartitionUUID: boolean;
 
-  /**
-   * HostName
-   */
+  @doc("ゲスト OS に設定するホスト名")
   HostName: string;
 
-  /**
-   * Notes
-   */
+  @doc("起動時に適用するスタートアップスクリプト (Note) の配列")
   Notes?: DiskEditNote[];
 
-  /**
-   * UserIPAddress
-   */
+  @doc("ゲスト OS に設定する IPv4 アドレス")
   UserIPAddress: string;
 
-  /**
-   * UserSubnet
-   */
+  @doc("ゲスト OS に設定するサブネット情報")
   UserSubnet?: DiskEditUserSubnet;
 }
 
@@ -195,9 +155,7 @@ model DiskConfigRequestEnvelope {
  * Request envelope for diskResizePartitionRequestEnvelope
  */
 model DiskResizePartitionRequestEnvelope {
-  /**
-   * Background
-   */
+  @doc("パーティションリサイズを非同期で実行するかどうか")
   Background: boolean;
 }
 

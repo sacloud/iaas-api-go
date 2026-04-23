@@ -5,15 +5,22 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model IPv6Addr {
+  @doc("IPv6 アドレス")
   IPv6Addr?: string;
+
+  @doc("逆引き用の PTR レコードに登録されているホスト名")
   HostName: string;
 }
 
 model IPv6AddrCreateRequest {
+  @doc("登録する IPv6 アドレス")
   IPv6Addr?: string;
+
+  @doc("PTR レコードに登録するホスト名")
   HostName: string;
 }
 
 model IPv6AddrUpdateRequest {
+  @doc("PTR レコードに登録するホスト名")
   HostName: string;
 }

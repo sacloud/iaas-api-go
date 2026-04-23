@@ -5,14 +5,31 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model SimpleMonitor {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("リソースの内部分類 (API 種別ごとの識別子)")
   Class: string;
+
+  @doc("監視対象 (\"Target\") 情報")
   Status?: SimpleMonitorStatus | null;
+
+  @doc("シンプル監視設定")
   Settings?: SimpleMonitorSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
@@ -48,8 +65,12 @@ model SimpleMonitorSettingsSimpleMonitorNotifySlack {
 }
 
 model SimpleMonitorHealthCheck {
+  @doc("プロトコル (\"tcp\", \"udp\", \"http\", \"https\" など)")
   Protocol: ESimpleMonitorProtocol;
+
+  @doc("ポート番号")
   Port: int32;
+
   Path: string;
   Status: int32;
   SNI: string;
@@ -69,10 +90,18 @@ model SimpleMonitorHealthCheck {
 }
 
 model SimpleMonitorCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
   Settings?: SimpleMonitorCreateRequestSettings | null;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -81,33 +110,66 @@ model SimpleMonitorCreateRequestSettings {
 }
 
 model SimpleMonitorCreateRequestSettingsSimpleMonitor {
+  @doc("リトライ上限回数")
   MaxCheckAttempts?: int32 = 3;
+
+  @doc("リトライ間隔 (秒)")
   RetryInterval?: int32 = 10;
+
+  @doc("監視間隔 (秒)")
   DelayLoop?: int32 = 60;
+
+  @doc("監視を有効化するかどうか")
   Enabled: string;
+
+  @doc("ヘルスチェック設定 (プロトコル、ポート、期待ステータス等)")
   HealthCheck?: SimpleMonitorHealthCheck | null;
+
+  @doc("メール通知設定")
   NotifyEmail?: SimpleMonitorCreateRequestSettingsSimpleMonitorNotifyEmail | null;
+
+  @doc("Slack 通知設定")
   NotifySlack?: SimpleMonitorCreateRequestSettingsSimpleMonitorNotifySlack | null;
+
+  @doc("通知を繰り返す間隔 (秒)")
   NotifyInterval?: int32 = 7200;
+
+  @doc("タイムアウト (秒)")
   Timeout?: int32;
+
+  @doc("監視結果のログ収集設定")
   MonitoringSuiteLog?: MonitoringSuiteLog | null;
 }
 
 model SimpleMonitorCreateRequestSettingsSimpleMonitorNotifyEmail {
+  @doc("メール通知を有効化するか")
   Enabled: string;
+
+  @doc("HTML メールで送信するか")
   HTML: string;
 }
 
 model SimpleMonitorCreateRequestSettingsSimpleMonitorNotifySlack {
+  @doc("Slack 通知を有効化するか")
   Enabled: string;
+
+  @doc("Slack Incoming Webhook URL")
   IncomingWebhooksURL?: string;
 }
 
 model SimpleMonitorUpdateRequest {
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: SimpleMonitorUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 

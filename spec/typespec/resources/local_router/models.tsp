@@ -5,16 +5,37 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model LocalRouter {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("ローカルルータ設定")
   Settings?: LocalRouterSettings | null;
+
+  @doc("ピア接続先の配列 (他ローカルルータとの対向接続)")
   Peers: LocalRouterPeer[];
+
+  @doc("スタティックルートの配列")
   StaticRoutes: LocalRouterStaticRoute[];
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("接続スイッチや VIP 等のステータス")
   Status?: LocalRouterStatus | null;
 }
 
@@ -38,37 +59,70 @@ model LocalRouterSwitch {
 }
 
 model LocalRouterInterface {
+  @doc("VRRP の仮想 IPv4 アドレス")
   VirtualIPAddress: string;
+
+  @doc("IPv4 アドレス")
   IPAddress: string[];
+
+  @doc("ネットワークマスク長 (プレフィックス長)")
   NetworkMaskLen: int32;
+
+  @doc("VRRP 仮想ルータ ID")
   VRID: int32;
 }
 
 model LocalRouterPeer {
+  @doc("ピア先ローカルルータのID")
   ID: int64;
+
+  @doc("ピア間で共有するシークレットキー")
   SecretKey: string;
+
+  @doc("ピア接続を有効化するか")
   Enabled: boolean;
+
+  @doc("説明")
   Description: string;
 }
 
 model LocalRouterStaticRoute {
   Prefix: string;
+
+  @doc("ネクストホップ IP アドレス")
   NextHop: string;
 }
 
 model LocalRouterCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model LocalRouterUpdateRequest {
   Settings?: LocalRouterUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
@@ -81,12 +135,18 @@ model LocalRouterUpdateRequestSettingsLocalRouter {
 }
 
 model LocalRouterHealth {
+  @doc("各ピアのヘルス状態")
   Peers: LocalRouterHealthPeer[];
 }
 
 model LocalRouterHealthPeer {
+  @doc("ピア先のID")
   ID: int64;
+
+  @doc("接続状態")
   Status: EServerInstanceStatus;
+
+  @doc("このピア経由で受信しているルートの配列")
   Routes: string[];
 }
 

@@ -5,86 +5,163 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Archive {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
+
+  @doc("アーカイブサイズ (MB)")
   SizeMB?: int32;
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model BundleInfo {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
   HostClass?: string;
+
+  @doc("サービスクラス名。課金単価を特定する分類")
   ServiceClass?: string;
 }
 
 model Storage {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("ストレージクラス")
   Class?: string;
+
+  @doc("ストレージ世代")
   Generation?: int32;
+
+  @doc("専有ストレージ契約情報")
   DedicatedStorageContract?: ResourceRef | null;
 }
 
 model SourceArchiveInfo {
+  @doc("他ゾーンからアーカイブ共有転送された場合の情報")
   ArchiveUnderZone: SourceArchiveInfoArchiveUnderZone;
 }
 
 model SourceArchiveInfoArchiveUnderZone {
+  @doc("リソースを一意に識別するID")
   ID: int64;
+
+  @doc("共有元のアカウント情報")
   Account?: ResourceRef;
+
+  @doc("共有元のゾーン情報")
   Zone: SourceArchiveInfoArchiveUnderZoneZone;
 }
 
 model SourceArchiveInfoArchiveUnderZoneZone {
+  @doc("共有元ゾーンのID")
   ID: int64;
+
+  @doc("共有元ゾーンの名前")
   Name: string;
 }
 
 model FindCondition {
+  @doc("取得する件数の上限 (ページングサイズ)")
   Count: int32;
+
+  @doc("取得開始位置 (0 始まりのオフセット)")
   From: int32;
 }
 
 model ArchiveCreateRequest {
+  @doc("複製元ディスク。SourceArchive と排他")
   SourceDisk?: ResourceRef | null;
+
+  @doc("複製元アーカイブ。SourceDisk と排他")
   SourceArchive?: ResourceRef | null;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("アーカイブサイズ (MB)。ブランクアーカイブ作成時に指定する")
   SizeMB?: int32;
 }
 
 model FTPServer {
+  @doc("FTP サーバのホスト名")
   HostName?: string;
+
+  @doc("FTP サーバの IPv4 アドレス")
   IPAddress?: string;
+
+  @doc("FTP 接続ユーザ名")
   User?: string;
+
+  @doc("FTP 接続パスワード")
   Password?: string;
 }
 
 model ArchiveUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model OpenFTPRequest {
+  @doc("FTP のパスワードを再発行するかどうか")
   ChangePassword: boolean;
 }
 
 model ArchiveShareInfo {
+  @doc("他アカウント/ゾーンへアーカイブを転送する際に利用する共有キー")
   SharedKey: string;
 }
 
 model ArchiveTransferRequest {
+  @doc("転送先アーカイブのサイズ (MB)")
   SizeMB?: int32;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   SourceSharedKey?: string;
 }

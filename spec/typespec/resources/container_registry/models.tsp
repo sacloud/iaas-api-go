@@ -5,13 +5,28 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ContainerRegistry {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("コンテナレジストリ設定")
   Settings?: ContainerRegistrySettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("レジストリの状態 (FQDN 等)")
   Status?: ContainerRegistryStatus | null;
 }
 
@@ -20,20 +35,34 @@ model ContainerRegistrySettings {
 }
 
 model ContainerRegistrySettingsContainerRegistry {
+  @doc("アクセスレベル")
   Public: EContainerRegistryAccessLevel;
+
+  @doc("カスタム仮想ドメイン")
   VirtualDomain: string;
 }
 
 model ContainerRegistryStatus {
+  @doc("レジストリ名")
   RegistryName: string;
+
+  @doc("レジストリの FQDN")
   FQDN?: string;
 }
 
 model ContainerRegistryCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: ContainerRegistryCreateRequestSettings | null;
   Status?: ContainerRegistryCreateRequestStatus | null;
 }
@@ -43,20 +72,34 @@ model ContainerRegistryCreateRequestSettings {
 }
 
 model ContainerRegistryCreateRequestSettingsContainerRegistry {
+  @doc("アクセスレベル。\"readwrite\" / \"readonly\" / \"none\"")
   Public: EContainerRegistryAccessLevel;
+
+  @doc("カスタム仮想ドメイン (任意)")
   VirtualDomain: string;
 }
 
 model ContainerRegistryCreateRequestStatus {
+  @doc("レジストリ名 (FQDN の先頭部分)")
   RegistryName: string;
 }
 
 model ContainerRegistryUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: ContainerRegistryUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 
@@ -79,11 +122,16 @@ model ContainerRegistryUser {
 
 model ContainerRegistryUserCreateRequest {
   UserName?: string;
+
+  @doc("FTP 接続のパスワード")
   Password: string;
+
   Permission: EContainerRegistryPermission;
 }
 
 model ContainerRegistryUserUpdateRequest {
+  @doc("FTP 接続のパスワード")
   Password: string;
+
   Permission: EContainerRegistryPermission;
 }

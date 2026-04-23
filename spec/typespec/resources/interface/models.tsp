@@ -5,21 +5,33 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model Interface {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("ユーザが手動で割り当てた IPv4 アドレス")
   UserIPAddress?: string | null;
+
+  @doc("接続先スイッチ情報 (未接続なら null)")
   Switch?: InterfaceSwitch | null;
+
+  @doc("接続先サーバ情報 (未接続なら null)")
   Server?: ResourceRef | null;
 }
 
 model InterfaceSwitch {
+  @doc("接続先スイッチのID")
   ID?: int64;
+
+  @doc("\"shared\" または \"user\"")
   Scope?: EScope;
 }
 
 model InterfaceCreateRequest {
+  @doc("NIC を作成して接続するサーバ (ResourceRef で ID 指定)")
   Server?: ResourceRef | null;
 }
 
 model InterfaceUpdateRequest {
+  @doc("ユーザが手動で設定する IPv4 アドレス")
   UserIPAddress?: string;
 }

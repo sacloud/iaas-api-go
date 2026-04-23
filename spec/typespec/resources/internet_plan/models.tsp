@@ -5,8 +5,15 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model InternetPlan {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("帯域幅 (Mbps)")
   BandWidthMbps?: int32;
+
+  @doc("リソースの利用状態。\"available\" で利用可能、\"migrating\" で移行中、\"uploading\" でアップロード中など")
   Availability?: EAvailability;
 }

@@ -5,13 +5,28 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model AutoScale {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("オートスケール設定")
   Settings?: AutoScaleSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
+
+  @doc("オートスケールに紐付く API キー情報")
   Status?: AutoScaleStatus | null;
 }
 
@@ -26,53 +41,102 @@ model AutoScaleSettings {
 }
 
 model AutoScaleCPUThresholdScaling {
+  @doc("対象サーバ名の接頭辞")
   ServerPrefix?: string;
+
+  @doc("スケールアウト閾値 (CPU 使用率 %)")
   Up?: int32;
+
+  @doc("スケールイン閾値 (CPU 使用率 %)")
   Down?: int32;
 }
 
 model AutoScaleRouterThresholdScaling {
+  @doc("対象ルータ名の接頭辞")
   RouterPrefix?: string;
+
+  @doc("監視方向 (\"in\" / \"out\")")
   Direction?: string;
+
+  @doc("閾値 (Mbps)")
   Mbps?: int32;
 }
 
 model AutoScaleScheduleScaling {
+  @doc("スケール動作 (\"up\" / \"down\")")
   Action: EAutoScaleAction;
+
+  @doc("動作時刻 (時)")
   Hour: int32;
+
+  @doc("動作時刻 (分)")
   Minute: int32;
+
+  @doc("動作させる曜日の配列")
   DayOfWeek: EDayOfTheWeek[];
 }
 
 model AutoScaleCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: AutoScaleCreateRequestSettings | null;
   Status?: AutoScaleCreateRequestStatus | null;
 }
 
 model AutoScaleCreateRequestSettings {
+  @doc("オートスケールを一時停止するかどうか")
   Disabled: boolean;
+
+  @doc("オートスケール対象となるゾーン名の配列")
   Zones: string[];
+
+  @doc("スケーリング設定本体 (YAML 文字列)")
   Config?: string;
+
+  @doc("発火条件種別 (\"cpu\", \"router\", \"schedule\")")
   TriggerType: EAutoScaleTriggerType;
+
+  @doc("CPU 使用率ベースのスケーリング設定")
   CPUThresholdScaling?: AutoScaleCPUThresholdScaling | null;
+
+  @doc("ルータトラフィックベースのスケーリング設定")
   RouterThresholdScaling?: AutoScaleRouterThresholdScaling | null;
+
+  @doc("スケジュールベースのスケーリング設定")
   ScheduleScaling: AutoScaleScheduleScaling[];
 }
 
 model AutoScaleCreateRequestStatus {
+  @doc("オートスケール実行用 API キー (ResourceRef で ID 指定)")
   APIKey?: ResourceRef | null;
 }
 
 model AutoScaleUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
   Settings?: AutoScaleUpdateRequestSettings | null;
+
+  @doc("設定ハッシュ値。楽観的排他制御のキーとして更新時にクライアントが引き継いで送る")
   SettingsHash?: string;
 }
 

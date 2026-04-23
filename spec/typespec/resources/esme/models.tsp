@@ -5,52 +5,105 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model ESME {
+  @doc("リソースを一意に識別するID")
   ID?: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model ESMECreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model ESMEUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
 
 model ESMESendMessageResult {
+  @doc("送信メッセージのID")
   MessageID?: string;
+
+  @doc("送信リクエストの受付ステータス")
   Status?: string;
+
+  @doc("自動発行された OTP (generated モードのみ)")
   OTP?: string;
 }
 
 model ESMESendMessageWithGeneratedOTPRequest {
+  @doc("SMS 送信先電話番号 (E.164 形式、\"+81901234567\" 等)")
   Destination?: string;
+
+  @doc("SMS 送信元名 (英数字)")
   Sender?: string;
+
+  @doc("OTP 送信時に利用するドメイン名 (任意)")
   DomainName?: string;
 }
 
 model ESMESendMessageWithInputtedOTPRequest {
+  @doc("SMS 送信先電話番号")
   Destination?: string;
+
+  @doc("SMS 送信元名")
   Sender?: string;
+
+  @doc("OTP 送信時に利用するドメイン名 (任意)")
   DomainName?: string;
+
+  @doc("送信したいワンタイムパスワード文字列")
   OTP?: string;
 }
 
 model ESMELogs {
+  @doc("メッセージID")
   MessageID?: string;
+
+  @doc("最新の送信ステータス")
   Status?: string;
+
+  @doc("OTP 値")
   OTP?: string;
+
+  @doc("送信先電話番号")
   Destination?: string;
+
+  @doc("送信実行日時")
   SentAt?: utcDateTime | null;
+
+  @doc("最終ステータス確定日時")
   DoneAt?: utcDateTime | null;
+
+  @doc("送信リトライ回数")
   RetryCount?: int32;
 }

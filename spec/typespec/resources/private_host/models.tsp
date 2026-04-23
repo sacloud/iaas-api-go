@@ -5,32 +5,66 @@ import "@typespec/http";
 namespace Sacloud.IaaS;
 
 model PrivateHost {
+  @doc("リソースを一意に識別するID")
   ID: int64;
+
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("専用ホストプラン")
   Plan?: PrivateHostPlan | null;
+
+  @doc("専用ホストに現在割り当てられている CPU コア数の合計")
   AssignedCPU?: int32;
+
+  @doc("専用ホストに現在割り当てられているメモリ容量合計 (MB)")
   AssignedMemoryMB?: int32;
+
+  @doc("物理ホスト情報")
   Host?: PrivateHostHost | null;
 }
 
 model PrivateHostHost {
+  @doc("物理ホスト名")
   Name?: string;
 }
 
 model PrivateHostCreateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
+
+  @doc("専用ホストプラン (ResourceRef で ID 指定)")
   Plan?: ResourceRef | null;
 }
 
 model PrivateHostUpdateRequest {
+  @doc("リソースの名前")
   Name?: string;
+
+  @doc("説明")
   Description: string;
+
+  @doc("タグの配列。リソースのグルーピングや検索に利用する")
   Tags: string[];
+
+  @doc("アイコン (ResourceRef で ID を指定、null で解除)")
   Icon?: ResourceRef | null;
 }
