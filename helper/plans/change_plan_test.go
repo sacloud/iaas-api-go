@@ -60,6 +60,13 @@ func TestChangeProxyLBPlan_PreservesAllSettings(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, elb)
 
+	// リソースのクリーンアップを確実に実行するため、t.Cleanupで登録
+	// プラン変更後IDが変化する可能性があるため、変数で追跡
+	cleanupID := elb.ID
+	t.Cleanup(func() {
+		_ = elbOp.Delete(ctx, cleanupID)
+	})
+
 	// 各設定が初期状態で保持されていることを確認
 	require.NotNil(t, elb.BackendHttpKeepAlive)
 	require.Equal(t, types.ProxyLBBackendHttpKeepAlive.Aggressive, elb.BackendHttpKeepAlive.Mode)
@@ -75,6 +82,9 @@ func TestChangeProxyLBPlan_PreservesAllSettings(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, changed)
 
+	// プラン変更後にIDが変化する可能性があるため、クリーンアップ対象IDを更新
+	cleanupID = changed.ID
+
 	// プランが変更されていることを確認
 	require.Equal(t, types.ProxyLBPlans.CPS500, changed.Plan)
 
@@ -87,9 +97,4 @@ func TestChangeProxyLBPlan_PreservesAllSettings(t *testing.T) {
 	require.Equal(t, "test-token", changed.OriginGuard.Token)
 	require.NotNil(t, changed.StrictRule)
 	require.True(t, changed.StrictRule.Enabled)
-
-	// cleanup
-	if err := elbOp.Delete(ctx, changed.ID); err != nil {
-		t.Fatal(err)
-	}
 }
