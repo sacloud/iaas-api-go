@@ -14,7 +14,7 @@ require (
 	github.com/sacloud/api-client-go v0.3.5
 	github.com/sacloud/go-http v0.1.9
 	github.com/sacloud/packages-go v0.1.0
-	github.com/sacloud/saclient-go v0.3.7
+	github.com/sacloud/saclient-go v0.4.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/crypto v0.52.0
 )
