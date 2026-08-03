@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.29.3](https://github.com/sacloud/iaas-api-go/compare/v1.29.2...v1.29.3) - 2026-08-03
+
+- update README for repository transition by @shyouhei in https://github.com/sacloud/iaas-api-go/pull/503
+
 ## [v1.29.2](https://github.com/sacloud/iaas-api-go/compare/v1.29.1...v1.29.2) - 2026-06-17
 
 - deprecate: ContainerRegistry public access settings by @yamamoto-febc in https://github.com/sacloud/iaas-api-go/pull/498
